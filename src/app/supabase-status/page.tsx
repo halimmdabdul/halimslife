@@ -9,7 +9,7 @@ export const metadata = {
 export default async function SupabaseStatusPage() {
   await connection();
 
-  const supabase = createServerSupabaseClient();
+  const supabase = await createServerSupabaseClient();
 
   if (!supabase) {
     return (
