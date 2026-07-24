@@ -1,79 +1,87 @@
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 
-import heroRobotics from "@/assets/hero/slide-1.jpeg";
-import heroCode from "@/assets/hero/slide-3.jpeg";
-import heroJapan from "@/assets/hero/slide-5.jpeg";
+import japanLife from "@/assets/hero/slide-5.jpeg";
+import profileWide from "@/assets/halim-wide.webp";
 import profileImage from "@/assets/profile.webp";
+
+const focusAreas = [
+  {
+    icon: "⌁",
+    title: "Robotics & Computer Vision",
+    text: "Perception, camera pipeline, sensor data এবং real-world engineering problem নিয়ে কাজ করি।",
+  },
+  {
+    icon: "あ",
+    title: "Japanese Learning",
+    text: "বাংলাভাষীদের জন্য Kana থেকে JLPT N1 পর্যন্ত সহজ learning path তৈরি করছি।",
+  },
+  {
+    icon: "</>",
+    title: "Programming Fundamentals",
+    text: "Syntax নয়—problem solving, debugging mindset ও strong foundation শেখাতে চাই।",
+  },
+];
 
 const projects = [
   {
-    number: "01",
+    tag: "Featured project",
     title: "KanaStory",
-    eyebrow: "Japanese learning",
-    description:
-      "A story-led, interactive way to make hiragana and katakana feel memorable—not mechanical.",
-    href: "https://kanastory.halimslife.com/",
-    image: heroJapan,
+    text: "হিরাগানা ও কাতাকানা শেখার জন্য story-based interactive learning experience।",
+    link: "https://kanastory.halimslife.com/",
+    linkText: "KanaStory দেখুন",
+    accent: "green",
   },
   {
-    number: "02",
-    title: "JLPT Learning Hubs",
-    eyebrow: "Education systems",
-    description:
-      "Focused roadmaps, vocabulary, grammar and practice resources for learners moving from N5 toward fluency.",
-    href: "https://n5.halimslife.com/",
-    image: heroCode,
+    tag: "Learning ecosystem",
+    title: "JLPT বাংলা হাব",
+    text: "N5 থেকে N1—ভোকাবুলারি, গ্রামার, roadmap এবং practice resource এক জায়গায়।",
+    link: "https://n5.halimslife.com/",
+    linkText: "N5 দিয়ে শুরু করুন",
+    accent: "blue",
   },
   {
-    number: "03",
+    tag: "Open knowledge",
     title: "Engineering Notes",
-    eyebrow: "Knowledge sharing",
-    description:
-      "Practical field notes on engineering work, communication and building a career in Japan.",
-    href: "#writing",
-    image: heroRobotics,
+    text: "জাপানে engineering career, কাজের culture এবং practical programming নিয়ে লেখা।",
+    link: "#insights",
+    linkText: "লেখাগুলো দেখুন",
+    accent: "orange",
   },
 ];
 
-const expertise = [
+const timeline = [
   {
-    mark: "CV",
-    title: "Computer Vision",
-    description:
-      "Perception, camera pipelines and translating visual data into dependable engineering decisions.",
+    year: "এখন",
+    title: "Software Engineer · PPES, Japan",
+    text: "Robotics, perception এবং computer vision-এর real-world application নিয়ে কাজ করছি।",
   },
   {
-    mark: "RX",
-    title: "Robotics & Systems",
-    description:
-      "Working across sensors, software and real-world constraints with a systems-first mindset.",
+    year: "MSc",
+    title: "Shizuoka University, Japan",
+    text: "Computer Science-এ Master of Science সম্পন্ন করেছি এবং recommender system নিয়ে research করেছি।",
   },
   {
-    mark: "JP",
-    title: "Engineering in Japan",
-    description:
-      "Clear documentation, shared context and consistent delivery inside Japanese product teams.",
-  },
-  {
-    mark: "ED",
-    title: "Education Design",
-    description:
-      "Turning difficult Japanese and programming concepts into Bengali-friendly learning paths.",
+    year: "শুরু",
+    title: "Bangladesh to Japan",
+    text: "Curiosity, consistency এবং প্রতিদিন একটু করে শেখা—এই তিনটি জিনিসই আমার journey-র ভিত্তি।",
   },
 ];
 
-const publications = [
+const articles = [
   {
-    year: "2021",
-    title:
-      "Implementing recommender system-based approach for health management mobile application",
-    venue: "IEEE · 17th International Conference on Quality in Research",
+    category: "জাপানে ক্যারিয়ার",
+    title: "জাপানের engineering team-এ কাজ করে আমি যা শিখেছি",
+    text: "Communication, documentation আর context share করা কেন technical skill-এর মতোই গুরুত্বপূর্ণ।",
   },
   {
-    year: "2020",
-    title:
-      "Preliminary analysis of recommender-based approach for medical diagnostic problems",
-    venue: "IEICE Technical Report · Vol. 120, Issue 281",
+    category: "জাপানি ভাষা",
+    title: "একদম শুরু থেকে JLPT-এর প্রস্তুতি নেবেন যেভাবে",
+    text: "ভয় না পেয়ে ছোট ছোট milestone দিয়ে নিজের জন্য একটি practical roadmap বানান।",
+  },
+  {
+    category: "প্রোগ্রামিং",
+    title: "Tutorial কম, problem solving বেশি—strong base-এর formula",
+    text: "কোড মুখস্থ না করে problem ভাঙতে, ভুল ধরতে এবং নিজে চিন্তা করতে শিখুন।",
   },
 ];
 
@@ -84,313 +92,350 @@ function Arrow() {
 export default function Home() {
   return (
     <>
-      <header className="site-header">
-        <a className="brand-mark" href="#top" aria-label="Halim home">
-          H<span>.</span>
+      <header className="topbar">
+        <a className="logo" href="#home">
+          Halim<span>.</span>
         </a>
-        <nav aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#work">Work</a>
-          <a href="#research">Research</a>
-          <a href="#contact">Contact</a>
+        <nav aria-label="মূল নেভিগেশন">
+          <a href="#about">আমার সম্পর্কে</a>
+          <a href="#journey">আমার জার্নি</a>
+          <a href="#projects">প্রজেক্ট</a>
+          <a href="#insights">লেখালেখি</a>
         </nav>
-        <a className="header-cta" href="mailto:reiazbubt@gmail.com">
-          Let&apos;s talk <Arrow />
+        <a className="nav-contact" href="#contact">
+          যোগাযোগ
         </a>
       </header>
 
-      <main id="top">
-        <section className="hero shell">
-          <div className="hero-copy">
-            <p className="eyebrow">
-              <span className="status-dot" />
-              Software engineer · Japan
-            </p>
+      <main id="home">
+        <section className="personal-hero container">
+          <div className="hero-text">
+            <div className="welcome-pill">
+              <span>👋</span> আসসালামু আলাইকুম, আমি হালিম
+            </div>
             <h1>
-              I build intelligent systems
-              <span>—and make complex ideas useful.</span>
+              বাংলাদেশ থেকে জাপান—
+              <span>শেখা, কাজ আর এগিয়ে যাওয়ার গল্প।</span>
             </h1>
-            <p className="hero-intro">
-              I&apos;m <strong>Halim Md Abdul</strong>, a software engineer
-              working at the intersection of robotics, computer vision and
-              human learning.
+            <p className="hero-description">
+              আমি <strong>Halim Md Abdul</strong>। জাপানে কর্মরত একজন Software
+              Engineer। Robotics, Computer Vision ও programming নিয়ে কাজ করি;
+              আর নিজের অভিজ্ঞতা দিয়ে বাংলাভাষীদের জাপানি শেখা ও tech career-এ
+              এগিয়ে যেতে সাহায্য করি।
             </p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#work">
-                Explore my work <span>↓</span>
+            <div className="hero-buttons">
+              <a className="primary-button" href="#about">
+                আমার গল্প জানুন <span>↓</span>
               </a>
               <a
-                className="text-link"
+                className="secondary-button"
                 href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
                 target="_blank"
                 rel="noreferrer"
               >
-                Google Scholar <Arrow />
+                Research profile <Arrow />
               </a>
             </div>
-          </div>
-
-          <div className="hero-visual">
-            <div className="portrait-frame">
-              <Image
-                src={profileImage}
-                alt="Halim Md Abdul in Japan"
-                fill
-                priority
-                sizes="(max-width: 800px) 88vw, 38vw"
-              />
-            </div>
-            <div className="floating-note note-location">
-              <span>Based in</span>
-              Japan · 日本
-            </div>
-            <div className="floating-note note-focus">
-              <span>Current focus</span>
-              Perception / Vision
-            </div>
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-          </div>
-        </section>
-
-        <section className="signal-strip" aria-label="Core disciplines">
-          <div>
-            <span>Robotics</span>
-            <i>✦</i>
-            <span>Computer Vision</span>
-            <i>✦</i>
-            <span>Japan</span>
-            <i>✦</i>
-            <span>Research</span>
-            <i>✦</i>
-            <span>Education</span>
-          </div>
-        </section>
-
-        <section className="about shell section" id="about">
-          <div className="section-label">01 / About</div>
-          <div className="about-content">
-            <p className="lead-statement">
-              Engineering has taught me to see the whole system. Living in
-              Japan has taught me to notice every detail.
-            </p>
-            <div className="about-grid">
-              <p>
-                I&apos;m a software engineer at{" "}
-                <strong>Prime Planet Energy &amp; Solutions (PPES)</strong> in
-                Japan, with a Master&apos;s in Computer Science from Shizuoka
-                University. My technical work centers on perception, sensors,
-                camera pipelines and practical problem-solving.
-              </p>
-              <p>
-                Beyond engineering, I create Bengali-friendly paths for
-                learning Japanese and programming. My aim is simple: turn
-                experience into something another person can use to move
-                forward.
-              </p>
-            </div>
-            <div className="fact-row">
+            <div className="mini-proof">
+              <div>
+                <strong>Japan</strong>
+                <span>বর্তমান ঠিকানা</span>
+              </div>
               <div>
                 <strong>MSc</strong>
                 <span>Computer Science</span>
               </div>
               <div>
-                <strong>2</strong>
-                <span>Research publications</span>
+                <strong>2+</strong>
+                <span>Publications</span>
               </div>
+            </div>
+          </div>
+
+          <div className="hero-photo-area">
+            <div className="sun-shape" />
+            <div className="dot-pattern" />
+            <div className="main-photo">
+              <Image
+                src={profileWide}
+                alt="জাপানে হালিম"
+                fill
+                priority
+                sizes="(max-width: 800px) 92vw, 42vw"
+              />
+            </div>
+            <div className="photo-badge badge-job">
+              <span className="badge-icon">⚙</span>
               <div>
-                <strong>N5—N1</strong>
-                <span>Learning ecosystem</span>
+                <small>বর্তমানে</small>
+                <strong>Software Engineer</strong>
+              </div>
+            </div>
+            <div className="photo-badge badge-place">
+              <span className="japan-dot" />
+              <div>
+                <small>কর্মস্থল</small>
+                <strong>Japan · 日本</strong>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="expertise section">
-          <div className="shell">
-            <div className="section-heading">
-              <div>
-                <div className="section-label light">02 / Expertise</div>
-                <h2>Where technology meets real life.</h2>
-              </div>
+        <section className="trust-bar">
+          <div className="container">
+            <p>আমার কাজ ও আগ্রহ</p>
+            <div>
+              <span>Robotics</span>
+              <i />
+              <span>Computer Vision</span>
+              <i />
+              <span>Japanese Language</span>
+              <i />
+              <span>Programming</span>
+              <i />
+              <span>Research</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="about-me container section" id="about">
+          <div className="section-intro">
+            <span className="kicker">আমার সম্পর্কে</span>
+            <h2>
+              একজন engineer,
+              <br />
+              আজীবন একজন learner।
+            </h2>
+          </div>
+          <div className="about-body">
+            <p className="about-lead">
+              আমার বিশ্বাস—সঠিক guidance আর নিয়মিত চেষ্টা থাকলে, কঠিন পথও সহজ
+              হয়ে যায়।
+            </p>
+            <p>
+              আমি বর্তমানে জাপানের{" "}
+              <strong>Prime Planet Energy &amp; Solutions (PPES)</strong>-এ
+              Software Engineer হিসেবে কাজ করছি। Shizuoka University থেকে
+              Computer Science-এ MSc সম্পন্ন করেছি।
+            </p>
+            <p>
+              জাপানে পড়াশোনা, চাকরি এবং প্রতিদিনের জীবন থেকে শেখা বিষয়গুলো আমি
+              সহজ বাংলায় share করি—যাতে বাংলাদেশের একজন শিক্ষার্থীও নিজের
+              journey শুরু করার confidence পায়।
+            </p>
+            <div className="signature">Halim</div>
+          </div>
+        </section>
+
+        <section className="focus-section section">
+          <div className="container">
+            <div className="center-heading">
+              <span className="kicker">আমি যা করি</span>
+              <h2>Technology, learning এবং মানুষের growth</h2>
               <p>
-                Depth in engineering. Range across cultures. A bias toward
-                clarity.
+                আমার কাজের প্রতিটি জায়গায় একটি common goal—জটিল বিষয়কে সহজ,
+                practical এবং useful করা।
               </p>
             </div>
-            <div className="expertise-grid">
-              {expertise.map((item) => (
-                <article key={item.title} className="expertise-card">
-                  <span className="expertise-mark">{item.mark}</span>
+            <div className="focus-grid">
+              {focusAreas.map((item) => (
+                <article key={item.title}>
+                  <span className="focus-icon">{item.icon}</span>
                   <h3>{item.title}</h3>
-                  <p>{item.description}</p>
+                  <p>{item.text}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="work shell section" id="work">
-          <div className="section-heading dark">
-            <div>
-              <div className="section-label">03 / Selected work</div>
-              <h2>Building tools that help people progress.</h2>
+        <section className="journey-section container section" id="journey">
+          <div className="journey-photo">
+            <Image
+              src={profileImage}
+              alt="Halim Md Abdul"
+              fill
+              sizes="(max-width: 800px) 92vw, 38vw"
+            />
+            <div className="journey-quote">
+              “Curiosity আমাকে শুরু করিয়েছে,
+              <br />
+              consistency আমাকে এগিয়ে নিয়েছে।”
             </div>
-            <p>
-              A growing ecosystem spanning language learning, engineering and
-              open knowledge.
-            </p>
           </div>
-          <div className="project-list">
-            {projects.map((project) => (
-              <ProjectCard key={project.number} {...project} />
+          <div className="journey-content">
+            <span className="kicker">আমার জার্নি</span>
+            <h2>প্রতিটি ধাপ আমাকে নতুন কিছু শিখিয়েছে।</h2>
+            <div className="timeline">
+              {timeline.map((item, index) => (
+                <article key={item.title}>
+                  <div className="timeline-marker">
+                    <span>{index + 1}</span>
+                    {index !== timeline.length - 1 ? <i /> : null}
+                  </div>
+                  <div>
+                    <small>{item.year}</small>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="projects-section section" id="projects">
+          <div className="container">
+            <div className="split-heading">
+              <div>
+                <span className="kicker">আমার প্রজেক্ট</span>
+                <h2>শেখার পথকে সহজ করার ছোট ছোট উদ্যোগ।</h2>
+              </div>
+              <p>
+                নিজের শেখা ও অভিজ্ঞতাকে tools, resources এবং community value-তে
+                রূপ দেওয়ার চেষ্টা।
+              </p>
+            </div>
+            <div className="project-grid">
+              {projects.map((project) => (
+                <a
+                  key={project.title}
+                  className={`project-box ${project.accent}`}
+                  href={project.link}
+                  target={project.link.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    project.link.startsWith("http") ? "noreferrer" : undefined
+                  }
+                >
+                  <span className="project-tag">{project.tag}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.text}</p>
+                  <span className="project-action">
+                    {project.linkText} <Arrow />
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="research-card container">
+          <div className="research-copy">
+            <span className="kicker light">Research & Publications</span>
+            <h2>Research আমাকে evidence দিয়ে চিন্তা করতে শিখিয়েছে।</h2>
+            <p>
+              Health management এবং medical diagnostic problem-এ recommender
+              system-based approach নিয়ে আমার academic research প্রকাশিত হয়েছে
+              IEEE এবং IEICE-তে।
+            </p>
+            <a
+              href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Google Scholar দেখুন <Arrow />
+            </a>
+          </div>
+          <div className="research-visual">
+            <span className="big-number">02</span>
+            <p>Published research works</p>
+            <div className="paper-lines">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+        </section>
+
+        <section className="insights container section" id="insights">
+          <div className="split-heading compact">
+            <div>
+              <span className="kicker">আমার লেখালেখি</span>
+              <h2>অভিজ্ঞতা থেকে practical কথা।</h2>
+            </div>
+            <p>Career, Japanese language ও programming নিয়ে সহজ বাংলায়।</p>
+          </div>
+          <div className="article-grid">
+            {articles.map((article, index) => (
+              <article key={article.title}>
+                <span className="article-no">0{index + 1}</span>
+                <span className="article-category">{article.category}</span>
+                <h3>{article.title}</h3>
+                <p>{article.text}</p>
+                <a href="mailto:reiazbubt@gmail.com?subject=Website content">
+                  এই বিষয়ে জানতে চাই <Arrow />
+                </a>
+              </article>
             ))}
           </div>
         </section>
 
-        <section className="research section" id="research">
-          <div className="research-layout shell">
-            <div className="research-intro">
-              <div className="section-label light">04 / Research</div>
-              <h2>Curiosity, tested.</h2>
-              <p>
-                My academic work explored recommender systems in health
-                management and medical diagnostic contexts.
-              </p>
-              <a
-                className="button button-light"
-                href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Scholar profile <Arrow />
-              </a>
-            </div>
-            <div className="publication-list">
-              {publications.map((publication) => (
-                <article key={publication.title}>
-                  <span>{publication.year}</span>
-                  <div>
-                    <h3>{publication.title}</h3>
-                    <p>{publication.venue}</p>
-                  </div>
-                  <Arrow />
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="writing shell section" id="writing">
-          <div className="section-label">05 / Ideas I share</div>
-          <div className="writing-grid">
-            <article>
-              <span>Engineering</span>
-              <h3>What Japan taught me about clarity at work</h3>
-              <p>Documentation, context and the quiet power of consistency.</p>
-            </article>
-            <article>
-              <span>Learning</span>
-              <h3>A better roadmap from kana to JLPT</h3>
-              <p>Build confidence in layers instead of memorizing in panic.</p>
-            </article>
-            <article>
-              <span>Programming</span>
-              <h3>Strong fundamentals beat fast tutorials</h3>
-              <p>Problem decomposition, debugging and deliberate practice.</p>
-            </article>
-          </div>
-        </section>
-
-        <section className="contact shell" id="contact">
-          <p className="eyebrow">
-            <span className="status-dot" />
-            Open to meaningful conversations
-          </p>
-          <h2>
-            Let&apos;s build something
-            <span>worth understanding.</span>
-          </h2>
-          <div className="contact-bottom">
+        <section className="community-section">
+          <Image
+            src={japanLife}
+            alt=""
+            fill
+            sizes="100vw"
+            className="community-bg"
+          />
+          <div className="community-overlay" />
+          <div className="community-content container">
+            <span className="kicker light">একসাথে এগিয়ে যাই</span>
+            <h2>আপনার Japan অথবা tech journey কোথা থেকে শুরু করবেন?</h2>
             <p>
-              Research, engineering, education—or an idea that connects all
-              three.
+              প্রশ্ন, collaboration কিংবা শুধু নিজের পরিকল্পনাটি share করতে
+              চাইলে—আমাকে লিখতে পারেন।
             </p>
-            <a href="mailto:reiazbubt@gmail.com">
-              reiazbubt@gmail.com <Arrow />
+            <a className="white-button" href="mailto:reiazbubt@gmail.com">
+              হালিমকে মেসেজ করুন <Arrow />
             </a>
           </div>
         </section>
+
+        <section className="contact-section container" id="contact">
+          <div>
+            <span className="online-dot" /> যোগাযোগের জন্য available
+          </div>
+          <h2>
+            কথা বলা যাক—
+            <span>আপনার পরবর্তী step নিয়ে।</span>
+          </h2>
+          <a href="mailto:reiazbubt@gmail.com">
+            reiazbubt@gmail.com <Arrow />
+          </a>
+        </section>
       </main>
 
-      <footer className="site-footer shell">
-        <a className="brand-mark" href="#top">
-          H<span>.</span>
-        </a>
-        <p>© {new Date().getFullYear()} Halim Md Abdul</p>
-        <div>
-          <a
-            href="https://github.com/halimmdabdul"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Scholar
-          </a>
-          <a href="mailto:reiazbubt@gmail.com">Email</a>
+      <footer className="footer">
+        <div className="container">
+          <div>
+            <a className="logo footer-logo" href="#home">
+              Halim<span>.</span>
+            </a>
+            <p>Engineer · Researcher · Lifelong Learner</p>
+          </div>
+          <div className="footer-links">
+            <a
+              href="https://github.com/halimmdabdul"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Google Scholar
+            </a>
+            <a href="mailto:reiazbubt@gmail.com">Email</a>
+          </div>
+          <p className="copyright">
+            © {new Date().getFullYear()} Halim Md Abdul
+          </p>
         </div>
       </footer>
     </>
-  );
-}
-
-function ProjectCard({
-  number,
-  title,
-  eyebrow,
-  description,
-  href,
-  image,
-}: {
-  number: string;
-  title: string;
-  eyebrow: string;
-  description: string;
-  href: string;
-  image: StaticImageData;
-}) {
-  return (
-    <a
-      className="project-card"
-      href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noreferrer" : undefined}
-    >
-      <div className="project-image">
-        <Image
-          src={image}
-          alt=""
-          fill
-          sizes="(max-width: 800px) 100vw, 40vw"
-        />
-      </div>
-      <div className="project-copy">
-        <div>
-          <span className="project-number">{number}</span>
-          <span className="project-eyebrow">{eyebrow}</span>
-        </div>
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <span className="project-link">
-          Explore project <Arrow />
-        </span>
-      </div>
-    </a>
   );
 }
