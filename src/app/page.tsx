@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { connection } from "next/server";
 
 import japanLife from "@/assets/hero/slide-5.jpeg";
 import profileWide from "@/assets/halim-wide.webp";
@@ -43,7 +45,7 @@ const projects = [
     tag: "Open knowledge",
     title: "Engineering Notes",
     text: "জাপানে engineering career, কাজের culture এবং practical programming নিয়ে লেখা।",
-    link: "#insights",
+    link: "/insights",
     linkText: "লেখাগুলো দেখুন",
     accent: "orange",
   },
@@ -89,25 +91,63 @@ function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
-export default function Home() {
+export const metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
+
+export default async function Home() {
+  await connection();
+
+  const personStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Halim Md Abdul",
+    url: "https://halimslife.com",
+    image: "https://halimslife.com/opengraph-image",
+    jobTitle: "Software Engineer",
+    email: "mailto:reiazbubt@gmail.com",
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Shizuoka University",
+    },
+    sameAs: [
+      "https://github.com/halimmdabdul",
+      "https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ",
+    ],
+    knowsAbout: [
+      "Robotics",
+      "Computer Vision",
+      "Programming",
+      "Japanese language education",
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personStructuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <header className="topbar">
-        <a className="logo" href="#home">
+        <Link className="logo" href="/">
           Halim<span>.</span>
-        </a>
+        </Link>
         <nav aria-label="মূল নেভিগেশন">
-          <a href="#about">আমার সম্পর্কে</a>
-          <a href="#journey">আমার জার্নি</a>
-          <a href="#projects">প্রজেক্ট</a>
-          <a href="#insights">লেখালেখি</a>
+          <a href="/about">আমার সম্পর্কে</a>
+          <a href="/journey">আমার জার্নি</a>
+          <a href="/projects">প্রজেক্ট</a>
+          <a href="/insights">লেখালেখি</a>
         </nav>
-        <a className="nav-contact" href="#contact">
+        <a className="nav-contact" href="/contact">
           যোগাযোগ
         </a>
       </header>
 
-      <main id="home">
+      <main>
         <section className="personal-hero container">
           <div className="hero-text">
             <div className="welcome-pill">
@@ -124,7 +164,7 @@ export default function Home() {
               এগিয়ে যেতে সাহায্য করি।
             </p>
             <div className="hero-buttons">
-              <a className="primary-button" href="#about">
+              <a className="primary-button" href="/about">
                 আমার গল্প জানুন <span>↓</span>
               </a>
               <a
@@ -409,9 +449,9 @@ export default function Home() {
       <footer className="footer">
         <div className="container">
           <div>
-            <a className="logo footer-logo" href="#home">
+            <Link className="logo footer-logo" href="/">
               Halim<span>.</span>
-            </a>
+            </Link>
             <p>Engineer · Researcher · Lifelong Learner</p>
           </div>
           <div className="footer-links">

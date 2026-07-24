@@ -15,18 +15,26 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://halimslife.com"),
   title: {
-    default: "Halim Md Abdul — Engineer, Researcher & Educator",
-    template: "%s — Halim Md Abdul",
+    default: "Halim Md Abdul | Japan-based Bangladeshi Software Engineer",
+    template: "%s | Halim Md Abdul",
   },
   description:
     "Japan-based software engineer working across robotics, computer vision, research and Bengali-friendly education.",
   openGraph: {
-    title: "Halim Md Abdul — Engineer, Researcher & Educator",
+    title: "Halim Md Abdul | Engineer, Researcher & Educator",
     description:
       "Intelligent systems, practical research and learning tools built from Japan.",
     url: "https://halimslife.com",
     siteName: "Halim's Life",
     type: "website",
+    locale: "bn_BD",
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -36,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="bn" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>{children}</body>
     </html>
   );
