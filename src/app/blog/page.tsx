@@ -3,6 +3,7 @@ import Link from "next/link";
 import { connection } from "next/server";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
+import { TranslatedText } from "@/components/site-preferences";
 import { getPublishedPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
@@ -20,7 +21,13 @@ export default async function BlogPage() {
     <InnerPageShell>
       <section className="blog-hero container">
         <span className="kicker">Halim&apos;s Blog</span>
-        <h1>অভিজ্ঞতা, শেখা এবং practical insight—সহজ বাংলায়।</h1>
+        <h1>
+          <TranslatedText
+            bn="অভিজ্ঞতা, শেখা এবং practical insight—সহজ বাংলায়।"
+            en="Experience, learning and practical insights."
+            ja="経験、学び、そして実践的なインサイト。"
+          />
+        </h1>
         <p>
           Japan career, Japanese language, engineering ও programming নিয়ে
           field notes।
@@ -51,7 +58,13 @@ export default async function BlogPage() {
                   </time>
                   <h2>{post.title}</h2>
                   <p>{post.excerpt}</p>
-                  <strong>সম্পূর্ণ পড়ুন →</strong>
+                  <strong>
+                    <TranslatedText
+                      bn="সম্পূর্ণ পড়ুন →"
+                      en="Read more →"
+                      ja="続きを読む →"
+                    />
+                  </strong>
                 </div>
               </Link>
             </article>

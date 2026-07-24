@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { connection } from "next/server";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
+import { TranslatedText } from "@/components/site-preferences";
 
 export const metadata: Metadata = {
   title: "যোগাযোগ",
@@ -16,14 +17,26 @@ export default async function ContactPage() {
   return (
     <InnerPageShell>
       <section className="contact-page container">
-        <span className="kicker">যোগাযোগ</span>
-        <h1>আপনার idea, প্রশ্ন অথবা journey নিয়ে কথা বলা যাক।</h1>
+        <span className="kicker">
+          <TranslatedText bn="যোগাযোগ" en="Contact" ja="お問い合わせ" />
+        </span>
+        <h1>
+          <TranslatedText
+            bn="আপনার idea, প্রশ্ন অথবা journey নিয়ে কথা বলা যাক।"
+            en="Let’s talk about your idea, question or journey."
+            ja="アイデア、質問、これからの歩みについてお話ししましょう。"
+          />
+        </h1>
         <p>
           Engineering, research, Japanese learning, career guidance অথবা
           meaningful collaboration—সংক্ষেপে লিখে পাঠান।
         </p>
         <a href="mailto:reiazbubt@gmail.com?subject=Hello Halim">
-          Email করুন
+          <TranslatedText
+            bn="Email করুন"
+            en="Send an email"
+            ja="メールを送る"
+          />
           <strong>reiazbubt@gmail.com ↗</strong>
         </a>
         <div className="contact-socials">

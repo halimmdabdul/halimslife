@@ -13,6 +13,23 @@
   --text: #23343f;
   --muted: #637785;
   --line: #dce7e2;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  --navy: #eef6f8;
+  --blue: #79b8ee;
+  --green: #52d3a4;
+  --green-dark: #143f34;
+  --orange: #ffad55;
+  --red: #ff7187;
+  --cream: #151d20;
+  --paper: #0b1215;
+  --soft: #121d21;
+  --text: #dbe7ea;
+  --muted: #9eb0b7;
+  --line: #29383e;
+  color-scheme: dark;
 }
 
 * {
@@ -29,6 +46,7 @@ body {
   color: var(--text);
   font-family: "Noto Sans Bengali", "Hind Siliguri", "Segoe UI", Arial,
     sans-serif;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 a {
@@ -55,6 +73,11 @@ a {
   backdrop-filter: blur(16px);
 }
 
+html[data-theme="dark"] .topbar {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: rgba(11, 18, 21, 0.9);
+}
+
 .logo {
   width: fit-content;
   color: var(--navy);
@@ -76,6 +99,64 @@ a {
   font-weight: 600;
 }
 
+.header-actions,
+.site-controls {
+  display: flex;
+  align-items: center;
+}
+
+.header-actions {
+  justify-self: end;
+  gap: 10px;
+}
+
+.site-controls {
+  gap: 7px;
+}
+
+.language-control select,
+.theme-toggle {
+  min-height: 39px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--navy);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.language-control select {
+  min-width: 78px;
+  padding: 0 28px 0 10px;
+}
+
+.theme-toggle {
+  display: inline-grid;
+  width: 39px;
+  padding: 0;
+  place-items: center;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.language-control select:hover,
+.theme-toggle:hover {
+  border-color: var(--green);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .topbar nav a {
   transition: color 180ms ease;
 }
@@ -92,6 +173,65 @@ a {
   color: var(--green);
   font-size: 14px;
   font-weight: 700;
+}
+
+html[data-theme="dark"] .topbar nav {
+  color: #b8c8cd;
+}
+
+html[data-theme="dark"] .welcome-pill {
+  border-color: #5d462d;
+  background: #292116;
+  color: #ffc376;
+}
+
+html[data-theme="dark"] .main-photo {
+  border-color: #1b272b;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .photo-badge,
+html[data-theme="dark"] .focus-grid article,
+html[data-theme="dark"] .project-box,
+html[data-theme="dark"] .blog-card,
+html[data-theme="dark"] .public-auth-form,
+html[data-theme="dark"] .account-card,
+html[data-theme="dark"] .admin-login-card,
+html[data-theme="dark"] .admin-stats article,
+html[data-theme="dark"] .admin-panel,
+html[data-theme="dark"] .admin-users-table {
+  border-color: var(--line);
+  background: #121d21;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] .trust-bar,
+html[data-theme="dark"] .focus-section,
+html[data-theme="dark"] .projects-section,
+html[data-theme="dark"] .page-title,
+html[data-theme="dark"] .public-auth-page,
+html[data-theme="dark"] .blog-empty {
+  background: var(--soft);
+}
+
+html[data-theme="dark"] .project-box.green,
+html[data-theme="dark"] .project-box.blue,
+html[data-theme="dark"] .project-box.orange {
+  background: #121d21;
+}
+
+html[data-theme="dark"] .admin-table-head,
+html[data-theme="dark"] .admin-user-row,
+html[data-theme="dark"] .public-auth-form input,
+html[data-theme="dark"] .admin-login-form input,
+html[data-theme="dark"] .admin-user-row select {
+  border-color: var(--line);
+  background: #0f181b;
+  color: var(--text);
+}
+
+html[data-theme="dark"] .footer {
+  border-top: 1px solid #25343a;
 }
 
 .personal-hero {
@@ -2291,8 +2431,29 @@ a {
     padding-inline: 16px;
   }
 
+  .header-actions {
+    gap: 6px;
+  }
+
+  .site-controls {
+    gap: 5px;
+  }
+
+  .language-control select {
+    min-width: 68px;
+    min-height: 36px;
+    padding-left: 8px;
+    font-size: 11px;
+  }
+
+  .theme-toggle {
+    width: 36px;
+    min-height: 36px;
+  }
+
   .nav-contact {
-    padding: 8px 14px;
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
   .personal-hero {

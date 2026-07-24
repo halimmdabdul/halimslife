@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { connection } from "next/server";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
+import { TranslatedText } from "@/components/site-preferences";
 
 export const metadata: Metadata = {
   title: "প্রজেক্ট",
@@ -47,8 +48,20 @@ export default async function ProjectsPage() {
   return (
     <InnerPageShell>
       <section className="page-title container">
-        <span className="kicker">আমার প্রজেক্ট</span>
-        <h1>যে tools ও resources মানুষকে এক ধাপ এগিয়ে নেয়।</h1>
+        <span className="kicker">
+          <TranslatedText
+            bn="আমার প্রজেক্ট"
+            en="My projects"
+            ja="プロジェクト"
+          />
+        </span>
+        <h1>
+          <TranslatedText
+            bn="যে tools ও resources মানুষকে এক ধাপ এগিয়ে নেয়।"
+            en="Tools and resources that help people move forward."
+            ja="人の一歩前進を支えるツールとリソース。"
+          />
+        </h1>
         <p>
           Engineering mindset এবং learner empathy—দুইয়ের সমন্বয়ে তৈরি আমার
           selected কাজ।
@@ -66,7 +79,13 @@ export default async function ProjectsPage() {
             <small>{project.type}</small>
             <h2>{project.title}</h2>
             <p>{project.description}</p>
-            <strong>প্রজেক্ট দেখুন ↗</strong>
+            <strong>
+              <TranslatedText
+                bn="প্রজেক্ট দেখুন ↗"
+                en="View project ↗"
+                ja="プロジェクトを見る ↗"
+              />
+            </strong>
           </a>
         ))}
       </section>

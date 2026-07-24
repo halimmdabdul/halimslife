@@ -8,10 +8,15 @@ import {
   signupUser,
   type PublicAuthState,
 } from "@/app/auth-actions";
+import {
+  TranslatedText,
+  useSitePreferences,
+} from "@/components/site-preferences";
 
 const initialState: PublicAuthState = {};
 
 export function PublicAuthForm({ mode }: { mode: "login" | "signup" }) {
+  const { language } = useSitePreferences();
   const action = mode === "login" ? loginUser : signupUser;
   const [state, formAction, pending] = useActionState(action, initialState);
 
@@ -19,13 +24,21 @@ export function PublicAuthForm({ mode }: { mode: "login" | "signup" }) {
     <form action={formAction} className="public-auth-form">
       {mode === "signup" ? (
         <div>
-          <label htmlFor="fullName">পুরো নাম</label>
+          <label htmlFor="fullName">
+            <TranslatedText bn="পুরো নাম" en="Full name" ja="氏名" />
+          </label>
           <input
             id="fullName"
             name="fullName"
             type="text"
             autoComplete="name"
-            placeholder="আপনার নাম"
+            placeholder={
+              language === "bn"
+                ? "আপনার নাম"
+                : language === "en"
+                  ? "Your name"
+                  : "お名前"
+            }
             minLength={2}
             required
           />
@@ -59,14 +72,36 @@ export function PublicAuthForm({ mode }: { mode: "login" | "signup" }) {
         <p className="public-auth-success">{state.success}</p>
       ) : null}
       <button type="submit" disabled={pending}>
-        {pending
-          ? "অপেক্ষা করুন..."
-          : mode === "login"
-            ? "Login করুন"
-            : "Account তৈরি করুন"}
+        {pending ? (
+          <TranslatedText
+            bn="অপেক্ষা করুন..."
+            en="Please wait..."
+            ja="お待ちください..."
+          />
+        ) : mode === "login" ? (
+          <TranslatedText bn="Login করুন" en="Login" ja="ログイン" />
+        ) : (
+          <TranslatedText
+            bn="Account তৈরি করুন"
+            en="Create account"
+            ja="アカウント作成"
+          />
+        )}
       </button>
       <p className="public-auth-switch">
-        {mode === "login" ? "নতুন account প্রয়োজন?" : "আগেই account আছে?"}{" "}
+        {mode === "login" ? (
+          <TranslatedText
+            bn="নতুন account প্রয়োজন?"
+            en="Need an account?"
+            ja="アカウントをお持ちでないですか？"
+          />
+        ) : (
+          <TranslatedText
+            bn="আগেই account আছে?"
+            en="Already have an account?"
+            ja="すでにアカウントをお持ちですか？"
+          />
+        )}{" "}
         <Link href={mode === "login" ? "/signup" : "/login"}>
           {mode === "login" ? "Sign up" : "Login"}
         </Link>

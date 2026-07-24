@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { SitePreferencesProvider } from "@/components/site-preferences";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,8 +47,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="bn"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('halim-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var l=localStorage.getItem('halim-language');if(l==='bn'||l==='en'||l==='ja'){document.documentElement.lang=l}}catch(e){}",
+          }}
+        />
+      </head>
+      <body>
+        <SitePreferencesProvider>{children}</SitePreferencesProvider>
+      </body>
     </html>
   );
 }

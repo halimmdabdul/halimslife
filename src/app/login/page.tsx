@@ -4,6 +4,7 @@ import { connection } from "next/server";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { PublicAuthForm } from "@/components/public-auth-form";
+import { TranslatedText } from "@/components/site-preferences";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -28,8 +29,20 @@ export default async function LoginPage() {
       <section className="public-auth-page container">
         <div>
           <span className="kicker">Member login</span>
-          <h1>আবার স্বাগতম।</h1>
-          <p>আপনার account ও learning community-তে প্রবেশ করুন।</p>
+          <h1>
+            <TranslatedText
+              bn="আবার স্বাগতম।"
+              en="Welcome back."
+              ja="おかえりなさい。"
+            />
+          </h1>
+          <p>
+            <TranslatedText
+              bn="আপনার account ও learning community-তে প্রবেশ করুন।"
+              en="Access your account and learning community."
+              ja="アカウントと学習コミュニティにアクセスします。"
+            />
+          </p>
         </div>
         <PublicAuthForm mode="login" />
       </section>

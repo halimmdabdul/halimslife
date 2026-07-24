@@ -4,6 +4,7 @@ import { connection } from "next/server";
 
 import profileWide from "@/assets/halim-wide.webp";
 import { InnerPageShell } from "@/components/inner-page-shell";
+import { TranslatedText } from "@/components/site-preferences";
 
 export const metadata: Metadata = {
   title: "আমার সম্পর্কে",
@@ -19,8 +20,16 @@ export default async function AboutPage() {
     <InnerPageShell>
       <section className="inner-hero container">
         <div>
-          <span className="kicker">আমার সম্পর্কে</span>
-          <h1>আমি হালিম—একজন engineer, researcher এবং lifelong learner।</h1>
+          <span className="kicker">
+            <TranslatedText bn="আমার সম্পর্কে" en="About me" ja="私について" />
+          </span>
+          <h1>
+            <TranslatedText
+              bn="আমি হালিম—একজন engineer, researcher এবং lifelong learner।"
+              en="I’m Halim—an engineer, researcher and lifelong learner."
+              ja="ハリムです。エンジニア、研究者、そして生涯学習者です。"
+            />
+          </h1>
           <p>
             বাংলাদেশ থেকে জাপানে এসে পড়াশোনা ও engineering career গড়ার পথে যা
             শিখেছি, সেটাই এখন অন্যদের জন্য সহজ করে share করতে চাই।

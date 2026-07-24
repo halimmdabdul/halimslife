@@ -1,24 +1,12 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 
-import { PublicAuthLink } from "@/components/public-auth-link";
+import { SiteHeader } from "@/components/site-header";
 
 export function InnerPageShell({ children }: { children: ReactNode }) {
   return (
     <>
-      <header className="topbar">
-        <Link className="logo" href="/">
-          Halim<span>.</span>
-        </Link>
-        <nav aria-label="মূল নেভিগেশন">
-          <a href="/about">আমার সম্পর্কে</a>
-          <a href="/journey">আমার জার্নি</a>
-          <a href="/projects">প্রজেক্ট</a>
-          <Link href="/blog">Blog</Link>
-          <a href="/contact">যোগাযোগ</a>
-        </nav>
-        <PublicAuthLink />
-      </header>
+      <SiteHeader />
       <main>{children}</main>
       <footer className="footer">
         <div className="container">

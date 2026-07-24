@@ -5,7 +5,8 @@ import { connection } from "next/server";
 import japanLife from "@/assets/hero/slide-5.jpeg";
 import profileWide from "@/assets/halim-wide.webp";
 import profileImage from "@/assets/profile.webp";
-import { PublicAuthLink } from "@/components/public-auth-link";
+import { SiteHeader } from "@/components/site-header";
+import { TranslatedText } from "@/components/site-preferences";
 
 const focusAreas = [
   {
@@ -133,39 +134,68 @@ export default async function Home() {
           __html: JSON.stringify(personStructuredData).replace(/</g, "\\u003c"),
         }}
       />
-      <header className="topbar">
-        <Link className="logo" href="/">
-          Halim<span>.</span>
-        </Link>
-        <nav aria-label="মূল নেভিগেশন">
-          <a href="/about">আমার সম্পর্কে</a>
-          <a href="/journey">আমার জার্নি</a>
-          <a href="/projects">প্রজেক্ট</a>
-          <Link href="/blog">Blog</Link>
-          <a href="/contact">যোগাযোগ</a>
-        </nav>
-        <PublicAuthLink />
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="personal-hero container">
           <div className="hero-text">
             <div className="welcome-pill">
-              <span>👋</span> আসসালামু আলাইকুম, আমি হালিম
+              <span>👋</span>{" "}
+              <TranslatedText
+                bn="আসসালামু আলাইকুম, আমি হালিম"
+                en="Hello, I’m Halim"
+                ja="こんにちは、ハリムです"
+              />
             </div>
             <h1>
-              বাংলাদেশ থেকে জাপান—
-              <span>শেখা, কাজ আর এগিয়ে যাওয়ার গল্প।</span>
+              <TranslatedText
+                bn="বাংলাদেশ থেকে জাপান—"
+                en="From Bangladesh to Japan—"
+                ja="バングラデシュから日本へ—"
+              />
+              <span>
+                <TranslatedText
+                  bn="শেখা, কাজ আর এগিয়ে যাওয়ার গল্প।"
+                  en="A story of learning, building and moving forward."
+                  ja="学び、働き、前へ進み続ける物語。"
+                />
+              </span>
             </h1>
             <p className="hero-description">
-              আমি <strong>Halim Md Abdul</strong>। জাপানে কর্মরত একজন Software
-              Engineer। Robotics, Computer Vision ও programming নিয়ে কাজ করি;
-              আর নিজের অভিজ্ঞতা দিয়ে বাংলাভাষীদের জাপানি শেখা ও tech career-এ
-              এগিয়ে যেতে সাহায্য করি।
+              <TranslatedText
+                bn={
+                  <>
+                    আমি <strong>Halim Md Abdul</strong>। জাপানে কর্মরত একজন
+                    Software Engineer। Robotics, Computer Vision ও programming
+                    নিয়ে কাজ করি; আর নিজের অভিজ্ঞতা দিয়ে মানুষকে Japanese ও
+                    tech career-এ এগিয়ে যেতে সাহায্য করি।
+                  </>
+                }
+                en={
+                  <>
+                    I’m <strong>Halim Md Abdul</strong>, a software engineer in
+                    Japan working with robotics, computer vision and practical
+                    software—and sharing what I learn along the way.
+                  </>
+                }
+                ja={
+                  <>
+                    日本で働くソフトウェアエンジニア、
+                    <strong>Halim Md Abdul</strong>です。ロボティクス、
+                    コンピュータビジョン、実践的なソフトウェア開発に取り組み、
+                    学びを発信しています。
+                  </>
+                }
+              />
             </p>
             <div className="hero-buttons">
               <a className="primary-button" href="/about">
-                আমার গল্প জানুন <span>↓</span>
+                <TranslatedText
+                  bn="আমার গল্প জানুন"
+                  en="Discover my story"
+                  ja="私のストーリー"
+                />{" "}
+                <span>↓</span>
               </a>
               <a
                 className="secondary-button"
@@ -179,7 +209,13 @@ export default async function Home() {
             <div className="mini-proof">
               <div>
                 <strong>Japan</strong>
-                <span>বর্তমান ঠিকানা</span>
+                <span>
+                  <TranslatedText
+                    bn="বর্তমান ঠিকানা"
+                    en="Based in"
+                    ja="活動拠点"
+                  />
+                </span>
               </div>
               <div>
                 <strong>MSc</strong>
@@ -223,7 +259,13 @@ export default async function Home() {
 
         <section className="trust-bar">
           <div className="container">
-            <p>আমার কাজ ও আগ্রহ</p>
+            <p>
+              <TranslatedText
+                bn="আমার কাজ ও আগ্রহ"
+                en="Work & interests"
+                ja="仕事と関心分野"
+              />
+            </p>
             <div>
               <span>Robotics</span>
               <i />
@@ -240,11 +282,32 @@ export default async function Home() {
 
         <section className="about-me container section" id="about">
           <div className="section-intro">
-            <span className="kicker">আমার সম্পর্কে</span>
+            <span className="kicker">
+              <TranslatedText bn="আমার সম্পর্কে" en="About me" ja="私について" />
+            </span>
             <h2>
-              একজন engineer,
-              <br />
-              আজীবন একজন learner।
+              <TranslatedText
+                bn={
+                  <>
+                    একজন engineer,
+                    <br />
+                    আজীবন একজন learner।
+                  </>
+                }
+                en={
+                  <>
+                    An engineer,
+                    <br />a lifelong learner.
+                  </>
+                }
+                ja={
+                  <>
+                    エンジニアとして、
+                    <br />
+                    生涯学び続ける。
+                  </>
+                }
+              />
             </h2>
           </div>
           <div className="about-body">
@@ -270,8 +333,16 @@ export default async function Home() {
         <section className="focus-section section">
           <div className="container">
             <div className="center-heading">
-              <span className="kicker">আমি যা করি</span>
-              <h2>Technology, learning এবং মানুষের growth</h2>
+              <span className="kicker">
+                <TranslatedText bn="আমি যা করি" en="What I do" ja="取り組み" />
+              </span>
+              <h2>
+                <TranslatedText
+                  bn="Technology, learning এবং মানুষের growth"
+                  en="Technology, learning and human growth"
+                  ja="テクノロジー、学び、人の成長"
+                />
+              </h2>
               <p>
                 আমার কাজের প্রতিটি জায়গায় একটি common goal—জটিল বিষয়কে সহজ,
                 practical এবং useful করা।
@@ -304,8 +375,16 @@ export default async function Home() {
             </div>
           </div>
           <div className="journey-content">
-            <span className="kicker">আমার জার্নি</span>
-            <h2>প্রতিটি ধাপ আমাকে নতুন কিছু শিখিয়েছে।</h2>
+            <span className="kicker">
+              <TranslatedText bn="আমার জার্নি" en="My journey" ja="これまでの歩み" />
+            </span>
+            <h2>
+              <TranslatedText
+                bn="প্রতিটি ধাপ আমাকে নতুন কিছু শিখিয়েছে।"
+                en="Every step has taught me something new."
+                ja="一歩一歩が、新しい学びにつながりました。"
+              />
+            </h2>
             <div className="timeline">
               {timeline.map((item, index) => (
                 <article key={item.title}>
@@ -328,8 +407,20 @@ export default async function Home() {
           <div className="container">
             <div className="split-heading">
               <div>
-                <span className="kicker">আমার প্রজেক্ট</span>
-                <h2>শেখার পথকে সহজ করার ছোট ছোট উদ্যোগ।</h2>
+                <span className="kicker">
+                  <TranslatedText
+                    bn="আমার প্রজেক্ট"
+                    en="My projects"
+                    ja="プロジェクト"
+                  />
+                </span>
+                <h2>
+                  <TranslatedText
+                    bn="শেখার পথকে সহজ করার ছোট ছোট উদ্যোগ।"
+                    en="Small initiatives that make learning easier."
+                    ja="学びをもっと身近にする、小さな挑戦。"
+                  />
+                </h2>
               </div>
               <p>
                 নিজের শেখা ও অভিজ্ঞতাকে tools, resources এবং community value-তে
@@ -390,8 +481,20 @@ export default async function Home() {
         <section className="insights container section" id="insights">
           <div className="split-heading compact">
             <div>
-              <span className="kicker">আমার লেখালেখি</span>
-              <h2>অভিজ্ঞতা থেকে practical কথা।</h2>
+              <span className="kicker">
+                <TranslatedText
+                  bn="আমার লেখালেখি"
+                  en="My writing"
+                  ja="記事・発信"
+                />
+              </span>
+              <h2>
+                <TranslatedText
+                  bn="অভিজ্ঞতা থেকে practical কথা।"
+                  en="Practical ideas from lived experience."
+                  ja="経験から生まれた、実践的な知見。"
+                />
+              </h2>
             </div>
             <p>Career, Japanese language ও programming নিয়ে সহজ বাংলায়।</p>
           </div>
@@ -420,25 +523,57 @@ export default async function Home() {
           />
           <div className="community-overlay" />
           <div className="community-content container">
-            <span className="kicker light">একসাথে এগিয়ে যাই</span>
-            <h2>আপনার Japan অথবা tech journey কোথা থেকে শুরু করবেন?</h2>
+            <span className="kicker light">
+              <TranslatedText
+                bn="একসাথে এগিয়ে যাই"
+                en="Let’s move forward"
+                ja="一緒に前へ"
+              />
+            </span>
+            <h2>
+              <TranslatedText
+                bn="আপনার Japan অথবা tech journey কোথা থেকে শুরু করবেন?"
+                en="Where will your Japan or tech journey begin?"
+                ja="日本やテクノロジーへの挑戦を、どこから始めますか？"
+              />
+            </h2>
             <p>
               প্রশ্ন, collaboration কিংবা শুধু নিজের পরিকল্পনাটি share করতে
               চাইলে—আমাকে লিখতে পারেন।
             </p>
             <a className="white-button" href="mailto:reiazbubt@gmail.com">
-              হালিমকে মেসেজ করুন <Arrow />
+              <TranslatedText
+                bn="হালিমকে মেসেজ করুন"
+                en="Message Halim"
+                ja="ハリムにメッセージ"
+              />{" "}
+              <Arrow />
             </a>
           </div>
         </section>
 
         <section className="contact-section container" id="contact">
           <div>
-            <span className="online-dot" /> যোগাযোগের জন্য available
+            <span className="online-dot" />{" "}
+            <TranslatedText
+              bn="যোগাযোগের জন্য available"
+              en="Available for conversations"
+              ja="お問い合わせ受付中"
+            />
           </div>
           <h2>
-            কথা বলা যাক—
-            <span>আপনার পরবর্তী step নিয়ে।</span>
+            <TranslatedText
+              bn="কথা বলা যাক—"
+              en="Let’s talk—"
+              ja="お話ししましょう—"
+            />
+            <span>
+              <TranslatedText
+                bn="আপনার পরবর্তী step নিয়ে।"
+                en="about your next step."
+                ja="あなたの次の一歩について。"
+              />
+            </span>
           </h2>
           <a href="mailto:reiazbubt@gmail.com">
             reiazbubt@gmail.com <Arrow />

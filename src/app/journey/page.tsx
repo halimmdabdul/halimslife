@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { connection } from "next/server";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
+import { TranslatedText } from "@/components/site-preferences";
 
 export const metadata: Metadata = {
   title: "আমার জার্নি",
@@ -39,8 +40,16 @@ export default async function JourneyPage() {
   return (
     <InnerPageShell>
       <section className="page-title container">
-        <span className="kicker">আমার জার্নি</span>
-        <h1>একটি বড় leap নয়—ছোট ছোট consistent step-এর গল্প।</h1>
+        <span className="kicker">
+          <TranslatedText bn="আমার জার্নি" en="My journey" ja="これまでの歩み" />
+        </span>
+        <h1>
+          <TranslatedText
+            bn="একটি বড় leap নয়—ছোট ছোট consistent step-এর গল্প।"
+            en="Not one giant leap—a story of small, consistent steps."
+            ja="大きな飛躍ではなく、小さな一歩を積み重ねた物語。"
+          />
+        </h1>
         <p>
           প্রতিটি stage আমাকে skill-এর পাশাপাশি language, culture এবং মানুষের
           সঙ্গে কাজ করার নতুন দৃষ্টিভঙ্গি দিয়েছে।
