@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 
+import { PublicAuthLink } from "@/components/public-auth-link";
+
 export function InnerPageShell({ children }: { children: ReactNode }) {
   return (
     <>
@@ -12,11 +14,10 @@ export function InnerPageShell({ children }: { children: ReactNode }) {
           <a href="/about">আমার সম্পর্কে</a>
           <a href="/journey">আমার জার্নি</a>
           <a href="/projects">প্রজেক্ট</a>
-          <a href="/insights">লেখালেখি</a>
+          <Link href="/blog">Blog</Link>
+          <a href="/contact">যোগাযোগ</a>
         </nav>
-        <a className="nav-contact" href="/contact">
-          যোগাযোগ
-        </a>
+        <PublicAuthLink />
       </header>
       <main>{children}</main>
       <footer className="footer">
@@ -43,6 +44,7 @@ export function InnerPageShell({ children }: { children: ReactNode }) {
               Google Scholar
             </a>
             <a href="mailto:reiazbubt@gmail.com">Email</a>
+            <Link href="/blog">Blog</Link>
           </div>
           <p className="copyright">
             © {new Date().getFullYear()} Halim Md Abdul

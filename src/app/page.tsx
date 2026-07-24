@@ -5,6 +5,7 @@ import { connection } from "next/server";
 import japanLife from "@/assets/hero/slide-5.jpeg";
 import profileWide from "@/assets/halim-wide.webp";
 import profileImage from "@/assets/profile.webp";
+import { PublicAuthLink } from "@/components/public-auth-link";
 
 const focusAreas = [
   {
@@ -140,11 +141,10 @@ export default async function Home() {
           <a href="/about">আমার সম্পর্কে</a>
           <a href="/journey">আমার জার্নি</a>
           <a href="/projects">প্রজেক্ট</a>
-          <a href="/insights">লেখালেখি</a>
+          <Link href="/blog">Blog</Link>
+          <a href="/contact">যোগাযোগ</a>
         </nav>
-        <a className="nav-contact" href="/contact">
-          যোগাযোগ
-        </a>
+        <PublicAuthLink />
       </header>
 
       <main>
@@ -469,7 +469,8 @@ export default async function Home() {
             >
               Google Scholar
             </a>
-            <a href="mailto:reiazbubt@gmail.com">Email</a>
+          <a href="mailto:reiazbubt@gmail.com">Email</a>
+          <Link href="/blog">Blog</Link>
           </div>
           <p className="copyright">
             © {new Date().getFullYear()} Halim Md Abdul
