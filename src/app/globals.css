@@ -237,7 +237,26 @@ html[data-theme="dark"] .admin-user-row select {
 }
 
 html[data-theme="dark"] .footer {
-  border-top: 1px solid #25343a;
+  border-top: 1px solid #20343b;
+  background: #081317;
+  color: #f4f8f9;
+}
+
+html[data-theme="dark"] .footer-logo,
+html[data-theme="dark"] .footer-links a {
+  color: #f4f8f9;
+}
+
+html[data-theme="dark"] .footer .container > div > p {
+  color: #9aadb4;
+}
+
+html[data-theme="dark"] .footer-links a:hover {
+  color: var(--green);
+}
+
+html[data-theme="dark"] .footer .copyright {
+  color: #71868e;
 }
 
 .personal-hero {

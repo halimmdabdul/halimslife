@@ -581,7 +581,7 @@ export default async function Home() {
         </section>
       </main>
 
-      <footer className="footer">
+      <footer className="footer" id="site-footer">
         <div className="container">
           <div>
             <Link className="logo footer-logo" href="/">

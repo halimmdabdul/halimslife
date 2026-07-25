@@ -8,7 +8,7 @@ export function InnerPageShell({ children }: { children: ReactNode }) {
     <>
       <SiteHeader />
       <main>{children}</main>
-      <footer className="footer">
+      <footer className="footer" id="site-footer">
         <div className="container">
           <div>
             <Link className="logo footer-logo" href="/">
