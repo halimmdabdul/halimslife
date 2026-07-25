@@ -2,8 +2,11 @@
 
 :root {
   --navy: #102a43;
+  --navy-surface: #102a43;
   --blue: #1f5f99;
   --green: #087f5b;
+  --green-action: #087f5b;
+  --green-surface: #087f5b;
   --green-dark: #075940;
   --orange: #f28c28;
   --red: #d9485f;
@@ -18,8 +21,11 @@
 
 html[data-theme="dark"] {
   --navy: #eef6f8;
+  --navy-surface: #10272f;
   --blue: #79b8ee;
   --green: #52d3a4;
+  --green-action: #13795b;
+  --green-surface: #0d674d;
   --green-dark: #143f34;
   --orange: #ffad55;
   --red: #ff7187;
@@ -310,7 +316,7 @@ html[data-theme="dark"] .footer {
 }
 
 .primary-button {
-  background: var(--green);
+  background: var(--green-action);
   color: white;
   box-shadow: 0 9px 24px rgba(8, 127, 91, 0.2);
 }
@@ -850,7 +856,7 @@ html[data-theme="dark"] .footer {
   margin-block: 110px;
   overflow: hidden;
   border-radius: 18px;
-  background: var(--navy);
+  background: var(--navy-surface);
   color: white;
 }
 
@@ -887,7 +893,7 @@ html[data-theme="dark"] .footer {
   justify-content: center;
   flex-direction: column;
   padding: 40px;
-  background: var(--green);
+  background: var(--green-surface);
 }
 
 .big-number {
@@ -1061,7 +1067,7 @@ html[data-theme="dark"] .footer {
 
 .footer {
   padding: 50px 0;
-  background: var(--navy);
+  background: var(--navy-surface);
   color: white;
 }
 
@@ -1424,7 +1430,7 @@ html[data-theme="dark"] .footer {
   min-height: 52px;
   border: 0;
   border-radius: 8px;
-  background: var(--green);
+  background: var(--green-action);
   color: white;
   font: inherit;
   font-size: 14px;
@@ -1525,7 +1531,7 @@ html[data-theme="dark"] .footer {
   height: 100vh;
   flex-direction: column;
   padding: 32px 24px;
-  background: var(--navy);
+  background: var(--navy-surface);
   color: white;
 }
 
@@ -1577,7 +1583,7 @@ html[data-theme="dark"] .footer {
   height: 36px;
   place-items: center;
   border-radius: 50%;
-  background: var(--green);
+  background: var(--green-action);
   font-size: 13px;
   font-weight: 900;
 }
@@ -1839,7 +1845,7 @@ html[data-theme="dark"] .footer {
 
 .admin-user-row button {
   padding: 0 11px;
-  background: var(--navy);
+  background: var(--navy-surface);
   color: white;
   cursor: pointer;
 }
@@ -2151,7 +2157,7 @@ html[data-theme="dark"] .footer {
   min-height: 52px;
   border: 0;
   border-radius: 8px;
-  background: var(--green);
+  background: var(--green-action);
   color: white;
   font: inherit;
   font-size: 14px;
