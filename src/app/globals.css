@@ -84,17 +84,66 @@ html[data-theme="dark"] .topbar {
   background: rgba(11, 18, 21, 0.9);
 }
 
-.logo {
+.brand-logo {
+  display: inline-flex;
   width: fit-content;
-  color: var(--navy);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  align-items: center;
+  gap: 10px;
 }
 
-.logo span {
+.brand-mark {
+  width: 39px;
+  height: 39px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 6px 12px rgba(16, 42, 67, 0.14));
+}
+
+.brand-mark-background {
+  fill: #102a43;
+  stroke: #2d4c57;
+  stroke-width: 1.5;
+}
+
+.brand-mark-stem,
+.brand-mark-bridge {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 4.5;
+}
+
+.brand-mark-stem {
+  stroke: #f4f8f9;
+}
+
+.brand-mark-bridge {
+  stroke: #52d3a4;
+}
+
+.brand-mark-dot {
+  fill: var(--orange);
+  stroke: #102a43;
+  stroke-width: 1.5;
+}
+
+.brand-wordmark {
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.brand-wordmark span {
   color: var(--orange);
+}
+
+html[data-theme="dark"] .brand-wordmark {
+  color: #f4f8f9;
+}
+
+html[data-theme="dark"] .brand-mark {
+  filter: drop-shadow(0 7px 16px rgba(0, 0, 0, 0.34));
 }
 
 .topbar nav {
@@ -242,7 +291,7 @@ html[data-theme="dark"] .footer {
   color: #f4f8f9;
 }
 
-html[data-theme="dark"] .footer-logo,
+html[data-theme="dark"] .brand-logo-footer .brand-wordmark,
 html[data-theme="dark"] .footer-links a {
   color: #f4f8f9;
 }
@@ -1097,8 +1146,13 @@ html[data-theme="dark"] .footer .copyright {
   gap: 50px;
 }
 
-.footer-logo {
+.brand-logo-footer .brand-wordmark {
   color: white;
+}
+
+.brand-logo-footer .brand-mark-background {
+  fill: #14343e;
+  stroke: #36545d;
 }
 
 .footer .container > div > p {
@@ -2454,6 +2508,19 @@ html[data-theme="dark"] .footer .copyright {
   .topbar {
     min-height: 66px;
     padding-inline: 16px;
+  }
+
+  .brand-logo {
+    gap: 7px;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-wordmark {
+    font-size: 23px;
   }
 
   .header-actions {

@@ -5,6 +5,7 @@ import { connection } from "next/server";
 import japanLife from "@/assets/hero/slide-5.jpeg";
 import profileWide from "@/assets/halim-wide.webp";
 import profileImage from "@/assets/profile.webp";
+import { BrandLogo } from "@/components/brand-logo";
 import { SiteHeader } from "@/components/site-header";
 import { TranslatedText } from "@/components/site-preferences";
 
@@ -584,9 +585,7 @@ export default async function Home() {
       <footer className="footer" id="site-footer">
         <div className="container">
           <div>
-            <Link className="logo footer-logo" href="/">
-              Halim<span>.</span>
-            </Link>
+            <BrandLogo footer />
             <p>Engineer · Researcher · Lifelong Learner</p>
           </div>
           <div className="footer-links">

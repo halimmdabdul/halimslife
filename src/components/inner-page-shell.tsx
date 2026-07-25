@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 
+import { BrandLogo } from "@/components/brand-logo";
 import { SiteHeader } from "@/components/site-header";
 
 export function InnerPageShell({ children }: { children: ReactNode }) {
@@ -11,9 +12,7 @@ export function InnerPageShell({ children }: { children: ReactNode }) {
       <footer className="footer" id="site-footer">
         <div className="container">
           <div>
-            <Link className="logo footer-logo" href="/">
-              Halim<span>.</span>
-            </Link>
+            <BrandLogo footer />
             <p>Engineer · Researcher · Lifelong Learner</p>
           </div>
           <div className="footer-links">

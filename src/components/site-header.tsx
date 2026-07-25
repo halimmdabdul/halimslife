@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { BrandLogo } from "@/components/brand-logo";
 import { PublicAuthLink } from "@/components/public-auth-link";
 import {
   SiteControls,
@@ -9,9 +10,7 @@ import {
 export function SiteHeader() {
   return (
     <header className="topbar">
-      <Link className="logo" href="/">
-        Halim<span>.</span>
-      </Link>
+      <BrandLogo />
       <nav aria-label="Main navigation">
         <Link href="/about">
           <TranslatedText bn="আমার সম্পর্কে" en="About" ja="私について" />
