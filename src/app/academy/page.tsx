@@ -181,11 +181,14 @@ export default async function AcademyPage() {
             <div className="dynamic-course-grid">
               {publishedCourses.map((course) => (
                 <Link href={`/academy/${course.slug}`} key={course.id}>
-                  <span>{course.category}</span>
-                  <strong>{course.level}</strong>
-                  <h3>{course.title}</h3>
-                  <p>{course.description ? markdownToPlainText(course.description) : course.subtitle || "Start learning with this structured course."}</p>
-                  <b>Open course →</b>
+                  {course.cover_image ? <span className="dynamic-course-cover" role="img" aria-label={`${course.title} featured image`} style={{ backgroundImage: `url(${course.cover_image})` }} /> : <span className="dynamic-course-cover placeholder" aria-hidden="true">{course.title.charAt(0)}</span>}
+                  <div className="dynamic-course-body">
+                    <span>{course.category}</span>
+                    <strong>{course.level}</strong>
+                    <h3>{course.title}</h3>
+                    <p>{course.description ? markdownToPlainText(course.description) : course.subtitle || "Start learning with this structured course."}</p>
+                    <b>Open course →</b>
+                  </div>
                 </Link>
               ))}
             </div>
