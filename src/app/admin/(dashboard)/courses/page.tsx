@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { AdminActionForm } from "@/components/admin-action-form";
+import { AdminLectureRow } from "@/components/admin-lecture-row";
 import { requireAdmin } from "@/lib/admin-auth";
 import { RichTextEditor } from "@/components/rich-text-editor";
 
@@ -228,15 +229,14 @@ export default async function AdminCoursesPage() {
                   </details>
                   <div className="admin-lecture-list">
                     {section.lectures.map((lecture) => (
-                      <details className="admin-lecture-editor" key={lecture.id}>
-                        <summary>
-                          <span className={`admin-lecture-type ${lecture.lecture_type}`}>{lecture.lecture_type === "video" ? "▶" : lecture.lecture_type === "quiz" ? "?" : "▤"}</span>
-                          <div><strong>{lecture.title}</strong><small>{lecture.lecture_type} · {lecture.duration || "No duration"}{lecture.is_preview ? " · Preview" : ""}</small></div>
-                          <span className="admin-edit-label">Edit</span>
-                        </summary>
-                        <div className="admin-lecture-quick-delete">
-                          <DeleteButton itemType="lecture" itemId={lecture.id} />
-                        </div>
+                      <AdminLectureRow
+                        key={lecture.id}
+                        type={lecture.lecture_type}
+                        icon={lecture.lecture_type === "video" ? "▶" : lecture.lecture_type === "quiz" ? "?" : "▤"}
+                        title={lecture.title}
+                        meta={`${lecture.lecture_type} · ${lecture.duration || "No duration"}${lecture.is_preview ? " · Preview" : ""}`}
+                        deleteAction={<DeleteButton itemType="lecture" itemId={lecture.id} />}
+                      >
                         <AdminActionForm actionName="updateLecture" className="admin-content-form compact" successMessage="Lecture updated successfully.">
                           <input type="hidden" name="lectureId" value={lecture.id} />
                           <label>Lecture title<input name="title" required defaultValue={lecture.title} /></label>
@@ -296,7 +296,7 @@ export default async function AdminCoursesPage() {
                             </AdminActionForm>
                           </details>
                         </section>
-                      </details>
+                      </AdminLectureRow>
                     ))}
                   </div>
                   <details className="admin-inline-create">

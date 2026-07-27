@@ -3174,26 +3174,19 @@ html[data-theme="dark"] .connection-status {
 .admin-section-builder > summary > strong { color: var(--navy); font-size: 12px; }
 .admin-section-builder > summary > small { color: var(--muted); font-size: 9px; }
 .admin-lecture-list { border-top: 1px solid var(--line); }
-.admin-lecture-editor { position: relative; border-bottom: 1px solid var(--line); }
-.admin-lecture-editor > summary { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 11px 92px 11px 16px; cursor: pointer; list-style: none; }
-.admin-lecture-editor[open] > summary { background: var(--soft); }
+.admin-lecture-editor { border-bottom: 1px solid var(--line); }
+.admin-lecture-row-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 11px 16px; }
+.admin-lecture-editor.is-open > .admin-lecture-row-header { background: var(--soft); }
 .admin-lecture-type { display: grid; width: 26px; height: 26px; border-radius: 50%; background: #e6f3ee; color: var(--green); font-size: 8px; font-weight: 900; place-items: center; }
 .admin-lecture-type.quiz { background: #fff0dd; color: #a95e15; }
 .admin-lecture-list strong, .admin-lecture-list small { display: block; }
 .admin-lecture-list strong { color: var(--navy); font-size: 11px; }
 .admin-lecture-list small { margin-top: 3px; color: var(--muted); font-size: 9px; }
-.admin-edit-label { color: var(--green); font-size: 9px; font-weight: 850; }
-.admin-lecture-quick-delete {
-  position: absolute;
-  z-index: 2;
-  top: 8px;
-  right: 12px;
-}
-
-.admin-lecture-quick-delete .admin-danger-button {
-  padding: 7px 9px;
-  background: var(--paper);
-}
+.admin-lecture-row-actions { display: flex; align-items: center; gap: 7px; }
+.admin-lecture-edit-button,
+.admin-lecture-row-actions .admin-danger-button { min-width: 52px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); font: inherit; font-size: 9px; font-weight: 850; cursor: pointer; }
+.admin-lecture-edit-button { color: var(--green); }
+.admin-lecture-row-actions .admin-danger-button { border-color: #ecc5cb; color: #b32e44; }
 
 .admin-editor-delete { display: flex; justify-content: flex-end; padding: 0 18px 16px; background: var(--paper); }
 
