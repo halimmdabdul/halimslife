@@ -63,6 +63,7 @@ type CourseRow = {
   title: string;
   subtitle: string | null;
   description: string | null;
+  cover_image: string | null;
   category: string;
   level: string;
   published: boolean;
@@ -92,7 +93,7 @@ export default async function AdminCoursesPage() {
   const { supabase } = await requireAdmin();
   const { data, error } = await supabase
     .from("courses")
-    .select("id,slug,title,subtitle,description,category,level,published,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position,is_preview,lecture_materials(id,title,file_url,file_type,file_size,position)))")
+    .select("id,slug,title,subtitle,description,cover_image,category,level,published,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position,is_preview,lecture_materials(id,title,file_url,file_type,file_size,position)))")
     .order("created_at", { ascending: false });
 
   const courses = (data ?? []) as CourseRow[];
@@ -136,6 +137,13 @@ export default async function AdminCoursesPage() {
           <label>Category<input name="category" required defaultValue="Japanese learning" /></label>
           <label>Level<select name="level" defaultValue="Beginner"><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select></label>
           <RichTextEditor name="description" label="Description" rows={5} placeholder="What students will learn..." />
+          <fieldset className="admin-image-builder admin-form-wide">
+            <legend>Featured image</legend>
+            <label>Upload image (max 3 MB)<input name="featuredImage" type="file" accept="image/jpeg,image/png,image/webp,image/avif" /></label>
+            <div className="admin-material-divider"><span>or</span></div>
+            <label>External image URL<input name="featuredImageUrl" type="url" placeholder="https://example.com/course-cover.jpg" /></label>
+            <p>Choose one source. Recommended aspect ratio: 16:9.</p>
+          </fieldset>
           <label className="admin-checkbox"><input type="checkbox" name="published" /> Publish immediately</label>
           <button className="admin-submit-button" type="submit">Create course</button>
         </form>
@@ -171,6 +179,15 @@ export default async function AdminCoursesPage() {
                 <label>Category<input name="category" required defaultValue={course.category} /></label>
                 <label>Level<select name="level" defaultValue={course.level}><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select></label>
                 <RichTextEditor name="description" label="Description" rows={5} defaultValue={course.description ?? ""} />
+                <fieldset className="admin-image-builder admin-form-wide">
+                  <legend>Featured image</legend>
+                  {course.cover_image ? <div className="admin-course-image-preview" role="img" aria-label={`Current cover for ${course.title}`} style={{ backgroundImage: `url(${course.cover_image})` }} /> : null}
+                  <label>Upload replacement (max 3 MB)<input name="featuredImage" type="file" accept="image/jpeg,image/png,image/webp,image/avif" /></label>
+                  <div className="admin-material-divider"><span>or</span></div>
+                  <label>Replacement image URL<input name="featuredImageUrl" type="url" placeholder="https://example.com/course-cover.jpg" /></label>
+                  {course.cover_image ? <label className="admin-checkbox"><input type="checkbox" name="removeFeaturedImage" /> Remove current image</label> : null}
+                  <p>Leave both image fields empty to keep the current image.</p>
+                </fieldset>
                 <button className="admin-submit-button" type="submit">Save course changes</button>
               </form>
             </details>

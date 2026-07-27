@@ -112,23 +112,95 @@ function practiceTestFromForm(formData: FormData) {
   return { question, options, correctAnswer: options[correctOption - 1] };
 }
 
+type AdminSupabase = Awaited<ReturnType<typeof requireAdmin>>["supabase"];
+
+const courseImageMimeTypes = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/avif",
+]);
+
+function courseImageFromForm(formData: FormData) {
+  const fileValue = formData.get("featuredImage");
+  const file = fileValue instanceof File && fileValue.size > 0 ? fileValue : null;
+  const urlValue = optionalText(formData, "featuredImageUrl");
+  let externalUrl: string | null = null;
+
+  if (urlValue) {
+    try {
+      const url = new URL(urlValue);
+      if (url.protocol !== "https:" && url.protocol !== "http:") throw new Error();
+      externalUrl = url.toString();
+    } catch {
+      throw new Error("Featured image URL must be a valid HTTP or HTTPS address.");
+    }
+  }
+  if (file && externalUrl) throw new Error("Choose either an image upload or an external image URL.");
+  if (file && (file.size > 3 * 1024 * 1024 || !courseImageMimeTypes.has(file.type))) {
+    throw new Error("Featured images must be JPEG, PNG, WebP, or AVIF and 3 MB or smaller.");
+  }
+  return { file, externalUrl };
+}
+
+async function uploadCourseImage(
+  supabase: AdminSupabase,
+  courseId: number,
+  file: File,
+) {
+  const safeName = file.name.replace(/[^A-Za-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "course-image";
+  const storagePath = `${courseId}/${crypto.randomUUID()}-${safeName}`;
+  const { error } = await supabase.storage
+    .from("course-images")
+    .upload(storagePath, new Uint8Array(await file.arrayBuffer()), {
+      contentType: file.type,
+      cacheControl: "3600",
+      upsert: false,
+    });
+  if (error) throw new Error(`Featured image upload failed: ${error.message}`);
+  const publicUrl = supabase.storage.from("course-images").getPublicUrl(storagePath).data.publicUrl;
+  return { publicUrl, storagePath };
+}
+
 export async function createCourse(formData: FormData) {
   const { supabase } = await requireAdmin();
   const slug = requiredText(formData, "slug").toLowerCase();
+  const image = courseImageFromForm(formData);
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
     throw new Error("Slug must contain lowercase letters, numbers, and hyphens only.");
   }
 
-  const { error } = await supabase.from("courses").insert({
-    slug,
-    title: requiredText(formData, "title"),
-    subtitle: optionalText(formData, "subtitle"),
-    description: optionalText(formData, "description"),
-    category: requiredText(formData, "category"),
-    level: requiredText(formData, "level"),
-    published: formData.get("published") === "on",
-  });
+  const { data: course, error } = await supabase
+    .from("courses")
+    .insert({
+      slug,
+      title: requiredText(formData, "title"),
+      subtitle: optionalText(formData, "subtitle"),
+      description: optionalText(formData, "description"),
+      category: requiredText(formData, "category"),
+      level: requiredText(formData, "level"),
+      published: formData.get("published") === "on",
+      cover_image: image.externalUrl,
+    })
+    .select("id")
+    .single();
   if (error) throw new Error(`Course creation failed: ${error.message}`);
+  if (image.file && course) {
+    try {
+      const uploaded = await uploadCourseImage(supabase, course.id, image.file);
+      const { error: updateError } = await supabase
+        .from("courses")
+        .update({ cover_image: uploaded.publicUrl, cover_storage_path: uploaded.storagePath })
+        .eq("id", course.id);
+      if (updateError) {
+        await supabase.storage.from("course-images").remove([uploaded.storagePath]);
+        throw updateError;
+      }
+    } catch (uploadError) {
+      await supabase.from("courses").delete().eq("id", course.id);
+      throw uploadError;
+    }
+  }
   revalidatePath("/admin/courses");
   revalidatePath("/academy");
 }
@@ -137,9 +209,27 @@ export async function updateCourse(formData: FormData) {
   const { supabase } = await requireAdmin();
   const courseId = Number(formData.get("courseId"));
   const slug = requiredText(formData, "slug").toLowerCase();
+  const image = courseImageFromForm(formData);
+  const removeImage = formData.get("removeFeaturedImage") === "on";
   if (!Number.isInteger(courseId) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
     throw new Error("Invalid course update request.");
   }
+
+  const { data: currentCourse } = await supabase
+    .from("courses")
+    .select("cover_storage_path")
+    .eq("id", courseId)
+    .single();
+  let uploadedImage: { publicUrl: string; storagePath: string } | null = null;
+  if (image.file) uploadedImage = await uploadCourseImage(supabase, courseId, image.file);
+
+  const imageValues = uploadedImage
+    ? { cover_image: uploadedImage.publicUrl, cover_storage_path: uploadedImage.storagePath }
+    : image.externalUrl
+      ? { cover_image: image.externalUrl, cover_storage_path: null }
+      : removeImage
+        ? { cover_image: null, cover_storage_path: null }
+        : {};
 
   const { error } = await supabase
     .from("courses")
@@ -150,9 +240,16 @@ export async function updateCourse(formData: FormData) {
       description: optionalText(formData, "description"),
       category: requiredText(formData, "category"),
       level: requiredText(formData, "level"),
+      ...imageValues,
     })
     .eq("id", courseId);
-  if (error) throw new Error(`Course update failed: ${error.message}`);
+  if (error) {
+    if (uploadedImage) await supabase.storage.from("course-images").remove([uploadedImage.storagePath]);
+    throw new Error(`Course update failed: ${error.message}`);
+  }
+  if ((uploadedImage || image.externalUrl || removeImage) && currentCourse?.cover_storage_path) {
+    await supabase.storage.from("course-images").remove([currentCourse.cover_storage_path]);
+  }
   revalidatePath("/admin/courses");
   revalidatePath("/academy");
 }
@@ -378,8 +475,14 @@ export async function deleteCourseItem(formData: FormData) {
   const itemId = Number(formData.get("itemId"));
   const table = itemType === "course" ? "courses" : itemType === "section" ? "course_sections" : itemType === "lecture" ? "lectures" : null;
   if (!table || !Number.isInteger(itemId)) throw new Error("Invalid delete request.");
+  const { data: course } = itemType === "course"
+    ? await supabase.from("courses").select("cover_storage_path").eq("id", itemId).single()
+    : { data: null };
   const { error } = await supabase.from(table).delete().eq("id", itemId);
   if (error) throw new Error(`Delete failed: ${error.message}`);
+  if (course?.cover_storage_path) {
+    await supabase.storage.from("course-images").remove([course.cover_storage_path]);
+  }
   revalidatePath("/admin/courses");
   revalidatePath("/academy");
 }

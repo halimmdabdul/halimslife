@@ -9,6 +9,7 @@ export type PublicCourse = {
   title: string;
   subtitle: string | null;
   description: string | null;
+  cover_image: string | null;
   category: string;
   level: string;
 };
@@ -52,7 +53,7 @@ export type PublicCourseDetail = PublicCourse & { course_sections: PublicCourseS
 export const getPublishedCourses = cache(async (): Promise<PublicCourse[]> => {
   const supabase = await createServerSupabaseClient();
   if (!supabase) return [];
-  const { data, error } = await supabase.from("courses").select("id,slug,title,subtitle,description,category,level").eq("published", true).order("created_at");
+  const { data, error } = await supabase.from("courses").select("id,slug,title,subtitle,description,cover_image,category,level").eq("published", true).order("created_at");
   return error ? [] : (data ?? []) as PublicCourse[];
 });
 
@@ -61,7 +62,7 @@ export const getPublishedCourse = cache(async (slug: string): Promise<PublicCour
   if (!supabase) return null;
   const { data, error } = await supabase
     .from("courses")
-    .select("id,slug,title,subtitle,description,category,level,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position,lecture_materials(id,title,file_url,file_type,file_size,position)))")
+    .select("id,slug,title,subtitle,description,cover_image,category,level,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position,lecture_materials(id,title,file_url,file_type,file_size,position)))")
     .eq("slug", slug)
     .eq("published", true)
     .single();

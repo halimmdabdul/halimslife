@@ -9,7 +9,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const course = await getPublishedCourse(slug);
   if (!course) return { title: "Course not found" };
-  return { title: course.title, description: course.description ? markdownToPlainText(course.description) : course.subtitle || undefined, alternates: { canonical: `/academy/${slug}` } };
+  const description = course.description ? markdownToPlainText(course.description) : course.subtitle || undefined;
+  return {
+    title: course.title,
+    description,
+    alternates: { canonical: `/academy/${slug}` },
+    openGraph: {
+      title: course.title,
+      description,
+      images: course.cover_image ? [{ url: course.cover_image }] : undefined,
+    },
+  };
 }
 
 export default async function DynamicCoursePage({ params }: { params: Promise<{ slug: string }> }) {
