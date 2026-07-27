@@ -15,6 +15,12 @@ export type CourseLesson = {
     options?: string[];
     correctAnswer?: string;
   } | null;
+  materials?: Array<{
+    title: string;
+    url: string;
+    fileType?: string | null;
+    fileSize?: number | null;
+  }>;
   videoUrl?: string | null;
 };
 
@@ -238,11 +244,27 @@ export function CoursePlayer({
                     <li>Use the new forms in a simple everyday example.</li>
                   </ul>
                 </div> : null}
-                <div className="lesson-download">
-                  <span>PDF</span>
-                  <div><strong>Lesson practice sheet</strong><small>Study material · 1.2 MB</small></div>
-                  <button type="button">Download</button>
-                </div>
+                {currentLesson.materials === undefined ? (
+                  <div className="lesson-download">
+                    <span>PDF</span>
+                    <div><strong>Lesson practice sheet</strong><small>Study material · 1.2 MB</small></div>
+                    <button type="button">Download</button>
+                  </div>
+                ) : currentLesson.materials.length > 0 ? (
+                  <div className="lesson-materials">
+                    <h2>Downloadable materials</h2>
+                    {currentLesson.materials.map((material) => (
+                      <a href={material.url} target="_blank" rel="noreferrer" key={`${material.title}-${material.url}`}>
+                        <span>{material.fileType || "FILE"}</span>
+                        <div>
+                          <strong>{material.title}</strong>
+                          <small>{material.fileSize ? `${(material.fileSize / 1024 / 1024).toFixed(1)} MB` : "External resource"}</small>
+                        </div>
+                        <b>Download ↓</b>
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
               </article>
             )}
 

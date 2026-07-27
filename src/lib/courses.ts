@@ -13,6 +13,15 @@ export type PublicCourse = {
   level: string;
 };
 
+export type PublicLectureMaterial = {
+  id: number;
+  title: string;
+  file_url: string;
+  file_type: string | null;
+  file_size: number | null;
+  position: number;
+};
+
 export type PublicLecture = {
   id: number;
   title: string;
@@ -28,6 +37,7 @@ export type PublicLecture = {
     correctAnswer?: string;
   } | null;
   position: number;
+  lecture_materials: PublicLectureMaterial[];
 };
 
 export type PublicCourseSection = {
@@ -51,13 +61,18 @@ export const getPublishedCourse = cache(async (slug: string): Promise<PublicCour
   if (!supabase) return null;
   const { data, error } = await supabase
     .from("courses")
-    .select("id,slug,title,subtitle,description,category,level,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position))")
+    .select("id,slug,title,subtitle,description,category,level,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position,lecture_materials(id,title,file_url,file_type,file_size,position)))")
     .eq("slug", slug)
     .eq("published", true)
     .single();
   if (error || !data) return null;
   const course = data as unknown as PublicCourseDetail;
   course.course_sections.sort((a, b) => a.position - b.position || a.id - b.id);
-  course.course_sections.forEach((section) => section.lectures.sort((a, b) => a.position - b.position || a.id - b.id));
+  course.course_sections.forEach((section) => {
+    section.lectures.sort((a, b) => a.position - b.position || a.id - b.id);
+    section.lectures.forEach((lecture) =>
+      lecture.lecture_materials.sort((a, b) => a.position - b.position || a.id - b.id),
+    );
+  });
   return course;
 });
