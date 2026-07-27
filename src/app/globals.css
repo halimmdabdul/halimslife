@@ -3212,7 +3212,7 @@ html[data-theme="dark"] .admin-curriculum-builder { background: #0f181b; }
   font-weight: 900;
 }
 
-.lesson-video-stage > button {
+.video-placeholder-icon {
   position: relative;
   z-index: 2;
   display: grid;
@@ -3227,8 +3227,13 @@ html[data-theme="dark"] .admin-curriculum-builder { background: #0f181b; }
   place-items: center;
 }
 
-.lesson-video-stage > button span {
-  margin-left: 4px;
+.lesson-youtube-player {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .video-caption {
@@ -3253,6 +3258,13 @@ html[data-theme="dark"] .admin-curriculum-builder { background: #0f181b; }
 
 .video-caption strong {
   font-size: 15px;
+}
+
+.video-caption small {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 10px;
 }
 
 .video-controls {

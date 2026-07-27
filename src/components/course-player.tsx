@@ -13,6 +13,39 @@ export type CourseLesson = {
 
 export type CourseSection = { title: string; lessons: CourseLesson[] };
 
+function getYouTubeEmbedUrl(value?: string | null) {
+  if (!value) return null;
+
+  try {
+    const url = new URL(value);
+    const host = url.hostname.replace(/^www\./, "").toLowerCase();
+    let videoId: string | null = null;
+
+    if (host === "youtu.be") {
+      videoId = url.pathname.split("/").filter(Boolean)[0] ?? null;
+    } else if (
+      host === "youtube.com" ||
+      host === "m.youtube.com" ||
+      host === "music.youtube.com" ||
+      host === "youtube-nocookie.com"
+    ) {
+      videoId = url.searchParams.get("v");
+      if (!videoId) {
+        const parts = url.pathname.split("/").filter(Boolean);
+        if (["embed", "shorts", "live"].includes(parts[0])) {
+          videoId = parts[1] ?? null;
+        }
+      }
+    }
+
+    return videoId && /^[A-Za-z0-9_-]{11}$/.test(videoId)
+      ? `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`
+      : null;
+  } catch {
+    return null;
+  }
+}
+
 const demoSections: CourseSection[] = [
   {
     title: "Introduction",
@@ -62,6 +95,7 @@ export function CoursePlayer({
   );
   const [answer, setAnswer] = useState<string | null>(null);
   const currentLesson = flatLessons[activeLesson] ?? { title: "Course introduction", duration: "Lesson", type: "reading" as const };
+  const youtubeEmbedUrl = getYouTubeEmbedUrl(currentLesson.videoUrl);
 
   return (
     <div className="course-player-page">
@@ -130,18 +164,31 @@ export function CoursePlayer({
 
         <main className="course-lesson-area">
           <div className="lesson-video-stage">
-            <div className="video-decoration">あ</div>
-            <button type="button" aria-label="Play lesson">
-              <span aria-hidden="true">▶</span>
-            </button>
-            <div className="video-caption">
-              <span>Now learning</span>
-              <strong>{currentLesson.title}</strong>
-            </div>
-            <div className="video-controls" aria-hidden="true">
-              <span>▶</span><i><span /></i><small>00:00 / {currentLesson.duration}</small>
-              <span>⚙</span><span>□</span>
-            </div>
+            {youtubeEmbedUrl ? (
+              <iframe
+                key={youtubeEmbedUrl}
+                className="lesson-youtube-player"
+                src={youtubeEmbedUrl}
+                title={currentLesson.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            ) : (
+              <>
+                <div className="video-decoration">あ</div>
+                <div className="video-placeholder-icon" aria-hidden="true">▶</div>
+                <div className="video-caption">
+                  <span>{currentLesson.type === "video" ? "Video unavailable" : "Study lesson"}</span>
+                  <strong>{currentLesson.title}</strong>
+                  {currentLesson.type === "video" ? <small>Add a valid YouTube video URL from the admin panel.</small> : null}
+                </div>
+                <div className="video-controls" aria-hidden="true">
+                  <span>▶</span><i><span /></i><small>00:00 / {currentLesson.duration}</small>
+                  <span>⚙</span><span>□</span>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="lesson-content">
