@@ -15,6 +15,7 @@ import {
   updateLectureMaterial,
 } from "@/app/admin/actions";
 import { requireAdmin } from "@/lib/admin-auth";
+import { RichTextEditor } from "@/components/rich-text-editor";
 
 export const metadata: Metadata = {
   title: "Courses & lectures",
@@ -134,7 +135,7 @@ export default async function AdminCoursesPage() {
           <label>Subtitle<input name="subtitle" placeholder="JLPT N5 complete path" /></label>
           <label>Category<input name="category" required defaultValue="Japanese learning" /></label>
           <label>Level<select name="level" defaultValue="Beginner"><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select></label>
-          <label className="admin-form-wide">Description<textarea name="description" rows={3} placeholder="What students will learn..." /></label>
+          <RichTextEditor name="description" label="Description" rows={5} placeholder="What students will learn..." />
           <label className="admin-checkbox"><input type="checkbox" name="published" /> Publish immediately</label>
           <button className="admin-submit-button" type="submit">Create course</button>
         </form>
@@ -169,7 +170,7 @@ export default async function AdminCoursesPage() {
                 <label>Subtitle<input name="subtitle" defaultValue={course.subtitle ?? ""} /></label>
                 <label>Category<input name="category" required defaultValue={course.category} /></label>
                 <label>Level<select name="level" defaultValue={course.level}><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select></label>
-                <label className="admin-form-wide">Description<textarea name="description" rows={3} defaultValue={course.description ?? ""} /></label>
+                <RichTextEditor name="description" label="Description" rows={5} defaultValue={course.description ?? ""} />
                 <button className="admin-submit-button" type="submit">Save course changes</button>
               </form>
             </details>
@@ -206,8 +207,8 @@ export default async function AdminCoursesPage() {
                           <label>Duration<input name="duration" defaultValue={lecture.duration ?? ""} /></label>
                           <label>Order<input name="position" type="number" min="0" defaultValue={lecture.position} /></label>
                           <label className="admin-form-wide">Video URL<input name="videoUrl" type="url" defaultValue={lecture.video_url ?? ""} /></label>
-                          <label className="admin-form-wide">Overview<textarea name="overview" rows={4} defaultValue={lecture.overview ?? lecture.content ?? ""} placeholder="Lesson summary and learning objectives..." /></label>
-                          <label className="admin-form-wide">Study notes<textarea name="studyNotes" rows={6} defaultValue={lecture.study_notes ?? lecture.content ?? ""} placeholder="Detailed notes, examples, and references..." /></label>
+                          <RichTextEditor name="overview" label="Overview" rows={6} defaultValue={lecture.overview ?? lecture.content ?? ""} placeholder="Lesson summary and learning objectives..." />
+                          <RichTextEditor name="studyNotes" label="Study notes" rows={8} defaultValue={lecture.study_notes ?? lecture.content ?? ""} placeholder="Detailed notes, examples, and references..." />
                           <fieldset className="admin-test-builder admin-form-wide">
                             <legend>Practice test</legend>
                             <label>Question<input name="testQuestion" defaultValue={lecture.practice_test?.question ?? ""} placeholder="Which answer is correct?" /></label>
@@ -271,8 +272,8 @@ export default async function AdminCoursesPage() {
                       <label>Duration<input name="duration" placeholder="08:30 or 5 min" /></label>
                       <label>Order<input name="position" type="number" min="0" defaultValue={section.lectures.length} /></label>
                       <label className="admin-form-wide">Video URL<input name="videoUrl" type="url" placeholder="https://youtube.com/..." /></label>
-                      <label className="admin-form-wide">Overview<textarea name="overview" rows={4} placeholder="Lesson summary and learning objectives..." /></label>
-                      <label className="admin-form-wide">Study notes<textarea name="studyNotes" rows={6} placeholder="Detailed notes, examples, and references..." /></label>
+                      <RichTextEditor name="overview" label="Overview" rows={6} placeholder="Lesson summary and learning objectives..." />
+                      <RichTextEditor name="studyNotes" label="Study notes" rows={8} placeholder="Detailed notes, examples, and references..." />
                       <fieldset className="admin-test-builder admin-form-wide">
                         <legend>Practice test</legend>
                         <label>Question<input name="testQuestion" placeholder="Which answer is correct?" /></label>

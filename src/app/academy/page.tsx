@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { TranslatedText } from "@/components/site-preferences";
+import { markdownToPlainText } from "@/components/rich-text-content";
 import { getPublishedCourses } from "@/lib/courses";
 
 export const metadata: Metadata = {
@@ -183,7 +184,7 @@ export default async function AcademyPage() {
                   <span>{course.category}</span>
                   <strong>{course.level}</strong>
                   <h3>{course.title}</h3>
-                  <p>{course.description || course.subtitle || "Start learning with this structured course."}</p>
+                  <p>{course.description ? markdownToPlainText(course.description) : course.subtitle || "Start learning with this structured course."}</p>
                   <b>Open course →</b>
                 </Link>
               ))}

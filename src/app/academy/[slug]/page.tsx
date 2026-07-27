@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { CoursePlayer } from "@/components/course-player";
+import { markdownToPlainText } from "@/components/rich-text-content";
 import { getPublishedCourse } from "@/lib/courses";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const course = await getPublishedCourse(slug);
   if (!course) return { title: "Course not found" };
-  return { title: course.title, description: course.description || course.subtitle || undefined, alternates: { canonical: `/academy/${slug}` } };
+  return { title: course.title, description: course.description ? markdownToPlainText(course.description) : course.subtitle || undefined, alternates: { canonical: `/academy/${slug}` } };
 }
 
 export default async function DynamicCoursePage({ params }: { params: Promise<{ slug: string }> }) {
