@@ -1,11 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import { connection } from "next/server";
 
 import japanLife from "@/assets/hero/slide-5.jpeg";
 import profileWide from "@/assets/halim-wide.webp";
 import profileImage from "@/assets/profile.webp";
-import { BrandLogo } from "@/components/brand-logo";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { TranslatedText } from "@/components/site-preferences";
 
@@ -582,35 +581,7 @@ export default async function Home() {
         </section>
       </main>
 
-      <footer className="footer" id="site-footer">
-        <div className="container">
-          <div>
-            <BrandLogo footer />
-            <p>Engineer · Researcher · Lifelong Learner</p>
-          </div>
-          <div className="footer-links">
-            <a
-              href="https://github.com/halimmdabdul"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Google Scholar
-            </a>
-          <a href="mailto:reiazbubt@gmail.com">Email</a>
-          <Link href="/blog">Blog</Link>
-          </div>
-          <p className="copyright">
-            © {new Date().getFullYear()} Halim Md Abdul
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

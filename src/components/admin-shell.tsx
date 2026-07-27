@@ -20,6 +20,7 @@ export function AdminShell({
         </Link>
         <nav>
           <Link href="/admin">Overview</Link>
+          <Link href="/admin/analytics">Analytics & SEO</Link>
           <Link href="/admin/users">Users & roles</Link>
           <Link href="/projects">View projects</Link>
           <Link href="/">View website ↗</Link>

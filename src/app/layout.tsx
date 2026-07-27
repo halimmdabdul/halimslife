@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { AnalyticsTracker } from "@/components/analytics-tracker";
 import { SitePreferencesProvider } from "@/components/site-preferences";
 
 import "./globals.css";
@@ -61,7 +62,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SitePreferencesProvider>{children}</SitePreferencesProvider>
+        <SitePreferencesProvider>
+          <AnalyticsTracker />
+          {children}
+        </SitePreferencesProvider>
       </body>
     </html>
   );

@@ -33,6 +33,9 @@ _Live production homepage—dark mode, Bengali interface._
 - Email/password authentication with server-side cookie sessions
 - Public signup, login and account pages
 - Protected admin dashboard and user role management
+- Privacy-safe first-party page-view and click analytics
+- Admin analytics dashboard with top pages and interactions
+- Optional Google Search Console and Bing Webmaster keyword reports
 - PostgreSQL Row Level Security (RLS) policies
 - Repeatable database migrations and development seed data
 - Dynamic sitemap, `robots.txt`, canonical URLs and structured person data
@@ -67,6 +70,7 @@ _Live production homepage—dark mode, Bengali interface._
 | `/login` | Member login |
 | `/account` | Authenticated user profile |
 | `/admin` | Protected admin dashboard |
+| `/admin/analytics` | Visits, clicks and search performance |
 | `/admin/users` | Admin-only user and role management |
 | `/supabase-status` | Database connection health check |
 
@@ -188,6 +192,49 @@ Redirect URL: https://halimslife.com/account
 
 Email confirmation is recommended for production. The application uses
 server-side Supabase sessions and refreshes them through the Next.js proxy.
+
+## Analytics and search performance
+
+The application records privacy-safe first-party analytics in Supabase:
+
+- Page views
+- Anonymous browser sessions
+- Internal and external link/button clicks
+- Referrer host/path
+- Device category
+- Campaign UTM parameters
+
+It does **not** record IP addresses, form values, passwords or typed text.
+Browser `Do Not Track` is respected, and admin/status routes are excluded.
+
+After applying the analytics migration, data appears at `/admin/analytics`.
+
+### Google Search Console
+
+1. Verify `halimslife.com` in Google Search Console.
+2. Create a Google Cloud service account.
+3. Enable the Search Console API.
+4. Add the service-account email as a Search Console property user.
+5. Add these server-only variables to Vercel:
+
+```env
+GOOGLE_SEARCH_CONSOLE_SITE_URL=sc-domain:halimslife.com
+GOOGLE_SEARCH_CONSOLE_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
+GOOGLE_SEARCH_CONSOLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
+
+### Bing Webmaster Tools
+
+Verify the site in Bing Webmaster Tools, create an API key and add:
+
+```env
+BING_WEBMASTER_SITE_URL=https://halimslife.com/
+BING_WEBMASTER_API_KEY=your-bing-webmaster-api-key
+```
+
+Search credentials are read only on the server and must never use a
+`NEXT_PUBLIC_` prefix. Google Search Console reports clicks, impressions, CTR
+and average position; it is not a live incognito rank checker.
 
 ## Quality checks
 
