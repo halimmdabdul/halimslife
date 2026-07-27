@@ -8,6 +8,13 @@ export type CourseLesson = {
   duration: string;
   type: "video" | "reading" | "quiz";
   content?: string | null;
+  overview?: string | null;
+  studyNotes?: string | null;
+  practiceTest?: {
+    question?: string;
+    options?: string[];
+    correctAnswer?: string;
+  } | null;
   videoUrl?: string | null;
 };
 
@@ -96,6 +103,17 @@ export function CoursePlayer({
   const [answer, setAnswer] = useState<string | null>(null);
   const currentLesson = flatLessons[activeLesson] ?? { title: "Course introduction", duration: "Lesson", type: "reading" as const };
   const youtubeEmbedUrl = getYouTubeEmbedUrl(currentLesson.videoUrl);
+  const practiceTest = currentLesson.practiceTest;
+  const usesManagedMaterials = practiceTest !== undefined;
+  const testQuestion = usesManagedMaterials
+    ? practiceTest?.question
+    : "Which expression means “Hello”?";
+  const testOptions = usesManagedMaterials
+    ? practiceTest?.options ?? []
+    : ["ありがとう", "こんにちは", "さようなら", "おやすみなさい"];
+  const correctAnswer = usesManagedMaterials
+    ? practiceTest?.correctAnswer
+    : "こんにちは";
 
   return (
     <div className="course-player-page">
@@ -211,15 +229,15 @@ export function CoursePlayer({
               <article className="lesson-overview">
                 <span className="lesson-kicker">Lesson {activeLesson + 1}</span>
                 <h1>{currentLesson.title}</h1>
-                <p>{currentLesson.content || "In this lesson, you will build a clear foundation through a short explanation, examples and guided practice."}</p>
-                <div className="lesson-objectives">
+                <p className="lesson-saved-content">{currentLesson.overview || currentLesson.content || "No overview has been added for this lesson yet."}</p>
+                {!currentLesson.overview && !currentLesson.content ? <div className="lesson-objectives">
                   <h2>What you will learn</h2>
                   <ul>
                     <li>Recognize the key Japanese forms used in this lesson.</li>
                     <li>Understand their meaning with Bengali-friendly context.</li>
                     <li>Use the new forms in a simple everyday example.</li>
                   </ul>
-                </div>
+                </div> : null}
                 <div className="lesson-download">
                   <span>PDF</span>
                   <div><strong>Lesson practice sheet</strong><small>Study material · 1.2 MB</small></div>
@@ -232,34 +250,36 @@ export function CoursePlayer({
               <article className="lesson-notes">
                 <span className="lesson-kicker">Quick reference</span>
                 <h1>Lesson notes</h1>
-                <div className="japanese-example">
+                {!currentLesson.studyNotes && !currentLesson.content ? <div className="japanese-example">
                   <strong>こんにちは</strong>
                   <span>konnichiwa</span>
                   <p>Hello / শুভ দুপুর</p>
-                </div>
-                <p>{currentLesson.content || <>Use <strong>こんにちは</strong> as a polite greeting during the daytime. Listen carefully to the final sound: although written with は, it is pronounced “wa” in this expression.</>}</p>
+                </div> : null}
+                <p className="lesson-saved-content">{currentLesson.studyNotes || currentLesson.content || "No study notes have been added for this lesson yet."}</p>
               </article>
             )}
 
             {activeTab === "test" && (
               <article className="lesson-quiz">
                 <span className="lesson-kicker">Question 1 of 5</span>
-                <h1>Which expression means “Hello”?</h1>
-                <div className="quiz-options">
-                  {["ありがとう", "こんにちは", "さようなら", "おやすみなさい"].map((option) => (
-                    <button
-                      className={answer === option ? (option === "こんにちは" ? "correct" : "wrong") : ""}
-                      key={option}
-                      type="button"
-                      onClick={() => setAnswer(option)}
-                    >
-                      <span>{option}</span>
-                    </button>
-                  ))}
-                </div>
-                {answer && (
-                  <p className={answer === "こんにちは" ? "quiz-feedback correct" : "quiz-feedback wrong"}>
-                    {answer === "こんにちは" ? "Correct! こんにちは is a polite daytime greeting." : "Not quite. Try the common daytime greeting."}
+                {testQuestion && testOptions.length >= 2 && correctAnswer ? <>
+                  <h1>{testQuestion}</h1>
+                  <div className="quiz-options">
+                    {testOptions.map((option) => (
+                      <button
+                        className={answer === option ? (option === correctAnswer ? "correct" : "wrong") : ""}
+                        key={option}
+                        type="button"
+                        onClick={() => setAnswer(option)}
+                      >
+                        <span>{option}</span>
+                      </button>
+                    ))}
+                  </div>
+                </> : <div className="lesson-empty-material"><strong>No practice test yet</strong><p>An administrator can add a question and answers for this lecture.</p></div>}
+                {answer && correctAnswer && (
+                  <p className={answer === correctAnswer ? "quiz-feedback correct" : "quiz-feedback wrong"}>
+                    {answer === correctAnswer ? "Correct! Well done." : "Not quite. Review the lesson notes and try again."}
                   </p>
                 )}
               </article>

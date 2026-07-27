@@ -26,6 +26,9 @@ export default async function DynamicCoursePage({ params }: { params: Promise<{ 
           duration: lecture.duration || (lecture.lecture_type === "quiz" ? "Test" : "Lesson"),
           type: lecture.lecture_type,
           content: lecture.content,
+          overview: lecture.overview,
+          studyNotes: lecture.study_notes,
+          practiceTest: lecture.practice_test,
           videoUrl: lecture.video_url,
         })),
       }))}

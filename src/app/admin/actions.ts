@@ -98,6 +98,20 @@ function optionalText(formData: FormData, name: string) {
   return String(formData.get(name) ?? "").trim() || null;
 }
 
+function practiceTestFromForm(formData: FormData) {
+  const question = optionalText(formData, "testQuestion");
+  const options = [1, 2, 3, 4]
+    .map((number) => optionalText(formData, `testOption${number}`))
+    .filter((option): option is string => Boolean(option));
+  const correctOption = Number(formData.get("testCorrectOption") ?? 0);
+
+  if (!question && options.length === 0 && correctOption === 0) return {};
+  if (!question || options.length < 2 || !Number.isInteger(correctOption) || correctOption < 1 || correctOption > options.length) {
+    throw new Error("Practice test needs a question, at least two options, and a valid correct option.");
+  }
+  return { question, options, correctAnswer: options[correctOption - 1] };
+}
+
 export async function createCourse(formData: FormData) {
   const { supabase } = await requireAdmin();
   const slug = requiredText(formData, "slug").toLowerCase();
@@ -190,6 +204,9 @@ export async function createLecture(formData: FormData) {
     duration: optionalText(formData, "duration"),
     video_url: optionalText(formData, "videoUrl"),
     content: optionalText(formData, "content"),
+    overview: optionalText(formData, "overview"),
+    study_notes: optionalText(formData, "studyNotes"),
+    practice_test: practiceTestFromForm(formData),
     position,
     is_preview: formData.get("isPreview") === "on",
   });
@@ -213,6 +230,9 @@ export async function updateLecture(formData: FormData) {
       duration: optionalText(formData, "duration"),
       video_url: optionalText(formData, "videoUrl"),
       content: optionalText(formData, "content"),
+      overview: optionalText(formData, "overview"),
+      study_notes: optionalText(formData, "studyNotes"),
+      practice_test: practiceTestFromForm(formData),
       position,
       is_preview: formData.get("isPreview") === "on",
     })

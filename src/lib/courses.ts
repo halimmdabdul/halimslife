@@ -20,6 +20,13 @@ export type PublicLecture = {
   duration: string | null;
   video_url: string | null;
   content: string | null;
+  overview: string | null;
+  study_notes: string | null;
+  practice_test: {
+    question?: string;
+    options?: string[];
+    correctAnswer?: string;
+  } | null;
   position: number;
 };
 
@@ -44,7 +51,7 @@ export const getPublishedCourse = cache(async (slug: string): Promise<PublicCour
   if (!supabase) return null;
   const { data, error } = await supabase
     .from("courses")
-    .select("id,slug,title,subtitle,description,category,level,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,position))")
+    .select("id,slug,title,subtitle,description,category,level,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position))")
     .eq("slug", slug)
     .eq("published", true)
     .single();
