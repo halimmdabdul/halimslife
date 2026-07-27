@@ -7,6 +7,9 @@ import {
   createLecture,
   deleteCourseItem,
   toggleCoursePublished,
+  updateCourse,
+  updateCourseSection,
+  updateLecture,
 } from "@/app/admin/actions";
 import { requireAdmin } from "@/lib/admin-auth";
 
@@ -20,6 +23,8 @@ type LectureRow = {
   title: string;
   lecture_type: "video" | "reading" | "quiz";
   duration: string | null;
+  video_url: string | null;
+  content: string | null;
   position: number;
   is_preview: boolean;
 };
@@ -35,6 +40,8 @@ type CourseRow = {
   id: number;
   slug: string;
   title: string;
+  subtitle: string | null;
+  description: string | null;
   category: string;
   level: string;
   published: boolean;
@@ -55,7 +62,7 @@ export default async function AdminCoursesPage() {
   const { supabase } = await requireAdmin();
   const { data, error } = await supabase
     .from("courses")
-    .select("id,slug,title,category,level,published,course_sections(id,title,position,lectures(id,title,lecture_type,duration,position,is_preview))")
+    .select("id,slug,title,subtitle,description,category,level,published,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,position,is_preview))")
     .order("created_at", { ascending: false });
 
   const courses = (data ?? []) as CourseRow[];
@@ -119,6 +126,20 @@ export default async function AdminCoursesPage() {
               </div>
             </header>
 
+            <details className="admin-item-editor admin-course-editor">
+              <summary>Edit course details</summary>
+              <form action={updateCourse} className="admin-content-form">
+                <input type="hidden" name="courseId" value={course.id} />
+                <label>Course title<input name="title" required defaultValue={course.title} /></label>
+                <label>URL slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" defaultValue={course.slug} /></label>
+                <label>Subtitle<input name="subtitle" defaultValue={course.subtitle ?? ""} /></label>
+                <label>Category<input name="category" required defaultValue={course.category} /></label>
+                <label>Level<select name="level" defaultValue={course.level}><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select></label>
+                <label className="admin-form-wide">Description<textarea name="description" rows={3} defaultValue={course.description ?? ""} /></label>
+                <button className="admin-submit-button" type="submit">Save course changes</button>
+              </form>
+            </details>
+
             <div className="admin-curriculum-builder">
               {course.course_sections.map((section, sectionIndex) => (
                 <details className="admin-section-builder" key={section.id} open>
@@ -127,13 +148,36 @@ export default async function AdminCoursesPage() {
                     <strong>{section.title}</strong>
                     <small>{section.lectures.length} lectures</small>
                   </summary>
+                  <details className="admin-item-editor admin-section-editor">
+                    <summary>Edit topic</summary>
+                    <form action={updateCourseSection} className="admin-content-form compact">
+                      <input type="hidden" name="sectionId" value={section.id} />
+                      <label>Topic title<input name="title" required defaultValue={section.title} /></label>
+                      <label>Order<input name="position" type="number" min="0" defaultValue={section.position} /></label>
+                      <button className="admin-submit-button" type="submit">Save topic</button>
+                    </form>
+                  </details>
                   <div className="admin-lecture-list">
                     {section.lectures.map((lecture) => (
-                      <div key={lecture.id}>
-                        <span className={`admin-lecture-type ${lecture.lecture_type}`}>{lecture.lecture_type === "video" ? "▶" : lecture.lecture_type === "quiz" ? "?" : "▤"}</span>
-                        <div><strong>{lecture.title}</strong><small>{lecture.lecture_type} · {lecture.duration || "No duration"}{lecture.is_preview ? " · Preview" : ""}</small></div>
-                        <DeleteButton itemType="lecture" itemId={lecture.id} />
-                      </div>
+                      <details className="admin-lecture-editor" key={lecture.id}>
+                        <summary>
+                          <span className={`admin-lecture-type ${lecture.lecture_type}`}>{lecture.lecture_type === "video" ? "▶" : lecture.lecture_type === "quiz" ? "?" : "▤"}</span>
+                          <div><strong>{lecture.title}</strong><small>{lecture.lecture_type} · {lecture.duration || "No duration"}{lecture.is_preview ? " · Preview" : ""}</small></div>
+                          <span className="admin-edit-label">Edit</span>
+                        </summary>
+                        <form action={updateLecture} className="admin-content-form compact">
+                          <input type="hidden" name="lectureId" value={lecture.id} />
+                          <label>Lecture title<input name="title" required defaultValue={lecture.title} /></label>
+                          <label>Type<select name="lectureType" defaultValue={lecture.lecture_type}><option value="video">Video</option><option value="reading">Reading</option><option value="quiz">Quiz / test</option></select></label>
+                          <label>Duration<input name="duration" defaultValue={lecture.duration ?? ""} /></label>
+                          <label>Order<input name="position" type="number" min="0" defaultValue={lecture.position} /></label>
+                          <label className="admin-form-wide">Video URL<input name="videoUrl" type="url" defaultValue={lecture.video_url ?? ""} /></label>
+                          <label className="admin-form-wide">Study material / quiz content<textarea name="content" rows={4} defaultValue={lecture.content ?? ""} /></label>
+                          <label className="admin-checkbox"><input type="checkbox" name="isPreview" defaultChecked={lecture.is_preview} /> Free preview</label>
+                          <button className="admin-submit-button" type="submit">Save lecture changes</button>
+                        </form>
+                        <div className="admin-editor-delete"><DeleteButton itemType="lecture" itemId={lecture.id} /></div>
+                      </details>
                     ))}
                   </div>
                   <details className="admin-inline-create">
