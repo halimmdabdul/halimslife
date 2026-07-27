@@ -3174,8 +3174,8 @@ html[data-theme="dark"] .connection-status {
 .admin-section-builder > summary > strong { color: var(--navy); font-size: 12px; }
 .admin-section-builder > summary > small { color: var(--muted); font-size: 9px; }
 .admin-lecture-list { border-top: 1px solid var(--line); }
-.admin-lecture-editor { border-bottom: 1px solid var(--line); }
-.admin-lecture-editor > summary { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 11px 16px; cursor: pointer; list-style: none; }
+.admin-lecture-editor { position: relative; border-bottom: 1px solid var(--line); }
+.admin-lecture-editor > summary { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 11px 92px 11px 16px; cursor: pointer; list-style: none; }
 .admin-lecture-editor[open] > summary { background: var(--soft); }
 .admin-lecture-type { display: grid; width: 26px; height: 26px; border-radius: 50%; background: #e6f3ee; color: var(--green); font-size: 8px; font-weight: 900; place-items: center; }
 .admin-lecture-type.quiz { background: #fff0dd; color: #a95e15; }
@@ -3183,6 +3183,18 @@ html[data-theme="dark"] .connection-status {
 .admin-lecture-list strong { color: var(--navy); font-size: 11px; }
 .admin-lecture-list small { margin-top: 3px; color: var(--muted); font-size: 9px; }
 .admin-edit-label { color: var(--green); font-size: 9px; font-weight: 850; }
+.admin-lecture-quick-delete {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 12px;
+}
+
+.admin-lecture-quick-delete .admin-danger-button {
+  padding: 7px 9px;
+  background: var(--paper);
+}
+
 .admin-editor-delete { display: flex; justify-content: flex-end; padding: 0 18px 16px; background: var(--paper); }
 
 .admin-material-manager {

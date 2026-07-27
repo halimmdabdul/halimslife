@@ -234,6 +234,9 @@ export default async function AdminCoursesPage() {
                           <div><strong>{lecture.title}</strong><small>{lecture.lecture_type} · {lecture.duration || "No duration"}{lecture.is_preview ? " · Preview" : ""}</small></div>
                           <span className="admin-edit-label">Edit</span>
                         </summary>
+                        <div className="admin-lecture-quick-delete">
+                          <DeleteButton itemType="lecture" itemId={lecture.id} />
+                        </div>
                         <AdminActionForm actionName="updateLecture" className="admin-content-form compact" successMessage="Lecture updated successfully.">
                           <input type="hidden" name="lectureId" value={lecture.id} />
                           <label>Lecture title<input name="title" required defaultValue={lecture.title} /></label>
@@ -293,7 +296,6 @@ export default async function AdminCoursesPage() {
                             </AdminActionForm>
                           </details>
                         </section>
-                        <div className="admin-editor-delete"><DeleteButton itemType="lecture" itemId={lecture.id} /></div>
                       </details>
                     ))}
                   </div>
