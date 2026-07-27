@@ -87,3 +87,95 @@ export async function updateUserRole(formData: FormData) {
   revalidatePath("/admin");
   revalidatePath("/admin/users");
 }
+
+function requiredText(formData: FormData, name: string) {
+  const value = String(formData.get(name) ?? "").trim();
+  if (!value) throw new Error(`${name} is required.`);
+  return value;
+}
+
+function optionalText(formData: FormData, name: string) {
+  return String(formData.get(name) ?? "").trim() || null;
+}
+
+export async function createCourse(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const slug = requiredText(formData, "slug").toLowerCase();
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+    throw new Error("Slug must contain lowercase letters, numbers, and hyphens only.");
+  }
+
+  const { error } = await supabase.from("courses").insert({
+    slug,
+    title: requiredText(formData, "title"),
+    subtitle: optionalText(formData, "subtitle"),
+    description: optionalText(formData, "description"),
+    category: requiredText(formData, "category"),
+    level: requiredText(formData, "level"),
+    published: formData.get("published") === "on",
+  });
+  if (error) throw new Error(`Course creation failed: ${error.message}`);
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
+}
+
+export async function createCourseSection(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const courseId = Number(formData.get("courseId"));
+  const position = Number(formData.get("position") ?? 0);
+  if (!Number.isInteger(courseId) || !Number.isInteger(position) || position < 0) {
+    throw new Error("Invalid course section request.");
+  }
+  const { error } = await supabase.from("course_sections").insert({
+    course_id: courseId,
+    title: requiredText(formData, "title"),
+    position,
+  });
+  if (error) throw new Error(`Section creation failed: ${error.message}`);
+  revalidatePath("/admin/courses");
+}
+
+export async function createLecture(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const sectionId = Number(formData.get("sectionId"));
+  const position = Number(formData.get("position") ?? 0);
+  const lectureType = String(formData.get("lectureType") ?? "video");
+  if (!Number.isInteger(sectionId) || !Number.isInteger(position) || position < 0 || !["video", "reading", "quiz"].includes(lectureType)) {
+    throw new Error("Invalid lecture request.");
+  }
+  const { error } = await supabase.from("lectures").insert({
+    section_id: sectionId,
+    title: requiredText(formData, "title"),
+    lecture_type: lectureType,
+    duration: optionalText(formData, "duration"),
+    video_url: optionalText(formData, "videoUrl"),
+    content: optionalText(formData, "content"),
+    position,
+    is_preview: formData.get("isPreview") === "on",
+  });
+  if (error) throw new Error(`Lecture creation failed: ${error.message}`);
+  revalidatePath("/admin/courses");
+}
+
+export async function toggleCoursePublished(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const courseId = Number(formData.get("courseId"));
+  const published = formData.get("published") === "true";
+  if (!Number.isInteger(courseId)) throw new Error("Invalid course request.");
+  const { error } = await supabase.from("courses").update({ published }).eq("id", courseId);
+  if (error) throw new Error(`Course update failed: ${error.message}`);
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
+}
+
+export async function deleteCourseItem(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const itemType = String(formData.get("itemType") ?? "");
+  const itemId = Number(formData.get("itemId"));
+  const table = itemType === "course" ? "courses" : itemType === "section" ? "course_sections" : itemType === "lecture" ? "lectures" : null;
+  if (!table || !Number.isInteger(itemId)) throw new Error("Invalid delete request.");
+  const { error } = await supabase.from(table).delete().eq("id", itemId);
+  if (error) throw new Error(`Delete failed: ${error.message}`);
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
+}

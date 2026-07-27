@@ -3,7 +3,17 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const sections = [
+export type CourseLesson = {
+  title: string;
+  duration: string;
+  type: "video" | "reading" | "quiz";
+  content?: string | null;
+  videoUrl?: string | null;
+};
+
+export type CourseSection = { title: string; lessons: CourseLesson[] };
+
+const demoSections: CourseSection[] = [
   {
     title: "Introduction",
     lessons: [
@@ -38,23 +48,28 @@ const sections = [
   },
 ];
 
-const flatLessons = sections.flatMap((section) => section.lessons);
-
-export function CoursePlayer() {
+export function CoursePlayer({
+  course = { title: "Japanese Foundations", subtitle: "JLPT N5 · Beginner" },
+  sections = demoSections,
+}: {
+  course?: { title: string; subtitle: string };
+  sections?: CourseSection[];
+}) {
+  const flatLessons = sections.flatMap((section) => section.lessons);
   const [activeLesson, setActiveLesson] = useState(0);
   const [activeTab, setActiveTab] = useState<"overview" | "notes" | "test">(
     "overview",
   );
   const [answer, setAnswer] = useState<string | null>(null);
-  const currentLesson = flatLessons[activeLesson];
+  const currentLesson = flatLessons[activeLesson] ?? { title: "Course introduction", duration: "Lesson", type: "reading" as const };
 
   return (
     <div className="course-player-page">
       <header className="course-player-header">
         <Link href="/academy" aria-label="Back to Academy">←</Link>
         <div>
-          <strong>Japanese Foundations</strong>
-          <span>JLPT N5 · Beginner</span>
+          <strong>{course.title}</strong>
+          <span>{course.subtitle}</span>
         </div>
         <div className="course-progress">
           <span>Course progress</span>
@@ -149,10 +164,7 @@ export function CoursePlayer() {
               <article className="lesson-overview">
                 <span className="lesson-kicker">Lesson {activeLesson + 1}</span>
                 <h1>{currentLesson.title}</h1>
-                <p>
-                  In this lesson, you will build a clear foundation through a
-                  short explanation, examples and guided practice.
-                </p>
+                <p>{currentLesson.content || "In this lesson, you will build a clear foundation through a short explanation, examples and guided practice."}</p>
                 <div className="lesson-objectives">
                   <h2>What you will learn</h2>
                   <ul>
@@ -178,11 +190,7 @@ export function CoursePlayer() {
                   <span>konnichiwa</span>
                   <p>Hello / শুভ দুপুর</p>
                 </div>
-                <p>
-                  Use <strong>こんにちは</strong> as a polite greeting during the
-                  daytime. Listen carefully to the final sound: although written
-                  with は, it is pronounced “wa” in this expression.
-                </p>
+                <p>{currentLesson.content || <>Use <strong>こんにちは</strong> as a polite greeting during the daytime. Listen carefully to the final sound: although written with は, it is pronounced “wa” in this expression.</>}</p>
               </article>
             )}
 
