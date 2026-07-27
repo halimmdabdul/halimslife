@@ -34,6 +34,12 @@ export default async function JapaneseN5CoursePage() {
           overview: lecture.overview,
           studyNotes: lecture.study_notes,
           practiceTest: lecture.practice_test,
+          materials: lecture.lecture_materials.map((material) => ({
+            title: material.title,
+            url: material.file_url,
+            fileType: material.file_type,
+            fileSize: material.file_size,
+          })),
           videoUrl: lecture.video_url,
         })),
       }))}

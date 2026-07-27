@@ -242,6 +242,125 @@ export async function updateLecture(formData: FormData) {
   revalidatePath("/academy");
 }
 
+const materialMimeTypes = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.ms-powerpoint",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "application/zip",
+  "text/plain",
+]);
+
+function externalMaterialUrl(formData: FormData) {
+  const value = optionalText(formData, "externalUrl");
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:" && url.protocol !== "http:") throw new Error();
+    return url.toString();
+  } catch {
+    throw new Error("Material URL must be a valid HTTP or HTTPS address.");
+  }
+}
+
+export async function createLectureMaterial(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const lectureId = Number(formData.get("lectureId"));
+  const position = Number(formData.get("position") ?? 0);
+  const fileValue = formData.get("file");
+  const file = fileValue instanceof File && fileValue.size > 0 ? fileValue : null;
+  const externalUrl = externalMaterialUrl(formData);
+  if (!Number.isInteger(lectureId) || !Number.isInteger(position) || position < 0 || (!file && !externalUrl) || (file && externalUrl)) {
+    throw new Error("Choose either one file or one external URL for the material.");
+  }
+
+  let fileUrl = externalUrl ?? "";
+  let storagePath: string | null = null;
+  let fileType = optionalText(formData, "fileType");
+  let fileSize: number | null = null;
+
+  if (file) {
+    if (file.size > 3 * 1024 * 1024) throw new Error("Uploaded materials must be 3 MB or smaller.");
+    if (!materialMimeTypes.has(file.type)) throw new Error("Unsupported material file type.");
+    const safeName = file.name.replace(/[^A-Za-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "material";
+    storagePath = `${lectureId}/${crypto.randomUUID()}-${safeName}`;
+    const { error: uploadError } = await supabase.storage
+      .from("course-materials")
+      .upload(storagePath, new Uint8Array(await file.arrayBuffer()), {
+        contentType: file.type,
+        cacheControl: "3600",
+        upsert: false,
+      });
+    if (uploadError) throw new Error(`Material upload failed: ${uploadError.message}`);
+    fileUrl = supabase.storage.from("course-materials").getPublicUrl(storagePath).data.publicUrl;
+    fileType = fileType || file.name.split(".").pop()?.toUpperCase() || file.type;
+    fileSize = file.size;
+  }
+
+  const { error } = await supabase.from("lecture_materials").insert({
+    lecture_id: lectureId,
+    title: requiredText(formData, "title"),
+    file_url: fileUrl,
+    storage_path: storagePath,
+    file_type: fileType,
+    file_size: fileSize,
+    position,
+  });
+  if (error) {
+    if (storagePath) await supabase.storage.from("course-materials").remove([storagePath]);
+    throw new Error(`Material creation failed: ${error.message}`);
+  }
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
+}
+
+export async function updateLectureMaterial(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const materialId = Number(formData.get("materialId"));
+  const position = Number(formData.get("position") ?? 0);
+  const externalUrl = externalMaterialUrl(formData);
+  if (!Number.isInteger(materialId) || !Number.isInteger(position) || position < 0) {
+    throw new Error("Invalid material update request.");
+  }
+  const values: Record<string, string | number | null> = {
+    title: requiredText(formData, "title"),
+    file_type: optionalText(formData, "fileType"),
+    position,
+  };
+  const { data: current } = await supabase
+    .from("lecture_materials")
+    .select("storage_path")
+    .eq("id", materialId)
+    .single();
+  if (externalUrl) {
+    values.file_url = externalUrl;
+    values.storage_path = null;
+    values.file_size = null;
+  }
+  const { error } = await supabase.from("lecture_materials").update(values).eq("id", materialId);
+  if (error) throw new Error(`Material update failed: ${error.message}`);
+  if (externalUrl && current?.storage_path) {
+    await supabase.storage.from("course-materials").remove([current.storage_path]);
+  }
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
+}
+
+export async function deleteLectureMaterial(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const materialId = Number(formData.get("materialId"));
+  if (!Number.isInteger(materialId)) throw new Error("Invalid material delete request.");
+  const { data } = await supabase.from("lecture_materials").select("storage_path").eq("id", materialId).single();
+  const { error } = await supabase.from("lecture_materials").delete().eq("id", materialId);
+  if (error) throw new Error(`Material deletion failed: ${error.message}`);
+  if (data?.storage_path) await supabase.storage.from("course-materials").remove([data.storage_path]);
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
+}
+
 export async function toggleCoursePublished(formData: FormData) {
   const { supabase } = await requireAdmin();
   const courseId = Number(formData.get("courseId"));

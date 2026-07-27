@@ -5,17 +5,29 @@ import {
   createCourse,
   createCourseSection,
   createLecture,
+  createLectureMaterial,
   deleteCourseItem,
+  deleteLectureMaterial,
   toggleCoursePublished,
   updateCourse,
   updateCourseSection,
   updateLecture,
+  updateLectureMaterial,
 } from "@/app/admin/actions";
 import { requireAdmin } from "@/lib/admin-auth";
 
 export const metadata: Metadata = {
   title: "Courses & lectures",
   robots: { index: false, follow: false },
+};
+
+type MaterialRow = {
+  id: number;
+  title: string;
+  file_url: string;
+  file_type: string | null;
+  file_size: number | null;
+  position: number;
 };
 
 type LectureRow = {
@@ -34,6 +46,7 @@ type LectureRow = {
   } | null;
   position: number;
   is_preview: boolean;
+  lecture_materials: MaterialRow[];
 };
 
 type SectionRow = {
@@ -65,11 +78,20 @@ function DeleteButton({ itemType, itemId }: { itemType: string; itemId: number }
   );
 }
 
+function MaterialDeleteButton({ materialId }: { materialId: number }) {
+  return (
+    <form action={deleteLectureMaterial}>
+      <input type="hidden" name="materialId" value={materialId} />
+      <button className="admin-danger-button" type="submit">Delete</button>
+    </form>
+  );
+}
+
 export default async function AdminCoursesPage() {
   const { supabase } = await requireAdmin();
   const { data, error } = await supabase
     .from("courses")
-    .select("id,slug,title,subtitle,description,category,level,published,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position,is_preview))")
+    .select("id,slug,title,subtitle,description,category,level,published,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position,is_preview,lecture_materials(id,title,file_url,file_type,file_size,position)))")
     .order("created_at", { ascending: false });
 
   const courses = (data ?? []) as CourseRow[];
@@ -77,6 +99,11 @@ export default async function AdminCoursesPage() {
     course.course_sections.sort((a, b) => a.position - b.position || a.id - b.id);
     course.course_sections.forEach((section) =>
       section.lectures.sort((a, b) => a.position - b.position || a.id - b.id),
+    );
+    course.course_sections.forEach((section) =>
+      section.lectures.forEach((lecture) =>
+        lecture.lecture_materials.sort((a, b) => a.position - b.position || a.id - b.id),
+      ),
     );
   });
 
@@ -194,6 +221,43 @@ export default async function AdminCoursesPage() {
                           <label className="admin-checkbox"><input type="checkbox" name="isPreview" defaultChecked={lecture.is_preview} /> Free preview</label>
                           <button className="admin-submit-button" type="submit">Save lecture changes</button>
                         </form>
+                        <section className="admin-material-manager">
+                          <h3>Downloadable materials <span>{lecture.lecture_materials.length}</span></h3>
+                          <div className="admin-material-list">
+                            {lecture.lecture_materials.map((material) => (
+                              <details key={material.id}>
+                                <summary>
+                                  <span>{material.file_type || "FILE"}</span>
+                                  <div><strong>{material.title}</strong><small>{material.file_size ? `${(material.file_size / 1024 / 1024).toFixed(1)} MB` : "External resource"}</small></div>
+                                  <b>Edit</b>
+                                </summary>
+                                <form action={updateLectureMaterial} className="admin-content-form compact">
+                                  <input type="hidden" name="materialId" value={material.id} />
+                                  <label>Title<input name="title" required defaultValue={material.title} /></label>
+                                  <label>File label<input name="fileType" defaultValue={material.file_type ?? ""} placeholder="PDF" /></label>
+                                  <label>Order<input name="position" type="number" min="0" defaultValue={material.position} /></label>
+                                  <label className="admin-form-wide">Replace external URL<input name="externalUrl" type="url" placeholder={material.file_url} /></label>
+                                  <button className="admin-submit-button" type="submit">Save material</button>
+                                </form>
+                                <div className="admin-editor-delete"><MaterialDeleteButton materialId={material.id} /></div>
+                              </details>
+                            ))}
+                          </div>
+                          <details className="admin-add-material">
+                            <summary>＋ Add downloadable material</summary>
+                            <form action={createLectureMaterial} className="admin-content-form compact">
+                              <input type="hidden" name="lectureId" value={lecture.id} />
+                              <label>Material title<input name="title" required placeholder="Lesson practice sheet" /></label>
+                              <label>File label<input name="fileType" placeholder="PDF, DOCX, ZIP..." /></label>
+                              <label>Order<input name="position" type="number" min="0" defaultValue={lecture.lecture_materials.length} /></label>
+                              <label className="admin-form-wide">Upload file (max 3 MB)<input name="file" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.zip,.txt" /></label>
+                              <div className="admin-material-divider"><span>or</span></div>
+                              <label className="admin-form-wide">External download URL<input name="externalUrl" type="url" placeholder="https://example.com/material.pdf" /></label>
+                              <p className="admin-form-hint admin-form-wide">Choose one source: upload a file or provide an external URL.</p>
+                              <button className="admin-submit-button" type="submit">Add material</button>
+                            </form>
+                          </details>
+                        </section>
                         <div className="admin-editor-delete"><DeleteButton itemType="lecture" itemId={lecture.id} /></div>
                       </details>
                     ))}
