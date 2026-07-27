@@ -3007,6 +3007,125 @@ html[data-theme="dark"] .admin-section-builder,
 html[data-theme="dark"] .admin-inline-create.add-section { border-color: var(--line); background: #121d21; }
 html[data-theme="dark"] .admin-curriculum-builder { background: #0f181b; }
 
+/* Keep every admin surface in the same dark color system. */
+html[data-theme="dark"] .admin-app {
+  background: #0b1215;
+}
+
+html[data-theme="dark"] .admin-main {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .admin-sidebar {
+  border-right: 1px solid #20343b;
+  background: #0d252d;
+}
+
+html[data-theme="dark"] .admin-page-header h1,
+html[data-theme="dark"] .admin-course-card h2,
+html[data-theme="dark"] .admin-section-builder > summary > strong,
+html[data-theme="dark"] .admin-lecture-list strong,
+html[data-theme="dark"] .admin-create-panel > summary,
+html[data-theme="dark"] .admin-content-form input,
+html[data-theme="dark"] .admin-content-form select,
+html[data-theme="dark"] .admin-content-form textarea {
+  color: #eef6f8;
+}
+
+html[data-theme="dark"] .admin-page-header p,
+html[data-theme="dark"] .admin-course-card header p,
+html[data-theme="dark"] .admin-section-builder > summary > small,
+html[data-theme="dark"] .admin-lecture-list small,
+html[data-theme="dark"] .admin-content-form label {
+  color: #9eb0b7;
+}
+
+html[data-theme="dark"] .admin-content-form input,
+html[data-theme="dark"] .admin-content-form select,
+html[data-theme="dark"] .admin-content-form textarea,
+html[data-theme="dark"] .admin-course-actions a,
+html[data-theme="dark"] .admin-course-actions button,
+html[data-theme="dark"] .admin-danger-button {
+  border-color: #31434a;
+  background: #0b1418;
+}
+
+html[data-theme="dark"] .admin-content-form input::placeholder,
+html[data-theme="dark"] .admin-content-form textarea::placeholder {
+  color: #70838b;
+  opacity: 1;
+}
+
+html[data-theme="dark"] .admin-content-form input:focus,
+html[data-theme="dark"] .admin-content-form select:focus,
+html[data-theme="dark"] .admin-content-form textarea:focus {
+  border-color: #52d3a4;
+  outline: 2px solid rgba(82, 211, 164, 0.14);
+  outline-offset: 1px;
+}
+
+html[data-theme="dark"] .admin-course-actions a,
+html[data-theme="dark"] .admin-course-actions button {
+  color: #dbe7ea;
+}
+
+html[data-theme="dark"] .admin-danger-button {
+  border-color: #72414b;
+  color: #ff8295;
+}
+
+html[data-theme="dark"] .admin-security-badge,
+html[data-theme="dark"] .admin-user-total,
+html[data-theme="dark"] .admin-course-state.published,
+html[data-theme="dark"] .role-pill.admin {
+  background: #163b31;
+  color: #77e0ba;
+}
+
+html[data-theme="dark"] .admin-course-state.draft,
+html[data-theme="dark"] .connection-status {
+  background: #3a2c18;
+  color: #ffc376 !important;
+}
+
+html[data-theme="dark"] .role-pill.user {
+  background: #1e3039;
+  color: #a9c4d5;
+}
+
+html[data-theme="dark"] .admin-lecture-type,
+html[data-theme="dark"] .admin-user-identity > span,
+html[data-theme="dark"] .analytics-click-list strong {
+  background: #163b31;
+  color: #77e0ba;
+}
+
+html[data-theme="dark"] .admin-lecture-type.quiz {
+  background: #3a2c18;
+  color: #ffc376;
+}
+
+html[data-theme="dark"] .admin-course-setup {
+  border-color: #70404a;
+  background: #2a181d;
+  color: #ff9bad;
+}
+
+html[data-theme="dark"] .admin-course-setup code {
+  background: #160f12;
+  color: #ffc3ce;
+}
+
+html[data-theme="dark"] .admin-table-head,
+html[data-theme="dark"] .admin-user-row {
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .admin-table-head {
+  background: #0f181b;
+  color: #91a5ad;
+}
+
 /* Academy course player */
 .course-player-page {
   min-height: 100vh;
