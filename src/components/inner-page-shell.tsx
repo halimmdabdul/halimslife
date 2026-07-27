@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 
-import { BrandLogo } from "@/components/brand-logo";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export function InnerPageShell({ children }: { children: ReactNode }) {
@@ -9,35 +8,7 @@ export function InnerPageShell({ children }: { children: ReactNode }) {
     <>
       <SiteHeader />
       <main>{children}</main>
-      <footer className="footer" id="site-footer">
-        <div className="container">
-          <div>
-            <BrandLogo footer />
-            <p>Engineer · Researcher · Lifelong Learner</p>
-          </div>
-          <div className="footer-links">
-            <a
-              href="https://github.com/halimmdabdul"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Google Scholar
-            </a>
-            <a href="mailto:reiazbubt@gmail.com">Email</a>
-            <Link href="/blog">Blog</Link>
-          </div>
-          <p className="copyright">
-            © {new Date().getFullYear()} Halim Md Abdul
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
