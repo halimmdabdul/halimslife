@@ -119,6 +119,30 @@ export async function createCourse(formData: FormData) {
   revalidatePath("/academy");
 }
 
+export async function updateCourse(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const courseId = Number(formData.get("courseId"));
+  const slug = requiredText(formData, "slug").toLowerCase();
+  if (!Number.isInteger(courseId) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+    throw new Error("Invalid course update request.");
+  }
+
+  const { error } = await supabase
+    .from("courses")
+    .update({
+      slug,
+      title: requiredText(formData, "title"),
+      subtitle: optionalText(formData, "subtitle"),
+      description: optionalText(formData, "description"),
+      category: requiredText(formData, "category"),
+      level: requiredText(formData, "level"),
+    })
+    .eq("id", courseId);
+  if (error) throw new Error(`Course update failed: ${error.message}`);
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
+}
+
 export async function createCourseSection(formData: FormData) {
   const { supabase } = await requireAdmin();
   const courseId = Number(formData.get("courseId"));
@@ -133,6 +157,22 @@ export async function createCourseSection(formData: FormData) {
   });
   if (error) throw new Error(`Section creation failed: ${error.message}`);
   revalidatePath("/admin/courses");
+}
+
+export async function updateCourseSection(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const sectionId = Number(formData.get("sectionId"));
+  const position = Number(formData.get("position") ?? 0);
+  if (!Number.isInteger(sectionId) || !Number.isInteger(position) || position < 0) {
+    throw new Error("Invalid section update request.");
+  }
+  const { error } = await supabase
+    .from("course_sections")
+    .update({ title: requiredText(formData, "title"), position })
+    .eq("id", sectionId);
+  if (error) throw new Error(`Section update failed: ${error.message}`);
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
 }
 
 export async function createLecture(formData: FormData) {
@@ -155,6 +195,31 @@ export async function createLecture(formData: FormData) {
   });
   if (error) throw new Error(`Lecture creation failed: ${error.message}`);
   revalidatePath("/admin/courses");
+}
+
+export async function updateLecture(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const lectureId = Number(formData.get("lectureId"));
+  const position = Number(formData.get("position") ?? 0);
+  const lectureType = String(formData.get("lectureType") ?? "video");
+  if (!Number.isInteger(lectureId) || !Number.isInteger(position) || position < 0 || !["video", "reading", "quiz"].includes(lectureType)) {
+    throw new Error("Invalid lecture update request.");
+  }
+  const { error } = await supabase
+    .from("lectures")
+    .update({
+      title: requiredText(formData, "title"),
+      lecture_type: lectureType,
+      duration: optionalText(formData, "duration"),
+      video_url: optionalText(formData, "videoUrl"),
+      content: optionalText(formData, "content"),
+      position,
+      is_preview: formData.get("isPreview") === "on",
+    })
+    .eq("id", lectureId);
+  if (error) throw new Error(`Lecture update failed: ${error.message}`);
+  revalidatePath("/admin/courses");
+  revalidatePath("/academy");
 }
 
 export async function toggleCoursePublished(formData: FormData) {

@@ -2983,6 +2983,29 @@ html[data-theme="dark"] .connection-status {
 .admin-danger-button { padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--navy); font: inherit; font-size: 9px; font-weight: 800; cursor: pointer; }
 .admin-danger-button { border-color: #ecc5cb; color: #b32e44; }
 
+.admin-item-editor {
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.admin-item-editor > summary {
+  padding: 12px 18px;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 850;
+  cursor: pointer;
+  list-style: none;
+}
+
+.admin-item-editor > summary::before {
+  margin-right: 7px;
+  content: "✎";
+}
+
+.admin-course-editor > summary {
+  padding-inline: 25px;
+}
+
 .admin-curriculum-builder { padding: 20px; background: #f6f8f7; }
 .admin-section-builder { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); }
 .admin-section-builder > summary { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 15px 17px; cursor: pointer; list-style: none; }
@@ -2990,12 +3013,16 @@ html[data-theme="dark"] .connection-status {
 .admin-section-builder > summary > strong { color: var(--navy); font-size: 12px; }
 .admin-section-builder > summary > small { color: var(--muted); font-size: 9px; }
 .admin-lecture-list { border-top: 1px solid var(--line); }
-.admin-lecture-list > div { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 11px 16px; border-bottom: 1px solid var(--line); }
+.admin-lecture-editor { border-bottom: 1px solid var(--line); }
+.admin-lecture-editor > summary { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 11px 16px; cursor: pointer; list-style: none; }
+.admin-lecture-editor[open] > summary { background: var(--soft); }
 .admin-lecture-type { display: grid; width: 26px; height: 26px; border-radius: 50%; background: #e6f3ee; color: var(--green); font-size: 8px; font-weight: 900; place-items: center; }
 .admin-lecture-type.quiz { background: #fff0dd; color: #a95e15; }
 .admin-lecture-list strong, .admin-lecture-list small { display: block; }
 .admin-lecture-list strong { color: var(--navy); font-size: 11px; }
 .admin-lecture-list small { margin-top: 3px; color: var(--muted); font-size: 9px; }
+.admin-edit-label { color: var(--green); font-size: 9px; font-weight: 850; }
+.admin-editor-delete { display: flex; justify-content: flex-end; padding: 0 18px 16px; background: var(--paper); }
 .admin-inline-create { border-top: 1px solid var(--line); }
 .admin-inline-create > summary { padding: 13px 17px; color: var(--green); font-size: 10px; }
 .admin-inline-create.add-section { border: 1px dashed #b9cec5; border-radius: 8px; background: var(--paper); }
@@ -3004,7 +3031,9 @@ html[data-theme="dark"] .connection-status {
 html[data-theme="dark"] .admin-create-panel,
 html[data-theme="dark"] .admin-course-card,
 html[data-theme="dark"] .admin-section-builder,
-html[data-theme="dark"] .admin-inline-create.add-section { border-color: var(--line); background: #121d21; }
+html[data-theme="dark"] .admin-inline-create.add-section,
+html[data-theme="dark"] .admin-item-editor,
+html[data-theme="dark"] .admin-editor-delete { border-color: var(--line); background: #121d21; }
 html[data-theme="dark"] .admin-curriculum-builder { background: #0f181b; }
 
 /* Keep every admin surface in the same dark color system. */
