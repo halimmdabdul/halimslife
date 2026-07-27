@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { RichTextContent } from "@/components/rich-text-content";
 
 export type CourseLesson = {
   title: string;
@@ -235,7 +236,11 @@ export function CoursePlayer({
               <article className="lesson-overview">
                 <span className="lesson-kicker">Lesson {activeLesson + 1}</span>
                 <h1>{currentLesson.title}</h1>
-                <p className="lesson-saved-content">{currentLesson.overview || currentLesson.content || "No overview has been added for this lesson yet."}</p>
+                {currentLesson.overview || currentLesson.content ? (
+                  <RichTextContent content={currentLesson.overview || currentLesson.content || ""} />
+                ) : (
+                  <p className="lesson-saved-content">No overview has been added for this lesson yet.</p>
+                )}
                 {!currentLesson.overview && !currentLesson.content ? <div className="lesson-objectives">
                   <h2>What you will learn</h2>
                   <ul>
@@ -277,7 +282,11 @@ export function CoursePlayer({
                   <span>konnichiwa</span>
                   <p>Hello / শুভ দুপুর</p>
                 </div> : null}
-                <p className="lesson-saved-content">{currentLesson.studyNotes || currentLesson.content || "No study notes have been added for this lesson yet."}</p>
+                {currentLesson.studyNotes || currentLesson.content ? (
+                  <RichTextContent content={currentLesson.studyNotes || currentLesson.content || ""} />
+                ) : (
+                  <p className="lesson-saved-content">No study notes have been added for this lesson yet.</p>
+                )}
               </article>
             )}
 

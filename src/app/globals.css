@@ -2994,6 +2994,66 @@ html[data-theme="dark"] .connection-status {
   gap: 12px;
 }
 
+.admin-rich-editor {
+  display: grid;
+  gap: 7px;
+}
+
+.admin-rich-editor > span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.rich-editor-shell {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.rich-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.rich-editor-toolbar button {
+  min-height: 30px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  color: var(--navy);
+  font: inherit;
+  font-size: 9px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.rich-editor-toolbar button:hover,
+.rich-editor-toolbar button.active {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.admin-content-form .rich-editor-shell textarea {
+  display: block;
+  min-height: 150px;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  line-height: 1.7;
+}
+
+.rich-editor-preview {
+  min-height: 150px;
+  padding: 18px;
+}
+
 .admin-course-list { display: grid; gap: 22px; }
 .admin-course-card > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 25px; border-bottom: 1px solid var(--line); }
 .admin-course-card h2 { margin: 8px 0 4px; color: var(--navy); font-size: 23px; }
@@ -3177,6 +3237,22 @@ html[data-theme="dark"] .admin-danger-button {
 html[data-theme="dark"] .admin-test-builder {
   border-color: #31434a;
   background: #101b1f;
+}
+
+html[data-theme="dark"] .rich-editor-shell,
+html[data-theme="dark"] .rich-editor-toolbar {
+  border-color: #31434a;
+  background: #0b1418;
+}
+
+html[data-theme="dark"] .rich-editor-toolbar {
+  background: #101b1f;
+}
+
+html[data-theme="dark"] .rich-editor-toolbar button {
+  border-color: #31434a;
+  background: #121d21;
+  color: #dbe7ea;
 }
 
 html[data-theme="dark"] .admin-material-manager,
@@ -3612,6 +3688,31 @@ html[data-theme="dark"] .admin-table-head {
 .lesson-saved-content {
   white-space: pre-wrap;
 }
+
+.rich-text-content {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.rich-text-content > :first-child { margin-top: 0; }
+.rich-text-content > :last-child { margin-bottom: 0; }
+
+.rich-text-content h2,
+.rich-text-content h3 {
+  margin: 25px 0 10px;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.rich-text-content h2 { font-size: 21px; }
+.rich-text-content h3 { font-size: 17px; }
+.rich-text-content p { margin: 0 0 14px; }
+.rich-text-content ul,
+.rich-text-content ol { display: grid; gap: 7px; margin: 12px 0 18px; padding-left: 23px; }
+.rich-text-content blockquote { margin: 18px 0; padding: 13px 16px; border-left: 3px solid var(--green); background: var(--soft); color: var(--navy); }
+.rich-text-content a { color: var(--green); font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
+.rich-text-content code { padding: 2px 5px; border-radius: 4px; background: var(--soft); color: var(--orange); font-family: var(--font-geist-mono), monospace; font-size: 0.9em; }
 
 .lesson-empty-material {
   margin-top: 28px;
