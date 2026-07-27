@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { TranslatedText } from "@/components/site-preferences";
@@ -123,7 +124,13 @@ export default function AcademyPage() {
                 <strong className="jlpt-level">JLPT {course.level}</strong>
                 <h3>{course.title}</h3>
                 <p>{course.description}</p>
-                <span className="course-coming">Course details coming soon</span>
+                {course.level === "N5" ? (
+                  <Link className="course-open-link" href="/academy/japanese-n5">
+                    Start learning <span aria-hidden="true">→</span>
+                  </Link>
+                ) : (
+                  <span className="course-coming">Course details coming soon</span>
+                )}
               </article>
             ))}
           </div>
