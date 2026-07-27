@@ -498,3 +498,73 @@ export async function deleteCourseItem(formData: FormData) {
   revalidatePath("/admin/courses");
   revalidatePath("/academy");
 }
+
+export type AdminCourseActionName =
+  | "createCourse"
+  | "updateCourse"
+  | "createCourseSection"
+  | "updateCourseSection"
+  | "createLecture"
+  | "updateLecture"
+  | "createLectureMaterial"
+  | "updateLectureMaterial"
+  | "deleteLectureMaterial"
+  | "toggleCoursePublished"
+  | "deleteCourseItem";
+
+export type AdminActionResult =
+  | { ok: true }
+  | { ok: false; message: string };
+
+export async function submitAdminCourseAction(
+  actionName: AdminCourseActionName,
+  formData: FormData,
+): Promise<AdminActionResult> {
+  try {
+    switch (actionName) {
+      case "createCourse":
+        await createCourse(formData);
+        break;
+      case "updateCourse":
+        await updateCourse(formData);
+        break;
+      case "createCourseSection":
+        await createCourseSection(formData);
+        break;
+      case "updateCourseSection":
+        await updateCourseSection(formData);
+        break;
+      case "createLecture":
+        await createLecture(formData);
+        break;
+      case "updateLecture":
+        await updateLecture(formData);
+        break;
+      case "createLectureMaterial":
+        await createLectureMaterial(formData);
+        break;
+      case "updateLectureMaterial":
+        await updateLectureMaterial(formData);
+        break;
+      case "deleteLectureMaterial":
+        await deleteLectureMaterial(formData);
+        break;
+      case "toggleCoursePublished":
+        await toggleCoursePublished(formData);
+        break;
+      case "deleteCourseItem":
+        await deleteCourseItem(formData);
+        break;
+      default:
+        return { ok: false, message: "This admin action is not supported." };
+    }
+    return { ok: true };
+  } catch (error) {
+    return {
+      ok: false,
+      message: error instanceof Error && error.message
+        ? error.message
+        : "Something went wrong. Please try again.",
+    };
+  }
+}

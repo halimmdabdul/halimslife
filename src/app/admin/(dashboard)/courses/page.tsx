@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import {
-  createCourse,
-  createCourseSection,
-  createLecture,
-  createLectureMaterial,
-  deleteCourseItem,
-  deleteLectureMaterial,
-  toggleCoursePublished,
-  updateCourse,
-  updateCourseSection,
-  updateLecture,
-  updateLectureMaterial,
-} from "@/app/admin/actions";
+import { AdminActionForm } from "@/components/admin-action-form";
 import { requireAdmin } from "@/lib/admin-auth";
 import { RichTextEditor } from "@/components/rich-text-editor";
 
@@ -70,22 +58,41 @@ type CourseRow = {
   course_sections: SectionRow[];
 };
 
-function DeleteButton({ itemType, itemId }: { itemType: string; itemId: number }) {
+function DeleteButton({ itemType, itemId }: { itemType: "course" | "section" | "lecture"; itemId: number }) {
+  const label = itemType === "section" ? "topic" : itemType;
   return (
-    <form action={deleteCourseItem}>
+    <AdminActionForm
+      actionName="deleteCourseItem"
+      successMessage={`${label.charAt(0).toUpperCase()}${label.slice(1)} deleted successfully.`}
+      confirm={{
+        title: `Delete this ${label}?`,
+        text: itemType === "course"
+          ? "Its topics, lectures, and related course data will also be removed. This cannot be undone."
+          : `This ${label} and its related data will be removed permanently.`,
+        confirmButtonText: `Delete ${label}`,
+      }}
+    >
       <input type="hidden" name="itemType" value={itemType} />
       <input type="hidden" name="itemId" value={itemId} />
       <button className="admin-danger-button" type="submit">Delete</button>
-    </form>
+    </AdminActionForm>
   );
 }
 
 function MaterialDeleteButton({ materialId }: { materialId: number }) {
   return (
-    <form action={deleteLectureMaterial}>
+    <AdminActionForm
+      actionName="deleteLectureMaterial"
+      successMessage="Material deleted successfully."
+      confirm={{
+        title: "Delete this material?",
+        text: "The downloadable material will be removed permanently.",
+        confirmButtonText: "Delete material",
+      }}
+    >
       <input type="hidden" name="materialId" value={materialId} />
       <button className="admin-danger-button" type="submit">Delete</button>
-    </form>
+    </AdminActionForm>
   );
 }
 
@@ -130,7 +137,7 @@ export default async function AdminCoursesPage() {
 
       <details className="admin-create-panel" open={courses.length === 0}>
         <summary><span>＋</span> Create a new course</summary>
-        <form action={createCourse} className="admin-content-form">
+        <AdminActionForm actionName="createCourse" className="admin-content-form" successMessage="Course added successfully." resetOnSuccess>
           <label>Course title<input name="title" required placeholder="Japanese Foundations" /></label>
           <label>URL slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="japanese-n5" /></label>
           <label>Subtitle<input name="subtitle" placeholder="JLPT N5 complete path" /></label>
@@ -146,7 +153,7 @@ export default async function AdminCoursesPage() {
           </fieldset>
           <label className="admin-checkbox"><input type="checkbox" name="published" /> Publish immediately</label>
           <button className="admin-submit-button" type="submit">Create course</button>
-        </form>
+        </AdminActionForm>
       </details>
 
       <section className="admin-course-list">
@@ -160,18 +167,28 @@ export default async function AdminCoursesPage() {
               </div>
               <div className="admin-course-actions">
                 {course.published ? <Link href={`/academy/${course.slug}`}>View ↗</Link> : null}
-                <form action={toggleCoursePublished}>
+                <AdminActionForm
+                  actionName="toggleCoursePublished"
+                  successMessage={course.published ? "Course unpublished successfully." : "Course published successfully."}
+                  confirm={{
+                    title: course.published ? "Unpublish this course?" : "Publish this course?",
+                    text: course.published
+                      ? "Students will no longer be able to open this course."
+                      : "Students will be able to see and open this course.",
+                    confirmButtonText: course.published ? "Unpublish" : "Publish",
+                  }}
+                >
                   <input type="hidden" name="courseId" value={course.id} />
                   <input type="hidden" name="published" value={String(!course.published)} />
                   <button type="submit">{course.published ? "Unpublish" : "Publish"}</button>
-                </form>
+                </AdminActionForm>
                 <DeleteButton itemType="course" itemId={course.id} />
               </div>
             </header>
 
             <details className="admin-item-editor admin-course-editor">
               <summary>Edit course details</summary>
-              <form action={updateCourse} className="admin-content-form">
+              <AdminActionForm actionName="updateCourse" className="admin-content-form" successMessage="Course updated successfully.">
                 <input type="hidden" name="courseId" value={course.id} />
                 <label>Course title<input name="title" required defaultValue={course.title} /></label>
                 <label>URL slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" defaultValue={course.slug} /></label>
@@ -189,7 +206,7 @@ export default async function AdminCoursesPage() {
                   <p>Leave both image fields empty to keep the current image.</p>
                 </fieldset>
                 <button className="admin-submit-button" type="submit">Save course changes</button>
-              </form>
+              </AdminActionForm>
             </details>
 
             <div className="admin-curriculum-builder">
@@ -202,12 +219,12 @@ export default async function AdminCoursesPage() {
                   </summary>
                   <details className="admin-item-editor admin-section-editor">
                     <summary>Edit topic</summary>
-                    <form action={updateCourseSection} className="admin-content-form compact">
+                    <AdminActionForm actionName="updateCourseSection" className="admin-content-form compact" successMessage="Topic updated successfully.">
                       <input type="hidden" name="sectionId" value={section.id} />
                       <label>Topic title<input name="title" required defaultValue={section.title} /></label>
                       <label>Order<input name="position" type="number" min="0" defaultValue={section.position} /></label>
                       <button className="admin-submit-button" type="submit">Save topic</button>
-                    </form>
+                    </AdminActionForm>
                   </details>
                   <div className="admin-lecture-list">
                     {section.lectures.map((lecture) => (
@@ -217,7 +234,7 @@ export default async function AdminCoursesPage() {
                           <div><strong>{lecture.title}</strong><small>{lecture.lecture_type} · {lecture.duration || "No duration"}{lecture.is_preview ? " · Preview" : ""}</small></div>
                           <span className="admin-edit-label">Edit</span>
                         </summary>
-                        <form action={updateLecture} className="admin-content-form compact">
+                        <AdminActionForm actionName="updateLecture" className="admin-content-form compact" successMessage="Lecture updated successfully.">
                           <input type="hidden" name="lectureId" value={lecture.id} />
                           <label>Lecture title<input name="title" required defaultValue={lecture.title} /></label>
                           <label>Type<select name="lectureType" defaultValue={lecture.lecture_type}><option value="video">Video</option><option value="reading">Reading</option><option value="quiz">Quiz / test</option></select></label>
@@ -238,7 +255,7 @@ export default async function AdminCoursesPage() {
                           </fieldset>
                           <label className="admin-checkbox"><input type="checkbox" name="isPreview" defaultChecked={lecture.is_preview} /> Free preview</label>
                           <button className="admin-submit-button" type="submit">Save lecture changes</button>
-                        </form>
+                        </AdminActionForm>
                         <section className="admin-material-manager">
                           <h3>Downloadable materials <span>{lecture.lecture_materials.length}</span></h3>
                           <div className="admin-material-list">
@@ -249,21 +266,21 @@ export default async function AdminCoursesPage() {
                                   <div><strong>{material.title}</strong><small>{material.file_size ? `${(material.file_size / 1024 / 1024).toFixed(1)} MB` : "External resource"}</small></div>
                                   <b>Edit</b>
                                 </summary>
-                                <form action={updateLectureMaterial} className="admin-content-form compact">
+                                <AdminActionForm actionName="updateLectureMaterial" className="admin-content-form compact" successMessage="Material updated successfully.">
                                   <input type="hidden" name="materialId" value={material.id} />
                                   <label>Title<input name="title" required defaultValue={material.title} /></label>
                                   <label>File label<input name="fileType" defaultValue={material.file_type ?? ""} placeholder="PDF" /></label>
                                   <label>Order<input name="position" type="number" min="0" defaultValue={material.position} /></label>
                                   <label className="admin-form-wide">Replace external URL<input name="externalUrl" type="url" placeholder={material.file_url} /></label>
                                   <button className="admin-submit-button" type="submit">Save material</button>
-                                </form>
+                                </AdminActionForm>
                                 <div className="admin-editor-delete"><MaterialDeleteButton materialId={material.id} /></div>
                               </details>
                             ))}
                           </div>
                           <details className="admin-add-material">
                             <summary>＋ Add downloadable material</summary>
-                            <form action={createLectureMaterial} className="admin-content-form compact">
+                            <AdminActionForm actionName="createLectureMaterial" className="admin-content-form compact" successMessage="Material added successfully." resetOnSuccess>
                               <input type="hidden" name="lectureId" value={lecture.id} />
                               <label>Material title<input name="title" required placeholder="Lesson practice sheet" /></label>
                               <label>File label<input name="fileType" placeholder="PDF, DOCX, ZIP..." /></label>
@@ -273,7 +290,7 @@ export default async function AdminCoursesPage() {
                               <label className="admin-form-wide">External download URL<input name="externalUrl" type="url" placeholder="https://example.com/material.pdf" /></label>
                               <p className="admin-form-hint admin-form-wide">Choose one source: upload a file or provide an external URL.</p>
                               <button className="admin-submit-button" type="submit">Add material</button>
-                            </form>
+                            </AdminActionForm>
                           </details>
                         </section>
                         <div className="admin-editor-delete"><DeleteButton itemType="lecture" itemId={lecture.id} /></div>
@@ -282,7 +299,7 @@ export default async function AdminCoursesPage() {
                   </div>
                   <details className="admin-inline-create">
                     <summary>＋ Add lecture</summary>
-                    <form action={createLecture} className="admin-content-form compact">
+                    <AdminActionForm actionName="createLecture" className="admin-content-form compact" successMessage="Lecture added successfully." resetOnSuccess>
                       <input type="hidden" name="sectionId" value={section.id} />
                       <label>Lecture title<input name="title" required placeholder="Welcome to the course" /></label>
                       <label>Type<select name="lectureType"><option value="video">Video</option><option value="reading">Reading</option><option value="quiz">Quiz / test</option></select></label>
@@ -303,7 +320,7 @@ export default async function AdminCoursesPage() {
                       </fieldset>
                       <label className="admin-checkbox"><input type="checkbox" name="isPreview" /> Free preview</label>
                       <button className="admin-submit-button" type="submit">Add lecture</button>
-                    </form>
+                    </AdminActionForm>
                   </details>
                   <div className="admin-section-delete"><DeleteButton itemType="section" itemId={section.id} /></div>
                 </details>
@@ -311,12 +328,12 @@ export default async function AdminCoursesPage() {
 
               <details className="admin-inline-create add-section">
                 <summary>＋ Add course topic / section</summary>
-                <form action={createCourseSection} className="admin-content-form compact">
+                <AdminActionForm actionName="createCourseSection" className="admin-content-form compact" successMessage="Topic added successfully." resetOnSuccess>
                   <input type="hidden" name="courseId" value={course.id} />
                   <label>Topic title<input name="title" required placeholder="Hiragana basics" /></label>
                   <label>Order<input name="position" type="number" min="0" defaultValue={course.course_sections.length} /></label>
                   <button className="admin-submit-button" type="submit">Add topic</button>
-                </form>
+                </AdminActionForm>
               </details>
             </div>
           </article>

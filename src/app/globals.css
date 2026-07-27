@@ -2975,6 +2975,29 @@ html[data-theme="dark"] .connection-status {
 .admin-form-wide { grid-column: 1 / -1; }
 .admin-content-form .admin-checkbox { display: flex; align-items: center; grid-template-columns: auto 1fr; }
 .admin-content-form .admin-checkbox input { width: 16px; min-height: 16px; }
+.admin-action-form.is-pending button[type="submit"] {
+  cursor: wait;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.admin-action-form.is-pending button[type="submit"]::after {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-left: 8px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  content: "";
+  vertical-align: -2px;
+  animation: admin-action-spin 0.7s linear infinite;
+}
+
+@keyframes admin-action-spin {
+  to { transform: rotate(360deg); }
+}
+
 .admin-image-builder {
   display: grid;
   gap: 14px;
@@ -3344,6 +3367,24 @@ html[data-theme="dark"] .admin-course-actions a,
 html[data-theme="dark"] .admin-course-actions button {
   color: #dbe7ea;
 }
+
+.swal2-popup {
+  border-radius: 16px;
+  font-family: var(--font-sans);
+}
+
+.swal2-title { color: var(--navy); }
+.swal2-html-container { color: var(--muted); line-height: 1.55; }
+.swal2-confirm,
+.swal2-cancel { border-radius: 8px !important; font-weight: 800; }
+
+html[data-theme="dark"] .swal2-popup {
+  border: 1px solid #31434a;
+  background: #101b1f;
+}
+
+html[data-theme="dark"] .swal2-title { color: #eef6f8; }
+html[data-theme="dark"] .swal2-html-container { color: #aebec4; }
 
 html[data-theme="dark"] .admin-danger-button {
   border-color: #72414b;
