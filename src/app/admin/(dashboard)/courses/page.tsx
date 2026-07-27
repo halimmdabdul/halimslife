@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { AdminActionForm } from "@/components/admin-action-form";
+import { AdminEditorRow } from "@/components/admin-editor-row";
 import { AdminLectureRow } from "@/components/admin-lecture-row";
 import { requireAdmin } from "@/lib/admin-auth";
 import { RichTextEditor } from "@/components/rich-text-editor";
@@ -218,15 +219,18 @@ export default async function AdminCoursesPage() {
                     <strong>{section.title}</strong>
                     <small>{section.lectures.length} lectures</small>
                   </summary>
-                  <details className="admin-item-editor admin-section-editor">
-                    <summary>Edit topic</summary>
+                  <AdminEditorRow
+                    title="Topic settings"
+                    meta="Edit the title and display order"
+                    deleteAction={<DeleteButton itemType="section" itemId={section.id} />}
+                  >
                     <AdminActionForm actionName="updateCourseSection" className="admin-content-form compact" successMessage="Topic updated successfully.">
                       <input type="hidden" name="sectionId" value={section.id} />
                       <label>Topic title<input name="title" required defaultValue={section.title} /></label>
                       <label>Order<input name="position" type="number" min="0" defaultValue={section.position} /></label>
                       <button className="admin-submit-button" type="submit">Save topic</button>
                     </AdminActionForm>
-                  </details>
+                  </AdminEditorRow>
                   <div className="admin-lecture-list">
                     {section.lectures.map((lecture) => (
                       <AdminLectureRow
@@ -263,12 +267,13 @@ export default async function AdminCoursesPage() {
                           <h3>Downloadable materials <span>{lecture.lecture_materials.length}</span></h3>
                           <div className="admin-material-list">
                             {lecture.lecture_materials.map((material) => (
-                              <details key={material.id}>
-                                <summary>
-                                  <span>{material.file_type || "FILE"}</span>
-                                  <div><strong>{material.title}</strong><small>{material.file_size ? `${(material.file_size / 1024 / 1024).toFixed(1)} MB` : "External resource"}</small></div>
-                                  <b>Edit</b>
-                                </summary>
+                              <AdminEditorRow
+                                key={material.id}
+                                badge={material.file_type || "FILE"}
+                                title={material.title}
+                                meta={material.file_size ? `${(material.file_size / 1024 / 1024).toFixed(1)} MB` : "External resource"}
+                                deleteAction={<MaterialDeleteButton materialId={material.id} />}
+                              >
                                 <AdminActionForm actionName="updateLectureMaterial" className="admin-content-form compact" successMessage="Material updated successfully.">
                                   <input type="hidden" name="materialId" value={material.id} />
                                   <label>Title<input name="title" required defaultValue={material.title} /></label>
@@ -277,8 +282,7 @@ export default async function AdminCoursesPage() {
                                   <label className="admin-form-wide">Replace external URL<input name="externalUrl" type="url" placeholder={material.file_url} /></label>
                                   <button className="admin-submit-button" type="submit">Save material</button>
                                 </AdminActionForm>
-                                <div className="admin-editor-delete"><MaterialDeleteButton materialId={material.id} /></div>
-                              </details>
+                              </AdminEditorRow>
                             ))}
                           </div>
                           <details className="admin-add-material">
@@ -324,7 +328,6 @@ export default async function AdminCoursesPage() {
                       <button className="admin-submit-button" type="submit">Add lecture</button>
                     </AdminActionForm>
                   </details>
-                  <div className="admin-section-delete"><DeleteButton itemType="section" itemId={section.id} /></div>
                 </details>
               ))}
 
