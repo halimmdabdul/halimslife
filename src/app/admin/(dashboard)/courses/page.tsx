@@ -25,6 +25,13 @@ type LectureRow = {
   duration: string | null;
   video_url: string | null;
   content: string | null;
+  overview: string | null;
+  study_notes: string | null;
+  practice_test: {
+    question?: string;
+    options?: string[];
+    correctAnswer?: string;
+  } | null;
   position: number;
   is_preview: boolean;
 };
@@ -62,7 +69,7 @@ export default async function AdminCoursesPage() {
   const { supabase } = await requireAdmin();
   const { data, error } = await supabase
     .from("courses")
-    .select("id,slug,title,subtitle,description,category,level,published,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,position,is_preview))")
+    .select("id,slug,title,subtitle,description,category,level,published,course_sections(id,title,position,lectures(id,title,lecture_type,duration,video_url,content,overview,study_notes,practice_test,position,is_preview))")
     .order("created_at", { ascending: false });
 
   const courses = (data ?? []) as CourseRow[];
@@ -172,7 +179,18 @@ export default async function AdminCoursesPage() {
                           <label>Duration<input name="duration" defaultValue={lecture.duration ?? ""} /></label>
                           <label>Order<input name="position" type="number" min="0" defaultValue={lecture.position} /></label>
                           <label className="admin-form-wide">Video URL<input name="videoUrl" type="url" defaultValue={lecture.video_url ?? ""} /></label>
-                          <label className="admin-form-wide">Study material / quiz content<textarea name="content" rows={4} defaultValue={lecture.content ?? ""} /></label>
+                          <label className="admin-form-wide">Overview<textarea name="overview" rows={4} defaultValue={lecture.overview ?? lecture.content ?? ""} placeholder="Lesson summary and learning objectives..." /></label>
+                          <label className="admin-form-wide">Study notes<textarea name="studyNotes" rows={6} defaultValue={lecture.study_notes ?? lecture.content ?? ""} placeholder="Detailed notes, examples, and references..." /></label>
+                          <fieldset className="admin-test-builder admin-form-wide">
+                            <legend>Practice test</legend>
+                            <label>Question<input name="testQuestion" defaultValue={lecture.practice_test?.question ?? ""} placeholder="Which answer is correct?" /></label>
+                            <div>
+                              {[0, 1, 2, 3].map((optionIndex) => (
+                                <label key={optionIndex}>Option {optionIndex + 1}<input name={`testOption${optionIndex + 1}`} defaultValue={lecture.practice_test?.options?.[optionIndex] ?? ""} /></label>
+                              ))}
+                            </div>
+                            <label>Correct option<select name="testCorrectOption" defaultValue={String(Math.max(0, (lecture.practice_test?.options?.findIndex((option) => option === lecture.practice_test?.correctAnswer) ?? -1) + 1))}><option value="0">No test</option><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option><option value="4">Option 4</option></select></label>
+                          </fieldset>
                           <label className="admin-checkbox"><input type="checkbox" name="isPreview" defaultChecked={lecture.is_preview} /> Free preview</label>
                           <button className="admin-submit-button" type="submit">Save lecture changes</button>
                         </form>
@@ -189,7 +207,18 @@ export default async function AdminCoursesPage() {
                       <label>Duration<input name="duration" placeholder="08:30 or 5 min" /></label>
                       <label>Order<input name="position" type="number" min="0" defaultValue={section.lectures.length} /></label>
                       <label className="admin-form-wide">Video URL<input name="videoUrl" type="url" placeholder="https://youtube.com/..." /></label>
-                      <label className="admin-form-wide">Study material / quiz content<textarea name="content" rows={4} placeholder="Lesson notes, resource links, or quiz instructions..." /></label>
+                      <label className="admin-form-wide">Overview<textarea name="overview" rows={4} placeholder="Lesson summary and learning objectives..." /></label>
+                      <label className="admin-form-wide">Study notes<textarea name="studyNotes" rows={6} placeholder="Detailed notes, examples, and references..." /></label>
+                      <fieldset className="admin-test-builder admin-form-wide">
+                        <legend>Practice test</legend>
+                        <label>Question<input name="testQuestion" placeholder="Which answer is correct?" /></label>
+                        <div>
+                          {[1, 2, 3, 4].map((optionNumber) => (
+                            <label key={optionNumber}>Option {optionNumber}<input name={`testOption${optionNumber}`} /></label>
+                          ))}
+                        </div>
+                        <label>Correct option<select name="testCorrectOption" defaultValue="0"><option value="0">No test</option><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option><option value="4">Option 4</option></select></label>
+                      </fieldset>
                       <label className="admin-checkbox"><input type="checkbox" name="isPreview" /> Free preview</label>
                       <button className="admin-submit-button" type="submit">Add lecture</button>
                     </form>
