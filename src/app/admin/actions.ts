@@ -184,6 +184,9 @@ export async function createCourse(formData: FormData) {
     })
     .select("id")
     .single();
+  if (error?.code === "23505") {
+    throw new Error("A course with this title or URL slug already exists.");
+  }
   if (error) throw new Error(`Course creation failed: ${error.message}`);
   if (image.file && course) {
     try {
@@ -245,6 +248,9 @@ export async function updateCourse(formData: FormData) {
     .eq("id", courseId);
   if (error) {
     if (uploadedImage) await supabase.storage.from("course-images").remove([uploadedImage.storagePath]);
+    if (error.code === "23505") {
+      throw new Error("A course with this title or URL slug already exists.");
+    }
     throw new Error(`Course update failed: ${error.message}`);
   }
   if ((uploadedImage || image.externalUrl || removeImage) && currentCourse?.cover_storage_path) {
@@ -307,6 +313,9 @@ export async function createLecture(formData: FormData) {
     position,
     is_preview: formData.get("isPreview") === "on",
   });
+  if (error?.code === "23505") {
+    throw new Error("A lecture with this title already exists in this topic.");
+  }
   if (error) throw new Error(`Lecture creation failed: ${error.message}`);
   revalidatePath("/admin/courses");
 }
@@ -334,6 +343,9 @@ export async function updateLecture(formData: FormData) {
       is_preview: formData.get("isPreview") === "on",
     })
     .eq("id", lectureId);
+  if (error?.code === "23505") {
+    throw new Error("A lecture with this title already exists in this topic.");
+  }
   if (error) throw new Error(`Lecture update failed: ${error.message}`);
   revalidatePath("/admin/courses");
   revalidatePath("/academy");
