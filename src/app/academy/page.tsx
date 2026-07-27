@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { TranslatedText } from "@/components/site-preferences";
+import { getPublishedCourses } from "@/lib/courses";
 
 export const metadata: Metadata = {
   title: "Academy | Japanese, Robotics and AI Courses",
@@ -75,7 +76,8 @@ const technologyCourses = [
   },
 ];
 
-export default function AcademyPage() {
+export default async function AcademyPage() {
+  const publishedCourses = await getPublishedCourses();
   return (
     <InnerPageShell>
       <section className="academy-hero">
@@ -168,6 +170,26 @@ export default function AcademyPage() {
             </div>
           </div>
         </section>
+
+        {publishedCourses.length > 0 ? (
+          <section className="academy-section container">
+            <div className="academy-heading">
+              <div><span className="kicker">Available now</span><h2>Courses from the Academy.</h2></div>
+              <p>New courses published from the Academy dashboard appear here automatically.</p>
+            </div>
+            <div className="dynamic-course-grid">
+              {publishedCourses.map((course) => (
+                <Link href={`/academy/${course.slug}`} key={course.id}>
+                  <span>{course.category}</span>
+                  <strong>{course.level}</strong>
+                  <h3>{course.title}</h3>
+                  <p>{course.description || course.subtitle || "Start learning with this structured course."}</p>
+                  <b>Open course →</b>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="academy-cta container">
           <div>
