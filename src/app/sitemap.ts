@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { getPublishedPosts } from "@/lib/blog";
+import { scholarshipGuides } from "@/lib/scholarships";
 
 const baseUrl = "https://halimslife.com";
 
@@ -12,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/projects",
     "/academy",
     "/academy/japanese-n5",
+    "/scholarships",
     "/insights",
     "/contact",
     "/blog",
@@ -32,6 +34,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(post.published_at),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...scholarshipGuides.map((guide) => ({
+      url: `${baseUrl}/scholarships/${guide.slug}`,
+      lastModified: new Date("2026-07-29"),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
   ];
 }
