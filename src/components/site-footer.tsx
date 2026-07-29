@@ -4,6 +4,7 @@ import { BrandLogo } from "@/components/brand-logo";
 
 const navigationLinks = [
   { href: "/about", label: "About" },
+  { href: "/cv", label: "CV" },
   { href: "/journey", label: "Journey" },
   { href: "/projects", label: "Projects" },
   { href: "/blog", label: "Blog" },
