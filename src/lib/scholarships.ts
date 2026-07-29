@@ -378,6 +378,214 @@ export const scholarshipGuides: ScholarshipGuide[] = [
       },
     ],
   },
+  {
+    slug: "uci-software-engineering-phd-fall-2027",
+    country: "usa",
+    university: "University of California, Irvine",
+    title: "UCI Software Engineering PhD: Fall 2027 Application Roadmap",
+    summary:
+      "Bangladesh থেকে Japan হয়ে UCI Software Engineering PhD-তে apply করার জন্য program selection, research fit, documents, tests এবং month-by-month submission plan.",
+    label: "Personalized Fall 2027 PhD roadmap",
+    funding:
+      "ICS PhD support may include fellowships, teaching assistantships and research assistantships; the written offer is final.",
+    duration: "Normative completion: 6 years",
+    audience: "International applicant with a Japan-based master’s and software engineering experience",
+    realityCheck:
+      "Sam Malek-এর সঙ্গে Software Engineering research করতে চাইলে application-এ Software Engineering, Ph.D. program-ই select করতে হবে। তাঁর official page স্পষ্ট করে যে অন্য ICS PhD program-এ apply করলে তিনি application নাও দেখতে পারেন। এটি আলাদা scholarship form নয়—admission এবং funding একই PhD application-এর অংশ।",
+    highlights: [
+      "UCI Graduate Division-এর সাধারণ minimum হলো recognized institution থেকে bachelor’s degree বা equivalent এবং 3.0 cumulative undergraduate GPA; department আরও evidence চাইতে পারে।",
+      "Software Engineering PhD research-first program; catalogue অনুযায়ী students শুরু থেকেই research topic, paper এবং publication-oriented work-এ যুক্ত হয়।",
+      "ICS catalogue-এ Software Engineering PhD-এর GRE optional এবং GitHub, paper, writing sample বা portfolio-এর মতো additional evidence submit করতে উৎসাহ দেওয়া হয়েছে।",
+      "International applicant fee বর্তমানে $155; recommendation letter অবশ্যই recommender নিজে portal-এ submit করবেন।",
+      "Fall 2027 deadline এখনো live program page/portal-এ confirm করতে হবে—working target হিসেবে 1 December 2026-এর মধ্যে submit করুন, কোনো অনুমানকে official deadline ধরে নেবেন না।",
+    ],
+    fit: [
+      "আপনার master’s research, thesis বা technical project থেকে independent research potential দেখানো যায়।",
+      "C#/software development experience-কে software architecture, testing, reliability, security বা AI-assisted software engineering research question-এর সঙ্গে connect করতে পারেন।",
+      "Sam Malek বা অন্য Informatics faculty-এর recent work-এর সঙ্গে evidence-based research match আছে।",
+      "Academic record-এর দুর্বল অংশ থাকলে SOP, recommendations, research sample এবং project evidence দিয়ে context ও readiness দেখাতে পারবেন।",
+    ],
+    quickStart: [
+      "এক পাতায় লিখুন: target program—Software Engineering, Ph.D.; target cycle—Fall 2027; primary faculty fit—Sam Malek।",
+      "WHED-এ bachelor’s ও Shizuoka University program-এর sole language of instruction দেখে TOEFL/IELTS waiver হবে কি না যাচাই করুন।",
+      "তিনজন recommender-এর shortlist করুন—অন্তত দুজন যেন academic বা research ability নিয়ে বিস্তারিত লিখতে পারেন।",
+      "একটি application folder বানান: CV, SOP, personal history, transcripts, recommendations, English test এবং research sample।",
+    ],
+    steps: [
+      {
+        title: "Program এবং research direction final করুন",
+        timing: "এখন থেকে August 2026",
+        description:
+          "Application-এর foundation হলো সঠিক program এবং narrow research question। broad ‘software engineering ভালো লাগে’ statement যথেষ্ট নয়।",
+        actions: [
+          "Software Engineering, Ph.D. catalogue এবং Department of Informatics-এর graduate program page পড়ুন।",
+          "Sam Malek-এর recent work থেকে software analysis/testing, mobile computing, security, architecture বা accessible computing-এর relevant direction বাছুন।",
+          "একটি primary এবং একটি related secondary research direction লিখুন।",
+          "Master’s research, current C# work এবং strongest project-এর কোন evidence এই direction support করে তা map করুন।",
+        ],
+        readyWhen:
+          "আপনি 4–5 বাক্যে research problem, preparation এবং UCI faculty fit পরিষ্কারভাবে ব্যাখ্যা করতে পারেন।",
+      },
+      {
+        title: "Eligibility এবং English requirement যাচাই করুন",
+        timing: "August 2026-এর মধ্যে",
+        description:
+          "Test waiver অনুমান করবেন না। UCI waiver নির্ধারণে WHED-এ institution-এর sole language of instruction ব্যবহার করে।",
+        actions: [
+          "Bachelor’s degree equivalency এবং undergraduate cumulative GPA 3.0 minimum-এর সঙ্গে নিজের record মিলিয়ে দেখুন।",
+          "WHED-এ bachelor’s ও master’s institution/program-এর language listing পরীক্ষা করে screenshot বা note রাখুন।",
+          "Waiver clear না হলে TOEFL বা IELTS Academic-এর জন্য early test date বুক করুন।",
+          "Score deadline-এর সময় দুই বছরের কম পুরোনো থাকবে কি না এবং official score delivery time হিসাব করুন।",
+        ],
+        readyWhen:
+          "আপনার confirmed waiver evidence আছে অথবা valid official test score সময়মতো UCI-তে পৌঁছানোর plan আছে।",
+      },
+      {
+        title: "Academic documents এবং research evidence প্রস্তুত করুন",
+        timing: "August–September 2026",
+        description:
+          "Bangladesh ও Japan-এর প্রতিটি higher-education institution-এর readable academic record এক জায়গায় প্রস্তুত রাখুন।",
+        actions: [
+          "Bachelor’s transcript/mark sheets, degree certificate, master’s transcript এবং degree certificate সংগ্রহ করুন।",
+          "Non-English document-এর certified English translation তৈরি করুন; name, dates, courses, grades, credits এবং grading scale readable কি না দেখুন।",
+          "Research-focused CV-তে education, thesis, publications, presentations, projects, Japan work experience এবং technical skills priority দিন।",
+          "GitHub project, thesis summary, paper, technical report বা writing sample থেকে strongest 1–3টি supporting item বাছুন।",
+        ],
+        readyWhen:
+          "সব documents clear PDF-এ আছে এবং CV ও evidence আপনার research direction support করে।",
+      },
+      {
+        title: "Recommendation team lock করুন",
+        timing: "September 2026",
+        description:
+          "PhD recommendation-এর quality পদবির চেয়ে বেশি গুরুত্বপূর্ণ—writer যেন concrete example দিয়ে research ability বোঝাতে পারেন।",
+        actions: [
+          "Shizuoka research supervisor, thesis/project-aware professor এবং relevant technical/research supervisor থেকে তিনজন final করুন।",
+          "সম্ভব হলে অন্তত দুইটি letter academic বা research-focused রাখুন।",
+          "প্রত্যেককে CV, research summary, draft SOP, program name, deadline এবং shared work-এর reminder পাঠান।",
+          "Portal invitation পাওয়ার আগে institutional email ও willingness confirm করুন।",
+        ],
+        readyWhen:
+          "তিনজন recommender সম্মতি দিয়েছেন এবং প্রত্যেকে কী evidence highlight করবেন তা জানেন।",
+      },
+      {
+        title: "SOP এবং Personal History Statement লিখুন",
+        timing: "September–October 2026",
+        description:
+          "SOP হবে academic/research argument; Personal History Statement হবে journey, context, resilience এবং community contribution-এর আলাদা narrative।",
+        actions: [
+          "SOP-তে background, master’s research, software engineering work, research question, UCI fit এবং PhD goal connect করুন।",
+          "Faculty নামের সঙ্গে recent topic বা project-based fit দেখান; generic praise এড়িয়ে চলুন।",
+          "Personal History Statement-এ Bangladesh-to-Japan journey, language/culture adaptation, challenges এবং UCI community contribution লিখুন।",
+          "দুই statement-এ একই গল্প repeat না করে advisor বা strong reviewer দিয়ে অন্তত দুই round feedback নিন।",
+        ],
+        readyWhen:
+          "একবার পড়েই reviewer আপনার research readiness, UCI fit এবং personal context আলাদা করে বুঝতে পারেন।",
+      },
+      {
+        title: "Faculty outreach করুন—সংক্ষিপ্ত ও personalized",
+        timing: "September–October 2026",
+        description:
+          "Professor contact application-এর বিকল্প নয়; এটি research fit যাচাই এবং concise introduction-এর সুযোগ।",
+        actions: [
+          "Sam Malek ও অন্য genuine faculty match-এর 2–3টি recent paper/project পড়ুন।",
+          "Email-এ 1–2 বাক্যে background, 1টি specific research connection এবং Fall 2027 application intent লিখুন।",
+          "Academic CV বা concise research summary link দিন; mass email বা generic template পাঠাবেন না।",
+          "Reply না এলে application বন্ধ করবেন না—official portal-এ সময়মতো submit করুন।",
+        ],
+        readyWhen:
+          "প্রতিটি email short, faculty-specific এবং আপনার application-এর research story-এর সঙ্গে consistent।",
+      },
+      {
+        title: "Portal খুলে application complete করুন",
+        timing: "Portal opening থেকে November 2026",
+        description:
+          "Portal live হলে exact term ও program select করে sections early complete করুন; final সপ্তাহ পর্যন্ত invitation বা upload বাকি রাখবেন না।",
+        actions: [
+          "Admission term হিসেবে Fall 2027 এবং program হিসেবে Software Engineering, Ph.D. select করুন।",
+          "Personal, education, employment এবং research experience official records অনুযায়ী পূরণ করুন।",
+          "Final CV, SOP, Personal History Statement, transcripts এবং allowed additional materials upload করুন।",
+          "Recommenders-কে portal invitation পাঠান এবং English score UCI institution code 4859-এ match হয়েছে কি না track করুন।",
+        ],
+        readyWhen:
+          "সব required field complete, files preview-তে readable এবং recommendation requests successfully sent।",
+      },
+      {
+        title: "Final audit, payment এবং early submission",
+        timing: "Target: 1 December 2026",
+        description:
+          "Official deadline program page-এ confirm করে অন্তত কয়েক দিন আগে submit করুন; $155 international fee payment ছাড়া application review complete নয়।",
+        actions: [
+          "Program name, term, faculty names, degree dates, grades এবং file versions source records-এর সঙ্গে মিলিয়ে দেখুন।",
+          "SOP-তে অন্য university/program-এর নাম accidentally রয়ে গেছে কি না search করুন।",
+          "Recommendation ও official test status দেখুন; missing item থাকলে polite reminder দিন।",
+          "Application preview save করুন, applicable fee pay করে submit করুন এবং confirmation/application ID সংরক্ষণ করুন।",
+        ],
+        readyWhen:
+          "Portal submitted দেখায়, payment complete এবং সব required materials deadline-এর আগে received বা matched।",
+      },
+    ],
+    checklist: [
+      "Software Engineering, Ph.D. program selected",
+      "Fall 2027 official deadline re-verified",
+      "Target faculty/lab এবং research direction identified",
+      "Research-focused CV",
+      "Statement of Purpose",
+      "Personal History Statement",
+      "Bachelor’s transcript/mark sheets ও degree certificate",
+      "Master’s transcript ও degree certificate",
+      "Certified English translations যেখানে প্রয়োজন",
+      "Three confirmed recommenders",
+      "TOEFL/IELTS official score অথবা confirmed WHED waiver",
+      "GitHub/project/paper/research sample",
+      "$155 international application fee",
+    ],
+    afterSubmission: [
+      "Applicant portal ও email—spam folder-সহ—নিয়মিত check করুন এবং missing-item request দ্রুত address করুন।",
+      "Research direction, master’s work, strongest project এবং faculty fit-এর 2–3 minute explanation interview-এর জন্য প্রস্তুত রাখুন।",
+      "Admission offer এলে tuition, stipend, insurance, TA/RA workload, summer support, duration এবং renewal condition লিখিত offer থেকে যাচাই করুন।",
+      "Advisor fit, funding guarantee এবং Irvine living cost তুলনা করে তারপর decision নিন।",
+    ],
+    cautions: [
+      "Computer Science PhD accidentally select করবেন না যদি target Informatics/Software Engineering faculty হন।",
+      "Fall 2027 deadline প্রকাশের আগে 15 December-কে confirmed deadline হিসেবে লিখবেন না।",
+      "Japan থেকে master’s হলেই automatic English waiver হয় না; WHED listing final evidence।",
+      "GRE optional হলেও দুর্বল বা irrelevant score শুধু file ভারী করার জন্য submit করবেন না।",
+      "Personal History Statement-কে SOP-এর duplicate বানাবেন না।",
+    ],
+    officialLinks: [
+      {
+        label: "Software Engineering PhD catalogue",
+        href: "https://catalogue.uci.edu/donaldbrenschoolofinformationandcomputersciences/departmentofinformatics/softwareengineering_phd/",
+        description: "Program focus, curriculum, milestones and normative time review করুন।",
+      },
+      {
+        label: "Department of Informatics graduate programs",
+        href: "https://informatics.ics.uci.edu/graduate-programs-admissions/",
+        description: "Correct research program এবং official application entry point দেখুন।",
+      },
+      {
+        label: "Applying to UCI",
+        href: "https://grad.uci.edu/admissions/applying-to-uci/",
+        description: "Fee, university minimums, English policy এবং portal instructions verify করুন।",
+      },
+      {
+        label: "ICS catalogue admissions & funding",
+        href: "https://catalogue.uci.edu/donaldbrenschoolofinformationandcomputersciences/",
+        description: "GRE, supplemental materials এবং PhD financial assistance policy দেখুন।",
+      },
+      {
+        label: "Sam Malek faculty page",
+        href: "https://ics.uci.edu/~malek/",
+        description: "Current research areas এবং correct PhD program guidance পড়ুন।",
+      },
+      {
+        label: "UCI graduate application portal",
+        href: "https://apply.grad.uci.edu/apply/",
+        description: "Fall 2027 cycle live হলে official application শুরু করুন।",
+      },
+    ],
+  },
 ];
 
 export function getScholarshipGuide(slug: string) {

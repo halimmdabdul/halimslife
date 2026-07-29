@@ -15,7 +15,11 @@ export const metadata: Metadata = {
 };
 
 const countries: { value: ScholarshipCountry; label: string; detail: string }[] = [
-  { value: "usa", label: "USA", detail: "2 guides" },
+  {
+    value: "usa",
+    label: "USA",
+    detail: `${scholarshipGuides.filter((guide) => guide.country === "usa").length} guides`,
+  },
   { value: "japan", label: "Japan", detail: "Coming soon" },
 ];
 
@@ -74,7 +78,7 @@ export default async function ScholarshipsPage({
             <span className="kicker">{activeCountry} opportunities</span>
             <h2>
               {activeCountry === "usa"
-                ? "Two honest guides for your next application."
+                ? `${guides.length} practical guides for your next application.`
                 : "Japan guides are being carefully prepared."}
             </h2>
           </div>
