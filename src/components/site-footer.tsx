@@ -6,10 +6,15 @@ const navigationLinks = [
   { href: "/about", label: "About" },
   { href: "/journey", label: "Journey" },
   { href: "/projects", label: "Projects" },
-  { href: "/academy", label: "Academy" },
   { href: "/blog", label: "Blog" },
   { href: "/insights", label: "Insights" },
-  { href: "/contact", label: "Contact" },
+];
+
+const learningLinks = [
+  { href: "/academy", label: "Academy" },
+  { href: "/academy/japanese-n5", label: "Japanese N5" },
+  { href: "/signup", label: "Create account" },
+  { href: "/contact?topic=academy&subject=Course%20question", label: "Ask about a course" },
 ];
 
 const profileLinks = [
@@ -23,13 +28,25 @@ const profileLinks = [
 export function SiteFooter() {
   return (
     <footer className="footer" id="site-footer">
+      <div className="container footer-cta">
+        <div>
+          <span>Have an idea or a question?</span>
+          <h2>একসঙ্গে শেখা, তৈরি করা এবং সামনে এগিয়ে যাওয়া যাক।</h2>
+        </div>
+        <div className="footer-cta-actions">
+          <Link href="/contact">Start a conversation <span aria-hidden="true">→</span></Link>
+          <Link href="/academy">Explore Academy</Link>
+        </div>
+      </div>
+
       <div className="container footer-main">
         <div className="footer-intro">
           <BrandLogo footer />
           <p>
-            Engineer, researcher and lifelong learner sharing practical ideas
-            from Japan.
+            Japan থেকে engineering, research এবং Bengali-friendly practical
+            learning resources—curiosity থেকে real skill তৈরির জন্য।
           </p>
+          <span className="footer-location">⌖ Japan · 日本</span>
           <a className="footer-email" href="mailto:reiazbubt@gmail.com">
             reiazbubt@gmail.com <span aria-hidden="true">↗</span>
           </a>
@@ -42,6 +59,15 @@ export function SiteFooter() {
               <Link href={link.href} key={link.href}>
                 {link.label}
               </Link>
+            ))}
+          </div>
+        </nav>
+
+        <nav className="footer-column" aria-label="Learning links">
+          <h2>Learn</h2>
+          <div className="footer-links">
+            {learningLinks.map((link) => (
+              <Link href={link.href} key={link.href}>{link.label}</Link>
             ))}
           </div>
         </nav>
@@ -59,14 +85,17 @@ export function SiteFooter() {
                 {link.label} <span aria-hidden="true">↗</span>
               </a>
             ))}
-            <a href="mailto:reiazbubt@gmail.com">Email</a>
+            <Link href="/contact">Contact form</Link>
           </div>
         </nav>
       </div>
 
       <div className="container footer-bottom">
         <p>© {new Date().getFullYear()} Halim Md Abdul. All rights reserved.</p>
-        <Link href="/">Back to home</Link>
+        <div>
+          <Link href="/contact">Contact</Link>
+          <a href="#top">Back to top ↑</a>
+        </div>
       </div>
     </footer>
   );

@@ -5,7 +5,7 @@ import { SiteControls } from "@/components/site-preferences";
 
 export function SiteHeader() {
   return (
-    <header className="topbar">
+    <header className="topbar" id="top">
       <BrandLogo />
       <SiteNavigation />
       <div className="header-actions">

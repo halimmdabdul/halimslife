@@ -79,32 +79,70 @@ const technologyCourses = [
 
 export default async function AcademyPage() {
   const publishedCourses = await getPublishedCourses();
+  const additionalCourses = publishedCourses.filter(
+    (course) => course.slug !== "japanese-n5",
+  );
   return (
     <InnerPageShell>
       <section className="academy-hero">
-        <div className="container">
-          <span className="academy-eyebrow">Halim&apos;s Life Academy</span>
-          <h1>
-            <TranslatedText
-              bn="শিখুন। তৈরি করুন। সামনে এগিয়ে যান।"
-              en="Learn. Build. Move forward."
-              ja="学び、創り、前へ進もう。"
-            />
-          </h1>
-          <p>
-            <TranslatedText
-              bn="জাপানি ভাষা থেকে Robotics ও AI—সহজ, সাজানো এবং practical learning path।"
-              en="Structured, practical learning paths—from Japanese language to robotics and AI."
-              ja="日本語からロボティクス、AIまで、実践的で体系的な学習パス。"
-            />
-          </p>
-          <a href="#courses" className="primary-button">
-            Explore courses <span aria-hidden="true">↓</span>
-          </a>
+        <div className="container academy-hero-grid">
+          <div className="academy-hero-copy">
+            <span className="academy-eyebrow">Halim&apos;s Life Academy</span>
+            <h1>
+              <TranslatedText
+                bn="শুধু দেখবেন না—শিখুন, practice করুন, এগিয়ে যান।"
+                en="Don’t just watch—learn, practise and move forward."
+                ja="見るだけでなく、学び、練習し、前へ進もう。"
+              />
+            </h1>
+            <p>
+              <TranslatedText
+                bn="বাংলায় সহজ explanation, ছোট ছোট lesson এবং নিজের গতিতে শেখার practical path—Japanese থেকে technology পর্যন্ত।"
+                en="Clear explanations, focused lessons and practical learning paths—from Japanese to technology."
+                ja="わかりやすい解説と実践的なレッスンで、日本語からテクノロジーまで学べます。"
+              />
+            </p>
+            <div className="academy-hero-actions">
+              <Link href="/academy/japanese-n5" className="primary-button">
+                Start learning free <span aria-hidden="true">→</span>
+              </Link>
+              <a href="#courses">Browse learning paths <span aria-hidden="true">↓</span></a>
+            </div>
+            <div className="academy-proof" aria-label="Academy benefits">
+              <span>✓ Bengali-friendly</span>
+              <span>✓ Self-paced</span>
+              <span>✓ Progress saved</span>
+            </div>
+          </div>
+
+          <aside className="academy-hero-card" aria-label="Recommended first course">
+            <span>Recommended first path</span>
+            <div className="academy-hero-card-title">
+              <strong>日本語</strong>
+              <div><small>JLPT N5</small><h2>Japanese Foundations</h2></div>
+            </div>
+            <p>Kana, essential grammar এবং everyday conversation দিয়ে confidence তৈরি করুন।</p>
+            <ul>
+              <li>Focused video ও reading lessons</li>
+              <li>Study notes এবং practice questions</li>
+              <li>যেখান থেকে থামবেন, সেখান থেকেই শুরু</li>
+            </ul>
+            <Link href="/academy/japanese-n5">Open the course <span aria-hidden="true">↗</span></Link>
+          </aside>
         </div>
       </section>
 
       <main id="courses">
+        <section className="academy-steps container" aria-labelledby="academy-steps-title">
+          <div>
+            <span className="kicker">Simple learning flow</span>
+            <h2 id="academy-steps-title">তিন ধাপে steady progress.</h2>
+          </div>
+          <article><span>01</span><strong>Choose a path</strong><p>আপনার level ও goal অনুযায়ী course দিয়ে শুরু করুন।</p></article>
+          <article><span>02</span><strong>Learn by doing</strong><p>Lesson, notes এবং ছোট practice test একসঙ্গে ব্যবহার করুন।</p></article>
+          <article><span>03</span><strong>Keep moving</strong><p>Progress save থাকবে—ফিরে এসে next lesson থেকে চালিয়ে যান।</p></article>
+        </section>
+
         <section className="academy-section container">
           <div className="academy-heading">
             <div>
@@ -132,7 +170,12 @@ export default async function AcademyPage() {
                     Start learning <span aria-hidden="true">→</span>
                   </Link>
                 ) : (
-                  <span className="course-coming">Course details coming soon</span>
+                  <Link
+                    className="course-interest-link"
+                    href={`/contact?topic=academy&subject=${encodeURIComponent(`${course.title} course interest`)}`}
+                  >
+                    I&apos;m interested <span aria-hidden="true">→</span>
+                  </Link>
                 )}
               </article>
             ))}
@@ -165,21 +208,26 @@ export default async function AcademyPage() {
                       <span key={topic}>{topic}</span>
                     ))}
                   </div>
-                  <span className="course-coming">Course details coming soon</span>
+                  <Link
+                    className="course-interest-link"
+                    href={`/contact?topic=academy&subject=${encodeURIComponent(`${course.title} course interest`)}`}
+                  >
+                    Request this course <span aria-hidden="true">→</span>
+                  </Link>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        {publishedCourses.length > 0 ? (
+        {additionalCourses.length > 0 ? (
           <section className="academy-section container">
             <div className="academy-heading">
               <div><span className="kicker">Available now</span><h2>Courses from the Academy.</h2></div>
               <p>New courses published from the Academy dashboard appear here automatically.</p>
             </div>
             <div className="dynamic-course-grid">
-              {publishedCourses.map((course) => (
+              {additionalCourses.map((course) => (
                 <Link href={`/academy/${course.slug}`} key={course.id}>
                   {course.cover_image ? <span className="dynamic-course-cover" role="img" aria-label={`${course.title} featured image`} style={{ backgroundImage: `url(${course.cover_image})` }} /> : <span className="dynamic-course-cover placeholder" aria-hidden="true">{course.title.charAt(0)}</span>}
                   <div className="dynamic-course-body">
@@ -200,9 +248,9 @@ export default async function AcademyPage() {
             <span>New lessons are on the way</span>
             <h2>Which course would you like to learn first?</h2>
           </div>
-          <a href="mailto:reiazbubt@gmail.com?subject=Academy course request">
+          <Link href="/contact?topic=academy&subject=Academy%20course%20request">
             Suggest a course <span aria-hidden="true">↗</span>
-          </a>
+          </Link>
         </section>
       </main>
     </InnerPageShell>

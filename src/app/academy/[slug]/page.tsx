@@ -25,12 +25,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function DynamicCoursePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const course = await getPublishedCourse(slug);
-  if (!course || course.course_sections.length === 0) notFound();
+  if (
+    !course ||
+    course.course_sections.every((section) => section.lectures.length === 0)
+  ) notFound();
 
   return (
     <CoursePlayer
+      courseKey={slug}
       course={{ title: course.title, subtitle: course.subtitle || `${course.category} · ${course.level}` }}
-      sections={course.course_sections.map((section) => ({
+      sections={course.course_sections.filter((section) => section.lectures.length > 0).map((section) => ({
         title: section.title,
         lessons: section.lectures.map((lecture) => ({
           title: lecture.title,

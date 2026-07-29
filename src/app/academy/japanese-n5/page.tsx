@@ -12,17 +12,21 @@ export const metadata: Metadata = {
 export default async function JapaneseN5CoursePage() {
   const course = await getPublishedCourse("japanese-n5");
 
-  if (!course || course.course_sections.length === 0) {
-    return <CoursePlayer />;
+  if (
+    !course ||
+    course.course_sections.every((section) => section.lectures.length === 0)
+  ) {
+    return <CoursePlayer courseKey="japanese-n5" />;
   }
 
   return (
     <CoursePlayer
+      courseKey="japanese-n5"
       course={{
         title: course.title,
         subtitle: course.subtitle || `${course.category} · ${course.level}`,
       }}
-      sections={course.course_sections.map((section) => ({
+      sections={course.course_sections.filter((section) => section.lectures.length > 0).map((section) => ({
         title: section.title,
         lessons: section.lectures.map((lecture) => ({
           title: lecture.title,

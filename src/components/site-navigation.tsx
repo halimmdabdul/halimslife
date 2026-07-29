@@ -1,37 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 import { TranslatedText } from "@/components/site-preferences";
 
 export function SiteNavigation() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const navigationRef = useRef<HTMLDivElement>(null);
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setMenuOpen(false);
+    }
+
+    function closeOutside(event: MouseEvent) {
+      if (!navigationRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("mousedown", closeOutside);
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("mousedown", closeOutside);
+    };
+  }, []);
+
+  function currentRoute(href: string) {
+    return pathname === href || pathname.startsWith(`${href}/`)
+      ? "page" as const
+      : undefined;
+  }
+
   return (
-    <div className="site-navigation">
+    <div className="site-navigation" ref={navigationRef}>
       <nav
         id="site-navigation"
         aria-label="Main navigation"
         className={menuOpen ? "mobile-nav-open" : undefined}
       >
-        <Link href="/about" onClick={closeMenu}>
+        <Link href="/about" aria-current={currentRoute("/about")} onClick={closeMenu}>
           <TranslatedText bn="আমার সম্পর্কে" en="About" ja="私について" />
         </Link>
-        <Link href="/journey" onClick={closeMenu}>
+        <Link href="/journey" aria-current={currentRoute("/journey")} onClick={closeMenu}>
           <TranslatedText bn="আমার জার্নি" en="Journey" ja="歩み" />
         </Link>
-        <Link href="/projects" onClick={closeMenu}>
+        <Link href="/projects" aria-current={currentRoute("/projects")} onClick={closeMenu}>
           <TranslatedText bn="প্রজেক্ট" en="Projects" ja="プロジェクト" />
         </Link>
-        <Link href="/academy" onClick={closeMenu}>
+        <Link href="/academy" aria-current={currentRoute("/academy")} onClick={closeMenu}>
           <TranslatedText bn="একাডেমি" en="Academy" ja="アカデミー" />
         </Link>
-        <Link href="/blog" onClick={closeMenu}>
+        <Link href="/blog" aria-current={currentRoute("/blog")} onClick={closeMenu}>
           <TranslatedText bn="ব্লগ" en="Blog" ja="ブログ" />
         </Link>
-        <Link href="/contact" onClick={closeMenu}>
+        <Link href="/contact" aria-current={currentRoute("/contact")} onClick={closeMenu}>
           <TranslatedText bn="যোগাযোগ" en="Contact" ja="お問い合わせ" />
         </Link>
       </nav>

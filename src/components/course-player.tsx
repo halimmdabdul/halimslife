@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
 import { RichTextContent } from "@/components/rich-text-content";
 
 export type CourseLesson = {
@@ -98,16 +98,23 @@ const demoSections: CourseSection[] = [
 export function CoursePlayer({
   course = { title: "Japanese Foundations", subtitle: "JLPT N5 · Beginner" },
   sections = demoSections,
+  courseKey = "japanese-foundations",
 }: {
   course?: { title: string; subtitle: string };
   sections?: CourseSection[];
+  courseKey?: string;
 }) {
-  const flatLessons = sections.flatMap((section) => section.lessons);
+  const flatLessons = useMemo(
+    () => sections.flatMap((section) => section.lessons),
+    [sections],
+  );
   const [activeLesson, setActiveLesson] = useState(0);
   const [activeTab, setActiveTab] = useState<"overview" | "notes" | "test">(
     "overview",
   );
   const [answer, setAnswer] = useState<string | null>(null);
+  const [completedLessons, setCompletedLessons] = useState<number[]>([]);
+  const [curriculumOpen, setCurriculumOpen] = useState(false);
   const currentLesson = flatLessons[activeLesson] ?? { title: "Course introduction", duration: "Lesson", type: "reading" as const };
   const youtubeEmbedUrl = getYouTubeEmbedUrl(currentLesson.videoUrl);
   const practiceTest = currentLesson.practiceTest;
@@ -121,6 +128,76 @@ export function CoursePlayer({
   const correctAnswer = usesManagedMaterials
     ? practiceTest?.correctAnswer
     : "こんにちは";
+  const progress = flatLessons.length
+    ? Math.round((completedLessons.length / flatLessons.length) * 100)
+    : 0;
+  const storageKey = `halim-course-progress:${courseKey}`;
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      try {
+        const saved = JSON.parse(window.localStorage.getItem(storageKey) ?? "[]");
+        const savedCompleted = Array.isArray(saved) ? saved : saved.completed;
+        if (Array.isArray(savedCompleted)) {
+          setCompletedLessons(
+            savedCompleted.filter(
+              (value): value is number =>
+                Number.isInteger(value) && value >= 0 && value < flatLessons.length,
+            ),
+          );
+        }
+        if (
+          !Array.isArray(saved) &&
+          Number.isInteger(saved.activeLesson) &&
+          saved.activeLesson >= 0 &&
+          saved.activeLesson < flatLessons.length
+        ) {
+          const savedLesson = flatLessons[saved.activeLesson];
+          setActiveLesson(saved.activeLesson);
+          setActiveTab(savedLesson?.type === "quiz" ? "test" : "overview");
+        }
+      } catch {
+        window.localStorage.removeItem(storageKey);
+      }
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [flatLessons, storageKey]);
+
+  function selectLesson(index: number) {
+    const lesson = flatLessons[index];
+    if (!lesson) return;
+    setActiveLesson(index);
+    setActiveTab(lesson.type === "quiz" ? "test" : "overview");
+    setAnswer(null);
+    setCurriculumOpen(false);
+    window.localStorage.setItem(
+      storageKey,
+      JSON.stringify({ completed: completedLessons, activeLesson: index }),
+    );
+  }
+
+  function toggleLessonComplete() {
+    if (!flatLessons[activeLesson]) return;
+    const next = completedLessons.includes(activeLesson)
+      ? completedLessons.filter((index) => index !== activeLesson)
+      : [...completedLessons, activeLesson].sort((a, b) => a - b);
+    window.localStorage.setItem(
+      storageKey,
+      JSON.stringify({ completed: next, activeLesson }),
+    );
+    setCompletedLessons(next);
+  }
+
+  function handleTabKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    const tabs = ["overview", "notes", "test"] as const;
+    const direction = event.key === "ArrowRight" ? 1 : -1;
+    const nextIndex = (tabs.indexOf(activeTab) + direction + tabs.length) % tabs.length;
+    setActiveTab(tabs[nextIndex]);
+    document.getElementById(`lesson-tab-${tabs[nextIndex]}`)?.focus();
+  }
 
   return (
     <div className="course-player-page">
@@ -132,17 +209,29 @@ export function CoursePlayer({
         </div>
         <div className="course-progress">
           <span>Course progress</span>
-          <strong>8%</strong>
-          <i><span /></i>
+          <strong>{progress}%</strong>
+          <i><span style={{ width: `${progress}%` }} /></i>
         </div>
+        <button
+          className="curriculum-toggle"
+          type="button"
+          aria-expanded={curriculumOpen}
+          aria-controls="course-curriculum"
+          onClick={() => setCurriculumOpen((open) => !open)}
+        >
+          {curriculumOpen ? "Close lessons" : "View lessons"}
+        </button>
       </header>
 
       <div className="course-workspace">
-        <aside className="course-curriculum">
+        <aside
+          className={`course-curriculum${curriculumOpen ? " is-open" : ""}`}
+          id="course-curriculum"
+        >
           <div className="curriculum-heading">
             <div>
               <span>Course content</span>
-              <strong>{flatLessons.length} lessons · 2h 14m</strong>
+              <strong>{flatLessons.length} lessons · {completedLessons.length} completed</strong>
             </div>
           </div>
 
@@ -165,18 +254,18 @@ export function CoursePlayer({
                         className={activeLesson === index ? "active" : ""}
                         key={lesson.title}
                         type="button"
-                        onClick={() => {
-                          setActiveLesson(index);
-                          setActiveTab(lesson.type === "quiz" ? "test" : "overview");
-                          setAnswer(null);
-                        }}
+                        aria-current={activeLesson === index ? "step" : undefined}
+                        onClick={() => selectLesson(index)}
                       >
                         <span className={`lesson-type ${lesson.type}`} aria-hidden="true">
                           {lesson.type === "video" ? "▶" : lesson.type === "quiz" ? "?" : "▤"}
                         </span>
                         <span>
                           <strong>{lesson.title}</strong>
-                          <small>{lesson.duration}</small>
+                          <small>
+                            {lesson.duration}
+                            {completedLessons.includes(index) ? " · Completed ✓" : ""}
+                          </small>
                         </span>
                       </button>
                     );
@@ -224,8 +313,12 @@ export function CoursePlayer({
                   key={tab}
                   type="button"
                   role="tab"
+                  id={`lesson-tab-${tab}`}
+                  aria-controls={`lesson-panel-${tab}`}
                   aria-selected={activeTab === tab}
+                  tabIndex={activeTab === tab ? 0 : -1}
                   onClick={() => setActiveTab(tab)}
+                  onKeyDown={handleTabKeyDown}
                 >
                   {tab === "overview" ? "Overview" : tab === "notes" ? "Study notes" : "Practice test"}
                 </button>
@@ -233,7 +326,12 @@ export function CoursePlayer({
             </div>
 
             {activeTab === "overview" && (
-              <article className="lesson-overview">
+              <article
+                className="lesson-overview"
+                id="lesson-panel-overview"
+                role="tabpanel"
+                aria-labelledby="lesson-tab-overview"
+              >
                 <span className="lesson-kicker">Lesson {activeLesson + 1}</span>
                 <h1>{currentLesson.title}</h1>
                 {currentLesson.overview || currentLesson.content ? (
@@ -249,13 +347,7 @@ export function CoursePlayer({
                     <li>Use the new forms in a simple everyday example.</li>
                   </ul>
                 </div> : null}
-                {currentLesson.materials === undefined ? (
-                  <div className="lesson-download">
-                    <span>PDF</span>
-                    <div><strong>Lesson practice sheet</strong><small>Study material · 1.2 MB</small></div>
-                    <button type="button">Download</button>
-                  </div>
-                ) : currentLesson.materials.length > 0 ? (
+                {currentLesson.materials && currentLesson.materials.length > 0 ? (
                   <div className="lesson-materials">
                     <h2>Downloadable materials</h2>
                     {currentLesson.materials.map((material) => (
@@ -274,7 +366,12 @@ export function CoursePlayer({
             )}
 
             {activeTab === "notes" && (
-              <article className="lesson-notes">
+              <article
+                className="lesson-notes"
+                id="lesson-panel-notes"
+                role="tabpanel"
+                aria-labelledby="lesson-tab-notes"
+              >
                 <span className="lesson-kicker">Quick reference</span>
                 <h1>Lesson notes</h1>
                 {!currentLesson.studyNotes && !currentLesson.content ? <div className="japanese-example">
@@ -291,8 +388,13 @@ export function CoursePlayer({
             )}
 
             {activeTab === "test" && (
-              <article className="lesson-quiz">
-                <span className="lesson-kicker">Question 1 of 5</span>
+              <article
+                className="lesson-quiz"
+                id="lesson-panel-test"
+                role="tabpanel"
+                aria-labelledby="lesson-tab-test"
+              >
+                <span className="lesson-kicker">Practice question</span>
                 {testQuestion && testOptions.length >= 2 && correctAnswer ? <>
                   <h1>{testQuestion}</h1>
                   <div className="quiz-options">
@@ -315,6 +417,38 @@ export function CoursePlayer({
                 )}
               </article>
             )}
+
+            {progress === 100 ? (
+              <div className="course-complete-banner" role="status">
+                <span aria-hidden="true">★</span>
+                <div><strong>Course complete—দারুণ কাজ!</strong><p>সব lesson শেষ করেছেন। চাইলে যেকোনো lesson আবার review করতে পারেন।</p></div>
+              </div>
+            ) : null}
+
+            <nav className="lesson-navigation" aria-label="Lesson navigation">
+              <button
+                type="button"
+                disabled={activeLesson === 0}
+                onClick={() => selectLesson(activeLesson - 1)}
+              >
+                ← Previous
+              </button>
+              <button
+                className={completedLessons.includes(activeLesson) ? "completed" : ""}
+                type="button"
+                aria-pressed={completedLessons.includes(activeLesson)}
+                onClick={toggleLessonComplete}
+              >
+                {completedLessons.includes(activeLesson) ? "Completed ✓" : "Mark as complete"}
+              </button>
+              <button
+                type="button"
+                disabled={activeLesson >= flatLessons.length - 1}
+                onClick={() => selectLesson(activeLesson + 1)}
+              >
+                Next →
+              </button>
+            </nav>
           </div>
         </main>
       </div>

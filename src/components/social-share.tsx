@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export function SocialShare({ title }: { title: string }) {
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">("idle");
 
   function shareUrl(network: "facebook" | "x" | "linkedin" | "whatsapp") {
     const url = encodeURIComponent(window.location.href);
@@ -19,9 +19,25 @@ export function SocialShare({ title }: { title: string }) {
   }
 
   async function copyLink() {
-    await navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(window.location.href);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = window.location.href;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        const copied = document.execCommand("copy");
+        textArea.remove();
+        if (!copied) throw new Error("Copy failed");
+      }
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("error");
+    }
+    window.setTimeout(() => setCopyStatus("idle"), 2200);
   }
 
   return (
@@ -40,8 +56,19 @@ export function SocialShare({ title }: { title: string }) {
         WhatsApp
       </button>
       <button type="button" onClick={copyLink}>
-        {copied ? "Copied!" : "Copy link"}
+        {copyStatus === "copied"
+          ? "Copied!"
+          : copyStatus === "error"
+            ? "Copy failed"
+            : "Copy link"}
       </button>
+      <div className="sr-only" aria-live="polite">
+        {copyStatus === "copied"
+          ? "Link copied to clipboard."
+          : copyStatus === "error"
+            ? "The link could not be copied."
+            : ""}
+      </div>
     </div>
   );
 }
