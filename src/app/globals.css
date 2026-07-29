@@ -158,10 +158,236 @@ html[data-theme="dark"] .brand-mark {
 
 .topbar nav {
   display: flex;
-  gap: 34px;
+  gap: clamp(14px, 1.8vw, 28px);
   color: #415968;
   font-size: 14px;
   font-weight: 600;
+}
+
+/* Scholarship guides */
+.scholarship-hero {
+  overflow: hidden;
+  padding: 92px 0 104px;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(242, 140, 40, 0.2), transparent 22%),
+    linear-gradient(135deg, #0b2632, #103d43 64%, #0c513f);
+  color: #fff;
+}
+
+.scholarship-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.68fr);
+  align-items: end;
+  gap: 70px;
+}
+
+.scholarship-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #85e4c1;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.scholarship-eyebrow::before {
+  width: 22px;
+  height: 2px;
+  background: var(--orange);
+  content: "";
+}
+
+.scholarship-hero h1 {
+  max-width: 760px;
+  margin: 20px 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(46px, 6.2vw, 78px);
+  letter-spacing: -0.055em;
+  line-height: 1.03;
+}
+
+.scholarship-hero-grid > div > p {
+  max-width: 650px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.scholarship-hero aside {
+  padding: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+}
+
+.scholarship-hero aside strong { font-family: Georgia, serif; font-size: 20px; }
+.scholarship-hero aside p { margin: 12px 0 18px; color: rgba(255, 255, 255, 0.67); font-size: 11px; line-height: 1.75; }
+.scholarship-hero aside span { color: #8fe4c5; font-size: 9px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.scholarship-index { padding-block: 0 130px; }
+
+.scholarship-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(600px, 100%);
+  margin: -35px auto 76px;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--paper);
+  box-shadow: 0 18px 45px rgba(16, 42, 67, 0.13);
+}
+
+.scholarship-tabs a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 58px;
+  padding: 0 19px;
+  border-radius: 9px;
+  color: var(--muted);
+}
+
+.scholarship-tabs a[aria-current="page"] { background: var(--green-surface); color: #fff; }
+.scholarship-tabs span { font-family: Georgia, serif; font-size: 19px; font-weight: 800; }
+.scholarship-tabs small { font-size: 9px; font-weight: 750; }
+
+.scholarship-section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(250px, 0.55fr);
+  align-items: end;
+  gap: 50px;
+  margin-bottom: 35px;
+}
+
+.scholarship-section-heading h2,
+.scholarship-content-section h2,
+.scholarship-reality-check h2,
+.scholarship-source-panel h2 {
+  margin: 8px 0 0;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.035em;
+}
+
+.scholarship-section-heading h2 { max-width: 680px; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; }
+.scholarship-section-heading > p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.75; }
+
+.scholarship-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.scholarship-card {
+  display: flex;
+  min-height: 490px;
+  padding: 31px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--paper);
+  flex-direction: column;
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+.scholarship-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--green) 45%, var(--line)); box-shadow: 0 22px 50px rgba(16, 42, 67, 0.1); }
+.scholarship-card-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.scholarship-card-top > span { color: var(--orange); font-size: 9px; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+.scholarship-card-top small { padding: 5px 8px; border-radius: 99px; background: var(--soft); color: var(--green); font-size: 8px; font-weight: 800; }
+.scholarship-university { margin: 42px 0 7px !important; color: var(--green) !important; font-size: 10px !important; font-weight: 800; text-transform: uppercase; }
+.scholarship-card h3 { max-width: 490px; margin: 0; color: var(--navy); font-family: Georgia, serif; font-size: 28px; letter-spacing: -0.035em; line-height: 1.15; }
+.scholarship-card > p { margin: 15px 0 25px; color: var(--muted); font-size: 11px; line-height: 1.75; }
+.scholarship-card dl { display: grid; gap: 10px; margin: 0 0 28px; padding: 20px 0; border-block: 1px solid var(--line); }
+.scholarship-card dl > div { display: grid; grid-template-columns: 70px 1fr; gap: 12px; }
+.scholarship-card dt { color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; }
+.scholarship-card dd { margin: 0; color: var(--text); font-size: 10px; line-height: 1.55; }
+.scholarship-card > a { display: flex; align-items: center; justify-content: space-between; margin-top: auto; color: var(--green); font-size: 11px; font-weight: 850; }
+
+.scholarship-empty-state { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px; padding: 38px; border: 1px dashed color-mix(in srgb, var(--green) 45%, var(--line)); border-radius: 15px; background: var(--soft); }
+.scholarship-empty-state > span { display: grid; width: 72px; height: 72px; border-radius: 50%; background: var(--paper); color: var(--red); font-family: Georgia, serif; font-size: 20px; place-items: center; }
+.scholarship-empty-state strong { color: var(--navy); font-family: Georgia, serif; font-size: 21px; }
+.scholarship-empty-state p { max-width: 570px; margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.scholarship-empty-state a { padding: 12px 15px; border-radius: 7px; background: var(--green-action); color: #fff; font-size: 10px; font-weight: 800; white-space: nowrap; }
+
+.scholarship-note { display: flex; align-items: flex-start; gap: 15px; margin-top: 30px; padding: 17px 20px; border-left: 3px solid var(--orange); background: color-mix(in srgb, var(--orange) 7%, var(--paper)); }
+.scholarship-note strong { color: var(--orange); font-size: 10px; text-transform: uppercase; }
+.scholarship-note p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
+
+.scholarship-detail-hero { padding: 52px 0 70px; background: linear-gradient(145deg, #0b2632, #10463d); color: #fff; }
+.scholarship-detail-hero nav { display: flex; gap: 9px; margin-bottom: 60px; color: rgba(255, 255, 255, 0.55); font-size: 10px; }
+.scholarship-detail-hero nav a:hover { color: #8fe4c5; }
+.scholarship-detail-university { margin: 25px 0 8px !important; color: #8fe4c5 !important; font-size: 11px !important; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.scholarship-detail-hero h1 { max-width: 900px; margin: 0; font-family: Georgia, serif; font-size: clamp(42px, 6vw, 68px); letter-spacing: -0.05em; line-height: 1.04; }
+.scholarship-detail-hero .container > p:last-of-type { max-width: 720px; margin: 21px 0 0; color: rgba(255, 255, 255, 0.68); font-size: 13px; line-height: 1.8; }
+.scholarship-quick-facts { display: grid; grid-template-columns: 1.5fr 0.7fr 1fr; gap: 1px; margin-top: 48px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 11px; overflow: hidden; background: rgba(255, 255, 255, 0.12); }
+.scholarship-quick-facts > div { padding: 20px; background: rgba(4, 27, 33, 0.72); }
+.scholarship-quick-facts small, .scholarship-quick-facts strong { display: block; }
+.scholarship-quick-facts small { margin-bottom: 7px; color: #8fe4c5; font-size: 8px; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; }
+.scholarship-quick-facts strong { font-size: 10px; line-height: 1.55; }
+
+.scholarship-detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 315px; align-items: start; gap: 72px; padding-block: 78px 105px; }
+.scholarship-reality-check { padding: 28px; border: 1px solid color-mix(in srgb, var(--orange) 34%, var(--line)); border-radius: 12px; background: color-mix(in srgb, var(--orange) 7%, var(--paper)); }
+.scholarship-reality-check > span { color: var(--orange); font-size: 9px; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; }
+.scholarship-reality-check h2 { font-size: 26px; }
+.scholarship-reality-check p { margin: 12px 0 0; color: var(--text); font-size: 12px; line-height: 1.8; }
+.scholarship-content-section { padding: 66px 0 0; }
+.scholarship-content-section + .scholarship-content-section { margin-top: 66px; border-top: 1px solid var(--line); }
+.scholarship-content-section h2 { font-size: clamp(27px, 3.5vw, 37px); }
+.scholarship-highlight-list, .scholarship-check-list, .scholarship-cautions ul { display: grid; gap: 13px; margin: 27px 0 0; padding: 0; list-style: none; }
+.scholarship-highlight-list li, .scholarship-check-list li, .scholarship-cautions li { position: relative; padding: 15px 18px 15px 43px; border: 1px solid var(--line); border-radius: 9px; color: var(--text); font-size: 11px; line-height: 1.7; }
+.scholarship-highlight-list li::before, .scholarship-check-list li::before { position: absolute; left: 17px; color: var(--green); font-weight: 900; content: "✓"; }
+.scholarship-roadmap { display: grid; gap: 0; margin: 30px 0 0; padding: 0; list-style: none; }
+.scholarship-roadmap li { display: grid; grid-template-columns: 54px 1fr; gap: 20px; padding-bottom: 27px; }
+.scholarship-roadmap li > span { position: relative; z-index: 1; display: grid; width: 42px; height: 42px; border-radius: 50%; background: var(--green-surface); color: #fff; font-family: Georgia, serif; font-size: 11px; font-weight: 800; place-items: center; }
+.scholarship-roadmap li:not(:last-child) > span::after { position: absolute; z-index: -1; top: 42px; bottom: -31px; left: 20px; width: 1px; background: var(--line); content: ""; }
+.scholarship-roadmap h3 { margin: 1px 0 7px; color: var(--navy); font-size: 14px; }
+.scholarship-roadmap p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.75; }
+.scholarship-document-section > div { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 27px; }
+.scholarship-document-section > div span { padding: 10px 13px; border: 1px solid var(--line); border-radius: 7px; background: var(--soft); color: var(--text); font-size: 10px; }
+.scholarship-cautions li { border-color: color-mix(in srgb, var(--red) 23%, var(--line)); }
+.scholarship-cautions li::before { position: absolute; left: 17px; color: var(--red); font-weight: 900; content: "!"; }
+
+.scholarship-source-panel { position: sticky; top: 102px; padding: 25px; border: 1px solid var(--line); border-radius: 13px; background: var(--soft); }
+.scholarship-source-panel > span { color: var(--green); font-size: 9px; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; }
+.scholarship-source-panel h2 { font-size: 25px; }
+.scholarship-source-panel > p { margin: 11px 0 22px; color: var(--muted); font-size: 10px; line-height: 1.65; }
+.scholarship-source-panel > div { display: grid; gap: 9px; }
+.scholarship-source-panel a { padding: 13px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+.scholarship-source-panel a:hover { border-color: var(--green); }
+.scholarship-source-panel a strong, .scholarship-source-panel a small { display: block; }
+.scholarship-source-panel a strong { color: var(--navy); font-size: 10px; }
+.scholarship-source-panel a small { margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.5; }
+.scholarship-reviewed { display: block; margin-top: 20px; color: var(--muted); font-size: 8px; text-align: center; }
+.scholarship-detail-cta { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-bottom: 130px; padding: 34px 38px; border-radius: 14px; background: var(--green-surface); color: #fff; }
+.scholarship-detail-cta > div > span { color: #9be8cb; font-size: 9px; font-weight: 850; text-transform: uppercase; }
+.scholarship-detail-cta h2 { margin: 6px 0 0; font-family: Georgia, serif; font-size: 27px; }
+.scholarship-detail-cta > a { padding: 13px 17px; border-radius: 7px; background: #fff; color: #075940; font-size: 10px; font-weight: 850; white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .scholarship-hero-grid, .scholarship-section-heading, .scholarship-detail-layout { grid-template-columns: 1fr; }
+  .scholarship-hero-grid { gap: 42px; }
+  .scholarship-hero aside { max-width: 520px; }
+  .scholarship-card-grid { grid-template-columns: 1fr; }
+  .scholarship-card { min-height: 430px; }
+  .scholarship-detail-layout { gap: 55px; }
+  .scholarship-source-panel { position: static; }
+}
+
+@media (max-width: 600px) {
+  .scholarship-hero { padding: 70px 0 82px; }
+  .scholarship-tabs { margin-bottom: 58px; }
+  .scholarship-tabs a { align-items: flex-start; justify-content: center; flex-direction: column; }
+  .scholarship-section-heading { gap: 18px; }
+  .scholarship-card { min-height: 0; padding: 24px 20px; }
+  .scholarship-card-top { align-items: flex-start; flex-direction: column; }
+  .scholarship-university { margin-top: 30px !important; }
+  .scholarship-empty-state { grid-template-columns: 1fr; padding: 27px 22px; }
+  .scholarship-empty-state a { width: fit-content; }
+  .scholarship-note { flex-direction: column; }
+  .scholarship-detail-hero nav { margin-bottom: 42px; }
+  .scholarship-quick-facts { grid-template-columns: 1fr; }
+  .scholarship-detail-layout { padding-block: 55px 80px; }
+  .scholarship-content-section + .scholarship-content-section { margin-top: 52px; }
+  .scholarship-detail-cta { align-items: stretch; flex-direction: column; margin-bottom: 100px; padding: 28px 23px; }
+  .scholarship-detail-cta > a { text-align: center; }
 }
 
 .header-actions,

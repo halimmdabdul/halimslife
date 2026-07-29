@@ -56,6 +56,9 @@ export function SiteNavigation() {
         <Link href="/academy" aria-current={currentRoute("/academy")} onClick={closeMenu}>
           <TranslatedText bn="একাডেমি" en="Academy" ja="アカデミー" />
         </Link>
+        <Link href="/scholarships" aria-current={currentRoute("/scholarships")} onClick={closeMenu}>
+          <TranslatedText bn="স্কলারশিপ" en="Scholarships" ja="奨学金" />
+        </Link>
         <Link href="/blog" aria-current={currentRoute("/blog")} onClick={closeMenu}>
           <TranslatedText bn="ব্লগ" en="Blog" ja="ブログ" />
         </Link>
