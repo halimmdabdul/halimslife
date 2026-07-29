@@ -87,14 +87,51 @@ export default async function ScholarshipDetailPage({
               </ul>
             </section>
 
+            <section className="scholarship-content-section scholarship-quick-start">
+              <span className="kicker">Start here today</span>
+              <h2>আজ প্রথম ৩০ মিনিটে যা করবেন</h2>
+              <p>
+                সবকিছু একসঙ্গে করার দরকার নেই। নিচের চারটি কাজ শেষ করলে
+                application-এর সঠিক foundation তৈরি হয়ে যাবে।
+              </p>
+              <ol>
+                {guide.quickStart.map((item, index) => (
+                  <li key={item}>
+                    <span>{index + 1}</span>
+                    <p>{item}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
             <section className="scholarship-content-section">
               <span className="kicker">Application roadmap</span>
-              <h2>Step-by-step application flow</h2>
+              <h2>শুরু থেকে submit—সম্পূর্ণ application process</h2>
+              <p className="scholarship-section-intro">
+                প্রতিটি ধাপ ক্রমানুসারে শেষ করুন। “এই ধাপ শেষ হবে যখন” অংশটি
+                মিলিয়ে তারপর পরের ধাপে যান।
+              </p>
               <ol className="scholarship-roadmap">
                 {guide.steps.map((step, index) => (
                   <li key={step.title}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <div><h3>{step.title}</h3><p>{step.description}</p></div>
+                    <span className="scholarship-step-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="scholarship-step-body">
+                      <small>{step.timing}</small>
+                      <h3>{step.title}</h3>
+                      <p>{step.description}</p>
+                      <strong>এই ধাপে যা করবেন</strong>
+                      <ul>
+                        {step.actions.map((action) => (
+                          <li key={action}>{action}</li>
+                        ))}
+                      </ul>
+                      <div className="scholarship-ready-check">
+                        <span aria-hidden="true">✓</span>
+                        <p><strong>এই ধাপ শেষ হবে যখন:</strong> {step.readyWhen}</p>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ol>
@@ -106,6 +143,19 @@ export default async function ScholarshipDetailPage({
               <div>
                 {guide.checklist.map((item) => <span key={item}>{item}</span>)}
               </div>
+            </section>
+
+            <section className="scholarship-content-section scholarship-after-submit">
+              <span className="kicker">After submission</span>
+              <h2>Submit করার পরে কী করবেন?</h2>
+              <ol>
+                {guide.afterSubmission.map((item, index) => (
+                  <li key={item}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <p>{item}</p>
+                  </li>
+                ))}
+              </ol>
             </section>
 
             <section className="scholarship-content-section scholarship-cautions">
