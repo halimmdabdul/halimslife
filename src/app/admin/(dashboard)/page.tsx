@@ -10,7 +10,12 @@ export const metadata: Metadata = {
 export default async function AdminOverviewPage() {
   const { profile, supabase } = await requireAdmin();
 
-  const [{ count: userCount }, { count: postCount }, { count: adminCount }] =
+  const [
+    { count: userCount },
+    { count: postCount },
+    { count: adminCount },
+    { count: messageCount },
+  ] =
     await Promise.all([
       supabase.from("profiles").select("*", { count: "exact", head: true }),
       supabase.from("posts").select("*", { count: "exact", head: true }),
@@ -18,6 +23,10 @@ export default async function AdminOverviewPage() {
         .from("profiles")
         .select("*", { count: "exact", head: true })
         .eq("role", "admin"),
+      supabase
+        .from("contact_messages")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "new"),
     ]);
 
   return (
@@ -44,6 +53,11 @@ export default async function AdminOverviewPage() {
           <span>Published content</span>
           <strong>{postCount ?? 0}</strong>
           <p>Posts in Supabase</p>
+        </article>
+        <article>
+          <span>New messages</span>
+          <strong>{messageCount ?? 0}</strong>
+          <p>Contact requests awaiting review</p>
         </article>
       </section>
       <section className="admin-panel">
