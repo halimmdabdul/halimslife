@@ -20,8 +20,54 @@ const countries: { value: ScholarshipCountry; label: string; detail: string }[] 
     label: "USA",
     detail: `${scholarshipGuides.filter((guide) => guide.country === "usa").length} guides`,
   },
-  { value: "japan", label: "Japan", detail: "Coming soon" },
+  {
+    value: "japan",
+    label: "Japan",
+    detail: `${scholarshipGuides.filter((guide) => guide.country === "japan").length} guides`,
+  },
 ];
+
+const japanPlanningGroups = [
+  {
+    label: "Act now",
+    tone: "urgent",
+    text: "Deadlines are live or preparation should already be underway.",
+    guides: ["Tsukuba AISIP", "University of Aizu", "IUJ", "GRIPS", "NUCB"],
+  },
+  {
+    label: "Confirm next",
+    tone: "verify",
+    text: "Good options, but the exact intake, language or 2027 guide needs confirmation.",
+    guides: ["Hosei IIST", "KIC English course", "TUMSAT second round"],
+  },
+  {
+    label: "Eligibility watch",
+    tone: "caution",
+    text: "Do not apply until the profile and route-specific restriction is resolved.",
+    guides: ["Saitama ESITI", "Meiji Governance Studies"],
+  },
+] as const;
+
+const usaPlanningGroups = [
+  {
+    label: "Strongest active lead",
+    tone: "urgent",
+    text: "The lab currently advertises funded PhD hiring and the research fit is unusually strong.",
+    guides: ["Alabama · AutMn Trustworthy Autonomy Lab"],
+  },
+  {
+    label: "Email before applying",
+    tone: "verify",
+    text: "The opportunity page exists, but the exact Fall 2027 seat must be confirmed in writing.",
+    guides: ["SIU · Mobile Distributed Computing Lab", "UMBC · Haibin Zhang"],
+  },
+  {
+    label: "Funding deadlines",
+    tone: "caution",
+    text: "Prepare tests and documents early; a professor reply does not replace the graduate application.",
+    guides: ["Alabama · Dec 31", "SIU · Dec 31", "UMBC · Jan 7"],
+  },
+] as const;
 
 export default async function ScholarshipsPage({
   searchParams,
@@ -54,7 +100,7 @@ export default async function ScholarshipsPage({
               “Scholarship”, funded admission এবং application portal এক জিনিস নয়।
               আমরা প্রতিটি opportunity আসলে কী—সেটি আগে পরিষ্কার করি।
             </p>
-            <span>Source-checked · Updated July 2026</span>
+            <span>Source-checked · Updated August 2026</span>
           </aside>
         </div>
       </section>
@@ -79,7 +125,7 @@ export default async function ScholarshipsPage({
             <h2>
               {activeCountry === "usa"
                 ? `${guides.length} practical guides for your next application.`
-                : "Japan guides are being carefully prepared."}
+                : `${guides.length} verified routes to study and funding in Japan.`}
             </h2>
           </div>
           <p>
@@ -88,12 +134,34 @@ export default async function ScholarshipsPage({
           </p>
         </div>
 
+        <section className="scholarship-planning-map" aria-labelledby="scholarship-planning-title">
+            <header>
+              <span className="kicker">Quick decision map</span>
+              <h2 id="scholarship-planning-title">কোন option এখন কীভাবে দেখবেন?</h2>
+              <p>
+                Funding claim admission guarantee নয়। আগে status group দেখুন,
+                তারপর নিচের complete guide খুলে exact action নিন।
+              </p>
+            </header>
+            <div>
+              {(activeCountry === "japan" ? japanPlanningGroups : usaPlanningGroups).map((group) => (
+                <article data-tone={group.tone} key={group.label}>
+                  <strong>{group.label}</strong>
+                  <p>{group.text}</p>
+                  <ul>
+                    {group.guides.map((guide) => <li key={guide}>{guide}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
         {guides.length > 0 ? (
           <div className="scholarship-card-grid">
             {guides.map((guide, index) => (
               <article className="scholarship-card" key={guide.slug}>
                 <div className="scholarship-card-top">
-                  <span>0{index + 1} · USA</span>
+                  <span>0{index + 1} · {guide.country.toUpperCase()}</span>
                   <small>{guide.label}</small>
                 </div>
                 <p className="scholarship-university">{guide.university}</p>
