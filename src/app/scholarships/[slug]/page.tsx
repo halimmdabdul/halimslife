@@ -47,7 +47,9 @@ export default async function ScholarshipDetailPage({
             <nav aria-label="Breadcrumb">
               <Link href="/scholarships">Scholarships</Link>
               <span aria-hidden="true">/</span>
-              <Link href="/scholarships?country=usa">USA</Link>
+              <Link href={`/scholarships?country=${guide.country}`}>
+                {guide.country === "japan" ? "Japan" : "USA"}
+              </Link>
             </nav>
             <span className="scholarship-eyebrow">{guide.label}</span>
             <p className="scholarship-detail-university">{guide.university}</p>
@@ -179,7 +181,7 @@ export default async function ScholarshipDetailPage({
                 </a>
               ))}
             </div>
-            <small className="scholarship-reviewed">Information reviewed July 29, 2026</small>
+            <small className="scholarship-reviewed">Information reviewed August 6, 2026</small>
           </aside>
         </div>
 
