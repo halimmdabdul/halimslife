@@ -17,32 +17,66 @@ const japaneseCourses = [
   {
     level: "N5",
     title: "Japanese Foundations",
-    description: "Kana, basic grammar, everyday vocabulary and simple conversation.",
-    status: "Start here",
+    description: "10 modules, 30 lessons, Bengali notes and practice—from kana to N5 exam skills.",
+    status: "Available now",
   },
   {
     level: "N4",
     title: "Everyday Japanese",
     description: "Core sentence patterns, reading practice and useful daily expressions.",
-    status: "Beginner",
+    status: "Planned",
   },
   {
     level: "N3",
     title: "Intermediate Japanese",
     description: "Natural grammar, broader vocabulary, reading and listening fluency.",
-    status: "Intermediate",
+    status: "Planned",
   },
   {
     level: "N2",
     title: "Professional Japanese",
     description: "Advanced reading, workplace language and nuanced communication.",
-    status: "Advanced",
+    status: "Planned",
   },
   {
     level: "N1",
     title: "Japanese Mastery",
     description: "Complex texts, precise expressions and high-level comprehension.",
-    status: "Expert",
+    status: "Planned",
+  },
+];
+
+const n5Modules = [
+  "Study strategy",
+  "Hiragana",
+  "Katakana & sounds",
+  "Self-introduction",
+  "Objects, places & time",
+  "Verbs & particles",
+  "Descriptions & existence",
+  "Daily communication",
+  "Requests & permissions",
+  "JLPT reading & listening",
+];
+
+const studyTracks = [
+  {
+    time: "25 min/day",
+    label: "Steady",
+    detail: "5 min review · 12 min lesson · 5 min recall · 3 min practice",
+    pace: "প্রায় 8–10 weeks",
+  },
+  {
+    time: "45 min/day",
+    label: "Balanced",
+    detail: "10 min review · 20 min lesson · 10 min examples · 5 min quiz",
+    pace: "প্রায় 5–7 weeks",
+  },
+  {
+    time: "75 min/day",
+    label: "Intensive",
+    detail: "15 min review · 30 min lessons · 15 min reading · 15 min listening",
+    pace: "প্রায় 3–4 weeks",
   },
 ];
 
@@ -123,8 +157,8 @@ export default async function AcademyPage() {
             </div>
             <p>Kana, essential grammar এবং everyday conversation দিয়ে confidence তৈরি করুন।</p>
             <ul>
-              <li>Focused video ও reading lessons</li>
-              <li>Study notes এবং practice questions</li>
+              <li>10 modules ও 30 detailed lessons</li>
+              <li>Bengali notes এবং প্রতি lesson-এ practice</li>
               <li>যেখান থেকে থামবেন, সেখান থেকেই শুরু</li>
             </ul>
             <Link href="/academy/japanese-n5">Open the course <span aria-hidden="true">↗</span></Link>
@@ -141,6 +175,80 @@ export default async function AcademyPage() {
           <article><span>01</span><strong>Choose a path</strong><p>আপনার level ও goal অনুযায়ী course দিয়ে শুরু করুন।</p></article>
           <article><span>02</span><strong>Learn by doing</strong><p>Lesson, notes এবং ছোট practice test একসঙ্গে ব্যবহার করুন।</p></article>
           <article><span>03</span><strong>Keep moving</strong><p>Progress save থাকবে—ফিরে এসে next lesson থেকে চালিয়ে যান।</p></article>
+        </section>
+
+        <section className="academy-foundation container" aria-labelledby="academy-foundation-title">
+          <div className="academy-heading">
+            <div>
+              <span className="kicker">Research-backed foundation</span>
+              <h2 id="academy-foundation-title">Exam বুঝে শিখুন—শুধু list মুখস্থ নয়।</h2>
+            </div>
+            <p>
+              Official JLPT N5 outcome এবং Japan Foundation-এর communication-first
+              beginner approach ধরে original Bengali-friendly curriculum সাজানো হয়েছে।
+            </p>
+          </div>
+          <div className="academy-foundation-grid">
+            <article>
+              <span>Official N5 outcome</span>
+              <strong>Basic reading + slow everyday listening</strong>
+              <p>Hiragana, katakana ও basic kanji-তে পরিচিত বাক্য পড়া এবং short conversation থেকে প্রয়োজনীয় তথ্য ধরা।</p>
+            </article>
+            <article>
+              <span>Test structure</span>
+              <strong>20 + 40 + 30 minutes</strong>
+              <p>Vocabulary, grammar/reading এবং listening—তিন section-এর জন্য আলাদা skill practice।</p>
+            </article>
+            <article>
+              <span>Inside this course</span>
+              <strong>10 modules · 30 lessons</strong>
+              <p>Explanation, quick-reference notes, original examples, practice question এবং saved progress।</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="academy-study-plan">
+          <div className="container">
+            <div className="academy-heading">
+              <div>
+                <span className="kicker">Choose your pace</span>
+                <h2>সময় কম হলেও clear routine রাখুন।</h2>
+              </div>
+              <p>সময় estimate—guarantee নয়। আগের language-learning experience এবং review quality অনুযায়ী pace বদলাবে।</p>
+            </div>
+            <div className="academy-study-track-grid">
+              {studyTracks.map((track) => (
+                <article key={track.time}>
+                  <span>{track.label}</span>
+                  <h3>{track.time}</h3>
+                  <p>{track.detail}</p>
+                  <strong>{track.pace}</strong>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="academy-curriculum-preview container" aria-labelledby="n5-curriculum-title">
+          <div>
+            <span className="kicker">Complete N5 path</span>
+            <h2 id="n5-curriculum-title">Foundation থেকে exam-ready practice.</h2>
+            <p>
+              Kana দিয়ে শুরু করে sentence building, everyday communication এবং timed
+              JLPT strategy পর্যন্ত। প্রতিটি module আগের skill ব্যবহার করে।
+            </p>
+            <Link className="primary-button" href="/academy/japanese-n5">
+              Start the complete course <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <ol>
+            {n5Modules.map((module, index) => (
+              <li key={module}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{module}</strong>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section className="academy-section container">
@@ -217,6 +325,67 @@ export default async function AcademyPage() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="academy-resources container" aria-labelledby="academy-resources-title">
+          <div className="academy-heading">
+            <div>
+              <span className="kicker">Official companion resources</span>
+              <h2 id="academy-resources-title">Practice করুন trusted source দিয়ে।</h2>
+            </div>
+            <p>Academy lesson-এর পাশাপাশি official sample format, audio ও real-life beginner material ব্যবহার করুন।</p>
+          </div>
+          <div className="academy-resource-grid">
+            <a href="https://www.jlpt.jp/e/about/levelsummary.html" target="_blank" rel="noreferrer">
+              <span>JLPT official</span>
+              <strong>N5 ability summary</strong>
+              <p>Level-এর reading ও listening outcome official wording-এ বুঝুন।</p>
+              <b>Open source ↗</b>
+            </a>
+            <a href="https://www.jlpt.jp/e/guideline/testsections.html" target="_blank" rel="noreferrer">
+              <span>JLPT official</span>
+              <strong>Sections and question types</strong>
+              <p>Current test time এবং vocabulary, reading, listening item types দেখুন।</p>
+              <b>Open source ↗</b>
+            </a>
+            <a href="https://www.irodori.jpf.go.jp/en/" target="_blank" rel="noreferrer">
+              <span>Japan Foundation</span>
+              <strong>Irodori for life in Japan</strong>
+              <p>Daily life ও work communication-এর free beginner materials ব্যবহার করুন।</p>
+              <b>Open source ↗</b>
+            </a>
+            <a href="https://marugoto.jpf.go.jp/en/e-learning/" target="_blank" rel="noreferrer">
+              <span>Japan Foundation</span>
+              <strong>Marugoto e-learning</strong>
+              <p>Communication, kana, vocabulary এবং culture-এর extra practice নিন।</p>
+              <b>Open source ↗</b>
+            </a>
+          </div>
+        </section>
+
+        <section className="academy-faq container" aria-labelledby="academy-faq-title">
+          <div>
+            <span className="kicker">Before you begin</span>
+            <h2 id="academy-faq-title">Common questions.</h2>
+          </div>
+          <div>
+            <details open>
+              <summary>এই course শেষ করলেই কি N5 pass নিশ্চিত?</summary>
+              <p>না। এটি strong foundation ও structured practice দেয়। Pass নির্ভর করবে vocabulary coverage, listening volume, timed mock performance এবং exam-day execution-এর ওপর।</p>
+            </details>
+            <details>
+              <summary>Romaji ব্যবহার করা যাবে?</summary>
+              <p>শুরুর কয়েকদিন pronunciation support হিসেবে ব্যবহার করতে পারেন। কিন্তু N5 reading-এর জন্য দ্রুত hiragana ও katakana-only practice-এ যেতে হবে।</p>
+            </details>
+            <details>
+              <summary>Speaking কেন আছে, যখন JLPT speaking test করে না?</summary>
+              <p>নিজে sentence বলা active recall শক্ত করে এবং grammar শুধু চিনতে নয়, ব্যবহার করতে শেখায়। তবে course exam sections—vocabulary, reading ও listening—স্পষ্টভাবে আলাদা রাখে।</p>
+            </details>
+            <details>
+              <summary>N4–N1 course কি এখন available?</summary>
+              <p>বর্তমানে complete structured path হিসেবে N5 available। N4–N1 roadmap planned; card-এর interest link দিয়ে priority জানাতে পারবেন।</p>
+            </details>
           </div>
         </section>
 
