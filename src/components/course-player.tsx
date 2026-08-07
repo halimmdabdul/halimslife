@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
 import { RichTextContent } from "@/components/rich-text-content";
+import { japaneseN5Sections } from "@/lib/japanese-n5-curriculum";
 
 export type CourseLesson = {
   title: string;
@@ -60,44 +61,9 @@ function getYouTubeEmbedUrl(value?: string | null) {
   }
 }
 
-const demoSections: CourseSection[] = [
-  {
-    title: "Introduction",
-    lessons: [
-      { title: "Welcome to JLPT N5", duration: "04:20", type: "video" },
-      { title: "How to use this course", duration: "03:10", type: "video" },
-    ],
-  },
-  {
-    title: "Hiragana basics",
-    lessons: [
-      { title: "The Japanese writing system", duration: "08:45", type: "video" },
-      { title: "あ・い・う・え・お", duration: "12:30", type: "video" },
-      { title: "Kana practice sheet", duration: "5 min", type: "reading" },
-      { title: "Hiragana checkpoint", duration: "5 questions", type: "quiz" },
-    ],
-  },
-  {
-    title: "First conversations",
-    lessons: [
-      { title: "Greetings and introductions", duration: "10:15", type: "video" },
-      { title: "Introducing yourself", duration: "09:40", type: "video" },
-      { title: "Conversation practice", duration: "10 min", type: "reading" },
-    ],
-  },
-  {
-    title: "Essential grammar",
-    lessons: [
-      { title: "The particle は", duration: "11:20", type: "video" },
-      { title: "です and じゃないです", duration: "13:05", type: "video" },
-      { title: "Grammar checkpoint", duration: "5 questions", type: "quiz" },
-    ],
-  },
-];
-
 export function CoursePlayer({
   course = { title: "Japanese Foundations", subtitle: "JLPT N5 · Beginner" },
-  sections = demoSections,
+  sections = japaneseN5Sections,
   courseKey = "japanese-foundations",
 }: {
   course?: { title: string; subtitle: string };
@@ -277,7 +243,7 @@ export function CoursePlayer({
         </aside>
 
         <main className="course-lesson-area">
-          <div className="lesson-video-stage">
+          <div className={`lesson-video-stage${currentLesson.type === "video" ? "" : " study-stage"}`}>
             {youtubeEmbedUrl ? (
               <iframe
                 key={youtubeEmbedUrl}
@@ -290,17 +256,17 @@ export function CoursePlayer({
               />
             ) : (
               <>
-                <div className="video-decoration">あ</div>
-                <div className="video-placeholder-icon" aria-hidden="true">▶</div>
+                <div className="video-decoration">{currentLesson.type === "quiz" ? "問" : "あ"}</div>
+                {currentLesson.type === "video" ? <div className="video-placeholder-icon" aria-hidden="true">▶</div> : null}
                 <div className="video-caption">
-                  <span>{currentLesson.type === "video" ? "Video unavailable" : "Study lesson"}</span>
+                  <span>{currentLesson.type === "video" ? "Video unavailable" : currentLesson.type === "quiz" ? "Knowledge checkpoint" : "Guided study lesson"}</span>
                   <strong>{currentLesson.title}</strong>
-                  {currentLesson.type === "video" ? <small>Add a valid YouTube video URL from the admin panel.</small> : null}
+                  <small>{currentLesson.type === "video" ? "Add a valid YouTube video URL from the admin panel." : `${currentLesson.duration} · Read, recall and practise`}</small>
                 </div>
-                <div className="video-controls" aria-hidden="true">
+                {currentLesson.type === "video" ? <div className="video-controls" aria-hidden="true">
                   <span>▶</span><i><span /></i><small>00:00 / {currentLesson.duration}</small>
                   <span>⚙</span><span>□</span>
-                </div>
+                </div> : null}
               </>
             )}
           </div>

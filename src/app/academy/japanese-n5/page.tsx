@@ -4,8 +4,9 @@ import { CoursePlayer } from "@/components/course-player";
 import { getPublishedCourse } from "@/lib/courses";
 
 export const metadata: Metadata = {
-  title: "Japanese Foundations — JLPT N5 Course",
-  description: "Study JLPT N5 Japanese through video lessons, notes and practice tests.",
+  title: "Japanese Foundations — Bengali-Friendly JLPT N5 Course",
+  description:
+    "Learn JLPT N5 through 10 structured modules and 30 Bengali-friendly lessons covering kana, grammar, reading, everyday communication and exam practice.",
   alternates: { canonical: "/academy/japanese-n5" },
 };
 

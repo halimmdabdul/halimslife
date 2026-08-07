@@ -1742,6 +1742,116 @@ html[data-theme="dark"] .footer-bottom {
 .academy-steps article strong { display: block; margin-top: 14px; color: var(--navy); font-size: 13px; }
 .academy-steps article p { margin: 7px 0 0; color: var(--muted); font-size: 11px; line-height: 1.65; }
 
+.academy-foundation { padding-block: 105px 40px; }
+
+.academy-foundation-grid,
+.academy-study-track-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.academy-foundation-grid article,
+.academy-study-track-grid article {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.academy-foundation-grid article > span,
+.academy-study-track-grid article > span,
+.academy-resource-grid a > span {
+  color: var(--green);
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.academy-foundation-grid article > strong {
+  display: block;
+  margin-top: 17px;
+  color: var(--navy);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.academy-foundation-grid article > p,
+.academy-study-track-grid article > p,
+.academy-resource-grid a > p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.academy-study-plan {
+  margin-top: 65px;
+  padding-block: 100px;
+  background: var(--soft);
+}
+
+.academy-study-track-grid article { position: relative; overflow: hidden; }
+.academy-study-track-grid article::after { position: absolute; right: -20px; bottom: -45px; width: 110px; height: 110px; border: 1px solid var(--line); border-radius: 50%; content: ""; }
+.academy-study-track-grid h3 { margin: 22px 0 0; color: var(--navy); font-size: 28px; letter-spacing: -0.035em; }
+.academy-study-track-grid article > strong { display: block; margin-top: 24px; color: var(--orange); font-size: 11px; }
+
+.academy-curriculum-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(420px, 1.2fr);
+  gap: clamp(45px, 8vw, 100px);
+  margin-block: 105px;
+  padding: clamp(40px, 6vw, 72px);
+  border-radius: 20px;
+  background: var(--navy-surface);
+  color: white;
+}
+
+.academy-curriculum-preview h2 { margin: 10px 0 20px; font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.045em; line-height: 1.1; }
+.academy-curriculum-preview > div > p { margin: 0 0 28px; color: rgba(255, 255, 255, 0.68); font-size: 14px; line-height: 1.75; }
+.academy-curriculum-preview .primary-button { background: white; color: #102a43; }
+.academy-curriculum-preview ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: 0; padding: 0; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 13px; background: rgba(255, 255, 255, 0.12); list-style: none; }
+.academy-curriculum-preview li { display: flex; min-height: 74px; align-items: center; gap: 13px; padding: 16px; background: rgba(4, 27, 37, 0.82); }
+.academy-curriculum-preview li span { color: #f6b85e; font-family: Georgia, serif; font-size: 11px; }
+.academy-curriculum-preview li strong { color: rgba(255, 255, 255, 0.88); font-size: 11px; line-height: 1.45; }
+
+.academy-resources,
+.academy-faq { padding-block: 105px; }
+
+.academy-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.academy-resource-grid a {
+  display: flex;
+  min-height: 270px;
+  flex-direction: column;
+  padding: 25px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.academy-resource-grid a:hover { border-color: var(--green); transform: translateY(-4px); }
+.academy-resource-grid a > strong { margin-top: 30px; color: var(--navy); font-size: 19px; line-height: 1.35; }
+.academy-resource-grid a > b { margin-top: auto; padding-top: 20px; color: var(--green); font-size: 10px; }
+
+.academy-faq {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.45fr) minmax(0, 1fr);
+  gap: clamp(45px, 8vw, 100px);
+  border-top: 1px solid var(--line);
+}
+
+.academy-faq h2 { margin: 9px 0 0; color: var(--navy); font-size: clamp(34px, 4vw, 50px); letter-spacing: -0.04em; }
+.academy-faq details { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.academy-faq summary { color: var(--navy); font-size: 14px; font-weight: 800; cursor: pointer; }
+.academy-faq details p { margin: 13px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
 .academy-section,
 .academy-tech-section {
   padding-block: 105px;
@@ -4271,6 +4381,21 @@ html[data-theme="dark"] .admin-table-head {
   place-items: center;
 }
 
+.lesson-video-stage.study-stage {
+  min-height: 300px;
+  background:
+    radial-gradient(circle at 82% 24%, rgba(82, 211, 164, 0.17), transparent 25%),
+    linear-gradient(135deg, #0b2933 0%, #0c453c 100%);
+}
+
+.lesson-video-stage.study-stage .video-decoration {
+  color: rgba(255, 255, 255, 0.07);
+}
+
+.lesson-video-stage.study-stage .video-caption {
+  bottom: 45px;
+}
+
 .video-decoration {
   position: absolute;
   right: 8%;
@@ -5096,6 +5221,14 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
     grid-column: 1 / -1;
   }
 
+  .academy-foundation-grid,
+  .academy-study-track-grid { grid-template-columns: 1fr; }
+
+  .academy-curriculum-preview,
+  .academy-faq { grid-template-columns: 1fr; }
+
+  .academy-resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
   .contact-page {
     grid-template-columns: 1fr;
     gap: 55px;
@@ -5154,6 +5287,10 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
   .academy-steps > div {
     grid-column: auto;
   }
+
+  .academy-curriculum-preview ol { grid-template-columns: 1fr; }
+
+  .academy-resource-grid { grid-template-columns: 1fr; }
 
   .contact-page h1 {
     font-size: 43px;
@@ -5474,9 +5611,15 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
   }
 
   .academy-section,
-  .academy-tech-section {
+  .academy-tech-section,
+  .academy-resources,
+  .academy-faq {
     padding-block: 72px;
   }
+
+  .academy-foundation { padding-block: 78px 25px; }
+  .academy-study-plan { margin-top: 45px; padding-block: 72px; }
+  .academy-curriculum-preview { margin-block: 72px; padding: 35px 22px; }
 
   .jlpt-course-grid,
   .technology-course-grid {
