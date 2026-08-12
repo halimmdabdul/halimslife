@@ -181,7 +181,9 @@ export default async function ScholarshipDetailPage({
                 </a>
               ))}
             </div>
-            <small className="scholarship-reviewed">Information reviewed August 6, 2026</small>
+            <small className="scholarship-reviewed">
+              Information reviewed {guide.reviewedAt ?? "August 6, 2026"}
+            </small>
           </aside>
         </div>
 

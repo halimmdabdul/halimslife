@@ -1816,6 +1816,28 @@ html[data-theme="dark"] .footer-bottom {
 .academy-curriculum-preview li span { color: #f6b85e; font-family: Georgia, serif; font-size: 11px; }
 .academy-curriculum-preview li strong { color: rgba(255, 255, 255, 0.88); font-size: 11px; line-height: 1.45; }
 
+.academy-companion-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+  gap: clamp(38px, 7vw, 90px);
+  margin-block: 105px;
+  padding: clamp(38px, 6vw, 70px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(135deg, #fffaf2, #f4faf7);
+}
+
+.academy-companion-copy h2 { max-width: 760px; margin: 12px 0 20px; color: var(--navy); font-size: clamp(32px, 4vw, 52px); letter-spacing: -0.045em; line-height: 1.12; }
+.academy-companion-copy > p { max-width: 680px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
+.academy-companion-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 30px; }
+.academy-companion-actions > span { color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.academy-companion-details { padding: 28px; border-radius: 15px; background: var(--navy-surface); color: white; }
+.academy-companion-details > span { color: #f6b85e; font-size: 10px; font-weight: 850; letter-spacing: 0.11em; text-transform: uppercase; }
+.academy-companion-details ul { display: grid; gap: 14px; margin: 22px 0; padding: 0; list-style: none; }
+.academy-companion-details li { position: relative; padding-left: 22px; color: rgba(255, 255, 255, 0.86); font-size: 12px; line-height: 1.65; }
+.academy-companion-details li::before { position: absolute; top: 0; left: 0; color: #f6b85e; content: "✓"; }
+.academy-companion-details p { margin: 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.12); color: rgba(255, 255, 255, 0.58); font-size: 10px; line-height: 1.7; }
+
 .academy-resources,
 .academy-faq { padding-block: 105px; }
 
@@ -4263,6 +4285,10 @@ html[data-theme="dark"] .admin-table-head {
 }
 
 .course-curriculum {
+  position: sticky;
+  top: 68px;
+  align-self: start;
+  max-height: calc(100dvh - 68px);
   overflow-y: auto;
   border-right: 1px solid #dce5e2;
   background: white;
@@ -4278,6 +4304,17 @@ html[data-theme="dark"] .admin-table-head {
   display: block;
 }
 
+.course-companion-notice {
+  margin: 14px;
+  padding: 13px 14px;
+  border: 1px solid #eed7ad;
+  border-radius: 10px;
+  background: #fff8e8;
+  color: #6b552b;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
 .curriculum-heading span {
   color: #102a43;
   font-size: 16px;
@@ -4290,8 +4327,9 @@ html[data-theme="dark"] .admin-table-head {
   font-size: 10px;
 }
 
-.curriculum-section h2 {
+.curriculum-section-toggle {
   display: flex;
+  width: 100%;
   align-items: center;
   gap: 10px;
   margin: 0;
@@ -4299,16 +4337,19 @@ html[data-theme="dark"] .admin-table-head {
   border-bottom: 1px solid #e7ecea;
   background: #f7f9f8;
   color: #213b4d;
+  font: inherit;
   font-size: 12px;
+  text-align: left;
+  cursor: pointer;
 }
 
-.curriculum-section h2 span {
+.curriculum-section-toggle span {
   color: #8a999f;
   font-family: Georgia, serif;
   font-size: 10px;
 }
 
-.curriculum-section button {
+.curriculum-lesson-button {
   display: grid;
   width: 100%;
   grid-template-columns: 28px 1fr;
@@ -4322,12 +4363,12 @@ html[data-theme="dark"] .admin-table-head {
   cursor: pointer;
 }
 
-.curriculum-section button:hover,
-.curriculum-section button.active {
+.curriculum-lesson-button:hover,
+.curriculum-lesson-button.active {
   background: #eaf6f1;
 }
 
-.curriculum-section button.active {
+.curriculum-lesson-button.active {
   box-shadow: inset 3px 0 var(--green-action);
 }
 
@@ -4349,20 +4390,20 @@ html[data-theme="dark"] .admin-table-head {
   color: #ae6318;
 }
 
-.curriculum-section button > span:last-child strong,
-.curriculum-section button > span:last-child small {
+.curriculum-lesson-button > span:last-child strong,
+.curriculum-lesson-button > span:last-child small {
   display: block;
 }
 
-.curriculum-section button > span:last-child strong {
-  font-size: 11px;
+.curriculum-lesson-button > span:last-child strong {
+  font-size: 12px;
   line-height: 1.4;
 }
 
-.curriculum-section button > span:last-child small {
+.curriculum-lesson-button > span:last-child small {
   margin-top: 3px;
   color: #91a0a6;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .course-lesson-area {
@@ -4382,7 +4423,7 @@ html[data-theme="dark"] .admin-table-head {
 }
 
 .lesson-video-stage.study-stage {
-  min-height: 300px;
+  min-height: 190px;
   background:
     radial-gradient(circle at 82% 24%, rgba(82, 211, 164, 0.17), transparent 25%),
     linear-gradient(135deg, #0b2933 0%, #0c453c 100%);
@@ -4393,7 +4434,7 @@ html[data-theme="dark"] .admin-table-head {
 }
 
 .lesson-video-stage.study-stage .video-caption {
-  bottom: 45px;
+  bottom: 34px;
 }
 
 .video-decoration {
@@ -4548,8 +4589,8 @@ html[data-theme="dark"] .admin-table-head {
 
 .rich-text-content {
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.9;
 }
 
 .rich-text-content > :first-child { margin-top: 0; }
@@ -4698,6 +4739,19 @@ html[data-theme="dark"] .lesson-materials > a > span {
   color: #ffc376;
 }
 
+.curriculum-section-toggle strong { flex: 1; font-size: inherit; line-height: 1.5; }
+.curriculum-section-toggle i { color: var(--green); font-size: 16px; font-style: normal; }
+
+html[data-theme="dark"] .academy-companion-feature {
+  background: linear-gradient(135deg, var(--paper), var(--soft));
+}
+
+html[data-theme="dark"] .course-companion-notice {
+  border-color: #6f552d;
+  background: #302718;
+  color: #f1d39d;
+}
+
 .japanese-example {
   margin-block: 28px;
   padding: 30px;
@@ -4732,18 +4786,21 @@ html[data-theme="dark"] .lesson-materials > a > span {
 .quiz-options button.correct { border-color: #087f5b; background: #edf9f4; }
 .quiz-options button.wrong { border-color: #d9485f; background: #fff2f4; }
 .quiz-feedback { margin-top: 18px; padding: 14px 16px; border-radius: 8px; font-size: 12px; }
+.quiz-feedback strong,
+.quiz-feedback span { display: block; }
+.quiz-feedback span { margin-top: 7px; line-height: 1.65; }
 .quiz-feedback.correct { background: #e9f8f2; color: #087f5b; }
 .quiz-feedback.wrong { background: #fff0f2; color: #b52f45; }
 
 html[data-theme="dark"] .course-player-page,
 html[data-theme="dark"] .course-curriculum,
-html[data-theme="dark"] .curriculum-section button,
+html[data-theme="dark"] .curriculum-lesson-button,
 html[data-theme="dark"] .lesson-content,
 html[data-theme="dark"] .quiz-options button {
   background: var(--paper);
 }
 
-html[data-theme="dark"] .curriculum-section h2,
+html[data-theme="dark"] .curriculum-section-toggle,
 html[data-theme="dark"] .lesson-objectives,
 html[data-theme="dark"] .japanese-example {
   background: var(--soft);
@@ -4757,7 +4814,7 @@ html[data-theme="dark"] .japanese-example strong,
 html[data-theme="dark"] .lesson-download strong,
 html[data-theme="dark"] .quiz-options button,
 html[data-theme="dark"] .curriculum-heading span,
-html[data-theme="dark"] .curriculum-section h2 {
+html[data-theme="dark"] .curriculum-section-toggle {
   color: var(--navy);
 }
 
@@ -5225,6 +5282,7 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
   .academy-study-track-grid { grid-template-columns: 1fr; }
 
   .academy-curriculum-preview,
+  .academy-companion-feature,
   .academy-faq { grid-template-columns: 1fr; }
 
   .academy-resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -5261,6 +5319,9 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
   .academy-hero-grid {
     gap: 45px;
   }
+
+  .academy-companion-feature { margin-block: 72px; padding: 32px 22px; }
+  .academy-companion-details { padding: 23px 20px; }
 
   .academy-hero-actions {
     align-items: stretch;
@@ -5656,6 +5717,7 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
   }
 
   .course-curriculum {
+    position: static;
     display: none;
     max-height: 330px;
     border-right: 0;
@@ -5669,6 +5731,8 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
   .lesson-video-stage {
     min-height: 300px;
   }
+
+  .lesson-video-stage.study-stage { min-height: 175px; }
 
   .video-caption {
     left: 18px;

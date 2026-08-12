@@ -38,13 +38,13 @@ const japanPlanningGroups = [
     label: "Confirm next",
     tone: "verify",
     text: "Good options, but the exact intake, language or 2027 guide needs confirmation.",
-    guides: ["Hosei IIST", "KIC English course", "TUMSAT second round"],
+    guides: ["Musashino Data Science · Aug 18–27 · language check", "SIT EECS · Nov 16–27 · Self-funded", "TUT International Master’s + MEXT", "Hosei IIST", "KIC English course", "TUMSAT second round", "Meiji MPP · Sep 2027 guide pending"],
   },
   {
     label: "Eligibility watch",
     tone: "caution",
     text: "Do not apply until the profile and route-specific restriction is resolved.",
-    guides: ["Saitama ESITI", "Meiji Governance Studies"],
+    guides: ["Saitama ESITI"],
   },
 ] as const;
 
