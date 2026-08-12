@@ -14,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/projects",
     "/academy",
     "/academy/japanese-n5",
+    "/academy/minna-no-nihongo-n5-companion",
     "/scholarships",
     "/insights",
     "/contact",
@@ -38,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...scholarshipGuides.map((guide) => ({
       url: `${baseUrl}/scholarships/${guide.slug}`,
-      lastModified: new Date("2026-07-29"),
+      lastModified: new Date(guide.reviewedOn ?? "2026-07-29"),
       changeFrequency: "monthly" as const,
       priority: 0.75,
     })),

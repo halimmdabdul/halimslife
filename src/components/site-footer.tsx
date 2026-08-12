@@ -15,6 +15,7 @@ const learningLinks = [
   { href: "/academy", label: "Academy" },
   { href: "/scholarships", label: "Scholarships" },
   { href: "/academy/japanese-n5", label: "Japanese N5" },
+  { href: "/academy/minna-no-nihongo-n5-companion", label: "N5 Bangla Companion" },
   { href: "/signup", label: "Create account" },
   { href: "/contact?topic=academy&subject=Course%20question", label: "Ask about a course" },
 ];

@@ -251,6 +251,37 @@ export default async function AcademyPage() {
           </ol>
         </section>
 
+        <section className="academy-companion-feature container" aria-labelledby="minna-companion-title">
+          <div className="academy-companion-copy">
+            <span className="kicker">New · 25-unit companion</span>
+            <h2 id="minna-companion-title">Minna no Nihongo N5-এর সঙ্গে বাংলায় আরও গুছিয়ে শিখুন।</h2>
+            <p>
+              একদম নতুনদের foundation এবং Lesson 1–25-এর progression অনুসরণ করে তৈরি ৫২টি সম্পূর্ণ
+              মৌলিক guide ও practice lesson। Grammar বুঝুন, নিজের sentence বানান,
+              common mistake ধরুন এবং প্রতিটি unit শেষে quick check দিন।
+            </p>
+            <div className="academy-companion-actions">
+              <Link className="primary-button" href="/academy/minna-no-nihongo-n5-companion">
+                Open Bangla companion <span aria-hidden="true">→</span>
+              </Link>
+              <span>Start Here + 25 units · 52 lessons · progress saved</span>
+            </div>
+          </div>
+          <div className="academy-companion-details">
+            <span>এই companion-এ যা আছে</span>
+            <ul>
+              <li>সহজ বাংলা grammar explanation ও sentence formula</li>
+              <li>সম্পূর্ণ নতুন Japanese example, vocabulary prompt ও exercise</li>
+              <li>প্রতি unit-এ ভুল এড়ানোর checklist এবং self-test</li>
+              <li>Second/Third Edition—দুটির শিক্ষার্থীর জন্য ব্যবহারযোগ্য topic map</li>
+            </ul>
+            <p>
+              এটি 3A Corporation-এর বইয়ের অনুবাদ, প্রতিলিপি বা official answer guide নয়।
+              মূল textbook ও audio আলাদাভাবে সংগ্রহ করে পাশাপাশি ব্যবহার করুন।
+            </p>
+          </div>
+        </section>
+
         <section className="academy-section container">
           <div className="academy-heading">
             <div>

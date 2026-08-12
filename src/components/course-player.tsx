@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { RichTextContent } from "@/components/rich-text-content";
 import { japaneseN5Sections } from "@/lib/japanese-n5-curriculum";
 
@@ -16,6 +16,7 @@ export type CourseLesson = {
     question?: string;
     options?: string[];
     correctAnswer?: string;
+    explanation?: string;
   } | null;
   materials?: Array<{
     title: string;
@@ -27,6 +28,17 @@ export type CourseLesson = {
 };
 
 export type CourseSection = { title: string; lessons: CourseLesson[] };
+
+function sectionIndexForLesson(sections: CourseSection[], lessonIndex: number) {
+  let cursor = 0;
+  const sectionIndex = sections.findIndex((section) => {
+    const containsLesson =
+      lessonIndex >= cursor && lessonIndex < cursor + section.lessons.length;
+    cursor += section.lessons.length;
+    return containsLesson;
+  });
+  return Math.max(0, sectionIndex);
+}
 
 function getYouTubeEmbedUrl(value?: string | null) {
   if (!value) return null;
@@ -66,7 +78,7 @@ export function CoursePlayer({
   sections = japaneseN5Sections,
   courseKey = "japanese-foundations",
 }: {
-  course?: { title: string; subtitle: string };
+  course?: { title: string; subtitle: string; notice?: string; locale?: "bn" | "en" };
   sections?: CourseSection[];
   courseKey?: string;
 }) {
@@ -81,6 +93,8 @@ export function CoursePlayer({
   const [answer, setAnswer] = useState<string | null>(null);
   const [completedLessons, setCompletedLessons] = useState<number[]>([]);
   const [curriculumOpen, setCurriculumOpen] = useState(false);
+  const [openSection, setOpenSection] = useState(0);
+  const lessonTopRef = useRef<HTMLElement>(null);
   const currentLesson = flatLessons[activeLesson] ?? { title: "Course introduction", duration: "Lesson", type: "reading" as const };
   const youtubeEmbedUrl = getYouTubeEmbedUrl(currentLesson.videoUrl);
   const practiceTest = currentLesson.practiceTest;
@@ -94,6 +108,8 @@ export function CoursePlayer({
   const correctAnswer = usesManagedMaterials
     ? practiceTest?.correctAnswer
     : "こんにちは";
+  const answerExplanation = practiceTest?.explanation;
+  const bengaliUi = course.locale === "bn";
   const progress = flatLessons.length
     ? Math.round((completedLessons.length / flatLessons.length) * 100)
     : 0;
@@ -120,7 +136,14 @@ export function CoursePlayer({
         ) {
           const savedLesson = flatLessons[saved.activeLesson];
           setActiveLesson(saved.activeLesson);
-          setActiveTab(savedLesson?.type === "quiz" ? "test" : "overview");
+          setOpenSection(sectionIndexForLesson(sections, saved.activeLesson));
+          setActiveTab(
+            savedLesson?.overview || savedLesson?.content
+              ? "overview"
+              : savedLesson?.type === "quiz"
+                ? "test"
+                : "overview",
+          );
         }
       } catch {
         window.localStorage.removeItem(storageKey);
@@ -128,19 +151,29 @@ export function CoursePlayer({
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, [flatLessons, storageKey]);
+  }, [flatLessons, sections, storageKey]);
 
   function selectLesson(index: number) {
     const lesson = flatLessons[index];
     if (!lesson) return;
     setActiveLesson(index);
-    setActiveTab(lesson.type === "quiz" ? "test" : "overview");
+    setActiveTab(
+      lesson.overview || lesson.content
+        ? "overview"
+        : lesson.type === "quiz"
+          ? "test"
+          : "overview",
+    );
     setAnswer(null);
+    setOpenSection(sectionIndexForLesson(sections, index));
     setCurriculumOpen(false);
     window.localStorage.setItem(
       storageKey,
       JSON.stringify({ completed: completedLessons, activeLesson: index }),
     );
+    window.requestAnimationFrame(() => {
+      lessonTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   }
 
   function toggleLessonComplete() {
@@ -168,13 +201,13 @@ export function CoursePlayer({
   return (
     <div className="course-player-page">
       <header className="course-player-header">
-        <Link href="/academy" aria-label="Back to Academy">←</Link>
+        <Link href="/academy" aria-label={bengaliUi ? "Academy-তে ফিরুন" : "Back to Academy"}>←</Link>
         <div>
           <strong>{course.title}</strong>
           <span>{course.subtitle}</span>
         </div>
         <div className="course-progress">
-          <span>Course progress</span>
+          <span>{bengaliUi ? "কোর্স অগ্রগতি" : "Course progress"}</span>
           <strong>{progress}%</strong>
           <i><span style={{ width: `${progress}%` }} /></i>
         </div>
@@ -185,7 +218,9 @@ export function CoursePlayer({
           aria-controls="course-curriculum"
           onClick={() => setCurriculumOpen((open) => !open)}
         >
-          {curriculumOpen ? "Close lessons" : "View lessons"}
+          {curriculumOpen
+            ? bengaliUi ? "পাঠতালিকা বন্ধ" : "Close lessons"
+            : bengaliUi ? "পাঠতালিকা" : "View lessons"}
         </button>
       </header>
 
@@ -196,10 +231,17 @@ export function CoursePlayer({
         >
           <div className="curriculum-heading">
             <div>
-              <span>Course content</span>
-              <strong>{flatLessons.length} lessons · {completedLessons.length} completed</strong>
+              <span>{bengaliUi ? "কোর্সের পাঠ" : "Course content"}</span>
+              <strong>
+                {flatLessons.length} {bengaliUi ? "টি lesson" : "lessons"} · {completedLessons.length}{" "}
+                {bengaliUi ? "টি শেষ" : "completed"}
+              </strong>
             </div>
           </div>
+
+          {course.notice ? (
+            <p className="course-companion-notice">{course.notice}</p>
+          ) : null}
 
           {sections.map((section, sectionIndex) => {
             const startIndex = sections
@@ -208,16 +250,23 @@ export function CoursePlayer({
 
             return (
               <section className="curriculum-section" key={section.title}>
-                <h2>
+                <button
+                  className="curriculum-section-toggle"
+                  type="button"
+                  aria-expanded={openSection === sectionIndex}
+                  aria-controls={`course-unit-${sectionIndex}`}
+                  onClick={() => setOpenSection(sectionIndex)}
+                >
                   <span>{String(sectionIndex + 1).padStart(2, "0")}</span>
-                  {section.title}
-                </h2>
-                <div>
+                  <strong>{section.title}</strong>
+                  <i aria-hidden="true">{openSection === sectionIndex ? "−" : "+"}</i>
+                </button>
+                <div id={`course-unit-${sectionIndex}`} hidden={openSection !== sectionIndex}>
                   {section.lessons.map((lesson, lessonIndex) => {
                     const index = startIndex + lessonIndex;
                     return (
                       <button
-                        className={activeLesson === index ? "active" : ""}
+                        className={`curriculum-lesson-button${activeLesson === index ? " active" : ""}`}
                         key={lesson.title}
                         type="button"
                         aria-current={activeLesson === index ? "step" : undefined}
@@ -230,7 +279,9 @@ export function CoursePlayer({
                           <strong>{lesson.title}</strong>
                           <small>
                             {lesson.duration}
-                            {completedLessons.includes(index) ? " · Completed ✓" : ""}
+                            {completedLessons.includes(index)
+                              ? bengaliUi ? " · শেষ ✓" : " · Completed ✓"
+                              : ""}
                           </small>
                         </span>
                       </button>
@@ -242,7 +293,7 @@ export function CoursePlayer({
           })}
         </aside>
 
-        <main className="course-lesson-area">
+        <main className="course-lesson-area" ref={lessonTopRef}>
           <div className={`lesson-video-stage${currentLesson.type === "video" ? "" : " study-stage"}`}>
             {youtubeEmbedUrl ? (
               <iframe
@@ -259,9 +310,9 @@ export function CoursePlayer({
                 <div className="video-decoration">{currentLesson.type === "quiz" ? "問" : "あ"}</div>
                 {currentLesson.type === "video" ? <div className="video-placeholder-icon" aria-hidden="true">▶</div> : null}
                 <div className="video-caption">
-                  <span>{currentLesson.type === "video" ? "Video unavailable" : currentLesson.type === "quiz" ? "Knowledge checkpoint" : "Guided study lesson"}</span>
+                  <span>{currentLesson.type === "video" ? "Video unavailable" : currentLesson.type === "quiz" ? (bengaliUi ? "অনুশীলন ও যাচাই" : "Knowledge checkpoint") : (bengaliUi ? "ধাপে ধাপে শেখার পাঠ" : "Guided study lesson")}</span>
                   <strong>{currentLesson.title}</strong>
-                  <small>{currentLesson.type === "video" ? "Add a valid YouTube video URL from the admin panel." : `${currentLesson.duration} · Read, recall and practise`}</small>
+                  <small>{currentLesson.type === "video" ? "Add a valid YouTube video URL from the admin panel." : `${currentLesson.duration} · ${bengaliUi ? "বুঝুন, বলুন, তারপর অনুশীলন করুন" : "Read, recall and practise"}`}</small>
                 </div>
                 {currentLesson.type === "video" ? <div className="video-controls" aria-hidden="true">
                   <span>▶</span><i><span /></i><small>00:00 / {currentLesson.duration}</small>
@@ -286,7 +337,11 @@ export function CoursePlayer({
                   onClick={() => setActiveTab(tab)}
                   onKeyDown={handleTabKeyDown}
                 >
-                  {tab === "overview" ? "Overview" : tab === "notes" ? "Study notes" : "Practice test"}
+                  {tab === "overview"
+                    ? bengaliUi ? "ধাপে ধাপে পাঠ" : "Overview"
+                    : tab === "notes"
+                      ? bengaliUi ? "শব্দ ও নোট" : "Study notes"
+                      : bengaliUi ? "নিজেকে যাচাই" : "Practice test"}
                 </button>
               ))}
             </div>
@@ -298,7 +353,7 @@ export function CoursePlayer({
                 role="tabpanel"
                 aria-labelledby="lesson-tab-overview"
               >
-                <span className="lesson-kicker">Lesson {activeLesson + 1}</span>
+                <span className="lesson-kicker">{bengaliUi ? "পাঠ" : "Lesson"} {activeLesson + 1}</span>
                 <h1>{currentLesson.title}</h1>
                 {currentLesson.overview || currentLesson.content ? (
                   <RichTextContent content={currentLesson.overview || currentLesson.content || ""} />
@@ -338,8 +393,8 @@ export function CoursePlayer({
                 role="tabpanel"
                 aria-labelledby="lesson-tab-notes"
               >
-                <span className="lesson-kicker">Quick reference</span>
-                <h1>Lesson notes</h1>
+                <span className="lesson-kicker">{bengaliUi ? "দ্রুত দেখে নিন" : "Quick reference"}</span>
+                <h1>{bengaliUi ? "শব্দ, নিয়ম ও মনে রাখার কৌশল" : "Lesson notes"}</h1>
                 {!currentLesson.studyNotes && !currentLesson.content ? <div className="japanese-example">
                   <strong>こんにちは</strong>
                   <span>konnichiwa</span>
@@ -360,7 +415,7 @@ export function CoursePlayer({
                 role="tabpanel"
                 aria-labelledby="lesson-tab-test"
               >
-                <span className="lesson-kicker">Practice question</span>
+                <span className="lesson-kicker">{bengaliUi ? "নিজেকে যাচাই করুন" : "Practice question"}</span>
                 {testQuestion && testOptions.length >= 2 && correctAnswer ? <>
                   <h1>{testQuestion}</h1>
                   <div className="quiz-options">
@@ -377,8 +432,16 @@ export function CoursePlayer({
                   </div>
                 </> : <div className="lesson-empty-material"><strong>No practice test yet</strong><p>An administrator can add a question and answers for this lecture.</p></div>}
                 {answer && correctAnswer && (
-                  <p className={answer === correctAnswer ? "quiz-feedback correct" : "quiz-feedback wrong"}>
-                    {answer === correctAnswer ? "Correct! Well done." : "Not quite. Review the lesson notes and try again."}
+                  <p
+                    className={answer === correctAnswer ? "quiz-feedback correct" : "quiz-feedback wrong"}
+                    aria-live="polite"
+                  >
+                    <strong>
+                      {answer === correctAnswer
+                        ? bengaliUi ? "সঠিক হয়েছে!" : "Correct! Well done."
+                        : bengaliUi ? "এটি সঠিক নয়। আবার চেষ্টা করুন।" : "Not quite. Review the lesson notes and try again."}
+                    </strong>
+                    {answerExplanation ? <span>{answerExplanation}</span> : null}
                   </p>
                 )}
               </article>
@@ -397,7 +460,7 @@ export function CoursePlayer({
                 disabled={activeLesson === 0}
                 onClick={() => selectLesson(activeLesson - 1)}
               >
-                ← Previous
+                ← {bengaliUi ? "আগের পাঠ" : "Previous"}
               </button>
               <button
                 className={completedLessons.includes(activeLesson) ? "completed" : ""}
@@ -405,14 +468,16 @@ export function CoursePlayer({
                 aria-pressed={completedLessons.includes(activeLesson)}
                 onClick={toggleLessonComplete}
               >
-                {completedLessons.includes(activeLesson) ? "Completed ✓" : "Mark as complete"}
+                {completedLessons.includes(activeLesson)
+                  ? bengaliUi ? "শেষ হয়েছে ✓" : "Completed ✓"
+                  : bengaliUi ? "পাঠটি শেষ হিসেবে রাখুন" : "Mark as complete"}
               </button>
               <button
                 type="button"
                 disabled={activeLesson >= flatLessons.length - 1}
                 onClick={() => selectLesson(activeLesson + 1)}
               >
-                Next →
+                {bengaliUi ? "পরের পাঠ" : "Next"} →
               </button>
             </nav>
           </div>
