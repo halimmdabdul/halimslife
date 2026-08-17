@@ -6096,6 +6096,125 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     reviewedAt: "August 12, 2026",
     reviewedOn: "2026-08-12",
   },
+  {
+    slug: "soka-university-information-systems-science-masters-2027",
+    country: "japan",
+    university: "Soka University",
+    title: "Soka Information Systems Science: April/September 2027 Master's Guide",
+    summary:
+      "Information Systems Science applicant-এর জন্য English proficiency ও JLPT দুটোই optional, GRE/GMAT নেই, supervisor-approval + oral-exam selection এবং \u00a5600,000/year scholarship নিয়ে source-checked guide।",
+    label: "English/JLPT optional \u00b7 Aug 26\u2013Sep 25, 2026 application",
+    funding:
+      "Soka University Makiguchi Memorial Educational Foundation Scholarship (2025-এর পর থেকে effective) Master's students-কে \u00a5600,000/year, দুই বছরের জন্য দেয়; সর্বোচ্চ 9 জন recipient। এটি automatic নয়\u2014entrance-exam-এ highest score পাওয়া applicants-দের মধ্যে থেকে select করা হয়, এবং application-এর সময় scholarship consideration চাওয়া হয় কিনা আলাদাভাবে select করতে হয়। Enrollment fee-তে ব্যবহার করা যায় না; enrollment-এর পরে দুই installment-এ দেওয়া হয়।",
+    duration: "2 years \u00b7 April or September 2027 entry \u00b7 Hachioji campus",
+    audience:
+      "Computer/software systems, information security, AI, intelligent informatics, robotics বা networks background থাকা applicant যিনি English/JLPT test score ছাড়াও formal application করতে চান",
+    realityCheck:
+      "এটি একটি genuinely low-language-barrier CSE/IT option\u2014Information Systems Science major-এর জন্য English proficiency certificate (IELTS/TOEFL/MOI) এবং JLPT certificate দুটোই submitted research অনুযায়ী optional। আজকের independent verification-এ Makiguchi scholarship-এর exact \u00a5600,000/year \u00d7 2 years, সর্বোচ্চ 9 recipient, non-automatic selection\u2014এই সব official Graduate School of Science and Engineering scholarship page থেকে হুবহু confirm হয়েছে। তবে exact application window (26 August\u201325 September 2026), application fee (\u00a533,000) এবং tuition breakdown (admission \u00a5200,000 + tuition \u00a5790,000/year + lab fee \u00a5110,000/year) আজ সরাসরি PDF থেকে re-fetch করা যায়নি (site কিছু page block করে/PDF route আলাদা)\u2014application-এর আগে official guideline নিজে download করে এই সংখ্যাগুলো পুনরায় মিলিয়ে নিন। Seats \u201ca few\u201d এবং supervisor approval + oral exam লাগে, তাই easy admission নয়।",
+    highlights: [
+      "Information Systems Science major computer/software systems, communication/control/networking systems, multimedia processing, AI ও intelligent informatics নিয়ে কাজ করে; independently verified official major page অনুযায়ী Hiroki Imamura বর্তমান major chair।",
+      "AY2027 Special Screening for International Applicants existence independently confirmed অফিসিয়াল admissions page-এ; exact dates/fee submitted research থেকে নেওয়া\u2014official PDF দিয়ে re-confirm করুন।",
+      "Submitted schedule: April 2027 entry application 26 August\u201325 September 2026 (5:00 PM JST), oral exam 31 October 2026, result 6 November 2026। September 2027 entry দ্বিতীয় round: application 4 February\u20134 March 2027, oral exam 15 May, result 24 May।",
+      "English proficiency certificate (IELTS/TOEFL/MOI) এবং JLPT certificate\u2014submitted research অনুযায়ী Information Systems Science applicant-দের জন্য দুটোই optional; score/certificate না থাকলেও application সম্ভব বলা হয়েছে।",
+      "GRE/GMAT কোনো requirement হিসেবে পাওয়া যায়নি। Numerical hard-minimum GPA প্রকাশ করা হয়নি\u2014individual-equivalency screening route-ও আছে।",
+      "Selection: document screening + oral examination (campus বা Zoom online)। Application-এর আগে prospective supervisor-এর সঙ্গে email discussion, online Zoom pre-interview এবং signed supervisor-approval form বাধ্যতামূলক।",
+      "Makiguchi Memorial Educational Foundation Scholarship independently verified: Master's students \u00a5600,000/year \u00d7 2 years, সর্বোচ্চ 9 recipient, non-automatic, entrance-exam performance-ভিত্তিক selection।",
+      "Tomoko Kaneko (Information Security, System Safety, Unified Theory of Software), Norihiko Shinomiya (Computer Systems and Networks, autonomous decentralized networks), Yoshinobu Hagiwara (Intelligent Robotics, Intelligent Informatics)\u2014তিনজনই independently verified real official Soka faculty-profile page-সহ। Direct personal email public না; official contact route eng-grad@soka.ac.jp।",
+    ],
+    fit: [
+      "Computer systems, software/information systems, security, AI, robotics বা networks-এর hands-on evidence আছে।",
+      "IELTS/TOEFL/JLPT score না থাকলেও (বা থাকলেও) formal application করতে ইচ্ছুক।",
+      "Prospective supervisor-এর সঙ্গে email/Zoom pre-interview এবং signed approval-এর process handle করতে পারবেন।",
+      "Scholarship না পেলেও প্রায় \u00a51.1m first-year academic cost (submitted figure, official PDF দিয়ে re-verify করুন) বহনের বাস্তবসম্মত পরিকল্পনা আছে।",
+    ],
+    quickStart: [
+      "Kaneko, Shinomiya ও Hagiwara-এর official faculty profile পড়ে একজন primary supervisor target বাছুন এবং eng-grad@soka.ac.jp-এর মাধ্যমে বা directly contact-এর সঠিক route নিশ্চিত করুন।",
+      "Application খোলার আগেই (আজ অনুযায়ী কয়েকদিনের মধ্যে) supervisor-এর সঙ্গে email discussion ও Zoom pre-interview শুরু করুন।",
+      "Official AY2027 Special Screening PDF নিজে download করে exact application date, fee ও tuition breakdown re-confirm করুন।",
+      "Scholarship consideration চান কিনা\u2014application form-এ এই decision আগে থেকেই ভেবে রাখুন, কারণ এটি opt-in।",
+    ],
+    steps: [
+      {
+        title: "Official guideline নিজে verify করুন",
+        timing: "এখনই",
+        description:
+          "Scholarship structure ও faculty independently confirmed, কিন্তু exact date/fee/tuition এখনো official PDF থেকে re-verify করা দরকার।",
+        actions: [
+          "https://www.soka.ac.jp/en/admissions/application/graduate_policy/eng-grad/t-grad-m/ থেকে AY2027 Special Screening guideline PDF খুঁজে exact date ও fee নোট করুন।",
+          "https://www.soka.ac.jp/en/grad-eng/eng_scholarship/ থেকে Makiguchi scholarship-এর current application/opt-in process পড়ুন।",
+          "eng-grad@soka.ac.jp-এ প্রশ্ন থাকলে সরাসরি যোগাযোগ করতে পারেন।",
+        ],
+        readyWhen:
+          "Application window, fee এবং tuition breakdown নিজের চোখে official PDF/page-এ দেখে নিশ্চিত হয়েছেন।",
+      },
+      {
+        title: "Supervisor approval process শুরু করুন",
+        timing: "Application খোলার আগেই",
+        description:
+          "Information Systems Science-এ supervisor pre-approval application-এর অংশ, তাই দেরি করলে window miss হতে পারে।",
+        actions: [
+          "Kaneko (security/dependable systems), Shinomiya (networks/distributed systems) ও Hagiwara (AI/robotics)-এর মধ্যে আপনার experience-এর সঙ্গে সবচেয়ে relevant একজন বাছুন।",
+          "Official faculty profile থেকে recent research পড়ে personalized email/CV প্রস্তুত করুন।",
+          "Email discussion-এর পর Zoom pre-interview request করুন এবং approval পেলে signed supervisor-approval form সংগ্রহ করুন।",
+        ],
+        readyWhen:
+          "একজন supervisor approve করেছেন এবং signed approval form হাতে আছে।",
+      },
+      {
+        title: "Application সম্পূর্ণ করুন",
+        timing: "August\u2013September 2026 (official PDF দিয়ে exact date re-confirm করুন)",
+        description:
+          "English/JLPT optional হলেও বাকি document ঠিকমতো প্রস্তুত রাখা জরুরি।",
+        actions: [
+          "Application form, research interest/reason for major, bachelor's transcript, degree certificate, graduation thesis summary, দুটি recommendation letter ও supervisor approval form জোগাড় করুন।",
+          "English/MOI এবং JLPT থাকলে optional evidence হিসেবে attach করুন; না থাকলে সেই ছাড়াই submit করুন।",
+          "Financial-support statement, passport/residence card ও (চাইলে) scholarship application form প্রস্তুত করুন।",
+          "Application fee (submitted figure \u00a533,000, re-verify করুন) দিয়ে window-এর মধ্যে submit করুন।",
+        ],
+        readyWhen:
+          "সব document সংগ্রহ করে official application window-এর মধ্যে submit করা হয়েছে।",
+      },
+      {
+        title: "Oral exam ও scholarship result-এর জন্য প্রস্তুত হোন",
+        timing: "Oral exam \u2192 result (submitted: Oct 31 \u2192 Nov 6, 2026 for April entry)",
+        description:
+          "Oral exam campus বা Zoom-এ হতে পারে; scholarship আলাদা highest-score selection।",
+        actions: [
+          "Research interest, prior project ও proposed study plan\u2014এই তিনটি বিষয়ে concise oral explanation প্রস্তুত রাখুন।",
+          "Scholarship consideration select করে থাকলে entrance-exam performance-ই মূল criterion মনে রেখে প্রস্তুতি নিন।",
+          "Result পাওয়ার পর tuition/admission-fee payment deadline ও scholarship (পেলে) disbursement schedule লিখিতভাবে নিশ্চিত করুন।",
+        ],
+        readyWhen:
+          "Oral exam সম্পন্ন এবং admission ও scholarship result দুটোই লিখিতভাবে confirm হয়েছে।",
+      },
+    ],
+    checklist: [
+      "Official AY2027 Special Screening PDF (self-verified)", "Supervisor email discussion + Zoom pre-interview",
+      "Signed supervisor-approval form", "Application form", "Reason for choosing major",
+      "Bachelor's transcript", "Degree/graduation certificate", "Graduation thesis/research summary",
+      "Two recommendation letters", "English/MOI evidence (optional)", "JLPT certificate (optional)",
+      "Financial-support statement", "Passport/Residence Card", "Scholarship application form (if desired)",
+    ],
+    afterSubmission: [
+      "Oral-exam schedule (campus বা Zoom) এবং result-notification date আলাদাভাবে track করুন।",
+      "Scholarship result admission result-এর সঙ্গে একসঙ্গে নাও আসতে পারে\u2014দুটোই আলাদাভাবে confirm করুন।",
+      "Admission পেলে admission fee, tuition ও laboratory fee-এর exact payment schedule লিখিতভাবে নিশ্চিত করুন।",
+    ],
+    cautions: [
+      "Exact application date, fee ও tuition breakdown আজ direct official PDF থেকে re-fetch করা যায়নি\u2014শুধু এই guide-এর ওপর নির্ভর না করে official PDF নিজে download করুন।",
+      "Seats \u201ca few\u201d এবং supervisor approval + oral exam বাধ্যতামূলক\u2014English/JLPT optional মানে easy admission নয়।",
+      "Makiguchi scholarship non-automatic এবং enrollment fee-তে ব্যবহার করা যায় না\u2014প্রথম payment-এর জন্য আলাদা budget রাখুন।",
+      "Direct faculty email public profile-এ নেই\u2014eng-grad@soka.ac.jp দিয়ে official contact route ব্যবহার করুন, অনুমান করা email পাঠাবেন না।",
+    ],
+    officialLinks: [
+      { label: "Graduate School of Science and Engineering (Master's Admission)", href: "https://www.soka.ac.jp/en/admissions/application/graduate_policy/eng-grad/t-grad-m/", description: "AY2027 Special Screening PDF, exact date ও fee এখান থেকে verify করুন।" },
+      { label: "Information Systems Science major", href: "https://www.soka.ac.jp/en/grad-eng/sys/", description: "Research fields ও current faculty list দেখুন।" },
+      { label: "Scholarships for International Graduate Students", href: "https://www.soka.ac.jp/en/grad-eng/eng_scholarship/", description: "Makiguchi scholarship amount, recipient count ও selection process verify করুন।" },
+      { label: "Norihiko Shinomiya faculty profile", href: "https://www.soka.ac.jp/en/faculty-profile/norihiko-shinomiya/", description: "Research area ও official contact route verify করুন।" },
+      { label: "Tomoko Kaneko faculty profile", href: "https://www.soka.ac.jp/en/faculty-profile/tomoko-kaneko/", description: "Research area ও official contact route verify করুন।" },
+    ],
+    reviewedAt: "August 17, 2026",
+  },
 ];
 
 export function getScholarshipGuide(slug: string) {
