@@ -53,7 +53,10 @@ const usaPlanningGroups = [
     label: "Strongest active lead",
     tone: "urgent",
     text: "The lab currently advertises funded PhD hiring and the research fit is unusually strong.",
-    guides: ["Alabama · AutMn Trustworthy Autonomy Lab"],
+    guides: [
+      "Alabama · AutMn Trustworthy Autonomy Lab",
+      "UConn · RIET Lab (Dori-Hacohen) — fully funded, currently hiring",
+    ],
   },
   {
     label: "Email before applying",
@@ -64,13 +67,25 @@ const usaPlanningGroups = [
       "UMBC · Haibin Zhang",
       "Iowa State · Amit Sikder",
       "Iowa State · Liyi Li",
+      "Oregon · Suyash Gupta",
+      "Kennesaw State · Liang Zhao — Spring 2027 deadline passed, ask about Fall 2027",
+      "UNC Chapel Hill · Jingping Nie — page confirms Fall 2026, not Fall 2027",
     ],
   },
   {
     label: "Funding deadlines",
     tone: "caution",
     text: "Prepare tests and documents early; a professor reply does not replace the graduate application.",
-    guides: ["Alabama · Dec 31", "SIU · Dec 31", "UMBC · Jan 7", "Iowa State · Dec 15 (free application)"],
+    guides: [
+      "Alabama · Dec 31",
+      "SIU · Dec 31",
+      "UMBC · Jan 7",
+      "Iowa State · Dec 15 (free application)",
+      "Oregon · Dec 15",
+      "Kennesaw State · Feb 1 (Fall) — Spring 2027 window already closed",
+      "UConn · Jan 1",
+      "UNC Chapel Hill · Dec 15 (Nov 26 recommended for international)",
+    ],
   },
 ] as const;
 

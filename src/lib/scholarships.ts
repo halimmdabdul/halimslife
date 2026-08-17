@@ -605,6 +605,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
       "Professor Ghosh-এর current UA-hosted page সরাসরি fully funded PhD students hiring বলছে এবং CV email করতে বলছে। এটি strong active lead, কিন্তু professor-এর interest admission নয় এবং webpage-এ exact stipend নেই। Department application ও formal funding letter—দুটিই প্রয়োজন।",
     highlights: [
       "AutMn Lab trustworthy autonomy, formal methods, safe robotics, CPS, real-time/embedded systems ও control theory নিয়ে কাজ করে।",
+      "সাম্প্রতিক publications: HiP-CL (multi-robot high-level planning, 2026), Building Safe Autonomous Systems Using Imperfect Components (2025), Perception Model Selection in Robotics (2025)। একই NSF CPS project-এর সঙ্গে সংশ্লিষ্ট 2026-এ $10,000 REU student funding-ও পেয়েছেন।",
       "Current NSF CPS project uncertainty-aware offline/online safety monitoring নিয়ে; listed period January 2026–December 2028 এবং award $364,155।",
       "Industrial robots, sensors, computer vision ও production software experience থেকে unusually direct research story তৈরি করা যায়।",
       "UA CS PhD-এর Fall funding-priority deadline December 31; late files review হতে পারে কিন্তু funding priority কমে যায়।",
@@ -1056,6 +1057,461 @@ export const scholarshipGuides: ScholarshipGuide[] = [
       { label: "Dr. Liyi Li faculty profile", href: "https://www.cs.iastate.edu/people/liyi-li", description: "Research interests ও official email verify করুন।" },
       { label: "Ph.D. in Computer Science overview", href: "https://www.cs.iastate.edu/graduate-studies/phd-computer-science", description: "Program overview দেখুন।" },
       { label: "Graduate studies FAQ", href: "https://www.cs.iastate.edu/graduate-studies/faq-prospective-graduate-students", description: "Funding, TA/RA structure ও stipend details দেখুন।" },
+    ],
+    reviewedAt: "August 17, 2026",
+  },
+  {
+    slug: "oregon-distopia-distributed-systems-phd-2027",
+    country: "usa",
+    university: "University of Oregon",
+    title: "Oregon Distopia Lab: Distributed Systems & Databases PhD Guide",
+    summary:
+      "Professor Suyash Gupta-এর distributed databases, fault-tolerant systems ও blockchain research-এর সঙ্গে backend/database experience-এর contact-first PhD roadmap।",
+    label: "Email before applying \u00b7 Fall 2027",
+    funding:
+      "Graduate Employee (GE) appointment: 100% tuition waiver (up to 16 credits/term), mandatory-fee subsidy, 95% health-insurance premium coverage ও monthly stipend। 2025\u201326 published minimum: 0.25 FTE \u2248 $1,434/month, 0.40 FTE \u2248 $2,295/month, 0.49 FTE \u2248 $2,811/month; rates বছর বছর negotiated হয়।",
+    duration: "Usually 4\u20136 years \u00b7 Fall entry",
+    audience:
+      "Backend/database systems, distributed computing, cloud infrastructure বা fault-tolerance-focused experience থাকা applicants",
+    realityCheck:
+      "Application fee-free নয়\u2014domestic $70, international $90। Professor Gupta-এর page-এ সরাসরি \u2018accepting Fall 2027 students\u2019 লেখা নেই, তাই fee দেওয়ার আগে email-এ reply পাওয়া বা অন্তত একটি documented contact attempt শেষ করা উচিত। আগে prioritize করা Iowa State (free application)-এর তুলনায় এটি একটি ধাপ পরে রাখা যুক্তিসঙ্গত, যদি না professor ইতিবাচক reply দেন।",
+    highlights: [
+      "Distopia Laboratory ও Oregon Networking Research Group (ONRG)-এর director; distributed databases, fault tolerance, blockchain ও decentralized storage নিয়ে কাজ করেন।",
+      "Recent work: Picsou (OSDI 2025), HotStuff-1 (SIGMOD 2025), Samurai decentralized storage (OSDI 2025), ServerlessBFT, ResilientDB\u2014সব top-tier systems venue-তে।",
+      "Stellar Academic Grant (Nov 2025) ও ThetaEdge Cloud Grant (Oct 2024) সহ সক্রিয় funded lab activity।",
+      "Fall 2027 deadline December 15, 2026; Spring 2027 deadline September 30, 2026\u2014department-এর official apply page থেকে verified।",
+      "GRE international/non-English-degree applicant-দের জন্য required (Verbal 153+, Quant 154+, Analytical 3.0+); CV ও writing sample officially optional কিন্তু submit করা উচিত।",
+    ],
+    fit: [
+      "C#/Oracle বা database-driven backend system develop করেছেন।",
+      "Production software reliability, integration (cameras/PLC/robots) বা system testing-এর হাতে-কলমে অভিজ্ঞতা আছে।",
+      "Distributed/fault-tolerant backend architecture নিয়ে research question তৈরি করতে পারেন, prior consensus/blockchain research দাবি না করে।",
+      "$70\u2013$90 application fee দেওয়ার আগে professor-এর reply অপেক্ষা করতে ইচ্ছুক।",
+    ],
+    quickStart: [
+      "Professor Gupta-কে (suyash@uoregon.edu) personalized email পাঠান\u2014Picsou/HotStuff-1/ResilientDB-এর সঙ্গে আপনার backend/database experience connect করে।",
+      "GRE প্রয়োজন কিনা নিজের profile অনুযায়ী নিশ্চিত করুন (non-English-degree international applicant হিসেবে সাধারণত required)।",
+      "December 15, 2026 (Fall 2027) deadline calendar-এ যোগ করুন।",
+      "Reply এলে বা না এলেও\u2014documented attempt-এর পর application fee দেওয়ার সিদ্ধান্ত নিন।",
+    ],
+    steps: [
+      {
+        title: "Professor Gupta-কে email পাঠান",
+        timing: "এখনই \u00b7 fee দেওয়ার আগে",
+        description:
+          "Fee-free নয় বলে reply বা documented attempt ছাড়া application submit না করাই ভালো।",
+        actions: [
+          "Subject-এ \u2018Prospective Fall 2027 PhD Student\u2019 এবং distributed/fault-tolerant systems লিখুন।",
+          "Body-তে ResilientDB/Picsou/HotStuff-1-এর নির্দিষ্ট reference দিন এবং আপনার Oracle/C# backend, database ও production-reliability experience connect করুন।",
+          "Blockchain/consensus expert দাবি না করে\u2014industrial backend system-এর reliability সমস্যা থেকে আগ্রহ তৈরি হয়েছে, এই honest framing ব্যবহার করুন।",
+          "CV attach করুন এবং Fall 2027 PhD student নেওয়ার সম্ভাবনা সরাসরি জিজ্ঞাসা করুন।",
+        ],
+        readyWhen:
+          "Professor-এর কাছ থেকে reply এসেছে, অথবা 7\u201310 দিনের follow-up-সহ একটি documented attempt সম্পন্ন হয়েছে।",
+      },
+      {
+        title: "GRE ও prerequisite verify করুন",
+        timing: "Email পাঠানোর সপ্তাহে",
+        description:
+          "Department programming, data structures, algorithm analysis, OS ও computer-organization background expect করে।",
+        actions: [
+          "International/non-English-degree applicant হিসেবে GRE (Verbal 153+, Quant 154+, Analytical 3.0+) প্রয়োজন কিনা নিশ্চিত করুন।",
+          "3.5+ GPA preferred কিন্তু absolute cutoff নয়\u2014এই framing SOP-তে address করুন।",
+          "Prerequisite gap থাকলে SOP-তে industrial programming experience দিয়ে equivalent preparation দেখান।",
+        ],
+        readyWhen:
+          "GRE decision নেওয়া হয়েছে এবং core prerequisite gap-এর জন্য SOP-এর explanation প্রস্তুত।",
+      },
+      {
+        title: "Application সম্পূর্ণ করুন",
+        timing: "এখন থেকে December 15, 2026",
+        description:
+          "Slate portal-এর মাধ্যমে official application submit করতে হয়।",
+        actions: [
+          "Personal statement, transcripts এবং recommender contact information প্রস্তুত করুন।",
+          "CV ও writing sample officially optional হলেও দুটোই submit করুন।",
+          "$70 (domestic) বা $90 (international) application fee দেওয়ার আগে reply/attempt নিশ্চিত করুন।",
+        ],
+        readyWhen:
+          "December 15, 2026-এর আগে সব document ও fee-সহ application submitted।",
+      },
+      {
+        title: "GE appointment package verify করুন",
+        timing: "Offer পাওয়ার পর",
+        description:
+          "FTE percentage অনুযায়ী stipend ও coverage পরিবর্তিত হয়\u2014exact tier লিখিতভাবে নিন।",
+        actions: [
+          "0.25 / 0.40 / 0.49 FTE\u2014কোনটি offer করা হচ্ছে এবং monthly stipend amount নিশ্চিত করুন।",
+          "Tuition waiver (16 credits পর্যন্ত), mandatory-fee subsidy ও 95% health-insurance coverage-এর বাইরে student-এর নিজের কী দিতে হবে (যেমন $61/term fee) জিজ্ঞাসা করুন।",
+          "Guaranteed years ও summer funding সম্পর্কে লিখিতভাবে জিজ্ঞাসা করুন।",
+        ],
+        readyWhen:
+          "Offer letter-এ FTE tier, stipend amount, tuition/fee coverage ও guaranteed years স্পষ্ট।",
+      },
+    ],
+    checklist: [
+      "Professor contact email", "Online graduate application", "Personal Statement",
+      "Unofficial transcripts", "Recommender contact information", "CV/r\u00e9sum\u00e9 (optional but recommended)",
+      "Writing sample (optional but recommended)", "GRE scores (if required)",
+      "English-proficiency test (if required)", "$70/$90 application fee",
+    ],
+    afterSubmission: [
+      "Professor reply ও Slate application status আলাদাভাবে track করুন।",
+      "Interview হলে ResilientDB/HotStuff-1-family research নিয়ে informed প্রশ্ন প্রস্তুত রাখুন।",
+      "Offer পেলে FTE tier, stipend ও coverage লিখিতভাবে confirm করার আগে accept করবেন না।",
+    ],
+    cautions: [
+      "Application fee-free নয়\u2014$70 (domestic) / $90 (international); reply ছাড়া submit করার আগে দুবার ভাবুন।",
+      "Professor-এর page-এ সরাসরি \u2018accepting students\u2019 লেখা নেই।",
+      "নিজেকে blockchain/consensus expert দাবি করবেন না\u2014backend reliability experience থেকে আগ্রহ তৈরি হয়েছে বলুন।",
+      "GE stipend rate বছর বছর পরিবর্তিত হয়; পুরনো published figure দিয়ে বাজেট চূড়ান্ত করবেন না।",
+    ],
+    officialLinks: [
+      { label: "CS Graduate Admissions (Oregon)", href: "https://scds.uoregon.edu/cs/apply/graduate-admissions", description: "Deadline, fee, documents ও GRE requirement verify করুন।" },
+      { label: "Suyash Gupta faculty directory", href: "https://cas.uoregon.edu/directory/computer-science-faculty/all/suyash", description: "Official email ও affiliation verify করুন।" },
+      { label: "Suyash Gupta research webpage", href: "https://gupta-suyash.github.io/", description: "Distopia Lab research, publications ও current projects দেখুন।" },
+      { label: "Ph.D. in Computer Science overview", href: "https://scds.uoregon.edu/cs/graduate-programs/cs-phd", description: "Program overview দেখুন।" },
+    ],
+    reviewedAt: "August 17, 2026",
+  },
+  {
+    slug: "kennesaw-state-edge-intelligence-phd-2027",
+    country: "usa",
+    university: "Kennesaw State University",
+    title: "KSU Edge Intelligence Lab: Funded AIoT/Healthcare AI PhD Guide",
+    summary:
+      "Professor Liang Zhao-এর edge computing, AIoT ও AI-driven healthcare lab-এ সরাসরি recruiting notice-ভিত্তিক PhD roadmap।",
+    label: "Actively recruiting \u00b7 check current intake",
+    funding:
+      "Admitted full-time students সাধারণত GRA/GTA appointment পান\u2014tuition waiver ও monthly stipend সহ, program-এর মেয়াদ জুড়ে (funding availability-নির্ভর)। Assistantship পেলে regular tuition-এর বদলে semester-প্রতি $25 special rate।",
+    duration: "Usually 4 years (full-time) \u00b7 Fall/Spring entry",
+    audience:
+      "AI, computer vision, IoT, embedded systems, healthcare technology বা industrial-automation background থাকা applicants with strong Python",
+    realityCheck:
+      "Professor Zhao-এর lab position notice specifically Spring 2027 intake-এর কথা বলেছিল, যার university deadline ছিল August 1, 2026\u2014এই date ইতিমধ্যে পার হয়ে গেছে। তাই এখন professor-কে সরাসরি ইমেইল করে Fall 2027 (regular deadline February 1)-এর জন্য same funded position available কিনা জিজ্ঞাসা করাই সঠিক পথ, Spring 2027-এর জন্য নতুন apply করা নয়।",
+    highlights: [
+      "Edge Intelligence Research Laboratory-এর director; edge computing, federated learning, embedded AI, cybersecurity, IoT/CPS এবং AI-driven healthcare নিয়ে কাজ করেন।",
+      "Recent work: edge devices-এ LLM deployment, healthcare IoT-এর জন্য privacy-preserving federated learning, spiking neural networks, connected-vehicle federated analytics।",
+      "Application fee $60 (KSU-এর official doctoral-program page অনুযায়ী verified\u2014কিছু third-party listing ভুলভাবে $0 বলে, official page-কেই authority ধরুন)।",
+      "Fall admission-এর নিয়মিত deadline February 1; Spring intake deadline সাধারণত আগের বছরের August 1।",
+      "Initial lab contact-এর জন্য CV, transcripts ও brief research statement একটি PDF-এ lzhao10@kennesaw.edu-তে পাঠাতে বলা হয়েছে।",
+    ],
+    fit: [
+      "Python-এ strong এবং C/C++ familiarity আছে (expert-level দাবি না করে honest রাখুন)।",
+      "Computer vision (YOLO, CNN/RCNN, OpenCV, OCR), healthcare IoT বা industrial camera/PLC/robot integration-এর experience আছে।",
+      "Health recommender-system research background-কে AI-driven healthcare বা federated learning-এর সঙ্গে connect করতে পারেন।",
+      "Fall 2027-এর জন্য availability সরাসরি জিজ্ঞাসা করতে প্রস্তুত, যেহেতু advertised intake ছিল Spring 2027।",
+    ],
+    quickStart: [
+      "Professor Zhao-কে (lzhao10@kennesaw.edu) email করুন\u2014Spring 2027 deadline পার হয়ে গেছে তাই Fall 2027 availability সরাসরি জিজ্ঞাসা করুন।",
+      "Required format মেনে CV, transcripts ও brief research statement একটি PDF-এ প্রস্তুত রাখুন।",
+      "February 1 (Fall regular deadline) calendar-এ যোগ করুন।",
+      "$60 application fee official page থেকে reconfirm করুন\u2014third-party site-এর ভুল তথ্যে বিভ্রান্ত হবেন না।",
+    ],
+    steps: [
+      {
+        title: "Fall 2027 availability সরাসরি জিজ্ঞাসা করুন",
+        timing: "এখনই",
+        description:
+          "Advertised position Spring 2027-এর জন্য ছিল এবং deadline পার হয়ে গেছে; assume না করে সরাসরি জিজ্ঞাসা করুন।",
+        actions: [
+          "Subject line অনুসরণ করুন কিন্তু term আপডেট করুন: \u2018PhD Application [Fall 2027] \u2013 Halim Md Abdul\u2019।",
+          "Body-তে স্পষ্ট করুন যে Spring 2027 announcement দেখেছেন কিন্তু deadline পার হয়ে গেছে, তাই Fall 2027-এর সম্ভাবনা জিজ্ঞাসা করছেন।",
+          "CV, transcripts ও brief research statement একটি PDF-এ attach করুন\u2014lab-এর নির্দিষ্ট format অনুসরণ করে।",
+          "Healthcare IoT, health recommender research ও industrial AI experience স্পষ্টভাবে উল্লেখ করুন।",
+        ],
+        readyWhen:
+          "Professor Fall 2027 availability সম্পর্কে reply দিয়েছেন, অথবা follow-up-সহ documented attempt সম্পন্ন।",
+      },
+      {
+        title: "University application ও prerequisite verify করুন",
+        timing: "Reply পাওয়ার পর",
+        description:
+          "Lab interest ও formal KSU application\u2014দুটোই দরকার।",
+        actions: [
+          "Bachelor\u2019s GPA 3.25+ বা graduate degree GPA 3.50+ (M.Sc. দিয়ে যোগ্য) নিশ্চিত করুন।",
+          "Calculus II, discrete mathematics ও data structures coursework transcript-এ চিহ্নিত করুন।",
+          "TOEFL iBT 80+ বা IELTS 6.5+ ready রাখুন; foreign transcript-এর জন্য NACES/AICE credential evaluation শুরু করুন।",
+        ],
+        readyWhen:
+          "GPA equivalence, prerequisite coursework ও credential-evaluation status স্পষ্ট।",
+      },
+      {
+        title: "Formal application সম্পূর্ণ করুন",
+        timing: "Fall regular deadline: February 1",
+        description:
+          "Online application, $60 fee এবং সব document একসঙ্গে জমা দিতে হবে।",
+        actions: [
+          "Online graduate application, evaluated transcripts, CV/r\u00e9sum\u00e9, Statement of Purpose ও তিনটি recommendation letter জমা দিন।",
+          "$60 non-refundable fee দিন।",
+          "GRE optional মনে রেখে decision নিন।",
+        ],
+        readyWhen:
+          "February 1-এর আগে সম্পূর্ণ application, fee ও recommendation letter জমা দেওয়া হয়েছে।",
+      },
+      {
+        title: "GRA/GTA funding package verify করুন",
+        timing: "Offer পাওয়ার পর",
+        description:
+          "Funding \u2018as funds allow\u2019 বলা হয়েছে, তাই guarantee নয়\u2014written offer-এ confirm করুন।",
+        actions: [
+          "Stipend amount, appointment tier ও কত বছর guaranteed তা লিখিতভাবে নিন।",
+          "Health insurance স্বয়ংক্রিয় নয়\u2014SHIP enrollment এবং premium কে বহন করবে তা জিজ্ঞাসা করুন।",
+          "$25/semester special tuition rate ও অন্যান্য mandatory fee স্পষ্ট করুন।",
+        ],
+        readyWhen:
+          "Offer letter-এ stipend, tuition rate, health-insurance responsibility ও duration স্পষ্ট।",
+      },
+    ],
+    checklist: [
+      "Email to Professor Zhao (PDF: CV + transcripts + research statement)",
+      "Online graduate application", "$60 application fee", "Evaluated transcripts",
+      "CV/r\u00e9sum\u00e9", "Statement of Purpose", "Three recommendation letters",
+      "English-proficiency test (TOEFL 80+ / IELTS 6.5+)", "NACES/AICE credential evaluation",
+      "GRE (optional)",
+    ],
+    afterSubmission: [
+      "Lab email reply এবং formal KSU application status আলাদাভাবে track করুন।",
+      "GRA/GTA offer-এ health-insurance responsibility স্পষ্ট না থাকলে accept করার আগে জিজ্ঞাসা করুন।",
+      "Credential evaluation দেরি হলে application deadline-এর আগে সম্পূর্ণ করার জন্য আলাদা সময় রাখুন।",
+    ],
+    cautions: [
+      "Advertised opening Spring 2027-এর জন্য ছিল এবং deadline (August 1, 2026) ইতিমধ্যে পার হয়ে গেছে\u2014Fall 2027 availability assume করবেন না, সরাসরি জিজ্ঞাসা করুন।",
+      "Application fee সম্পর্কে online-এ ভিন্ন ভিন্ন তথ্য পাওয়া যায় ($0 বলা কিছু third-party site ভুল)\u2014official kennesaw.edu page অনুযায়ী $60 সঠিক।",
+      "C++ expert দাবি করবেন না; C/C# ও Python experience honestly উপস্থাপন করুন।",
+      "Health insurance funding package-এ automatically included নয়।",
+    ],
+    officialLinks: [
+      { label: "Edge Intelligence Research Laboratory (Liang Zhao)", href: "https://facultyweb.kennesaw.edu/lzhao10/index.php", description: "Recruiting notice, research areas ও contact instructions verify করুন।" },
+      { label: "KSU PhD in Computer Science", href: "https://www.kennesaw.edu/degrees-programs/doctoral-degrees/computer-science.php", description: "Application fee ও funding statement verify করুন।" },
+      { label: "KSU CCSE PhD programs", href: "https://campus.kennesaw.edu/colleges-departments/ccse/degrees-programs/graduate/phd-computer-science/index.php", description: "Program structure ও admission details দেখুন।" },
+      { label: "KSU graduate admissions deadlines", href: "https://www.kennesaw.edu/admissions/graduate/application-process/deadlines.php", description: "Fall/Spring exact deadline verify করুন।" },
+    ],
+    reviewedAt: "August 17, 2026",
+  },
+  {
+    slug: "uconn-riet-lab-ai-safety-phd-2027",
+    country: "usa",
+    university: "University of Connecticut",
+    title: "UConn RIET Lab: Fully Funded AI Safety & Agentic AI PhD Guide",
+    summary:
+      "Professor Shiri Dori-Hacohen-এর RIET Lab সরাসরি \u2018currently hiring, fully funded\u2019 বলছে\u2014AI safety, generative AI ও agentic-AI systems-এ contact-first PhD roadmap।",
+    label: "Actively hiring \u00b7 fully funded \u00b7 Fall 2027",
+    funding:
+      "RIET Lab-এর official page অনুযায়ী PhD students পুরো study period-এ fully funded থাকবেন (assistantship-এর মাধ্যমে)। College-level funding সাধারণত RA/TA, full tuition coverage, stipend ও health-insurance benefit অন্তর্ভুক্ত করে; নির্দিষ্ট annual stipend amount public page-এ নেই।",
+    duration: "Usually 4\u20136 years \u00b7 Fall entry",
+    audience:
+      "AI safety, LLM evaluation, fairness/bias, misinformation, multi-agent systems বা health-information research-এ আগ্রহী applicants",
+    realityCheck:
+      "এটি সাধারণ \u2018prospective students welcome\u2019 announcement নয়\u2014lab official page-এ স্পষ্টভাবে \u2018currently hiring\u2019 এবং \u2018fully funded throughout their studies\u2019 লেখা আছে। তবে email-এর জন্য একটি নির্দিষ্ট format required, এবং recommendation letter সরাসরি email-এ attach করলে application disqualified হতে পারে।",
+    highlights: [
+      "RIET Lab বর্তমানে তিনটি focus area-তে PhD student নিচ্ছে: (1) AI Safety, Generative AI ও Agentic AI Systems, (2) AI Ethics/Bias Mitigation/Fairness, (3) Misinformation ও Social Media (IR/Knowledge Graph techniques)।",
+      "Required email subject format: \u2018PhD application: Focus area XX: your-full-name\u2019 (XX = 1, 2, বা 3)\u2014দুই email address-এ একসঙ্গে পাঠাতে হয়: shiridh@uconn.edu এবং avijit.g@uconn.edu।",
+      "Recommendation letter সরাসরি email-এ attach করলে application disqualified হতে পারে\u2014শুধু reference-দের নাম ও contact information দিন।",
+      "Professor প্রায় $7.5\u2013$7.7 million NSF federal funding-এর PI/Co-PI; BRIMI (Bias Reduction in Medical Information) একটি verified current NSF-funded project।",
+      "Fall 2027 full-consideration deadline January 1, 2027; rolling review কিন্তু deadline-এর অনেক আগে submit করার পরামর্শ দেওয়া হয়েছে।",
+    ],
+    fit: [
+      "Health recommender-system research এবং medical diagnostic-support publication আছে (BRIMI-এর সঙ্গে সরাসরি সম্পর্কিত)।",
+      "Python-based practical AI/ML implementation experience আছে (শুধু theory নয়)।",
+      "Multi-agent systems বা game-theory foundation থেকে agentic-AI research story তৈরি করতে পারেন।",
+      "University application-এর পরে lab-এর নির্দিষ্ট email format ও document অনুসরণ করতে প্রস্তুত।",
+    ],
+    quickStart: [
+      "UConn Computing PhD application-এ faculty interest হিসেবে \u2018Shiri Dori-Hacohen\u2019 select করুন।",
+      "University application submit করার পর shiridh@uconn.edu ও avijit.g@uconn.edu\u2014দুটোতেই সঠিক subject format দিয়ে email করুন।",
+      "Focus Area 1 (AI Safety, Generative AI, Agentic AI Systems) আপনার strongest fit\u2014email-এ এটি স্পষ্টভাবে উল্লেখ করুন।",
+      "Recommendation letter কখনোই email-এ attach করবেন না\u2014শুধু reference contact information দিন।",
+    ],
+    steps: [
+      {
+        title: "UConn application submit করুন",
+        timing: "এখন থেকে January 1, 2027",
+        description:
+          "Lab email পাঠানোর আগে official application-এ faculty interest select করা প্রয়োজন।",
+        actions: [
+          "Online graduate application-এ Shiri Dori-Hacohen-কে interested faculty হিসেবে select করুন।",
+          "Statement of Purpose, transcripts, তিনটি recommendation letter ও (applicable হলে) English test score জমা দিন।",
+          "$75 application fee দিন; automatic international waiver নেই।",
+        ],
+        readyWhen:
+          "University application submitted এবং Dori-Hacohen faculty-interest হিসেবে selected।",
+      },
+      {
+        title: "RIET Lab-কে required format-এ email করুন",
+        timing: "University application submit করার পরপরই",
+        description:
+          "Lab-এর নির্দিষ্ট instructions ভুল করলে review-এর সুযোগ কমে যেতে পারে।",
+        actions: [
+          "Subject: \u2018PhD application: Focus area 1: Halim Md Abdul\u2019\u2014দুই email address-এ একসঙ্গে পাঠান।",
+          "CV, personal statement, তিনজন reference-এর নাম/contact, publication citation/link এবং focus-area আগ্রহের সংক্ষিপ্ত ব্যাখ্যা দিন।",
+          "Health recommender research, medical diagnostic publication এবং multi-agent foundation স্পষ্টভাবে উল্লেখ করুন।",
+          "Recommendation letter কখনোই attach করবেন না।",
+        ],
+        readyWhen:
+          "Email required format মেনে দুই address-এই পাঠানো হয়েছে।",
+      },
+      {
+        title: "Documents ও timeline সম্পূর্ণ করুন",
+        timing: "November 2026-এর মধ্যে target",
+        description:
+          "Rolling review হলেও deadline-এর কাছাকাছি আবেদন করলে consideration কমে যেতে পারে।",
+        actions: [
+          "Statement of Purpose-এ independent research ability ও self-directed study evidence স্পষ্টভাবে দেখান।",
+          "অন্তত একটি recommendation letter-এ research capability সম্পর্কে নির্দিষ্ট মন্তব্য থাকা নিশ্চিত করুন।",
+          "English-language exemption (Japan-এর English-medium MSc)-এর জন্য UConn-এর নির্দিষ্ট policy verify করুন।",
+        ],
+        readyWhen:
+          "সব document submitted এবং January 1, 2027-এর অনেক আগে application complete।",
+      },
+      {
+        title: "Funded offer verify করুন",
+        timing: "Offer পাওয়ার পর",
+        description:
+          "\u2018Fully funded\u2019 lab-level statement থাকলেও exact stipend/summer/dependent coverage অফিসিয়াল offer-এ থাকতে হবে।",
+        actions: [
+          "Annual stipend amount, RA/TA appointment type ও duration লিখিতভাবে নিশ্চিত করুন।",
+          "Summer funding ও dependent health-insurance coverage জিজ্ঞাসা করুন।",
+          "Tuition ও mandatory fee waiver-এর scope স্পষ্টভাবে বুঝে নিন।",
+        ],
+        readyWhen:
+          "Formal offer letter-এ stipend, tuition/fee waiver ও health-insurance details স্পষ্ট।",
+      },
+    ],
+    checklist: [
+      "Online graduate application (select Dori-Hacohen)", "$75 application fee",
+      "Statement of Purpose", "Transcripts", "Three recommendation letters (submitted via portal only)",
+      "English-language test (if applicable)", "CV",
+      "RIET Lab email: CV + personal statement + 3 references + publication links",
+    ],
+    afterSubmission: [
+      "University application status এবং lab email reply আলাদাভাবে track করুন।",
+      "Rolling review হলেও early-applicant হিসেবে follow-up করা reasonable।",
+      "Offer পেলে annual stipend ও summer/dependent coverage লিখিতভাবে নিশ্চিত করুন।",
+    ],
+    cautions: [
+      "Recommendation letter কখনোই email-এ attach করবেন না\u2014official warning অনুযায়ী disqualification হতে পারে।",
+      "নির্দিষ্ট subject-line format না মানলে email missed হতে পারে।",
+      "$75 fee-এর automatic international waiver নেই; নিজে eligible কিনা যাচাই করুন।",
+      "Lab-level \u2018fully funded\u2019 statement exact stipend amount প্রকাশ করে না\u2014written offer-এ confirm করুন।",
+    ],
+    officialLinks: [
+      { label: "RIET Lab \u2014 Currently Hiring", href: "https://infothreats.cse.uconn.edu/currently-hiring/", description: "Focus areas, required email format ও warning verify করুন।" },
+      { label: "Shiri Dori-Hacohen faculty profile", href: "https://engineering.uconn.edu/faculty/cse/dori-hacohen/", description: "Official email ও affiliation verify করুন।" },
+      { label: "RIET Lab overview", href: "https://infothreats.cse.uconn.edu/", description: "Research areas ও lab members দেখুন।" },
+    ],
+    reviewedAt: "August 17, 2026",
+  },
+  {
+    slug: "unc-chapel-hill-nice-x-aiot-phd-2027",
+    country: "usa",
+    university: "University of North Carolina at Chapel Hill",
+    title: "UNC NIcE X Lab: AIoT & Pervasive Healthcare PhD Guide",
+    summary:
+      "Professor Jingping Nie-এর AIoT ও pervasive-healthcare lab-এর সঙ্গে health recommender ও healthcare-IoT background-এর strong match\u2014তবে officially confirmed intake এখনো Fall 2026, Fall 2027 নয়।",
+    label: "Email first \u00b7 Fall 2027 not confirmed",
+    funding:
+      "UNC PhD in Data Science-এ 5 বছরের guaranteed funding: full tuition coverage, mandatory fees, health insurance, বছর 1-এ Teaching Assistantship এবং বছর 2\u20135-এ Research Assistantship, 9-মাসের জন্য $25,000 stipend।",
+    duration: "5 years (residential, full-time) \u00b7 Fall entry",
+    audience:
+      "AIoT, wearable/smart-home sensing, healthcare AI বা recommender-system background থাকা applicants",
+    realityCheck:
+      "Professor Nie-এর নিজের official \u2018Openings and Opportunities\u2019 page স্পষ্টভাবে শুধু \u2018Prospective Ph.D. students (Starting from Fall 2026)\u2019 উল্লেখ করে\u2014Fall 2027 নিয়ে কিছু বলে না। তাঁর lab-এ ইতিমধ্যে Fall 2026-এর জন্য 3 জন incoming PhD student আছে বলে জানা গেছে। তাই এখনই email করে Fall 2027 cohort planned আছে কিনা directly জিজ্ঞাসা করা জরুরি\u2014ধরে নেওয়া উচিত নয় যে opportunity এখনো open আছে।",
+    highlights: [
+      "NIcE X Lab (Networked Intelligence & Cyber-Embedded Systems)-এর director; AIoT, wearable devices, pervasive healthcare, multimodal sensing ও LLM-based health system নিয়ে কাজ করেন।",
+      "Recent work: daily-function screening-এর জন্য LLM-based conversational AI therapist, auscultation signal থেকে heart-rate estimation, smart-home image দিয়ে concerning-activity detection।",
+      "2025 NVIDIA Academic Grant Award পেয়েছেন embedded-AI/AIoT research-এর জন্য।",
+      "তাঁর official page শুধু Fall 2026 intake উল্লেখ করে; Fall 2027-এর status confirmed নয়\u2014email-এ সরাসরি জিজ্ঞাসা করতে হবে।",
+      "UNC Data Science PhD-এর funding package স্পষ্টভাবে publish করা: 5 বছর, $25,000/9-মাস stipend, full tuition ও health insurance।",
+    ],
+    fit: [
+      "Health-management recommender-system research এবং publication আছে।",
+      "Healthcare IoT, computer vision (YOLO/CNN/OpenCV/OCR) ও device-integration experience আছে।",
+      "Manufacturing/backend software experience-কে reliable AIoT/edge-software research-এর সঙ্গে connect করতে পারেন।",
+      "Fall 2027 status unconfirmed জেনেও professor-কে সরাসরি email করতে প্রস্তুত।",
+    ],
+    quickStart: [
+      "Professor Nie-কে (jingping@unc.edu) email করুন\u2014subject \u2018[Prospective NIcE X PhD]\u2019 দিয়ে শুরু করে Fall 2027 cohort সম্পর্কে সরাসরি জিজ্ঞাসা করুন।",
+      "Health recommender research ও publication-কে তাঁর health-information/pervasive-healthcare work-এর সঙ্গে explicitly connect করুন।",
+      "December 15, 2026 (final) এবং November 26, 2026 (international-recommended) deadline calendar-এ যোগ করুন।",
+      "Data Science PhD-এর দুটি track থেকে \u2018Applications in Physical, Biological and Health Sciences\u2019 track বাছুন।",
+    ],
+    steps: [
+      {
+        title: "Fall 2027 status সরাসরি জিজ্ঞাসা করুন",
+        timing: "এখনই \u00b7 application-এর আগে",
+        description:
+          "Public page শুধু Fall 2026 বলে; assume না করে written confirmation নিন।",
+        actions: [
+          "Subject-এ \u2018[Prospective NIcE X PhD]\u2019 রাখুন যেমন তাঁর page instruct করে।",
+          "Health recommender research, publication, healthcare-IoT experience এবং AIoT-তে আগ্রহ স্পষ্টভাবে বলুন।",
+          "Fall 2026 cohort ইতিমধ্যে filled কিনা এবং Fall 2027-এর জন্য নতুন student নেওয়ার পরিকল্পনা আছে কিনা সরাসরি জিজ্ঞাসা করুন।",
+          "CV attach করুন।",
+        ],
+        readyWhen:
+          "Professor Fall 2027 status সম্পর্কে লিখিতভাবে জানিয়েছেন, অথবা follow-up-সহ documented attempt সম্পন্ন।",
+      },
+      {
+        title: "Track ও application route বাছুন",
+        timing: "Reply পাওয়ার পর",
+        description:
+          "UNC Data Science PhD-এ দুটি track আছে; আপনার background health-focused track-এর সঙ্গে ভালো মেলে।",
+        actions: [
+          "\u2018Applications in Physical, Biological and Health Sciences\u2019 track নিশ্চিত করুন।",
+          "Year 1 lab-rotation ও first-year qualifying-exam structure বুঝে নিন।",
+          "Data Science PhD versus Health Informatics PhD\u2014কোন route-এ Nie-কে advisor হিসেবে পাওয়া যায় তা তাঁর reply থেকে নিশ্চিত করুন।",
+        ],
+        readyWhen:
+          "সঠিক program/track এবং application route নির্ধারিত।",
+      },
+      {
+        title: "Application সম্পূর্ণ করুন",
+        timing: "November 26, 2026 (international-recommended) \u2013 December 15, 2026 (final)",
+        description:
+          "International applicant-দের জন্য document ও visa processing-এর extra সময় দরকার।",
+        actions: [
+          "Statement of Purpose-এ health-recommender research, publication, healthcare-IoT experience ও নির্দিষ্ট research question লিখুন\u2014শুধু C# application work নয়, Python/AI experience prominent রাখুন।",
+          "সব institution-এর transcript, তিনটি recommendation letter এবং (প্রয়োজন হলে) English test score জমা দিন।",
+          "$95 application fee দিন; general international financial-need waiver সাধারণত available নয়।",
+        ],
+        readyWhen:
+          "November 26, 2026-এর মধ্যে (বা final deadline-এর আগে) সম্পূর্ণ application submitted।",
+      },
+      {
+        title: "5-year funding package verify করুন",
+        timing: "Offer পাওয়ার পর",
+        description:
+          "Published package clear হলেও lab-নির্দিষ্ট summer/internship funding আলাদা হতে পারে।",
+        actions: [
+          "$25,000/9-মাস stipend, full tuition ও health-insurance coverage offer letter-এ আছে কিনা নিশ্চিত করুন।",
+          "Year 1 TA ও years 2\u20135 RA transition কীভাবে হবে জিজ্ঞাসা করুন।",
+          "Summer funding, internship বা additional lab-specific support সম্পর্কে জিজ্ঞাসা করুন।",
+        ],
+        readyWhen:
+          "Offer letter-এ 5-বছরের funding structure, stipend ও coverage স্পষ্ট।",
+      },
+    ],
+    checklist: [
+      "Professor Nie contact email (Fall 2027 status)", "Online graduate application",
+      "Statement of Purpose", "Complete unofficial transcripts", "Three recommendation letters",
+      "CV/r\u00e9sum\u00e9", "English-language test (if required)", "$95 application fee",
+      "Certified English translations (if applicable)",
+    ],
+    afterSubmission: [
+      "Professor reply ও UNC application status আলাদাভাবে track করুন।",
+      "First-year lab-rotation ও qualifying-exam expectation সম্পর্কে জানার চেষ্টা করুন।",
+      "Offer পেলে 5-year funding-এর প্রতিটি বছরের appointment type লিখিতভাবে confirm করুন।",
+    ],
+    cautions: [
+      "Professor-এর official page শুধু Fall 2026 intake বলে\u2014Fall 2027 opportunity আছে ধরে নিয়ে application fee দেবেন না, আগে email করুন।",
+      "Fall 2026 cohort-এ ইতিমধ্যে 3 জন incoming PhD student আছে বলে জানা গেছে\u2014capacity সীমিত হতে পারে।",
+      "$95 fee-এর সাধারণ international financial-need waiver নেই।",
+      "Japan-এর English-medium MSc স্বয়ংক্রিয়ভাবে English-test exemption দেয় না\u2014UNC Graduate School policy দিয়ে verify করুন।",
+    ],
+    officialLinks: [
+      { label: "Jingping Nie \u2014 Openings and Opportunities", href: "https://jingpingnie.com/openings-and-opportunities/", description: "Current intake status (Fall 2026 vs 2027) verify করুন।" },
+      { label: "NIcE X Lab", href: "https://jingpingnie.com/nice-x-lab/", description: "Research areas ও lab team দেখুন।" },
+      { label: "Jingping Nie faculty profile (SDIS)", href: "https://sdis.unc.edu/person/jingping-nie/", description: "Official UNC affiliation verify করুন।" },
     ],
     reviewedAt: "August 17, 2026",
   },
