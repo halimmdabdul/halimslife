@@ -59,13 +59,18 @@ const usaPlanningGroups = [
     label: "Email before applying",
     tone: "verify",
     text: "The opportunity page exists, but the exact Fall 2027 seat must be confirmed in writing.",
-    guides: ["SIU · Mobile Distributed Computing Lab", "UMBC · Haibin Zhang"],
+    guides: [
+      "SIU · Mobile Distributed Computing Lab",
+      "UMBC · Haibin Zhang",
+      "Iowa State · Amit Sikder",
+      "Iowa State · Liyi Li",
+    ],
   },
   {
     label: "Funding deadlines",
     tone: "caution",
     text: "Prepare tests and documents early; a professor reply does not replace the graduate application.",
-    guides: ["Alabama · Dec 31", "SIU · Dec 31", "UMBC · Jan 7"],
+    guides: ["Alabama · Dec 31", "SIU · Dec 31", "UMBC · Jan 7", "Iowa State · Dec 15 (free application)"],
   },
 ] as const;
 
