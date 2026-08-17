@@ -32,7 +32,7 @@ const japanPlanningGroups = [
     label: "Act now",
     tone: "urgent",
     text: "Deadlines are live or preparation should already be underway.",
-    guides: ["Aoyama SMIPRP · Aug 24, 09:00 JST · postal cutoff confirm", "Tsukuba MBA-IB · Aug 25–Sep 11 · work experience + interview", "JAIST · Sep 4–16 · essay + online oral", "NUCB MiM · Oct 24, 18:00 JST · IELTS 6.0/English-degree waiver · high cost", "University of Aizu · Dec 7–14, 17:00 JST · supervisor + on-campus English oral", "Tsukuba AISIP", "IUJ", "GRIPS", "Hyogo Global Business · Jan 6–13 · guide pending", "Ritsumeikan GSISE · Jan 7–21 · supervisor + written exam"],
+    guides: ["Aoyama SMIPRP · Aug 24, 09:00 JST · postal cutoff confirm", "Tsukuba MBA-IB · Aug 25–Sep 11 · work experience + interview", "Soka ISS · Aug 26–Sep 25 · English/JLPT optional · supervisor approval first", "JAIST · Sep 4–16 · essay + online oral", "NUCB MiM · Oct 24, 18:00 JST · IELTS 6.0/English-degree waiver · high cost", "University of Aizu · Dec 7–14, 17:00 JST · supervisor + on-campus English oral", "Tsukuba AISIP", "IUJ", "GRIPS", "Hyogo Global Business · Jan 6–13 · guide pending", "Ritsumeikan GSISE · Jan 7–21 · supervisor + written exam"],
   },
   {
     label: "Confirm next",
