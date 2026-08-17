@@ -23,9 +23,14 @@ const steps = [
     text: "Computer Science-এ Master’s সম্পন্ন করার পাশাপাশি recommender systems এবং health technology নিয়ে published research।",
   },
   {
-    label: "PPES · Japan",
+    label: "Niche Creation · Japan",
     title: "Real-world engineering",
-    text: "Japanese product team-এ robotics, perception, camera এবং sensor systems নিয়ে practical engineering experience।",
+    text: "Japanese product team-এ robotics, perception, camera এবং sensor systems নিয়ে practical engineering experience—এবং paralysis patient-দের জন্য একটি hospital IoT monitoring system।",
+  },
+  {
+    label: "Aspark · Japan",
+    title: "Manufacturing engineering",
+    text: "Manufacturing software, computer vision এবং decision-support systems নিয়ে বর্তমানে কাজ করছি।",
   },
   {
     label: "Halim’s Life",

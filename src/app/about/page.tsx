@@ -52,9 +52,9 @@ export default async function AboutPage() {
         </div>
         <div className="prose-copy">
           <p>
-            আমি বর্তমানে জাপানের Prime Planet Energy &amp; Solutions
-            (PPES)-এ Software Engineer হিসেবে কর্মরত। আমার কাজের মূল ক্ষেত্র
-            robotics, computer vision, perception এবং sensor/camera pipeline।
+            আমি বর্তমানে জাপানের Aspark Co., Ltd.-এ System Engineer
+            হিসেবে কর্মরত। আমার কাজের মূল ক্ষেত্র manufacturing software,
+            computer vision এবং decision-support systems।
           </p>
           <p>
             Shizuoka University থেকে Computer Science-এ Master of Science
