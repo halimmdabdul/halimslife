@@ -941,6 +941,125 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     ],
   },
   {
+    slug: "iowa-state-cs-phd-fall-2027",
+    country: "usa",
+    university: "Iowa State University",
+    title: "Iowa State Computer Science PhD: Free Application, Two Faculty Matches",
+    summary:
+      "বিনামূল্যে PhD application, automatic fee waiver, এবং Dr. Amit Sikder ও Dr. Liyi Li-এর research-এর সঙ্গে strong background match।",
+    label: "Free application \u00b7 Fall 2027",
+    funding:
+      "Admitted PhD students সাধারণত প্রথম দুই বছর teaching assistantship পান\u2014100% tuition waiver, individual health insurance এবং monthly stipend সহ; পরের বছরগুলোতে সাধারণত research assistantship।",
+    duration: "Usually 4\u20136 years \u00b7 Fall entry",
+    audience:
+      "AI, IoT security, computer vision, program analysis, formal methods বা software reliability-তে আগ্রহী applicants যাদের industry বা research experience আছে",
+    realityCheck:
+      "Application-এ কমপক্ষে তিনজন faculty-র নাম দিতে হয়; কোনো professor-এর page-এ সরাসরি \u2018accepting PhD students\u2019 লেখা নেই। Professor-এর ইতিবাচক reply admission guarantee নয়\u2014major-professor match ছাড়া offer দেওয়া হয় না। Email পাঠানোর আগে official faculty page থেকে email ও research verify করুন।",
+    highlights: [
+      "PhD application সম্পূর্ণ free; fee waiver automatically apply হয়\u2014department-এর official application-requirements page অনুযায়ী।",
+      "Fall 2027 submission deadline December 15, 2026; recommendation letter-সহ সব document January 10, 2027-এর মধ্যে সম্পূর্ণ করতে হবে।",
+      "Application-এ কমপক্ষে তিনজন faculty-র নাম দিতে হয়; department note করে AI/ML-এ high demand, তাই অন্তত একজন different area-র faculty দিলে admission chance বাড়ে।",
+      "Funding: সাধারণত প্রথম দুই বছর teaching assistantship (50%, সপ্তাহে ২০ ঘণ্টা), তারপর research assistantship\u2014100% tuition waiver, individual health insurance ও monthly stipend সহ।",
+      "Dr. Amit Kumar Sikder (aksikder@iastate.edu): system forensics, AI ও program analysis-এর intersection-এ কাজ করেন; research USENIX Security, ACM CCS, NDSS-এর মতো venue-তে published।",
+      "Dr. Liyi Li (liyili2@iastate.edu): formal methods ও programming-language tools দিয়ে software security, reliability ও verification নিয়ে কাজ করেন; NSF-funded compiler-verification project পরিচালনা করছেন এবং নিজের page-এ PhD student mentor করার আগ্রহ উল্লেখ করেছেন।",
+    ],
+    fit: [
+      "আপনার publication, M.Sc. research এবং Japan-এর industrial software-engineering experience আছে।",
+      "Python, C#, computer vision, database, automation বা industrial AI নিয়ে হাতে-কলমে কাজ করেছেন।",
+      "AI-assisted system analysis, IoT security, program analysis বা software reliability/verification নিয়ে একটি research question তৈরি করতে পারেন।",
+      "একাধিক faculty-কে personalized, evidence-based contact email পাঠানোর জন্য প্রস্তুত।",
+    ],
+    quickStart: [
+      "Dr. Sikder ও Dr. Li-কে আলাদা personalized email পাঠান\u2014আপনার Python/C#, computer vision, IoT ও industrial-system experience তাঁদের বর্তমান research-এর সঙ্গে সরাসরি connect করে।",
+      "তৃতীয় faculty member বাছুন\u2014cybersecurity, systems বা software engineering-এর অন্য কেউ, যাতে application-এর \u2018at least three faculty\u2019 requirement পূরণ হয়।",
+      "December 15, 2026 এবং January 10, 2027\u2014দুটো deadline আজই calendar-এ যোগ করুন।",
+      "Research Statement draft শুরু করুন\u2014maximum 2 pages, তাই প্রথম থেকেই একটি focused প্রশ্নে স্থির থাকুন।",
+    ],
+    steps: [
+      {
+        title: "দুই faculty-কে personalized email পাঠান",
+        timing: "এখনই \u00b7 application submit করার আগে",
+        description:
+          "Cold email-কে persuasive করে তোলে specific, recent research reference\u2014generic interest নয়।",
+        actions: [
+          "Subject line-এ \u2018Prospective Fall 2027 PhD Student\u2019 এবং আপনার research direction স্পষ্ট রাখুন।",
+          "Sikder-কে email-এ system forensics, program analysis ও IoT/device security-এর সঙ্গে আপনার computer-vision ও industrial-system experience connect করুন।",
+          "Li-কে email-এ নিজেকে formal-methods expert দাবি না করে\u2014industry software-এর reliability সমস্যা দেখে verification/analysis নিয়ে আগ্রহ তৈরি হয়েছে, এই honest story বলুন।",
+          "দুই email-এই CV attach করুন এবং Fall 2027-এ নতুন PhD student নেওয়ার সম্ভাবনা সরাসরি জিজ্ঞাসা করুন।",
+          "7\u201310 কর্মদিবস পরে একবার ভদ্র follow-up করুন; reply না এলেও application submit করুন।",
+        ],
+        readyWhen:
+          "দুই professor-কেই email করা হয়েছে, অথবা follow-up-সহ একটি documented contact attempt সম্পন্ন হয়েছে।",
+      },
+      {
+        title: "তৃতীয় faculty ও research direction চূড়ান্ত করুন",
+        timing: "Email পাঠানোর সপ্তাহেই",
+        description:
+          "শুধু AI/ML area-তে সব নাম দিলে competition বেশি\u2014department নিজেই ভিন্ন area যোগ করার পরামর্শ দেয়।",
+        actions: [
+          "Systems, cybersecurity বা software-engineering focus-এর আরও একজন Iowa State CS faculty শনাক্ত করুন।",
+          "তাঁর ২\u20133টি recent paper বা project পড়ে আপনার experience-এর সঙ্গে genuine connection আছে কিনা যাচাই করুন।",
+          "তিনজন faculty-র নাম ও one-line rationale আলাদা নোটে লিখে রাখুন\u2014application form-এ সরাসরি ব্যবহারের জন্য।",
+        ],
+        readyWhen:
+          "তিনজন faculty-র নাম এবং প্রতিটির জন্য একটি evidence-based rationale প্রস্তুত।",
+      },
+      {
+        title: "Application সম্পূর্ণ করে submit করুন",
+        timing: "এখন থেকে December 15, 2026",
+        description:
+          "Application free হলেও document প্রস্তুতিতে সময় লাগে\u2014বিশেষত ২ পাতার Research Statement।",
+        actions: [
+          "Online graduate application, CV, Statement of Purpose ও 2-page Research Statement প্রস্তুত করুন।",
+          "সব institution-এর unofficial transcript এবং degree certificate/statement সংগ্রহ করুন।",
+          "তিনজন recommender-কে সময়মতো request পাঠান যাতে তাঁরা January 10, 2027-এর আগে submit করতে পারেন।",
+          "International applicant হলে English-language test score আগে থেকেই ready রাখুন; GRE optional মনে রাখুন।",
+        ],
+        readyWhen:
+          "December 15, 2026-এর আগে application submitted, এবং recommendation letter-সহ সব document January 10, 2027-এর মধ্যে complete।",
+      },
+      {
+        title: "Funding package verify করুন",
+        timing: "Offer পাওয়ার পর",
+        description:
+          "Department-এর general funding structure ও আপনার নির্দিষ্ট offer এক নাও হতে পারে।",
+        actions: [
+          "TA বনাম RA, প্রথম assignment কবে শুরু, এবং কত বছর TA থাকবে\u2014এসব লিখিতভাবে নিশ্চিত করুন।",
+          "Tuition waiver percentage, monthly stipend amount এবং health-insurance coverage স্পষ্টভাবে জিজ্ঞাসা করুন।",
+          "Summer funding ও major-professor confirmation offer letter-এ আছে কিনা যাচাই করুন।",
+        ],
+        readyWhen:
+          "Formal offer letter-এ TA/RA years, tuition waiver, stipend ও health insurance স্পষ্ট।",
+      },
+    ],
+    checklist: [
+      "Online graduate application", "CV/r\u00e9sum\u00e9", "Statement of Purpose",
+      "Research Statement (2 pages max)", "Unofficial transcripts (all institutions)",
+      "Degree certificate / degree statement", "Three recommendation letters",
+      "English-language test scores (international applicants)",
+      "At least three named faculty interests", "GRE (optional)",
+    ],
+    afterSubmission: [
+      "Professor reply ও Graduate College application status আলাদাভাবে track করুন।",
+      "Major-professor match না হওয়া পর্যন্ত admission offer আসবে না\u2014ধৈর্য ধরে follow up করুন।",
+      "Offer পেলে TA/RA years, stipend amount, tuition waiver ও health-insurance coverage লিখিতভাবে confirm করুন।",
+    ],
+    cautions: [
+      "কোনো professor-এর page-এ সরাসরি \u2018accepting new PhD students\u2019 লেখা নেই\u2014email-এ availability সরাসরি জিজ্ঞাসা করুন।",
+      "নিজেকে formal methods বা cybersecurity expert হিসেবে দাবি করবেন না\u2014industry experience থেকে research আগ্রহ তৈরি হয়েছে, এই honest framing বেশি বিশ্বাসযোগ্য।",
+      "Professor-এর positive reply university admission guarantee নয়; Graduate College admission ও major-professor match\u2014দুটোই দরকার।",
+      "শুধু AI/ML area-র faculty না দিয়ে অন্তত একজন ভিন্ন area-র (যেমন software engineering) faculty যোগ করুন\u2014department নিজেই এই পরামর্শ দেয়।",
+    ],
+    officialLinks: [
+      { label: "PhD Application Requirements", href: "https://www.cs.iastate.edu/graduate-studies/phd-application-requirements", description: "Deadline, fee waiver, documents ও faculty-naming requirement verify করুন।" },
+      { label: "Dr. Amit Kumar Sikder faculty profile", href: "https://www.cs.iastate.edu/people/amit-kumar-sikder", description: "Research interests ও official email verify করুন।" },
+      { label: "Dr. Liyi Li faculty profile", href: "https://www.cs.iastate.edu/people/liyi-li", description: "Research interests ও official email verify করুন।" },
+      { label: "Ph.D. in Computer Science overview", href: "https://www.cs.iastate.edu/graduate-studies/phd-computer-science", description: "Program overview দেখুন।" },
+      { label: "Graduate studies FAQ", href: "https://www.cs.iastate.edu/graduate-studies/faq-prospective-graduate-students", description: "Funding, TA/RA structure ও stipend details দেখুন।" },
+    ],
+    reviewedAt: "August 17, 2026",
+  },
+  {
     slug: "tsukuba-aisip-mext-2027",
     country: "japan",
     university: "University of Tsukuba",
