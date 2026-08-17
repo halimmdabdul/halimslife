@@ -32,19 +32,19 @@ const japanPlanningGroups = [
     label: "Act now",
     tone: "urgent",
     text: "Deadlines are live or preparation should already be underway.",
-    guides: ["Tsukuba AISIP", "University of Aizu", "IUJ", "GRIPS", "NUCB"],
+    guides: ["Aoyama SMIPRP · Aug 24, 09:00 JST · postal cutoff confirm", "Tsukuba MBA-IB · Aug 25–Sep 11 · work experience + interview", "JAIST · Sep 4–16 · essay + online oral", "NUCB MiM · Oct 24, 18:00 JST · IELTS 6.0/English-degree waiver · high cost", "University of Aizu · Dec 7–14, 17:00 JST · supervisor + on-campus English oral", "Tsukuba AISIP", "IUJ", "GRIPS", "Hyogo Global Business · Jan 6–13 · guide pending", "Ritsumeikan GSISE · Jan 7–21 · supervisor + written exam"],
   },
   {
     label: "Confirm next",
     tone: "verify",
     text: "Good options, but the exact intake, language or 2027 guide needs confirmation.",
-    guides: ["Musashino Data Science · Aug 18–27 · language check", "SIT EECS · Nov 16–27 · Self-funded", "TUT International Master’s + MEXT", "Hosei IIST", "KIC English course", "TUMSAT second round", "Meiji MPP · Sep 2027 guide pending"],
+    guides: ["Musashino Data Science · Aug 18–27 · language check", "Hiroshima SmaSo · Jan 5–12 · guide due Oct", "FUN Hakodate · Jan 5–13 · intake + English plan", "TCU Informatics · Jan 7–14 · supervisor + exam route", "Saitama MEcon · Sep–Oct 2026 guide pending", "Ritsumeikan MPED · Sep 2027 guide pending", "Hokkaido GFR · late-Oct guide · adviser first", "SIT SSFS · pre-consult by Oct 30 · Nov 16–27 · self-funded", "TUT International Master’s + MEXT", "Hosei IIST · Sep 2027 guide pending · IELTS 5.5 · MOI not accepted", "Kobe KIC · Oct 2027 English guide pending · TOEFL 80-equivalent", "TUMSAT · guide late Oct · Nov 30–Dec 3 · technical exam", "Meiji MPP · Sep-only · 2027 guide pending · essay + interview"],
   },
   {
     label: "Eligibility watch",
     tone: "caution",
     text: "Do not apply until the profile and route-specific restriction is resolved.",
-    guides: ["Saitama ESITI"],
+    guides: ["Saitama ESITI · doctoral only · direct route requires overseas residence"],
   },
 ] as const;
 

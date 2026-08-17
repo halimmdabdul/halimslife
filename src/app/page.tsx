@@ -56,8 +56,13 @@ const projects = [
 const timeline = [
   {
     year: "এখন",
-    title: "Software Engineer · PPES, Japan",
-    text: "Robotics, perception এবং computer vision-এর real-world application নিয়ে কাজ করছি।",
+    title: "System Engineer · Aspark, Japan",
+    text: "Manufacturing software, computer vision এবং decision-support systems নিয়ে কাজ করছি।",
+  },
+  {
+    year: "২০২২-২৫",
+    title: "AI & Robotics Engineer · Niche Creation",
+    text: "AI-enabled robotic vision system এবং একটি hospital IoT monitoring system তৈরি করেছি, যা paralysis patient-দের সাহায্য করে।",
   },
   {
     year: "MSc",
@@ -317,8 +322,8 @@ export default async function Home() {
             </p>
             <p>
               আমি বর্তমানে জাপানের{" "}
-              <strong>Prime Planet Energy &amp; Solutions (PPES)</strong>-এ
-              Software Engineer হিসেবে কাজ করছি। Shizuoka University থেকে
+              <strong>Aspark Co., Ltd.</strong>-এ
+              System Engineer হিসেবে কাজ করছি। Shizuoka University থেকে
               Computer Science-এ MSc সম্পন্ন করেছি।
             </p>
             <p>
