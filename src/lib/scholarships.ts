@@ -6672,6 +6672,121 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     reviewedAt: "August 12, 2026",
     reviewedOn: "2026-08-12",
   },
+  {
+    slug: "doshisha-istc-information-computer-science-masters-2027",
+    country: "japan",
+    university: "Doshisha University",
+    title: "Doshisha ISTC Information & Computer Science: September 2027 Master's Guide",
+    summary:
+      "English-taught ISTC Master's route\u2014MOI-based English evidence, GRE/GMAT নেই, tiered tuition-reduction scholarship এবং AI/vision/robotics faculty নিয়ে medium-difficulty target।",
+    label: "MOI route \u00b7 Sep 2027 \u00b7 Jan 20\u2013Feb 8, 2027 application",
+    funding:
+      "Doshisha-এর Merit Scholarship for Self-Funded International Students eligible students-কে entrance-exam performance ও research plan অনুযায়ী tiered tuition reduction দেয় (full/50%/30%-tuition-equivalent categories উল্লেখ আছে official scholarship page-এ)। University বলছে প্রায় 90% international student কোনো না কোনো মাত্রায় (20\u2013100%) tuition exemption পান, কিন্তু 100% guaranteed নয় এবং amount/recipient সংখ্যা graduate school অনুযায়ী পরিবর্তিত হয়।",
+    duration: "2 years \u00b7 September entry \u00b7 Kyotanabe campus",
+    audience:
+      "AI/ML, computer vision, image processing, IoT, sensor fusion বা robotics background থাকা applicant যিনি English-medium bachelor degree evidence দিয়ে apply করতে চান",
+    realityCheck:
+      "ISTC coursework English-এ করা যায় এবং official admission guide English-medium Bachelor's degree proof-কে English-proficiency evidence হিসেবে গ্রহণ করে (MOI route)। তবে আজকের independent re-verification-এ istc.doshisha.ac.jp domain-এর প্রায় সব page (admission page, admissions-guide PDF, news post) automated fetch block করেছে (HTTP 403)। তাই exact IELTS numerical cutoff, ঠিক application date এবং exact tuition figure এই entry-তে মূলত submitted research থেকে নেওয়া\u2014application-এর আগে official PDF নিজে download করে প্রতিটি সংখ্যা পুনরায় মিলিয়ে নিন। GRE/GMAT বাধ্যতামূলক নয় বলে পাওয়া গেছে এবং এটি easy-admission university নয়\u2014research-fit ও supervisor assessment গুরুত্বপূর্ণ।",
+    highlights: [
+      "Graduate School of Science and Engineering-এর Information and Computer Science area-তে ISTC (International Science and Technology Course) English-track Master's পড়ানো হয়; Japanese-language entrance requirement নেই।",
+      "September 2027 entry-এর application window submitted research অনুযায়ী 20 January\u20138 February 2027; academic term শুরু 21 September 2027। Official PDF (AdmissionsGuide-M-SE.pdf) থেকে exact date নিজে re-confirm করুন, কারণ আজ সরাসরি fetch করা যায়নি।",
+      "English proficiency evidence হিসেবে English-medium Bachelor's degree-এর official proof (MOI-type certificate) গ্রহণযোগ্য বলে submitted research বলছে। নির্দিষ্ট IELTS numerical cutoff আজকের independent search-এও পাওয়া যায়নি\u2014তাই MOI route-কেই সবচেয়ে নিরাপদ ধরা হচ্ছে, শুধু IELTS 5.5-কে guaranteed sufficient নয়।",
+      "GRE/GMAT বাধ্যতামূলক requirement হিসেবে পাওয়া যায়নি এবং published hard-minimum GPA (যেমন 3.0/4.0) দেখা যায়নি।",
+      "Scholarship: official ISTC scholarship page (independently located) অনুযায়ী Merit Scholarship for Self-Funded International Students entrance-exam performance ও research plan-ভিত্তিক tiered tuition reduction দেয়; university-wide প্রায় 90% international student কিছু না কিছু reduction (20\u2013100%) পান বলে university নিজেই জানিয়েছে।",
+      "Masafumi Hashimoto (Faculty of Science and Engineering, Department of Intelligent Information Engineering and Sciences) independently verified real faculty\u2014LiDAR sensing, sensor fusion, autonomous vehicles, mobile robotics। Masahiro Okuda (image processing/computer vision/hyperspectral imaging) submitted research-এ দেওয়া হয়েছে কিন্তু আজ আলাদাভাবে re-verify করা যায়নি\u2014contact করার আগে laboratory page নিজে check করুন।",
+      "First-year tuition submitted research অনুযায়ী প্রায় ¥1.21 million level (national university-এর ¥535,800/year-এর তুলনায় বেশি); subsequent years কম কারণ one-time admission fee repeat হয় না। Exact current figure official fee table থেকে verify করুন।",
+    ],
+    fit: [
+      "AI/ML, computer vision, image processing, sensor systems, robotics বা adjacent quantitative field-এর hands-on experience আছে।",
+      "English-medium Bachelor's degree-এর official proof জোগাড় করতে পারবেন (MOI route)।",
+      "Private-university tuition (scholarship ছাড়া প্রায় ¥1.2m+/year) দিতে বা competitive scholarship পাওয়ার জন্য প্রস্তুত।",
+      "Research-fit ভিত্তিক admission-এর জন্য specific laboratory/supervisor বেছে নিয়ে personalized contact করতে ইচ্ছুক।",
+    ],
+    quickStart: [
+      "Official AdmissionsGuide-M-SE.pdf নিজের browser থেকে download করে exact January\u2013February 2027 date, IELTS/MOI rule এবং document checklist পুনরায় নিশ্চিত করুন (আজ automated fetch block হয়েছে)।",
+      "Masafumi Hashimoto (mhashimo@mail.doshisha.ac.jp, verified real) এবং Masahiro Okuda (masokuda@mail.doshisha.ac.jp, submitted research\u2014laboratory page দিয়ে re-check করুন) দুজনের laboratory page পড়ে research fit নির্ধারণ করুন।",
+      "English-medium Bachelor's degree প্রমাণের official document (transcript/letter) কোথা থেকে পাবেন তা এখনই খুঁজে বের করুন।",
+      "ISTC scholarship page থেকে Merit Scholarship-এর current eligibility ও tier criteria পড়ুন; scholarship ছাড়া budget-ও আলাদাভাবে প্রস্তুত রাখুন।",
+    ],
+    steps: [
+      {
+        title: "Official admission guide নিজে verify করুন",
+        timing: "এখনই",
+        description:
+          "istc.doshisha.ac.jp আজ automated tool-এর জন্য block করেছে; browser দিয়ে সরাসরি PDF/page দেখতে হবে।",
+        actions: [
+          "https://istc.doshisha.ac.jp/files/koujm/page/AdmissionsGuide-M-SE.pdf browser-এ খুলে exact application date, English-evidence rule ও required documents নোট করুন।",
+          "istc.doshisha.ac.jp/en/tuition/scholarship.html থেকে Merit Scholarship-এর current tier ও eligibility criteria পড়ুন।",
+          "General ISTC contact (jt-istc@mail.doshisha.ac.jp)-এ প্রশ্ন থাকলে সরাসরি জিজ্ঞাসা করতে পারেন।",
+        ],
+        readyWhen:
+          "Application window, English-evidence rule এবং tuition/scholarship figure নিজের চোখে official PDF/page-এ দেখে নিশ্চিত হয়েছেন।",
+      },
+      {
+        title: "Laboratory ও supervisor fit নির্ধারণ করুন",
+        timing: "Verification-এর পরপরই",
+        description:
+          "ISTC admission research-fit ভিত্তিক; সঠিক laboratory বাছা গুরুত্বপূর্ণ।",
+        actions: [
+          "Hashimoto-এর IoT/sensor/robotics work এবং Okuda-এর vision/image-processing work\u2014কোনটি আপনার experience-এর সঙ্গে বেশি মেলে তুলনা করুন।",
+          "প্রতিটি laboratory-এর official page থেকে recent project ও publication পড়ে personalized research-interest note তৈরি করুন।",
+          "Laboratory page-এ email confirm করে একটি tailored introductory email পাঠান, CV ও research interest-সহ।",
+        ],
+        readyWhen:
+          "একজন primary supervisor target এবং তাঁর সাম্প্রতিক কাজের সঙ্গে সংযুক্ত personalized research note প্রস্তুত।",
+      },
+      {
+        title: "Application সম্পূর্ণ করুন",
+        timing: "January\u2013February 2027 (official PDF দিয়ে re-confirm করুন)",
+        description:
+          "MOI route ব্যবহার করলে English-medium proof সংগ্রহে সময় লাগতে পারে, তাই আগে শুরু করুন।",
+        actions: [
+          "Academic/degree evidence, transcript, application form, research-related information এবং English-medium Bachelor's proof প্রস্তুত করুন।",
+          "Official checklist অনুযায়ী বাকি সব document verify করুন\u2014exact list PDF-এ আছে।",
+          "Application window-এর আগেই (Jan 20\u2013Feb 8, 2027 হিসেবে submitted, পুনরায় verify করুন) সব কিছু জমা দেওয়ার প্রস্তুতি সম্পূর্ণ করুন।",
+        ],
+        readyWhen:
+          "সব document সংগ্রহ করা হয়েছে এবং official application window-এর মধ্যে submit করা হয়েছে।",
+      },
+      {
+        title: "Scholarship ও tuition package verify করুন",
+        timing: "Offer/scholarship-decision stage",
+        description:
+          "Merit Scholarship tiered এবং entrance-exam performance-নির্ভর\u2014guaranteed নয়।",
+        actions: [
+          "কোন tier (full/50%/30%-equivalent) পেয়েছেন এবং renewal condition কী তা লিখিতভাবে নিশ্চিত করুন।",
+          "Scholarship না পেলে বা partial পেলে পুরো ¥1.2m+/year tuition বহন করার alternative budget রাখুন।",
+          "Renewal-এর জন্য academic performance standard কী তা আগে থেকেই জেনে রাখুন।",
+        ],
+        readyWhen:
+          "Scholarship tier (যদি থাকে) ও uncovered tuition/living cost লিখিতভাবে স্পষ্ট।",
+      },
+    ],
+    checklist: [
+      "Official AdmissionsGuide-M-SE.pdf (self-verified)", "Academic/degree evidence", "Transcript",
+      "Application form", "Research-related information/research plan",
+      "English-medium Bachelor's degree proof (MOI route)", "Laboratory/supervisor research-interest note",
+      "Merit Scholarship eligibility check",
+    ],
+    afterSubmission: [
+      "Supervisor/department reply এবং official application status আলাদাভাবে track করুন।",
+      "Scholarship decision ও admission decision একসঙ্গে নাও আসতে পারে\u2014দুটোই আলাদাভাবে confirm করুন।",
+      "Offer পেলে scholarship tier, renewal condition ও uncovered cost লিখিতভাবে নিশ্চিত করার আগে accept করবেন না।",
+    ],
+    cautions: [
+      "istc.doshisha.ac.jp আজ automated verification tool block করেছে\u2014exact date/tuition/IELTS cutoff অবশ্যই official PDF/page browser দিয়ে নিজে re-confirm করুন, শুধু এই guide-এর ওপর নির্ভর করবেন না।",
+      "IELTS 5.5-এর specific numerical cutoff কোথাও confirmed পাওয়া যায়নি\u2014MOI route-ই সবচেয়ে নিরাপদ evidence।",
+      "Masahiro Okuda-এর তথ্য independently re-verify করা যায়নি\u2014contact করার আগে laboratory page-এ নাম/email নিজে check করুন।",
+      "100% tuition waiver guaranteed নয়; Doshisha established private university, তাই একে easy admission ধরবেন না।",
+    ],
+    officialLinks: [
+      { label: "ISTC Admissions Guide (Master's, Science & Engineering)", href: "https://istc.doshisha.ac.jp/files/koujm/page/AdmissionsGuide-M-SE.pdf", description: "Exact application date, English-evidence rule ও document checklist এখান থেকেই verify করুন।" },
+      { label: "ISTC Scholarship page", href: "https://istc.doshisha.ac.jp/en/tuition/scholarship.html", description: "Merit Scholarship tier ও eligibility criteria দেখুন।" },
+      { label: "Hashimoto laboratory (Intelligent Mechatro-Informatics)", href: "https://istc.doshisha.ac.jp/en/course/information/laboratories/labo_10.html", description: "IoT/sensor/robotics research ও official contact verify করুন।" },
+      { label: "ISTC Admissions overview", href: "https://istc.doshisha.ac.jp/istc/en/admission/admission.html", description: "General admission process overview।" },
+    ],
+    reviewedAt: "August 17, 2026",
+  }
 ];
 
 export function getScholarshipGuide(slug: string) {
