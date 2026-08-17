@@ -5637,6 +5637,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
       "Official material অনুযায়ী English courses carefully বেছে degree requirements পূরণ করা সম্ভব; তবে সব class English নয়। Supervisor-এর সঙ্গে required credits, research guidance, thesis এবং final assessment-এর English plan লিখিতভাবে confirm করুন।",
       "Takashi Tomita current Associate Professor/supervisor: formal methods, model checking, software verification/testing, embedded/automotive software এবং DX; tomita@jaist.ac.jp। তাঁর lab prospective students-কে contact করতে বলে।",
       "Masato Suzuki current Associate Professor: highly dependable software systems, software construction, programming environments, embedded systems, architecture, product lines এবং SOA; suzuki@jaist.ac.jp। C/C++/Java/Python development evidence এখানে useful।",
+      "Xin Li: formal methods, program analysis, programming languages এবং information security নিয়ে কাজ করেন; li-xin@jaist.ac.jp। Software-development background থেকে verification/analysis-focused research-এ যেতে চাইলে অতিরিক্ত একটি relevant match।",
       "Current fees: ¥30,000 screening + ¥282,000 admission + ¥535,800/year tuition + ¥2,430 two-year insurance = প্রায় ¥1,386,030 base academic cost; living, housing, travel এবং future fee revision এতে নেই।",
     ],
     fit: [
