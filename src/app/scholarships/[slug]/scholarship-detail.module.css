@@ -14,6 +14,7 @@ main.container{display:grid;grid-template-columns:1fr 1.08fr;column-gap:30px}mai
 
 /* Compact source panel for the UConn RIET Lab guide. */
 .compactSources{width:min(100%,420px);justify-self:end;padding:12px}
+.uconnLayout{grid-template-columns:minmax(0,1.35fr) minmax(330px,.65fr)}
 .compactSources .numberTitle{gap:8px;margin:0 0 8px}
 .compactSources .numberTitle>span{width:29px;height:27px;font-size:10px}
 .compactSources .numberTitle h2{font-size:15px}
@@ -26,5 +27,5 @@ main.container{display:grid;grid-template-columns:1fr 1.08fr;column-gap:30px}mai
 .compactSources>p>svg{flex:0 0 auto;width:14px;height:14px}
 .compactSources>p>span{max-width:52%;text-align:right}
 
-@media(max-width:900px){.compactSources{width:100%;justify-self:stretch}}
+@media(max-width:900px){.uconnLayout{display:block}.compactSources{width:100%;justify-self:stretch}}
 @media(max-width:600px){.compactSources>p>span{max-width:none;text-align:left}}
