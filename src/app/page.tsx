@@ -58,7 +58,7 @@ export default function Home() {
       <section className={styles.aboutHero}>
         <div className={styles.aboutCopy}>
           <span className={styles.kicker}>আমার সম্পর্কে</span>
-          <h1>আমি হালিম—একজন<br />engineer, researcher এবং<br /><em>lifelong learner।</em></h1>
+          <h1>আমি হালিম—<br />Engineer, Researcher<br /><em>ও Lifelong Learner।</em></h1>
           <p>বাংলাদেশে থেকে জাপানে এসে পড়াশোনা ও engineering career গড়ার পথটা সহজ ছিল না, সেটিই এখন অন্যদের জন্য সহজ করে share করছি।</p>
           <dl className={styles.heroFacts}><div><Icon name="location" /><span><dt>Japan</dt></span></div><div><Icon name="graduation" /><span><dt>MSc</dt><dd>Computer Science</dd></span></div><div><Icon name="document" /><span><dt>2+</dt><dd>Publications</dd></span></div></dl>
           <div className={styles.heroActions}><Link href="/cv"><Icon name="document" /> আমার CV দেখুন</Link><Link href="/contact"><Icon name="plane" /> যোগাযোগ করুন</Link></div>
