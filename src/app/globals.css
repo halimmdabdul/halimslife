@@ -1422,6 +1422,7 @@ html[data-theme="dark"] .footer-bottom {
 }
 
 .footer {
+  margin-top: clamp(32px, 4vw, 56px);
   padding: 0;
   background: var(--navy-surface);
   color: white;
