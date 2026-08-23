@@ -27,6 +27,7 @@ export type ScholarshipGuide = {
   officialLinks: { label: string; href: string; description: string }[];
   reviewedAt?: string;
   reviewedOn?: string;
+  bestFitPriority?: number;
 };
 
 type JapanShortlistSeed = {
@@ -39,6 +40,7 @@ type JapanShortlistSeed = {
   priority: string;
   realityCheck: string;
   officialLinks: ScholarshipGuide["officialLinks"];
+  bestFitPriority?: number;
 };
 
 function createJapanShortlistGuide(seed: JapanShortlistSeed): ScholarshipGuide {
@@ -140,6 +142,7 @@ function createJapanShortlistGuide(seed: JapanShortlistSeed): ScholarshipGuide {
     ],
     officialLinks: seed.officialLinks,
     reviewedAt: "August 23, 2026",
+    bestFitPriority: seed.bestFitPriority,
   };
 }
 
@@ -208,6 +211,7 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   }),
   createJapanShortlistGuide({
     slug: "kuas-engineering-masters-2027", university: "Kyoto University of Advanced Science", program: "Graduate School of Engineering Master’s",
+    bestFitPriority: 2,
     english: "Language of instruction is English; IELTS 6.5/TOEFL iBT 85-equivalent or an approved English-medium-degree waiver is required", intake: "September 2027",
     funding: "KUAS-E awards may waive 30%, 50% or 100% of tuition/admission fees; Super KUAS-E can add stipend for a few students", priority: "Chubu/Kansai Private #191 · English-confirmed",
     realityCheck: "KUAS officially confirms an all-English two-year Master of Engineering. The route is research-based and requires pre-application review for supervision fit. IELTS 5.5 does not meet the published 6.5 Engineering requirement unless KUAS approves a qualifying English-medium-degree waiver.",
@@ -262,6 +266,7 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   }),
   createJapanShortlistGuide({
     slug: "tiu-digital-business-innovation-ms-2027", university: "Tokyo International University", program: "M.S. in Digital Business & Innovation (E-Track)",
+    bestFitPriority: 3,
     english: "Official English Track master’s with an English curriculum and thesis route", intake: "April/September 2027",
     funding: "TIU E-Track applicants may request a competitive 30%, 50%, 80% or 100% tuition reduction; the 2027 application guide is final authority", priority: "Kanto Private #161 · English-confirmed",
     realityCheck: "TIU’s two-year M.S. in Digital Business & Innovation is a confirmed English Track degree covering AI, analytics, digital marketing, entrepreneurship and technology-driven business. Scholarship percentage is decided with admission and is not guaranteed.",
@@ -273,6 +278,7 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   }),
   createJapanShortlistGuide({
     slug: "shizenkan-english-mba-2027", university: "Shizenkan University", program: "English MBA in Design and Leadership for Societal Innovation",
+    bestFitPriority: 7,
     english: "Applicants choose the English-language program and generally complete the full two-year MBA in that language", intake: "Late August 2027",
     funding: "Competitive grant scholarship may provide up to ¥4.8 million over a maximum of two years; eligibility and award amount require written confirmation", priority: "Kanto Private #175 · English-confirmed",
     realityCheck: "Shizenkan’s MEXT-accredited MBA has a confirmed English class, is part-time over two years and is designed for working professionals. Applicants normally need at least three years of full-time professional experience. The 2027 rounds close on November 30, 2026, March 31, 2027 and May 31, 2027.",
@@ -633,6 +639,7 @@ type RegionalPublicJapanSeed = {
   reality: string;
   officialLinks: ScholarshipGuide["officialLinks"];
   viability?: "conditional" | "not-currently-viable";
+  bestFitPriority?: number;
 };
 
 function createRegionalPublicJapanGuide(seed: RegionalPublicJapanSeed): ScholarshipGuide {
@@ -741,6 +748,7 @@ function createRegionalPublicJapanGuide(seed: RegionalPublicJapanSeed): Scholars
     officialLinks: seed.officialLinks,
     reviewedAt: "August 23, 2026",
     reviewedOn: "2026-08-23",
+    bestFitPriority: seed.bestFitPriority,
   };
 }
 
@@ -836,6 +844,7 @@ const regionalPublicJapanGuides: ScholarshipGuide[] = [
   }),
   createRegionalPublicJapanGuide({
     rank: 112, slug: "niigata-prefecture-regional-public-masters-2027", university: "University of Niigata Prefecture", subject: "Business/International Studies", language: "English-confirmed",
+    bestFitPriority: 13,
     target: "Master of Arts in International Studies and Regional Development",
     reality: "The university confirms that all credit requirements and the full MA in International Studies and Regional Development can be completed through English-taught courses; 2027 international selection is also published।",
     officialLinks: [
@@ -928,6 +937,7 @@ const regionalPublicJapanGuides: ScholarshipGuide[] = [
   }),
   createRegionalPublicJapanGuide({
     rank: 122, slug: "prefectural-hiroshima-regional-public-masters-2027", university: "Prefectural University of Hiroshima", subject: "Information and Management Systems", language: "English-confirmed · partner eligibility",
+    bestFitPriority: 16,
     target: "English Track in Information and Management Systems or Biological System Sciences",
     reality: "The official English Track is designed for earning a master’s degree in English and all educational/research activities are in English. Eligibility is restricted to designated partner-university applicants, so it is not an open route for everyone।",
     officialLinks: [
@@ -6772,6 +6782,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "nucb-msc-management-scholarships-2027",
     country: "japan",
     university: "NUCB Business School",
+    bestFitPriority: 6,
     title: "NUCB MSc in Management: Spring/Fall 2027 Admission & Funding Guide",
     summary:
       "Nagoya-তে সম্পূর্ণ English Case Method MSc in Management-এর 2027 rounds, exact English threshold/English-degree waiver, documents, written essay + interview, high tuition এবং semester-by-semester scholarship reality নিয়ে বিস্তারিত guide। আলাদা MSc in Business Analytics & AI route-টিও পরিষ্কারভাবে তুলনা করা হয়েছে।",
@@ -7655,6 +7666,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "soka-university-information-systems-science-masters-2027",
     country: "japan",
     university: "Soka University",
+    bestFitPriority: 4,
     title: "Soka Information Systems Science: April/September 2027 Master's Guide",
     summary:
       "Information Systems Science applicant-এর জন্য English proficiency ও JLPT দুটোই optional, GRE/GMAT নেই, supervisor-approval + oral-exam selection এবং \u00a5600,000/year scholarship নিয়ে source-checked guide।",
