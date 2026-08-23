@@ -13,7 +13,7 @@ main.container{display:grid;grid-template-columns:1fr 1.08fr;column-gap:30px}mai
 @media(max-width:600px){.container{width:calc(100% - 28px)}.hero h1{font-size:38px}.heroActions{flex-direction:column}.quickFacts{grid-template-columns:repeat(2,1fr)}.reality{grid-template-columns:auto 1fr}.reality>span{grid-column:1/-1}.anchorNav{grid-template-columns:repeat(2,1fr)}.highlightGrid,.quickStart{grid-template-columns:repeat(2,1fr)}.afterGrid{grid-template-columns:1fr}.roadmap>ol>li{grid-template-columns:38px 1fr}.roadmap>ol>li>small{grid-column:1/-1;justify-content:flex-start}.roadmap>ol>li>span{grid-column:1}.roadmap>ol>li>div{grid-column:2}.roadmap aside{grid-column:2}.sources>div{grid-template-columns:1fr}.sources>p{align-items:flex-start;flex-direction:column}.sources>p>span{margin-left:0}.cta{min-height:260px}.cta:after{background:linear-gradient(180deg,rgba(255,250,242,.94),rgba(255,250,242,.6))}.cta>div{margin:0;padding:25px}.cta a{margin-bottom:7px}}
 
 /* Compact source panel for the UConn RIET Lab guide. */
-.compactSources{padding:12px}
+.compactSources{width:min(100%,420px);justify-self:end;padding:12px}
 .compactSources .numberTitle{gap:8px;margin:0 0 8px}
 .compactSources .numberTitle>span{width:29px;height:27px;font-size:10px}
 .compactSources .numberTitle h2{font-size:15px}
@@ -26,4 +26,5 @@ main.container{display:grid;grid-template-columns:1fr 1.08fr;column-gap:30px}mai
 .compactSources>p>svg{flex:0 0 auto;width:14px;height:14px}
 .compactSources>p>span{max-width:52%;text-align:right}
 
+@media(max-width:900px){.compactSources{width:100%;justify-self:stretch}}
 @media(max-width:600px){.compactSources>p>span{max-width:none;text-align:left}}
