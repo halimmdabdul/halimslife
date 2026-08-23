@@ -1114,6 +1114,151 @@ function onlyVerifiedEnglishMasters(guides: ScholarshipGuide[]) {
   return guides.filter((guide) => verifiedEnglishMastersSlugs.has(guide.slug));
 }
 
+type UsLowCostSeed = {
+  rank: number;
+  slug: string;
+  university: string;
+  state: string;
+  fields: string;
+  cost: "Low" | "Low-medium";
+  fundingRoutes: string;
+  officialUrl: string;
+};
+
+function createUsLowCostGuide(seed: UsLowCostSeed): ScholarshipGuide {
+  return {
+    slug: seed.slug,
+    country: "usa",
+    university: seed.university,
+    title: `${seed.university}: Affordable Master's Planning Guide`,
+    summary: `${seed.fields} options, relative cost position and possible ${seed.fundingRoutes} routes for international master's applicants.`,
+    label: `Practical low-cost USA #${seed.rank} · ${seed.state}`,
+    funding: `${seed.fundingRoutes} may be available by department or award cycle; funding is competitive and never automatic.`,
+    duration: "Usually 1.5-2 years; confirm the exact program curriculum",
+    audience: "International applicants considering CS, IT, data, analytics or business master's study in the USA",
+    realityCheck: `${seed.cost} is a relative shortlist label, not a final cost quote. Compare current international tuition, mandatory fees, health insurance and local living expenses before applying. Admission, assistantship, scholarship and F-1 visa decisions are separate.`,
+    highlights: [
+      `Relevant fields: ${seed.fields}.`,
+      `Relative cost category: ${seed.cost}.`,
+      `Potential funding routes: ${seed.fundingRoutes}.`,
+      `${seed.state} living costs and campus-specific fees must be included in the final budget.`,
+    ],
+    fit: [
+      "Your previous coursework meets the exact prerequisite and GPA requirements of the selected program.",
+      "You can show program-specific fit through projects, research, work experience or quantitative preparation.",
+      "You have a self-funded fallback budget if no assistantship or merit award is offered.",
+      "The on-campus program is eligible for an international I-20 and matches your career plan.",
+    ],
+    quickStart: [
+      "Choose one exact master's program instead of applying to the university name alone.",
+      "Record current tuition per credit, mandatory fees, total credits and estimated living cost from official pages.",
+      "Check whether master's students in that department can hold RA, TA or GA positions.",
+      "Confirm deadline, English-score rule, prerequisites and international document requirements.",
+    ],
+    steps: [
+      {
+        title: "Program and eligibility verify করুন",
+        timing: "Application-এর 4-6 মাস আগে",
+        description: "University-level affordability does not mean every graduate program has the same tuition or admission rules.",
+        actions: [
+          `Official graduate catalog থেকে ${seed.fields} field-এর exact degree বাছুন।`,
+          "GPA, prerequisite courses, GRE policy and English-test minimum লিখে রাখুন।",
+          "International admission এবং program deadline আলাদা হলে earlier deadline follow করুন।",
+        ],
+        readyWhen: "Exact degree, intake, requirements and deadline official sources থেকে confirmed।",
+      },
+      {
+        title: "Full cost এবং funding plan তৈরি করুন",
+        timing: "Shortlist final করার সময়",
+        description: "Assistantship availability can change by department, semester and faculty budget.",
+        actions: [
+          "Tuition, fees, insurance এবং 12-month living cost দিয়ে total estimate তৈরি করুন।",
+          `${seed.fundingRoutes} eligibility, workload, stipend এবং tuition benefit আলাদাভাবে verify করুন।`,
+          "Funding না পেলে program affordable থাকবে কিনা লিখিত fallback budget দিয়ে যাচাই করুন।",
+        ],
+        readyWhen: "Funded এবং self-funded—দুই scenario-র realistic budget প্রস্তুত।",
+      },
+      {
+        title: "Evidence-based application submit করুন",
+        timing: "Deadline-এর 6-10 সপ্তাহ আগে",
+        description: "Generic SOP-এর বদলে selected curriculum, faculty and career outcome-এর সঙ্গে evidence connect করুন।",
+        actions: [
+          "Transcript, CV, SOP, recommendations এবং English test documents প্রস্তুত করুন।",
+          "Research route হলে relevant faculty এবং current lab projects carefully review করুন।",
+          "Assistantship-এর separate form বা earlier deadline থাকলে admission application-এর সঙ্গে complete করুন।",
+        ],
+        readyWhen: "Program এবং funding checklist-এর প্রতিটি required item submitted।",
+      },
+      {
+        title: "Offer, funding এবং I-20 amount compare করুন",
+        timing: "Decision পাওয়ার পরে",
+        description: "Only written university documents should be used for the final financial decision.",
+        actions: [
+          "Assistantship duration, stipend, tuition waiver এবং renewal rules লিখিতভাবে confirm করুন।",
+          "I-20 funding requirement-এর সঙ্গে scholarship এবং personal funds মিলিয়ে দেখুন।",
+          "Multiple offers হলে net annual cost, curriculum and career fit একসঙ্গে compare করুন।",
+        ],
+        readyWhen: "Written offer থেকে uncovered cost এবং funding conditions পরিষ্কার।",
+      },
+    ],
+    checklist: [
+      "Current graduate application guide",
+      "Exact program curriculum and prerequisites",
+      "International tuition and mandatory-fee estimate",
+      "English proficiency evidence",
+      "Academic CV and statement of purpose",
+      "Recommendation letters",
+      "Assistantship or scholarship application, if separate",
+      "Self-funded financial fallback",
+    ],
+    afterSubmission: [
+      "Admission and assistantship decisions আলাদাভাবে track করুন।",
+      "Departmental interview বা missing-document request দ্রুত complete করুন।",
+      "Written funding package না পাওয়া পর্যন্ত assistantship assumed করবেন না।",
+    ],
+    cautions: [
+      "Low-cost and comparatively accessible are planning labels, not admission or funding guarantees.",
+      "RA, TA and GA availability may favor doctoral or continuing students in some departments.",
+      "Online programs may not support an F-1 student route; delivery mode must be verified.",
+      "Official university pages and the written offer are the final authority for cost, dates and funding.",
+    ],
+    officialLinks: [
+      { label: `${seed.university} graduate programs`, href: seed.officialUrl, description: "Current degree, admission, tuition and funding information official source থেকে verify করুন।" },
+    ],
+    reviewedAt: "August 23, 2026",
+  };
+}
+
+const usLowCostSeeds: UsLowCostSeed[] = [
+  { rank: 1, slug: "dakota-state-affordable-masters-2027", university: "Dakota State University", state: "South Dakota", fields: "Computer Science, Cybersecurity, Analytics", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://dsu.edu/admissions/graduate/" },
+  { rank: 2, slug: "south-dakota-state-affordable-masters-2027", university: "South Dakota State University", state: "South Dakota", fields: "Computer Science, Data Science, Economics", cost: "Low", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.sdstate.edu/graduate-school" },
+  { rank: 3, slug: "south-dakota-university-affordable-masters-2027", university: "University of South Dakota", state: "South Dakota", fields: "Computer Science, Analytics, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.usd.edu/Admissions-and-Aid/International-Admissions/Applying-for-International-Graduate-Admission" },
+  { rank: 4, slug: "north-dakota-state-affordable-masters-2027", university: "North Dakota State University", state: "North Dakota", fields: "Computer Science, Software Engineering, MBA", cost: "Low", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.ndsu.edu/gradschool/" },
+  { rank: 5, slug: "north-dakota-university-affordable-masters-2027", university: "University of North Dakota", state: "North Dakota", fields: "Computer Science, Data Science, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://und.edu/academics/graduate-school/" },
+  { rank: 6, slug: "minot-state-affordable-masters-2027", university: "Minot State University", state: "North Dakota", fields: "Information Systems, Management", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.minotstateu.edu/graduate/" },
+  { rank: 7, slug: "nebraska-kearney-affordable-masters-2027", university: "University of Nebraska at Kearney", state: "Nebraska", fields: "Information Technology, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.unk.edu/academics/gradstudies/" },
+  { rank: 8, slug: "nebraska-omaha-affordable-masters-2027", university: "University of Nebraska Omaha", state: "Nebraska", fields: "Computer Science, MIS, MBA", cost: "Low-medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.unomaha.edu/graduate-studies/" },
+  { rank: 9, slug: "fort-hays-state-affordable-masters-2027", university: "Fort Hays State University", state: "Kansas", fields: "Computer Science, Information Systems, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.fhsu.edu/academic/gradschl/" },
+  { rank: 10, slug: "pittsburg-state-affordable-masters-2027", university: "Pittsburg State University", state: "Kansas", fields: "Information Technology, Technology, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.pittstate.edu/graduate/" },
+  { rank: 11, slug: "emporia-state-affordable-masters-2027", university: "Emporia State University", state: "Kansas", fields: "Informatics, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.emporia.edu/graduate-school/" },
+  { rank: 12, slug: "wichita-state-affordable-masters-2027", university: "Wichita State University", state: "Kansas", fields: "Computer Science, Data Science, MBA", cost: "Low-medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.wichita.edu/academics/graduate_school/" },
+  { rank: 13, slug: "central-missouri-affordable-masters-2027", university: "University of Central Missouri", state: "Missouri", fields: "Computer Science, Cybersecurity, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.ucmo.edu/college-of-graduate-and-extended-studies/" },
+  { rank: 14, slug: "missouri-state-affordable-masters-2027", university: "Missouri State University", state: "Missouri", fields: "Computer Science, Information Technology, MBA", cost: "Low", fundingRoutes: "GA/TA/MW", officialUrl: "https://graduate.missouristate.edu/" },
+  { rank: 15, slug: "southeast-missouri-state-affordable-masters-2027", university: "Southeast Missouri State University", state: "Missouri", fields: "Computer Science, Applied Computing, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://semo.edu/graduate/" },
+  { rank: 16, slug: "northwest-missouri-state-affordable-masters-2027", university: "Northwest Missouri State University", state: "Missouri", fields: "Applied Computer Science, Data Analytics, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.nwmissouri.edu/graduate/" },
+  { rank: 17, slug: "arkansas-state-affordable-masters-2027", university: "Arkansas State University", state: "Arkansas", fields: "Computer Science, Data Science, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.astate.edu/college/graduate-school/" },
+  { rank: 18, slug: "arkansas-little-rock-affordable-masters-2027", university: "University of Arkansas at Little Rock", state: "Arkansas", fields: "Computer Science, Information Science, MBA", cost: "Low", fundingRoutes: "RA/TA/GA", officialUrl: "https://ualr.edu/graduate/" },
+  { rank: 19, slug: "arkansas-tech-affordable-masters-2027", university: "Arkansas Tech University", state: "Arkansas", fields: "Information Technology, Business", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.atu.edu/graduate/" },
+  { rank: 20, slug: "southern-arkansas-affordable-masters-2027", university: "Southern Arkansas University", state: "Arkansas", fields: "Computer Science, Data Analytics, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://web.saumag.edu/graduate/" },
+  { rank: 21, slug: "central-arkansas-affordable-masters-2027", university: "University of Central Arkansas", state: "Arkansas", fields: "Computer Science, Applied Data Analytics, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://uca.edu/graduateschool/" },
+  { rank: 22, slug: "louisiana-monroe-affordable-masters-2027", university: "University of Louisiana Monroe", state: "Louisiana", fields: "Computer Science, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.ulm.edu/gradschool/" },
+  { rank: 23, slug: "louisiana-tech-affordable-masters-2027", university: "Louisiana Tech University", state: "Louisiana", fields: "Computer Science, Engineering, MBA", cost: "Low", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.latech.edu/study-with-us/graduate-school/" },
+  { rank: 24, slug: "mcneese-state-affordable-masters-2027", university: "McNeese State University", state: "Louisiana", fields: "Computer Science, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.mcneese.edu/academics/graduate-school/" },
+  { rank: 25, slug: "southeastern-louisiana-affordable-masters-2027", university: "Southeastern Louisiana University", state: "Louisiana", fields: "Computer Science, Integrated Science, MBA", cost: "Low", fundingRoutes: "GA/MW (verify by program)", officialUrl: "https://www.southeastern.edu/academics/graduate/" },
+];
+
+const usLowCostGuides: ScholarshipGuide[] = usLowCostSeeds.map(createUsLowCostGuide);
+
 export const scholarshipGuides: ScholarshipGuide[] = [
   {
     slug: "cmu-computer-science-phd-funding",
@@ -8017,6 +8162,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     ],
     reviewedAt: "August 17, 2026",
   },
+  ...usLowCostGuides,
   ...onlyVerifiedEnglishMasters(japanShortlistAdditions),
   ...onlyVerifiedEnglishMasters(tierAJapanGuides),
   ...onlyVerifiedEnglishMasters(regionalPublicJapanGuides),
