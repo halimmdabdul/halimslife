@@ -1,6 +1,7 @@
 "use server";
 
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { sendContactNotification } from "@/lib/contact-email";
 
 export type ContactFormState = {
   error?: string;
@@ -67,6 +68,13 @@ export async function submitContactMessage(
     return {
       error: "Message পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন অথবা সরাসরি email করুন।",
     };
+  }
+
+  try {
+    const delivery = await sendContactNotification({ name, email, topic, subject, message });
+    if (!delivery.ok) console.error("Contact email delivery skipped or failed:", delivery.reason);
+  } catch (deliveryError) {
+    console.error("Contact email delivery failed:", deliveryError);
   }
 
   return {
