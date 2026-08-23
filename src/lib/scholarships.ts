@@ -29,6 +29,215 @@ export type ScholarshipGuide = {
   reviewedOn?: string;
 };
 
+type JapanShortlistSeed = {
+  slug: string;
+  university: string;
+  program: string;
+  english: string;
+  intake: string;
+  funding: string;
+  priority: string;
+  realityCheck: string;
+  officialLinks: ScholarshipGuide["officialLinks"];
+};
+
+function createJapanShortlistGuide(seed: JapanShortlistSeed): ScholarshipGuide {
+  return {
+    slug: seed.slug,
+    country: "japan",
+    university: seed.university,
+    title: `${seed.university} ${seed.program}: 2027 Planning Guide`,
+    summary: `${seed.program}-এর English eligibility, admission route, supervisor fit এবং funding options যাচাই করে apply করার practical roadmap।`,
+    label: `${seed.priority} priority · Japan master's watchlist`,
+    funding: seed.funding,
+    duration: "Usually 2 years; official guide দিয়ে confirm করুন",
+    audience: "International master’s applicants seeking an English-accessible Japan route",
+    realityCheck: seed.realityCheck,
+    highlights: [
+      `${seed.program} এই shortlist-এর target program।`,
+      `English evidence: ${seed.english}`,
+      `Target intake: ${seed.intake}—current official guide প্রকাশ হলে date re-check করতে হবে।`,
+      `Funding position: ${seed.funding}`,
+    ],
+    fit: [
+      "আপনার bachelor’s background program-এর academic field ও prerequisite-এর সঙ্গে মেলে।",
+      "আপনি English eligibility official guideline বা admissions office থেকে লিখিতভাবে confirm করবেন।",
+      "Research-based route হলে current faculty/supervisor-এর সঙ্গে specific fit দেখাতে পারবেন।",
+      "Scholarship না পেলেও tuition ও living cost-এর realistic fallback budget আছে।",
+    ],
+    quickStart: [
+      "প্রথম official link খুলে current admission year, intake এবং applicant category লিখে নিন।",
+      "English score, MOI এবং Japanese-language rule—তিনটি আলাদা row-তে evidenceসহ নোট করুন।",
+      "Program curriculum ও faculty list দেখে 2–3টি genuine research/career fit বাছুন।",
+      "Fundingকে guaranteed ধরে না নিয়ে scholarship, waiver ও self-funded cost আলাদা করুন।",
+    ],
+    steps: [
+      {
+        title: "2027 route ও eligibility lock করুন",
+        timing: "Official guide প্রকাশের সঙ্গে সঙ্গে",
+        description: "Shortlist-এর summary planning signal; application-এর final authority current university guideline।",
+        actions: [
+          "Exact program name, intake, application window ও applicant residence rule verify করুন।",
+          "Degree equivalency, prerequisite এবং language evidence লিখিত checklist-এ তুলুন।",
+          "Unclear rule admissions office-কে concise email করে confirm করুন।",
+        ],
+        readyWhen: "Current official guide থেকে route, deadline এবং eligibility evidence সংরক্ষিত।",
+      },
+      {
+        title: "Program ও faculty fit তৈরি করুন",
+        timing: "Application-এর 2–4 মাস আগে",
+        description: "Generic Japan interest নয়—program-specific academic বা career fit দেখাতে হবে।",
+        actions: [
+          "Curriculum, faculty ও laboratory pages থেকে relevant themes shortlist করুন।",
+          "Research-based route হলে prospective supervisor contact প্রয়োজন কি না verify করুন।",
+          "নিজের degree, project ও work evidence দিয়ে one-page fit note লিখুন।",
+        ],
+        readyWhen: "Program বাছাইয়ের কারণ এবং 2–3টি evidence-based fit point প্রস্তুত।",
+      },
+      {
+        title: "Application package complete করুন",
+        timing: "Deadline-এর 6–10 সপ্তাহ আগে",
+        description: "Academic documents ও language evidence আগে প্রস্তুত রাখলে last-minute eligibility risk কমে।",
+        actions: [
+          "Transcript, degree certificate, CV, SOP/research plan ও required translations সংগ্রহ করুন।",
+          "MOI ব্যবহার করলে university wording ও accepted format লিখিতভাবে confirm করুন।",
+          "Recommendation, application fee, interview/exam ও postal-document rule check করুন।",
+        ],
+        readyWhen: "Official checklist-এর প্রতিটি required item submission-ready।",
+      },
+      {
+        title: "Funding ও offer verify করুন",
+        timing: "Admission/scholarship decision stage",
+        description: "Possible scholarship বা waiver admission funding guarantee নয়।",
+        actions: [
+          "Admission fee, annual tuition, waiver percentage ও renewal condition লিখিতভাবে দেখুন।",
+          "Scholarship result-এর timing admission result থেকে আলাদা কি না check করুন।",
+          "Living cost, insurance ও uncovered tuitionসহ 24-month budget final করুন।",
+        ],
+        readyWhen: "Written offer ও official funding notice থেকে net cost পরিষ্কার।",
+      },
+    ],
+    checklist: [
+      "Current official application guideline",
+      "Degree certificate ও complete transcript",
+      "Accepted English score বা MOI evidence",
+      "Academic CV",
+      "Statement of Purpose / motivation letter",
+      "Research plan (যদি required হয়)",
+      "Recommendation letters",
+      "Faculty/supervisor approval evidence (যদি required হয়)",
+    ],
+    afterSubmission: [
+      "Portal, email ও spam folder নিয়মিত check করুন।",
+      "Interview, written/oral exam বা original-document request দ্রুত complete করুন।",
+      "Admission এবং scholarship/waiver result আলাদাভাবে track করুন।",
+    ],
+    cautions: [
+      "Shortlist-এর English/funding summary current official guideline replace করে না।",
+      "No GRE/GMAT signal মানেই admission সহজ বা test একেবারেই নেই—এমন নয়।",
+      "MOI acceptance program, route ও applicant profile অনুযায়ী বদলাতে পারে।",
+      "2027 dates বা funding terms পরিবর্তিত হলে official page ও written offer-ই final authority।",
+    ],
+    officialLinks: seed.officialLinks,
+    reviewedAt: "August 23, 2026",
+  };
+}
+
+const japanShortlistAdditions: ScholarshipGuide[] = [
+  createJapanShortlistGuide({
+    slug: "shizuoka-abp-informatics-masters-2027", university: "Shizuoka University", program: "Asia Bridge Program (Informatics)",
+    english: "English-based master’s route; exact MOI/score document current guide দিয়ে verify করুন", intake: "October 2027 watchlist",
+    funding: "ABP selection can include application, admission and first-year tuition waivers; 2027 terms must be re-confirmed", priority: "High",
+    realityCheck: "Shizuoka officially confirms an English-based ABP master’s route and Bangladesh is among eligible regions. The currently visible cycle is 2026, so October 2027 dates and waiver terms remain a watchlist until the next guide is published.",
+    officialLinks: [
+      { label: "Shizuoka University admissions", href: "https://www.shizuoka.ac.jp/english/admission/", description: "Master’s ABP eligibility, English delivery ও current application guide দেখুন।" },
+      { label: "Asia Bridge Program", href: "https://www.abp.icsu.shizuoka.ac.jp/eng/", description: "Current ABP notices, application guide ও result timeline দেখুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "ehime-mathematics-computer-science-masters-2027", university: "Ehime University", program: "Mathematics and Computer Science Master’s",
+    english: "International selection guide ও interview-language rule exact PDF থেকে confirm করুন", intake: "April/September 2027",
+    funding: "National-university tuition; graduate and privately financed international students may apply for budget-limited tuition waiver", priority: "Medium-High",
+    realityCheck: "Ehime has published a 2027 international master’s selection guide covering Mathematics and Computer Science. A tuition-waiver application exists, but approval and amount are not guaranteed.",
+    officialLinks: [
+      { label: "Ehime 2027 master’s application guide", href: "https://www.ehime-u.ac.jp/wp-content/uploads/2026/03/rikou_M_202704-09E_tokubetsu_yoko.pdf", description: "Dates, selection, documents ও language requirements verify করুন।" },
+      { label: "Mathematics and Computer Science Program", href: "https://www.math.sci.ehime-u.ac.jp/grad/about.en.html", description: "Program structure ও research fields দেখুন।" },
+      { label: "Ehime tuition waiver", href: "https://www.ehime-u.ac.jp/en/entrance/scholarship-exemption/", description: "Graduate/international waiver rules ও application timing দেখুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "nagaoka-imse-masters-2027", university: "Nagaoka University of Technology", program: "Information and Management Systems Engineering Master’s",
+    english: "Current international-student procedure-এ language evidence ও examination method verify করুন", intake: "April 2027 / September route as published",
+    funding: "National-university tuition; scholarships/waivers are separate and competitive", priority: "Medium-High",
+    realityCheck: "The IMSE master’s program is official and combines applied informatics, management systems and data science. Do not assume the entire degree is English-only without checking the current course and examination language.",
+    officialLinks: [
+      { label: "Nagaoka master’s application forms", href: "https://www.nagaokaut.ac.jp/e/admissions/exam/master/docs/index.html", description: "Current international-student procedure ও intake documents দেখুন।" },
+      { label: "IMSE program overview", href: "https://imse.nagaokaut.ac.jp/en/outline/", description: "Applied informatics, management systems ও data-science curriculum দেখুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "globis-full-time-mba-2027", university: "GLOBIS University", program: "Full-time MBA",
+    english: "English MBA route; current admissions guide-এর accepted evidence verify করুন", intake: "Fall 2027",
+    funding: "GLOBIS scholarship can cover up to 50% of tuition for selected applicants", priority: "Medium",
+    realityCheck: "This is a one-year accelerated private MBA, not a low-cost national-university degree. The scholarship is competitive and does not cover every cost; leadership and work-experience evidence matter strongly.",
+    officialLinks: [
+      { label: "GLOBIS Full-time MBA application", href: "https://www.globis.ac.jp/apply/", description: "2027 rounds, admissions guide ও application portal দেখুন।" },
+      { label: "GLOBIS scholarships and loans", href: "https://www.globis.ac.jp/admission-fees/full-time-mba-fees-and-financing/full-time-mba-scholarships-and-loans/", description: "Up-to-50% award, essay ও eligibility terms verify করুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "kwansei-gakuin-un-system-policy-masters-2027", university: "Kwansei Gakuin University", program: "UN System Policy Studies Master’s",
+    english: "All-English curriculum; exact admission evidence current English guideline থেকে দেখুন", intake: "April 2027",
+    funding: "University/international-student aid and internship support exist; exact award is separate from admission", priority: "Medium",
+    realityCheck: "The all-English UN System Policy Studies master’s officially lists 2027 rounds. It is policy/international-cooperation focused, not a general MBA or computer-science degree.",
+    officialLinks: [
+      { label: "UN System Policy Studies", href: "https://www.kwansei.ac.jp/en/academics/graduate/policy-studies/un-system-policy-studies.html", description: "Curriculum, faculty ও AY2027 admissions information দেখুন।" },
+      { label: "AY2027 application guideline", href: "https://www.kwansei.ac.jp/assets/2027_Application_Guideline-UN_System_Policy_Studies.pdf", description: "Rounds, eligibility, documents ও selection verify করুন।" },
+      { label: "Financial information", href: "https://www.kwansei.ac.jp/en/admissions-aid/financial-information.html", description: "Graduate/international scholarships ও fees দেখুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "apu-international-cooperation-policy-masters-2027", university: "Ritsumeikan Asia Pacific University", program: "International Cooperation Policy Master’s",
+    english: "English-language graduate route; score/waiver eligibility applicant-specific", intake: "April/September 2027",
+    funding: "Competitive tuition reductions and external scholarships; amount is not guaranteed", priority: "Conditional",
+    realityCheck: "APU’s ICP master’s is official and includes Development Economics, but a 5.5 IELTS-only profile may not meet the standard English gate unless a valid waiver route applies. Treat it as conditional, not low-requirement by default.",
+    officialLinks: [
+      { label: "APU International Cooperation Policy", href: "https://admissions.apu.ac.jp/graduate/academics/gsa_master/icp/", description: "Degree, divisions, duration ও intake দেখুন।" },
+      { label: "APU 2027 master’s admissions", href: "https://admissions.apu.ac.jp/graduate/how_to_apply/Masters_2027/", description: "Current eligibility, English evidence, dates ও documents verify করুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "kuas-engineering-masters-2027", university: "Kyoto University of Advanced Science", program: "Graduate School of Engineering Master’s",
+    english: "English requirement applies; MOI waiver eligibility must be confirmed in the current route", intake: "September 2027",
+    funding: "KUAS-E awards may waive 30%, 50% or 100% of tuition/admission fees; Super KUAS-E can add stipend for a few students", priority: "Conditional",
+    realityCheck: "KUAS Engineering is research-based and requires a prospective-supervisor choice. Scholarship selection is highly competitive; IELTS 5.5 alone is not a safe assumption without an accepted waiver.",
+    officialLinks: [
+      { label: "KUAS postgraduate application", href: "https://www.kuas.ac.jp/en/admission/pg/", description: "Timeline, eligibility, documents ও supervisor process দেখুন।" },
+      { label: "KUAS scholarships", href: "https://www.kuas.ac.jp/en-jp/about/tuition/scholarship", description: "KUAS-E/Super KUAS-E amount ও renewal conditions verify করুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "ryukyus-resilient-smart-city-masters-2027", university: "University of the Ryukyus", program: "Resilient Smart City Master’s",
+    english: "Official special-program page currently requires at least CEFR B2 evidence", intake: "October 2027 watchlist",
+    funding: "MEXT and non-scholarship routes may be offered by cycle; current 2027 allocation must be verified", priority: "Medium",
+    realityCheck: "The English special program is official, but the visible call is for October 2026 and requires CEFR B2. A quoted IELTS 5.5 should not be treated as automatically equivalent without the next official guide.",
+    officialLinks: [
+      { label: "Resilient Smart City special program", href: "https://www.tec.u-ryukyu.ac.jp/graduate/en/pgp/", description: "Current cycle, CEFR rule, adviser contact ও MEXT/non-scholarship routes দেখুন।" },
+      { label: "Graduate School of Engineering and Science", href: "https://www.u-ryukyu.ac.jp/faculty/gra_science/", description: "English special-program context ও graduate-school overview দেখুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "tottori-information-electronics-masters-2027", university: "Tottori University", program: "Information and Electronics Master’s Watchlist",
+    english: "Older official route documents mention English/MOI pathways; a current 2027 guide is not yet verified", intake: "2027 watchlist",
+    funding: "A special MEXT route may exist by cycle; self-funded and scholarship routes must be separated", priority: "Limited",
+    realityCheck: "The Information and Electronics course appears in an older official foreign-student guide, but the current special-program document found is for Green Sustainable Chemistry. Keep this as a watchlist until Tottori publishes a matching 2027 Information/Electronics call.",
+    officialLinks: [
+      { label: "Tottori graduate admissions", href: "https://www.admissions.adm.tottori-u.ac.jp/", description: "Current graduate calls ও application guidelines search করুন।" },
+      { label: "Older Information and Electronics route", href: "https://www.admissions.adm.tottori-u.ac.jp/wp-content/uploads/2021/03/Application-Procedure-for-Foreign-Student-Admission-to-Department-of-Engineering-Graduate-School-of-Sustainability-Science-Masters-Program-2021October-entrance.pdf", description: "Program existence/context দেখুন—2027 rules হিসেবে ব্যবহার করবেন না।" },
+    ],
+  }),
+];
+
 export const scholarshipGuides: ScholarshipGuide[] = [
   {
     slug: "cmu-computer-science-phd-funding",
@@ -6906,6 +7115,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     ],
     reviewedAt: "August 17, 2026",
   },
+  ...japanShortlistAdditions,
 ];
 
 export function getScholarshipGuide(slug: string) {
