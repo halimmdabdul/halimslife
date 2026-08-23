@@ -36,7 +36,10 @@ const japanGuides=scholarshipGuides
 const campusCycle=[alabamaCampus,uconnCampus,iowaCampus];
 const applicationSteps=["Fit check","Official source","Professor email","Documents","Apply & verify"];
 
-function SectionTitle({number,children}:{number:string;children:React.ReactNode}){return <div className={styles.sectionTitle}><span>{number}</span><h2>{children}</h2></div>}
+function SectionTitle({number,children}:{number:string;children:React.ReactNode}){
+  const displayNumber={"03":"01","05":"02","06":"03"}[number]??number;
+  return <div className={styles.sectionTitle}><span>{displayNumber}</span><h2>{children}</h2></div>;
+}
 
 function CountryFlag({country}:{country:string}){
   if(country==="usa")return <svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#fff"/><path fill="#b22234" d="M0 0h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0zm0 4h36v2H0z"/><rect width="15" height="12" fill="#3c3b6e"/><g fill="#fff"><circle cx="3" cy="3" r=".8"/><circle cx="7.5" cy="3" r=".8"/><circle cx="12" cy="3" r=".8"/><circle cx="5.2" cy="6" r=".8"/><circle cx="9.8" cy="6" r=".8"/><circle cx="3" cy="9" r=".8"/><circle cx="7.5" cy="9" r=".8"/><circle cx="12" cy="9" r=".8"/></g></svg>;
