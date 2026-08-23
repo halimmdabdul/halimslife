@@ -238,6 +238,345 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   }),
 ];
 
+type TierAJapanSeed = {
+  rank: number;
+  slug: string;
+  university: string;
+  bestFit: string;
+  routes: string;
+  difficulty: "High" | "Very high";
+  target: string;
+  languageReality: string;
+  strategy: string;
+  officialLinks: ScholarshipGuide["officialLinks"];
+  eligibilityNote?: string;
+};
+
+const tierARouteNames: Record<string, string> = {
+  M: "MEXT (Embassy/University Recommendation)",
+  U: "University scholarship or fellowship",
+  J: "JASSO Honors Scholarship",
+  T: "Admission/tuition fee waiver",
+  P: "Private-foundation scholarship",
+};
+
+function createTierAJapanGuide(seed: TierAJapanSeed): ScholarshipGuide {
+  const routeDetails = seed.routes.split("/").map((route) => tierARouteNames[route] ?? route);
+  const difficultyBn = seed.difficulty === "Very high" ? "অত্যন্ত কঠিন" : "কঠিন";
+
+  return {
+    slug: seed.slug,
+    country: "japan",
+    university: seed.university,
+    title: `${seed.university}: Tier A Master’s Planning Guide`,
+    summary: `${seed.bestFit} background-এর জন্য ${seed.target} route, funding options এবং competitive application strategy নিয়ে verified planning guide।`,
+    label: `Tier A · Rank ${seed.rank} · ${seed.difficulty}`,
+    funding: `${routeDetails.join(" · ")}—সব route competitive; admission বা funding guarantee নয়।`,
+    duration: "সাধারণত 2 বছর · April/September/October intake program অনুযায়ী",
+    audience: `Strong academic profile-সহ international applicant, যার best fit: ${seed.bestFit}`,
+    realityCheck: `${seed.university} এই shortlist-এর ${difficultyBn} target। ${seed.languageReality} ${seed.strategy}${seed.eligibilityNote ? ` ${seed.eligibilityNote}` : ""} Route code ${seed.routes} সম্ভাব্য funding channel বোঝায়; একই application-এ সবগুলো পাওয়া বা একসঙ্গে ব্যবহার করা যায় না।`,
+    highlights: [
+      `Shortlist position: #${seed.rank}; difficulty: ${seed.difficulty}.`,
+      `Best-fit area: ${seed.bestFit}.`,
+      `Recommended target: ${seed.target}.`,
+      `Possible funding routes: ${routeDetails.join(", ")}.`,
+      `Language reality: ${seed.languageReality}`,
+    ],
+    fit: [
+      `${seed.bestFit} field-এর prerequisite ও আপনার bachelor’s coursework-এর স্পষ্ট মিল আছে।`,
+      "Competitive GPA, relevant research/project evidence এবং শক্তিশালী recommendation দেখাতে পারবেন।",
+      "Generic university ranking নয়—specific program, laboratory বা faculty fit লিখতে পারবেন।",
+      "Scholarship না পেলেও application এবং self-funded fallback cost আগে থেকে হিসাব করতে পারবেন।",
+    ],
+    quickStart: [
+      "Official graduate-school page থেকে exact degree, intake, language এবং current application guide বাছুন।",
+      "Supervisor consent/AAO/AAD/pre-screening লাগলে formal application-এর আগেই সম্পন্ন করুন।",
+      "দুইটি target laboratory বা program এবং অন্তত তিনটি evidence-based fit point লিখুন।",
+      `Funding tracker-এ ${seed.routes} routeগুলো আলাদা deadline ও eligibility সহ রাখুন।`,
+    ],
+    steps: [
+      {
+        title: "Exact program ও admission route lock করুন",
+        timing: "Deadline-এর 6–10 মাস আগে",
+        description: "University-wide page শুধু navigator; final rule graduate school-এর current guideline।",
+        actions: [
+          `প্রথম target হিসেবে ${seed.target} যাচাই করুন।`,
+          "April বনাম autumn intake, overseas/Japan-resident route এবং degree language আলাদা করে নোট করুন।",
+          "Degree eligibility, GPA conversion, English/Japanese score ও entrance-exam rule official PDF থেকে তুলুন।",
+        ],
+        readyWhen: "একটি exact program, intake, deadline এবং applicant category লিখিতভাবে নিশ্চিত।",
+      },
+      {
+        title: "Research বা career fit শক্ত করুন",
+        timing: "Deadline-এর 4–8 মাস আগে",
+        description: seed.strategy,
+        actions: [
+          "Current faculty/lab pages থেকে 2–3টি realistic option shortlist করুন।",
+          "Recent paper, project বা curriculum-এর সঙ্গে নিজের work/research evidence connect করুন।",
+          "Supervisor contact required হলে concise CV, transcript summary ও focused research idea পাঠান।",
+        ],
+        readyWhen: "প্রতিটি target-এর জন্য named evidence এবং কেন fit—তার এক-পৃষ্ঠার note প্রস্তুত।",
+      },
+      {
+        title: "Competitive application package তৈরি করুন",
+        timing: "Deadline-এর 8–12 সপ্তাহ আগে",
+        description: `${seed.difficulty} selection-এ minimum eligibility যথেষ্ট নয়; coherent evidence package দরকার।`,
+        actions: [
+          "Transcript, degree certificate, CV, language score/MOI এবং certified translation প্রস্তুত করুন।",
+          "SOP/research plan-এ problem, method, faculty fit, feasibility ও expected impact পরিষ্কার করুন।",
+          "Recommendation, interview, written/oral exam এবং postal-original requirement calendar-এ রাখুন।",
+        ],
+        readyWhen: "Current official checklist-এর সব required document এবং test evidence submission-ready।",
+      },
+      {
+        title: "Funding routes আলাদাভাবে submit ও verify করুন",
+        timing: "Embassy cycle থেকে enrollment-এর পর পর্যন্ত",
+        description: "MEXT, university, JASSO, waiver ও private scholarship-এর deadline এবং nomination authority আলাদা।",
+        actions: [
+          `আপনার জন্য applicable ${seed.routes} routes-এর eligibility ও overlap restriction যাচাই করুন।`,
+          "MEXT Embassy Recommendation আগে শুরু করুন; University Recommendation program quota ধরে নেবেন না।",
+          "Offer-এর পরে tuition, admission fee, stipend, duration ও renewal condition লিখিতভাবে মিলিয়ে নিন।",
+        ],
+        readyWhen: "Admission offer এবং প্রতিটি funding decision আলাদাভাবে documented; net two-year cost পরিষ্কার।",
+      },
+    ],
+    checklist: [
+      "Current graduate-school application guideline",
+      "Degree certificate ও full academic transcript",
+      "Accepted English/Japanese language evidence",
+      "Academic CV ও relevant project/research evidence",
+      "Program-specific SOP বা motivation statement",
+      "Research proposal, যদি route-এ প্রয়োজন হয়",
+      "Recommendation letters",
+      "Supervisor consent/pre-screening evidence, যদি প্রয়োজন হয়",
+      "Funding এবং 24-month fallback budget",
+    ],
+    afterSubmission: [
+      "Portal, university email এবং spam folder নিয়মিত দেখুন।",
+      "Interview/entrance exam-এর জন্য program knowledge, methods ও funding plan rehearse করুন।",
+      "Admission, scholarship, tuition waiver এবং visa/COE—চারটি status আলাদাভাবে track করুন।",
+    ],
+    cautions: [
+      "M/U/J/T/P সম্ভাব্য channel; কোনো award guaranteed নয় এবং double-funding restriction থাকতে পারে।",
+      "University-level ‘English program’ মানে সব graduate school বা সব course English নয়।",
+      "Supervisor-এর positive reply formal admission বা scholarship guarantee নয়।",
+      "2027 dates, fees ও scholarship quota বদলাতে পারে; current official guide এবং written offer final authority।",
+      ...(seed.eligibilityNote ? [seed.eligibilityNote] : []),
+    ],
+    officialLinks: seed.officialLinks,
+    reviewedAt: "August 23, 2026",
+    reviewedOn: "2026-08-23",
+  };
+}
+
+const tierAJapanGuides: ScholarshipGuide[] = [
+  createTierAJapanGuide({
+    rank: 1, slug: "university-of-tokyo-tier-a-masters-2027", university: "University of Tokyo", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "International Multidisciplinary Engineering (IME), Information Science and Technology, অথবা English-accessible business/economics route",
+    languageReality: "Requirement graduate schoolভেদে বদলায়; IME lectures/research English-এ এবং 2027 prospectus প্রকাশিত।",
+    strategy: "World-class rank alone নয়—faculty-level research match, excellent academics এবং strong proposal সবচেয়ে গুরুত্বপূর্ণ।",
+    officialLinks: [
+      { label: "UTokyo graduate admissions", href: "https://www.u-tokyo.ac.jp/adm/inbound/en/programs-admissions.html", description: "Graduate schools, English degree programs ও MEXT routes দেখুন।" },
+      { label: "IME 2027 prospectus", href: "https://www.ime.t.u-tokyo.ac.jp/Prospectus-2027.html", description: "English master’s, online selection, fees ও competitive MEXT/IME funding verify করুন।" },
+      { label: "UTokyo scholarships", href: "https://www.u-tokyo.ac.jp/en/prospective-students/scholarships.html", description: "MEXT, UTokyo Fellowship এবং external scholarship navigator।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 2, slug: "kyoto-university-tier-a-masters-2027", university: "Kyoto University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "Graduate School of Informatics, Engineering, Economics অথবা listed English-taught master’s",
+    languageReality: "English-taught degree list সীমিত; অন্য অধিকাংশ master’s/professional route-এ শক্ত Japanese প্রয়োজন।",
+    strategy: "Overseas graduates-এর AAO/graduate-school procedure এবং prospective-supervisor fit অনেক route-এ early critical step।",
+    officialLinks: [
+      { label: "Kyoto graduate admission guide", href: "https://www.kyoto-u.ac.jp/en/education-campus/education-and-admissions/intl-admissions", description: "Course, supervisor, AAO ও graduate-school guidelines অনুসরণ করুন।" },
+      { label: "English-taught degree programs", href: "https://www.kyoto-u.ac.jp/en/education-campus/education-and-admissions/english-taught-degree-programs", description: "English-এ complete করা যায় এমন exact degree shortlist করুন।" },
+      { label: "Kyoto scholarships", href: "https://www.kyoto-u.ac.jp/en/education-campus/procedures/scholarships", description: "MEXT ও highly competitive post-enrollment private funding reality দেখুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 3, slug: "science-tokyo-tier-a-masters-2027", university: "Institute of Science Tokyo", bestFit: "CSE/Engineering", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "International Graduate Program A/C in computing, engineering, AI or systems",
+    languageReality: "Science and Engineering IGP পুরো English-এ; IGP route ও department অনুযায়ী selection এবং intake আলাদা।",
+    strategy: "Prospective academic supervisor খোঁজা, research plan এবং IGP A বনাম C-এর সঠিক route নির্বাচন application-এর কেন্দ্র।",
+    officialLinks: [
+      { label: "Science Tokyo international graduate programs", href: "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering", description: "IGP A/B/C, English delivery, intake ও scholarship routes তুলনা করুন।" },
+      { label: "Science Tokyo admissions", href: "https://admissions.isct.ac.jp/en", description: "Current graduate announcements ও application procedures দেখুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 4, slug: "osaka-university-tier-a-masters-2027", university: "The University of Osaka", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "Information Science, Engineering, Economics/Management অথবা English international graduate route",
+    languageReality: "Language, test এবং pre-contact rule প্রতিটি graduate school নির্ধারণ করে; university-wide English assumption নিরাপদ নয়।",
+    strategy: "Overseas-educated applicants-এর জন্য AAD screening, exact graduate program এবং prospective supervisor sequence আগে শেষ করুন।",
+    officialLinks: [
+      { label: "International graduate applicant guide", href: "https://www.osaka-u.ac.jp/en/admissions/intl-students", description: "Research plan, program, AAD ও supervisor contact-এর official flow দেখুন।" },
+      { label: "Graduate admissions", href: "https://www.osaka-u.ac.jp/en/admissions/graduate", description: "Graduate-school-specific current guidelines খুঁজুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 5, slug: "tohoku-university-tier-a-masters-2027", university: "Tohoku University", bestFit: "CSE + Management", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "English graduate courses in Information Sciences, Engineering অথবা Economics and Management",
+    languageReality: "English-only graduate courses আছে, তবে program এবং instructor অনুযায়ী application procedure বদলায়।",
+    strategy: "আগে prospective advisor confirm করুন; 2027 International Excellence Scholarship top applicants-এর জন্য full/half tuition cover করতে পারে।",
+    officialLinks: [
+      { label: "Tohoku graduate admission", href: "https://www.tohoku.ac.jp/en/admissions/admission_graduate.html", description: "English courses, advisor-first process ও school-specific procedure দেখুন।" },
+      { label: "International scholarships", href: "https://www.insc.tohoku.ac.jp/english/scholarship-for-international-students/", description: "MEXT, waiver এবং 2027 International Excellence Scholarship verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 6, slug: "nagoya-university-tier-a-masters-2027", university: "Nagoya University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "G30 Computer Science/Engineering অথবা Economics and Business Administration master’s",
+    languageReality: "G30 degree সম্পূর্ণ English-এ; most applicants-এর accepted English test লাগে এবং exact waiver rule program-specific।",
+    strategy: "Application-এর আগে research group select করতে হয়; group capacity এবং evidence-based fit ছাড়া generic G30 application দুর্বল।",
+    officialLinks: [
+      { label: "Nagoya graduate programs", href: "https://en.nagoya-u.ac.jp/admissions/graduate/", description: "G30 ও other English graduate programs এবং intake দেখুন।" },
+      { label: "G30 graduate admissions", href: "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/", description: "Current program, research group, documents ও timeline verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 7, slug: "kyushu-university-tier-a-masters-2027", university: "Kyushu University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "International Master’s in Engineering/ISEE অথবা English economics/business-aligned route",
+    languageReality: "Graduate schools international English programs দেয়, কিন্তু requirements ও selection school-specific।",
+    strategy: "Engineering route-এ formal application-এর আগে relevant faculty member-এর সঙ্গে research আলোচনা ও consent essential।",
+    officialLinks: [
+      { label: "Kyushu admissions", href: "https://www.kyushu-u.ac.jp/en/admission", description: "Graduate admission, fees এবং scholarship navigator দেখুন।" },
+      { label: "Engineering graduate admissions", href: "https://www.eng.kyushu-u.ac.jp/en/admissions/graduate-admissions/", description: "English international master’s, intake এবং advisor-first rule verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 8, slug: "hokkaido-university-tier-a-masters-2027", university: "Hokkaido University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "Information Science and Technology, e3 Engineering অথবা English-accessible management route",
+    languageReality: "International programs আছে, তবে complete-English status এবং score requirement exact graduate school থেকে confirm করতে হবে।",
+    strategy: "Research-intensive route হওয়ায় lab choice, supervisor availability এবং proposal qualityকে ranking-এর চেয়ে বেশি priority দিন।",
+    officialLinks: [
+      { label: "Hokkaido graduate admissions", href: "https://www.global.hokudai.ac.jp/admissions/graduate-admissions/", description: "Graduate school list, international admission ও current guidelines দেখুন।" },
+      { label: "Hokkaido scholarships", href: "https://www.global.hokudai.ac.jp/admissions/scholarships/", description: "MEXT, JASSO এবং private scholarship options verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 9, slug: "tsukuba-tier-a-masters-2027", university: "University of Tsukuba", bestFit: "CSE + Management", routes: "M/U/J/T/P", difficulty: "High",
+    target: "Systems and Information Engineering, AI Social Implementation অথবা MBA-IB",
+    languageReality: "একাধিক English degree আছে; programভেদে external English score, interview এবং supervisor requirement বদলায়।",
+    strategy: "Technical AISIP এবং professional MBA-IB সম্পূর্ণ আলাদা route—profile অনুযায়ী একটিকে primary করে documents সাজান।",
+    officialLinks: [
+      { label: "Tsukuba admissions", href: "https://www.tsukuba.ac.jp/en/admissions/", description: "Graduate programs, English degrees, fees ও financial aid দেখুন।" },
+      { label: "Tsukuba MEXT", href: "https://www.tsukuba.ac.jp/en/admissions/financial-scholarships/mext/", description: "Embassy/University Recommendation এবং current special programs verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 10, slug: "kobe-university-tier-a-masters-2027", university: "Kobe University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "High",
+    target: "Systems Informatics অথবা English-taught International Cooperation Studies master’s",
+    languageReality: "GSICS English master’s October-only; technical graduate routes-এর language ও exam আলাদাভাবে verify করতে হবে।",
+    strategy: "Business/policy এবং CSE-এর জন্য একই application নয়; exact school অনুযায়ী research proposal ও supervisor strategy বদলান।",
+    officialLinks: [
+      { label: "Kobe English-taught master’s", href: "https://www.gsics.kobe-u.ac.jp/en/prospective/master.html", description: "GSICS October intake, documents ও AY2027 procedure notice দেখুন।" },
+      { label: "Kobe scholarships", href: "https://www.kobe-u.ac.jp/en/campus-life/scholarships/about/", description: "MEXT ও competitive private scholarships verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 11, slug: "hitotsubashi-tier-a-masters-2027", university: "Hitotsubashi University", bestFit: "Business/Economics", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "Economics, Business Administration, International/Public Policy অথবা Social Data Science",
+    languageReality: "কিছু policy program English-এ, কিন্তু Economics master’s শুধু English courses নিয়ে complete করা যায় না।",
+    strategy: "Quantitative economics/business foundation, research proposal এবং program-specific Japanese/English reality honestভাবে match করুন।",
+    officialLinks: [
+      { label: "Hitotsubashi graduate schools", href: "https://www.hit-u.ac.jp/eng/education/index.html", description: "Business, Economics, Policy ও Social Data Science routes দেখুন।" },
+      { label: "2027 MEXT graduate route", href: "https://international.hit-u.ac.jp/en/pros/mext/apply/", description: "Embassy-recommended candidate procedure ও available majors verify করুন।" },
+      { label: "Economics admission", href: "https://www.econ.hit-u.ac.jp/eng/page/graduate/admission.html", description: "English/Japanese course reality, TOEFL/TOEIC ও online oral selection দেখুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 12, slug: "waseda-tier-a-masters-2027", university: "Waseda University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "English-based Computer Science/Engineering, Economics অথবা Business-related graduate program",
+    languageReality: "English-based graduate programs আছে, কিন্তু school-specific test, experience এবং document rules আলাদা।",
+    strategy: "Private-university tuition বেশি; scholarship পাওয়ার আগে full-cost funding proof এবং strong academic/professional evidence প্রস্তুত রাখুন।",
+    officialLinks: [
+      { label: "Waseda graduate programs", href: "https://www.waseda.jp/inst/admission/en/graduate/", description: "English-based ও Japanese-based graduate programs আলাদা করে দেখুন।" },
+      { label: "Waseda tuition and aid", href: "https://www.waseda.jp/inst/cie/en/life/aid", description: "Most post-admission scholarships competitive—funding reality verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 13, slug: "keio-tier-a-masters-2027", university: "Keio University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    target: "International Graduate Program in Science and Technology, Economics অথবা Business and Commerce",
+    languageReality: "Keio-তে multiple English graduate degrees আছে; exact school-এর application guide final authority।",
+    strategy: "Academic fit-এর পাশাপাশি private-university cost plan করুন; Design the Future award highly selective, fallback নয়।",
+    officialLinks: [
+      { label: "Keio English degree programs", href: "https://www.keio.ac.jp/en/admissions/international-student/programs-offered-in-english/", description: "English-completable graduate degrees shortlist করুন।" },
+      { label: "Keio graduate admissions", href: "https://www.keio.ac.jp/en/admissions/grad/", description: "Current school-specific master’s guidebooks দেখুন।" },
+      { label: "Keio scholarships", href: "https://www.keio.ac.jp/en/admissions/scholarship/", description: "Internal, MEXT, JASSO, private এবং Design the Future funding দেখুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 14, slug: "hiroshima-university-tier-a-masters-2027", university: "Hiroshima University", bestFit: "CSE + Management", routes: "M/U/J/T/P", difficulty: "High",
+    target: "Informatics and Data Science, Smart Innovation অথবা transdisciplinary management-aligned field",
+    languageReality: "International selections আছে; English certificate এবং test rules programভেদে আলাদা ও 2026 থেকে কিছু route-এ updated।",
+    strategy: "Overseas graduates-এর supervisor contact অনেক ক্ষেত্রে HU-IAAS দিয়ে শুরু করতে হয়; direct informal email যথেষ্ট নাও হতে পারে।",
+    officialLinks: [
+      { label: "Hiroshima master’s admissions", href: "https://www.hiroshima-u.ac.jp/en/adse/admission/m_admission", description: "International selection, programs, language updates ও current guides দেখুন।" },
+      { label: "International Admissions Office", href: "https://www.hiroshima-u.ac.jp/en/iao", description: "HU-IAAS supervisor-contact process, fees ও scholarships দেখুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 15, slug: "tokyo-university-of-science-tier-a-masters-2027", university: "Tokyo University of Science", bestFit: "CSE + Management", routes: "M/J/T/P", difficulty: "High",
+    target: "Information Sciences, Engineering অথবা Management of Technology-aligned graduate route",
+    languageReality: "International applicant guide আছে, কিন্তু program delivery Japanese/English এবং examination language আগে confirm করতে হবে।",
+    strategy: "Application-এর আগে intended instructor-এর সঙ্গে contact বাধ্যতামূলক; university scholarship route user list-এ নেই, তাই M/J/T/P আলাদাভাবে verify করুন।",
+    officialLinks: [
+      { label: "TUS admissions", href: "https://www.tus.ac.jp/en/admissions/", description: "Graduate application এবং instructor-first rule দেখুন।" },
+      { label: "International master’s guide reference", href: "https://www.tus.ac.jp/en/admissions/graduate/pdf/2026_en_master.pdf", description: "Eligibility ও selection reference হিসেবে দেখুন; 2027 guide প্রকাশ হলে replace করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 16, slug: "yokohama-national-tier-a-masters-2027", university: "Yokohama National University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "High",
+    target: "Mathematics/Physics/Electrical Engineering and Computer Science অথবা English management/infrastructure route",
+    languageReality: "YNU official page exact English master’s list দেয়; Japanese-only routes-এর সঙ্গে গুলিয়ে ফেলবেন না।",
+    strategy: "Program-specific guide, pre-arrival admission এবং YNU international tuition-waiver eligibility একসঙ্গে যাচাই করুন।",
+    officialLinks: [
+      { label: "YNU admissions and aid", href: "https://www.ynu.ac.jp/english/admissions/", description: "English master’s, MEXT, JICA এবং tuition-waiver routes দেখুন।" },
+      { label: "Graduate admission policy", href: "https://www.ynu.ac.jp/english/education/policy/graduate/admission/", description: "School-specific guideline ও selection framework verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 17, slug: "chiba-university-tier-a-masters-2027", university: "Chiba University", bestFit: "CSE + Management", routes: "M/U/J/T/P", difficulty: "High",
+    target: "Graduate School of Science and Engineering/Informatics অথবা management-linked interdisciplinary route",
+    languageReality: "English availability এবং examination requirements exact graduate school ও laboratoryভেদে confirm করতে হবে।",
+    strategy: "Supervisor/lab fit আগে তৈরি করুন; international scholarship recommendation-এর জন্য annual pre-registration লাগতে পারে।",
+    officialLinks: [
+      { label: "Chiba University", href: "https://www.chiba-u.jp/e/", description: "Official graduate school ও international applicant navigation ব্যবহার করুন।" },
+      { label: "International graduate procedures guide", href: "https://www.chiba-u.jp/students/files/pdf/AdmissionProcedureGuide_Graduate_EN_InternationalStudent2.pdf", description: "Enrollment, scholarship pre-registration এবং international procedures দেখুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 18, slug: "osaka-metropolitan-tier-a-masters-2027", university: "Osaka Metropolitan University", bestFit: "CSE + Business", routes: "M/J/T/P", difficulty: "High",
+    target: "English-accessible Engineering/Science route; Business/Economics/Informatics only with sufficient Japanese",
+    languageReality: "OMU explicitly lists Business, Economics এবং Informatics graduate schools as Japanese-taught; English target carefully narrow করতে হবে।",
+    strategy: "Pre-arrival route থাকলে supervisor-এর মাধ্যমে JASSO reservation possibility দেখুন; admission-এর পরে private aid/waiver competitive।",
+    officialLinks: [
+      { label: "OMU graduate admissions", href: "https://www.omu.ac.jp/en/admissions/graduate/", description: "English/Japanese-taught graduate schools clearly compare করুন।" },
+      { label: "OMU financial aid", href: "https://www.omu.ac.jp/en/admissions/financial-aid/", description: "JASSO pre-arrival, private scholarship ও tuition reduction rules দেখুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 19, slug: "tuat-tier-a-masters-2027", university: "Tokyo University of Agriculture and Technology", bestFit: "CSE/Engineering", routes: "M/U/J/T/P", difficulty: "High",
+    target: "Engineering, Computer and Information Sciences অথবা Bio-Applications and Systems Engineering",
+    languageReality: "International selection আছে, কিন্তু degree language, lab instruction ও entrance examination current guide দিয়ে verify করতে হবে।",
+    strategy: "Applied engineering/research evidence এবং prospective laboratory fitকে central করুন; নামের ‘Agriculture’ দেখে computing options বাদ দেবেন না।",
+    officialLinks: [
+      { label: "TUAT international applicants", href: "https://www.tuat.ac.jp/en/applicants/", description: "Graduate admission, scholarships ও international support দেখুন।" },
+      { label: "TUAT graduate admission policy", href: "https://www.tuat.ac.jp/en/admission/nyushi_daigakuin/admission_policy/", description: "Engineering এবং interdisciplinary applicant expectations verify করুন।" },
+    ],
+  }),
+  createTierAJapanGuide({
+    rank: 20, slug: "ochanomizu-tier-a-masters-2027", university: "Ochanomizu University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "High",
+    target: "Advanced Sciences/Computer Science অথবা interdisciplinary human-development and management research",
+    languageReality: "Program-specific Japanese/English এবং entrance-exam requirements current master’s guide থেকে confirm করতে হবে।",
+    strategy: "Field fit শক্ত হলেও eligibility প্রথম gate—এই national women’s university-এর graduate applications women candidates-এর জন্য।",
+    eligibilityNote: "গুরুত্বপূর্ণ: Ochanomizu University-এর master’s admission guideline women applicants-কে eligible বলে; eligibility না মিললে apply করবেন না।",
+    officialLinks: [
+      { label: "Ochanomizu master’s admission guide", href: "https://www.ocha.ac.jp/en/admission/info/master_d/fil/2026_M_kyoso.pdf", description: "Women-only eligibility, international route, fees ও support reference দেখুন; 2027 guide প্রকাশ হলে update করুন।" },
+      { label: "Ochanomizu admissions", href: "https://www.ocha.ac.jp/en/admission/index.html", description: "Current graduate admission announcements ও official guidance দেখুন।" },
+    ],
+  }),
+];
+
 export const scholarshipGuides: ScholarshipGuide[] = [
   {
     slug: "cmu-computer-science-phd-funding",
@@ -7116,6 +7455,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     reviewedAt: "August 17, 2026",
   },
   ...japanShortlistAdditions,
+  ...tierAJapanGuides,
 ];
 
 export function getScholarshipGuide(slug: string) {
