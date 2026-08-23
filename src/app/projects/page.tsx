@@ -1,94 +1,28 @@
 import type { Metadata } from "next";
-import { connection } from "next/server";
+import Image from "next/image";
+import Link from "next/link";
 
+import journeyArt from "@/assets/journey/hero-bangladesh-japan.png";
+import kanaArt from "@/assets/homepage/project-kana.png";
+import jlptArt from "@/assets/homepage/project-jlpt.png";
+import codeArt from "@/assets/homepage/research-laptop-v2.png";
+import heroArt from "@/assets/projects/projects-hero.jpg";
 import { InnerPageShell } from "@/components/inner-page-shell";
-import { TranslatedText } from "@/components/site-preferences";
+import styles from "./projects.module.css";
 
-export const metadata: Metadata = {
-  title: "প্রজেক্ট",
-  description:
-    "Halim-এর KanaStory, JLPT learning hubs এবং Bengali-friendly engineering education projects দেখুন।",
-  alternates: { canonical: "/projects" },
-};
+export const metadata: Metadata = { title: "প্রজেক্ট", description: "Halim-এর KanaStory, JLPT learning hubs এবং Bengali-friendly engineering education projects দেখুন।", alternates: { canonical: "/projects" } };
 
-const projects = [
-  {
-    title: "KanaStory",
-    type: "Japanese learning · Interactive",
-    description:
-      "Story এবং interactive practice-এর মাধ্যমে hiragana ও katakana শেখার একটি beginner-friendly experience।",
-    href: "https://kanastory.halimslife.com/",
-  },
-  {
-    title: "JLPT N5 Hub",
-    type: "Roadmap · Vocabulary · Grammar",
-    description:
-      "বাংলাভাষী learners-এর জন্য JLPT N5-এর structured study path এবং practice resources।",
-    href: "https://n5.halimslife.com/",
-  },
-  {
-    title: "JLPT N4 Hub",
-    type: "Japanese learning · Intermediate",
-    description:
-      "N4 learners-এর জন্য focused roadmap, notes এবং গুরুত্বপূর্ণ practice materials।",
-    href: "https://n4.halimslife.com/",
-  },
-  {
-    title: "Open-source experiments",
-    type: "Code · Engineering",
-    description:
-      "Programming, education এবং ছোট practical tools নিয়ে আমার public code ও experiments।",
-    href: "https://github.com/halimmdabdul",
-  },
-];
+type IconName = "arrow"|"book"|"code"|"cycle"|"idea"|"process"|"star"|"target";
+function Icon({name}:{name:IconName}){const paths:Record<IconName,React.ReactNode>={arrow:<path d="M5 12h14m-5-5 5 5-5 5"/>,book:<><path d="M4 5c3-1 6 0 8 2v13c-2-2-5-3-8-2V5Z"/><path d="M20 5c-3-1-6 0-8 2v13c2-2 5-3 8-2V5Z"/></>,code:<path d="m8 9-3 3 3 3m8-6 3 3-3 3M14 5l-4 14"/>,cycle:<><path d="M20 7h-5V2"/><path d="M20 7a8 8 0 1 0 1 8"/></>,idea:<><path d="M9 18h6m-5 3h4"/><path d="M8.5 15.5a6 6 0 1 1 7 0c-.8.6-1.2 1.3-1.3 2.5h-4.4c-.1-1.2-.5-1.9-1.3-2.5Z"/></>,process:<><circle cx="5" cy="12" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 12h5m2-1 3-4m-3 6 3 4"/></>,star:<path d="m12 3 2.5 5.4 5.8.7-4.3 4 1.2 5.9-5.2-3-5.2 3 1.2-5.9-4.3-4 5.8-.7L12 3Z"/>,target:<><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="m15 9 5-5"/></>};return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>}
+function NumberTitle({number,children}:{number:string;children:React.ReactNode}){return <div className={styles.numberTitle}><span>{number}</span><h2>{children}</h2></div>}
 
-export default async function ProjectsPage() {
-  await connection();
-
-  return (
-    <InnerPageShell>
-      <section className="page-title container">
-        <span className="kicker">
-          <TranslatedText
-            bn="আমার প্রজেক্ট"
-            en="My projects"
-            ja="プロジェクト"
-          />
-        </span>
-        <h1>
-          <TranslatedText
-            bn="যে tools ও resources মানুষকে এক ধাপ এগিয়ে নেয়।"
-            en="Tools and resources that help people move forward."
-            ja="人の一歩前進を支えるツールとリソース。"
-          />
-        </h1>
-        <p>
-          Engineering mindset এবং learner empathy—দুইয়ের সমন্বয়ে তৈরি আমার
-          selected কাজ।
-        </p>
-      </section>
-      <section className="project-page-grid container">
-        {projects.map((project, index) => (
-          <a
-            key={project.title}
-            href={project.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span>0{index + 1}</span>
-            <small>{project.type}</small>
-            <h2>{project.title}</h2>
-            <p>{project.description}</p>
-            <strong>
-              <TranslatedText
-                bn="প্রজেক্ট দেখুন ↗"
-                en="View project ↗"
-                ja="プロジェクトを見る ↗"
-              />
-            </strong>
-          </a>
-        ))}
-      </section>
-    </InnerPageShell>
-  );
-}
+export default function ProjectsPage(){return <InnerPageShell><main className={styles.page}>
+  <section className={styles.hero}><div className={styles.heroCopy}><span className={styles.kicker}>আমার প্রজেক্ট</span><h1>যে <em>tools</em> ও resources<br/>মানুষকে এক ধাপ এগিয়ে নেয়।</h1><p>Engineering mindset এবং learner empathy—দুইয়ের সমন্বয়ে তৈরি আমার selected কাজ।</p><div className={styles.heroActions}><a href="#featured">Featured project দেখুন ↓</a><a href="https://github.com/halimmdabdul" target="_blank" rel="noreferrer">GitHub ↗</a></div><div className={styles.heroTags}><span><Icon name="book"/>Japanese Learning</span><span><Icon name="process"/>Interactive Tools</span><span><Icon name="code"/>Open Source</span></div></div><div className={styles.heroArt}><Image src={heroArt} alt="Japanese learning and programming tools illustration" fill priority sizes="58vw"/></div></section>
+  <nav className={styles.tabs} aria-label="Project sections"><a href="#featured"><Icon name="star"/>Featured</a><a href="#learning"><Icon name="book"/>Japanese Learning</a><a href="#open-source"><Icon name="code"/>Open Source</a><a href="#process"><Icon name="process"/>Process</a></nav>
+  <section id="featured" className={styles.section}><NumberTitle number="01">Featured Project</NumberTitle><article className={styles.featured}><div className={styles.featuredImage}><Image src={kanaArt} alt="KanaStory Japanese learning project" fill sizes="48vw"/></div><div className={styles.featuredCopy}><span>Japanese learning · Interactive</span><h2>KanaStory</h2><p>Story এবং interactive practice-এর মাধ্যমে hiragana ও katakana শেখার একটি beginner-friendly experience।</p><dl><div><dt>Problem</dt><dd>Kana শেখার শুরু beginner-এর জন্য repetitive এবং difficult মনে হয়।</dd></div><div><dt>Solution</dt><dd>Story, visual memory এবং interactive practice একসঙ্গে।</dd></div><div><dt>Audience</dt><dd>Japanese language beginners</dd></div></dl><h3>Key Features</h3><div className={styles.chips}><span>Hiragana</span><span>Katakana</span><span>Story-based</span><span>Practice</span></div><a className={styles.greenLink} href="https://kanastory.halimslife.com/" target="_blank" rel="noreferrer">প্রজেক্ট দেখুন ↗</a></div><aside className={styles.designed}><h3>What I designed</h3><p>✓ Learning flow</p><p>✓ Content structure</p><p>✓ Responsive interface</p><Image src={journeyArt} alt="Japanese pagoda watercolor" fill sizes="22vw"/></aside></article></section>
+  <section id="learning" className={styles.section}><NumberTitle number="02">JLPT বাংলা Learning Ecosystem</NumberTitle><h2 className={styles.sectionHeading}>N5 থেকে structured Japanese learning path।</h2><div className={styles.learningGrid}><article><div className={styles.cardImage}><Image src={jlptArt} alt="JLPT N5 learning hub" fill sizes="48vw"/><b>N5</b></div><small>Roadmap · Vocabulary · Grammar</small><h3>JLPT N5 Hub</h3><p>বাংলাভাষী learners-এর জন্য JLPT N5-এর structured study path এবং practical resources।</p><div className={styles.chips}><span>Vocabulary</span><span>Grammar</span><span>Roadmap</span></div><a className={styles.greenLink} href="https://n5.halimslife.com/" target="_blank" rel="noreferrer">N5 Hub দেখুন ↗</a></article><article><div className={`${styles.cardImage} ${styles.cardImageN4}`}><Image src={jlptArt} alt="JLPT N4 learning hub" fill sizes="48vw"/><b>N4</b></div><small>Japanese learning · Intermediate</small><h3>JLPT N4 Hub</h3><p>N4 learners-এর জন্য focused roadmap, notes এবং গুরুত্বপূর্ণ practice materials।</p><div className={styles.chips}><span>Intermediate</span><span>Kanji</span><span>Grammar</span></div><a className={styles.greenLink} href="https://n4.halimslife.com/" target="_blank" rel="noreferrer">N4 Hub দেখুন ↗</a></article></div><div className={styles.learningPath}><span>🌱 Start</span><i>→</i><span>🌸 KanaStory</span><i>→</i><span>🟩 JLPT N5</span><i>→</i><span>🟦 JLPT N4</span></div></section>
+  <section id="open-source" className={styles.section}><NumberTitle number="03">Open-source experiments</NumberTitle><article className={styles.openSource}><div><h2>Programming, education<br/>এবং practical tools।</h2><p>Programming, education এবং ছোট practical tools নিয়ে আমার public code ও experiments।</p><div className={styles.chips}><span>Programming</span><span>Education</span><span>Engineering Tools</span></div><a href="https://github.com/halimmdabdul" target="_blank" rel="noreferrer">GitHub profile দেখুন ↗</a></div><div className={styles.codeImage}><Image src={codeArt} alt="Programming and code illustration" fill sizes="38vw"/></div><div className={styles.experimentList}><p><Icon name="process"/><span><b>Web experiments</b><small>Small web apps and interactive demos.</small></span></p><p><Icon name="book"/><span><b>Learning tools</b><small>Tools that make learning more effective.</small></span></p><p><Icon name="code"/><span><b>Engineering notes</b><small>Notes and practical references.</small></span></p></div></article></section>
+  <section className={styles.section}><NumberTitle number="04">আমার project philosophy</NumberTitle><div className={styles.philosophy}><article><Icon name="target"/><div><h3>Useful first</h3><p>প্রতিটি project একটি real learning problem solve করে।</p></div></article><article><Icon name="idea"/><div><h3>Simple experience</h3><p>Complex information সহজ ও navigable করা।</p></div></article><article><Icon name="cycle"/><div><h3>Build, test, improve</h3><p>Feedback দিয়ে নিয়মিত iteration।</p></div></article></div></section>
+  <section id="process" className={styles.section}><NumberTitle number="05">Project process</NumberTitle><div className={styles.process}>{[["Understand","learner/user problem পরিষ্কার করি"],["Structure","content এবং information architecture তৈরি করি"],["Build","responsive interactive experience তৈরি করি"],["Improve","feedback নিয়ে iteration করি"]].map(([title,text],index)=><article key={title}><span>{index+1}</span><Icon name={index===0?"idea":index===1?"process":index===2?"code":"cycle"}/><div><h3>{title}</h3><p>{text}</p></div>{index<3&&<i>→</i>}</article>)}</div><p className={styles.processNote}>Idea থেকে usable resource পর্যন্ত।</p></section>
+  <section className={styles.next}><div><NumberTitle number="06">What&apos;s next</NumberTitle><h2>আরও Bengali-friendly<br/>learning tools তৈরি হচ্ছে।</h2><p>Japanese language, programming এবং Japan career-এর জন্য practical resources তৈরি করতে চাই।</p><div><Link href="/academy">আমার সাথে শিখুন</Link><Link href="/contact">যোগাযোগ করুন</Link></div></div><Image src={journeyArt} alt="Mount Fuji and Japan watercolor landscape" fill sizes="55vw"/></section>
+</main></InnerPageShell>}
