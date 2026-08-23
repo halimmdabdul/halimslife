@@ -236,6 +236,50 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
       { label: "Older Information and Electronics route", href: "https://www.admissions.adm.tottori-u.ac.jp/wp-content/uploads/2021/03/Application-Procedure-for-Foreign-Student-Admission-to-Department-of-Engineering-Graduate-School-of-Sustainability-Science-Masters-Program-2021October-entrance.pdf", description: "Program existence/context দেখুন—2027 rules হিসেবে ব্যবহার করবেন না।" },
     ],
   }),
+  createJapanShortlistGuide({
+    slug: "toyo-english-track-masters-2027", university: "Toyo University", program: "English Track Master’s",
+    english: "Official English Track lets students complete the entire degree in English", intake: "April/Fall 2027—exact course calendar verify করুন",
+    funding: "Top Leading Students Scholarship can provide a two-year 100% tuition waiver and possibly a ¥120,000 monthly stipend; selection and renewal are highly competitive", priority: "Kanto Private #151 · English-confirmed",
+    realityCheck: "Toyo officially offers complete-English master’s tracks, including International Culture and Communication Studies and Public-Private Partnership. English delivery is course-specific—not every Toyo graduate program is an English degree. The April 2027 Top Leading scholarship route is published, but admission and funding remain separate competitive decisions.",
+    officialLinks: [
+      { label: "Toyo English Track Curriculum", href: "https://www.toyo.ac.jp/academics/gadmissions/english_track_curriculum/index.html", description: "Complete-English degree courses, curriculum এবং eligible master’s programs দেখুন।" },
+      { label: "April 2027 Top Leading Scholarship", href: "https://www.toyo.ac.jp/academics/gadmissions/other_admissions_en/", description: "2027 eligibility, pre-application matching, obligations ও application guide verify করুন।" },
+      { label: "Toyo scholarships for international students", href: "https://www.toyo.ac.jp/en/assets/pdf/TOYO-UNIVERSITY-GUIDE-BOOK_2026.pdf", description: "Full scholarship, graduate tuition reduction ও other awards compare করুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "teikyo-english-economics-public-health-masters-2027", university: "Teikyo University", program: "English Master’s in Modern Economics / Public Health",
+    english: "Modern Economics can complete all required credits in English; the international MPH route conducts classes and examinations in English", intake: "April 2027—program-specific guide verify করুন",
+    funding: "Graduate scholarships and fee reductions are route-specific; the general first-year 40% international tuition reduction does not automatically cover graduate students", priority: "Kanto Private #158 · English-confirmed",
+    realityCheck: "Teikyo’s Modern Economics master’s officially permits all graduation credits through English-taught courses, and its international Public Health application guide states that classes and examinations are in English. These are exact English routes; other Teikyo graduate schools must not be treated as English-completable by default.",
+    officialLinks: [
+      { label: "Modern Economics English program", href: "https://www.teikyo-u.ac.jp/en/faculties/economy/economy_m", description: "All-required-credit English route, curriculum এবং English thesis option দেখুন।" },
+      { label: "Public Health English application guide", href: "https://www.med.teikyo-u.ac.jp/~tsph/2026_Guidelines_for_Applicants_E.pdf", description: "English classes/examinations, eligibility, documents ও selection verify করুন।" },
+      { label: "Graduate admissions", href: "https://www.teikyo-u.ac.jp/en/applicants/graduate", description: "Current 2027 program-specific admission notice এবং final guide দেখুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "tiu-digital-business-innovation-ms-2027", university: "Tokyo International University", program: "M.S. in Digital Business & Innovation (E-Track)",
+    english: "Official English Track master’s with an English curriculum and thesis route", intake: "April/September 2027",
+    funding: "TIU E-Track applicants may request a competitive 30%, 50%, 80% or 100% tuition reduction; the 2027 application guide is final authority", priority: "Kanto Private #161 · English-confirmed",
+    realityCheck: "TIU’s two-year M.S. in Digital Business & Innovation is a confirmed English Track degree covering AI, analytics, digital marketing, entrepreneurship and technology-driven business. Scholarship percentage is decided with admission and is not guaranteed.",
+    officialLinks: [
+      { label: "TIU Digital Business & Innovation M.S.", href: "https://www.tiu.ac.jp/etrack/graduate/gdbi/", description: "Degree structure, curriculum, faculty এবং thesis options দেখুন।" },
+      { label: "TIU E-Track graduate admissions", href: "https://www.tiu.ac.jp/etrack/graduate/", description: "Current application rounds, English evidence, fees ও scholarship guide verify করুন।" },
+      { label: "2027 MEXT information", href: "https://www.tiu.ac.jp/etrack/announcements/", description: "Current graduate/MEXT announcements এবং deadline updates দেখুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "shizenkan-english-mba-2027", university: "Shizenkan University", program: "English MBA in Design and Leadership for Societal Innovation",
+    english: "Applicants choose the English-language program and generally complete the full two-year MBA in that language", intake: "Late August 2027",
+    funding: "Competitive grant scholarship may provide up to ¥4.8 million over a maximum of two years; eligibility and award amount require written confirmation", priority: "Kanto Private #175 · English-confirmed",
+    realityCheck: "Shizenkan’s MEXT-accredited MBA has a confirmed English class, is part-time over two years and is designed for working professionals. Applicants normally need at least three years of full-time professional experience. The 2027 rounds close on November 30, 2026, March 31, 2027 and May 31, 2027.",
+    officialLinks: [
+      { label: "Shizenkan 2027 admissions", href: "https://shizenkan.ac.jp/en/admission_en/", description: "English track, work-experience eligibility, degree requirements ও selection process দেখুন।" },
+      { label: "Class of 2029 application notice", href: "https://shizenkan.ac.jp/en/20260814_en/", description: "August 2027 intake এবং তিনটি application deadline verify করুন।" },
+      { label: "Shizenkan tuition support FAQ", href: "https://shizenkan.ac.jp/en/admission_faq_en/", description: "Scholarship ceiling, education benefits এবং funding conditions দেখুন।" },
+    ],
+  }),
 ];
 
 type TierAJapanSeed = {
@@ -930,6 +974,10 @@ const verifiedEnglishMastersSlugs = new Set([
   "apu-international-cooperation-policy-masters-2027",
   "kuas-engineering-masters-2027",
   "ryukyus-resilient-smart-city-masters-2027",
+  "toyo-english-track-masters-2027",
+  "teikyo-english-economics-public-health-masters-2027",
+  "tiu-digital-business-innovation-ms-2027",
+  "shizenkan-english-mba-2027",
   "university-of-tokyo-tier-a-masters-2027",
   "kyoto-university-tier-a-masters-2027",
   "science-tokyo-tier-a-masters-2027",
