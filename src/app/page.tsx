@@ -2,9 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import portrait from "@/assets/halim-portrait-v2.png";
-import robotics from "@/assets/hero/slide-1.jpeg";
-import japanWorkshop from "@/assets/hero/slide-3.jpeg";
-import japanese from "@/assets/hero/slide-5.jpeg";
 import pathCareer from "@/assets/homepage/path-career.png";
 import pathJapanese from "@/assets/homepage/path-japanese.png";
 import pathTech from "@/assets/homepage/path-tech.png";
@@ -51,18 +48,10 @@ const projects = [
 ];
 
 const journey = [
-  { year: "2018", icon: "graduation" as const, text: "BSc in EEE" },
-  { year: "2019", icon: "code" as const, text: "প্রোগ্রামিং জার্নি" },
-  { year: "2020", icon: "book" as const, text: "জাপানি ভাষা শেখা" },
-  { year: "2021", icon: "video" as const, text: "কনটেন্ট তৈরি" },
-  { year: "2023", icon: "plane" as const, text: "জাপানে আসা" },
-  { year: "2024+", icon: "flag" as const, text: "শেখা ও তৈরি চলছে" },
-];
-
-const insights = [
-  { image: japanese, category: "জাপানি ভাষা", title: "জাপানি ভাষা শেখার রোডম্যাপ", text: "শুরু থেকে JLPT পর্যন্ত সম্পূর্ণ গাইড—কীভাবে ধাপ সাজাবেন।", meta: "10 min read · May 12, 2024" },
-  { image: robotics, category: "প্রোগ্রামিং", title: "প্রোগ্রামিং শেখার জন্য ১০টি অভ্যাস", text: "নিয়মিত ছোট অভ্যাসগুলোই আপনাকে একজন ভালো ডেভেলপার করবে।", meta: "8 min read · Apr 28, 2024" },
-  { image: japanWorkshop, category: "ক্যারিয়ার", title: "জাপানে Software Engineer হওয়ার ধাপসমূহ", text: "স্কিল, ভাষা, রিজিউমে ও ইন্টারভিউ—সবকিছু এক নজরে।", meta: "12 min read · Apr 15, 2024" },
+  { icon: "code" as const, title: "System Engineer · Aspark, Japan", text: "Manufacturing software, computer vision এবং decision-support systems নিয়ে কাজ করছি।" },
+  { icon: "robot" as const, title: "AI & Robotics Engineer · Niche Creation", text: "AI-enabled robotics startup, R&D এবং Thought-of-Inventing system তৈরি ও বাস্তবায়নের অভিজ্ঞতা অর্জন করেছি।" },
+  { icon: "graduation" as const, title: "MSc · Shizuoka University, Japan", text: "Computer Science-এ Master of Science সম্পন্ন করেছি এবং recommender system নিয়ে গবেষণা করেছি।" },
+  { icon: "plane" as const, title: "Bangladesh to Japan", text: "Curiosity, consistency এবং কঠোর পরিশ্রম নিয়ে পথ চলা—এই যাত্রাই ভবিষ্যতের এগিয়ে যাওয়ার পথ।" },
 ];
 
 export const metadata = { alternates: { canonical: "/" } };
@@ -95,16 +84,14 @@ export default function Home() {
         <div className={styles.projectGrid}>{projects.map((item) => <a className={styles.projectCard} href={item.href} key={item.name}><div className={`${styles.projectArt} ${item.tone}`}>{item.image ? <Image src={item.image} alt="" fill sizes="(max-width: 560px) 100vw, 25vw" /> : null}<div className={styles.projectOverlay} /><small>{item.top}</small><strong>{item.name}</strong></div><div className={styles.projectInfo}><h3>{item.name}</h3><p>{item.text}</p><div>{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></a>)}</div>
       </section>
 
-      <section className={styles.section}>
-        <SectionHeading title="আমার জার্নি" link="সব দেখুন" href="/journey" />
-        <div className={styles.journey}>{journey.map((item) => <article key={item.year}><span><Icon name={item.icon} /></span><strong>{item.year}</strong><p>{item.text}</p></article>)}</div>
+      <section className={styles.research}>
+        <div className={styles.researchCopy}><span>Research & Publications</span><h2>Research আমার evidence<br />দিয়ে চিন্তা করতে শিখিয়েছে।</h2><p>Recommender system-based research in<br />health management and medical diagnostic problems.</p><div><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ" target="_blank" rel="noreferrer">Google Scholar <Icon name="arrow" /></a><span>IEEE</span><span>IEICE</span></div></div>
+        <div className={styles.researchStat}><strong>02</strong><span>Published Research Works</span><i /><i /></div>
       </section>
 
-      <section className={styles.publications}><div><h2>প্রকাশনা ও অর্জন</h2><p>Research · Engineering · Community</p></div><div className={styles.logos}><strong>IEEE</strong><strong>IEICE</strong><strong>JICA</strong><strong>Aspark</strong><strong>Shizuoka</strong></div><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">সব দেখুন <Icon name="arrow" /></a></section>
-
-      <section id="insights" className={styles.section}>
-        <SectionHeading title="Latest Insights" link="সব আর্টিকেল দেখুন" href="/insights" />
-        <div className={styles.insightGrid}>{insights.map((item) => <article className={styles.insightCard} key={item.title}><div className={styles.insightImage}><Image src={item.image} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" /><span>{item.category}</span></div><div><h3>{item.title}</h3><p>{item.text}</p><small>◷ {item.meta}</small></div></article>)}</div>
+      <section className={`${styles.section} ${styles.journeySection}`}>
+        <SectionHeading title="আমার যাত্রার কয়েকটি গুরুত্বপূর্ণ ধাপ" link="সব দেখুন" href="/journey" />
+        <div className={styles.journey}>{journey.map((item) => <article key={item.title}><span><Icon name={item.icon} /></span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div>
       </section>
 
       <section className={styles.cta}><span className={styles.ctaIcon}><Icon name="mail" /></span><div><h2>চলুন একসাথে আপনার লক্ষ্য পূরণের পথে!</h2><p>প্রশ্ন, পরামর্শ বা সহযোগিতার জন্য নির্দ্বিধায় যোগাযোগ করুন।</p></div><Link href="/contact"><Icon name="plane" /> যোগাযোগ করুন</Link></section>
