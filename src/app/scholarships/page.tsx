@@ -7,7 +7,7 @@ import iowaCampus from "@/assets/scholarships/campus-iowa.png";
 import uconnCampus from "@/assets/scholarships/campus-uconn.png";
 import navigatorHero from "@/assets/scholarships/navigator-hero.png";
 import japanPanorama from "@/assets/journey/hero-bangladesh-japan.png";
-import { BrandLogo } from "@/components/brand-logo";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { scholarshipGuides } from "@/lib/scholarships";
 
@@ -72,4 +72,4 @@ export default async function ScholarshipsPage({searchParams}:{searchParams:Prom
   <section className={styles.resources}><SectionTitle number="06">Helpful resources</SectionTitle><div><article><Icon name="email"/><h3>Professor email checklist</h3><p>Professor contact করার আগে কী কী প্রস্তুত নেবেন।</p><Link href="/contact">Guide দেখুন <Icon name="arrow"/></Link></article><article><Icon name="document"/><h3>Research-fit worksheet</h3><p>নিজের research fit structured worksheet-এ organize করুন।</p><Link href="/projects">Guide দেখুন <Icon name="arrow"/></Link></article><article><Icon name="document"/><h3>Application document guide</h3><p>CV, SOP, transcripts ও tests গুছিয়ে রাখুন।</p><Link href="/cv">Guide দেখুন <Icon name="arrow"/></Link></article></div></section>
 
   <section className={styles.cta}><Image src={navigatorHero} alt="" fill sizes="1120px"/><div><h2>আপনার next application আরও clear করুন।</h2><p>Guide পড়ুন, official source verify করুন, তারপর focusedভাবে apply করুন।</p><Link href="#guides">Scholarships explore করুন <Icon name="arrow"/></Link><Link href="/contact">প্রশ্ন করুন</Link></div></section>
-  </main><footer className={styles.footer}><BrandLogo/><span>Japan · 日本</span><a href="https://github.com/halimmdabdul">GitHub</a><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">Google Scholar</a><Link href="/contact">Contact</Link><small>© {new Date().getFullYear()} Halim Md Abdul.</small></footer></div>}
+  </main><SiteFooter/></div>}
