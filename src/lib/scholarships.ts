@@ -1120,7 +1120,7 @@ type UsLowCostSeed = {
   university: string;
   state: string;
   fields: string;
-  cost: "Low" | "Low-medium";
+  cost: "Low" | "Low-medium" | "Medium";
   fundingRoutes: string;
   officialUrl: string;
 };
@@ -1255,6 +1255,30 @@ const usLowCostSeeds: UsLowCostSeed[] = [
   { rank: 23, slug: "louisiana-tech-affordable-masters-2027", university: "Louisiana Tech University", state: "Louisiana", fields: "Computer Science, Engineering, MBA", cost: "Low", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.latech.edu/study-with-us/graduate-school/" },
   { rank: 24, slug: "mcneese-state-affordable-masters-2027", university: "McNeese State University", state: "Louisiana", fields: "Computer Science, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.mcneese.edu/academics/graduate-school/" },
   { rank: 25, slug: "southeastern-louisiana-affordable-masters-2027", university: "Southeastern Louisiana University", state: "Louisiana", fields: "Computer Science, Integrated Science, MBA", cost: "Low", fundingRoutes: "GA/MW (verify by program)", officialUrl: "https://www.southeastern.edu/academics/graduate/" },
+  { rank: 26, slug: "lamar-affordable-masters-2027", university: "Lamar University", state: "Texas", fields: "Computer Science, MIS, MBA", cost: "Low-medium", fundingRoutes: "GA/RA/MW", officialUrl: "https://www.lamar.edu/graduate-studies/" },
+  { rank: 27, slug: "utrgv-affordable-masters-2027", university: "University of Texas Rio Grande Valley", state: "Texas", fields: "Computer Science, Information Technology, Business", cost: "Low-medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.utrgv.edu/graduate/" },
+  { rank: 28, slug: "texas-am-kingsville-affordable-masters-2027", university: "Texas A&M University–Kingsville", state: "Texas", fields: "Computer Science, Industrial Management, MBA", cost: "Low-medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.tamuk.edu/graduate/" },
+  { rank: 29, slug: "texas-am-corpus-christi-affordable-masters-2027", university: "Texas A&M University–Corpus Christi", state: "Texas", fields: "Computer Science, Data Science, MBA", cost: "Medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.tamucc.edu/research/graduate-excellence/" },
+  { rank: 30, slug: "west-texas-am-affordable-masters-2027", university: "West Texas A&M University", state: "Texas", fields: "Computer Science, Finance, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.wtamu.edu/academics/graduate-school/" },
+  { rank: 31, slug: "midwestern-state-affordable-masters-2027", university: "Midwestern State University", state: "Texas", fields: "Computer Science, Information Systems, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://msutexas.edu/academics/graduate-school/" },
+  { rank: 32, slug: "angelo-state-affordable-masters-2027", university: "Angelo State University", state: "Texas", fields: "Computer Science, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.angelo.edu/academics/graduate-school/" },
+  { rank: 33, slug: "stephen-f-austin-affordable-masters-2027", university: "Stephen F. Austin State University", state: "Texas", fields: "Cybersecurity, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.sfasu.edu/academics/graduate" },
+  { rank: 34, slug: "sam-houston-state-affordable-masters-2027", university: "Sam Houston State University", state: "Texas", fields: "Computing, Information Assurance, MBA", cost: "Medium", fundingRoutes: "GA/MW", officialUrl: "https://www.shsu.edu/academics/graduate-and-professional/" },
+  { rank: 35, slug: "houston-clear-lake-affordable-masters-2027", university: "University of Houston–Clear Lake", state: "Texas", fields: "Computer Science, Data Science, MBA", cost: "Medium", fundingRoutes: "GA/MW", officialUrl: "https://www.uhcl.edu/academics/graduate/" },
+  { rank: 36, slug: "houston-victoria-affordable-masters-2027", university: "University of Houston–Victoria", state: "Texas", fields: "Computer Science, Data Science, Business", cost: "Low-medium", fundingRoutes: "GA/MW", officialUrl: "https://www.uhv.edu/graduate/" },
+  { rank: 37, slug: "tarleton-state-affordable-masters-2027", university: "Tarleton State University", state: "Texas", fields: "Computer Science, Information Systems, MBA", cost: "Low-medium", fundingRoutes: "GA/MW", officialUrl: "https://www.tarleton.edu/graduate/" },
+  { rank: 38, slug: "ut-tyler-affordable-masters-2027", university: "University of Texas at Tyler", state: "Texas", fields: "Computer Science, Data Analytics, MBA", cost: "Medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.uttyler.edu/graduate/" },
+  { rank: 39, slug: "north-texas-affordable-masters-2027", university: "University of North Texas", state: "Texas", fields: "Computer Science, Data Science, Business Analytics", cost: "Medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.unt.edu/academics/graduate" },
+  { rank: 40, slug: "central-oklahoma-affordable-masters-2027", university: "University of Central Oklahoma", state: "Oklahoma", fields: "Computer Science, Business Analytics, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.uco.edu/graduate/" },
+  { rank: 41, slug: "northeastern-state-oklahoma-affordable-masters-2027", university: "Northeastern State University", state: "Oklahoma", fields: "Computer Science, Data Science, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://gradcollege.nsuok.edu/" },
+  { rank: 42, slug: "oklahoma-state-affordable-masters-2027", university: "Oklahoma State University", state: "Oklahoma", fields: "Computer Science, MIS, Business Analytics", cost: "Medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://go.okstate.edu/graduate-academics/" },
+  { rank: 43, slug: "oklahoma-university-affordable-masters-2027", university: "University of Oklahoma", state: "Oklahoma", fields: "Computer Science, Data Science, MBA", cost: "Medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.ou.edu/gradcollege" },
+  { rank: 44, slug: "siu-edwardsville-affordable-masters-2027", university: "Southern Illinois University Edwardsville", state: "Illinois", fields: "Computer Science, MIS, MBA", cost: "Low-medium", fundingRoutes: "GA/TA/MW", officialUrl: "https://www.siue.edu/graduate/" },
+  { rank: 46, slug: "eastern-illinois-affordable-masters-2027", university: "Eastern Illinois University", state: "Illinois", fields: "Technology, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.eiu.edu/graduate/" },
+  { rank: 47, slug: "western-illinois-affordable-masters-2027", university: "Western Illinois University", state: "Illinois", fields: "Computer Science, Cybersecurity, MBA", cost: "Low", fundingRoutes: "GA/MW", officialUrl: "https://www.wiu.edu/graduate_studies/" },
+  { rank: 48, slug: "governors-state-affordable-masters-2027", university: "Governors State University", state: "Illinois", fields: "Computer Science, MIS, MBA", cost: "Low-medium", fundingRoutes: "GA/MW", officialUrl: "https://www.govst.edu/graduate/" },
+  { rank: 49, slug: "indiana-state-affordable-masters-2027", university: "Indiana State University", state: "Indiana", fields: "Computer Science, Data Science, MBA", cost: "Low-medium", fundingRoutes: "GA/MW", officialUrl: "https://indianastate.edu/academics/graduate" },
+  { rank: 50, slug: "purdue-fort-wayne-affordable-masters-2027", university: "Purdue University Fort Wayne", state: "Indiana", fields: "Computer Science, Engineering, MBA", cost: "Low-medium", fundingRoutes: "RA/TA/GA", officialUrl: "https://www.pfw.edu/graduate-studies" },
 ];
 
 const usLowCostGuides: ScholarshipGuide[] = usLowCostSeeds.map(createUsLowCostGuide);
