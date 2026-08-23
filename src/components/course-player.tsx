@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { RichTextContent } from "@/components/rich-text-content";
+import { SiteFooter } from "@/components/site-footer";
 import { japaneseN5Sections } from "@/lib/japanese-n5-curriculum";
 import styles from "./course-player.module.css";
 
@@ -500,10 +501,7 @@ export function CoursePlayer({
           </div>
         </main>
       </div>
-      <footer className="course-player-footer">
-        <div className="course-help-row"><strong>Need help?</strong><Link href="/contact?topic=academy">Question লিখুন</Link><Link href="/contact?topic=academy&subject=Course%20discussion">Course discussion</Link><Link href="/contact?subject=Report%20a%20course%20problem">Report a problem</Link></div>
-        <div className="course-footer-row"><Link href="/" className="course-footer-brand">Halim.</Link><Link href="/academy">Academy</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link><span>© 2026 Halim Md Abdul.</span></div>
-      </footer>
+      <div className="course-common-footer"><SiteFooter /></div>
     </div>
   );
 }
