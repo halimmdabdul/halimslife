@@ -8,6 +8,7 @@ import uconnCampus from "@/assets/scholarships/campus-uconn.png";
 import navigatorHero from "@/assets/scholarships/navigator-hero.png";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ScholarshipProfileModal } from "@/components/scholarship-profile-modal";
 import { scholarshipGuides } from "@/lib/scholarships";
 
 import styles from "./scholarships.module.css";
@@ -50,13 +51,16 @@ function CountryFlag({country}:{country:string}){
   return <svg viewBox="0 0 36 24" aria-hidden="true"><rect width="36" height="24" fill="#fff"/><circle cx="18" cy="12" r="7" fill="#bc002d"/></svg>;
 }
 
-export default async function ScholarshipsPage({searchParams}:{searchParams:Promise<{country?:string;q?:string;filter?:string}>}){
+export default async function ScholarshipsPage({searchParams}:{searchParams:Promise<{country?:string;q?:string;filter?:string;interest?:string;personalized?:string}>}){
   const params=await searchParams;
   const activeCountry=params.country==="japan"?"japan":params.country==="canada"?"canada":params.country==="korea"?"korea":params.country==="switzerland"?"switzerland":params.country==="italy"?"italy":"usa";
   const query=(params.q??"").trim();
   const activeFilter=params.filter??"";
+  const interest=(params.interest??"").trim();
   const countryGuides=activeCountry==="japan"?japanGuides:activeCountry==="canada"?canadaGuides:activeCountry==="korea"?koreaGuides:activeCountry==="switzerland"?swissGuides:activeCountry==="italy"?italyGuides:usaGuides;
   const queryText=query.toLocaleLowerCase();
+  const interestTerms=interest.toLocaleLowerCase().match(/[a-z0-9]+/g)?.filter(term=>!["and","the","other"].includes(term))??[];
+  const relevanceScore=(guide:(typeof scholarshipGuides)[number])=>{const searchable=[guide.university,guide.title,guide.summary,guide.label,guide.audience,guide.funding,...guide.highlights,...guide.fit].join(" ").toLocaleLowerCase();return interestTerms.reduce((score,term)=>score+(searchable.includes(term)?1:0),0)};
   const filteredGuides=countryGuides.filter((guide)=>{
     const searchable=[guide.university,guide.title,guide.englishBusinessPrograms??"",guide.lowestCostCategory??"",guide.summary,guide.label,guide.funding,guide.audience,...guide.highlights,...guide.fit].join(" ").toLocaleLowerCase();
     if(queryText&&!searchable.includes(queryText))return false;
@@ -70,6 +74,7 @@ export default async function ScholarshipsPage({searchParams}:{searchParams:Prom
     if(activeFilter==="lowest")return guide.lowestCostPriority!==undefined;
     return true;
   }).sort((a,b)=>{
+    if(interestTerms.length){const relevanceDifference=relevanceScore(b)-relevanceScore(a);if(relevanceDifference)return relevanceDifference;}
     if(activeFilter==="business")return (a.businessPriority??Number.MAX_SAFE_INTEGER)-(b.businessPriority??Number.MAX_SAFE_INTEGER);
     if(activeFilter==="lowest")return (a.lowestCostPriority??Number.MAX_SAFE_INTEGER)-(b.lowestCostPriority??Number.MAX_SAFE_INTEGER);
     if(activeCountry==="canada")return (a.canadaPriority??Number.MAX_SAFE_INTEGER)-(b.canadaPriority??Number.MAX_SAFE_INTEGER);
@@ -81,7 +86,7 @@ export default async function ScholarshipsPage({searchParams}:{searchParams:Prom
   const showAll=activeFilter==="all"&&!query;
   const visibleGuides=showAll?filteredGuides:filteredGuides.slice(0,6);
   const isFiltered=showAll;
-  const makeHref=(overrides:{country?:string;q?:string;filter?:string}={})=>{const state={country:activeCountry,q:query,filter:activeFilter,...overrides};if(overrides.filter==="all")state.q="";const search=new URLSearchParams();if(state.country)search.set("country",state.country);if(state.q)search.set("q",state.q);if(state.filter)search.set("filter",state.filter);return `/scholarships?${search.toString()}#guides`};
+  const makeHref=(overrides:{country?:string;q?:string;filter?:string;interest?:string}={})=>{const state={country:activeCountry,q:query,filter:activeFilter,interest,...overrides};if(overrides.filter==="all")state.q="";const search=new URLSearchParams();if(state.country)search.set("country",state.country);if(state.q)search.set("q",state.q);if(state.filter)search.set("filter",state.filter);if(state.interest)search.set("interest",state.interest);return `/scholarships?${search.toString()}#guides`};
   const filterOptions=[{value:"lowest",label:"Lowest cost"},{value:"business",label:"English Business/MBA"},{value:"funded",label:"Fully funded"},{value:"active",label:"Active lead"},{value:"email",label:"Email first"},{value:"deadline",label:"Deadline"},{value:"phd",label:"PhD"},{value:"masters",label:"Master’s"}];
   const countryOptions=[
     {value:"usa",label:"USA",count:usaGuides.length},
@@ -92,6 +97,7 @@ export default async function ScholarshipsPage({searchParams}:{searchParams:Prom
     {value:"japan",label:"Japan",count:japanGuides.length},
   ];
   return <div className={styles.page}><SiteHeader/><main>
+  <ScholarshipProfileModal/>
   <section className={styles.hero}><div><span className={styles.eyebrow}>Scholarship navigator</span><h1>Funding খুঁজুন—তারপর<br/><em>smartভাবে apply</em> করুন।</h1><p>USA, Canada, South Korea, Switzerland, Italy ও Japan-এর graduate opportunity বুঝতে clear, practical guide। Official source যাচাই করে application flow সহজ ভাষায় ব্যাখ্যা করা হয়েছে।</p><div className={styles.heroActions}><a href="#guides">Scholarship খুঁজুন ↓</a><a href="#roadmap">Application roadmap</a></div><div className={styles.trust}><span><Icon name="shield"/>Source-checked</span><span><Icon name="link"/>Official links</span><span><Icon name="calendar"/>Updated August 2026</span></div></div><div className={styles.heroImage}><Image src={navigatorHero} alt="International graduate scholarship research desk" fill priority sizes="55vw"/></div></section>
 
   <aside className={styles.warning}><Icon name="warning"/><div><h2>Apply করার আগে</h2><p>Scholarship, funded admission এবং application portal এক জিনিস নয়। প্রতিটি opportunity আসলে কী—সেটি আগে পরিষ্কারভাবে বুঝুন।</p></div><span><Icon name="warning"/>Admission বা funding guarantee নয়</span></aside>
