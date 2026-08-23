@@ -444,11 +444,11 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   }),
   createTierAJapanGuide({
     rank: 8, slug: "hokkaido-university-tier-a-masters-2027", university: "Hokkaido University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
-    target: "Information Science and Technology, e3 Engineering অথবা English-accessible management route",
-    languageReality: "International programs আছে, তবে complete-English status এবং score requirement exact graduate school থেকে confirm করতে হবে।",
+    target: "e3 Engineering, Integrated Science or another officially listed English degree program",
+    languageReality: "Hokkaido officially lists complete English degree programs; e3 covers graduate engineering fields and the exact intake/score rule remains program-specific।",
     strategy: "Research-intensive route হওয়ায় lab choice, supervisor availability এবং proposal qualityকে ranking-এর চেয়ে বেশি priority দিন।",
     officialLinks: [
-      { label: "Hokkaido graduate admissions", href: "https://www.global.hokudai.ac.jp/admissions/graduate-admissions/", description: "Graduate school list, international admission ও current guidelines দেখুন।" },
+      { label: "English degree programs", href: "https://www.global.hokudai.ac.jp/wp/wp-content/uploads/2025/04/Hokkaido-University-International-Student-Prospectus-2025-2026-EN.pdf", description: "Entirely English degree options এবং eligible fields verify করুন।" },
       { label: "Hokkaido scholarships", href: "https://www.global.hokudai.ac.jp/admissions/scholarships/", description: "MEXT, JASSO এবং private scholarship options verify করুন।" },
     ],
   }),
@@ -536,11 +536,11 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   }),
   createTierAJapanGuide({
     rank: 17, slug: "chiba-university-tier-a-masters-2027", university: "Chiba University", bestFit: "CSE + Management", routes: "M/U/J/T/P", difficulty: "High",
-    target: "Graduate School of Science and Engineering/Informatics অথবা management-linked interdisciplinary route",
-    languageReality: "English availability এবং examination requirements exact graduate school ও laboratoryভেদে confirm করতে হবে।",
+    target: "Economics in English master’s course; technical routes only when separately confirmed",
+    languageReality: "Chiba officially lists an Economics in English master’s course. This confirmation does not mean its Science, Engineering or Informatics degrees are automatically English-completable।",
     strategy: "Supervisor/lab fit আগে তৈরি করুন; international scholarship recommendation-এর জন্য annual pre-registration লাগতে পারে।",
     officialLinks: [
-      { label: "Chiba University", href: "https://www.chiba-u.jp/e/", description: "Official graduate school ও international applicant navigation ব্যবহার করুন।" },
+      { label: "Economics in English master’s", href: "https://www.gshpa.chiba-u.jp/en/4.html", description: "English economics course এবং master’s structure verify করুন।" },
       { label: "International graduate procedures guide", href: "https://www.chiba-u.jp/students/files/pdf/AdmissionProcedureGuide_Graduate_EN_InternationalStudent2.pdf", description: "Enrollment, scholarship pre-registration এবং international procedures দেখুন।" },
     ],
   }),
@@ -557,10 +557,10 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   createTierAJapanGuide({
     rank: 19, slug: "tuat-tier-a-masters-2027", university: "Tokyo University of Agriculture and Technology", bestFit: "CSE/Engineering", routes: "M/U/J/T/P", difficulty: "High",
     target: "Engineering, Computer and Information Sciences অথবা Bio-Applications and Systems Engineering",
-    languageReality: "International selection আছে, কিন্তু degree language, lab instruction ও entrance examination current guide দিয়ে verify করতে হবে।",
+    languageReality: "TUAT officially states that its International Specialized Program is offered entirely in English; other general master’s routes must not be treated as English-only।",
     strategy: "Applied engineering/research evidence এবং prospective laboratory fitকে central করুন; নামের ‘Agriculture’ দেখে computing options বাদ দেবেন না।",
     officialLinks: [
-      { label: "TUAT international applicants", href: "https://www.tuat.ac.jp/en/applicants/", description: "Graduate admission, scholarships ও international support দেখুন।" },
+      { label: "TUAT international admissions", href: "https://www.tuat.ac.jp/english/global/for_international_students/admissions/", description: "Entirely English International Specialized Program এবং current master’s routes verify করুন।" },
       { label: "TUAT graduate admission policy", href: "https://www.tuat.ac.jp/en/admission/nyushi_daigakuin/admission_policy/", description: "Engineering এবং interdisciplinary applicant expectations verify করুন।" },
     ],
   }),
@@ -582,7 +582,7 @@ type RegionalPublicJapanSeed = {
   slug: string;
   university: string;
   subject: string;
-  language: "English check" | "JP-focused";
+  language: "English check" | "English-confirmed" | "English-confirmed · partner eligibility" | "JP-focused";
   target: string;
   reality: string;
   officialLinks: ScholarshipGuide["officialLinks"];
@@ -591,6 +591,7 @@ type RegionalPublicJapanSeed = {
 
 function createRegionalPublicJapanGuide(seed: RegionalPublicJapanSeed): ScholarshipGuide {
   const japaneseFirst = seed.language === "JP-focused";
+  const englishConfirmed = seed.language.startsWith("English-confirmed");
   const viability = seed.viability ?? "conditional";
 
   return {
@@ -603,7 +604,7 @@ function createRegionalPublicJapanGuide(seed: RegionalPublicJapanSeed): Scholars
     funding: "MEXT, JASSO, tuition reduction/waiver ও private scholarship programভেদে যাচাই করতে হবে; কোনো funding guaranteed নয়।",
     duration: viability === "not-currently-viable" ? "Current master’s route confirmed নয়" : "সাধারণত 2 বছর · intake current guide দিয়ে confirm করুন",
     audience: `${seed.subject} field-এর applicant, যিনি regional/public university এবং language requirements বাস্তবভাবে যাচাই করতে চান`,
-    realityCheck: `${seed.reality} ${japaneseFirst ? "এটি Japanese-first target; English page বা English entrance material থাকলেই degree English-medium হয় না।" : "‘English check’ মানে complete degree English-এ নিশ্চিত নয়—course, supervision ও entrance-exam language লিখিতভাবে verify করতে হবে।"}`,
+    realityCheck: `${seed.reality} ${japaneseFirst ? "এটি Japanese-first target; English page বা English entrance material থাকলেই degree English-medium হয় না।" : englishConfirmed ? "Official source complete English degree route নিশ্চিত করে; তবু current intake, field ও applicant eligibility আলাদাভাবে যাচাই করুন।" : "‘English check’ মানে complete degree English-এ নিশ্চিত নয়—course, supervision ও entrance-exam language লিখিতভাবে verify করতে হবে।"}`,
     highlights: [
       `Shortlist rank: #${seed.rank}.`,
       `Potential subject: ${seed.subject}.`,
@@ -708,21 +709,21 @@ const regionalPublicJapanGuides: ScholarshipGuide[] = [
     ],
   }),
   createRegionalPublicJapanGuide({
-    rank: 103, slug: "shimane-regional-public-masters-2027", university: "Shimane University", subject: "IT + Business/Social Science", language: "English check",
-    target: "Natural Science and Technology Special Program অথবা English-speaking Human and Social Sciences selection",
-    reality: "Shimane officially lists an English international special program and a separate English-speaking social-science selection; exact field ও intake মিলিয়ে নিতে হবে।",
+    rank: 103, slug: "shimane-regional-public-masters-2027", university: "Shimane University", subject: "Natural Science and Technology", language: "English-confirmed",
+    target: "Graduate School of Natural Science and Technology international special program",
+    reality: "Official international guidance confirms a graduate special program in which all lectures and seminars are delivered in English; exact field, intake and eligibility current guide দিয়ে মিলিয়ে নিতে হবে।",
     officialLinks: [
       { label: "Shimane admission information", href: "https://www.shimane-u.ac.jp/en/study/future_students/admission_information.html", description: "English/bilingual graduate special selections দেখুন।" },
-      { label: "International graduate special program", href: "https://www.shimane-u.ac.jp/nyushi/information/application/international_student.html", description: "Current master’s guide, documents ও online interview details দেখুন।" },
+      { label: "English graduate special program", href: "https://kokusai.shimane-u.ac.jp/english/study_abroad/english.html", description: "All-English lecture/seminar delivery এবং eligible graduate field verify করুন।" },
     ],
   }),
   createRegionalPublicJapanGuide({
-    rank: 104, slug: "yamanashi-regional-public-masters-2027", university: "University of Yamanashi", subject: "IT", language: "English check",
-    target: "Integrated Graduate School of Medicine, Engineering and Agricultural Sciences—Computer Science/Engineering field",
-    reality: "Official admission portal English graduate requirements ও past exams link করে, কিন্তু exact course delivery এবং examination language department-specific।",
+    rank: 104, slug: "yamanashi-regional-public-masters-2027", university: "University of Yamanashi", subject: "Engineering / Environmental Science", language: "English-confirmed",
+    target: "English degree program in River Basin Environmental Science or a current international engineering route",
+    reality: "The university officially lists English degree programs, including an international master’s route in River Basin Environmental Science. This does not make every Computer Science/Engineering course English-taught।",
     officialLinks: [
-      { label: "Yamanashi admissions", href: "https://www.yamanashi.ac.jp/en/admission", description: "Graduate requirements, schedule ও past exams দেখুন।" },
-      { label: "Prospective graduate students", href: "https://www.yamanashi.ac.jp/en/prospective-students", description: "Graduate schools, fees এবং scholarship navigation দেখুন।" },
+      { label: "English degree programs", href: "https://www.yamanashi.ac.jp/en/wp-content/uploads/2019/03/guidebook_english.pdf", description: "English master’s program, coursework ও degree structure verify করুন।" },
+      { label: "Engineering master’s programs", href: "https://www.eng.yamanashi.ac.jp/en/master/", description: "Current program list এবং special educational routes দেখুন।" },
     ],
   }),
   createRegionalPublicJapanGuide({
@@ -788,12 +789,12 @@ const regionalPublicJapanGuides: ScholarshipGuide[] = [
     ],
   }),
   createRegionalPublicJapanGuide({
-    rank: 112, slug: "niigata-prefecture-regional-public-masters-2027", university: "University of Niigata Prefecture", subject: "Business/International Studies", language: "English check",
+    rank: 112, slug: "niigata-prefecture-regional-public-masters-2027", university: "University of Niigata Prefecture", subject: "Business/International Studies", language: "English-confirmed",
     target: "Master of Arts in International Studies and Regional Development",
-    reality: "2027 international selection officially published; essay English বা Japanese-এ লেখা যায়, accepted English scores এবং interview/research proposal selection-এর অংশ।",
+    reality: "The university confirms that all credit requirements and the full MA in International Studies and Regional Development can be completed through English-taught courses; 2027 international selection is also published।",
     officialLinks: [
       { label: "UNP 2027 application information", href: "https://www.unii.ac.jp/e/academics/graduate-isrd/gi-admissions/", description: "2027 rounds, English/Japanese essay, tests ও MEXT route দেখুন।" },
-      { label: "International student acceptance", href: "https://www.unii.ac.jp/e/exchange/acceptance/", description: "Master’s special selection এবং international applicant route verify করুন।" },
+      { label: "English-completable degree", href: "https://www.unii.ac.jp/e/academics/graduate-isrd/gi-feature/", description: "English-only credit completion এবং degree details verify করুন।" },
     ],
   }),
   createRegionalPublicJapanGuide({
@@ -880,13 +881,12 @@ const regionalPublicJapanGuides: ScholarshipGuide[] = [
     ],
   }),
   createRegionalPublicJapanGuide({
-    rank: 122, slug: "prefectural-hiroshima-regional-public-masters-2027", university: "Prefectural University of Hiroshima", subject: "IT + Business", language: "English check",
-    target: "Information and Management Systems অথবা Business Administration",
-    reality: "Information/Management ও MBA fit আছে; English Track exists, তবে partner-university eligibility ও exact program inclusion current fall guide দিয়ে check করতে হবে।",
+    rank: 122, slug: "prefectural-hiroshima-regional-public-masters-2027", university: "Prefectural University of Hiroshima", subject: "Information and Management Systems", language: "English-confirmed · partner eligibility",
+    target: "English Track in Information and Management Systems or Biological System Sciences",
+    reality: "The official English Track is designed for earning a master’s degree in English and all educational/research activities are in English. Eligibility is restricted to designated partner-university applicants, so it is not an open route for everyone।",
     officialLinks: [
       { label: "PUH international students", href: "https://www.pu-hiroshima.ac.jp/site/international/gaikokujinryugakuseiukeiresu.html", description: "Graduate programs, foreign selection ও English Track eligibility দেখুন।" },
-      { label: "Graduate fall admissions", href: "https://www.pu-hiroshima.ac.jp/site/graduate-selection/fall-admission.html", description: "Information Management, supervisor contact ও English Track links দেখুন।" },
-      { label: "HBMS admissions", href: "https://mba.pu-hiroshima.ac.jp/en/admissions/", description: "Business Leadership MBA admission এবং Japanese-site guide verify করুন।" },
+      { label: "English Track admissions", href: "https://www.pu-hiroshima.ac.jp/site/graduate-selection/fall-admission-englishtrack.html", description: "Eligible programs, partner restriction এবং current application guide দেখুন।" },
     ],
   }),
   createRegionalPublicJapanGuide({
@@ -917,6 +917,46 @@ const regionalPublicJapanGuides: ScholarshipGuide[] = [
     ],
   }),
 ];
+
+// Keep the user-added Japan university lists intentionally strict. A university is
+// included only when an official source confirms that at least one complete
+// master's degree can be earned in English. English application forms, interviews,
+// individual English courses, MOI acceptance, or a non-degree research-student
+// route are not sufficient.
+const verifiedEnglishMastersSlugs = new Set([
+  "shizuoka-abp-informatics-masters-2027",
+  "globis-full-time-mba-2027",
+  "kwansei-gakuin-un-system-policy-masters-2027",
+  "apu-international-cooperation-policy-masters-2027",
+  "kuas-engineering-masters-2027",
+  "ryukyus-resilient-smart-city-masters-2027",
+  "university-of-tokyo-tier-a-masters-2027",
+  "kyoto-university-tier-a-masters-2027",
+  "science-tokyo-tier-a-masters-2027",
+  "osaka-university-tier-a-masters-2027",
+  "tohoku-university-tier-a-masters-2027",
+  "nagoya-university-tier-a-masters-2027",
+  "kyushu-university-tier-a-masters-2027",
+  "hokkaido-university-tier-a-masters-2027",
+  "tsukuba-tier-a-masters-2027",
+  "kobe-university-tier-a-masters-2027",
+  "hitotsubashi-tier-a-masters-2027",
+  "waseda-tier-a-masters-2027",
+  "keio-tier-a-masters-2027",
+  "hiroshima-university-tier-a-masters-2027",
+  "yokohama-national-tier-a-masters-2027",
+  "chiba-university-tier-a-masters-2027",
+  "osaka-metropolitan-tier-a-masters-2027",
+  "tuat-tier-a-masters-2027",
+  "shimane-regional-public-masters-2027",
+  "yamanashi-regional-public-masters-2027",
+  "niigata-prefecture-regional-public-masters-2027",
+  "prefectural-hiroshima-regional-public-masters-2027",
+]);
+
+function onlyVerifiedEnglishMasters(guides: ScholarshipGuide[]) {
+  return guides.filter((guide) => verifiedEnglishMastersSlugs.has(guide.slug));
+}
 
 export const scholarshipGuides: ScholarshipGuide[] = [
   {
@@ -7795,9 +7835,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     ],
     reviewedAt: "August 17, 2026",
   },
-  ...japanShortlistAdditions,
-  ...tierAJapanGuides,
-  ...regionalPublicJapanGuides,
+  ...onlyVerifiedEnglishMasters(japanShortlistAdditions),
+  ...onlyVerifiedEnglishMasters(tierAJapanGuides),
+  ...onlyVerifiedEnglishMasters(regionalPublicJapanGuides),
 ];
 
 export function getScholarshipGuide(slug: string) {
