@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { RichTextContent } from "@/components/rich-text-content";
 import { japaneseN5Sections } from "@/lib/japanese-n5-curriculum";
+import styles from "./course-player.module.css";
 
 export type CourseLesson = {
   title: string;
@@ -96,7 +97,12 @@ export function CoursePlayer({
   const [openSection, setOpenSection] = useState(0);
   const lessonTopRef = useRef<HTMLElement>(null);
   const currentLesson = flatLessons[activeLesson] ?? { title: "Course introduction", duration: "Lesson", type: "reading" as const };
-  const youtubeEmbedUrl = getYouTubeEmbedUrl(currentLesson.videoUrl);
+  const youtubeEmbedUrl = getYouTubeEmbedUrl(
+    currentLesson.videoUrl ||
+      (activeLesson === 0 || currentLesson.type === "video"
+        ? "https://www.youtube.com/watch?v=650REU310yg"
+        : null),
+  );
   const practiceTest = currentLesson.practiceTest;
   const usesManagedMaterials = practiceTest !== undefined;
   const testQuestion = usesManagedMaterials
@@ -199,9 +205,15 @@ export function CoursePlayer({
   }
 
   return (
-    <div className="course-player-page">
-      <header className="course-player-header">
+    <div className={`course-player-page ${styles.page}`}>
+      <nav className="course-player-topbar" aria-label="Course navigation">
         <Link href="/academy" aria-label={bengaliUi ? "Academy-তে ফিরুন" : "Back to Academy"}>←</Link>
+        <Link href="/" className="course-player-brand">Halim.</Link>
+        <span>Academy&nbsp;&nbsp;/&nbsp;&nbsp;{course.title}</span>
+        <Link href="/academy">Course overview</Link>
+        <span className="course-player-avatar" aria-hidden="true">H</span>
+      </nav>
+      <header className="course-player-header">
         <div>
           <strong>{course.title}</strong>
           <span>{course.subtitle}</span>
@@ -294,7 +306,12 @@ export function CoursePlayer({
         </aside>
 
         <main className="course-lesson-area" ref={lessonTopRef}>
-          <div className={`lesson-video-stage${currentLesson.type === "video" ? "" : " study-stage"}`}>
+          <header className="lesson-titlebar">
+            <span>{youtubeEmbedUrl ? "Guided video lesson" : "Guided study lesson"} · Lesson {activeLesson + 1}</span>
+            <h1>{currentLesson.title}</h1>
+            <p>{currentLesson.duration} · Watch, recall and practise</p>
+          </header>
+          <div className={`lesson-video-stage${youtubeEmbedUrl || currentLesson.type === "video" ? "" : " study-stage"}`}>
             {youtubeEmbedUrl ? (
               <iframe
                 key={youtubeEmbedUrl}
@@ -483,6 +500,10 @@ export function CoursePlayer({
           </div>
         </main>
       </div>
+      <footer className="course-player-footer">
+        <div className="course-help-row"><strong>Need help?</strong><Link href="/contact?topic=academy">Question লিখুন</Link><Link href="/contact?topic=academy&subject=Course%20discussion">Course discussion</Link><Link href="/contact?subject=Report%20a%20course%20problem">Report a problem</Link></div>
+        <div className="course-footer-row"><Link href="/" className="course-footer-brand">Halim.</Link><Link href="/academy">Academy</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link><span>© 2026 Halim Md Abdul.</span></div>
+      </footer>
     </div>
   );
 }
