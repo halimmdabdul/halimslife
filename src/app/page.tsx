@@ -5,6 +5,12 @@ import portrait from "@/assets/halim-portrait-v2.png";
 import robotics from "@/assets/hero/slide-1.jpeg";
 import japanWorkshop from "@/assets/hero/slide-3.jpeg";
 import japanese from "@/assets/hero/slide-5.jpeg";
+import pathCareer from "@/assets/homepage/path-career.png";
+import pathJapanese from "@/assets/homepage/path-japanese.png";
+import pathTech from "@/assets/homepage/path-tech.png";
+import projectJlpt from "@/assets/homepage/project-jlpt.png";
+import projectKana from "@/assets/homepage/project-kana.png";
+import projectNotes from "@/assets/homepage/project-notes.png";
 import { BrandLogo } from "@/components/brand-logo";
 import { SiteHeader } from "@/components/site-header";
 
@@ -32,16 +38,16 @@ function Icon({ name }: { name: IconName }) {
 }
 
 const pathways = [
-  { tone: styles.japanesePath, icon: "book" as const, title: "Japanese Learning", text: "শূন্য থেকে JLPT পর্যন্ত ধাপে ধাপে গাইড, নোট, ভোকাবুলারি ও প্র্যাকটিস।", href: "/academy/japanese-n5" },
-  { tone: styles.techPath, icon: "code" as const, title: "Tech & Programming", text: "প্রোগ্রামিং ফান্ডামেন্টাল, ওয়েব ডেভেলপমেন্ট, DSA ও প্র্যাকটিক্যাল প্রজেক্ট।", href: "/academy" },
-  { tone: styles.careerPath, icon: "briefcase" as const, title: "Japan Career", text: "জব সার্চ, ভিসা গাইড, রিজিউমে টিপস এবং ইন্টারভিউ প্রস্তুতি।", href: "/journey" },
+  { tone: styles.japanesePath, image: pathJapanese, icon: "book" as const, title: "Japanese Learning", text: "শূন্য থেকে JLPT পর্যন্ত ধাপে ধাপে গাইড, নোট, ভোকাবুলারি ও প্র্যাকটিস।", href: "/academy/japanese-n5" },
+  { tone: styles.techPath, image: pathTech, icon: "code" as const, title: "Tech & Programming", text: "প্রোগ্রামিং ফান্ডামেন্টাল, ওয়েব ডেভেলপমেন্ট, DSA ও প্র্যাকটিক্যাল প্রজেক্ট।", href: "/academy" },
+  { tone: styles.careerPath, image: pathCareer, icon: "briefcase" as const, title: "Japan Career", text: "জব সার্চ, ভিসা গাইড, রিজিউমে টিপস এবং ইন্টারভিউ প্রস্তুতি।", href: "/journey" },
 ];
 
 const projects = [
-  { tone: styles.kana, top: "かな", name: "KanaStory", text: "কানা শেখার ইন্টার‍্যাক্টিভ ওয়েব অ্যাপ—গল্পের সাথে হিরাগানা।", tags: ["Next.js", "TypeScript", "Tailwind CSS"], href: "https://kanastory.halimslife.com/" },
-  { tone: styles.jlpt, top: "JLPT", name: "JLPT বাংলা হাব", text: "JLPT N5–N1 পর্যন্ত বাংলা ব্যাখ্যা, নোট ও প্র্যাকটিস প্ল্যাটফর্ম।", tags: ["Next.js", "MDX", "Firebase"], href: "https://n5.halimslife.com/" },
-  { tone: styles.vocab, top: "Vocabulary", name: "Vocabulary Trainer", text: "স্মার্ট ফ্ল্যাশকার্ড দিয়ে জাপানি শব্দ মুখস্থ করার টুল।", tags: ["React", "Node.js", "MongoDB"], href: "/academy" },
-  { tone: styles.portfolio, top: "Portfolio", name: "Portfolio Website", text: "আমার প্রফেশনাল পোর্টফোলিও সাইট এবং সব প্রজেক্ট।", tags: ["Next.js", "Tailwind CSS", "Vercel"], href: "/projects" },
+  { tone: styles.kana, image: projectKana, top: "KanaStory", name: "KanaStory", text: "কানা শেখার ইন্টার‍্যাক্টিভ ওয়েব অ্যাপ—গল্পের সাথে হিরাগানা।", tags: ["Next.js", "TypeScript", "Tailwind CSS"], href: "https://kanastory.halimslife.com/" },
+  { tone: styles.jlpt, image: projectJlpt, top: "JLPT", name: "JLPT বাংলা হাব", text: "JLPT N5–N1 পর্যন্ত বাংলা ব্যাখ্যা, নোট ও প্র্যাকটিস প্ল্যাটফর্ম।", tags: ["Next.js", "MDX", "Firebase"], href: "https://n5.halimslife.com/" },
+  { tone: styles.notes, image: projectNotes, top: "Engineering", name: "Engineering Notes", text: "প্রজেক্ট আর্কিটেকচার, নোটস ও প্র্যাকটিক্যাল ইঞ্জিনিয়ারিং রিসোর্স।", tags: ["Next.js", "Research", "Vercel"], href: "/insights" },
+  { tone: styles.portfolio, image: null, top: "Portfolio", name: "Portfolio Website", text: "আমার প্রফেশনাল পোর্টফোলিও সাইট এবং সব প্রজেক্ট।", tags: ["Next.js", "Tailwind CSS", "Vercel"], href: "/projects" },
 ];
 
 const journey = [
@@ -81,12 +87,12 @@ export default function Home() {
 
       <section id="pathways" className={styles.section}>
         <SectionHeading title="আপনার শেখা ও ক্যারিয়ার পাথওয়ে" link="সব পাথওয়ে দেখুন" href="/academy" />
-        <div className={styles.pathGrid}>{pathways.map((item) => <article className={`${styles.pathCard} ${item.tone}`} key={item.title}><div><span className={styles.pathIcon}><Icon name={item.icon} /></span><h3>{item.title}</h3></div><p>{item.text}</p><Link href={item.href}>এক্সপ্লোর করুন <Icon name="arrow" /></Link><i aria-hidden="true" /></article>)}</div>
+        <div className={styles.pathGrid}>{pathways.map((item) => <article className={`${styles.pathCard} ${item.tone}`} key={item.title}><Image className={styles.pathBackground} src={item.image} alt="" fill sizes="(max-width: 850px) 100vw, 33vw" /><div><span className={styles.pathIcon}><Icon name={item.icon} /></span><h3>{item.title}</h3></div><p>{item.text}</p><Link href={item.href}>এক্সপ্লোর করুন <Icon name="arrow" /></Link></article>)}</div>
       </section>
 
       <section id="projects" className={styles.section}>
         <SectionHeading title="Featured Projects" link="সব প্রজেক্ট দেখুন" href="/projects" />
-        <div className={styles.projectGrid}>{projects.map((item) => <a className={styles.projectCard} href={item.href} key={item.name}><div className={`${styles.projectArt} ${item.tone}`}><small>{item.top}</small><strong>{item.name}</strong></div><div className={styles.projectInfo}><h3>{item.name}</h3><p>{item.text}</p><div>{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></a>)}</div>
+        <div className={styles.projectGrid}>{projects.map((item) => <a className={styles.projectCard} href={item.href} key={item.name}><div className={`${styles.projectArt} ${item.tone}`}>{item.image ? <Image src={item.image} alt="" fill sizes="(max-width: 560px) 100vw, 25vw" /> : null}<div className={styles.projectOverlay} /><small>{item.top}</small><strong>{item.name}</strong></div><div className={styles.projectInfo}><h3>{item.name}</h3><p>{item.text}</p><div>{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></a>)}</div>
       </section>
 
       <section className={styles.section}>
