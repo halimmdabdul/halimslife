@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
+import academyHero from "@/assets/academy/academy-hero.jpg";
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { TranslatedText } from "@/components/site-preferences";
 import { markdownToPlainText } from "@/components/rich-text-content";
 import { getPublishedCourses } from "@/lib/courses";
+import styles from "./academy.module.css";
 
 export const metadata: Metadata = {
   title: "Academy | Japanese, Robotics and AI Courses",
@@ -118,6 +121,7 @@ export default async function AcademyPage() {
   );
   return (
     <InnerPageShell>
+      <div className={styles.page}>
       <section className="academy-hero">
         <div className="container academy-hero-grid">
           <div className="academy-hero-copy">
@@ -149,6 +153,7 @@ export default async function AcademyPage() {
             </div>
           </div>
 
+          <div className={styles.heroArt}><Image src={academyHero} alt="Japanese language, programming and robotics academy illustration" fill priority sizes="58vw" /></div>
           <aside className="academy-hero-card" aria-label="Recommended first course">
             <span>Recommended first path</span>
             <div className="academy-hero-card-title">
@@ -165,6 +170,8 @@ export default async function AcademyPage() {
           </aside>
         </div>
       </section>
+
+      <section className={styles.learningTracks}><h2>আপনি কী শিখতে চান?</h2><div><article><span>⛩</span><div><h3>Japanese Language</h3><p>কথা বলা, ব্যাকরণ এবং JLPT level অনুযায়ী শেখা</p><b>Available now</b></div></article><article><span>⌨</span><div><h3>Technology & Programming</h3><p>Programming, software এবং technology skills</p><b>Upcoming · request</b></div></article><article><span>⚙</span><div><h3>AI & Robotics</h3><p>AI, machine learning এবং robotics fundamentals</p><b>Upcoming · request</b></div></article></div></section>
 
       <main id="courses">
         <section className="academy-steps container" aria-labelledby="academy-steps-title">
@@ -453,6 +460,7 @@ export default async function AcademyPage() {
           </Link>
         </section>
       </main>
+      </div>
     </InnerPageShell>
   );
 }
