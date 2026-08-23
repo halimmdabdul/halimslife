@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import academyHero from "@/assets/academy/academy-hero.jpg";
 import { InnerPageShell } from "@/components/inner-page-shell";
-import { TranslatedText } from "@/components/site-preferences";
 import { markdownToPlainText } from "@/components/rich-text-content";
 import { getPublishedCourses } from "@/lib/courses";
 import styles from "./academy.module.css";
@@ -12,454 +11,126 @@ import styles from "./academy.module.css";
 export const metadata: Metadata = {
   title: "Academy | Japanese, Robotics and AI Courses",
   description:
-    "Learn Japanese from JLPT N5 to N1, robotics, artificial intelligence and practical technology skills with Halim's Life Academy.",
+    "Explore Bengali-friendly Japanese, programming, AI and robotics courses from Halim's Life Academy.",
   alternates: { canonical: "/academy" },
 };
 
 const japaneseCourses = [
-  {
-    level: "N5",
-    title: "Japanese Foundations",
-    description: "10 modules, 30 lessons, Bengali notes and practice—from kana to N5 exam skills.",
-    status: "Available now",
-  },
-  {
-    level: "N4",
-    title: "Everyday Japanese",
-    description: "Core sentence patterns, reading practice and useful daily expressions.",
-    status: "Planned",
-  },
-  {
-    level: "N3",
-    title: "Intermediate Japanese",
-    description: "Natural grammar, broader vocabulary, reading and listening fluency.",
-    status: "Planned",
-  },
-  {
-    level: "N2",
-    title: "Professional Japanese",
-    description: "Advanced reading, workplace language and nuanced communication.",
-    status: "Planned",
-  },
-  {
-    level: "N1",
-    title: "Japanese Mastery",
-    description: "Complex texts, precise expressions and high-level comprehension.",
-    status: "Planned",
-  },
-];
-
-const n5Modules = [
-  "Study strategy",
-  "Hiragana",
-  "Katakana & sounds",
-  "Self-introduction",
-  "Objects, places & time",
-  "Verbs & particles",
-  "Descriptions & existence",
-  "Daily communication",
-  "Requests & permissions",
-  "JLPT reading & listening",
-];
-
-const studyTracks = [
-  {
-    time: "25 min/day",
-    label: "Steady",
-    detail: "5 min review · 12 min lesson · 5 min recall · 3 min practice",
-    pace: "প্রায় 8–10 weeks",
-  },
-  {
-    time: "45 min/day",
-    label: "Balanced",
-    detail: "10 min review · 20 min lesson · 10 min examples · 5 min quiz",
-    pace: "প্রায় 5–7 weeks",
-  },
-  {
-    time: "75 min/day",
-    label: "Intensive",
-    detail: "15 min review · 30 min lessons · 15 min reading · 15 min listening",
-    pace: "প্রায় 3–4 weeks",
-  },
+  { level: "N5", title: "Japanese Foundations", description: "Kana, grammar, reading ও everyday conversation—৩০টি structured lesson।", status: "Available now" },
+  { level: "N4", title: "Everyday Japanese", description: "Daily expressions, core grammar এবং practical reading practice।", status: "Planned" },
+  { level: "N3", title: "Intermediate Japanese", description: "Natural grammar, broader vocabulary, reading ও listening fluency।", status: "Planned" },
+  { level: "N2", title: "Professional Japanese", description: "Workplace language, advanced reading এবং nuanced communication।", status: "Planned" },
+  { level: "N1", title: "Japanese Mastery", description: "Complex texts, precise expressions ও high-level comprehension।", status: "Planned" },
 ];
 
 const technologyCourses = [
-  {
-    icon: "⚙",
-    title: "Robotics Fundamentals",
-    description:
-      "Sensors, actuators, control systems and the foundations behind real robots.",
-    topics: ["Electronics", "Motion", "Control"],
-  },
-  {
-    icon: "AI",
-    title: "Artificial Intelligence",
-    description:
-      "Understand machine learning, neural networks and practical AI applications.",
-    topics: ["Python", "Machine Learning", "Projects"],
-  },
-  {
-    icon: "◉",
-    title: "Computer Vision",
-    description:
-      "Teach computers to interpret images and video through hands-on exercises.",
-    topics: ["OpenCV", "Detection", "Cameras"],
-  },
-  {
-    icon: "</>",
-    title: "Programming Essentials",
-    description:
-      "Build strong problem-solving, coding and debugging fundamentals from scratch.",
-    topics: ["Logic", "Code", "Practice"],
-  },
+  { icon: "⚙", title: "Robotics Fundamentals", description: "Sensors, actuators, control systems এবং practical robotics foundation।", topics: ["Electronics", "Motion", "Control"] },
+  { icon: "AI", title: "Artificial Intelligence", description: "Machine learning, neural networks এবং practical AI applications।", topics: ["Python", "ML", "Projects"] },
+  { icon: "◉", title: "Computer Vision", description: "Image ও video বুঝতে OpenCV এবং detection-based exercises।", topics: ["OpenCV", "Detection", "Cameras"] },
+  { icon: "</>", title: "Programming Essentials", description: "Problem-solving, coding এবং debugging fundamentals।", topics: ["Logic", "Code", "Practice"] },
 ];
 
 export default async function AcademyPage() {
   const publishedCourses = await getPublishedCourses();
   const additionalCourses = publishedCourses.filter(
-    (course) => course.slug !== "japanese-n5",
+    (course) => !["japanese-n5", "minna-no-nihongo-n5-companion"].includes(course.slug),
   );
+
   return (
     <InnerPageShell>
       <div className={styles.page}>
-      <section className="academy-hero">
-        <div className="container academy-hero-grid">
-          <div className="academy-hero-copy">
-            <span className="academy-eyebrow">Halim&apos;s Life Academy</span>
-            <h1>
-              <TranslatedText
-                bn="শুধু দেখবেন না—শিখুন, practice করুন, এগিয়ে যান।"
-                en="Don’t just watch—learn, practise and move forward."
-                ja="見るだけでなく、学び、練習し、前へ進もう。"
-              />
-            </h1>
-            <p>
-              <TranslatedText
-                bn="বাংলায় সহজ explanation, ছোট ছোট lesson এবং নিজের গতিতে শেখার practical path—Japanese থেকে technology পর্যন্ত।"
-                en="Clear explanations, focused lessons and practical learning paths—from Japanese to technology."
-                ja="わかりやすい解説と実践的なレッスンで、日本語からテクノロジーまで学べます。"
-              />
-            </p>
-            <div className="academy-hero-actions">
-              <Link href="/academy/japanese-n5" className="primary-button">
-                Start learning free <span aria-hidden="true">→</span>
-              </Link>
-              <a href="#courses">Browse learning paths <span aria-hidden="true">↓</span></a>
-            </div>
-            <div className="academy-proof" aria-label="Academy benefits">
-              <span>✓ Bengali-friendly</span>
-              <span>✓ Self-paced</span>
-              <span>✓ Progress saved</span>
-            </div>
-          </div>
-
-          <div className={styles.heroArt}><Image src={academyHero} alt="Japanese language, programming and robotics academy illustration" fill priority sizes="58vw" /></div>
-          <aside className="academy-hero-card" aria-label="Recommended first course">
-            <span>Recommended first path</span>
-            <div className="academy-hero-card-title">
-              <strong>日本語</strong>
-              <div><small>JLPT N5</small><h2>Japanese Foundations</h2></div>
-            </div>
-            <p>Kana, essential grammar এবং everyday conversation দিয়ে confidence তৈরি করুন।</p>
-            <ul>
-              <li>10 modules ও 30 detailed lessons</li>
-              <li>Bengali notes এবং প্রতি lesson-এ practice</li>
-              <li>যেখান থেকে থামবেন, সেখান থেকেই শুরু</li>
-            </ul>
-            <Link href="/academy/japanese-n5">Open the course <span aria-hidden="true">↗</span></Link>
-          </aside>
-        </div>
-      </section>
-
-      <section className={styles.learningTracks}><h2>আপনি কী শিখতে চান?</h2><div><article><span>⛩</span><div><h3>Japanese Language</h3><p>কথা বলা, ব্যাকরণ এবং JLPT level অনুযায়ী শেখা</p><b>Available now</b></div></article><article><span>⌨</span><div><h3>Technology & Programming</h3><p>Programming, software এবং technology skills</p><b>Upcoming · request</b></div></article><article><span>⚙</span><div><h3>AI & Robotics</h3><p>AI, machine learning এবং robotics fundamentals</p><b>Upcoming · request</b></div></article></div></section>
-
-      <main id="courses">
-        <section className="academy-steps container" aria-labelledby="academy-steps-title">
-          <div>
-            <span className="kicker">Simple learning flow</span>
-            <h2 id="academy-steps-title">তিন ধাপে steady progress.</h2>
-          </div>
-          <article><span>01</span><strong>Choose a path</strong><p>আপনার level ও goal অনুযায়ী course দিয়ে শুরু করুন।</p></article>
-          <article><span>02</span><strong>Learn by doing</strong><p>Lesson, notes এবং ছোট practice test একসঙ্গে ব্যবহার করুন।</p></article>
-          <article><span>03</span><strong>Keep moving</strong><p>Progress save থাকবে—ফিরে এসে next lesson থেকে চালিয়ে যান।</p></article>
-        </section>
-
-        <section className="academy-foundation container" aria-labelledby="academy-foundation-title">
-          <div className="academy-heading">
-            <div>
-              <span className="kicker">Research-backed foundation</span>
-              <h2 id="academy-foundation-title">Exam বুঝে শিখুন—শুধু list মুখস্থ নয়।</h2>
-            </div>
-            <p>
-              Official JLPT N5 outcome এবং Japan Foundation-এর communication-first
-              beginner approach ধরে original Bengali-friendly curriculum সাজানো হয়েছে।
-            </p>
-          </div>
-          <div className="academy-foundation-grid">
-            <article>
-              <span>Official N5 outcome</span>
-              <strong>Basic reading + slow everyday listening</strong>
-              <p>Hiragana, katakana ও basic kanji-তে পরিচিত বাক্য পড়া এবং short conversation থেকে প্রয়োজনীয় তথ্য ধরা।</p>
-            </article>
-            <article>
-              <span>Test structure</span>
-              <strong>20 + 40 + 30 minutes</strong>
-              <p>Vocabulary, grammar/reading এবং listening—তিন section-এর জন্য আলাদা skill practice।</p>
-            </article>
-            <article>
-              <span>Inside this course</span>
-              <strong>10 modules · 30 lessons</strong>
-              <p>Explanation, quick-reference notes, original examples, practice question এবং saved progress।</p>
-            </article>
-          </div>
-        </section>
-
-        <section className="academy-study-plan">
-          <div className="container">
-            <div className="academy-heading">
-              <div>
-                <span className="kicker">Choose your pace</span>
-                <h2>সময় কম হলেও clear routine রাখুন।</h2>
-              </div>
-              <p>সময় estimate—guarantee নয়। আগের language-learning experience এবং review quality অনুযায়ী pace বদলাবে।</p>
-            </div>
-            <div className="academy-study-track-grid">
-              {studyTracks.map((track) => (
-                <article key={track.time}>
-                  <span>{track.label}</span>
-                  <h3>{track.time}</h3>
-                  <p>{track.detail}</p>
-                  <strong>{track.pace}</strong>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="academy-curriculum-preview container" aria-labelledby="n5-curriculum-title">
-          <div>
-            <span className="kicker">Complete N5 path</span>
-            <h2 id="n5-curriculum-title">Foundation থেকে exam-ready practice.</h2>
-            <p>
-              Kana দিয়ে শুরু করে sentence building, everyday communication এবং timed
-              JLPT strategy পর্যন্ত। প্রতিটি module আগের skill ব্যবহার করে।
-            </p>
-            <Link className="primary-button" href="/academy/japanese-n5">
-              Start the complete course <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <ol>
-            {n5Modules.map((module, index) => (
-              <li key={module}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{module}</strong>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className="academy-companion-feature container" aria-labelledby="minna-companion-title">
-          <div className="academy-companion-copy">
-            <span className="kicker">New · 25-unit companion</span>
-            <h2 id="minna-companion-title">Minna no Nihongo N5-এর সঙ্গে বাংলায় আরও গুছিয়ে শিখুন।</h2>
-            <p>
-              একদম নতুনদের foundation এবং Lesson 1–25-এর progression অনুসরণ করে তৈরি ৫২টি সম্পূর্ণ
-              মৌলিক guide ও practice lesson। Grammar বুঝুন, নিজের sentence বানান,
-              common mistake ধরুন এবং প্রতিটি unit শেষে quick check দিন।
-            </p>
-            <div className="academy-companion-actions">
-              <Link className="primary-button" href="/academy/minna-no-nihongo-n5-companion">
-                Open Bangla companion <span aria-hidden="true">→</span>
-              </Link>
-              <span>Start Here + 25 units · 52 lessons · progress saved</span>
-            </div>
-          </div>
-          <div className="academy-companion-details">
-            <span>এই companion-এ যা আছে</span>
-            <ul>
-              <li>সহজ বাংলা grammar explanation ও sentence formula</li>
-              <li>সম্পূর্ণ নতুন Japanese example, vocabulary prompt ও exercise</li>
-              <li>প্রতি unit-এ ভুল এড়ানোর checklist এবং self-test</li>
-              <li>Second/Third Edition—দুটির শিক্ষার্থীর জন্য ব্যবহারযোগ্য topic map</li>
-            </ul>
-            <p>
-              এটি 3A Corporation-এর বইয়ের অনুবাদ, প্রতিলিপি বা official answer guide নয়।
-              মূল textbook ও audio আলাদাভাবে সংগ্রহ করে পাশাপাশি ব্যবহার করুন।
-            </p>
-          </div>
-        </section>
-
-        <section className="academy-section container">
-          <div className="academy-heading">
-            <div>
-              <span className="kicker">Japanese learning</span>
-              <h2>One clear path from N5 to N1.</h2>
-            </div>
-            <p>
-              Start with the basics and progress step by step toward confident,
-              advanced Japanese.
-            </p>
-          </div>
-
-          <div className="jlpt-course-grid">
-            {japaneseCourses.map((course, index) => (
-              <article key={course.level}>
-                <div className="course-card-top">
-                  <span className="course-number">0{index + 1}</span>
-                  <span className="course-status">{course.status}</span>
-                </div>
-                <strong className="jlpt-level">JLPT {course.level}</strong>
-                <h3>{course.title}</h3>
-                <p>{course.description}</p>
-                {course.level === "N5" ? (
-                  <Link className="course-open-link" href="/academy/japanese-n5">
-                    Start learning <span aria-hidden="true">→</span>
-                  </Link>
-                ) : (
-                  <Link
-                    className="course-interest-link"
-                    href={`/contact?topic=academy&subject=${encodeURIComponent(`${course.title} course interest`)}`}
-                  >
-                    I&apos;m interested <span aria-hidden="true">→</span>
-                  </Link>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="academy-tech-section">
-          <div className="container">
-            <div className="academy-heading">
-              <div>
-                <span className="kicker">Technology courses</span>
-                <h2>Turn curiosity into real skills.</h2>
-              </div>
+        <section className="academy-hero">
+          <div className="container academy-hero-grid">
+            <div className="academy-hero-copy">
+              <span className="academy-eyebrow">Halim&apos;s Life Academy</span>
+              <h1>একটি course বেছে নিন—শিখুন, practice করুন, এগিয়ে যান।</h1>
               <p>
-                Learn the concepts, tools and thinking used to build intelligent
-                systems.
+                বাংলা-friendly structured lesson, practical exercise এবং saved progress—Japanese থেকে technology পর্যন্ত।
               </p>
+              <div className="academy-hero-actions">
+                <Link href="/academy/japanese-n5" className="primary-button">Free course শুরু করুন <span aria-hidden="true">→</span></Link>
+                <a href="#available-courses">সব course দেখুন <span aria-hidden="true">↓</span></a>
+              </div>
+              <div className="academy-proof" aria-label="Academy benefits">
+                <span>✓ Bengali-friendly</span><span>✓ Self-paced</span><span>✓ Progress saved</span>
+              </div>
             </div>
-
-            <div className="technology-course-grid">
-              {technologyCourses.map((course) => (
-                <article key={course.title}>
-                  <span className="tech-course-icon" aria-hidden="true">
-                    {course.icon}
-                  </span>
-                  <h3>{course.title}</h3>
-                  <p>{course.description}</p>
-                  <div className="course-topics">
-                    {course.topics.map((topic) => (
-                      <span key={topic}>{topic}</span>
-                    ))}
-                  </div>
-                  <Link
-                    className="course-interest-link"
-                    href={`/contact?topic=academy&subject=${encodeURIComponent(`${course.title} course interest`)}`}
-                  >
-                    Request this course <span aria-hidden="true">→</span>
-                  </Link>
-                </article>
-              ))}
+            <div className={styles.heroArt}>
+              <Image src={academyHero} alt="Japanese language, programming and robotics course illustration" fill priority sizes="58vw" />
             </div>
           </div>
         </section>
 
-        <section className="academy-resources container" aria-labelledby="academy-resources-title">
-          <div className="academy-heading">
-            <div>
-              <span className="kicker">Official companion resources</span>
-              <h2 id="academy-resources-title">Practice করুন trusted source দিয়ে।</h2>
-            </div>
-            <p>Academy lesson-এর পাশাপাশি official sample format, audio ও real-life beginner material ব্যবহার করুন।</p>
-          </div>
-          <div className="academy-resource-grid">
-            <a href="https://www.jlpt.jp/e/about/levelsummary.html" target="_blank" rel="noreferrer">
-              <span>JLPT official</span>
-              <strong>N5 ability summary</strong>
-              <p>Level-এর reading ও listening outcome official wording-এ বুঝুন।</p>
-              <b>Open source ↗</b>
-            </a>
-            <a href="https://www.jlpt.jp/e/guideline/testsections.html" target="_blank" rel="noreferrer">
-              <span>JLPT official</span>
-              <strong>Sections and question types</strong>
-              <p>Current test time এবং vocabulary, reading, listening item types দেখুন।</p>
-              <b>Open source ↗</b>
-            </a>
-            <a href="https://www.irodori.jpf.go.jp/en/" target="_blank" rel="noreferrer">
-              <span>Japan Foundation</span>
-              <strong>Irodori for life in Japan</strong>
-              <p>Daily life ও work communication-এর free beginner materials ব্যবহার করুন।</p>
-              <b>Open source ↗</b>
-            </a>
-            <a href="https://marugoto.jpf.go.jp/en/e-learning/" target="_blank" rel="noreferrer">
-              <span>Japan Foundation</span>
-              <strong>Marugoto e-learning</strong>
-              <p>Communication, kana, vocabulary এবং culture-এর extra practice নিন।</p>
-              <b>Open source ↗</b>
-            </a>
-          </div>
-        </section>
-
-        <section className="academy-faq container" aria-labelledby="academy-faq-title">
+        <section className={styles.learningTracks} aria-labelledby="course-categories-title">
+          <h2 id="course-categories-title">কী শিখতে চান?</h2>
           <div>
-            <span className="kicker">Before you begin</span>
-            <h2 id="academy-faq-title">Common questions.</h2>
-          </div>
-          <div>
-            <details open>
-              <summary>এই course শেষ করলেই কি N5 pass নিশ্চিত?</summary>
-              <p>না। এটি strong foundation ও structured practice দেয়। Pass নির্ভর করবে vocabulary coverage, listening volume, timed mock performance এবং exam-day execution-এর ওপর।</p>
-            </details>
-            <details>
-              <summary>Romaji ব্যবহার করা যাবে?</summary>
-              <p>শুরুর কয়েকদিন pronunciation support হিসেবে ব্যবহার করতে পারেন। কিন্তু N5 reading-এর জন্য দ্রুত hiragana ও katakana-only practice-এ যেতে হবে।</p>
-            </details>
-            <details>
-              <summary>Speaking কেন আছে, যখন JLPT speaking test করে না?</summary>
-              <p>নিজে sentence বলা active recall শক্ত করে এবং grammar শুধু চিনতে নয়, ব্যবহার করতে শেখায়। তবে course exam sections—vocabulary, reading ও listening—স্পষ্টভাবে আলাদা রাখে।</p>
-            </details>
-            <details>
-              <summary>N4–N1 course কি এখন available?</summary>
-              <p>বর্তমানে complete structured path হিসেবে N5 available। N4–N1 roadmap planned; card-এর interest link দিয়ে priority জানাতে পারবেন।</p>
-            </details>
+            <article><span>あ</span><div><h3>Japanese Language</h3><p>JLPT এবং everyday Japanese</p><b>2 courses available</b></div></article>
+            <article><span>&lt;/&gt;</span><div><h3>Programming</h3><p>Code, web এবং software fundamentals</p><b>Upcoming</b></div></article>
+            <article><span>AI</span><div><h3>AI &amp; Robotics</h3><p>Vision, machine learning এবং robotics</p><b>Upcoming</b></div></article>
           </div>
         </section>
 
-        {additionalCourses.length > 0 ? (
-          <section className="academy-section container">
+        <main id="available-courses">
+          <section className={`container ${styles.availableSection}`}>
             <div className="academy-heading">
-              <div><span className="kicker">Available now</span><h2>Courses from the Academy.</h2></div>
-              <p>New courses published from the Academy dashboard appear here automatically.</p>
+              <div><span className="kicker">Available now</span><h2>এখনই শেখা শুরু করুন।</h2></div>
+              <p>দুটি Bengali-friendly Japanese course থেকে আপনার প্রয়োজন অনুযায়ী path বেছে নিন।</p>
             </div>
-            <div className="dynamic-course-grid">
-              {additionalCourses.map((course) => (
-                <Link href={`/academy/${course.slug}`} key={course.id}>
-                  {course.cover_image ? <span className="dynamic-course-cover" role="img" aria-label={`${course.title} featured image`} style={{ backgroundImage: `url(${course.cover_image})` }} /> : <span className="dynamic-course-cover placeholder" aria-hidden="true">{course.title.charAt(0)}</span>}
-                  <div className="dynamic-course-body">
-                    <span>{course.category}</span>
-                    <strong>{course.level}</strong>
-                    <h3>{course.title}</h3>
-                    <p>{course.description ? markdownToPlainText(course.description) : course.subtitle || "Start learning with this structured course."}</p>
-                    <b>Open course →</b>
-                  </div>
-                </Link>
+            <div className={styles.featuredCourseGrid}>
+              <article className={styles.featuredCourse}>
+                <span className={styles.courseVisual}>日本語 <b>N5</b></span>
+                <div><small>JLPT N5 · Beginner</small><h3>Japanese Foundations</h3><p>Kana থেকে grammar, reading, listening এবং everyday conversation—১০ module ও ৩০ lesson।</p><ul><li>Structured Bengali notes</li><li>Practice test ও saved progress</li><li>Self-paced learning</li></ul><Link href="/academy/japanese-n5">Course শুরু করুন <span>→</span></Link></div>
+              </article>
+              <article className={styles.featuredCourse}>
+                <span className={`${styles.courseVisual} ${styles.companionVisual}`}>みんなの<br />日本語 <b>25 units</b></span>
+                <div><small>N5 · Bangla Companion</small><h3>Minna no Nihongo Companion</h3><p>Lesson 1–25 অনুসরণ করে ৫২টি original guide ও practice lesson দিয়ে textbook study গুছিয়ে নিন।</p><ul><li>Bangla grammar explanation</li><li>Original examples ও exercises</li><li>Quick checks এবং progress</li></ul><Link href="/academy/minna-no-nihongo-n5-companion">Companion খুলুন <span>→</span></Link></div>
+              </article>
+            </div>
+          </section>
+
+          {additionalCourses.length > 0 ? (
+            <section className={`container ${styles.catalogSection}`}>
+              <div className="academy-heading"><div><span className="kicker">More courses</span><h2>নতুন প্রকাশিত course.</h2></div></div>
+              <div className="dynamic-course-grid">
+                {additionalCourses.map((course) => (
+                  <Link href={`/academy/${course.slug}`} key={course.id}>
+                    {course.cover_image ? <span className="dynamic-course-cover" role="img" aria-label={`${course.title} featured image`} style={{ backgroundImage: `url(${course.cover_image})` }} /> : <span className="dynamic-course-cover placeholder" aria-hidden="true">{course.title.charAt(0)}</span>}
+                    <div className="dynamic-course-body"><span>{course.category}</span><strong>{course.level}</strong><h3>{course.title}</h3><p>{course.description ? markdownToPlainText(course.description) : course.subtitle || "Start learning with this structured course."}</p><b>Open course →</b></div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <section className={`academy-section container ${styles.catalogSection}`}>
+            <div className="academy-heading"><div><span className="kicker">Japanese roadmap</span><h2>N5 থেকে N1—একটি clear path.</h2></div><p>N5 এখন available; পরের levelগুলো পর্যায়ক্রমে প্রকাশ হবে।</p></div>
+            <div className="jlpt-course-grid">
+              {japaneseCourses.map((course, index) => (
+                <article key={course.level}>
+                  <div className="course-card-top"><span className="course-number">0{index + 1}</span><span className="course-status">{course.status}</span></div>
+                  <strong className="jlpt-level">JLPT {course.level}</strong><h3>{course.title}</h3><p>{course.description}</p>
+                  {course.level === "N5" ? <Link className="course-open-link" href="/academy/japanese-n5">Start learning <span>→</span></Link> : <Link className="course-interest-link" href={`/contact?topic=academy&subject=${encodeURIComponent(`${course.title} course interest`)}`}>Interest জানান <span>→</span></Link>}
+                </article>
               ))}
             </div>
           </section>
-        ) : null}
 
-        <section className="academy-cta container">
-          <div>
-            <span>New lessons are on the way</span>
-            <h2>Which course would you like to learn first?</h2>
-          </div>
-          <Link href="/contact?topic=academy&subject=Academy%20course%20request">
-            Suggest a course <span aria-hidden="true">↗</span>
-          </Link>
-        </section>
-      </main>
+          <section className={`academy-tech-section ${styles.techCatalog}`}>
+            <div className="container">
+              <div className="academy-heading"><div><span className="kicker">Upcoming technology courses</span><h2>Technology দিয়ে real skill তৈরি করুন।</h2></div><p>যে course আগে চান, request পাঠিয়ে priority জানান।</p></div>
+              <div className="technology-course-grid">
+                {technologyCourses.map((course) => (
+                  <article key={course.title}><span className="tech-course-icon" aria-hidden="true">{course.icon}</span><h3>{course.title}</h3><p>{course.description}</p><div className="course-topics">{course.topics.map((topic) => <span key={topic}>{topic}</span>)}</div><Link className="course-interest-link" href={`/contact?topic=academy&subject=${encodeURIComponent(`${course.title} course interest`)}`}>Request course <span>→</span></Link></article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="academy-cta container">
+            <div><span>আপনার পছন্দের course খুঁজে পাননি?</span><h2>পরবর্তী course-এর priority জানান।</h2></div>
+            <Link href="/contact?topic=academy&subject=Academy%20course%20request">Course suggest করুন <span>↗</span></Link>
+          </section>
+        </main>
       </div>
     </InnerPageShell>
   );
