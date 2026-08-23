@@ -1486,7 +1486,7 @@ html[data-theme="dark"] .footer-bottom {
   grid-template-columns: minmax(270px, 1.5fr) repeat(3, minmax(125px, 0.6fr));
   align-items: start;
   gap: clamp(35px, 5vw, 75px);
-  padding-top: 20px;
+  padding-top: 56px;
 }
 
 .brand-logo-footer .brand-wordmark {

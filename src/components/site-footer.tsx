@@ -31,17 +31,6 @@ const profileLinks = [
 export function SiteFooter() {
   return (
     <footer className="footer" id="site-footer">
-      <div className="container footer-cta">
-        <div>
-          <span>Have an idea or a question?</span>
-          <h2>একসঙ্গে শেখা, তৈরি করা এবং সামনে এগিয়ে যাওয়া যাক।</h2>
-        </div>
-        <div className="footer-cta-actions">
-          <Link href="/contact">Start a conversation <span aria-hidden="true">→</span></Link>
-          <Link href="/academy">Explore Academy</Link>
-        </div>
-      </div>
-
       <div className="container footer-main">
         <div className="footer-intro">
           <BrandLogo footer />
