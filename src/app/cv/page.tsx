@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import profile from "@/assets/profile.webp";
+import portrait from "@/assets/halim-portrait-v2.png";
+import manufacturingArt from "@/assets/about/manufacturing-facility.png";
+import journeyArt from "@/assets/journey/hero-bangladesh-japan.png";
+import roboticsArt from "@/assets/journey/stage-03-robotics.png";
+import webArt from "@/assets/homepage/research-laptop-v2.png";
 import { CvPrintButton } from "@/components/cv-print-button";
 import { InnerPageShell } from "@/components/inner-page-shell";
+import styles from "./cv.module.css";
 
 export const metadata: Metadata = {
   title: "CV | Software & AI Engineer",
@@ -22,6 +27,7 @@ export const metadata: Metadata = {
 
 const experience = [
   {
+    image: manufacturingArt,
     dates: "Aug 2025 — Present",
     role: "System Engineer",
     company: "Aspark Co., Ltd.",
@@ -35,6 +41,7 @@ const experience = [
     ],
   },
   {
+    image: roboticsArt,
     dates: "Jan 2022 — Jul 2025",
     role: "Software / AI Engineer",
     company: "Niche Creation Co., Ltd.",
@@ -49,6 +56,7 @@ const experience = [
     ],
   },
   {
+    image: webArt,
     dates: "Jan 2018 — Sep 2019",
     role: "IT Engineer",
     company: "StoryIT",
@@ -140,7 +148,7 @@ export default function CvPage() {
 
   return (
     <InnerPageShell>
-      <article className="cv-page">
+      <article className={`cv-page ${styles.page}`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -151,15 +159,9 @@ export default function CvPage() {
             <div className="cv-identity">
               <span className="cv-overline">Curriculum Vitae · 2026</span>
               <h1>Halim Md Abdul</h1>
-              <p className="cv-role">
-                Software / AI Engineer <span>—</span> Research-minded systems builder
-              </p>
-              <p className="cv-intro">
-                I design algorithms and deploy data-driven systems across industrial
-                automation, computer vision, healthcare IoT and web applications—with
-                research foundations in recommender systems, multi-agent systems and
-                game theory.
-              </p>
+              <p className="cv-role">Software / AI Engineer <span>—</span><br />Research-minded systems builder</p>
+              <p className="cv-intro">আমি শিল্প অটোমেশন, কম্পিউটার ভিশন, healthcare IoT এবং web applications-এর জন্য production systems তৈরি করি।</p>
+              <p className="cv-intro">I build production systems across industrial automation, computer vision, healthcare IoT and web applications.</p>
               <div className="cv-actions">
                 <CvPrintButton />
                 <a href="mailto:reiazbubt@gmail.com">
@@ -171,7 +173,7 @@ export default function CvPage() {
             <aside className="cv-profile-card">
               <div className="cv-photo">
                 <Image
-                  src={profile}
+                  src={portrait}
                   alt="Halim Md Abdul"
                   fill
                   priority
@@ -184,6 +186,7 @@ export default function CvPage() {
                 <span>Focus</span><strong>Software · AI · Research</strong>
               </div>
             </aside>
+            <Image className="cv-hero-art" src={journeyArt} alt="Mount Fuji and Japanese pagoda watercolor" fill priority sizes="52vw" />
           </div>
           <div className="container cv-contact-strip" aria-label="Contact details">
             <a href="mailto:reiazbubt@gmail.com">reiazbubt@gmail.com</a>
@@ -239,6 +242,7 @@ export default function CvPage() {
                   {experience.map((item) => (
                     <article key={`${item.company}-${item.role}`}>
                       <div className="cv-timeline-marker" aria-hidden="true" />
+                      <div className="cv-experience-image"><Image src={item.image} alt="" fill sizes="190px" /></div>
                       <p className="cv-date">{item.dates}</p>
                       <h3>{item.role}</h3>
                       <p className="cv-company">{item.company} · {item.location}</p>
@@ -311,6 +315,7 @@ export default function CvPage() {
         </div>
 
         <section className="container cv-closing">
+          <Image src={journeyArt} alt="Japanese landscape watercolor" fill sizes="1120px" />
           <div><span>Open to meaningful research & engineering conversations</span><h2>Let&apos;s build systems that make better decisions.</h2></div>
           <Link href="/contact?topic=career&subject=CV%20and%20career%20conversation">Start a conversation <span aria-hidden="true">→</span></Link>
         </section>
