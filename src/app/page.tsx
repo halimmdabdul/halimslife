@@ -1,592 +1,113 @@
 import Image from "next/image";
-import { connection } from "next/server";
+import Link from "next/link";
 
-import japanLife from "@/assets/hero/slide-5.jpeg";
-import profileWide from "@/assets/halim-wide.webp";
-import profileImage from "@/assets/profile.webp";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { TranslatedText } from "@/components/site-preferences";
+import portrait from "@/assets/halim-portrait-v2.png";
+import robotics from "@/assets/hero/slide-1.jpeg";
+import japanWorkshop from "@/assets/hero/slide-3.jpeg";
+import japanese from "@/assets/hero/slide-5.jpeg";
+import { BrandLogo } from "@/components/brand-logo";
+import { HomeHeader } from "@/components/home-header";
 
-const focusAreas = [
-  {
-    icon: "⌁",
-    title: "Robotics & Computer Vision",
-    text: "Perception, camera pipeline, sensor data এবং real-world engineering problem নিয়ে কাজ করি।",
-  },
-  {
-    icon: "あ",
-    title: "Japanese Learning",
-    text: "বাংলাভাষীদের জন্য Kana থেকে JLPT N1 পর্যন্ত সহজ learning path তৈরি করছি।",
-  },
-  {
-    icon: "</>",
-    title: "Programming Fundamentals",
-    text: "Syntax নয়—problem solving, debugging mindset ও strong foundation শেখাতে চাই।",
-  },
+import styles from "./home.module.css";
+
+type IconName = "arrow" | "book" | "briefcase" | "code" | "flag" | "globe" | "graduation" | "mail" | "plane" | "play" | "robot" | "users" | "video";
+
+function Icon({ name }: { name: IconName }) {
+  const paths: Record<IconName, React.ReactNode> = {
+    arrow: <path d="M5 12h14m-5-5 5 5-5 5" />,
+    book: <><path d="M4 5c3-1 6 0 8 2v13c-2-2-5-3-8-2V5Z" /><path d="M20 5c-3-1-6 0-8 2v13c2-2 5-3 8-2V5Z" /></>,
+    briefcase: <><rect x="3" y="7" width="18" height="12" rx="2" /><path d="M8 7V5h8v2M3 12h18M10 12v2h4v-2" /></>,
+    code: <><path d="m8 9-3 3 3 3m8-6 3 3-3 3M14 5l-4 14" /></>,
+    flag: <><path d="M5 21V4" /><path d="M5 5c5-3 9 3 14 0v9c-5 3-9-3-14 0" /></>,
+    globe: <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9c-3-3-4-6-4-9s1-6 4-9Z" /></>,
+    graduation: <><path d="m2 9 10-5 10 5-10 5L2 9Z" /><path d="M6 11v5c3 3 9 3 12 0v-5" /></>,
+    mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></>,
+    plane: <path d="m3 11 18-8-7 18-3-7-8-3Zm8 3 4-4" />,
+    play: <><circle cx="12" cy="12" r="9" /><path d="m10 8 6 4-6 4V8Z" /></>,
+    robot: <><rect x="5" y="7" width="14" height="12" rx="3" /><path d="M12 3v4M8 12h.01M16 12h.01M9 16h6" /></>,
+    users: <><circle cx="9" cy="8" r="3" /><path d="M3 20c0-4 2-7 6-7s6 3 6 7M16 5c3 0 4 2 4 4s-1 4-4 4m1 1c3 1 4 3 4 6" /></>,
+    video: <><path d="m10 8 6 4-6 4V8Z" /><rect x="3" y="4" width="18" height="16" rx="3" /></>,
+  };
+  return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
+}
+
+const pathways = [
+  { tone: styles.japanesePath, icon: "book" as const, title: "Japanese Learning", text: "শূন্য থেকে JLPT পর্যন্ত ধাপে ধাপে গাইড, নোট, ভোকাবুলারি ও প্র্যাকটিস।", href: "/academy/japanese-n5" },
+  { tone: styles.techPath, icon: "code" as const, title: "Tech & Programming", text: "প্রোগ্রামিং ফান্ডামেন্টাল, ওয়েব ডেভেলপমেন্ট, DSA ও প্র্যাকটিক্যাল প্রজেক্ট।", href: "/academy" },
+  { tone: styles.careerPath, icon: "briefcase" as const, title: "Japan Career", text: "জব সার্চ, ভিসা গাইড, রিজিউমে টিপস এবং ইন্টারভিউ প্রস্তুতি।", href: "/journey" },
 ];
 
 const projects = [
-  {
-    tag: "Featured project",
-    title: "KanaStory",
-    text: "হিরাগানা ও কাতাকানা শেখার জন্য story-based interactive learning experience।",
-    link: "https://kanastory.halimslife.com/",
-    linkText: "KanaStory দেখুন",
-    accent: "green",
-  },
-  {
-    tag: "Learning ecosystem",
-    title: "JLPT বাংলা হাব",
-    text: "N5 থেকে N1—ভোকাবুলারি, গ্রামার, roadmap এবং practice resource এক জায়গায়।",
-    link: "https://n5.halimslife.com/",
-    linkText: "N5 দিয়ে শুরু করুন",
-    accent: "blue",
-  },
-  {
-    tag: "Open knowledge",
-    title: "Engineering Notes",
-    text: "জাপানে engineering career, কাজের culture এবং practical programming নিয়ে লেখা।",
-    link: "/insights",
-    linkText: "লেখাগুলো দেখুন",
-    accent: "orange",
-  },
+  { tone: styles.kana, top: "かな", name: "KanaStory", text: "কানা শেখার ইন্টার‍্যাক্টিভ ওয়েব অ্যাপ—গল্পের সাথে হিরাগানা।", tags: ["Next.js", "TypeScript", "Tailwind CSS"], href: "https://kanastory.halimslife.com/" },
+  { tone: styles.jlpt, top: "JLPT", name: "JLPT বাংলা হাব", text: "JLPT N5–N1 পর্যন্ত বাংলা ব্যাখ্যা, নোট ও প্র্যাকটিস প্ল্যাটফর্ম।", tags: ["Next.js", "MDX", "Firebase"], href: "https://n5.halimslife.com/" },
+  { tone: styles.vocab, top: "Vocabulary", name: "Vocabulary Trainer", text: "স্মার্ট ফ্ল্যাশকার্ড দিয়ে জাপানি শব্দ মুখস্থ করার টুল।", tags: ["React", "Node.js", "MongoDB"], href: "/academy" },
+  { tone: styles.portfolio, top: "Portfolio", name: "Portfolio Website", text: "আমার প্রফেশনাল পোর্টফোলিও সাইট এবং সব প্রজেক্ট।", tags: ["Next.js", "Tailwind CSS", "Vercel"], href: "/projects" },
 ];
 
-const timeline = [
-  {
-    year: "এখন",
-    title: "System Engineer · Aspark, Japan",
-    text: "Manufacturing software, computer vision এবং decision-support systems নিয়ে কাজ করছি।",
-  },
-  {
-    year: "২০২২-২৫",
-    title: "AI & Robotics Engineer · Niche Creation",
-    text: "AI-enabled robotic vision system এবং একটি hospital IoT monitoring system তৈরি করেছি, যা paralysis patient-দের সাহায্য করে।",
-  },
-  {
-    year: "MSc",
-    title: "Shizuoka University, Japan",
-    text: "Computer Science-এ Master of Science সম্পন্ন করেছি এবং recommender system নিয়ে research করেছি।",
-  },
-  {
-    year: "শুরু",
-    title: "Bangladesh to Japan",
-    text: "Curiosity, consistency এবং প্রতিদিন একটু করে শেখা—এই তিনটি জিনিসই আমার journey-র ভিত্তি।",
-  },
+const journey = [
+  { year: "2018", icon: "graduation" as const, text: "BSc in EEE" },
+  { year: "2019", icon: "code" as const, text: "প্রোগ্রামিং জার্নি" },
+  { year: "2020", icon: "book" as const, text: "জাপানি ভাষা শেখা" },
+  { year: "2021", icon: "video" as const, text: "কনটেন্ট তৈরি" },
+  { year: "2023", icon: "plane" as const, text: "জাপানে আসা" },
+  { year: "2024+", icon: "flag" as const, text: "শেখা ও তৈরি চলছে" },
 ];
 
-const articles = [
-  {
-    category: "জাপানে ক্যারিয়ার",
-    title: "জাপানের engineering team-এ কাজ করে আমি যা শিখেছি",
-    text: "Communication, documentation আর context share করা কেন technical skill-এর মতোই গুরুত্বপূর্ণ।",
-  },
-  {
-    category: "জাপানি ভাষা",
-    title: "একদম শুরু থেকে JLPT-এর প্রস্তুতি নেবেন যেভাবে",
-    text: "ভয় না পেয়ে ছোট ছোট milestone দিয়ে নিজের জন্য একটি practical roadmap বানান।",
-  },
-  {
-    category: "প্রোগ্রামিং",
-    title: "Tutorial কম, problem solving বেশি—strong base-এর formula",
-    text: "কোড মুখস্থ না করে problem ভাঙতে, ভুল ধরতে এবং নিজে চিন্তা করতে শিখুন।",
-  },
+const insights = [
+  { image: japanese, category: "জাপানি ভাষা", title: "জাপানি ভাষা শেখার রোডম্যাপ", text: "শুরু থেকে JLPT পর্যন্ত সম্পূর্ণ গাইড—কীভাবে ধাপ সাজাবেন।", meta: "10 min read · May 12, 2024" },
+  { image: robotics, category: "প্রোগ্রামিং", title: "প্রোগ্রামিং শেখার জন্য ১০টি অভ্যাস", text: "নিয়মিত ছোট অভ্যাসগুলোই আপনাকে একজন ভালো ডেভেলপার করবে।", meta: "8 min read · Apr 28, 2024" },
+  { image: japanWorkshop, category: "ক্যারিয়ার", title: "জাপানে Software Engineer হওয়ার ধাপসমূহ", text: "স্কিল, ভাষা, রিজিউমে ও ইন্টারভিউ—সবকিছু এক নজরে।", meta: "12 min read · Apr 15, 2024" },
 ];
 
-function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+export const metadata = { alternates: { canonical: "/" } };
+
+export default function Home() {
+  return <div className={styles.homePage}>
+    <HomeHeader />
+    <main>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <h1>জাপানকে জানি,<br />দক্ষতায় গড়ি <span>ভবিষ্যৎ</span></h1>
+          <p>জাপানি ভাষা শেখা, প্রোগ্রামিং দক্ষতা এবং জাপান ক্যারিয়ার—একসাথে সাজানো গাইড, রিসোর্স ও বাস্তব অভিজ্ঞতা।</p>
+          <div className={styles.heroActions}><Link className={styles.primaryButton} href="#pathways"><Icon name="book" /> শুরু করুন এখনই</Link><Link className={styles.secondaryButton} href="/about"><Icon name="play" /> আমার গল্প দেখুন</Link></div>
+          <dl className={styles.stats}>
+            <div><Icon name="users" /><span><dt>25K+</dt><dd>শিক্ষার্থী</dd></span></div>
+            <div><Icon name="video" /><span><dt>1.2M+</dt><dd>ভিডিও ভিউ</dd></span></div>
+            <div><Icon name="globe" /><span><dt>50+</dt><dd>কনটেন্ট সিরিজ</dd></span></div>
+          </dl>
+        </div>
+        <div className={styles.heroPortrait}><Image src={portrait} alt="Halim Md Abdul" fill priority placeholder="blur" sizes="(max-width: 760px) 94vw, 44vw" /><div className={styles.japanBadge}><span /> Japan</div></div>
+      </section>
+
+      <section id="pathways" className={styles.section}>
+        <SectionHeading title="আপনার শেখা ও ক্যারিয়ার পাথওয়ে" link="সব পাথওয়ে দেখুন" href="/academy" />
+        <div className={styles.pathGrid}>{pathways.map((item) => <article className={`${styles.pathCard} ${item.tone}`} key={item.title}><div><span className={styles.pathIcon}><Icon name={item.icon} /></span><h3>{item.title}</h3></div><p>{item.text}</p><Link href={item.href}>এক্সপ্লোর করুন <Icon name="arrow" /></Link><i aria-hidden="true" /></article>)}</div>
+      </section>
+
+      <section id="projects" className={styles.section}>
+        <SectionHeading title="Featured Projects" link="সব প্রজেক্ট দেখুন" href="/projects" />
+        <div className={styles.projectGrid}>{projects.map((item) => <a className={styles.projectCard} href={item.href} key={item.name}><div className={`${styles.projectArt} ${item.tone}`}><small>{item.top}</small><strong>{item.name}</strong></div><div className={styles.projectInfo}><h3>{item.name}</h3><p>{item.text}</p><div>{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></a>)}</div>
+      </section>
+
+      <section className={styles.section}>
+        <SectionHeading title="আমার জার্নি" link="সব দেখুন" href="/journey" />
+        <div className={styles.journey}>{journey.map((item) => <article key={item.year}><span><Icon name={item.icon} /></span><strong>{item.year}</strong><p>{item.text}</p></article>)}</div>
+      </section>
+
+      <section className={styles.publications}><div><h2>প্রকাশনা ও অর্জন</h2><p>Research · Engineering · Community</p></div><div className={styles.logos}><strong>IEEE</strong><strong>IEICE</strong><strong>JICA</strong><strong>Aspark</strong><strong>Shizuoka</strong></div><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">সব দেখুন <Icon name="arrow" /></a></section>
+
+      <section id="insights" className={styles.section}>
+        <SectionHeading title="Latest Insights" link="সব আর্টিকেল দেখুন" href="/insights" />
+        <div className={styles.insightGrid}>{insights.map((item) => <article className={styles.insightCard} key={item.title}><div className={styles.insightImage}><Image src={item.image} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" /><span>{item.category}</span></div><div><h3>{item.title}</h3><p>{item.text}</p><small>◷ {item.meta}</small></div></article>)}</div>
+      </section>
+
+      <section className={styles.cta}><span className={styles.ctaIcon}><Icon name="mail" /></span><div><h2>চলুন একসাথে আপনার লক্ষ্য পূরণের পথে!</h2><p>প্রশ্ন, পরামর্শ বা সহযোগিতার জন্য নির্দ্বিধায় যোগাযোগ করুন।</p></div><Link href="/contact"><Icon name="plane" /> যোগাযোগ করুন</Link></section>
+    </main>
+
+    <footer className={styles.footer}><div className={styles.footerGrid}><div><BrandLogo /><p>জাপানি ভাষা, প্রোগ্রামিং ও জাপান ক্যারিয়ার নিয়ে গাইড, রিসোর্স ও বাস্তব অভিজ্ঞতা শেয়ার করি।</p></div><div><h3>দ্রুত লিংক</h3><Link href="/about">হোম</Link><Link href="/journey">পাথওয়ে</Link><Link href="/projects">প্রজেক্টস</Link></div><div><h3>রিসোর্স</h3><Link href="/academy">ফ্রি কোর্স</Link><Link href="/scholarships">স্কলারশিপ</Link><Link href="/blog">ব্লগ</Link></div><div><h3>যোগাযোগ</h3><a href="mailto:reiazbubt@gmail.com">reiazbubt@gmail.com</a><span>Japan · 日本</span></div></div><p className={styles.copyright}>© {new Date().getFullYear()} Halim Md Abdul. All rights reserved.</p></footer>
+  </div>;
 }
 
-export const metadata = {
-  alternates: {
-    canonical: "/",
-  },
-};
-
-export default async function Home() {
-  await connection();
-
-  const personStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Halim Md Abdul",
-    url: "https://halimslife.com",
-    image: "https://halimslife.com/opengraph-image",
-    jobTitle: "Software Engineer",
-    email: "mailto:reiazbubt@gmail.com",
-    alumniOf: {
-      "@type": "CollegeOrUniversity",
-      name: "Shizuoka University",
-    },
-    sameAs: [
-      "https://github.com/halimmdabdul",
-      "https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ",
-    ],
-    knowsAbout: [
-      "Robotics",
-      "Computer Vision",
-      "Programming",
-      "Japanese language education",
-    ],
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(personStructuredData).replace(/</g, "\\u003c"),
-        }}
-      />
-      <SiteHeader />
-
-      <main>
-        <section className="personal-hero container">
-          <div className="hero-text">
-            <div className="welcome-pill">
-              <span>👋</span>{" "}
-              <TranslatedText
-                bn="আসসালামু আলাইকুম, আমি হালিম"
-                en="Hello, I’m Halim"
-                ja="こんにちは、ハリムです"
-              />
-            </div>
-            <h1>
-              <TranslatedText
-                bn="বাংলাদেশ থেকে জাপান—"
-                en="From Bangladesh to Japan—"
-                ja="バングラデシュから日本へ—"
-              />
-              <span>
-                <TranslatedText
-                  bn="শেখা, কাজ আর এগিয়ে যাওয়ার গল্প।"
-                  en="A story of learning, building and moving forward."
-                  ja="学び、働き、前へ進み続ける物語。"
-                />
-              </span>
-            </h1>
-            <p className="hero-description">
-              <TranslatedText
-                bn={
-                  <>
-                    আমি <strong>Halim Md Abdul</strong>। জাপানে কর্মরত একজন
-                    Software Engineer। Robotics, Computer Vision ও programming
-                    নিয়ে কাজ করি; আর নিজের অভিজ্ঞতা দিয়ে মানুষকে Japanese ও
-                    tech career-এ এগিয়ে যেতে সাহায্য করি।
-                  </>
-                }
-                en={
-                  <>
-                    I’m <strong>Halim Md Abdul</strong>, a software engineer in
-                    Japan working with robotics, computer vision and practical
-                    software—and sharing what I learn along the way.
-                  </>
-                }
-                ja={
-                  <>
-                    日本で働くソフトウェアエンジニア、
-                    <strong>Halim Md Abdul</strong>です。ロボティクス、
-                    コンピュータビジョン、実践的なソフトウェア開発に取り組み、
-                    学びを発信しています。
-                  </>
-                }
-              />
-            </p>
-            <div className="hero-buttons">
-              <a className="primary-button" href="/about">
-                <TranslatedText
-                  bn="আমার গল্প জানুন"
-                  en="Discover my story"
-                  ja="私のストーリー"
-                />{" "}
-                <span>↓</span>
-              </a>
-              <a
-                className="secondary-button"
-                href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Research profile <Arrow />
-              </a>
-            </div>
-            <div className="mini-proof">
-              <div>
-                <strong>Japan</strong>
-                <span>
-                  <TranslatedText
-                    bn="বর্তমান ঠিকানা"
-                    en="Based in"
-                    ja="活動拠点"
-                  />
-                </span>
-              </div>
-              <div>
-                <strong>MSc</strong>
-                <span>Computer Science</span>
-              </div>
-              <div>
-                <strong>2+</strong>
-                <span>Publications</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-photo-area">
-            <div className="sun-shape" />
-            <div className="dot-pattern" />
-            <div className="main-photo">
-              <Image
-                src={profileWide}
-                alt="জাপানে হালিম"
-                fill
-                priority
-                sizes="(max-width: 800px) 92vw, 42vw"
-              />
-            </div>
-            <div className="photo-badge badge-job">
-              <span className="badge-icon">⚙</span>
-              <div>
-                <small>বর্তমানে</small>
-                <strong>Software Engineer</strong>
-              </div>
-            </div>
-            <div className="photo-badge badge-place">
-              <span className="japan-dot" />
-              <div>
-                <small>কর্মস্থল</small>
-                <strong>Japan · 日本</strong>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="trust-bar">
-          <div className="container">
-            <p>
-              <TranslatedText
-                bn="আমার কাজ ও আগ্রহ"
-                en="Work & interests"
-                ja="仕事と関心分野"
-              />
-            </p>
-            <div>
-              <span>Robotics</span>
-              <i />
-              <span>Computer Vision</span>
-              <i />
-              <span>Japanese Language</span>
-              <i />
-              <span>Programming</span>
-              <i />
-              <span>Research</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="about-me container section" id="about">
-          <div className="section-intro">
-            <span className="kicker">
-              <TranslatedText bn="আমার সম্পর্কে" en="About me" ja="私について" />
-            </span>
-            <h2>
-              <TranslatedText
-                bn={
-                  <>
-                    একজন engineer,
-                    <br />
-                    আজীবন একজন learner।
-                  </>
-                }
-                en={
-                  <>
-                    An engineer,
-                    <br />a lifelong learner.
-                  </>
-                }
-                ja={
-                  <>
-                    エンジニアとして、
-                    <br />
-                    生涯学び続ける。
-                  </>
-                }
-              />
-            </h2>
-          </div>
-          <div className="about-body">
-            <p className="about-lead">
-              আমার বিশ্বাস—সঠিক guidance আর নিয়মিত চেষ্টা থাকলে, কঠিন পথও সহজ
-              হয়ে যায়।
-            </p>
-            <p>
-              আমি বর্তমানে জাপানের{" "}
-              <strong>Aspark Co., Ltd.</strong>-এ
-              System Engineer হিসেবে কাজ করছি। Shizuoka University থেকে
-              Computer Science-এ MSc সম্পন্ন করেছি।
-            </p>
-            <p>
-              জাপানে পড়াশোনা, চাকরি এবং প্রতিদিনের জীবন থেকে শেখা বিষয়গুলো আমি
-              সহজ বাংলায় share করি—যাতে বাংলাদেশের একজন শিক্ষার্থীও নিজের
-              journey শুরু করার confidence পায়।
-            </p>
-            <div className="signature">Halim</div>
-          </div>
-        </section>
-
-        <section className="focus-section section">
-          <div className="container">
-            <div className="center-heading">
-              <span className="kicker">
-                <TranslatedText bn="আমি যা করি" en="What I do" ja="取り組み" />
-              </span>
-              <h2>
-                <TranslatedText
-                  bn="Technology, learning এবং মানুষের growth"
-                  en="Technology, learning and human growth"
-                  ja="テクノロジー、学び、人の成長"
-                />
-              </h2>
-              <p>
-                আমার কাজের প্রতিটি জায়গায় একটি common goal—জটিল বিষয়কে সহজ,
-                practical এবং useful করা।
-              </p>
-            </div>
-            <div className="focus-grid">
-              {focusAreas.map((item) => (
-                <article key={item.title}>
-                  <span className="focus-icon">{item.icon}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="journey-section container section" id="journey">
-          <div className="journey-photo">
-            <Image
-              src={profileImage}
-              alt="Halim Md Abdul"
-              fill
-              sizes="(max-width: 800px) 92vw, 38vw"
-            />
-            <div className="journey-quote">
-              “Curiosity আমাকে শুরু করিয়েছে,
-              <br />
-              consistency আমাকে এগিয়ে নিয়েছে।”
-            </div>
-          </div>
-          <div className="journey-content">
-            <span className="kicker">
-              <TranslatedText bn="আমার জার্নি" en="My journey" ja="これまでの歩み" />
-            </span>
-            <h2>
-              <TranslatedText
-                bn="প্রতিটি ধাপ আমাকে নতুন কিছু শিখিয়েছে।"
-                en="Every step has taught me something new."
-                ja="一歩一歩が、新しい学びにつながりました。"
-              />
-            </h2>
-            <div className="timeline">
-              {timeline.map((item, index) => (
-                <article key={item.title}>
-                  <div className="timeline-marker">
-                    <span>{index + 1}</span>
-                    {index !== timeline.length - 1 ? <i /> : null}
-                  </div>
-                  <div>
-                    <small>{item.year}</small>
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="projects-section section" id="projects">
-          <div className="container">
-            <div className="split-heading">
-              <div>
-                <span className="kicker">
-                  <TranslatedText
-                    bn="আমার প্রজেক্ট"
-                    en="My projects"
-                    ja="プロジェクト"
-                  />
-                </span>
-                <h2>
-                  <TranslatedText
-                    bn="শেখার পথকে সহজ করার ছোট ছোট উদ্যোগ।"
-                    en="Small initiatives that make learning easier."
-                    ja="学びをもっと身近にする、小さな挑戦。"
-                  />
-                </h2>
-              </div>
-              <p>
-                নিজের শেখা ও অভিজ্ঞতাকে tools, resources এবং community value-তে
-                রূপ দেওয়ার চেষ্টা।
-              </p>
-            </div>
-            <div className="project-grid">
-              {projects.map((project) => (
-                <a
-                  key={project.title}
-                  className={`project-box ${project.accent}`}
-                  href={project.link}
-                  target={project.link.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    project.link.startsWith("http") ? "noreferrer" : undefined
-                  }
-                >
-                  <span className="project-tag">{project.tag}</span>
-                  <h3>{project.title}</h3>
-                  <p>{project.text}</p>
-                  <span className="project-action">
-                    {project.linkText} <Arrow />
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="research-card container">
-          <div className="research-copy">
-            <span className="kicker light">Research & Publications</span>
-            <h2>Research আমাকে evidence দিয়ে চিন্তা করতে শিখিয়েছে।</h2>
-            <p>
-              Health management এবং medical diagnostic problem-এ recommender
-              system-based approach নিয়ে আমার academic research প্রকাশিত হয়েছে
-              IEEE এবং IEICE-তে।
-            </p>
-            <a
-              href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Google Scholar দেখুন <Arrow />
-            </a>
-          </div>
-          <div className="research-visual">
-            <span className="big-number">02</span>
-            <p>Published research works</p>
-            <div className="paper-lines">
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-        </section>
-
-        <section className="insights container section" id="insights">
-          <div className="split-heading compact">
-            <div>
-              <span className="kicker">
-                <TranslatedText
-                  bn="আমার লেখালেখি"
-                  en="My writing"
-                  ja="記事・発信"
-                />
-              </span>
-              <h2>
-                <TranslatedText
-                  bn="অভিজ্ঞতা থেকে practical কথা।"
-                  en="Practical ideas from lived experience."
-                  ja="経験から生まれた、実践的な知見。"
-                />
-              </h2>
-            </div>
-            <p>Career, Japanese language ও programming নিয়ে সহজ বাংলায়।</p>
-          </div>
-          <div className="article-grid">
-            {articles.map((article, index) => (
-              <article key={article.title}>
-                <span className="article-no">0{index + 1}</span>
-                <span className="article-category">{article.category}</span>
-                <h3>{article.title}</h3>
-                <p>{article.text}</p>
-                <a href="mailto:reiazbubt@gmail.com?subject=Website content">
-                  এই বিষয়ে জানতে চাই <Arrow />
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="community-section">
-          <Image
-            src={japanLife}
-            alt=""
-            fill
-            sizes="100vw"
-            className="community-bg"
-          />
-          <div className="community-overlay" />
-          <div className="community-content container">
-            <span className="kicker light">
-              <TranslatedText
-                bn="একসাথে এগিয়ে যাই"
-                en="Let’s move forward"
-                ja="一緒に前へ"
-              />
-            </span>
-            <h2>
-              <TranslatedText
-                bn="আপনার Japan অথবা tech journey কোথা থেকে শুরু করবেন?"
-                en="Where will your Japan or tech journey begin?"
-                ja="日本やテクノロジーへの挑戦を、どこから始めますか？"
-              />
-            </h2>
-            <p>
-              প্রশ্ন, collaboration কিংবা শুধু নিজের পরিকল্পনাটি share করতে
-              চাইলে—আমাকে লিখতে পারেন।
-            </p>
-            <a className="white-button" href="mailto:reiazbubt@gmail.com">
-              <TranslatedText
-                bn="হালিমকে মেসেজ করুন"
-                en="Message Halim"
-                ja="ハリムにメッセージ"
-              />{" "}
-              <Arrow />
-            </a>
-          </div>
-        </section>
-
-        <section className="contact-section container" id="contact">
-          <div>
-            <span className="online-dot" />{" "}
-            <TranslatedText
-              bn="যোগাযোগের জন্য available"
-              en="Available for conversations"
-              ja="お問い合わせ受付中"
-            />
-          </div>
-          <h2>
-            <TranslatedText
-              bn="কথা বলা যাক—"
-              en="Let’s talk—"
-              ja="お話ししましょう—"
-            />
-            <span>
-              <TranslatedText
-                bn="আপনার পরবর্তী step নিয়ে।"
-                en="about your next step."
-                ja="あなたの次の一歩について。"
-              />
-            </span>
-          </h2>
-          <a href="mailto:reiazbubt@gmail.com">
-            reiazbubt@gmail.com <Arrow />
-          </a>
-        </section>
-      </main>
-
-      <SiteFooter />
-    </>
-  );
+function SectionHeading({ title, link, href }: { title: string; link: string; href: string }) {
+  return <div className={styles.sectionHeading}><h2>{title}</h2><Link href={href}>{link} <Icon name="arrow" /></Link></div>;
 }
