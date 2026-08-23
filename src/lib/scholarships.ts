@@ -1,4 +1,4 @@
-export type ScholarshipCountry = "usa" | "japan";
+export type ScholarshipCountry = "usa" | "japan" | "canada";
 
 export type ScholarshipGuide = {
   slug: string;
@@ -33,6 +33,9 @@ export type ScholarshipGuide = {
   businessOfficialUrl?: string;
   lowestCostPriority?: number;
   lowestCostCategory?: "Very low" | "Low";
+  canadaPriority?: number;
+  canadaTier?: 1 | 2 | 3;
+  canadaFunding?: "Strong" | "Possible" | "Limited";
 };
 
 type JapanShortlistSeed = {
@@ -1383,6 +1386,154 @@ const usLowCostSeeds: UsLowCostSeed[] = [
 ];
 
 const usLowCostGuides: ScholarshipGuide[] = usLowCostSeeds.map(createUsLowCostGuide);
+
+type CanadaUniversitySeed = {
+  rank: number;
+  slug: string;
+  university: string;
+  province: string;
+  fields: string;
+  funding: "Strong" | "Possible" | "Limited";
+  difficulty: string;
+  tier: 1 | 2 | 3;
+  officialUrl: string;
+  priority?: number;
+};
+
+function createCanadaGuide(seed: CanadaUniversitySeed): ScholarshipGuide {
+  const fundingText = seed.funding === "Strong"
+    ? "Thesis-based MSc/PhD route-এ RA, TA বা supervisor funding-এর সম্ভাবনা তুলনামূলক ভালো; written offer ছাড়া নিশ্চিত নয়।"
+    : seed.funding === "Possible"
+      ? "University awards, assistantship বা supervisor funding পাওয়া যেতে পারে, তবে competition বেশি এবং programভেদে বদলায়।"
+      : "এখানে course-based/private route বেশি হতে পারে; institutional funding সীমিত ধরে full-cost budget আগে যাচাই করুন।";
+  return {
+    slug: seed.slug,
+    country: "canada",
+    university: seed.university,
+    title: `${seed.university}: Canada Graduate Study & Funding Guide`,
+    summary: `${seed.province}-এ ${seed.fields} নিয়ে English graduate study, research fit, funding এবং study-permit planning-এর practical guide।`,
+    label: `Canada Tier ${seed.tier} · ${seed.funding} funding signal`,
+    funding: fundingText,
+    duration: "Master’s সাধারণত 1–2 বছর; PhD ও exact program length official page-এ যাচাই করুন",
+    audience: `International applicants targeting ${seed.fields}; relative admission difficulty: ${seed.difficulty}`,
+    realityCheck: "এই shortlist planning support—admission, funding, study permit বা PGWP guarantee নয়। DLI status থাকলেও প্রতিটি program স্বয়ংক্রিয়ভাবে PGWP-eligible নয়; exact program, campus এবং current immigration rule official source থেকে যাচাই করুন।",
+    highlights: [
+      `Province: ${seed.province}.`,
+      `Best-fit fields: ${seed.fields}.`,
+      `Funding signal: ${seed.funding}; thesis-based MSc/PhD সাধারণত course-based degree-এর চেয়ে funding-friendly।`,
+      `Relative difficulty: ${seed.difficulty}; এটি admission probability বা guarantee নয়।`,
+    ],
+    fit: [
+      "আপনার bachelor’s coursework target program-এর prerequisites পূরণ করে।",
+      "Software-development, research বা project evidence দিয়ে 2–3টি faculty/lab-এর সঙ্গে specific fit দেখাতে পারবেন।",
+      "English-language requirement এবং international transcript rules current admission page থেকে পূরণ করতে পারবেন।",
+      "Funding না এলে tuition, living cost, insurance ও study-permit proof-of-funds-এর realistic fallback plan আছে।",
+    ],
+    quickStart: [
+      "Official graduate page থেকে exact degree, thesis/course option, intake এবং deadline লিখে নিন।",
+      "Canada DLI list-এ institution, campus, public/private status এবং relevant PGWP information যাচাই করুন।",
+      "Thesis route হলে 2–3 জন current supervisor shortlist করে recent paper/project পড়ুন।",
+      "Funding package-এ stipend, tuition coverage, fees, duration এবং renewal condition আলাদা করে লিখুন।",
+    ],
+    steps: [
+      {
+        title: "Program, DLI ও PGWP status যাচাই করুন",
+        timing: "Shortlist করার সময়",
+        description: "University-level label যথেষ্ট নয়—exact degree, campus এবং current immigration eligibility মিলিয়ে নিন।",
+        actions: ["Official program curriculum ও admission requirements পড়ুন।", "Canada DLI list-এ institution/campus খুঁজুন।", "Program-specific PGWP এবং study-permit requirements official IRCC source থেকে যাচাই করুন।"],
+        readyWhen: "Exact program, intake, DLI এবং immigration checks source linkসহ নোট করা হয়েছে।",
+      },
+      {
+        title: "Research ও funding fit তৈরি করুন",
+        timing: "Deadline-এর 3–5 মাস আগে",
+        description: "Funding signal university-wide guarantee নয়; department, supervisor এবং offer-specific evidence দরকার।",
+        actions: ["Thesis/course route আলাদা করুন।", "Relevant faculty/lab ও current funding language পড়ুন।", "নিজের experience-এর সঙ্গে evidence-based fit note লিখুন।"],
+        readyWhen: "কমপক্ষে দুইটি genuine faculty/program fit এবং funding route চিহ্নিত।",
+      },
+      {
+        title: "Application package প্রস্তুত করুন",
+        timing: "Deadline-এর 6–10 সপ্তাহ আগে",
+        description: "Program-specific checklist অনুসারে academic ও professional evidence প্রস্তুত রাখুন।",
+        actions: ["Transcript, degree certificate, CV এবং SOP/research statement প্রস্তুত করুন।", "English score ও recommendation request সম্পন্ন করুন।", "Application fee, document delivery ও credential-assessment rule যাচাই করুন।"],
+        readyWhen: "Portal checklist-এর সব required item submission-ready।",
+      },
+      {
+        title: "Offer, funding ও study permit verify করুন",
+        timing: "Decision পাওয়ার পর",
+        description: "Admission এবং funding আলাদা সিদ্ধান্ত হতে পারে; লিখিত net-cost calculation ছাড়া commit করবেন না।",
+        actions: ["Stipend, tuition, fees, assistantship duty ও funding duration লিখিতভাবে confirm করুন।", "LOA ও study-permit documents মিলিয়ে নিন।", "PGWP, spouse/dependent এবং post-study plan-এর current IRCC rules পুনরায় যাচাই করুন।"],
+        readyWhen: "Written offer থেকে total cost, funding gap এবং immigration route পরিষ্কার।",
+      },
+    ],
+    checklist: ["Official program and admission guide", "Degree certificate and transcripts", "English-language evidence", "Academic CV", "Statement of Purpose", "Research statement/proposal if required", "Recommendation letters", "Funding and proof-of-funds plan"],
+    afterSubmission: ["Application portal, supervisor reply এবং funding decision আলাদাভাবে track করুন।", "Offer পেলে assistantship, tuition coverage, fees ও renewal conditions লিখিতভাবে confirm করুন।", "LOA পাওয়ার পর current IRCC study-permit checklist দিয়ে final documents প্রস্তুত করুন।"],
+    cautions: ["Strong funding signal full funding guarantee নয়।", "Course-based master’s ও MBA-তে funding অনেক সময় সীমিত হয়।", "DLI হওয়া মানেই প্রতিটি program PGWP-eligible নয়।", "Language, deadline, tuition এবং immigration rules পরিবর্তিত হতে পারে।"],
+    officialLinks: [
+      { label: `${seed.university} official graduate/admissions page`, href: seed.officialUrl, description: "Exact program, deadline, English requirement, tuition এবং funding information যাচাই করুন।" },
+      { label: "Canada designated learning institutions list", href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html", description: "DLI, graduate-program PAL/TAL status এবং PGWP-related institution information যাচাই করুন।" },
+      { label: "EduCanada scholarships for international applicants", href: "https://www.educanada.ca/scholarships-bourses/non_can/index.aspx?lang=eng", description: "Current Government of Canada scholarship opportunities ও eligibility দেখুন।" },
+    ],
+    reviewedAt: "August 23, 2026",
+    canadaPriority: seed.priority,
+    canadaTier: seed.tier,
+    canadaFunding: seed.funding,
+  };
+}
+
+const canadaUniversitySeeds: CanadaUniversitySeed[] = [
+  { rank: 1, slug: "memorial-newfoundland-canada-graduate-guide", university: "Memorial University of Newfoundland", province: "Newfoundland and Labrador", fields: "Computer Science, Data and Business", funding: "Strong", difficulty: "Medium", tier: 1, priority: 1, officialUrl: "https://www.mun.ca/become/graduate/" },
+  { rank: 2, slug: "regina-canada-graduate-guide", university: "University of Regina", province: "Saskatchewan", fields: "Computer Science, Data Science and Business", funding: "Strong", difficulty: "Medium", tier: 1, priority: 2, officialUrl: "https://www.uregina.ca/graduate-studies-research/" },
+  { rank: 3, slug: "manitoba-canada-graduate-guide", university: "University of Manitoba", province: "Manitoba", fields: "Computer Science, MIS and Business", funding: "Strong", difficulty: "Medium", tier: 1, priority: 3, officialUrl: "https://umanitoba.ca/graduate-studies/" },
+  { rank: 4, slug: "saskatchewan-canada-graduate-guide", university: "University of Saskatchewan", province: "Saskatchewan", fields: "Computer Science, Data and Business", funding: "Strong", difficulty: "Medium", tier: 1, priority: 4, officialUrl: "https://grad.usask.ca/" },
+  { rank: 5, slug: "new-brunswick-canada-graduate-guide", university: "University of New Brunswick", province: "New Brunswick", fields: "Computer Science, Data Science and Business", funding: "Strong", difficulty: "Medium", tier: 1, priority: 5, officialUrl: "https://www.unb.ca/gradstudies/" },
+  { rank: 6, slug: "unbc-canada-graduate-guide", university: "University of Northern British Columbia", province: "British Columbia", fields: "Computer Science, Data Science and Business", funding: "Strong", difficulty: "Medium", tier: 1, priority: 6, officialUrl: "https://www.unbc.ca/graduate-programs" },
+  { rank: 7, slug: "lethbridge-canada-graduate-guide", university: "University of Lethbridge", province: "Alberta", fields: "Computer Science and Management", funding: "Strong", difficulty: "Medium", tier: 1, priority: 7, officialUrl: "https://www.ulethbridge.ca/future-student/graduate-studies" },
+  { rank: 8, slug: "windsor-canada-graduate-guide", university: "University of Windsor", province: "Ontario", fields: "Computer Science, Applied Computing and Business", funding: "Possible", difficulty: "Medium", tier: 1, priority: 10, officialUrl: "https://www.uwindsor.ca/graduate-studies/" },
+  { rank: 9, slug: "lakehead-canada-graduate-guide", university: "Lakehead University", province: "Ontario", fields: "Computer Science, AI and Business", funding: "Strong", difficulty: "Medium", tier: 1, priority: 8, officialUrl: "https://www.lakeheadu.ca/programs/graduate" },
+  { rank: 10, slug: "trent-canada-graduate-guide", university: "Trent University", province: "Ontario", fields: "Applied Modelling and Data Analytics", funding: "Possible", difficulty: "Medium", tier: 1, officialUrl: "https://www.trentu.ca/graduatestudies/" },
+  { rank: 11, slug: "brock-canada-graduate-guide", university: "Brock University", province: "Ontario", fields: "Computer Science, Data Analytics and Business", funding: "Possible", difficulty: "Medium", tier: 1, officialUrl: "https://brocku.ca/graduate-studies/" },
+  { rank: 12, slug: "ontario-tech-canada-graduate-guide", university: "Ontario Tech University", province: "Ontario", fields: "Computer Science, IT Security and Data Science", funding: "Strong", difficulty: "Medium", tier: 1, priority: 9, officialUrl: "https://gradstudies.ontariotechu.ca/" },
+  { rank: 13, slug: "laurentian-canada-graduate-guide", university: "Laurentian University", province: "Ontario", fields: "Computational Science and Business", funding: "Strong", difficulty: "Medium", tier: 1, priority: 13, officialUrl: "https://laurentian.ca/graduate-studies" },
+  { rank: 14, slug: "guelph-canada-graduate-guide", university: "University of Guelph", province: "Ontario", fields: "Computer Science, Data Science and Management", funding: "Strong", difficulty: "Medium-high", tier: 1, officialUrl: "https://graduatestudies.uoguelph.ca/" },
+  { rank: 15, slug: "carleton-canada-graduate-guide", university: "Carleton University", province: "Ontario", fields: "Computer Science, Data Science and Technology Innovation", funding: "Strong", difficulty: "Medium-high", tier: 1, officialUrl: "https://graduate.carleton.ca/" },
+  { rank: 16, slug: "concordia-montreal-canada-graduate-guide", university: "Concordia University", province: "Quebec", fields: "Computer Science, Software Engineering and Business", funding: "Strong", difficulty: "Medium-high", tier: 1, priority: 14, officialUrl: "https://www.concordia.ca/gradstudies.html" },
+  { rank: 17, slug: "dalhousie-canada-graduate-guide", university: "Dalhousie University", province: "Nova Scotia", fields: "Computer Science, Data Science and Digital Innovation", funding: "Strong", difficulty: "Medium-high", tier: 1, priority: 15, officialUrl: "https://www.dal.ca/study/programs/graduate-professional.html" },
+  { rank: 18, slug: "saint-marys-canada-graduate-guide", university: "Saint Mary’s University", province: "Nova Scotia", fields: "Computing, Finance and MBA", funding: "Possible", difficulty: "Medium", tier: 1, officialUrl: "https://www.smu.ca/graduate-studies/" },
+  { rank: 19, slug: "acadia-canada-graduate-guide", university: "Acadia University", province: "Nova Scotia", fields: "Computer Science and Data Science", funding: "Strong", difficulty: "Medium", tier: 1, priority: 11, officialUrl: "https://graduate.acadiau.ca/" },
+  { rank: 20, slug: "upei-canada-graduate-guide", university: "University of Prince Edward Island", province: "Prince Edward Island", fields: "Computer Science, Data-related study and Business", funding: "Possible", difficulty: "Medium", tier: 1, officialUrl: "https://www.upei.ca/graduate-studies" },
+  { rank: 21, slug: "alberta-canada-graduate-guide", university: "University of Alberta", province: "Alberta", fields: "Computer Science, AI and Business", funding: "Strong", difficulty: "High", tier: 2, officialUrl: "https://www.ualberta.ca/en/graduate-studies/index.html" },
+  { rank: 22, slug: "calgary-canada-graduate-guide", university: "University of Calgary", province: "Alberta", fields: "Computer Science, Software Engineering and Business", funding: "Strong", difficulty: "High", tier: 2, officialUrl: "https://grad.ucalgary.ca/" },
+  { rank: 23, slug: "ottawa-canada-graduate-guide", university: "University of Ottawa", province: "Ontario", fields: "Computer Science, AI and Engineering Management", funding: "Strong", difficulty: "High", tier: 2, officialUrl: "https://www.uottawa.ca/faculty-graduate-postdoctoral/" },
+  { rank: 24, slug: "mcmaster-canada-graduate-guide", university: "McMaster University", province: "Ontario", fields: "Computing, Software Engineering and Business", funding: "Strong", difficulty: "High", tier: 2, officialUrl: "https://gs.mcmaster.ca/" },
+  { rank: 25, slug: "queens-canada-graduate-guide", university: "Queen’s University", province: "Ontario", fields: "Computing, AI and Management", funding: "Strong", difficulty: "High", tier: 2, officialUrl: "https://www.queensu.ca/grad-postdoc/" },
+  { rank: 26, slug: "western-canada-graduate-guide", university: "Western University", province: "Ontario", fields: "Computer Science, Data Analytics and Business", funding: "Strong", difficulty: "High", tier: 2, officialUrl: "https://grad.uwo.ca/" },
+  { rank: 27, slug: "waterloo-canada-graduate-guide", university: "University of Waterloo", province: "Ontario", fields: "Computer Science, Data Science and Business", funding: "Strong", difficulty: "Very high", tier: 2, officialUrl: "https://uwaterloo.ca/graduate-studies-postdoctoral-affairs/" },
+  { rank: 28, slug: "simon-fraser-canada-graduate-guide", university: "Simon Fraser University", province: "British Columbia", fields: "Computer Science, Big Data and Business", funding: "Strong", difficulty: "High", tier: 2, officialUrl: "https://www.sfu.ca/gradstudies.html" },
+  { rank: 29, slug: "victoria-canada-graduate-guide", university: "University of Victoria", province: "British Columbia", fields: "Computer Science, Software Engineering and Business", funding: "Strong", difficulty: "High", tier: 2, officialUrl: "https://www.uvic.ca/graduate/" },
+  { rank: 30, slug: "york-canada-graduate-guide", university: "York University", province: "Ontario", fields: "Computer Science, AI and Business Analytics", funding: "Possible", difficulty: "High", tier: 2, officialUrl: "https://www.yorku.ca/gradstudies/" },
+  { rank: 31, slug: "toronto-metropolitan-canada-graduate-guide", university: "Toronto Metropolitan University", province: "Ontario", fields: "Computer Science, Data Science and Digital Management", funding: "Possible", difficulty: "Medium-high", tier: 2, officialUrl: "https://www.torontomu.ca/graduate/" },
+  { rank: 32, slug: "ubc-canada-graduate-guide", university: "University of British Columbia", province: "British Columbia", fields: "Computer Science, Data and Business", funding: "Strong", difficulty: "Very high", tier: 2, officialUrl: "https://www.grad.ubc.ca/" },
+  { rank: 33, slug: "toronto-canada-graduate-guide", university: "University of Toronto", province: "Ontario", fields: "Computer Science, AI and Management", funding: "Strong", difficulty: "Very high", tier: 2, officialUrl: "https://www.sgs.utoronto.ca/" },
+  { rank: 34, slug: "mcgill-canada-graduate-guide", university: "McGill University", province: "Quebec", fields: "Computer Science, AI and Management", funding: "Strong", difficulty: "Very high", tier: 2, officialUrl: "https://www.mcgill.ca/gradapplicants/" },
+  { rank: 35, slug: "wilfrid-laurier-canada-graduate-guide", university: "Wilfrid Laurier University", province: "Ontario", fields: "Computer Science, Data Science and Business", funding: "Possible", difficulty: "Medium-high", tier: 2, officialUrl: "https://www.wlu.ca/academics/graduate-and-postdoctoral-studies/" },
+  { rank: 36, slug: "winnipeg-canada-graduate-guide", university: "University of Winnipeg", province: "Manitoba", fields: "Applied Computer Science and Data", funding: "Possible", difficulty: "Medium", tier: 2, officialUrl: "https://www.uwinnipeg.ca/graduate-studies/" },
+  { rank: 37, slug: "stfx-canada-graduate-guide", university: "St. Francis Xavier University", province: "Nova Scotia", fields: "Computer Science", funding: "Strong", difficulty: "Medium", tier: 2, priority: 12, officialUrl: "https://www.stfx.ca/academics/graduate-studies" },
+  { rank: 38, slug: "bishops-canada-graduate-guide", university: "Bishop’s University", province: "Quebec", fields: "Computer Science", funding: "Possible", difficulty: "Medium", tier: 2, officialUrl: "https://www.ubishops.ca/future-current-students/graduate-studies/" },
+  { rank: 39, slug: "thompson-rivers-canada-graduate-guide", university: "Thompson Rivers University", province: "British Columbia", fields: "Data Science, Computing and MBA", funding: "Possible", difficulty: "Medium", tier: 2, officialUrl: "https://www.tru.ca/gradstudies.html" },
+  { rank: 40, slug: "royal-roads-canada-graduate-guide", university: "Royal Roads University", province: "British Columbia", fields: "Technology Management and MBA", funding: "Limited", difficulty: "Medium", tier: 2, officialUrl: "https://www.royalroads.ca/programs/graduate" },
+  { rank: 41, slug: "cape-breton-canada-graduate-guide", university: "Cape Breton University", province: "Nova Scotia", fields: "MBA and technology-related programs", funding: "Limited", difficulty: "Backup", tier: 3, officialUrl: "https://www.cbu.ca/academics/programs/graduate-programs/" },
+  { rank: 42, slug: "vancouver-island-canada-graduate-guide", university: "Vancouver Island University", province: "British Columbia", fields: "MBA, GIS and data-related study", funding: "Limited", difficulty: "Backup", tier: 3, officialUrl: "https://www.viu.ca/graduate-programs" },
+  { rank: 43, slug: "concordia-edmonton-canada-graduate-guide", university: "Concordia University of Edmonton", province: "Alberta", fields: "Information Systems Security", funding: "Possible", difficulty: "Backup", tier: 3, officialUrl: "https://concordia.ab.ca/graduate-studies/" },
+  { rank: 44, slug: "algoma-canada-graduate-guide", university: "Algoma University", province: "Ontario", fields: "Computer Science-related graduate programs", funding: "Limited", difficulty: "Backup", tier: 3, officialUrl: "https://algomau.ca/graduate-studies/" },
+  { rank: 45, slug: "nipissing-canada-graduate-guide", university: "Nipissing University", province: "Ontario", fields: "Data, Mathematics and Management", funding: "Possible", difficulty: "Backup", tier: 3, officialUrl: "https://www.nipissingu.ca/academics/graduate-studies" },
+  { rank: 46, slug: "trinity-western-canada-graduate-guide", university: "Trinity Western University", province: "British Columbia", fields: "MBA, Leadership and Technology", funding: "Limited", difficulty: "Backup", tier: 3, officialUrl: "https://www.twu.ca/graduate-studies" },
+  { rank: 47, slug: "northeastern-canada-graduate-guide", university: "Northeastern University Toronto/Vancouver", province: "Ontario and British Columbia", fields: "Computer Science, AI, Data and Information Systems", funding: "Limited", difficulty: "Backup; higher cost", tier: 3, officialUrl: "https://graduate.northeastern.edu/global-campus/canada/" },
+  { rank: 48, slug: "nyit-vancouver-canada-graduate-guide", university: "New York Institute of Technology–Vancouver", province: "British Columbia", fields: "Cybersecurity and Energy Management", funding: "Limited", difficulty: "Backup; private", tier: 3, officialUrl: "https://www.nyit.edu/vancouver/" },
+  { rank: 49, slug: "fdu-vancouver-canada-graduate-guide", university: "Fairleigh Dickinson University–Vancouver", province: "British Columbia", fields: "Applied Computer Science and Administrative Science", funding: "Limited", difficulty: "Backup; private", tier: 3, officialUrl: "https://www.fdu.edu/campuses/vancouver-campus/" },
+  { rank: 50, slug: "university-canada-west-graduate-guide", university: "University Canada West", province: "British Columbia", fields: "MBA", funding: "Limited", difficulty: "Backup; private", tier: 3, officialUrl: "https://www.ucanwest.ca/graduate-programs" },
+];
+
+const canadaGuides: ScholarshipGuide[] = canadaUniversitySeeds.map(createCanadaGuide);
 
 export const scholarshipGuides: ScholarshipGuide[] = [
   {
@@ -8288,6 +8439,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     reviewedAt: "August 17, 2026",
   },
   ...usLowCostGuides,
+  ...canadaGuides,
   ...onlyVerifiedEnglishMasters(japanShortlistAdditions),
   ...onlyVerifiedEnglishMasters(tierAJapanGuides),
   ...onlyVerifiedEnglishMasters(regionalPublicJapanGuides),
