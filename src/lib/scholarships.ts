@@ -167,6 +167,37 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
     ],
   }),
   createJapanShortlistGuide({
+    slug: "naist-information-science-engineering-masters-2027", university: "NAIST", program: "Information Science and Engineering Master's",
+    english: "NAIST confirms that the complete master's degree can be earned in English; Information Science core and specialized subjects are delivered in English", intake: "April/October 2027 watchlist",
+    funding: "Low national-university tuition; MEXT, JASSO and competitive tuition-waiver routes", priority: "High - English-confirmed",
+    realityCheck: "NAIST officially provides an English-completable master's curriculum in Information Science and Engineering. Admission, scholarship and tuition-waiver decisions are separate, and the current 2027 application guide remains final authority.",
+    officialLinks: [
+      { label: "NAIST English curriculum", href: "https://www.naist.jp/en/education_research/science_technology/implementation.html", description: "Verify the English-only Information Science subjects and English degree-completion route." },
+      { label: "NAIST master's admissions", href: "https://www.naist.jp/en/apply/", description: "Check the current master's screening, pre-application and application guide." },
+      { label: "NAIST academics", href: "https://www.naist.jp/en/academics/", description: "Review the Information Science and Engineering degree, research areas and curriculum." },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "kyutech-iart-computer-science-masters-2027", university: "Kyushu Institute of Technology", program: "Computer Science and Systems Engineering (iART) Master's",
+    english: "The iART special course for international students officially states that its lectures are given in English", intake: "April/October 2027 watchlist",
+    funding: "Low national-university tuition; MEXT, JASSO and competitive fee-waiver routes", priority: "High - English-confirmed special course",
+    realityCheck: "Kyutech's English iART route is a special international course within the Graduate School of Computer Science and Systems Engineering. Applicants should confirm course eligibility, supervisor fit and the applicable 2027 admission session before applying.",
+    officialLinks: [
+      { label: "Kyutech English iART course", href: "https://www.iizuka.kyutech.ac.jp/en/graduate/m-and-d-programs", description: "Verify English lecture delivery, the AI/robotics focus and special-course structure." },
+      { label: "Kyutech international master's admission", href: "https://www.kyutech.ac.jp/english/admissions/guidelines/iizuka_master.html", description: "Check the current intake, documents, examination and supervisor-contact rules." },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "kumamoto-ijep-computer-science-masters-2027", university: "Kumamoto University", program: "IJEP Computer Science Master's",
+    english: "Kumamoto's International Joint Education Program is taught in English and includes Computer Science at master's level", intake: "April/October 2027 watchlist",
+    funding: "Low national-university tuition; MEXT, JASSO and competitive tuition-waiver routes", priority: "High - English-confirmed",
+    realityCheck: "Kumamoto officially confirms that IJEP students can obtain a degree in English. A prospective supervisor is required before application, places are limited, and the currently published cycle must be replaced by the 2027 guide when released.",
+    officialLinks: [
+      { label: "Kumamoto IJEP admissions", href: "https://www.fast.kumamoto-u.ac.jp/gsst-en/admissions/", description: "Verify the English teaching language, master's documents, intake and supervisor rule." },
+      { label: "Kumamoto IJEP overview", href: "https://www.fast.kumamoto-u.ac.jp/gjec-en/greeting/", description: "Review the official English-degree statement and program context." },
+    ],
+  }),
+  createJapanShortlistGuide({
     slug: "ehime-mathematics-computer-science-masters-2027", university: "Ehime University", program: "Mathematics and Computer Science Master’s",
     english: "International selection guide ও interview-language rule exact PDF থেকে confirm করুন", intake: "April/September 2027",
     funding: "National-university tuition; graduate and privately financed international students may apply for budget-limited tuition waiver", priority: "Medium-High",
@@ -1042,6 +1073,9 @@ const regionalPublicJapanGuides: ScholarshipGuide[] = [
 // route are not sufficient.
 const verifiedEnglishMastersSlugs = new Set([
   "shizuoka-abp-informatics-masters-2027",
+  "naist-information-science-engineering-masters-2027",
+  "kyutech-iart-computer-science-masters-2027",
+  "kumamoto-ijep-computer-science-masters-2027",
   "globis-full-time-mba-2027",
   "kwansei-gakuin-un-system-policy-masters-2027",
   "apu-international-cooperation-policy-masters-2027",
