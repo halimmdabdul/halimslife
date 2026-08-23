@@ -2,8 +2,10 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 
 import portrait from "@/assets/halim-portrait-v2.png";
-import robotics from "@/assets/hero/slide-1.jpeg";
-import workshop from "@/assets/hero/slide-3.jpeg";
+import journeyAspark from "@/assets/homepage/journey-aspark.png";
+import journeyBangladesh from "@/assets/homepage/journey-bangladesh.png";
+import journeyRobotics from "@/assets/homepage/journey-robotics.png";
+import journeyShizuoka from "@/assets/homepage/journey-shizuoka.png";
 import pathCareer from "@/assets/homepage/path-career.png";
 import pathJapanese from "@/assets/homepage/path-japanese.png";
 import pathTech from "@/assets/homepage/path-tech.png";
@@ -13,7 +15,7 @@ import { SiteHeader } from "@/components/site-header";
 
 import styles from "./home.module.css";
 
-type IconName = "arrow" | "book" | "briefcase" | "code" | "document" | "gear" | "graduation" | "location" | "message" | "plane" | "robot";
+type IconName = "arrow" | "book" | "briefcase" | "code" | "document" | "gear" | "graduation" | "location" | "message" | "microscope" | "plane" | "robot";
 
 function Icon({ name }: { name: IconName }) {
   const paths: Record<IconName, React.ReactNode> = {
@@ -26,6 +28,7 @@ function Icon({ name }: { name: IconName }) {
     graduation: <><path d="m2 9 10-5 10 5-10 5L2 9Z" /><path d="M6 11v5c3 3 9 3 12 0v-5" /></>,
     location: <><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></>,
     message: <><path d="M4 4h16v12H8l-4 4V4Z" /><path d="M8 9h8m-8 3h5" /></>,
+    microscope: <><path d="m9 4 6 6-3 3-6-6 3-3Z" /><path d="m13 8 3-3m-7 7a6 6 0 0 0 8 8M5 20h14M13 15h4" /><circle cx="17" cy="14" r="2" /></>,
     plane: <path d="m3 11 18-8-7 18-3-7-8-3Zm8 3 4-4" />,
     robot: <><rect x="5" y="7" width="14" height="12" rx="3" /><path d="M12 3v4M8 12h.01M16 12h.01M9 16h6" /></>,
   };
@@ -33,10 +36,10 @@ function Icon({ name }: { name: IconName }) {
 }
 
 const journey: { step: string; title: string; subtitle: string; image: StaticImageData; position?: string }[] = [
-  { step: "1", title: "Bangladesh", subtitle: "শেখার শুরু", image: panorama, position: "left center" },
-  { step: "2", title: "Shizuoka University", subtitle: "MSc Computer Science", image: workshop },
-  { step: "3", title: "Niche Creation", subtitle: "AI & Robotics Engineer", image: robotics },
-  { step: "4", title: "Aspark, Japan", subtitle: "System Engineer", image: panorama, position: "70% center" },
+  { step: "1", title: "Bangladesh", subtitle: "শেখার শুরু", image: journeyBangladesh },
+  { step: "2", title: "Shizuoka University", subtitle: "MSc Computer Science", image: journeyShizuoka },
+  { step: "3", title: "Niche Creation", subtitle: "AI & Robotics Engineer", image: journeyRobotics },
+  { step: "4", title: "Aspark, Japan", subtitle: "System Engineer", image: journeyAspark },
 ];
 
 const dreams = [
@@ -72,9 +75,9 @@ export default function Home() {
       </section>
 
       <section className={styles.focusSection}><h2>আমাকে যা চালিত করে</h2><div className={styles.focusGrid}>
-        <article><Icon name="code" /><div><h3>Engineering</h3><strong>real-world<br />problem solving</strong><p>বাস্তব সমস্যার কার্যকর সমাধান তৈরিতে প্রযুক্তিকে ব্যবহার করা।</p></div></article>
-        <article><Icon name="robot" /><div><h3>Research</h3><strong>evidence-based<br />thinking</strong><p>তথ্য ও প্রমাণের উপর ভিত্তি করে সমস্যা বোঝা ও সমাধান করা।</p></div></article>
-        <article><Icon name="book" /><div><h3>Education</h3><strong>Bengali-friendly<br />learning resources</strong><p>বাংলায় মানসম্মত কনটেন্ট তৈরি করে শেখার বাধাকে সহজ করা।</p></div></article>
+        <article><span className={styles.focusIcon}><Icon name="code" /></span><div><h3>Engineering</h3><strong>real-world<br />problem solving</strong><p>বাস্তব সমস্যার কার্যকর সমাধান তৈরিতে প্রযুক্তিকে ব্যবহার করা।</p></div><span className={styles.focusDecoration}><Icon name="gear" /></span></article>
+        <article><span className={styles.focusIcon}><Icon name="microscope" /></span><div><h3>Research</h3><strong>evidence-based<br />thinking</strong><p>তথ্য ও প্রমাণের উপর ভিত্তি করে সমস্যা বোঝা ও সমাধান করা।</p></div><span className={styles.focusDecoration}><Icon name="microscope" /></span></article>
+        <article><span className={styles.focusIcon}><Icon name="book" /></span><div><h3>Education</h3><strong>Bengali-friendly<br />learning resources</strong><p>বাংলায় মানসম্মত কনটেন্ট তৈরি করে শেখার বাধাকে সহজ করা।</p></div><span className={styles.focusDecoration}><Icon name="book" /></span></article>
       </div></section>
 
       <section className={styles.research}>
