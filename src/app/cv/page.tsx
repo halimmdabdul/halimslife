@@ -7,7 +7,6 @@ import manufacturingArt from "@/assets/about/manufacturing-facility.png";
 import journeyArt from "@/assets/journey/hero-bangladesh-japan.png";
 import roboticsArt from "@/assets/journey/stage-03-robotics.png";
 import webArt from "@/assets/homepage/research-laptop-v2.png";
-import { CvPrintButton } from "@/components/cv-print-button";
 import { InnerPageShell } from "@/components/inner-page-shell";
 import styles from "./cv.module.css";
 
@@ -163,7 +162,6 @@ export default function CvPage() {
               <p className="cv-intro">আমি শিল্প অটোমেশন, কম্পিউটার ভিশন, healthcare IoT এবং web applications-এর জন্য production systems তৈরি করি।</p>
               <p className="cv-intro">I build production systems across industrial automation, computer vision, healthcare IoT and web applications.</p>
               <div className="cv-actions">
-                <CvPrintButton />
                 <a href="mailto:reiazbubt@gmail.com">
                   Email me <span aria-hidden="true">↗</span>
                 </a>
