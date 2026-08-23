@@ -28,6 +28,9 @@ export type ScholarshipGuide = {
   reviewedAt?: string;
   reviewedOn?: string;
   bestFitPriority?: number;
+  businessPriority?: number;
+  englishBusinessPrograms?: string;
+  businessOfficialUrl?: string;
 };
 
 type JapanShortlistSeed = {
@@ -41,6 +44,9 @@ type JapanShortlistSeed = {
   realityCheck: string;
   officialLinks: ScholarshipGuide["officialLinks"];
   bestFitPriority?: number;
+  businessPriority?: number;
+  englishBusinessPrograms?: string;
+  businessOfficialUrl?: string;
 };
 
 function createJapanShortlistGuide(seed: JapanShortlistSeed): ScholarshipGuide {
@@ -143,6 +149,9 @@ function createJapanShortlistGuide(seed: JapanShortlistSeed): ScholarshipGuide {
     officialLinks: seed.officialLinks,
     reviewedAt: "August 23, 2026",
     bestFitPriority: seed.bestFitPriority,
+    businessPriority: seed.businessPriority,
+    englishBusinessPrograms: seed.englishBusinessPrograms,
+    businessOfficialUrl: seed.businessOfficialUrl,
   };
 }
 
@@ -180,6 +189,9 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   }),
   createJapanShortlistGuide({
     slug: "globis-full-time-mba-2027", university: "GLOBIS University", program: "Full-time MBA",
+    businessPriority: 8,
+    englishBusinessPrograms: "Full-time MBA (English)",
+    businessOfficialUrl: "https://www.globis.ac.jp/programs/full-time-mba/",
     english: "English MBA route; current admissions guide-এর accepted evidence verify করুন", intake: "Fall 2027",
     funding: "GLOBIS scholarship can cover up to 50% of tuition for selected applicants", priority: "Medium",
     realityCheck: "This is a one-year accelerated private MBA, not a low-cost national-university degree. The scholarship is competitive and does not cover every cost; leadership and work-experience evidence matter strongly.",
@@ -190,6 +202,9 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   }),
   createJapanShortlistGuide({
     slug: "kwansei-gakuin-un-system-policy-masters-2027", university: "Kwansei Gakuin University", program: "UN System Policy Studies Master’s",
+    businessPriority: 22,
+    englishBusinessPrograms: "International Management Course (MBA)",
+    businessOfficialUrl: "https://iba.kwansei.ac.jp/en/imce/",
     english: "All-English curriculum; exact admission evidence current English guideline থেকে দেখুন", intake: "April 2027",
     funding: "University/international-student aid and internship support exist; exact award is separate from admission", priority: "Medium",
     realityCheck: "The all-English UN System Policy Studies master’s officially lists 2027 rounds. It is policy/international-cooperation focused, not a general MBA or computer-science degree.",
@@ -201,6 +216,9 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   }),
   createJapanShortlistGuide({
     slug: "apu-international-cooperation-policy-masters-2027", university: "Ritsumeikan Asia Pacific University", program: "International Cooperation Policy Master’s",
+    businessPriority: 2,
+    englishBusinessPrograms: "MBA · Graduate School of Management",
+    businessOfficialUrl: "https://admissions.apu.ac.jp/graduate/academics/mba/",
     english: "English-language graduate route; score/waiver eligibility applicant-specific", intake: "April/September 2027",
     funding: "Competitive tuition reductions and external scholarships; amount is not guaranteed", priority: "Conditional",
     realityCheck: "APU’s ICP master’s is official and includes Development Economics, but a 5.5 IELTS-only profile may not meet the standard English gate unless a valid waiver route applies. Treat it as conditional, not low-requirement by default.",
@@ -267,6 +285,9 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   createJapanShortlistGuide({
     slug: "tiu-digital-business-innovation-ms-2027", university: "Tokyo International University", program: "M.S. in Digital Business & Innovation (E-Track)",
     bestFitPriority: 3,
+    businessPriority: 18,
+    englishBusinessPrograms: "M.S. in Digital Business & Innovation (E-Track)",
+    businessOfficialUrl: "https://www.tiu.ac.jp/etrack/graduate/gdbi/",
     english: "Official English Track master’s with an English curriculum and thesis route", intake: "April/September 2027",
     funding: "TIU E-Track applicants may request a competitive 30%, 50%, 80% or 100% tuition reduction; the 2027 application guide is final authority", priority: "Kanto Private #161 · English-confirmed",
     realityCheck: "TIU’s two-year M.S. in Digital Business & Innovation is a confirmed English Track degree covering AI, analytics, digital marketing, entrepreneurship and technology-driven business. Scholarship percentage is decided with admission and is not guaranteed.",
@@ -279,6 +300,9 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   createJapanShortlistGuide({
     slug: "shizenkan-english-mba-2027", university: "Shizenkan University", program: "English MBA in Design and Leadership for Societal Innovation",
     bestFitPriority: 7,
+    businessPriority: 9,
+    englishBusinessPrograms: "English MBA in Design and Leadership for Societal Innovation",
+    businessOfficialUrl: "https://shizenkan.ac.jp/en/admission_en/",
     english: "Applicants choose the English-language program and generally complete the full two-year MBA in that language", intake: "Late August 2027",
     funding: "Competitive grant scholarship may provide up to ¥4.8 million over a maximum of two years; eligibility and award amount require written confirmation", priority: "Kanto Private #175 · English-confirmed",
     realityCheck: "Shizenkan’s MEXT-accredited MBA has a confirmed English class, is part-time over two years and is designed for working professionals. Applicants normally need at least three years of full-time professional experience. The 2027 rounds close on November 30, 2026, March 31, 2027 and May 31, 2027.",
@@ -286,6 +310,19 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
       { label: "Shizenkan 2027 admissions", href: "https://shizenkan.ac.jp/en/admission_en/", description: "English track, work-experience eligibility, degree requirements ও selection process দেখুন।" },
       { label: "Class of 2029 application notice", href: "https://shizenkan.ac.jp/en/20260814_en/", description: "August 2027 intake এবং তিনটি application deadline verify করুন।" },
       { label: "Shizenkan tuition support FAQ", href: "https://shizenkan.ac.jp/en/admission_faq_en/", description: "Scholarship ceiling, education benefits এবং funding conditions দেখুন।" },
+    ],
+  }),
+  createJapanShortlistGuide({
+    slug: "rikkyo-master-in-international-business-2027", university: "Rikkyo University", program: "Master in International Business (MIB)",
+    english: "All subjects and the complete two-year MIB degree are offered in English", intake: "April 2027 watchlist",
+    funding: "University and external scholarships are competitive and separate from admission", priority: "Business shortlist #19 · English-confirmed",
+    businessPriority: 19,
+    englishBusinessPrograms: "Master in International Business (MIB)",
+    businessOfficialUrl: "https://english.rikkyo.ac.jp/academics/graduate/business.html",
+    realityCheck: "Rikkyo officially confirms that every MIB subject is offered in English and the full-time degree can be completed in two years. The current admission guide remains final authority for intake, English evidence, fees and application dates.",
+    officialLinks: [
+      { label: "Rikkyo Graduate School of Business", href: "https://english.rikkyo.ac.jp/academics/graduate/business.html", description: "All-English MIB curriculum, degree structure and program features verify করুন।" },
+      { label: "Rikkyo graduate admissions", href: "https://english.rikkyo.ac.jp/admission/", description: "Current international graduate application guide, dates and funding notices দেখুন।" },
     ],
   }),
 ];
@@ -302,6 +339,9 @@ type TierAJapanSeed = {
   strategy: string;
   officialLinks: ScholarshipGuide["officialLinks"];
   eligibilityNote?: string;
+  businessPriority?: number;
+  englishBusinessPrograms?: string;
+  businessOfficialUrl?: string;
 };
 
 const tierARouteNames: Record<string, string> = {
@@ -418,6 +458,9 @@ function createTierAJapanGuide(seed: TierAJapanSeed): ScholarshipGuide {
     officialLinks: seed.officialLinks,
     reviewedAt: "August 23, 2026",
     reviewedOn: "2026-08-23",
+    businessPriority: seed.businessPriority,
+    englishBusinessPrograms: seed.englishBusinessPrograms,
+    businessOfficialUrl: seed.businessOfficialUrl,
   };
 }
 
@@ -435,6 +478,9 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   }),
   createTierAJapanGuide({
     rank: 2, slug: "kyoto-university-tier-a-masters-2027", university: "Kyoto University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    businessPriority: 15,
+    englishBusinessPrograms: "International MBA (i-MBA)",
+    businessOfficialUrl: "https://www.gsm.kyoto-u.ac.jp/en/education/mba/international-mba-programs/",
     target: "Graduate School of Informatics, Engineering, Economics অথবা listed English-taught master’s",
     languageReality: "English-taught degree list সীমিত; অন্য অধিকাংশ master’s/professional route-এ শক্ত Japanese প্রয়োজন।",
     strategy: "Overseas graduates-এর AAO/graduate-school procedure এবং prospective-supervisor fit অনেক route-এ early critical step।",
@@ -486,6 +532,9 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   }),
   createTierAJapanGuide({
     rank: 7, slug: "kyushu-university-tier-a-masters-2027", university: "Kyushu University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    businessPriority: 24,
+    englishBusinessPrograms: "Financial & Business Economics / Management & Accounting (English Master’s)",
+    businessOfficialUrl: "https://www.econ.kyushu-u.ac.jp/english/pa_index/pa_index2/",
     target: "International Master’s in Engineering/ISEE অথবা English economics/business-aligned route",
     languageReality: "Graduate schools international English programs দেয়, কিন্তু requirements ও selection school-specific।",
     strategy: "Engineering route-এ formal application-এর আগে relevant faculty member-এর সঙ্গে research আলোচনা ও consent essential।",
@@ -506,6 +555,9 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   }),
   createTierAJapanGuide({
     rank: 9, slug: "tsukuba-tier-a-masters-2027", university: "University of Tsukuba", bestFit: "CSE + Management", routes: "M/U/J/T/P", difficulty: "High",
+    businessPriority: 4,
+    englishBusinessPrograms: "MBA in International Business · PEPP",
+    businessOfficialUrl: "https://mbaib.gsbs.tsukuba.ac.jp/",
     target: "Systems and Information Engineering, AI Social Implementation অথবা MBA-IB",
     languageReality: "একাধিক English degree আছে; programভেদে external English score, interview এবং supervisor requirement বদলায়।",
     strategy: "Technical AISIP এবং professional MBA-IB সম্পূর্ণ আলাদা route—profile অনুযায়ী একটিকে primary করে documents সাজান।",
@@ -516,6 +568,9 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   }),
   createTierAJapanGuide({
     rank: 10, slug: "kobe-university-tier-a-masters-2027", university: "Kobe University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "High",
+    businessPriority: 10,
+    englishBusinessPrograms: "Global Master Program / GSICS Development Policy",
+    businessOfficialUrl: "https://www.gsics.kobe-u.ac.jp/en/prospective/master.html",
     target: "Systems Informatics অথবা English-taught International Cooperation Studies master’s",
     languageReality: "GSICS English master’s October-only; technical graduate routes-এর language ও exam আলাদাভাবে verify করতে হবে।",
     strategy: "Business/policy এবং CSE-এর জন্য একই application নয়; exact school অনুযায়ী research proposal ও supervisor strategy বদলান।",
@@ -526,6 +581,9 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   }),
   createTierAJapanGuide({
     rank: 11, slug: "hitotsubashi-tier-a-masters-2027", university: "Hitotsubashi University", bestFit: "Business/Economics", routes: "M/U/J/T/P", difficulty: "Very high",
+    businessPriority: 3,
+    englishBusinessPrograms: "ICS MBA (100% English)",
+    businessOfficialUrl: "https://www.ics.hub.hit-u.ac.jp/mba",
     target: "Economics, Business Administration, International/Public Policy অথবা Social Data Science",
     languageReality: "কিছু policy program English-এ, কিন্তু Economics master’s শুধু English courses নিয়ে complete করা যায় না।",
     strategy: "Quantitative economics/business foundation, research proposal এবং program-specific Japanese/English reality honestভাবে match করুন।",
@@ -537,6 +595,9 @@ const tierAJapanGuides: ScholarshipGuide[] = [
   }),
   createTierAJapanGuide({
     rank: 12, slug: "waseda-tier-a-masters-2027", university: "Waseda University", bestFit: "CSE + Business", routes: "M/U/J/T/P", difficulty: "Very high",
+    businessPriority: 6,
+    englishBusinessPrograms: "International MBA · MSc in Finance",
+    businessOfficialUrl: "https://www.waseda.jp/fcom/wbs/en/about/program",
     target: "English-based Computer Science/Engineering, Economics অথবা Business-related graduate program",
     languageReality: "English-based graduate programs আছে, কিন্তু school-specific test, experience এবং document rules আলাদা।",
     strategy: "Private-university tuition বেশি; scholarship পাওয়ার আগে full-cost funding proof এবং strong academic/professional evidence প্রস্তুত রাখুন।",
@@ -990,6 +1051,7 @@ const verifiedEnglishMastersSlugs = new Set([
   "teikyo-english-economics-public-health-masters-2027",
   "tiu-digital-business-innovation-ms-2027",
   "shizenkan-english-mba-2027",
+  "rikkyo-master-in-international-business-2027",
   "university-of-tokyo-tier-a-masters-2027",
   "kyoto-university-tier-a-masters-2027",
   "science-tokyo-tier-a-masters-2027",
@@ -2676,6 +2738,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "iuj-masters-scholarships-2027",
     country: "japan",
     university: "International University of Japan",
+    businessPriority: 1,
+    englishBusinessPrograms: "MBA · Digital Transformation · International Management",
+    businessOfficialUrl: "https://www.iuj.ac.jp/academics/gsim/",
     title: "IUJ Digital Transformation + Scholarships: September 2027 Guide",
     summary:
       "এক বছরের Master of Digital Management, domestic/international three-round admission, IUJ Math Test এবং Nakayama, ADB-JSP ও MEXT funding-এর detailed preparation guide।",
@@ -2913,6 +2978,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "grips-masters-scholarships-2027",
     country: "japan",
     university: "National Graduate Institute for Policy Studies",
+    businessPriority: 25,
+    englishBusinessPrograms: "Public Policy · Public Economics · Public Finance",
+    businessOfficialUrl: "https://www.grips.ac.jp/en/education/index/",
     title: "GRIPS Master’s + Scholarships: 2027–28 Application Guide",
     summary:
       "Public Policy, Macroeconomic Policy ও Public Finance applicants-এর জন্য program selection, MEXT/ADB/JISPA funding routes, residency status এবং document-by-document process.",
@@ -5145,6 +5213,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "ritsumeikan-economic-development-mped-masters-2027",
     country: "japan",
     university: "Ritsumeikan University",
+    businessPriority: 23,
+    englishBusinessPrograms: "Master’s Program in Economic Development (English)",
+    businessOfficialUrl: "https://en.ritsumei.ac.jp/gsec/mped/",
     title: "Ritsumeikan MPED Economic Development: 2027 Planning Guide",
     summary:
       "September 2027 Master of Economics watchlist—fully English MPED curriculum, current IELTS 5.5 reference, economics writing-sample hurdle, faculty fit, self-financed fees এবং Japan-resident applicant-এর জন্য ADB/MEXT funding reality।",
@@ -5418,6 +5489,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "university-of-hyogo-global-business-masters-2027",
     country: "japan",
     university: "University of Hyogo",
+    businessPriority: 12,
+    englishBusinessPrograms: "Master of Global Business Administration",
+    businessOfficialUrl: "https://www.u-hyogo.ac.jp/g3s/en/gba/",
     title: "University of Hyogo Global Business Administration: April 2027 Master's Guide",
     summary:
       "Kobe-তে সম্পূর্ণ English Master of Global Business Administration—Japan-resident international applicant-এর সঠিক screening route, 6–13 January timeline, English essay/oral exam, zero-scored MOI, research proposal, current supervisors, fees এবং April-2027 MEXT reality।",
@@ -6080,6 +6154,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "aoyama-gakuin-smiprp-masters-2027",
     country: "japan",
     university: "Aoyama Gakuin University",
+    businessPriority: 21,
+    englishBusinessPrograms: "MA in Business Administration (SMIPRP)",
+    businessOfficialUrl: "https://www.aoyama.ac.jp/en/academic/graduate/business/",
     title: "Aoyama Gakuin SMIPRP: April 2027 Application Guide",
     summary:
       "Tokyo-র 12-month fully English MA in Business Administration—Strategic Management and Intellectual Property Rights—যেখানে English-medium degree letter accepted, GRE/GMAT/JLPT নেই এবং selection documents + Zoom interview; তবে প্রায় 7 seats, online entry 24 August এবং curriculum customs/IP-border management-কেন্দ্রিক। Postal receipt cutoff university-র কাছে অবিলম্বে confirm করতে হবে।",
@@ -6435,6 +6512,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "meiji-governance-studies-masters-watch-2027",
     country: "japan",
     university: "Meiji University",
+    businessPriority: 17,
+    englishBusinessPrograms: "Global Business Programme (MBA)",
+    businessOfficialUrl: "https://www.meiji.ac.jp/cip/english/graduate/global/",
     title: "Meiji Governance Studies MPP: September 2027 Planning Guide",
     summary:
       "Tokyo-এর Surugadai Campus-এ English-taught professional Master of Public Policy—latest IELTS 5.5 reference, self-funded/MEXT route, exact costs, policy-tech faculty fit এবং 2027 guide প্রকাশের আগের preparation process।",
@@ -6783,6 +6863,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     country: "japan",
     university: "NUCB Business School",
     bestFitPriority: 6,
+    businessPriority: 5,
+    englishBusinessPrograms: "Global MBA · MSc in Management · Business Analytics & AI",
+    businessOfficialUrl: "https://mba.nucba.ac.jp/en/program/",
     title: "NUCB MSc in Management: Spring/Fall 2027 Admission & Funding Guide",
     summary:
       "Nagoya-তে সম্পূর্ণ English Case Method MSc in Management-এর 2027 rounds, exact English threshold/English-degree waiver, documents, written essay + interview, high tuition এবং semester-by-semester scholarship reality নিয়ে বিস্তারিত guide। আলাদা MSc in Business Analytics & AI route-টিও পরিষ্কারভাবে তুলনা করা হয়েছে।",
@@ -7786,6 +7869,9 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     slug: "doshisha-istc-information-computer-science-masters-2027",
     country: "japan",
     university: "Doshisha University",
+    businessPriority: 16,
+    englishBusinessPrograms: "Global MBA · Global Business and Management Studies",
+    businessOfficialUrl: "https://gmba.doshisha.ac.jp/en/",
     title: "Doshisha ISTC Information & Computer Science: September 2027 Master's Guide",
     summary:
       "English-taught ISTC Master's route\u2014MOI-based English evidence, GRE/GMAT নেই, tiered tuition-reduction scholarship এবং AI/vision/robotics faculty নিয়ে medium-difficulty target।",
