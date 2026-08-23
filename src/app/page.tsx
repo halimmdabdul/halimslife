@@ -94,7 +94,17 @@ export default function Home() {
         <div className={styles.journey}>{journey.map((item) => <article key={item.title}><span><Icon name={item.icon} /></span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div>
       </section>
 
-      <section className={styles.cta}><span className={styles.ctaIcon}><Icon name="mail" /></span><div><h2>চলুন একসাথে আপনার লক্ষ্য পূরণের পথে!</h2><p>প্রশ্ন, পরামর্শ বা সহযোগিতার জন্য নির্দ্বিধায় যোগাযোগ করুন।</p></div><Link href="/contact"><Icon name="plane" /> যোগাযোগ করুন</Link></section>
+      <section className={styles.contactLead}>
+        <div className={styles.contactIntro}>
+          <span className={styles.availability}><i /> Available for conversations</span>
+          <h2>Let&apos;s talk—<em>about your next step.</em></h2>
+          <a href="mailto:reiazbubt@gmail.com">reiazbubt@gmail.com <Icon name="arrow" /></a>
+        </div>
+        <div className={styles.contactPanel}>
+          <div><span>Have an idea or a question?</span><h3>একসঙ্গে শেখা, তৈরি করা এবং সামনে এগিয়ে যাওয়া যাক।</h3></div>
+          <div className={styles.contactActions}><Link href="/contact">Start a conversation <Icon name="arrow" /></Link><Link href="/academy">Explore Academy</Link></div>
+        </div>
+      </section>
     </main>
 
     <footer className={styles.footer}><div className={styles.footerGrid}><div><BrandLogo /><p>জাপানি ভাষা, প্রোগ্রামিং ও জাপান ক্যারিয়ার নিয়ে গাইড, রিসোর্স ও বাস্তব অভিজ্ঞতা শেয়ার করি।</p></div><div><h3>দ্রুত লিংক</h3><Link href="/about">হোম</Link><Link href="/journey">পাথওয়ে</Link><Link href="/projects">প্রজেক্টস</Link></div><div><h3>রিসোর্স</h3><Link href="/academy">ফ্রি কোর্স</Link><Link href="/scholarships">স্কলারশিপ</Link><Link href="/blog">ব্লগ</Link></div><div><h3>যোগাযোগ</h3><a href="mailto:reiazbubt@gmail.com">reiazbubt@gmail.com</a><span>Japan · 日本</span></div></div><p className={styles.copyright}>© {new Date().getFullYear()} Halim Md Abdul. All rights reserved.</p></footer>
