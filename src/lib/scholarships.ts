@@ -229,7 +229,7 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   createJapanShortlistGuide({
     slug: "tottori-information-electronics-masters-2027", university: "Tottori University", program: "Information and Electronics Master’s Watchlist",
     english: "Older official route documents mention English/MOI pathways; a current 2027 guide is not yet verified", intake: "2027 watchlist",
-    funding: "A special MEXT route may exist by cycle; self-funded and scholarship routes must be separated", priority: "Limited",
+    funding: "A special MEXT route may exist by cycle; self-funded and scholarship routes must be separated", priority: "Regional/Public #102 · English-check · Limited",
     realityCheck: "The Information and Electronics course appears in an older official foreign-student guide, but the current special-program document found is for Green Sustainable Chemistry. Keep this as a watchlist until Tottori publishes a matching 2027 Information/Electronics call.",
     officialLinks: [
       { label: "Tottori graduate admissions", href: "https://www.admissions.adm.tottori-u.ac.jp/", description: "Current graduate calls ও application guidelines search করুন।" },
@@ -573,6 +573,347 @@ const tierAJapanGuides: ScholarshipGuide[] = [
     officialLinks: [
       { label: "Ochanomizu master’s admission guide", href: "https://www.ocha.ac.jp/en/admission/info/master_d/fil/2026_M_kyoso.pdf", description: "Women-only eligibility, international route, fees ও support reference দেখুন; 2027 guide প্রকাশ হলে update করুন।" },
       { label: "Ochanomizu admissions", href: "https://www.ocha.ac.jp/en/admission/index.html", description: "Current graduate admission announcements ও official guidance দেখুন।" },
+    ],
+  }),
+];
+
+type RegionalPublicJapanSeed = {
+  rank: number;
+  slug: string;
+  university: string;
+  subject: string;
+  language: "English check" | "JP-focused";
+  target: string;
+  reality: string;
+  officialLinks: ScholarshipGuide["officialLinks"];
+  viability?: "conditional" | "not-currently-viable";
+};
+
+function createRegionalPublicJapanGuide(seed: RegionalPublicJapanSeed): ScholarshipGuide {
+  const japaneseFirst = seed.language === "JP-focused";
+  const viability = seed.viability ?? "conditional";
+
+  return {
+    slug: seed.slug,
+    country: "japan",
+    university: seed.university,
+    title: `${seed.university}: Regional/Public Master’s Check`,
+    summary: `Regional/public shortlist #${seed.rank}: ${seed.subject} fit, degree-language reality এবং international admission route যাচাইয়ের practical guide।`,
+    label: `Regional/Public · #${seed.rank} · ${seed.language}`,
+    funding: "MEXT, JASSO, tuition reduction/waiver ও private scholarship programভেদে যাচাই করতে হবে; কোনো funding guaranteed নয়।",
+    duration: viability === "not-currently-viable" ? "Current master’s route confirmed নয়" : "সাধারণত 2 বছর · intake current guide দিয়ে confirm করুন",
+    audience: `${seed.subject} field-এর applicant, যিনি regional/public university এবং language requirements বাস্তবভাবে যাচাই করতে চান`,
+    realityCheck: `${seed.reality} ${japaneseFirst ? "এটি Japanese-first target; English page বা English entrance material থাকলেই degree English-medium হয় না।" : "‘English check’ মানে complete degree English-এ নিশ্চিত নয়—course, supervision ও entrance-exam language লিখিতভাবে verify করতে হবে।"}`,
+    highlights: [
+      `Shortlist rank: #${seed.rank}.`,
+      `Potential subject: ${seed.subject}.`,
+      `Language signal: ${seed.language}.`,
+      `Best current target: ${seed.target}.`,
+      viability === "not-currently-viable" ? "Current master’s-degree route পাওয়া যায়নি; এখনই degree application target নয়।" : "International/special selection থাকলেও exact eligibility current guide নির্ধারণ করে।",
+    ],
+    fit: [
+      `${seed.subject} এবং আপনার academic/work evidence-এর সরাসরি মিল আছে।`,
+      japaneseFirst ? "Academic Japanese-এ class, research supervision, interview ও thesis পরিচালনা করতে পারবেন।" : "Admissions office/supervisor থেকে English completion feasibility লিখিতভাবে confirm করবেন।",
+      "Named supervisor বা research field-এর সঙ্গে evidence-based fit দেখাতে পারবেন।",
+      "Regional location, living cost এবং post-study career plan বাস্তবভাবে গ্রহণযোগ্য।",
+    ],
+    quickStart: [
+      "Official graduate-school page থেকে master’s degree existence এবং current intake confirm করুন।",
+      "Degree language, exam language, thesis language ও supervisor language—চারটি আলাদা প্রশ্নে যাচাই করুন।",
+      "International special selection, Japan-resident restriction এবং in-person exam requirement লিখুন।",
+      "Funding ছাড়া দুই বছরের tuition ও living-cost fallback budget তৈরি করুন।",
+    ],
+    steps: [
+      {
+        title: "Degree ও language viability যাচাই করুন",
+        timing: "Shortlist করার সঙ্গে সঙ্গে",
+        description: "University name বা English webpage নয়—current graduate guideline এবং curriculum final evidence।",
+        actions: [
+          `Target হিসেবে ${seed.target} official page-এ মিলিয়ে নিন।`,
+          "Master’s availability, intake, applicant category ও selection method নোট করুন।",
+          japaneseFirst ? "Required JLPT/EJU বা Japanese interview/written-exam level admissions office-এ confirm করুন।" : "English-only completion, accepted test/MOI এবং Japanese requirement admissions office-এ confirm করুন।",
+        ],
+        readyWhen: viability === "not-currently-viable" ? "Current master’s route প্রকাশিত হলে তবেই application plan শুরু হবে।" : "Degree, language এবং selection route official evidence দিয়ে confirmed।",
+      },
+      {
+        title: "Supervisor ও subject fit তৈরি করুন",
+        timing: "Deadline-এর 4–6 মাস আগে",
+        description: "Regional/public programs-এ small intake ও supervisor capacity গুরুত্বপূর্ণ হতে পারে।",
+        actions: [
+          "Faculty directory থেকে 2–3টি relevant research area shortlist করুন।",
+          "Recent work দেখে নিজের project/degree experience-এর সঙ্গে genuine connection লিখুন।",
+          "Prior consent দরকার হলে CV, transcript summary ও concise research idea দিয়ে যোগাযোগ করুন।",
+        ],
+        readyWhen: "একজন viable supervisor/program এবং অন্তত তিনটি specific fit point প্রস্তুত।",
+      },
+      {
+        title: "Application package ও examination প্রস্তুত করুন",
+        timing: "Deadline-এর 6–10 সপ্তাহ আগে",
+        description: "Language check-এর পাশাপাশি on-campus written/oral exam ও postal submission common risk।",
+        actions: [
+          "Degree certificate, transcript, CV, research plan, recommendation ও translation সংগ্রহ করুন।",
+          "English/Japanese external score, interview এবং subject exam current guide অনুযায়ী প্রস্তুত করুন।",
+          "Eligibility screening ও postal-arrival deadline formal application-এর আগেই calendar-এ রাখুন।",
+        ],
+        readyWhen: "Official checklist-এর সব document এবং required examination evidence প্রস্তুত।",
+      },
+      {
+        title: "Admission, funding ও relocation verify করুন",
+        timing: "Offer stage",
+        description: "Public tuition তুলনামূলক কম হতে পারে, কিন্তু admission fee, relocation ও living cost থাকে।",
+        actions: [
+          "MEXT, JASSO, waiver ও private scholarship-এর eligibility এবং timing আলাদাভাবে দেখুন।",
+          "Written offer-এ tuition, admission fee এবং payment deadline মিলিয়ে নিন।",
+          "Campus location, housing, transport ও part-time income ছাড়া 24-month budget final করুন।",
+        ],
+        readyWhen: "Net cost, degree language এবং enrollment conditions লিখিতভাবে পরিষ্কার।",
+      },
+    ],
+    checklist: [
+      "Current master’s application guideline",
+      "Degree-language confirmation",
+      "Entrance-exam and interview language",
+      "Degree certificate ও full transcript",
+      "Accepted language evidence",
+      "Academic CV ও research plan",
+      "Supervisor consent, যদি প্রয়োজন হয়",
+      "Funding ও relocation fallback budget",
+    ],
+    afterSubmission: [
+      "Portal/email এবং postal delivery status track করুন।",
+      "Interview বা written exam-এর location, language ও permitted materials confirm করুন।",
+      "Admission ও scholarship/waiver decision আলাদাভাবে record করুন।",
+    ],
+    cautions: [
+      "English check কোনো English-taught degree guarantee নয়।",
+      "JP-focused program-এ Japanese proficiency ছাড়া admission বা degree completion বাস্তবসম্মত নাও হতে পারে।",
+      "Research-student acceptance degree admission নয়।",
+      "2027 rules পরিবর্তিত হতে পারে; current official guideline ও written confirmation final authority।",
+      ...(viability === "not-currently-viable" ? ["Current official source-এ master’s program নিশ্চিত হয়নি; undergraduate admission page দিয়ে master’s application plan করবেন না।"] : []),
+    ],
+    officialLinks: seed.officialLinks,
+    reviewedAt: "August 23, 2026",
+    reviewedOn: "2026-08-23",
+  };
+}
+
+const regionalPublicJapanGuides: ScholarshipGuide[] = [
+  createRegionalPublicJapanGuide({
+    rank: 101, slug: "hirosaki-regional-public-masters-2027", university: "Hirosaki University", subject: "IT + Business/Social Science", language: "English check",
+    target: "Graduate School of Science and Technology অথবা Humanities and Social Sciences",
+    reality: "Graduate applicants entrance examination ও interview দেয়; supervisor আগে নির্ধারণ করা strongly recommended এবং exam method graduate schoolভেদে বদলায়।",
+    officialLinks: [
+      { label: "Hirosaki enrollment", href: "https://www.hirosaki-u.ac.jp/en/enrollment/", description: "Graduate admission এবং supervisor-first guidance দেখুন।" },
+      { label: "Graduate application process", href: "https://www.kokusai.hirosaki-u.ac.jp/en/studyabroad02/sa02_page3/", description: "Eligibility, exam এবং application sequence verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 103, slug: "shimane-regional-public-masters-2027", university: "Shimane University", subject: "IT + Business/Social Science", language: "English check",
+    target: "Natural Science and Technology Special Program অথবা English-speaking Human and Social Sciences selection",
+    reality: "Shimane officially lists an English international special program and a separate English-speaking social-science selection; exact field ও intake মিলিয়ে নিতে হবে।",
+    officialLinks: [
+      { label: "Shimane admission information", href: "https://www.shimane-u.ac.jp/en/study/future_students/admission_information.html", description: "English/bilingual graduate special selections দেখুন।" },
+      { label: "International graduate special program", href: "https://www.shimane-u.ac.jp/nyushi/information/application/international_student.html", description: "Current master’s guide, documents ও online interview details দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 104, slug: "yamanashi-regional-public-masters-2027", university: "University of Yamanashi", subject: "IT", language: "English check",
+    target: "Integrated Graduate School of Medicine, Engineering and Agricultural Sciences—Computer Science/Engineering field",
+    reality: "Official admission portal English graduate requirements ও past exams link করে, কিন্তু exact course delivery এবং examination language department-specific।",
+    officialLinks: [
+      { label: "Yamanashi admissions", href: "https://www.yamanashi.ac.jp/en/admission", description: "Graduate requirements, schedule ও past exams দেখুন।" },
+      { label: "Prospective graduate students", href: "https://www.yamanashi.ac.jp/en/prospective-students", description: "Graduate schools, fees এবং scholarship navigation দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 105, slug: "joetsu-education-regional-public-masters-2027", university: "Joetsu University of Education", subject: "Educational Technology", language: "JP-focused",
+    target: "Graduate School of Education—educational technology/ICT-supported learning research",
+    reality: "এটি teacher-education specialist national university; generic IT master’s নয় এবং Japanese school/education context central।",
+    officialLinks: [
+      { label: "Joetsu University of Education", href: "https://www.juen.ac.jp/english/", description: "Graduate education, international support ও official university information দেখুন।" },
+      { label: "Graduate admissions", href: "https://www.juen.ac.jp/050about/060admissions/", description: "Current Japanese application guidelines ও selection schedule verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 106, slug: "obihiro-regional-public-masters-2027", university: "Obihiro University of Agriculture and Veterinary Medicine", subject: "Management/Data applications", language: "English check",
+    target: "Animal Science and Agriculture research using data, production, food or management applications",
+    reality: "OUAVM generic business/data university নয়; agriculture/veterinary research problem-এর মধ্যে management বা data method fit করতে হবে এবং supervisor consent আগে প্রয়োজন।",
+    officialLinks: [
+      { label: "OUAVM before applying", href: "https://www.obihiro.ac.jp/en/admissions", description: "Supervisor consent, request form এবং international application steps দেখুন।" },
+      { label: "International student guide", href: "https://www.obihiro.ac.jp/en/internationalstudent_e-2", description: "Graduate school, fees, scholarships ও support দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 107, slug: "tsuru-regional-public-masters-2027", university: "Tsuru University", subject: "Business/Social Science", language: "JP-focused",
+    target: "Graduate School of Humanities—Social and Regional Studies/Comparative Culture",
+    reality: "Tsuru-এর master’s হলো humanities-oriented; standalone business school নয় এবং 2027 graduate guides Japanese-এ প্রকাশিত।",
+    officialLinks: [
+      { label: "Tsuru 2027 application guides", href: "https://www.tsuru.ac.jp/admission/requirements/", description: "Graduate School of Humanities rounds ও research-plan forms দেখুন।" },
+      { label: "Tsuru admissions", href: "https://www.tsuru.ac.jp/admission/", description: "Current admissions notices ও official updates দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 108, slug: "miyagi-regional-public-masters-2027", university: "Miyagi University", subject: "IT + Business", language: "JP-focused",
+    target: "Graduate School of Project Design",
+    reality: "Foreign-student places Project Design master’s-এ আছে, তবে selection essay/oral/documents-based এবং Japanese academic environment ধরে planning করতে হবে।",
+    officialLinks: [
+      { label: "Miyagi graduate admissions", href: "https://www.myu.ac.jp/admissions/graduate/", description: "2027 schedule, guides, exams ও graduate schools দেখুন।" },
+      { label: "Graduate admission policy", href: "https://www.myu.ac.jp/admissions/graduate/policy/", description: "Written/oral, English score এবং foreign-student selection expectations দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 109, slug: "iwate-prefectural-regional-public-masters-2027", university: "Iwate Prefectural University", subject: "IT + Policy/Management", language: "JP-focused",
+    target: "Graduate School of Software and Information Science; Policy Studies only with strong Japanese",
+    reality: "Software graduate international forms English-এ পাওয়া যায়, কিন্তু Policy/Social Welfare/Nursing guides Japanese-only; complete-English degree ধরে নেওয়া যাবে না।",
+    officialLinks: [
+      { label: "Iwate international graduate admissions", href: "https://www.iwate-pu.ac.jp/internationalexchange/admissions.html", description: "Software master’s English forms ও Japanese-only schools compare করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 110, slug: "akita-prefectural-regional-public-masters-2027", university: "Akita Prefectural University", subject: "IT/Systems", language: "English check",
+    target: "Graduate School of Systems Science and Technology",
+    reality: "Privately funded international/returnee special selection আছে, কিন্তু current graduate information মূলত Japanese এবং course language written confirmation দরকার।",
+    officialLinks: [
+      { label: "Akita Prefectural graduate admissions", href: "https://www.akita-pu.ac.jp/nyushi/joho/joho-daigakuin/", description: "Master’s foreign/returnee selection এবং current guidelines দেখুন।" },
+      { label: "International exchange overview", href: "https://www.akita-pu.ac.jp/nyushi/", description: "Current admission notices ও official guide navigation ব্যবহার করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 111, slug: "aomori-public-regional-public-masters-2027", university: "Aomori Public University", subject: "Business/Management", language: "JP-focused",
+    target: "Graduate School of Management and Economics",
+    reality: "Management/Economics fit আছে, তবে admission, curriculum এবং research supervision প্রধানত Japanese-first হিসেবে plan করা উচিত।",
+    officialLinks: [
+      { label: "Aomori Public University", href: "https://www.nebuta.ac.jp/", description: "Graduate School of Management and Economics ও current admission notices দেখুন।" },
+      { label: "Graduate admissions", href: "https://www.nebuta.ac.jp/for-examinee/grad-nyuushijouhou/grad-nyuugakusyaannai", description: "Current Japanese application guide এবং selection verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 112, slug: "niigata-prefecture-regional-public-masters-2027", university: "University of Niigata Prefecture", subject: "Business/International Studies", language: "English check",
+    target: "Master of Arts in International Studies and Regional Development",
+    reality: "2027 international selection officially published; essay English বা Japanese-এ লেখা যায়, accepted English scores এবং interview/research proposal selection-এর অংশ।",
+    officialLinks: [
+      { label: "UNP 2027 application information", href: "https://www.unii.ac.jp/e/academics/graduate-isrd/gi-admissions/", description: "2027 rounds, English/Japanese essay, tests ও MEXT route দেখুন।" },
+      { label: "International student acceptance", href: "https://www.unii.ac.jp/e/exchange/acceptance/", description: "Master’s special selection এবং international applicant route verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 113, slug: "toyama-prefectural-regional-public-masters-2027", university: "Toyama Prefectural University", subject: "IT/Engineering", language: "English check",
+    target: "Graduate School of Engineering—Information Systems/Engineering-aligned field",
+    reality: "Foreign-student special selection exists across engineering fields, but current course, exam এবং supervision language Japanese guide দিয়ে verify করতে হবে।",
+    officialLinks: [
+      { label: "Toyama Prefectural University", href: "https://www.pu-toyama.ac.jp/", description: "Graduate school ও current admission information দেখুন।" },
+      { label: "Graduate international selection example", href: "https://bioeng.pu-toyama.ac.jp/information/", description: "Foreign-student master’s selection schedule এবং intake pattern দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 114, slug: "fukui-prefectural-regional-public-masters-2027", university: "Fukui Prefectural University", subject: "Business/Economics", language: "JP-focused",
+    target: "Graduate School of Economics and Business Administration",
+    reality: "Practical business/economics master’s আছে, কিন্তু working-professional/local case-study orientation এবং Japanese delivery ধরে suitability যাচাই করুন।",
+    officialLinks: [
+      { label: "Fukui graduate schools", href: "https://www.fpu.ac.jp/en/faculty/graduate/index.html", description: "Economics and Business Administration program focus দেখুন।" },
+      { label: "Fukui admissions", href: "https://www.fpu.ac.jp/admission/", description: "Current Japanese graduate guide ও examination schedule verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 115, slug: "university-of-shizuoka-regional-public-masters-2027", university: "University of Shizuoka", subject: "IT + Business", language: "English check",
+    target: "Graduate School of Management, Informatics and Innovation অথবা International Relations",
+    reality: "2027 master’s rounds official; overseas degree holders-এর eligibility review এবং desired instructor contact application-এর আগে প্রয়োজন।",
+    officialLinks: [
+      { label: "University of Shizuoka graduate admissions", href: "https://eng.u-shizuoka-ken.ac.jp/admissions/graduate/", description: "2027 programs, eligibility review ও exam schedule দেখুন।" },
+      { label: "2027 Japanese graduate guides", href: "https://www.u-shizuoka-ken.ac.jp/admissions/graduate/", description: "Exact documents, language ও selection rules verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 116, slug: "aichi-prefectural-regional-public-masters-2027", university: "Aichi Prefectural University", subject: "IT/Information Science", language: "English check",
+    target: "Graduate School of Information Science and Technology",
+    reality: "Internationally accessible university হলেও Information Science master’s guideline Japanese; course/exam language এবং foreign-applicant procedure আগে confirm করতে হবে।",
+    officialLinks: [
+      { label: "Aichi graduate schools", href: "https://www.aichi-pu.ac.jp/eng/schools/", description: "Information Science and Technologyসহ graduate-school list দেখুন।" },
+      { label: "Graduate application guides", href: "https://www.aichi-pu.ac.jp/prospective/graduate/guide.html", description: "Current master’s guide, schedule ও forms verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 117, slug: "nagoya-city-regional-public-masters-2027", university: "Nagoya City University", subject: "Business/Economics/Data", language: "English check",
+    target: "Graduate School of Economics অথবা Data Science-related research where currently offered",
+    reality: "English MEXT/application materials কিছু route-এ আছে, কিন্তু Economics/Data degree-এর complete-English availability confirmed নয়।",
+    officialLinks: [
+      { label: "Nagoya City University", href: "https://www.nagoya-cu.ac.jp/english/", description: "Graduate schools, international information ও official notices দেখুন।" },
+      { label: "Graduate admissions", href: "https://www.nagoya-cu.ac.jp/admissions/graduate/", description: "Current program-specific Japanese/English guides verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 118, slug: "shiga-prefectural-regional-public-masters-2027", university: "The University of Shiga Prefecture", subject: "IT/Engineering", language: "English check",
+    target: "Graduate School of Engineering—Electronic Systems/Computer-related research",
+    reality: "International admission এবং tuition support navigation আছে, কিন্তু degree language এবং direct master’s route current guideline দিয়ে verify করতে হবে।",
+    officialLinks: [
+      { label: "Shiga admission and tuition", href: "https://www.usp.ac.jp/english/admission/", description: "International admission, tuition exemption ও scholarship links দেখুন।" },
+      { label: "International research-student guide", href: "https://www.usp.ac.jp/english/2025_kenkyuseibosyuyoko-in-English%20.pdf", description: "Research-student route degree admission নয়—supervisor/contact reference হিসেবে দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 119, slug: "fukuchiyama-regional-public-masters-2027", university: "University of Fukuchiyama", subject: "IT/Regional Management", language: "JP-focused",
+    target: "Graduate School of Regional Information Studies",
+    reality: "Regional management ও informatics combined master’s আছে; 2027 web application এবং graduate documents Japanese-first।",
+    officialLinks: [
+      { label: "Fukuchiyama applicant portal", href: "https://www.fukuchiyama.ac.jp/for_applicants/", description: "Regional Information graduate school, policies ও 2027 notices দেখুন।" },
+      { label: "Graduate web application", href: "https://www.fukuchiyama.ac.jp/admission/webentry/", description: "Application window, postal documents ও current guide দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 120, slug: "nara-prefectural-regional-public-check-2027", university: "Nara Prefectural University", subject: "Business/Regional Studies", language: "JP-focused",
+    target: "No current master’s degree confirmed; undergraduate Regional Promotion Faculty only",
+    reality: "Official 2027 admission page undergraduate selections দেখায়; current graduate/master’s school পাওয়া যায়নি। তাই master’s shortlist হিসেবে এখন viable নয়।",
+    viability: "not-currently-viable",
+    officialLinks: [
+      { label: "Nara Prefectural 2027 admissions", href: "https://www.narapu.ac.jp/admission/recruitment/", description: "Published selection guides দেখুন; current master’s guide নেই।" },
+      { label: "Nara Prefectural University", href: "https://www.narapu.ac.jp/", description: "Future graduate-program announcement থাকলে official site-এ recheck করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 121, slug: "kobe-cufs-regional-public-masters-2027", university: "Kobe City University of Foreign Studies", subject: "International Business / International Studies", language: "English check",
+    target: "International Relations, English Studies অথবা qualifying English Language Education and Research route",
+    reality: "Generic International Business master’s confirmed নয়; regular programs Japanese/target-language intensive। English Education route-এ N2, teaching licence/experience এবং Japan work-site requirements আছে।",
+    officialLinks: [
+      { label: "KCUFS graduate admission policy", href: "https://www.kobe-cufs.ac.jp/admissions/graduate/guide/index.html", description: "Master’s fields, written/oral language expectations দেখুন।" },
+      { label: "English education 2027 guide", href: "https://www.kobe-cufs.ac.jp/english/academic_programs/graduate_school/master/gseler.html", description: "N2, teaching licence/experience এবং in-person work requirement verify করুন।" },
+      { label: "MEXT research-student route", href: "https://www.kobe-cufs.ac.jp/admissions/graduate/international/mext-research-students.html", description: "Research student থেকে degree exam-এর separate path বুঝুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 122, slug: "prefectural-hiroshima-regional-public-masters-2027", university: "Prefectural University of Hiroshima", subject: "IT + Business", language: "English check",
+    target: "Information and Management Systems অথবা Business Administration",
+    reality: "Information/Management ও MBA fit আছে; English Track exists, তবে partner-university eligibility ও exact program inclusion current fall guide দিয়ে check করতে হবে।",
+    officialLinks: [
+      { label: "PUH international students", href: "https://www.pu-hiroshima.ac.jp/site/international/gaikokujinryugakuseiukeiresu.html", description: "Graduate programs, foreign selection ও English Track eligibility দেখুন।" },
+      { label: "Graduate fall admissions", href: "https://www.pu-hiroshima.ac.jp/site/graduate-selection/fall-admission.html", description: "Information Management, supervisor contact ও English Track links দেখুন।" },
+      { label: "HBMS admissions", href: "https://mba.pu-hiroshima.ac.jp/en/admissions/", description: "Business Leadership MBA admission এবং Japanese-site guide verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 123, slug: "fukuyama-city-regional-public-masters-2027", university: "Fukuyama City University", subject: "Business/Urban Management", language: "JP-focused",
+    target: "Graduate School of Urban Management",
+    reality: "Urban/regional management fit আছে, তবে current admission information Japanese-first এবং international applicant-specific requirements direct confirmation দরকার।",
+    officialLinks: [
+      { label: "Fukuyama City University", href: "https://www.fcu.ac.jp/", description: "Graduate School of Urban Management ও official announcements দেখুন।" },
+      { label: "Graduate admissions", href: "https://www.fcu.ac.jp/graduate/ur/considering/", description: "Current Japanese guideline, supervisors ও selection preparation verify করুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 124, slug: "shimonoseki-city-regional-public-masters-2027", university: "Shimonoseki City University", subject: "Business/Economics", language: "JP-focused",
+    target: "Graduate School of Economics—Economics and Management",
+    reality: "2027 master’s officially published with Economics/Community Systems, International Business এবং Education Economics areas; general selection documents + oral exam, Japanese readiness প্রয়োজন।",
+    officialLinks: [
+      { label: "Shimonoseki 2027 graduate admissions", href: "https://www.shimonoseki-cu.ac.jp/nyushi/admiss_grad/yoko_grad", description: "2027 quota, dates, documents এবং oral selection দেখুন।" },
+      { label: "Graduate admission policy", href: "https://www.shimonoseki-cu.ac.jp/about/gaiyou/outline_3policy_in", description: "Economics/management outcomes ও selection criteria দেখুন।" },
+    ],
+  }),
+  createRegionalPublicJapanGuide({
+    rank: 125, slug: "nagasaki-regional-public-masters-2027", university: "University of Nagasaki", subject: "IT + Business/Regional Development", language: "English check",
+    target: "Graduate School of Regional Design/Development with information or business research",
+    reality: "Official international support page বলছে graduate classes primarily Japanese এবং entrance exam-এর জন্য Japanese proficiency প্রয়োজন; তাই practical status JP-focused/conditional।",
+    officialLinks: [
+      { label: "University of Nagasaki international support", href: "https://sun.ac.jp/e/support/", description: "Graduate guide, Japanese-language reality, fees ও tuition reduction দেখুন।" },
+      { label: "Graduate admissions", href: "https://sun.ac.jp/examination/graduate/", description: "Current master’s recruitment guide এবং examination categories verify করুন।" },
     ],
   }),
 ];
@@ -7456,6 +7797,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
   },
   ...japanShortlistAdditions,
   ...tierAJapanGuides,
+  ...regionalPublicJapanGuides,
 ];
 
 export function getScholarshipGuide(slug: string) {
