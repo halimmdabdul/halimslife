@@ -208,11 +208,13 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
   }),
   createJapanShortlistGuide({
     slug: "kuas-engineering-masters-2027", university: "Kyoto University of Advanced Science", program: "Graduate School of Engineering Master’s",
-    english: "English requirement applies; MOI waiver eligibility must be confirmed in the current route", intake: "September 2027",
-    funding: "KUAS-E awards may waive 30%, 50% or 100% of tuition/admission fees; Super KUAS-E can add stipend for a few students", priority: "Conditional",
-    realityCheck: "KUAS Engineering is research-based and requires a prospective-supervisor choice. Scholarship selection is highly competitive; IELTS 5.5 alone is not a safe assumption without an accepted waiver.",
+    english: "Language of instruction is English; IELTS 6.5/TOEFL iBT 85-equivalent or an approved English-medium-degree waiver is required", intake: "September 2027",
+    funding: "KUAS-E awards may waive 30%, 50% or 100% of tuition/admission fees; Super KUAS-E can add stipend for a few students", priority: "Chubu/Kansai Private #191 · English-confirmed",
+    realityCheck: "KUAS officially confirms an all-English two-year Master of Engineering. The route is research-based and requires pre-application review for supervision fit. IELTS 5.5 does not meet the published 6.5 Engineering requirement unless KUAS approves a qualifying English-medium-degree waiver.",
     officialLinks: [
+      { label: "KUAS English Master of Engineering", href: "https://www.kuas.ac.jp/en/academics/eng-pg/", description: "English instruction, two-year duration, September intake ও research fields দেখুন।" },
       { label: "KUAS postgraduate application", href: "https://www.kuas.ac.jp/en/admission/pg/", description: "Timeline, eligibility, documents ও supervisor process দেখুন।" },
+      { label: "KUAS English eligibility", href: "https://www.kuas.ac.jp/en/admission/pg-eligibility/", description: "Current IELTS/TOEFL/PTE/Duolingo scores এবং waiver conditions verify করুন।" },
       { label: "KUAS scholarships", href: "https://www.kuas.ac.jp/en-jp/about/tuition/scholarship", description: "KUAS-E/Super KUAS-E amount ও renewal conditions verify করুন।" },
     ],
   }),
@@ -6773,7 +6775,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     title: "NUCB MSc in Management: Spring/Fall 2027 Admission & Funding Guide",
     summary:
       "Nagoya-তে সম্পূর্ণ English Case Method MSc in Management-এর 2027 rounds, exact English threshold/English-degree waiver, documents, written essay + interview, high tuition এবং semester-by-semester scholarship reality নিয়ে বিস্তারিত guide। আলাদা MSc in Business Analytics & AI route-টিও পরিষ্কারভাবে তুলনা করা হয়েছে।",
-    label: "Open now · Oct 24 deadline · IELTS 6.0/English-degree waiver",
+    label: "Chubu/Kansai Private #189 · English-confirmed · IELTS 6.0/English-degree waiver",
     funding:
       "মূল route self-funded। Pre-enrollment Achievement Scholarship প্রথম semester-এর tuition 20%, 40% বা 80% কমাতে পারে, কিন্তু GMAT/GRE threshold, selection এবং প্রতি-semester renewal conditions পূরণ করতে হয়; এটি দুই বছরের guaranteed award নয়।",
     duration: "2 years · April or September intake · Nagoya campus",
