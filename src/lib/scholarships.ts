@@ -1,4 +1,4 @@
-export type ScholarshipCountry = "usa" | "japan" | "canada" | "korea" | "switzerland";
+export type ScholarshipCountry = "usa" | "japan" | "canada" | "korea" | "switzerland" | "italy";
 
 export type ScholarshipGuide = {
   slug: string;
@@ -42,6 +42,9 @@ export type ScholarshipGuide = {
   swissPriority?: number;
   swissTier?: 1 | 2 | 3 | 4;
   swissFunding?: "Strong" | "Possible" | "Limited" | "Paid research";
+  italyPriority?: number;
+  italyTier?: 1 | 2;
+  italyCost?: "Low" | "Medium" | "High";
 };
 
 type JapanShortlistSeed = {
@@ -1816,6 +1819,149 @@ const swissInstitutionSeeds: SwissInstitutionSeed[] = [
 ];
 
 const swissGuides: ScholarshipGuide[] = swissInstitutionSeeds.map(createSwissGuide);
+
+type ItalyUniversitySeed = {
+  rank: number;
+  slug: string;
+  university: string;
+  fields: string;
+  cost: "Low" | "Medium" | "High";
+  scholarships: string;
+  tier: 1 | 2;
+  officialUrl: string;
+  priority?: number;
+};
+
+function createItalyGuide(seed: ItalyUniversitySeed): ScholarshipGuide {
+  return {
+    slug: seed.slug,
+    country: "italy",
+    university: seed.university,
+    title: `${seed.university}: Italy Master’s, PhD & Scholarship Guide`,
+    summary: `${seed.fields} নিয়ে English-taught graduate programme, regional scholarship, MAECI এবং funded PhD route যাচাই করার practical guide।`,
+    label: `Italy Tier ${seed.tier} · ${seed.cost} relative cost`,
+    funding: `${seed.scholarships}. Regional aid, MAECI, merit award বা PhD funding কোনোটিই admission-এর সঙ্গে automatic নয়।`,
+    duration: "Laurea Magistrale সাধারণত 2 বছর; PhD সাধারণত 3–4 বছর",
+    audience: `Bangladeshi and international applicants targeting ${seed.fields}`,
+    realityCheck: "Italy-তে university admission, regional scholarship, MAECI application, Universitaly pre-enrolment এবং visa—আলাদা process। Family-income/property documents-এর translation/legalisation এবং region-specific deadlines আগে প্রস্তুত করতে হয়।",
+    highlights: [
+      `Best-fit fields: ${seed.fields}.`,
+      `Relative cost category: ${seed.cost}; exact tuition programme, ISEE/parificazione এবং fee rules অনুযায়ী বদলায়।`,
+      `Scholarship routes: ${seed.scholarships}.`,
+      "Need-based regional scholarship tuition waiver, meals/accommodation এবং cash grant দিতে পারে—benefit ও eligibility regionভেদে আলাদা।",
+    ],
+    fit: [
+      "Target programme সত্যিই English-taught এবং আপনার bachelor’s coursework admission prerequisites পূরণ করে।",
+      "Regional scholarship-এর international income/property documentation সময়মতো legalise/translate করতে পারবেন।",
+      "Software/research experience দিয়ে programme বা funded PhD position-এর সঙ্গে evidence-based fit দেখাতে পারবেন।",
+      "Scholarship result দেরিতে এলে tuition, housing deposit, visa ও living cost-এর fallback plan আছে।",
+    ],
+    quickStart: [
+      "Official university catalogue থেকে exact English-taught programme ও deadline লিখে নিন।",
+      "Relevant regional scholarship body-এর current call, income threshold ও document rules খুঁজুন।",
+      "MAECI, university admission ও regional scholarship—তিনটি আলাদা tracker তৈরি করুন।",
+      "Admission/eligibility পাওয়ার পর Universitaly pre-enrolment এবং visa timeline plan করুন।",
+    ],
+    steps: [
+      {
+        title: "Programme ও admission eligibility যাচাই করুন",
+        timing: "Application খোলার সঙ্গে সঙ্গে",
+        description: "English programme title দেখাই যথেষ্ট নয়—curriculum, prior credits, language এবং non-EU deadline মিলিয়ে নিন।",
+        actions: ["Exact MSc/PhD programme ও teaching language confirm করুন।", "Entry qualification, course prerequisites ও language score যাচাই করুন।", "Application fee, evaluation এবং admission-decision timeline লিখুন।"],
+        readyWhen: "Programme, eligibility, language ও deadline official sourceসহ নোট করা হয়েছে।",
+      },
+      {
+        title: "Regional scholarship documents প্রস্তুত করুন",
+        timing: "University application-এর সমান্তরালে",
+        description: "Regional aid সাধারণত family income/assets-এর প্রমাণ চায়; Bangladesh documents প্রস্তুতিতে সময় লাগে।",
+        actions: ["Family composition, income, bank/property ও required civil documents current call অনুযায়ী সংগ্রহ করুন।", "Translation, legalisation/apostille এবং equivalence/ISEE-parificato route যাচাই করুন।", "Accommodation/meals/cash benefit এবং deadline আলাদা করে লিখুন।"],
+        readyWhen: "Region-specific official checklist অনুযায়ী financial documents প্রস্তুত।",
+      },
+      {
+        title: "MAECI, merit ও research funding apply করুন",
+        timing: "প্রতিটি call-এর নিজস্ব deadline অনুযায়ী",
+        description: "MAECI application university enrolment নয়; ২০২৬–২৭ call ইতিমধ্যে বন্ধ হলে next cycle monitor করুন।",
+        actions: ["Study in Italy portal-এর current MAECI call ও eligible programme যাচাই করুন।", "University merit scholarship-এর separate/automatic consideration rule পড়ুন।", "PhD হলে advertised funded call বা supervisor/project route খুঁজুন।"],
+        readyWhen: "প্রতিটি eligible funding route-এ complete application বা documented next-cycle plan আছে।",
+      },
+      {
+        title: "Universitaly pre-enrolment ও visa সম্পন্ন করুন",
+        timing: "University eligibility/admission পাওয়ার পর",
+        description: "Non-EU visa applicant-এর pre-enrolment university validation প্রয়োজন; scholarship result visa guarantee নয়।",
+        actions: ["Universitaly-তে correct institution/course দিয়ে pre-enrolment submit করুন।", "University validation ও embassy visa checklist follow করুন।", "Housing, insurance, proof of funds এবং original documents প্রস্তুত রাখুন।"],
+        readyWhen: "Validated pre-enrolment এবং complete visa file প্রস্তুত।",
+      },
+    ],
+    checklist: ["Official English-taught programme page", "Degree certificate and transcripts", "Course descriptions if requested", "English-language evidence", "CV and motivation/research statement", "Regional scholarship income/property documents", "Required translations/legalisation", "Universitaly and visa document plan"],
+    afterSubmission: ["Admission, regional scholarship, MAECI/merit এবং Universitaly status আলাদাভাবে track করুন।", "Provisional scholarship ranking final award বা accommodation guarantee নয়।", "Offer পেলে tuition waiver, meals, housing/cash grant এবং payment timing official notice-এ verify করুন।"],
+    cautions: ["Regional scholarship benefit ও document rule প্রতি region এবং academic year-এ বদলাতে পারে।", "MAECI application university admission/enrolment নয়।", "২০২৬–২৭ MAECI deadline ছিল 26 March 2026; এখন next call monitor করতে হবে।", "Scholarship থাকলেও visa proof-of-funds, initial housing এবং arrival cost লাগতে পারে।"],
+    officialLinks: [
+      { label: `${seed.university} official graduate/international page`, href: seed.officialUrl, description: "English programme, deadline, tuition, admission এবং university scholarship যাচাই করুন।" },
+      { label: "Universitaly — international students", href: "https://www.universitaly.it/studenti-stranieri", description: "Official pre-enrolment এবং visa-related university validation procedure দেখুন।" },
+      { label: "MAECI grants 2026–27 — Embassy of Italy in Dhaka", href: "https://ambdhaka.esteri.it/en/news/dall_ambasciata/2026/03/italian-government-study-grants-for-foreign-and-italian-students-residing-abroad-a-y-2026-2027/", description: "Bangladesh call, €1,200/month reference, eligible study types ও deadline যাচাই করুন।" },
+      { label: "Study in Italy MAECI portal and call", href: "https://studyinitaly.esteri.it/ListaBandi?s=08", description: "Current/next call, eligible countries, documents ও application portal দেখুন।" },
+    ],
+    reviewedAt: "August 23, 2026",
+    italyPriority: seed.priority,
+    italyTier: seed.tier,
+    italyCost: seed.cost,
+  };
+}
+
+const italyUniversitySeeds: ItalyUniversitySeed[] = [
+  { rank: 1, slug: "bologna-italy-graduate-scholarship-guide", university: "University of Bologna", fields: "Computer Science, AI, Data and Business", cost: "Medium", scholarships: "ER.GO, university merit and MAECI", tier: 1, officialUrl: "https://www.unibo.it/en/study/second-cycle-degree" },
+  { rank: 2, slug: "padua-italy-graduate-scholarship-guide", university: "University of Padua", fields: "Computer Science, Data Science and Business", cost: "Low", scholarships: "Veneto regional scholarship and Padua International Excellence", tier: 1, priority: 5, officialUrl: "https://www.unipd.it/en/educational-offer/second-cycle-degrees" },
+  { rank: 3, slug: "sapienza-rome-italy-graduate-scholarship-guide", university: "Sapienza University of Rome", fields: "Computer Science, AI, Data and Business", cost: "Low", scholarships: "LazioDiSCo and MAECI", tier: 1, officialUrl: "https://www.uniroma1.it/en/pagina/international-admissions" },
+  { rank: 4, slug: "polimi-italy-graduate-scholarship-guide", university: "Polytechnic University of Milan", fields: "Computer Science, AI, Engineering and Management", cost: "Medium", scholarships: "DSU, merit scholarship and MAECI", tier: 1, officialUrl: "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale-programmes" },
+  { rank: 5, slug: "trento-italy-graduate-scholarship-guide", university: "University of Trento", fields: "Computer Science, AI, Data Science and Economics", cost: "Low", scholarships: "Opera Universitaria and university merit", tier: 1, priority: 4, officialUrl: "https://www.unitn.it/en/study/masters-degrees" },
+  { rank: 6, slug: "turin-italy-graduate-scholarship-guide", university: "University of Turin", fields: "Computer Science, AI, Data and Business", cost: "Low", scholarships: "EDISU Piemonte and university merit", tier: 1, priority: 6, officialUrl: "https://en.unito.it/studying-unito/programs/degree-programs" },
+  { rank: 7, slug: "polito-italy-graduate-scholarship-guide", university: "Polytechnic University of Turin", fields: "Computer Science, AI, Engineering and Management", cost: "Low", scholarships: "EDISU Piemonte and university merit", tier: 1, priority: 7, officialUrl: "https://www.polito.it/en/education/master-s-degree-programmes" },
+  { rank: 8, slug: "pisa-italy-graduate-scholarship-guide", university: "University of Pisa", fields: "Computer Science, AI, Data and Business", cost: "Low", scholarships: "DSU Toscana and university merit", tier: 1, priority: 8, officialUrl: "https://www.unipi.it/index.php/masters-degree-programmes" },
+  { rank: 9, slug: "milan-italy-graduate-scholarship-guide", university: "University of Milan", fields: "Computer Science, Data Science and Economics", cost: "Medium", scholarships: "Lombardy regional and university scholarships", tier: 1, officialUrl: "https://www.unimi.it/en/education/masters-degree-programmes" },
+  { rank: 10, slug: "naples-federico-ii-italy-graduate-scholarship-guide", university: "University of Naples Federico II", fields: "Computer Science, AI, Engineering and Business", cost: "Low", scholarships: "Campania regional scholarship and MAECI", tier: 1, officialUrl: "https://www.international.unina.it/" },
+  { rank: 11, slug: "pavia-italy-graduate-scholarship-guide", university: "University of Pavia", fields: "Computer Science, AI, Data and Business", cost: "Low", scholarships: "EDiSU Pavia and university merit", tier: 1, priority: 9, officialUrl: "https://apply.unipv.eu/" },
+  { rank: 12, slug: "florence-italy-graduate-scholarship-guide", university: "University of Florence", fields: "Computer Science, Data, Economics and Management", cost: "Low", scholarships: "DSU Toscana", tier: 1, officialUrl: "https://www.unifi.it/en/study-us/degree-programs/second-cycle-degree-programs" },
+  { rank: 13, slug: "tor-vergata-italy-graduate-scholarship-guide", university: "University of Rome Tor Vergata", fields: "Computer Science, ICT, Business and Economics", cost: "Low", scholarships: "LazioDiSCo and university merit", tier: 1, officialUrl: "https://web.uniroma2.it/en/contenuto/degree_courses" },
+  { rank: 14, slug: "milano-bicocca-italy-graduate-scholarship-guide", university: "University of Milano-Bicocca", fields: "Computer Science, AI, Data and Economics", cost: "Medium", scholarships: "Lombardy regional scholarship", tier: 1, officialUrl: "https://en.unimib.it/education/degree-programmes" },
+  { rank: 15, slug: "genoa-italy-graduate-scholarship-guide", university: "University of Genoa", fields: "Computer Science, Robotics, Data and Engineering", cost: "Low", scholarships: "ALiSEO regional scholarship", tier: 1, priority: 10, officialUrl: "https://unige.it/en/international" },
+  { rank: 16, slug: "trieste-italy-graduate-scholarship-guide", university: "University of Trieste", fields: "Computer Science, Data Science and Economics", cost: "Low", scholarships: "ARDiS regional scholarship", tier: 1, officialUrl: "https://portale.units.it/en/study" },
+  { rank: 17, slug: "ca-foscari-italy-graduate-scholarship-guide", university: "Ca’ Foscari University of Venice", fields: "Data, Economics and Business", cost: "Medium", scholarships: "Veneto regional scholarship and university merit", tier: 1, officialUrl: "https://www.unive.it/pag/19734/" },
+  { rank: 18, slug: "unimore-italy-graduate-scholarship-guide", university: "University of Modena and Reggio Emilia", fields: "AI, Data, Engineering and Business", cost: "Low", scholarships: "ER.GO regional scholarship", tier: 1, priority: 11, officialUrl: "https://www.unimore.it/en/education/degree-programmes" },
+  { rank: 19, slug: "verona-italy-graduate-scholarship-guide", university: "University of Verona", fields: "Computer Science, Data Science and Economics", cost: "Low", scholarships: "Veneto regional scholarship", tier: 1, officialUrl: "https://www.univr.it/en/degree-programmes" },
+  { rank: 20, slug: "bozen-bolzano-italy-graduate-scholarship-guide", university: "Free University of Bozen-Bolzano", fields: "Computer Science, Data and Business", cost: "Medium", scholarships: "Province and university grants", tier: 1, officialUrl: "https://www.unibz.it/en/applicants/master/" },
+  { rank: 21, slug: "ferrara-italy-graduate-scholarship-guide", university: "University of Ferrara", fields: "Computer Science, AI and Economics", cost: "Low", scholarships: "ER.GO regional scholarship", tier: 1, priority: 12, officialUrl: "https://www.unife.it/en/education/degree-courses" },
+  { rank: 22, slug: "parma-italy-graduate-scholarship-guide", university: "University of Parma", fields: "Computer Science, Data, Engineering and Business", cost: "Low", scholarships: "ER.GO regional scholarship", tier: 1, priority: 13, officialUrl: "https://www.unipr.it/en/education" },
+  { rank: 23, slug: "siena-italy-graduate-scholarship-guide", university: "University of Siena", fields: "AI, Data, Economics and Finance", cost: "Low", scholarships: "DSU Toscana", tier: 1, officialUrl: "https://en.unisi.it/study/degree-programmes" },
+  { rank: 24, slug: "brescia-italy-graduate-scholarship-guide", university: "University of Brescia", fields: "Technology, Data and Business", cost: "Low", scholarships: "Lombardy regional scholarship", tier: 1, officialUrl: "https://www.unibs.it/en/education" },
+  { rank: 25, slug: "bergamo-italy-graduate-scholarship-guide", university: "University of Bergamo", fields: "Computer Science, Data, Business and Economics", cost: "Low", scholarships: "Lombardy regional scholarship", tier: 1, officialUrl: "https://en.unibg.it/study/courses" },
+  { rank: 26, slug: "udine-italy-graduate-scholarship-guide", university: "University of Udine", fields: "Computer Science, AI, Data and Management", cost: "Low", scholarships: "ARDiS regional scholarship", tier: 2, priority: 14, officialUrl: "https://www.uniud.it/en/education/offer" },
+  { rank: 27, slug: "camerino-italy-graduate-scholarship-guide", university: "University of Camerino", fields: "Computer Science, Data and Technology", cost: "Low", scholarships: "ERDIS regional and university merit", tier: 2, priority: 2, officialUrl: "https://international.unicam.it/" },
+  { rank: 28, slug: "marche-polytechnic-italy-graduate-scholarship-guide", university: "Marche Polytechnic University", fields: "ICT, Engineering and Economics", cost: "Low", scholarships: "ERDIS regional scholarship", tier: 2, officialUrl: "https://www.univpm.it/Entra/Engine/RAServePG.php/P/1065510010400" },
+  { rank: 29, slug: "perugia-italy-graduate-scholarship-guide", university: "University of Perugia", fields: "Computer Science, Data and Economics", cost: "Low", scholarships: "ADiSU Umbria", tier: 2, officialUrl: "https://www.unipg.it/en/courses" },
+  { rank: 30, slug: "laquila-italy-graduate-scholarship-guide", university: "University of L’Aquila", fields: "Computer Science, AI and Engineering", cost: "Low", scholarships: "ADSU Abruzzo", tier: 2, priority: 3, officialUrl: "https://www.univaq.it/en/section.php?id=1444" },
+  { rank: 31, slug: "calabria-italy-graduate-scholarship-guide", university: "University of Calabria", fields: "Computer Science, AI, Robotics and Business", cost: "Low", scholarships: "Calabria regional scholarship and university support", tier: 2, priority: 1, officialUrl: "https://www.unical.it/international/" },
+  { rank: 32, slug: "salerno-italy-graduate-scholarship-guide", university: "University of Salerno", fields: "Computer Science, Data, Engineering and Business", cost: "Low", scholarships: "Campania regional scholarship", tier: 2, priority: 15, officialUrl: "https://web.unisa.it/en/teaching" },
+  { rank: 33, slug: "bari-italy-graduate-scholarship-guide", university: "University of Bari Aldo Moro", fields: "Computer Science, Data and Economics", cost: "Low", scholarships: "ADiSU Puglia", tier: 2, officialUrl: "https://www.uniba.it/en/education-offer" },
+  { rank: 34, slug: "salento-italy-graduate-scholarship-guide", university: "University of Salento", fields: "Computer Science, AI, Engineering and Business", cost: "Low", scholarships: "ADiSU Puglia", tier: 2, officialUrl: "https://international.unisalento.it/" },
+  { rank: 35, slug: "palermo-italy-graduate-scholarship-guide", university: "University of Palermo", fields: "Computer Science, AI, Engineering and Economics", cost: "Low", scholarships: "ERSU Palermo", tier: 2, officialUrl: "https://www.unipa.it/mobilita/en/new-students/" },
+  { rank: 36, slug: "catania-italy-graduate-scholarship-guide", university: "University of Catania", fields: "Computer Science, Data, Engineering and Business", cost: "Low", scholarships: "ERSU Catania", tier: 2, officialUrl: "https://www.unict.it/en/education" },
+  { rank: 37, slug: "messina-italy-graduate-scholarship-guide", university: "University of Messina", fields: "Computer Science, Data, Engineering and Business", cost: "Low", scholarships: "ERSU Messina", tier: 2, officialUrl: "https://international.unime.it/" },
+  { rank: 38, slug: "cagliari-italy-graduate-scholarship-guide", university: "University of Cagliari", fields: "Computer Science, Data, Engineering and Business", cost: "Low", scholarships: "ERSU Sardegna", tier: 2, officialUrl: "https://www.unica.it/unica/en/futuri_studenti_s01.page" },
+  { rank: 39, slug: "sassari-italy-graduate-scholarship-guide", university: "University of Sassari", fields: "Data, Economics and Management", cost: "Low", scholarships: "ERSU Sardegna", tier: 2, officialUrl: "https://en.uniss.it/study/degree-courses" },
+  { rank: 40, slug: "insubria-italy-graduate-scholarship-guide", university: "University of Insubria", fields: "Computer Science, Data and Economics", cost: "Low", scholarships: "Lombardy regional scholarship", tier: 2, officialUrl: "https://www.uninsubria.eu/programs" },
+  { rank: 41, slug: "eastern-piedmont-italy-graduate-scholarship-guide", university: "University of Eastern Piedmont", fields: "Computer Science, Data and Economics", cost: "Low", scholarships: "EDISU Piemonte", tier: 2, officialUrl: "https://www.uniupo.it/en/courses" },
+  { rank: 42, slug: "tuscia-italy-graduate-scholarship-guide", university: "University of Tuscia", fields: "Computer Science/data applications and Economics", cost: "Low", scholarships: "LazioDiSCo", tier: 2, officialUrl: "https://www.unitus.it/en/" },
+  { rank: 43, slug: "basilicata-italy-graduate-scholarship-guide", university: "University of Basilicata", fields: "Computer Science, Engineering and Economics", cost: "Low", scholarships: "Basilicata regional scholarship", tier: 2, officialUrl: "https://portale.unibas.it/site/home/international.html" },
+  { rank: 44, slug: "molise-italy-graduate-scholarship-guide", university: "University of Molise", fields: "Computer Science, Economics and Management", cost: "Low", scholarships: "Molise regional scholarship", tier: 2, officialUrl: "https://www.unimol.it/international/" },
+  { rank: 45, slug: "sannio-italy-graduate-scholarship-guide", university: "University of Sannio", fields: "Computer Science, Data, Engineering and Business", cost: "Low", scholarships: "Campania regional scholarship", tier: 2, officialUrl: "https://www.unisannio.it/en" },
+  { rank: 46, slug: "chieti-pescara-italy-graduate-scholarship-guide", university: "University of Chieti–Pescara", fields: "Economics, Data and Management", cost: "Low", scholarships: "ADSU Abruzzo", tier: 2, officialUrl: "https://en.unich.it/" },
+  { rank: 47, slug: "campania-vanvitelli-italy-graduate-scholarship-guide", university: "University of Campania Luigi Vanvitelli", fields: "Engineering, Data and Business", cost: "Low", scholarships: "Campania regional scholarship", tier: 2, officialUrl: "https://www.international.unicampania.it/" },
+  { rank: 48, slug: "parthenope-naples-italy-graduate-scholarship-guide", university: "Parthenope University of Naples", fields: "Computer Science, Data Science and Economics", cost: "Low", scholarships: "Campania regional scholarship", tier: 2, officialUrl: "https://international.uniparthenope.it/" },
+  { rank: 49, slug: "bocconi-italy-graduate-scholarship-guide", university: "Bocconi University", fields: "Data Science, AI, Economics and Business", cost: "High", scholarships: "Merit and need-based aid", tier: 2, officialUrl: "https://www.unibocconi.it/en/programs/master-science" },
+  { rank: 50, slug: "luiss-italy-graduate-scholarship-guide", university: "LUISS Guido Carli University", fields: "Data, Economics and Management", cost: "High", scholarships: "University merit scholarship", tier: 2, officialUrl: "https://www.luiss.edu/admissions/programs-offered/graduate" },
+];
+
+const italyGuides: ScholarshipGuide[] = italyUniversitySeeds.map(createItalyGuide);
 
 export const scholarshipGuides: ScholarshipGuide[] = [
   {
@@ -8724,6 +8870,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
   ...canadaGuides,
   ...koreaGuides,
   ...swissGuides,
+  ...italyGuides,
   ...onlyVerifiedEnglishMasters(japanShortlistAdditions),
   ...onlyVerifiedEnglishMasters(tierAJapanGuides),
   ...onlyVerifiedEnglishMasters(regionalPublicJapanGuides),
