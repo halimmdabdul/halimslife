@@ -1,226 +1,53 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
-import { InnerPageShell } from "@/components/inner-page-shell";
-import {
-  scholarshipGuides,
-  type ScholarshipCountry,
-} from "@/lib/scholarships";
+import alabamaCampus from "@/assets/scholarships/campus-alabama.png";
+import iowaCampus from "@/assets/scholarships/campus-iowa.png";
+import uconnCampus from "@/assets/scholarships/campus-uconn.png";
+import navigatorHero from "@/assets/scholarships/navigator-hero.png";
+import japanPanorama from "@/assets/journey/hero-bangladesh-japan.png";
+import { BrandLogo } from "@/components/brand-logo";
+import { SiteHeader } from "@/components/site-header";
+import { scholarshipGuides } from "@/lib/scholarships";
 
-export const metadata: Metadata = {
-  title: "Scholarships | USA & Japan Graduate Funding Guides",
-  description:
-    "Practical, source-checked guides to graduate funding and scholarship opportunities in the USA and Japan.",
-  alternates: { canonical: "/scholarships" },
-};
+import styles from "./scholarships.module.css";
 
-const countries: { value: ScholarshipCountry; label: string; detail: string }[] = [
-  {
-    value: "usa",
-    label: "USA",
-    detail: `${scholarshipGuides.filter((guide) => guide.country === "usa").length} guides`,
-  },
-  {
-    value: "japan",
-    label: "Japan",
-    detail: `${scholarshipGuides.filter((guide) => guide.country === "japan").length} guides`,
-  },
+export const metadata: Metadata = { title:"Scholarships | USA & Japan Graduate Funding Guides", description:"Practical, source-checked graduate funding and scholarship guides for the USA and Japan.", alternates:{canonical:"/scholarships"} };
+
+type IconName="arrow"|"calendar"|"check"|"document"|"email"|"link"|"search"|"shield"|"user"|"warning";
+function Icon({name}:{name:IconName}){const p:Record<IconName,React.ReactNode>={arrow:<path d="M5 12h14m-5-5 5 5-5 5"/>,calendar:<><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></>,check:<path d="m5 12 4 4L19 6"/>,document:<><path d="M6 3h9l4 4v14H6V3Z"/><path d="M14 3v5h5M9 13h6M9 17h5"/></>,email:<><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></>,link:<><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.2 1.2"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.2-1.2"/></>,search:<><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></>,shield:<path d="M12 3 4 6v5c0 5 3.3 8.5 8 10 4.7-1.5 8-5 8-10V6l-8-3Zm-3 9 2 2 4-5"/>,user:<><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></>,warning:<><path d="M12 3 2 21h20L12 3Z"/><path d="M12 9v5m0 3h.01"/></>};return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{p[name]}</svg>}
+
+const usaGuides=scholarshipGuides.filter(g=>g.country==="usa");
+const japanGuides=scholarshipGuides.filter(g=>g.country==="japan");
+const featured=[
+  {guide:usaGuides.find(g=>g.slug.includes("alabama"))??usaGuides[0],image:alabamaCampus,badge:"Strongest active lead"},
+  {guide:usaGuides.find(g=>g.slug.includes("uconn"))??usaGuides[1],image:uconnCampus,badge:"Currently hiring · Fully funded"},
+  {guide:usaGuides.find(g=>g.slug.includes("iowa-state"))??usaGuides[2],image:iowaCampus,badge:"Fall 2027"},
 ];
+const campusCycle=[alabamaCampus,uconnCampus,iowaCampus];
+const applicationSteps=["Fit check","Official source","Professor email","Documents","Apply & verify"];
 
-const japanPlanningGroups = [
-  {
-    label: "Act now",
-    tone: "urgent",
-    text: "Deadlines are live or preparation should already be underway.",
-    guides: ["Aoyama SMIPRP · Aug 24, 09:00 JST · postal cutoff confirm", "Tsukuba MBA-IB · Aug 25–Sep 11 · work experience + interview", "Soka ISS · Aug 26–Sep 25 · English/JLPT optional · supervisor approval first", "JAIST · Sep 4–16 · essay + online oral", "NUCB MiM · Oct 24, 18:00 JST · IELTS 6.0/English-degree waiver · high cost", "University of Aizu · Dec 7–14, 17:00 JST · supervisor + on-campus English oral", "Tsukuba AISIP", "IUJ", "GRIPS", "Hyogo Global Business · Jan 6–13 · guide pending", "Ritsumeikan GSISE · Jan 7–21 · supervisor + written exam"],
-  },
-  {
-    label: "Confirm next",
-    tone: "verify",
-    text: "Good options, but the exact intake, language or 2027 guide needs confirmation.",
-    guides: ["Musashino Data Science · Aug 18–27 · language check", "Hiroshima SmaSo · Jan 5–12 · guide due Oct", "FUN Hakodate · Jan 5–13 · intake + English plan", "TCU Informatics · Jan 7–14 · supervisor + exam route", "Saitama MEcon · Sep–Oct 2026 guide pending", "Ritsumeikan MPED · Sep 2027 guide pending", "Hokkaido GFR · late-Oct guide · adviser first", "SIT SSFS · pre-consult by Oct 30 · Nov 16–27 · self-funded", "TUT International Master’s + MEXT", "Hosei IIST · Sep 2027 guide pending · IELTS 5.5 · MOI not accepted", "Kobe KIC · Oct 2027 English guide pending · TOEFL 80-equivalent", "TUMSAT · guide late Oct · Nov 30–Dec 3 · technical exam", "Meiji MPP · Sep-only · 2027 guide pending · essay + interview", "Doshisha ISTC · Jan 20–Feb 8, 2027 (self-verify) · MOI route"],
-  },
-  {
-    label: "Eligibility watch",
-    tone: "caution",
-    text: "Do not apply until the profile and route-specific restriction is resolved.",
-    guides: ["Saitama ESITI · doctoral only · direct route requires overseas residence"],
-  },
-] as const;
+function SectionTitle({number,children}:{number:string;children:React.ReactNode}){return <div className={styles.sectionTitle}><span>{number}</span><h2>{children}</h2></div>}
 
-const usaPlanningGroups = [
-  {
-    label: "Strongest active lead",
-    tone: "urgent",
-    text: "The lab currently advertises funded PhD hiring and the research fit is unusually strong.",
-    guides: [
-      "Alabama · AutMn Trustworthy Autonomy Lab",
-      "UConn · RIET Lab (Dori-Hacohen) — fully funded, currently hiring",
-    ],
-  },
-  {
-    label: "Email before applying",
-    tone: "verify",
-    text: "The opportunity page exists, but the exact Fall 2027 seat must be confirmed in writing.",
-    guides: [
-      "SIU · Mobile Distributed Computing Lab",
-      "UMBC · Haibin Zhang",
-      "Iowa State · Amit Sikder",
-      "Iowa State · Liyi Li",
-      "Oregon · Suyash Gupta",
-      "Kennesaw State · Liang Zhao — Spring 2027 deadline passed, ask about Fall 2027",
-      "UNC Chapel Hill · Jingping Nie — page confirms Fall 2026, not Fall 2027",
-    ],
-  },
-  {
-    label: "Funding deadlines",
-    tone: "caution",
-    text: "Prepare tests and documents early; a professor reply does not replace the graduate application.",
-    guides: [
-      "Alabama · Dec 31",
-      "SIU · Dec 31",
-      "UMBC · Jan 7",
-      "Iowa State · Dec 15 (free application)",
-      "Oregon · Dec 15",
-      "Kennesaw State · Feb 1 (Fall) — Spring 2027 window already closed",
-      "UConn · Jan 1",
-      "UNC Chapel Hill · Dec 15 (Nov 26 recommended for international)",
-    ],
-  },
-] as const;
+export default function ScholarshipsPage(){return <div className={styles.page}><SiteHeader/><main>
+  <section className={styles.hero}><div><span className={styles.eyebrow}>Scholarship navigator</span><h1>Funding খুঁজুন—তারপর<br/><em>smartভাবে apply</em> করুন।</h1><p>USA ও Japan-এর graduate opportunity বুঝতে clear, practical guide। Official source যাচাই করে application flow সহজ ভাষায় ব্যাখ্যা করা হয়েছে।</p><div className={styles.heroActions}><a href="#guides">Scholarship খুঁজুন ↓</a><a href="#roadmap">Application roadmap</a></div><div className={styles.trust}><span><Icon name="shield"/>Source-checked</span><span><Icon name="link"/>Official links</span><span><Icon name="calendar"/>Updated August 2026</span></div></div><div className={styles.heroImage}><Image src={navigatorHero} alt="Scholarship research desk linking USA and Japan" fill priority sizes="55vw"/></div></section>
 
-export default async function ScholarshipsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ country?: string }>;
-}) {
-  const params = await searchParams;
-  const activeCountry: ScholarshipCountry =
-    params.country === "japan" ? "japan" : "usa";
-  const guides = scholarshipGuides.filter(
-    (guide) => guide.country === activeCountry,
-  );
+  <aside className={styles.warning}><Icon name="warning"/><div><h2>Apply করার আগে</h2><p>Scholarship, funded admission এবং application portal এক জিনিস নয়। প্রতিটি opportunity আসলে কী—সেটি আগে পরিষ্কারভাবে বুঝুন।</p></div><span><Icon name="warning"/>Admission বা funding guarantee নয়</span></aside>
 
-  return (
-    <InnerPageShell>
-      <section className="scholarship-hero">
-        <div className="container scholarship-hero-grid">
-          <div>
-            <span className="scholarship-eyebrow">Scholarship navigator</span>
-            <h1>Funding খুঁজুন—তারপর smartভাবে apply করুন।</h1>
-            <p>
-              USA ও Japan-এর graduate opportunity বুঝতে clear, practical guide।
-              প্রতিটি page official source যাচাই করে application-এর বাস্তব flow
-              সহজ ভাষায় ব্যাখ্যা করে।
-            </p>
-          </div>
-          <aside>
-            <strong>Before you apply</strong>
-            <p>
-              “Scholarship”, funded admission এবং application portal এক জিনিস নয়।
-              আমরা প্রতিটি opportunity আসলে কী—সেটি আগে পরিষ্কার করি।
-            </p>
-            <span>Source-checked · Updated August 2026</span>
-          </aside>
-        </div>
-      </section>
+  <section className={styles.filters}><div><Icon name="search"/><span>University, professor বা research area খুঁজুন</span></div><button>সব</button><Link href="/scholarships?country=usa">🇺🇸 USA · {usaGuides.length} guides</Link><Link href="/scholarships?country=japan">🇯🇵 Japan · {japanGuides.length} guides</Link><div className={styles.chips}><span>Fully funded</span><span>Active lead</span><span>Email first</span><span>Deadline</span><span>PhD</span><span>Master’s</span></div></section>
 
-      <div className="scholarship-index container">
-        <div className="scholarship-tabs" aria-label="Filter by country">
-          {countries.map((country) => (
-            <Link
-              href={`/scholarships?country=${country.value}`}
-              key={country.value}
-              aria-current={activeCountry === country.value ? "page" : undefined}
-            >
-              <span>{country.label}</span>
-              <small>{country.detail}</small>
-            </Link>
-          ))}
-        </div>
+  <section className={styles.actions}><SectionTitle number="01">কোন opportunity-তে এখন কী action নেবেন?</SectionTitle><div className={styles.actionGrid}><article><h3>⚡ Strongest active leads</h3><ul><li>Alabama · AutMn Trustworthy Autonomy Lab</li><li>UConn · RIET Lab—currently hiring, fully funded</li></ul><a href="#featured">এখন দেখুন <Icon name="arrow"/></a></article><article><h3>✉ Email before applying</h3><ul><li>SIU Mobile Distributed Computing</li><li>UMBC Cloud Security</li><li>Iowa State faculty matches</li><li>Oregon Distopia Lab</li></ul><a href="#guides">Email checklist <Icon name="arrow"/></a></article><article><h3>▣ Funding deadlines</h3><ul><li>Dec 15</li><li>Dec 31</li><li>Jan 1</li><li>Jan 7</li></ul><a href="#roadmap">Deadline calendar <Icon name="arrow"/></a></article></div></section>
 
-        <div className="scholarship-section-heading">
-          <div>
-            <span className="kicker">{activeCountry} opportunities</span>
-            <h2>
-              {activeCountry === "usa"
-                ? `${guides.length} practical guides for your next application.`
-                : `${guides.length} verified routes to study and funding in Japan.`}
-            </h2>
-          </div>
-          <p>
-            Details can change between admission cycles. Always confirm the final
-            deadline, eligibility and funding on the linked official website.
-          </p>
-        </div>
+  <section id="featured"><SectionTitle number="02">Strong research-fit ও current funding signal</SectionTitle><div className={styles.featuredGrid}>{featured.map(({guide,image,badge})=><article key={guide.slug}><div className={styles.featuredImage}><Image src={image} alt={`${guide.university} watercolor campus`} fill sizes="33vw"/><span>{badge}</span></div><h3>{guide.university}</h3><h4>{guide.title}</h4><div className={styles.tags}><span>AI</span><span>Systems</span><span>Research</span></div><p>{guide.summary}</p><Link href={`/scholarships/${guide.slug}`}>Complete guide <Icon name="arrow"/></Link></article>)}</div></section>
 
-        <section className="scholarship-planning-map" aria-labelledby="scholarship-planning-title">
-            <header>
-              <span className="kicker">Quick decision map</span>
-              <h2 id="scholarship-planning-title">কোন option এখন কীভাবে দেখবেন?</h2>
-              <p>
-                Funding claim admission guarantee নয়। আগে status group দেখুন,
-                তারপর নিচের complete guide খুলে exact action নিন।
-              </p>
-            </header>
-            <div>
-              {(activeCountry === "japan" ? japanPlanningGroups : usaPlanningGroups).map((group) => (
-                <article data-tone={group.tone} key={group.label}>
-                  <strong>{group.label}</strong>
-                  <p>{group.text}</p>
-                  <ul>
-                    {group.guides.map((guide) => <li key={guide}>{guide}</li>)}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </section>
+  <section id="guides"><SectionTitle number="03">আপনার research interest অনুযায়ী guide বেছে নিন</SectionTitle><div className={styles.guideList}>{usaGuides.slice(0,6).map((guide,index)=><article key={guide.slug}><div><Image src={campusCycle[index%3]} alt="" fill sizes="18vw"/></div><div><h3>{guide.title}</h3><b>{index%2===0?"Active lead":"Email first"}</b><span>{guide.audience}</span></div><Icon name="arrow"/><Link aria-label={`Read ${guide.title}`} href={`/scholarships/${guide.slug}`}/></article>)}</div><Link className={styles.more} href="/scholarships?country=usa">সব {usaGuides.length} USA guide দেখুন <Icon name="arrow"/></Link></section>
 
-        {guides.length > 0 ? (
-          <div className="scholarship-card-grid">
-            {guides.map((guide, index) => (
-              <article className="scholarship-card" key={guide.slug}>
-                <div className="scholarship-card-top">
-                  <span>0{index + 1} · {guide.country.toUpperCase()}</span>
-                  <small>{guide.label}</small>
-                </div>
-                <p className="scholarship-university">{guide.university}</p>
-                <h3>{guide.title}</h3>
-                <p>{guide.summary}</p>
-                <dl>
-                  <div><dt>Funding</dt><dd>{guide.funding}</dd></div>
-                  <div><dt>Best for</dt><dd>{guide.audience}</dd></div>
-                </dl>
-                <Link href={`/scholarships/${guide.slug}`}>
-                  Read the complete guide <span aria-hidden="true">→</span>
-                </Link>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <section className="scholarship-empty-state">
-            <span aria-hidden="true">日本</span>
-            <div>
-              <strong>Japan scholarship guides are coming next.</strong>
-              <p>
-                MEXT Embassy Recommendation, University Recommendation এবং
-                university-specific funding নিয়ে verified guide প্রস্তুত হচ্ছে।
-              </p>
-            </div>
-            <Link href="/contact?topic=general&subject=Japan%20scholarship%20guide">
-              Request a Japan guide <span aria-hidden="true">→</span>
-            </Link>
-          </section>
-        )}
+  <section className={styles.japanPanel}><div className={styles.japanImage}><Image src={japanPanorama} alt="Japan scholarship landscape with Mount Fuji" fill sizes="50vw"/></div><div><SectionTitle number="04">Japan scholarship ও graduate funding</SectionTitle><h2>MEXT, university scholarship, professor contact এবং admission route—এক জায়গায় organized guide।</h2><strong>{japanGuides.length} guides</strong><div className={styles.tags}><span>MEXT</span><span>University funding</span><span>Professor contact</span><span>Admission roadmap</span></div><Link href="/scholarships?country=japan">Japan guides দেখুন <Icon name="arrow"/></Link></div></section>
 
-        <section className="scholarship-note">
-          <strong>Important</strong>
-          <p>
-            এই guides informational support—admission বা funding guarantee নয়।
-            University-এর official page এবং written offer সবসময় চূড়ান্ত authority।
-          </p>
-        </section>
-      </div>
-    </InnerPageShell>
-  );
-}
+  <section id="roadmap" className={styles.roadmap}><SectionTitle number="05">Opportunity পাওয়া থেকে application submit পর্যন্ত</SectionTitle><div>{applicationSteps.map((step,index)=><article key={step}><span>{index+1}</span><h3>{step}</h3><p>{["program and research match","eligibility and deadline","when appropriate","CV, SOP, transcripts, tests","portal and written offer"][index]}</p></article>)}</div><p><Icon name="warning"/>Written offer-ই funding-এর final authority।</p></section>
+
+  <section className={styles.resources}><SectionTitle number="06">Helpful resources</SectionTitle><div><article><Icon name="email"/><h3>Professor email checklist</h3><p>Professor contact করার আগে কী কী প্রস্তুত নেবেন।</p><Link href="/contact">Guide দেখুন <Icon name="arrow"/></Link></article><article><Icon name="document"/><h3>Research-fit worksheet</h3><p>নিজের research fit structured worksheet-এ organize করুন।</p><Link href="/projects">Guide দেখুন <Icon name="arrow"/></Link></article><article><Icon name="document"/><h3>Application document guide</h3><p>CV, SOP, transcripts ও tests গুছিয়ে রাখুন।</p><Link href="/cv">Guide দেখুন <Icon name="arrow"/></Link></article></div></section>
+
+  <section className={styles.cta}><Image src={navigatorHero} alt="" fill sizes="1120px"/><div><h2>আপনার next application আরও clear করুন।</h2><p>Guide পড়ুন, official source verify করুন, তারপর focusedভাবে apply করুন।</p><Link href="#guides">Scholarships explore করুন <Icon name="arrow"/></Link><Link href="/contact">প্রশ্ন করুন</Link></div></section>
+  </main><footer className={styles.footer}><BrandLogo/><span>Japan · 日本</span><a href="https://github.com/halimmdabdul">GitHub</a><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">Google Scholar</a><Link href="/contact">Contact</Link><small>© {new Date().getFullYear()} Halim Md Abdul.</small></footer></div>}
