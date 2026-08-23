@@ -1,4 +1,4 @@
-export type ScholarshipCountry = "usa" | "japan" | "canada";
+export type ScholarshipCountry = "usa" | "japan" | "canada" | "korea";
 
 export type ScholarshipGuide = {
   slug: string;
@@ -36,6 +36,9 @@ export type ScholarshipGuide = {
   canadaPriority?: number;
   canadaTier?: 1 | 2 | 3;
   canadaFunding?: "Strong" | "Possible" | "Limited";
+  koreaPriority?: number;
+  koreaTier?: 1 | 2 | 3 | 4;
+  koreaFunding?: "Strong" | "Possible" | "Limited";
 };
 
 type JapanShortlistSeed = {
@@ -1534,6 +1537,156 @@ const canadaUniversitySeeds: CanadaUniversitySeed[] = [
 ];
 
 const canadaGuides: ScholarshipGuide[] = canadaUniversitySeeds.map(createCanadaGuide);
+
+type KoreaUniversitySeed = {
+  rank: number;
+  slug: string;
+  university: string;
+  fields: string;
+  funding: "Strong" | "Possible" | "Limited";
+  routes: string;
+  difficulty: string;
+  tier: 1 | 2 | 3 | 4;
+  officialUrl: string;
+  priority?: number;
+  note?: string;
+};
+
+function createKoreaGuide(seed: KoreaUniversitySeed): ScholarshipGuide {
+  const fundingText = seed.funding === "Strong"
+    ? `${seed.routes}: GKS, university scholarship এবং professor/lab RA/TA route-এর শক্তিশালী সম্ভাবনা; admission বা funding guaranteed নয়।`
+    : seed.funding === "Possible"
+      ? `${seed.routes}: scholarship/assistantship পাওয়া সম্ভব, তবে competition ও department-specific eligibility আগে যাচাই করুন।`
+      : `${seed.routes}: funding সীমিত বা competitive; tuition waiver ছাড়া full-cost fallback budget প্রস্তুত রাখুন।`;
+  return {
+    slug: seed.slug,
+    country: "korea",
+    university: seed.university,
+    title: `${seed.university}: South Korea Graduate Scholarship Guide`,
+    summary: `${seed.fields} নিয়ে English-accessible Master’s/PhD, GKS, university waiver এবং professor-funded research route যাচাই করার practical guide।`,
+    label: `South Korea Tier ${seed.tier} · ${seed.funding} funding signal`,
+    funding: fundingText,
+    duration: "GKS reference: Master’s 1-year Korean language + 2-year degree; PhD 1-year language + 3-year degree",
+    audience: `Bangladeshi and international applicants targeting ${seed.fields}; relative difficulty: ${seed.difficulty}`,
+    realityCheck: `এই shortlist planning support—admission, GKS, RA/TA বা tuition waiver guarantee নয়। ২০২৬ GKS participating university/program list, track এবং quota current official files দিয়ে যাচাই করতে হবে।${seed.note ? ` ${seed.note}` : ""}`,
+    highlights: [
+      `Best-fit fields: ${seed.fields}.`,
+      `Funding routes: ${seed.routes}.`,
+      `Funding signal: ${seed.funding}; thesis-based MS/PhD সাধারণত course-based degree-এর তুলনায় funding-friendly।`,
+      `Relative difficulty: ${seed.difficulty}; এটি admission probability নয়।`,
+    ],
+    fit: [
+      "Target department-এ international graduate admission এবং English-taught research supervision পাওয়া যায়।",
+      "Software engineering/project/research evidence দিয়ে নির্দিষ্ট professor বা lab-এর সঙ্গে genuine fit দেখাতে পারবেন।",
+      "GKS academic, degree, nationality, age এবং document-authentication rules current guideline অনুযায়ী পূরণ করেন।",
+      "GKS না হলে RA/TA, university waiver এবং self-funded gap—তিনটি route-এর realistic plan আছে।",
+    ],
+    quickStart: [
+      "2026 GKS university information file-এ exact university, department ও available track খুঁজুন।",
+      "Official graduate page থেকে English-medium program, intake, deadline ও faculty list যাচাই করুন।",
+      "Embassy Track, University Track এবং direct professor-funded route আলাদা shortlist-এ রাখুন।",
+      "Academic percentage/CGPA conversion এবং Bangladesh documents-এর e-Apostille requirement প্রস্তুত করুন।",
+    ],
+    steps: [
+      {
+        title: "GKS track ও program eligibility lock করুন",
+        timing: "Current GKS announcement প্রকাশের পর",
+        description: "Embassy Track ও University Track-এর university choice, quota, deadline এবং documents আলাদা।",
+        actions: ["Current GKS-G guideline ও university information files পড়ুন।", "Embassy বনাম University Track-এর eligible choices লিখুন।", "Exact department, degree language এবং admission prerequisite university page-এ মিলিয়ে নিন।"],
+        readyWhen: "Track, university, program, quota ও deadline official sourceসহ নোট করা হয়েছে।",
+      },
+      {
+        title: "Professor ও research funding fit তৈরি করুন",
+        timing: "Application-এর 2–4 মাস আগে",
+        description: "GKS ছাড়াও thesis MS/PhD-তে professor/lab funding পাওয়া যেতে পারে, তবে written confirmation দরকার।",
+        actions: ["2–3 জন current professor-এর recent work পড়ুন।", "নিজের experience-এর সঙ্গে specific research connection লিখুন।", "Program rule অনুমতি দিলে concise personalized email পাঠান।"],
+        readyWhen: "কমপক্ষে দুইটি evidence-based lab fit এবং funding inquiry প্রস্তুত।",
+      },
+      {
+        title: "Documents ও application প্রস্তুত করুন",
+        timing: "Deadline-এর 6–10 সপ্তাহ আগে",
+        description: "Bangladesh route-এ final degree evidence ও e-Apostille handling সময়সাপেক্ষ হতে পারে।",
+        actions: ["Degree, transcript, citizenship/family evidence এবং required authentication প্রস্তুত করুন।", "CV, personal statement, study plan/research proposal ও recommendation সংগ্রহ করুন।", "IELTS/TOEFL/TOPIK evidence এবং official CGPA conversion যাচাই করুন।"],
+        readyWhen: "Track-specific checklist-এর সব document submission-ready।",
+      },
+      {
+        title: "Offer ও funding package verify করুন",
+        timing: "Selection/admission decision-এর পর",
+        description: "University admission, GKS selection এবং lab funding আলাদা result হতে পারে।",
+        actions: ["Tuition, stipend, airfare, language year ও insurance coverage লিখিত notice-এ দেখুন।", "RA/TA duty, duration এবং renewal condition confirm করুন।", "Uncovered living cost ও visa documents final budget-এ যোগ করুন।"],
+        readyWhen: "Official award/offer থেকে net cost ও funding duration পরিষ্কার।",
+      },
+    ],
+    checklist: ["Current GKS-G guideline and university information file", "Final degree certificate and transcripts", "Citizenship and family relationship evidence", "Required e-Apostille/authentication", "Academic CV", "Personal statement and study/research plan", "Recommendation letters", "English/TOPIK evidence if used"],
+    afterSubmission: ["Embassy/university screening, department admission এবং professor reply আলাদাভাবে track করুন।", "GKS unsuccessful হলে eligible University Track/direct admission fallback deadline দেখুন।", "Award পেলে tuition, allowance, airfare, language training ও insurance benefits official notice-এ confirm করুন।"],
+    cautions: ["২০২৬ GKS application window শেষ হয়ে গেলে next cycle monitor করতে হবে।", "University list-এ নাম থাকলেও সব department বা degree একই track-এ available নয়।", "RA/TA বা university waiver admission-এর সঙ্গে automatic নয়।", "Ewha Womans University-এর applicant eligibility current university/GKS rule থেকে যাচাই করুন।"],
+    officialLinks: [
+      { label: `${seed.university} official graduate/international page`, href: seed.officialUrl, description: "Exact program, language, deadline, tuition এবং institutional scholarship যাচাই করুন।" },
+      { label: "2026 GKS Graduate official announcement", href: "https://www.studyinkorea.go.kr/en/plan/gksNoticeRead.do?bbsId=BBSMSTR_000000000461&nttId=4420", description: "Revised guideline, forms এবং participating-university files ডাউনলোড করুন।" },
+      { label: "Korean Embassy in Bangladesh — 2026 GKS-G", href: "https://overseas.mofa.go.kr/bd-en/brd/m_2124/view.do?seq=760090", description: "Bangladesh quota, dates, online application ও e-Apostille instructions যাচাই করুন।" },
+      { label: "Study in Korea university and scholarship search", href: "https://www.studyinkorea.go.kr/en/search_v1.do", description: "International graduate programs ও scholarships search করুন; university source দিয়ে re-check করুন।" },
+    ],
+    reviewedAt: "August 23, 2026",
+    koreaPriority: seed.priority,
+    koreaTier: seed.tier,
+    koreaFunding: seed.funding,
+  };
+}
+
+const koreaUniversitySeeds: KoreaUniversitySeed[] = [
+  { rank: 1, slug: "kaist-korea-graduate-scholarship-guide", university: "KAIST", fields: "Computer Science, AI, Data, Engineering and Business", funding: "Strong", routes: "GKS/KAIST/RA", difficulty: "Very high", tier: 1, officialUrl: "https://admission.kaist.ac.kr/intl-graduate/" },
+  { rank: 2, slug: "postech-korea-graduate-scholarship-guide", university: "POSTECH", fields: "Computer Science, AI and Engineering", funding: "Strong", routes: "GKS/RA", difficulty: "Very high", tier: 1, officialUrl: "https://adm-g.postech.ac.kr/" },
+  { rank: 3, slug: "seoul-national-korea-graduate-scholarship-guide", university: "Seoul National University", fields: "Computer Science, AI, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Very high", tier: 1, officialUrl: "https://en.snu.ac.kr/admission/graduate" },
+  { rank: 4, slug: "unist-korea-graduate-scholarship-guide", university: "UNIST", fields: "Computer Science, AI, Engineering and Management", funding: "Strong", routes: "GKS/UNIST/RA", difficulty: "High", tier: 1, officialUrl: "https://admission.unist.ac.kr/graduate/" },
+  { rank: 5, slug: "gist-korea-graduate-scholarship-guide", university: "GIST", fields: "AI, Computer Science and Engineering", funding: "Strong", routes: "GKS/GIST/RA", difficulty: "High", tier: 1, officialUrl: "https://www.gist.ac.kr/iadm/" },
+  { rank: 6, slug: "dgist-korea-graduate-scholarship-guide", university: "DGIST", fields: "AI, Robotics and Computing", funding: "Strong", routes: "GKS/DGIST/RA", difficulty: "High", tier: 1, officialUrl: "https://admission.dgist.ac.kr/en/" },
+  { rank: 7, slug: "yonsei-korea-graduate-scholarship-guide", university: "Yonsei University", fields: "Computer Science, AI, Data and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Very high", tier: 1, officialUrl: "https://graduate.yonsei.ac.kr/graduate_en/" },
+  { rank: 8, slug: "korea-university-graduate-scholarship-guide", university: "Korea University", fields: "Computer Science, AI, Data and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Very high", tier: 1, officialUrl: "https://graduate2.korea.ac.kr/" },
+  { rank: 9, slug: "sungkyunkwan-korea-graduate-scholarship-guide", university: "Sungkyunkwan University", fields: "Software, AI, Data and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "High", tier: 1, officialUrl: "https://gradschool.skku.edu/eng/" },
+  { rank: 10, slug: "hanyang-korea-graduate-scholarship-guide", university: "Hanyang University", fields: "Computer Science, Engineering and Technology Management", funding: "Strong", routes: "GKS/RA/UW", difficulty: "High", tier: 1, officialUrl: "https://www.hanyang.ac.kr/web/eng/graduate" },
+  { rank: 11, slug: "sogang-korea-graduate-scholarship-guide", university: "Sogang University", fields: "Computer Science, AI and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "High", tier: 1, officialUrl: "https://gradsch.sogang.ac.kr/" },
+  { rank: 12, slug: "kyung-hee-korea-graduate-scholarship-guide", university: "Kyung Hee University", fields: "Computer Science, AI, Data and Management", funding: "Possible", routes: "GKS/RA/UW", difficulty: "High", tier: 1, officialUrl: "https://gskh.khu.ac.kr/" },
+  { rank: 13, slug: "ajou-korea-graduate-scholarship-guide", university: "Ajou University", fields: "Software, AI, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 1, officialUrl: "https://grad.ajou.ac.kr/" },
+  { rank: 14, slug: "inha-korea-graduate-scholarship-guide", university: "Inha University", fields: "Computer Science, Data, Logistics and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 1, officialUrl: "https://gradeng.inha.ac.kr/" },
+  { rank: 15, slug: "chung-ang-korea-graduate-scholarship-guide", university: "Chung-Ang University", fields: "Computer Science, AI and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "High", tier: 1, officialUrl: "https://graduate.cau.ac.kr/" },
+  { rank: 16, slug: "pusan-national-korea-graduate-scholarship-guide", university: "Pusan National University", fields: "Computer Science, AI, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 2, priority: 6, officialUrl: "https://graduate.pusan.ac.kr/" },
+  { rank: 17, slug: "kyungpook-national-korea-graduate-scholarship-guide", university: "Kyungpook National University", fields: "Computer Science, AI, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 2, priority: 5, officialUrl: "https://en.knu.ac.kr/admission/graduate.htm" },
+  { rank: 18, slug: "chonnam-national-korea-graduate-scholarship-guide", university: "Chonnam National University", fields: "Computer Science, AI, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 2, officialUrl: "https://international.jnu.ac.kr/" },
+  { rank: 19, slug: "jeonbuk-national-korea-graduate-scholarship-guide", university: "Jeonbuk National University", fields: "Computer Science, Software, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 1, officialUrl: "https://ioffice.jbnu.ac.kr/" },
+  { rank: 20, slug: "chungnam-national-korea-graduate-scholarship-guide", university: "Chungnam National University", fields: "Computer Science, AI, Engineering and Management", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 4, officialUrl: "https://plus.cnu.ac.kr/html/en/" },
+  { rank: 21, slug: "chungbuk-national-korea-graduate-scholarship-guide", university: "Chungbuk National University", fields: "Computer Science, Big Data and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 3, officialUrl: "https://www.chungbuk.ac.kr/site/english/" },
+  { rank: 22, slug: "gyeongsang-national-korea-graduate-scholarship-guide", university: "Gyeongsang National University", fields: "Informatics, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 7, officialUrl: "https://www.gnu.ac.kr/eng/" },
+  { rank: 23, slug: "kangwon-national-korea-graduate-scholarship-guide", university: "Kangwon National University", fields: "Computer Science, AI, Data and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 8, officialUrl: "https://wwwk.kangwon.ac.kr/english/" },
+  { rank: 24, slug: "jeju-national-korea-graduate-scholarship-guide", university: "Jeju National University", fields: "Computer Science, Data, Tourism and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 12, officialUrl: "https://www.jejunu.ac.kr/eng/" },
+  { rank: 25, slug: "pukyong-national-korea-graduate-scholarship-guide", university: "Pukyong National University", fields: "IT, Data, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 9, officialUrl: "https://www.pknu.ac.kr/eng/" },
+  { rank: 26, slug: "university-of-seoul-korea-graduate-scholarship-guide", university: "University of Seoul", fields: "Computer Science, Data and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "High", tier: 2, officialUrl: "https://www.uos.ac.kr/en/" },
+  { rank: 27, slug: "seoultech-korea-graduate-scholarship-guide", university: "Seoul National University of Science and Technology", fields: "Computer Science, IT and Engineering", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 2, officialUrl: "https://en.seoultech.ac.kr/" },
+  { rank: 28, slug: "kumoh-tech-korea-graduate-scholarship-guide", university: "Kumoh National Institute of Technology", fields: "Computer Science, Software and Engineering", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 10, officialUrl: "https://eng.kumoh.ac.kr/" },
+  { rank: 29, slug: "hanbat-national-korea-graduate-scholarship-guide", university: "Hanbat National University", fields: "Computer Science, AI, Engineering and Management", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, priority: 11, officialUrl: "https://www.hanbat.ac.kr/eng/" },
+  { rank: 30, slug: "korea-maritime-ocean-graduate-scholarship-guide", university: "Korea Maritime & Ocean University", fields: "Data, Logistics, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 2, officialUrl: "https://www.kmou.ac.kr/english/" },
+  { rank: 31, slug: "kongju-national-korea-graduate-scholarship-guide", university: "Kongju National University", fields: "Computer Science, Engineering and Business", funding: "Strong", routes: "GKS/UW/RA", difficulty: "Medium", tier: 3, priority: 13, officialUrl: "https://www.kongju.ac.kr/eng/" },
+  { rank: 32, slug: "kunsan-national-korea-graduate-scholarship-guide", university: "Kunsan National University", fields: "IT, Engineering and Business", funding: "Strong", routes: "GKS/UW/RA", difficulty: "Medium", tier: 3, priority: 14, officialUrl: "https://www.kunsan.ac.kr/en/" },
+  { rank: 33, slug: "andong-national-korea-graduate-scholarship-guide", university: "Andong National University", fields: "Software, Data and Business", funding: "Strong", routes: "GKS/UW/RA", difficulty: "Medium-low", tier: 3, priority: 15, officialUrl: "https://www.andong.ac.kr/eng/" },
+  { rank: 34, slug: "changwon-national-korea-graduate-scholarship-guide", university: "Changwon National University", fields: "Computer Science, Engineering and Business", funding: "Strong", routes: "GKS/UW/RA", difficulty: "Medium", tier: 3, officialUrl: "https://www.changwon.ac.kr/eng/" },
+  { rank: 35, slug: "mokpo-national-korea-graduate-scholarship-guide", university: "Mokpo National University", fields: "Information Engineering and Business", funding: "Strong", routes: "GKS/UW/RA", difficulty: "Medium-low", tier: 3, officialUrl: "https://eng.mokpo.ac.kr/" },
+  { rank: 36, slug: "sunchon-national-korea-graduate-scholarship-guide", university: "Sunchon National University", fields: "IT, AI, Logistics and Business", funding: "Strong", routes: "GKS/UW/RA", difficulty: "Medium-low", tier: 3, officialUrl: "https://www.scnu.ac.kr/eng/" },
+  { rank: 37, slug: "soongsil-korea-graduate-scholarship-guide", university: "Soongsil University", fields: "Computer Science, Software, AI and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 3, officialUrl: "https://grad.ssu.ac.kr/" },
+  { rank: 38, slug: "sejong-korea-graduate-scholarship-guide", university: "Sejong University", fields: "Computer Science, AI, Data and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 3, officialUrl: "https://graduate.sejong.ac.kr/" },
+  { rank: 39, slug: "kookmin-korea-graduate-scholarship-guide", university: "Kookmin University", fields: "Software, AI and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 3, officialUrl: "https://english.kookmin.ac.kr/" },
+  { rank: 40, slug: "dankook-korea-graduate-scholarship-guide", university: "Dankook University", fields: "Software, Data and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "Medium", tier: 3, officialUrl: "https://www.dankook.ac.kr/en/" },
+  { rank: 41, slug: "dongguk-korea-graduate-scholarship-guide", university: "Dongguk University", fields: "Computer Science, AI and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "Medium-high", tier: 4, officialUrl: "https://www.dongguk.edu/eng/" },
+  { rank: 42, slug: "ewha-korea-graduate-scholarship-guide", university: "Ewha Womans University", fields: "Computer Science, Data and Business", funding: "Strong", routes: "GKS/UW/RA", difficulty: "High", tier: 4, note: "Universityটি মূলত women applicants-এর জন্য; exact graduate/GKS eligibility যাচাই করুন।", officialUrl: "https://www.ewha.ac.kr/ewhaen/" },
+  { rank: 43, slug: "hufs-korea-graduate-scholarship-guide", university: "Hankuk University of Foreign Studies", fields: "Data and International Business", funding: "Possible", routes: "GKS/UW", difficulty: "Medium-high", tier: 4, officialUrl: "https://www.hufs.ac.kr/hufs/" },
+  { rank: 44, slug: "gachon-korea-graduate-scholarship-guide", university: "Gachon University", fields: "AI, Software and Business", funding: "Possible", routes: "GKS/RA/UW", difficulty: "Medium", tier: 4, officialUrl: "https://www.gachon.ac.kr/eng/" },
+  { rank: 45, slug: "yeungnam-korea-graduate-scholarship-guide", university: "Yeungnam University", fields: "Computer Science, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 4, officialUrl: "https://www.yu.ac.kr/english/" },
+  { rank: 46, slug: "keimyung-korea-graduate-scholarship-guide", university: "Keimyung University", fields: "Computer Science, Data and Business", funding: "Possible", routes: "GKS/UW", difficulty: "Medium", tier: 4, officialUrl: "https://www.kmu.ac.kr/uni/eng/" },
+  { rank: 47, slug: "dong-a-korea-graduate-scholarship-guide", university: "Dong-A University", fields: "Computer Science, AI and Business", funding: "Possible", routes: "GKS/UW/RA", difficulty: "Medium", tier: 4, officialUrl: "https://english.donga.ac.kr/" },
+  { rank: 48, slug: "chosun-korea-graduate-scholarship-guide", university: "Chosun University", fields: "Computer Science, Engineering and Business", funding: "Strong", routes: "GKS/RA/UW", difficulty: "Medium", tier: 4, officialUrl: "https://www3.chosun.ac.kr/eng/" },
+  { rank: 49, slug: "ulsan-korea-graduate-scholarship-guide", university: "University of Ulsan", fields: "Computer Science, Engineering and Business", funding: "Strong", routes: "GKS/Industry RA", difficulty: "Medium-high", tier: 4, officialUrl: "https://global.ulsan.ac.kr/" },
+  { rank: 50, slug: "handong-global-korea-graduate-scholarship-guide", university: "Handong Global University", fields: "Computer Science, ICT and Global Management", funding: "Possible", routes: "GKS/UW", difficulty: "Medium", tier: 4, officialUrl: "https://www.handong.edu/eng/" },
+];
+
+const koreaGuides: ScholarshipGuide[] = koreaUniversitySeeds.map(createKoreaGuide);
 
 export const scholarshipGuides: ScholarshipGuide[] = [
   {
@@ -8440,6 +8593,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
   },
   ...usLowCostGuides,
   ...canadaGuides,
+  ...koreaGuides,
   ...onlyVerifiedEnglishMasters(japanShortlistAdditions),
   ...onlyVerifiedEnglishMasters(tierAJapanGuides),
   ...onlyVerifiedEnglishMasters(regionalPublicJapanGuides),
