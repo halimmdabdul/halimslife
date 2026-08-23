@@ -6,7 +6,6 @@ import alabamaCampus from "@/assets/scholarships/campus-alabama.png";
 import iowaCampus from "@/assets/scholarships/campus-iowa.png";
 import uconnCampus from "@/assets/scholarships/campus-uconn.png";
 import navigatorHero from "@/assets/scholarships/navigator-hero.png";
-import japanPanorama from "@/assets/journey/hero-bangladesh-japan.png";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { scholarshipGuides } from "@/lib/scholarships";
@@ -34,11 +33,6 @@ const italyGuides=scholarshipGuides
 const japanGuides=scholarshipGuides
   .filter(g=>g.country==="japan")
   .sort((a,b)=>(a.bestFitPriority??Number.MAX_SAFE_INTEGER)-(b.bestFitPriority??Number.MAX_SAFE_INTEGER));
-const featured=[
-  {guide:usaGuides.find(g=>g.slug.includes("alabama"))??usaGuides[0],image:alabamaCampus,badge:"Strongest active lead"},
-  {guide:usaGuides.find(g=>g.slug.includes("uconn"))??usaGuides[1],image:uconnCampus,badge:"Currently hiring · Fully funded"},
-  {guide:usaGuides.find(g=>g.slug.includes("iowa-state"))??usaGuides[2],image:iowaCampus,badge:"Fall 2027"},
-];
 const campusCycle=[alabamaCampus,uconnCampus,iowaCampus];
 const applicationSteps=["Fit check","Official source","Professor email","Documents","Apply & verify"];
 
@@ -81,9 +75,10 @@ export default async function ScholarshipsPage({searchParams}:{searchParams:Prom
     if(activeCountry==="italy")return (a.italyPriority??Number.MAX_SAFE_INTEGER)-(b.italyPriority??Number.MAX_SAFE_INTEGER);
     return 0;
   });
-  const isFiltered=Boolean(query||activeFilter);
-  const visibleGuides=isFiltered?filteredGuides:filteredGuides.slice(0,6);
-  const makeHref=(overrides:{country?:string;q?:string;filter?:string}={})=>{const state={country:activeCountry,q:query,filter:activeFilter,...overrides};const search=new URLSearchParams();if(state.country)search.set("country",state.country);if(state.q)search.set("q",state.q);if(state.filter)search.set("filter",state.filter);return `/scholarships?${search.toString()}#guides`};
+  const showAll=activeFilter==="all"&&!query;
+  const visibleGuides=showAll?filteredGuides:filteredGuides.slice(0,6);
+  const isFiltered=showAll;
+  const makeHref=(overrides:{country?:string;q?:string;filter?:string}={})=>{const state={country:activeCountry,q:query,filter:activeFilter,...overrides};if(overrides.filter==="all")state.q="";const search=new URLSearchParams();if(state.country)search.set("country",state.country);if(state.q)search.set("q",state.q);if(state.filter)search.set("filter",state.filter);return `/scholarships?${search.toString()}#guides`};
   const filterOptions=[{value:"lowest",label:"Lowest cost"},{value:"business",label:"English Business/MBA"},{value:"funded",label:"Fully funded"},{value:"active",label:"Active lead"},{value:"email",label:"Email first"},{value:"deadline",label:"Deadline"},{value:"phd",label:"PhD"},{value:"masters",label:"Master’s"}];
   const countryOptions=[
     {value:"usa",label:"USA",count:usaGuides.length},
@@ -100,11 +95,7 @@ export default async function ScholarshipsPage({searchParams}:{searchParams:Prom
 
   <section className={styles.filters} aria-label="Scholarship search and filters"><header className={styles.filterHeader}><div><span>Scholarship explorer</span><h2>দেশ ও প্রয়োজন অনুযায়ী guide খুঁজুন</h2></div><p><b>{countryGuides.length}</b>টি {countryOptions.find(country=>country.value===activeCountry)?.label} guide</p></header><div className={styles.searchRow}><form action="/scholarships#guides" method="get"><Icon name="search"/><input name="q" defaultValue={query} aria-label="Search scholarship guides" placeholder="University, professor বা research area খুঁজুন"/><input type="hidden" name="country" value={activeCountry}/>{activeFilter&&<input type="hidden" name="filter" value={activeFilter}/>}<button type="submit">খুঁজুন</button></form>{(query||activeFilter)&&<Link className={styles.clearFilters} href={makeHref({q:"",filter:""})}>Reset</Link>}</div><nav className={styles.countryTabs} aria-label="Country guides">{countryOptions.map(country=><Link aria-current={activeCountry===country.value?"page":undefined} href={makeHref({country:country.value,filter:"",q:""})} key={country.value}><span className={styles.countryFlag}><CountryFlag country={country.value}/></span><span><b>{country.label}</b><small>{country.count} guides</small></span></Link>)}</nav><div className={styles.quickFilters}><div><span>Quick filters</span><small>এক ক্লিকে shortlist করুন</small></div><div className={styles.chips}>{filterOptions.map(option=><Link aria-current={activeFilter===option.value?"page":undefined} href={makeHref({country:option.value==="business"?"japan":option.value==="lowest"?"usa":activeCountry,filter:activeFilter===option.value?"":option.value})} key={option.value}>{option.label}{activeFilter===option.value&&<span aria-hidden="true"> ×</span>}</Link>)}</div></div></section>
 
-  <section id="featured"><SectionTitle number="02">Strong research-fit ও current funding signal</SectionTitle><div className={styles.featuredGrid}>{featured.map(({guide,image,badge})=><article key={guide.slug}><div className={styles.featuredImage}><Image src={image} alt={`${guide.university} watercolor campus`} fill sizes="33vw"/><span>{badge}</span></div><h3>{guide.university}</h3><h4>{guide.title}</h4><div className={styles.tags}><span>AI</span><span>Systems</span><span>Research</span></div><p>{guide.summary}</p><Link href={`/scholarships/${guide.slug}`}>Complete guide <Icon name="arrow"/></Link></article>)}</div></section>
-
   <section id="guides"><div className={styles.guideHeading}><SectionTitle number="03">আপনার research interest অনুযায়ী guide বেছে নিন</SectionTitle><span>{filteredGuides.length}টি result · {activeCountry.toUpperCase()}</span></div>{visibleGuides.length>0?<div className={styles.guideList}>{visibleGuides.map((guide,index)=><article key={guide.slug}><div><Image src={campusCycle[index%3]} alt="" fill sizes="18vw"/></div><div><h3>{activeFilter==="business"&&guide.englishBusinessPrograms?`${guide.university} — ${guide.englishBusinessPrograms}`:guide.title}</h3><b>{guide.country==="italy"?guide.italyPriority?`Italy Top 15 priority #${guide.italyPriority} · ${guide.italyCost} cost`:`Italy Tier ${guide.italyTier} · ${guide.italyCost} cost`:guide.country==="switzerland"?guide.swissPriority?`Swiss Top 15 priority #${guide.swissPriority} · ${guide.swissFunding}`:`Swiss Tier ${guide.swissTier} · ${guide.swissFunding}`:guide.country==="korea"?guide.koreaPriority?`Korea Top 15 priority #${guide.koreaPriority} · ${guide.koreaFunding} funding`:`Korea Tier ${guide.koreaTier} · ${guide.koreaFunding} funding`:guide.country==="canada"?guide.canadaPriority?`Canada Top 15 priority #${guide.canadaPriority} · ${guide.canadaFunding} funding`:`Canada Tier ${guide.canadaTier} · ${guide.canadaFunding} funding`:activeFilter==="lowest"&&guide.lowestCostPriority?`Lowest-cost priority #${guide.lowestCostPriority} · ${guide.lowestCostCategory}`:activeFilter==="business"&&guide.businessPriority?`English Business priority #${guide.businessPriority}`:guide.bestFitPriority?`Best-fit priority #${guide.bestFitPriority}`:activeFilter?(filterOptions.find(option=>option.value===activeFilter)?.label??"All guides"):index%2===0?"Active lead":"Email first"}</b><span>{guide.audience}</span></div><Icon name="arrow"/><Link aria-label={`Read ${guide.title}`} href={activeFilter==="business"&&guide.businessOfficialUrl?guide.businessOfficialUrl:`/scholarships/${guide.slug}`}/></article>)}</div>:<div className={styles.emptyResults}><Icon name="search"/><h3>কোনো matching guide পাওয়া যায়নি</h3><p>অন্য keyword, country বা filter দিয়ে আবার চেষ্টা করুন।</p><Link href={makeHref({q:"",filter:""})}>সব guide দেখুন</Link></div>}{!isFiltered&&countryGuides.length>6&&<Link className={styles.more} href={makeHref({filter:"all"})}>সব {countryGuides.length} {activeCountry.toUpperCase()} guide দেখুন <Icon name="arrow"/></Link>}</section>
-
-  <section className={styles.japanPanel}><div className={styles.japanImage}><Image src={japanPanorama} alt="Japan scholarship landscape with Mount Fuji" fill sizes="50vw"/></div><div><SectionTitle number="04">Japan scholarship ও graduate funding</SectionTitle><h2>MEXT, university scholarship, professor contact এবং admission route—এক জায়গায় organized guide।</h2><strong>{japanGuides.length} guides</strong><div className={styles.tags}><span>MEXT</span><span>University funding</span><span>Professor contact</span><span>Admission roadmap</span></div><Link href="/scholarships?country=japan">Japan guides দেখুন <Icon name="arrow"/></Link></div></section>
 
   <section id="roadmap" className={styles.roadmap}><SectionTitle number="05">Opportunity পাওয়া থেকে application submit পর্যন্ত</SectionTitle><div>{applicationSteps.map((step,index)=><article key={step}><span>{index+1}</span><h3>{step}</h3><p>{["program and research match","eligibility and deadline","when appropriate","CV, SOP, transcripts, tests","portal and written offer"][index]}</p></article>)}</div><p><Icon name="warning"/>Written offer-ই funding-এর final authority।</p></section>
 
