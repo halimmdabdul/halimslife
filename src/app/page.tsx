@@ -6,7 +6,7 @@ import robotics from "@/assets/hero/slide-1.jpeg";
 import japanWorkshop from "@/assets/hero/slide-3.jpeg";
 import japanese from "@/assets/hero/slide-5.jpeg";
 import { BrandLogo } from "@/components/brand-logo";
-import { HomeHeader } from "@/components/home-header";
+import { SiteHeader } from "@/components/site-header";
 
 import styles from "./home.module.css";
 
@@ -63,7 +63,7 @@ export const metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
   return <div className={styles.homePage}>
-    <HomeHeader />
+    <SiteHeader />
     <main>
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
