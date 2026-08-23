@@ -12,7 +12,7 @@ import pathJapanese from "@/assets/homepage/path-japanese.png";
 import pathTech from "@/assets/homepage/path-tech.png";
 import robot from "@/assets/homepage/journey-robotics.png";
 import japanPanorama from "@/assets/journey/hero-bangladesh-japan.png";
-import { BrandLogo } from "@/components/brand-logo";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 import styles from "./about.module.css";
@@ -60,4 +60,4 @@ export default function AboutPage(){return <div className={styles.page}><SiteHea
   <section id="personal" className={styles.personal}><SectionTitle number="05">Engineering-এর বাইরে</SectionTitle><div className={styles.interestGrid}>{interests.map(item=><article key={item.title}><div><Image src={item.image} alt="" fill sizes="25vw"/></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></section>
 
   <section className={styles.growth}><SectionTitle number="06">এখন ও পরবর্তী লক্ষ্য</SectionTitle><Image src={japanPanorama} alt="Japan watercolor landscape" fill sizes="1120px"/><div className={styles.growthContent}><h2>Engineer হিসেবে grow করা,<br/>আর অন্যদের পথ সহজ করা।</h2><div><p>এখন আমি manufacturing software, computer vision এবং research-informed systems নিয়ে কাজ করছি—সাথে বাংলা ভাষায় learning resources তৈরি করছি।</p><div className={styles.tags}><span><Icon name="target"/>Better system design</span><span><Icon name="community"/>Research collaboration</span><span><Icon name="idea"/>Bengali learning resources</span></div></div></div><div className={styles.miniCta}><strong>একসঙ্গে শেখা, তৈরি করা এবং সামনে এগিয়ে যাওয়া যাক।</strong><Link href="/contact">Start a conversation ↗</Link><Link href="/cv">আমার CV দেখুন ↓</Link></div></section>
-  </main><footer className={styles.footer}><BrandLogo/><span>Japan · 日本</span><a href="https://github.com/halimmdabdul">GitHub</a><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">Google Scholar</a><Link href="/contact"><Icon name="plane"/>Contact</Link><small>© {new Date().getFullYear()} Halim Md Abdul.</small></footer></div>}
+  </main><SiteFooter /></div>}
