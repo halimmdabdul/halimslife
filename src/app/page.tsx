@@ -77,7 +77,11 @@ export default function Home() {
         <article><Icon name="book" /><div><h3>Education</h3><strong>Bengali-friendly<br />learning resources</strong><p>বাংলায় মানসম্মত কনটেন্ট তৈরি করে শেখার বাধাকে সহজ করা।</p></div></article>
       </div></section>
 
-      <section className={styles.research}><div><h2>Research & Expertise</h2><p>Health management এবং medical diagnostic problem-এ recommendation-system approach নিয়ে research করেছি।</p><div className={styles.skillRows}><span>C#</span><span>Python</span><span>Computer Vision</span><span>Robotics</span><span>Recommender Systems</span></div><div className={styles.researchLinks}><strong><Icon name="document" /> 02 <small>Published<br />Research Works</small></strong><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">Google Scholar <Icon name="arrow" /></a><span>IEEE</span><span>IEICE</span></div></div><Image src={pathTech} alt="Programming and research" fill sizes="40vw" /></section>
+      <section className={styles.research}>
+        <div className={styles.researchIntro}><h2>Research & Expertise</h2><p>Health management এবং medical diagnostic problem-এ recommendation-system approach নিয়ে research করেছি।</p><strong><Icon name="document" /> 02 <small>Published<br />Research Works</small></strong></div>
+        <div className={styles.researchSkills}><small>Skills & Expertise</small><div className={styles.skillRows}><span>C#</span><span>Python</span><span>Computer Vision</span><span>Robotics</span><span>Recommender Systems</span></div><div className={styles.researchLinks}><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">Google Scholar <Icon name="arrow" /></a><span>IEEE</span><span>IEICE</span></div></div>
+        <div className={styles.researchVisual}><Image src={pathTech} alt="Programming and research" fill sizes="30vw" /></div>
+      </section>
 
       <section className={styles.dreamSection}><h2>আমার স্বপ্ন</h2><div className={styles.dreamGrid}><blockquote>“ জটিল বিষয়কে সহজ, practical<br />এবং useful করা—প্রতিটি আমার<br />কাজের common goal ”</blockquote>{dreams.map((item) => <article key={item.title}><Image src={item.image} alt="" fill sizes="20vw" /><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></section>
 
