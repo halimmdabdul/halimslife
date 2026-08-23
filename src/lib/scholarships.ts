@@ -1,4 +1,4 @@
-export type ScholarshipCountry = "usa" | "japan" | "canada" | "korea";
+export type ScholarshipCountry = "usa" | "japan" | "canada" | "korea" | "switzerland";
 
 export type ScholarshipGuide = {
   slug: string;
@@ -39,6 +39,9 @@ export type ScholarshipGuide = {
   koreaPriority?: number;
   koreaTier?: 1 | 2 | 3 | 4;
   koreaFunding?: "Strong" | "Possible" | "Limited";
+  swissPriority?: number;
+  swissTier?: 1 | 2 | 3 | 4;
+  swissFunding?: "Strong" | "Possible" | "Limited" | "Paid research";
 };
 
 type JapanShortlistSeed = {
@@ -1687,6 +1690,132 @@ const koreaUniversitySeeds: KoreaUniversitySeed[] = [
 ];
 
 const koreaGuides: ScholarshipGuide[] = koreaUniversitySeeds.map(createKoreaGuide);
+
+type SwissInstitutionSeed = {
+  rank: number;
+  slug: string;
+  institution: string;
+  fields: string;
+  funding: "Strong" | "Possible" | "Limited" | "Paid research";
+  fundingRoutes: string;
+  difficulty: string;
+  tier: 1 | 2 | 3 | 4;
+  kind: "Research university" | "University of Applied Sciences" | "Research centre" | "Specialist institution";
+  officialUrl: string;
+  priority?: number;
+  note?: string;
+};
+
+function createSwissGuide(seed: SwissInstitutionSeed): ScholarshipGuide {
+  return {
+    slug: seed.slug,
+    country: "switzerland",
+    university: seed.institution,
+    title: `${seed.institution}: Switzerland Graduate Study & Funding Guide`,
+    summary: `${seed.kind} হিসেবে ${seed.fields} নিয়ে MSc/PhD, scholarship, salaried research বা professional-study route যাচাই করার practical guide।`,
+    label: `Switzerland Tier ${seed.tier} · ${seed.kind}`,
+    funding: `${seed.fundingRoutes}. Funding signal: ${seed.funding}; written scholarship, employment contract বা assistantship offer ছাড়া নিশ্চিত নয়।`,
+    duration: "Master’s সাধারণত 1.5–2 বছর; doctoral/research appointment প্রায় 3–5 বছর হতে পারে",
+    audience: `International applicants targeting ${seed.fields}; relative difficulty/cost concern: ${seed.difficulty}`,
+    realityCheck: `Switzerland-এ tuition তুলনামূলক কম হলেও living cost অনেক বেশি। Applied-sciences ও specialist institutions-এ নিজস্ব PhD সীমিত হতে পারে; research centres-এ সাধারণত partner university registration লাগে।${seed.note ? ` ${seed.note}` : ""}`,
+    highlights: [
+      `Institution type: ${seed.kind}.`,
+      `Best-fit fields: ${seed.fields}.`,
+      `Funding route: ${seed.fundingRoutes}.`,
+      `Relative difficulty/cost concern: ${seed.difficulty}; এটি admission বা funding probability নয়।`,
+    ],
+    fit: [
+      "Target MSc/PhD বা research vacancy আপনার prior degree এবং software/research experience-এর সঙ্গে মেলে।",
+      "Program language, prerequisite এবং degree-awarding institution current official source থেকে confirm করতে পারবেন।",
+      "Research route হলে Swiss academic supervisor বা hiring lab-এর সঙ্গে evidence-based fit দেখাতে পারবেন।",
+      "Tuition-এর পাশাপাশি housing, insurance, permit এবং high living cost-এর realistic funding plan আছে।",
+    ],
+    quickStart: [
+      "Official program/job page থেকে degree type, language, intake বা vacancy deadline লিখে নিন।",
+      "swissuniversities accreditation ও tuition comparison-এ institution category এবং current fee যাচাই করুন।",
+      "PhD/research route হলে salaried vacancy এবং Swiss Government Excellence Scholarship আলাদা option হিসেবে track করুন।",
+      "Scholarship target করলে supervisor support, age/date cutoff এবং country-specific call আগে যাচাই করুন।",
+    ],
+    steps: [
+      {
+        title: "Institution ও degree route যাচাই করুন",
+        timing: "Shortlist করার সময়",
+        description: "Research university, UAS, research centre ও specialist school একই degree/funding structure অনুসরণ করে না।",
+        actions: ["Exact MSc, PhD বা paid research vacancy খুঁজুন।", "Degree-awarding institution ও English-language availability confirm করুন।", "Current tuition/fees এবং accreditation official source দিয়ে যাচাই করুন।"],
+        readyWhen: "Institution type, degree, language, tuition ও deadline sourceসহ নোট করা হয়েছে।",
+      },
+      {
+        title: "Supervisor, vacancy ও funding fit তৈরি করুন",
+        timing: "Application-এর 3–5 মাস আগে",
+        description: "Swiss PhD অনেক ক্ষেত্রে advertised salaried position; generic admission application যথেষ্ট নাও হতে পারে।",
+        actions: ["Current lab, faculty ও vacancy pages পড়ুন।", "নিজের software/research evidence-এর সঙ্গে 2–3টি specific fit লিখুন।", "Scholarship route হলে willing Swiss supervisor-এর support letter requirement যাচাই করুন।"],
+        readyWhen: "কমপক্ষে দুইটি research fit অথবা একটি active salaried vacancy target প্রস্তুত।",
+      },
+      {
+        title: "Application package ও budget প্রস্তুত করুন",
+        timing: "Deadline-এর 6–10 সপ্তাহ আগে",
+        description: "Master’s scholarship খুব competitive; full living-cost budget আলাদা করে হিসাব করুন।",
+        actions: ["Degree, transcript, CV, motivation/research proposal ও recommendations প্রস্তুত করুন।", "English/German/French/Italian language requirement program অনুযায়ী যাচাই করুন।", "Tuition, living cost, insurance ও permit proof-of-funds calculation করুন।"],
+        readyWhen: "Official checklist complete এবং scholarship ছাড়া funding gap পরিষ্কার।",
+      },
+      {
+        title: "Offer, salary ও scholarship verify করুন",
+        timing: "Decision/contract stage",
+        description: "Scholarship stipend এবং salaried PhD employment contract এক জিনিস নয়।",
+        actions: ["Gross/net salary বা stipend, tuition, insurance এবং contract duration লিখিতভাবে দেখুন।", "Scholarship renewal, supervisor এবং enrolment conditions confirm করুন।", "Residence permit ও relocation cost final budget-এ যোগ করুন।"],
+        readyWhen: "Written offer/contract থেকে net funding এবং uncovered cost পরিষ্কার।",
+      },
+    ],
+    checklist: ["Official programme or vacancy page", "Accreditation and degree-awarding institution check", "Degree certificate and transcripts", "Academic CV", "Motivation letter or research proposal", "Recommendation letters", "Language evidence", "Living-cost and permit funding plan"],
+    afterSubmission: ["Admission, scholarship এবং employment application আলাদাভাবে track করুন।", "Supervisor support scholarship award বা university admission guarantee নয়।", "Offer পেলে salary/stipend, tuition, insurance, contract duration ও permit conditions লিখিতভাবে verify করুন।"],
+    cautions: ["Swiss Government Excellence Scholarship মূলত Master’s-completed early-career researchers-এর জন্য।", "2027–28 reference-এ maximum age 35 এবং supervisor support required; exact birth-date cutoff যাচাই করুন।", "Scholarship amount salary নয় এবং tuition/semester fee আলাদা থাকতে পারে।", "Distance-study route Swiss student visa-এর উপযোগী নাও হতে পারে।"],
+    officialLinks: [
+      { label: `${seed.institution} official programme/research page`, href: seed.officialUrl, description: "Exact MSc/PhD, vacancy, language, admission এবং institutional funding যাচাই করুন।" },
+      { label: "Swiss Government Excellence Scholarships 2027–28", href: "https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships", description: "Country call, age/date cutoff, CHF 2,450 reference funding এবং supervisor requirement যাচাই করুন।" },
+      { label: "swissuniversities tuition fees", href: "https://www.swissuniversities.ch/en/themen/lehre-studium/information-on-studies/tuition-fees", description: "Current semester tuition ও compulsory fees institution অনুযায়ী যাচাই করুন।" },
+      { label: "Accredited Swiss higher education institutions", href: "https://www.swissuniversities.ch/en/topics/studying/accredited-swiss-higher-education-institutions", description: "Institution category ও accreditation status যাচাই করুন।" },
+    ],
+    reviewedAt: "August 23, 2026",
+    swissPriority: seed.priority,
+    swissTier: seed.tier,
+    swissFunding: seed.funding,
+  };
+}
+
+const swissInstitutionSeeds: SwissInstitutionSeed[] = [
+  { rank: 1, slug: "eth-zurich-switzerland-graduate-guide", institution: "ETH Zürich", fields: "Computer Science, AI, Data Science, Robotics and Management", funding: "Strong", fundingRoutes: "ESOP, salaried PhD and research assistant positions", difficulty: "Very high", tier: 1, priority: 9, kind: "Research university", officialUrl: "https://ethz.ch/en/studies/master.html" },
+  { rank: 2, slug: "epfl-switzerland-graduate-guide", institution: "EPFL", fields: "Computer Science, AI, Data, Engineering and Management", funding: "Strong", fundingRoutes: "Excellence Fellowship and salaried research/PhD positions", difficulty: "Very high", tier: 1, priority: 10, kind: "Research university", officialUrl: "https://www.epfl.ch/education/master/" },
+  { rank: 3, slug: "zurich-switzerland-graduate-guide", institution: "University of Zurich", fields: "Informatics, AI, Data and Business", funding: "Strong", fundingRoutes: "University grants, assistantships and salaried PhD jobs", difficulty: "High", tier: 1, priority: 8, kind: "Research university", officialUrl: "https://www.uzh.ch/en/studies/programs/master.html" },
+  { rank: 4, slug: "basel-switzerland-graduate-guide", institution: "University of Basel", fields: "Computer Science, Data Science, Business and Economics", funding: "Strong", fundingRoutes: "Assistantships and salaried PhD positions", difficulty: "High", tier: 1, priority: 5, kind: "Research university", officialUrl: "https://www.unibas.ch/en/Studies/Degree-Programs/Master.html" },
+  { rank: 5, slug: "bern-switzerland-graduate-guide", institution: "University of Bern", fields: "Computer Science, Data, Business and Economics", funding: "Strong", fundingRoutes: "Assistantships and salaried PhD positions", difficulty: "High", tier: 1, priority: 4, kind: "Research university", officialUrl: "https://www.unibe.ch/studies/programs/masters/index_eng.html" },
+  { rank: 6, slug: "geneva-switzerland-graduate-guide", institution: "University of Geneva", fields: "Computer Science, Data Science, Economics and Management", funding: "Strong", fundingRoutes: "Excellence Fellowship, assistantships and PhD positions", difficulty: "High", tier: 1, priority: 7, kind: "Research university", officialUrl: "https://www.unige.ch/en/studies/masters" },
+  { rank: 7, slug: "lausanne-switzerland-graduate-guide", institution: "University of Lausanne", fields: "Information Systems, Data, Business and Economics", funding: "Strong", fundingRoutes: "UNIL Master’s Grant and research/PhD positions", difficulty: "High", tier: 1, priority: 6, kind: "Research university", officialUrl: "https://www.unil.ch/central/en/home/menuinst/formation/masters.html" },
+  { rank: 8, slug: "fribourg-switzerland-graduate-guide", institution: "University of Fribourg", fields: "Computer Science, Data, Business and Economics", funding: "Possible", fundingRoutes: "University grants and research assistant positions", difficulty: "Medium-high", tier: 1, priority: 2, kind: "Research university", officialUrl: "https://www.unifr.ch/studies/en/studies/master/" },
+  { rank: 9, slug: "neuchatel-switzerland-graduate-guide", institution: "University of Neuchâtel", fields: "Computer Science, Data, Finance and Economics", funding: "Strong", fundingRoutes: "Assistantships and salaried PhD positions", difficulty: "Medium-high", tier: 1, priority: 3, kind: "Research university", officialUrl: "https://www.unine.ch/formation/en/home/masters.html" },
+  { rank: 10, slug: "lucerne-switzerland-graduate-guide", institution: "University of Lucerne", fields: "Data, Economics and Management", funding: "Possible", fundingRoutes: "Limited Master’s aid and salaried PhD jobs", difficulty: "Medium-high", tier: 1, kind: "Research university", officialUrl: "https://www.unilu.ch/en/study/courses-exams-regulations/masters-degree-programmes/" },
+  { rank: 11, slug: "st-gallen-switzerland-graduate-guide", institution: "University of St. Gallen", fields: "Computer Science, Business Innovation, Finance and Management", funding: "Possible", fundingRoutes: "Excellence scholarship and PhD/research jobs", difficulty: "Very high", tier: 1, priority: 15, kind: "Research university", officialUrl: "https://www.unisg.ch/en/studying/programmes/masters-programmes/" },
+  { rank: 12, slug: "usi-switzerland-graduate-guide", institution: "Università della Svizzera italiana — USI", fields: "Informatics, AI, Software and Management", funding: "Strong", fundingRoutes: "Merit scholarships and research/PhD assistantships", difficulty: "Medium-high", tier: 1, priority: 1, kind: "Research university", officialUrl: "https://www.usi.ch/en/education/master" },
+  { rank: 13, slug: "geneva-graduate-institute-switzerland-guide", institution: "Geneva Graduate Institute — IHEID", fields: "Economics, Development and International Affairs", funding: "Possible", fundingRoutes: "Need-based and merit scholarships", difficulty: "High", tier: 1, kind: "Specialist institution", officialUrl: "https://www.graduateinstitute.ch/academic-departments/master-programmes" },
+  { rank: 14, slug: "zhaw-switzerland-graduate-guide", institution: "Zurich University of Applied Sciences — ZHAW", fields: "Applied Computer Science, Data and Business IT", funding: "Limited", fundingRoutes: "Limited institutional scholarships; professional Master’s focus", difficulty: "Medium cost concern", tier: 2, priority: 11, kind: "University of Applied Sciences", officialUrl: "https://www.zhaw.ch/en/study/masters-degree-programmes" },
+  { rank: 15, slug: "bfh-switzerland-graduate-guide", institution: "Bern University of Applied Sciences — BFH", fields: "Computer Science, Engineering and Business", funding: "Limited", fundingRoutes: "Limited institutional scholarships", difficulty: "Medium cost concern", tier: 2, kind: "University of Applied Sciences", officialUrl: "https://www.bfh.ch/en/studies/master/" },
+  { rank: 16, slug: "fhnw-switzerland-graduate-guide", institution: "FHNW University of Applied Sciences", fields: "Computer Science, AI and Business Information Systems", funding: "Limited", fundingRoutes: "Limited scholarships and project-based research roles", difficulty: "Medium cost concern", tier: 2, priority: 12, kind: "University of Applied Sciences", officialUrl: "https://www.fhnw.ch/en/degree-programmes" },
+  { rank: 17, slug: "hslu-switzerland-graduate-guide", institution: "Lucerne University of Applied Sciences — HSLU", fields: "IT, Data Science and Business", funding: "Limited", fundingRoutes: "Limited institutional scholarships", difficulty: "Medium cost concern", tier: 2, priority: 13, kind: "University of Applied Sciences", officialUrl: "https://www.hslu.ch/en/lucerne-university-of-applied-sciences-and-arts/degree-programmes/master/" },
+  { rank: 18, slug: "ost-switzerland-graduate-guide", institution: "OST — Eastern Switzerland University of Applied Sciences", fields: "Computer Science, Data and Engineering", funding: "Limited", fundingRoutes: "Limited scholarships and applied-research roles", difficulty: "Medium cost concern", tier: 2, priority: 14, kind: "University of Applied Sciences", officialUrl: "https://www.ost.ch/en/education/masters-degree-programmes" },
+  { rank: 19, slug: "supsi-switzerland-graduate-guide", institution: "SUPSI", fields: "AI, Data, Engineering and Business", funding: "Limited", fundingRoutes: "Limited scholarships and applied-research roles", difficulty: "Medium cost concern", tier: 2, kind: "University of Applied Sciences", officialUrl: "https://www.supsi.ch/en/education/master" },
+  { rank: 20, slug: "hes-so-switzerland-graduate-guide", institution: "HES-SO University of Applied Sciences", fields: "Data, Engineering and Business", funding: "Limited", fundingRoutes: "Limited institutional scholarships", difficulty: "Medium cost concern", tier: 2, kind: "University of Applied Sciences", officialUrl: "https://www.hes-so.ch/en/education/studying-at-hes-so/master" },
+  { rank: 21, slug: "fhgr-switzerland-graduate-guide", institution: "University of Applied Sciences of the Grisons — FHGR", fields: "Data, Digital Business and Tourism Management", funding: "Limited", fundingRoutes: "Limited institutional scholarships", difficulty: "Medium cost concern", tier: 2, kind: "University of Applied Sciences", officialUrl: "https://www.fhgr.ch/en/study-programmes/masters-degree-programmes/" },
+  { rank: 22, slug: "kalaidos-switzerland-graduate-guide", institution: "Kalaidos University of Applied Sciences", fields: "Business, Management and Applied IT", funding: "Limited", fundingRoutes: "Limited aid; private/self-funded route", difficulty: "High cost concern", tier: 2, kind: "University of Applied Sciences", officialUrl: "https://www.kalaidos-fh.ch/en-GB/Study" },
+  { rank: 23, slug: "hwz-switzerland-graduate-guide", institution: "HWZ University of Applied Sciences in Business Administration Zurich", fields: "Business IT and Digital Business", funding: "Limited", fundingRoutes: "Limited aid; professional/self-funded route", difficulty: "High cost concern", tier: 2, kind: "University of Applied Sciences", officialUrl: "https://fh-hwz.ch/en/education" },
+  { rank: 24, slug: "fernuni-switzerland-graduate-guide", institution: "FernUni Switzerland", fields: "Computer and data-related distance study", funding: "Limited", fundingRoutes: "Limited aid; distance-study route", difficulty: "Not normally suitable as a relocation/visa route", tier: 2, kind: "University of Applied Sciences", note: "Distance educationকে Swiss student-residence route ধরে নেবেন না।", officialUrl: "https://fernuni.ch/" },
+  { rank: 25, slug: "psi-switzerland-research-guide", institution: "Paul Scherrer Institute — PSI", fields: "AI, Scientific Computing and Engineering", funding: "Paid research", fundingRoutes: "Paid PhD and research employment with partner-university registration", difficulty: "Competitive vacancy", tier: 3, kind: "Research centre", officialUrl: "https://www.psi.ch/en/pa/job-opportunities" },
+  { rank: 26, slug: "empa-switzerland-research-guide", institution: "Empa", fields: "AI, Data, Materials and Engineering", funding: "Paid research", fundingRoutes: "Paid PhD and research employment", difficulty: "Competitive vacancy", tier: 3, kind: "Research centre", officialUrl: "https://www.empa.ch/web/empa/jobs" },
+  { rank: 27, slug: "eawag-switzerland-research-guide", institution: "Eawag", fields: "Data and Environmental Computing", funding: "Paid research", fundingRoutes: "Paid PhD and research employment", difficulty: "Competitive vacancy", tier: 3, kind: "Research centre", officialUrl: "https://www.eawag.ch/en/about-us/working/employment/" },
+  { rank: 28, slug: "wsl-switzerland-research-guide", institution: "WSL", fields: "Data Science, Environment and Remote Sensing", funding: "Paid research", fundingRoutes: "Paid PhD and research employment", difficulty: "Competitive vacancy", tier: 3, kind: "Research centre", officialUrl: "https://www.wsl.ch/en/about-wsl/jobs-and-careers/" },
+  { rank: 29, slug: "imd-switzerland-graduate-guide", institution: "IMD Business School", fields: "MBA and Executive Management", funding: "Limited", fundingRoutes: "Competitive scholarships; otherwise high-cost private route", difficulty: "Excellent but very expensive", tier: 4, kind: "Specialist institution", officialUrl: "https://www.imd.org/degree/mba/" },
+  { rank: 30, slug: "franklin-switzerland-graduate-guide", institution: "Franklin University Switzerland", fields: "Management-related Master’s", funding: "Limited", fundingRoutes: "Institutional aid; private/self-funded route", difficulty: "Accredited but expensive", tier: 4, kind: "Specialist institution", officialUrl: "https://www.fus.edu/academics/graduate-programs" },
+];
+
+const swissGuides: ScholarshipGuide[] = swissInstitutionSeeds.map(createSwissGuide);
 
 export const scholarshipGuides: ScholarshipGuide[] = [
   {
@@ -8594,6 +8723,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
   ...usLowCostGuides,
   ...canadaGuides,
   ...koreaGuides,
+  ...swissGuides,
   ...onlyVerifiedEnglishMasters(japanShortlistAdditions),
   ...onlyVerifiedEnglishMasters(tierAJapanGuides),
   ...onlyVerifiedEnglishMasters(regionalPublicJapanGuides),
