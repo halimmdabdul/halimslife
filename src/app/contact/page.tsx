@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { connection } from "next/server";
 
+import journeyArt from "@/assets/journey/hero-bangladesh-japan.png";
 import { ContactForm } from "@/components/contact-form";
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { TranslatedText } from "@/components/site-preferences";
+import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
   title: "যোগাযোগ",
@@ -35,7 +39,8 @@ export default async function ContactPage({
 
   return (
     <InnerPageShell>
-      <section className="contact-page container">
+      <div className={styles.page}>
+      <section className={`contact-page container ${styles.contactGrid}`}>
         <div className="contact-intro">
           <span className="kicker">
             <TranslatedText bn="যোগাযোগ" en="Contact" ja="お問い合わせ" />
@@ -79,6 +84,9 @@ export default async function ContactPage({
           defaultSubject={defaultSubject}
         />
       </section>
+      <section className={`${styles.beforeSend} container`}><h2><span>↗</span> Before you send</h2><div><article><b>01</b><h3>Clear context</h3><p>আপনার goal ও প্রয়োজনীয় background লিখুন।</p></article><article><b>02</b><h3>Useful details</h3><p>Relevant link, example অথবা deadline দিন।</p></article><article><b>03</b><h3>Easy follow-up</h3><p>আপনার preferred reply method জানান।</p></article></div></section>
+      <section className={styles.closing}><Image src={journeyArt} alt="Japanese watercolor landscape" fill sizes="100vw"/><div><h2>একটি ভালো conversation থেকেই<br/>নতুন কাজ শুরু হতে পারে।</h2><div><a href="mailto:reiazbubt@gmail.com">Email করুন</a><Link href="/cv">আমার CV দেখুন</Link></div></div></section>
+      </div>
     </InnerPageShell>
   );
 }
