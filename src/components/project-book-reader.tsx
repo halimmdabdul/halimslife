@@ -7,6 +7,7 @@ import type { CourseSection } from "@/components/course-player";
 import { RichTextContent, markdownToPlainText } from "@/components/rich-text-content";
 
 import styles from "./project-book-reader.module.css";
+import singleStyles from "./project-book-reader-single.module.css";
 
 type Props = { sections: CourseSection[] };
 
@@ -69,25 +70,21 @@ export function ProjectBookReader({ sections }: Props) {
       <div className={styles.bookShell}>
         <header className={styles.bookBar}><button onClick={() => openChapter(null)}>☰ সূচিপত্র</button><span>{chapter ? chapter.title : "Minna no Nihongo N5 · বাংলা Companion"}</span><div><i style={{width:`${progress}%`}}/></div></header>
         {chapter && guide ? <>
-          <div className={styles.spread}>
-            <article className={`${styles.page} ${styles.leftPage}`}>
+          <div className={`${styles.spread} ${singleStyles.spread}`}>
+            <article className={`${styles.page} ${singleStyles.page}`}>
               <div className={styles.runningHead}><span>MINNA NO NIHONGO · N5</span><b>{activeChapter === 0 ? "START" : `UNIT ${String(activeChapter).padStart(2,"0")}`}</b></div>
               <span className={styles.chapterLabel}>{activeChapter === 0 ? "শুরু করার আগে" : `অধ্যায় ${activeChapter}`}</span>
               <h1>{guide.title.replace(/^Unit\s+\d+\s+guide\s*[·-]\s*/i, "")}</h1>
               <div className={styles.bookText}><RichTextContent content={guide.overview || guide.content || ""}/></div>
-              <footer><span>Halim&apos;s Life Learning Project</span><b>{(activeChapter ?? 0) * 2 + 1}</b></footer>
-            </article>
-            <article className={`${styles.page} ${styles.rightPage}`}>
-              <div className={styles.runningHead}><b>ব্যাখ্যা · নোট · অনুশীলন</b><span>বাংলা EDITION</span></div>
+              <div className={singleStyles.divider}><span>ব্যাখ্যা · নোট · অনুশীলন</span><i /></div>
               <div className={styles.bookText}><RichTextContent content={guide.studyNotes || practice?.overview || ""}/>{practice?.overview ? <><hr/><RichTextContent content={practice.overview}/></> : null}</div>
               {test?.question ? <div className={styles.quiz}><span>নিজেকে যাচাই করুন</span><h3>{test.question}</h3><div>{test.options?.map((option) => <button className={answer === option ? styles.selectedAnswer : ""} onClick={() => setAnswer(option)} key={option}>{option}</button>)}</div>{answer ? <p className={answer === test.correctAnswer ? styles.correct : styles.wrong}>{answer === test.correctAnswer ? "সঠিক উত্তর ✓" : "আবার চেষ্টা করুন"}{answer === test.correctAnswer && test.explanation ? <small>{test.explanation}</small> : null}</p> : null}</div> : null}
-              <footer><b>{(activeChapter ?? 0) * 2 + 2}</b><span>Independent study companion</span></footer>
+              <footer><span>Halim&apos;s Life · Independent study companion</span><b>{(activeChapter ?? 0) + 1}</b></footer>
             </article>
           </div>
           <nav className={styles.pageNav}><button disabled={activeChapter === 0} onClick={() => openChapter(Math.max(0,(activeChapter ?? 0)-1))}>← আগের chapter</button><button className={completed.includes(activeChapter ?? -1) ? styles.done : ""} onClick={toggleComplete}>{completed.includes(activeChapter ?? -1) ? "পড়া হয়েছে ✓" : "পড়া শেষ হিসেবে রাখুন"}</button><button disabled={activeChapter === sections.length-1} onClick={() => openChapter(Math.min(sections.length-1,(activeChapter ?? 0)+1))}>পরের chapter →</button></nav>
-        </> : <div className={`${styles.spread} ${styles.indexSpread}`}>
-          <article className={`${styles.page} ${styles.leftPage}`}><div className={styles.runningHead}><span>TABLE OF CONTENTS</span><b>সূচিপত্র</b></div><span className={styles.chapterLabel}>কীভাবে পড়বেন</span><h1>আপনার N5 reading journey</h1><p className={styles.indexIntro}>প্রথমে foundation পড়ুন, তারপর Unit 01 থেকে ধারাবাহিকভাবে এগিয়ে যান। একটি chapter শেষ হলে check mark দিন—progress এই browser-এ সংরক্ষিত থাকবে।</p><div className={styles.indexStats}><span><b>25</b> grammar units</span><span><b>52</b> reading & practice lessons</span><span><b>1</b> clear learning path</span></div><blockquote>অল্প অল্প করে, কিন্তু প্রতিদিন—language learning-এর সবচেয়ে শক্তিশালী নিয়ম।</blockquote><footer><span>Halim&apos;s Life Learning Project</span><b>i</b></footer></article>
-          <article className={`${styles.page} ${styles.rightPage}`}><div className={styles.runningHead}><b>CHAPTER INDEX</b><span>N5 · 01–25</span></div><div className={styles.indexList}>{sections.map((section,index) => <button onClick={() => openChapter(index)} key={section.title}><b>{index === 0 ? "শুরু" : String(index).padStart(2,"0")}</b><span><strong>{index === 0 ? "Foundation" : section.title.replace(/^Unit\s+\d+\s*[·-]\s*/i, "")}</strong><small>{chapterSummary[index]}</small></span><i>{completed.includes(index) ? "✓" : "→"}</i></button>)}</div><footer><b>ii</b><span>সূচিপত্র</span></footer></article>
+        </> : <div className={`${styles.spread} ${styles.indexSpread} ${singleStyles.spread}`}>
+          <article className={`${styles.page} ${singleStyles.page}`}><div className={styles.runningHead}><span>TABLE OF CONTENTS</span><b>N5 · UNIT 01–25</b></div><span className={styles.chapterLabel}>সূচিপত্র</span><h1>আপনার N5 reading journey</h1><p className={styles.indexIntro}>প্রথমে foundation পড়ুন, তারপর Unit 01 থেকে ধারাবাহিকভাবে এগিয়ে যান। একটি chapter শেষ হলে check mark দিন—progress এই browser-এ সংরক্ষিত থাকবে।</p><div className={styles.indexStats}><span><b>25</b> grammar units</span><span><b>52</b> reading & practice lessons</span><span><b>1</b> clear learning path</span></div><blockquote>অল্প অল্প করে, কিন্তু প্রতিদিন—language learning-এর সবচেয়ে শক্তিশালী নিয়ম।</blockquote><div className={singleStyles.divider}><span>Chapter Index</span><i /></div><div className={styles.indexList}>{sections.map((section,index) => <button onClick={() => openChapter(index)} key={section.title}><b>{index === 0 ? "শুরু" : String(index).padStart(2,"0")}</b><span><strong>{index === 0 ? "Foundation" : section.title.replace(/^Unit\s+\d+\s*[·-]\s*/i, "")}</strong><small>{chapterSummary[index]}</small></span><i>{completed.includes(index) ? "✓" : "→"}</i></button>)}</div><footer><span>Halim&apos;s Life Learning Project</span><b>i</b></footer></article>
         </div>}
         <p className={styles.legal}>এটি একটি independent learning project। মূল textbook-এর copyrighted dialogue, vocabulary list বা exercise পুনর্মুদ্রণ করা হয়নি।</p>
       </div>
