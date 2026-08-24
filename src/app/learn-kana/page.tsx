@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import kanaArt from "@/assets/homepage/project-kana.png";
 import japaneseArt from "@/assets/homepage/path-japanese.png";
+import kanaHero from "@/assets/learn-kana-hero-watercolor-v2.png";
 import { InnerPageShell } from "@/components/inner-page-shell";
 
 import { KanaPractice } from "./kana-practice";
@@ -34,7 +34,7 @@ export default function LearnKanaPage() {
   return <InnerPageShell><main className={styles.page}>
     <section className={styles.hero}>
       <div className={styles.heroCopy}><span className={styles.kicker}>KanaStory · Japanese Foundations</span><h1>Hiragana ও Katakana—<br/><em>গল্প, sound ও practice</em> দিয়ে শিখুন।</h1><p>Japanese পড়ার প্রথম দরজা হলো Kana। মুখস্থ করার চাপ না নিয়ে সঠিক sequence-এ sound, shape, writing এবং recall practice করুন।</p><div className={styles.heroActions}><a href="#practice">শেখা শুরু করুন ↓</a><Link href="/projects">Projects-এ ফিরুন</Link></div><div className={styles.heroStats}><span><b>46</b> basic Hiragana</span><span><b>46</b> basic Katakana</span><span><b>5</b> learning stages</span></div></div>
-      <div className={styles.heroArt}><Image src={kanaArt} alt="KanaStory Japanese kana learning illustration" fill priority sizes="(max-width:800px) 100vw, 52vw" /></div>
+      <div className={styles.heroArt} style={{ overflow: "hidden", borderRadius: 24 }}><Image src={kanaHero} alt="Watercolor Japanese landscape with Hiragana learning cards" fill priority placeholder="blur" sizes="(max-width:800px) 100vw, 52vw" style={{ objectFit: "cover", objectPosition: "64% center" }} /></div>
     </section>
 
     <section className={styles.roadmap}><div className={styles.sectionTitle}><span>শেখার roadmap</span><h2>এই ক্রমে এগোলে Kana সহজ হবে।</h2></div><div>{steps.map(([number,title,text]) => <article key={number}><b>{number}</b><h3>{title}</h3><p>{text}</p></article>)}</div></section>
