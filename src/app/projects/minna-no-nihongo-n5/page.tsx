@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { ProjectBookReader } from "@/components/project-book-reader";
-import { minnaN5CompanionSections } from "@/lib/minna-n5-companion";
+import { minnaN5CompanionSections, minnaN5Units } from "@/lib/minna-n5-companion";
 
 export const metadata: Metadata = {
   title: "Minna no Nihongo N5 বাংলা Digital Book Project | Unit 1–25",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function MinnaN5ProjectPage() {
-  return <InnerPageShell><ProjectBookReader sections={minnaN5CompanionSections}/></InnerPageShell>;
+  return <InnerPageShell><ProjectBookReader sections={minnaN5CompanionSections} units={minnaN5Units}/></InnerPageShell>;
 }

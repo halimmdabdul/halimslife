@@ -4,7 +4,7 @@ import { minnaDeepDives1 } from "@/lib/minna-n5-deep-dives-1";
 import { minnaDeepDives2 } from "@/lib/minna-n5-deep-dives-2";
 import type { UnitDeepDive } from "@/lib/minna-n5-deep-dive-types";
 
-type CompanionUnit = {
+export type CompanionUnit = {
   number: number;
   title: string;
   goal: string;
@@ -183,7 +183,7 @@ ${deepDive.answerExplanation}
 আগামীকাল notes না দেখে unit-এর goal explain করুন, দুইটি example বলুন এবং নিচের practice question আবার দিন। ভুল হলে guide lesson-এ ফিরে শুধু দুর্বল অংশ review করুন।`;
 }
 
-const units: CompanionUnit[] = [
+export const minnaN5Units: CompanionUnit[] = [
   {
     number: 1,
     title: "পরিচয় ও noun sentence",
@@ -536,7 +536,7 @@ const units: CompanionUnit[] = [
   },
 ];
 
-const unitSections: CourseSection[] = units.map((unit) => {
+const unitSections: CourseSection[] = minnaN5Units.map((unit) => {
   const unitNumber = String(unit.number).padStart(2, "0");
   return {
     title: `Unit ${unitNumber} · ${unit.title}`,
