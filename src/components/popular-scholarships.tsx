@@ -16,6 +16,7 @@ type ScholarshipGroup = {
 };
 
 const mextUrl = "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/";
+const scholarshipDatabaseUrl = "https://www.studyinjapan.go.jp/en/search-for-scholarships/tuition-reduction_search.php?lang=en";
 
 const groups: ScholarshipGroup[] = [
   {
@@ -48,7 +49,7 @@ const groups: ScholarshipGroup[] = [
     title: "Japan-এ ভর্তি হওয়ার পরের financial support",
     description: "এই awards-এর বেশিরভাগে university nomination, current enrolment অথবা Japan residency condition থাকে।",
     items: [
-      { name:"JASSO Monbukagakusho Honors Scholarship", level:"Bachelor · Master’s · PhD", tag:"Monthly support", href:"https://www.jasso.go.jp/en/ryugaku/scholarship_j/shoreihi/index.html", points:["Privately financed international students-এর জন্য।","সাধারণত university recommendation বা eligible pre-arrival/EJU route প্রয়োজন।","এটি অধিকাংশ ক্ষেত্রে full scholarship নয়; monthly support প্রদান করে।"] },
+      { name:"JASSO Monbukagakusho Honors Scholarship", level:"Bachelor · Master’s · PhD", tag:"¥48,000/month", href:"https://www.jasso.go.jp/en/ryugaku/scholarship_j/shoreihi/yoyaku_tonichimae.html", points:["Privately financed international students-এর জন্য; embassy examination route নয়।","Application school/university-এর মাধ্যমে হয়—student-এর direct application গ্রহণ করা হয় না।","Current 2026 information-এ ¥48,000 monthly stipend; admission-এর পর International Student Office-এ দ্রুত যোগাযোগ করুন।"] },
       { name:"JASSO Student Exchange Support Program", level:"Short-term exchange", tag:"Exchange", href:"https://www.studyinjapan.go.jp/en/about/support-program.html", points:["সাধারণত ৮ দিন থেকে এক বছরের exchange study support।","Home university ও Japanese institution-এর exchange agreement প্রয়োজন।","Current stipend, duration ও nomination process institution থেকে verify করুন।"] },
       { name:"JEES International Scholarships", level:"University · Graduate school", tag:"Nomination", href:"https://www.jees.or.jp/en/foundation-en/", points:["Privately funded international students-এর জন্য একাধিক award।","University recommendation প্রয়োজন; direct student application গ্রহণ করা হয় না।","নিজের university scholarship office থেকে open program যাচাই করুন।"] },
       { name:"Heiwa Nakajima Foundation Scholarship", level:"Undergraduate · Graduate", tag:"University route", href:"https://www.hnf.jp/shogaku/english/", points:["Japanese university-তে enrolled foreign students-এর জন্য।","University recommendation ছাড়া individual direct application করা যায় না।","পরবর্তী academic year-এর notice সাধারণত university scholarship office পায়।"] },
@@ -57,6 +58,22 @@ const groups: ScholarshipGroup[] = [
       { name:"Sato Yo International Scholarship Foundation", level:"Bachelor · Graduate routes", tag:"South Asia", href:"https://sisf.or.jp/en/", points:["ASEAN ও Southwest Asia-এর ১৮টি target country-এর মধ্যে Bangladesh অন্তর্ভুক্ত।","University/application office route এবং cultural exchange participation গুরুত্বপূর্ণ।","Current academic level ও nomination requirements official notice থেকে দেখুন।"] },
       { name:"Otsuka Toshimi Scholarship Foundation", level:"Selected degree fields", tag:"In-Japan only", href:"https://otsukafoundation.org/english/guide/index.html", points:["Health-related fields এবং business administration-এর eligible students।","Current guide অনুযায়ী applicant-কে Japan-এ resident ও degree program-এ enrolled থাকতে হয়।","Scholarship amount selection result ও concurrent funding অনুযায়ী পরিবর্তিত হয়।"] },
       { name:"Japan Foundation for UNU — jfUNU", level:"UNU-IAS MSc in Sustainability", tag:"UNU", href:"https://unu.edu/ias/msc-scholarships", points:["Eligible developing-country applicants-এর জন্য competitive support।","Current information-এ monthly allowance এবং সম্ভাব্য tuition waiver উল্লেখ আছে।","আলাদা scholarship form নেই; MSc admission application-এর অংশ হিসেবে consideration হয়।"] },
+    ],
+  },
+  {
+    eyebrow: "Reduce study cost",
+    title: "Tuition waiver ও local-government scholarships",
+    description: "University financial aid-এর সঙ্গে city, prefecture এবং regional international association-এর awards stack করুন।",
+    items: [
+      { name:"University Tuition Exemption & Financial Aid", level:"Admission fee · Tuition reduction", tag:"Ask university", href:scholarshipDatabaseUrl, points:["National, public ও private university নিজস্ব tuition reduction/waiver দিতে পারে।","Admission-এর আগে international office-কে eligibility, percentage ও application timing জিজ্ঞাসা করুন।","MEXT nomination, tuition waiver, JASSO ও private-foundation nomination—সব route একই সঙ্গে আছে কি না compare করুন।"] },
+      { name:"Hiroshima International Center Scholarship", level:"Regional international students", tag:"Approx. ¥30,000/month", href:scholarshipDatabaseUrl, points:["Hiroshima-area institution ও residence condition থাকতে পারে।","New/transfer international student route academic year অনুযায়ী বদলায়।","Current amount, nomination ও application window official database-এ verify করুন।"] },
+      { name:"Hiroshima Scholarship", level:"International students in Hiroshima", tag:"Approx. ¥30,000/month", href:scholarshipDatabaseUrl, points:["Hiroshima region-এ study/residence requirement সাধারণ।","University recommendation বা local application route থাকতে পারে।","Latest availability ও award duration current listing থেকে যাচাই করুন।"] },
+      { name:"Fukuoka Satooya Scholarship", level:"Asian international students", tag:"Approx. ¥20,000/month", href:scholarshipDatabaseUrl, points:["Fukuoka-area university ও residence condition গুরুত্বপূর্ণ।","Asian international students-এর জন্য community-linked support route।","Amount, eligible schools ও nomination process প্রতি cycle-এ verify করুন।"] },
+      { name:"Fukuoka City International Foundation Scholarship", level:"Fukuoka international students", tag:"Approx. ¥300k–¥500k/year", href:scholarshipDatabaseUrl, points:["Fukuoka city/area-তে study ও residence condition থাকতে পারে।","Annual award amount program অনুযায়ী আলাদা হতে পারে।","University international office থেকে current opening ও required recommendation জেনে নিন।"] },
+      { name:"Kawasaki International Association Assistance", level:"Students living in Kawasaki", tag:"¥100,000/year", href:"https://www.studyinjapan.go.jp/en/search-for-scholarships/detail.php?lang=en&mid=3-00064353", points:["Kawasaki city-তে school ও residence—দুটিই current eligibility-এর অংশ।","School recommendation এবং local international-exchange activity-তে অংশ নেওয়ার willingness প্রয়োজন।","Current listing-এ one-year ¥100,000 assistance উল্লেখ আছে।"] },
+      { name:"Shinjuku Foreign Student Scholarship", level:"Students in Shinjuku", tag:"Approx. ¥240,000/year", href:scholarshipDatabaseUrl, points:["Shinjuku-area residence বা institution condition current notice অনুযায়ী check করুন।","Graduate, undergraduate ও eligible vocational students-এর listing থাকতে পারে।","Amount, duration ও school nomination requirement current cycle-এ verify করুন।"] },
+      { name:"Kagoshima International Student Scholarship", level:"Students in Kagoshima", tag:"Approx. ¥20,000/month", href:scholarshipDatabaseUrl, points:["Kagoshima-area university এবং residence-linked support।","Local scholarship হওয়ায় eligible institution ও intake সীমিত হতে পারে।","University scholarship office-এর current notice final authority।"] },
+      { name:"Satsumasendai City Scholarship", level:"Students in Satsumasendai", tag:"Approx. ¥10,000/month", href:scholarshipDatabaseUrl, points:["City residence এবং local institution requirement আগে যাচাই করুন।","Regional award-এ applicant pool তুলনামূলক ছোট হতে পারে, তবে funding নিশ্চিত নয়।","Current amount ও application availability city/university notice থেকে দেখুন।"] },
     ],
   },
 ];
@@ -87,6 +104,30 @@ export function PopularScholarships() {
           </div>
         </div>
       ))}
+
+      <div className={styles.adviceGrid}>
+        <article className={styles.ageAdvice}>
+          <span>Age-limit check</span>
+          <h3>আপনার বয়স ৩৫-এর কাছাকাছি হলে</h3>
+          <ul>
+            <li><b>“Under 35”</b> সাধারণত reference date-এ বয়স ৩৫-এর কম বোঝায়—ঠিক ৩৫ হলে eligible নাও হতে পারেন।</li>
+            <li><b>“35 or under”</b> সাধারণত ৩৫ বছর বয়স পর্যন্ত অন্তর্ভুক্ত করে।</li>
+            <li>MEXT Research Scholarship plain age নয়—প্রতি cycle-এ নির্দিষ্ট birth-date cutoff দেয়।</li>
+            <li>Honjo, JASSO, JEES ও tuition waiver route-এ আলাদা/flexible rules থাকতে পারে; current guideline দেখুন।</li>
+          </ul>
+        </article>
+        <article className={styles.emailAdvice}>
+          <span>Ask before admission</span>
+          <h3>University-কে এই প্রশ্নটি পাঠান</h3>
+          <blockquote>As an international applicant from Bangladesh, could you please provide the list of scholarships and tuition-reduction programs available both before and after enrollment? I would also like to know which scholarships require university nomination.</blockquote>
+          <p>International Student Office এবং graduate admissions—দুই জায়গায় জিজ্ঞাসা করলে pre-arrival ও post-enrolment funding দুটিই cover হবে।</p>
+        </article>
+      </div>
+
+      <div className={styles.strategy}>
+        <div><span>Recommended funding strategy</span><h3>একটি scholarship নয়—একটি funding stack খুঁজুন</h3><p>এমন university অগ্রাধিকার দিন যেখানে MEXT nomination + tuition waiver + JASSO + একাধিক private-foundation nomination আছে। একটি route ব্যর্থ হলেও অন্য funding option খোলা থাকবে।</p></div>
+        <div><a href={scholarshipDatabaseUrl} target="_blank" rel="noreferrer">Study in Japan — Official search ↗</a><a href="https://www.jpss.jp/en/scholarship/" target="_blank" rel="noreferrer">JPSS Scholarship Search ↗</a></div>
+      </div>
 
       <aside className={styles.notice}><b>Apply করার আগে</b><p>Scholarship availability, amount, eligibility ও deadline প্রতি cycle-এ বদলাতে পারে। Official guideline এবং written award notice-ই final authority।</p><a href="https://www.studyinjapan.go.jp/en/search-for-scholarships/tuition-reduction_search.php?lang=en" target="_blank" rel="noreferrer">Study in Japan scholarship search ↗</a></aside>
     </section>
