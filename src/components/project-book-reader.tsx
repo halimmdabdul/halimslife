@@ -1,12 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import vocabScene1 from "@/assets/projects/n5-vocabulary/units-01-05.webp";
+import vocabScene2 from "@/assets/projects/n5-vocabulary/units-06-10.webp";
+import vocabScene3 from "@/assets/projects/n5-vocabulary/units-11-15.webp";
+import vocabScene4 from "@/assets/projects/n5-vocabulary/units-16-20.webp";
+import vocabScene5 from "@/assets/projects/n5-vocabulary/units-21-25.webp";
 import type { CourseSection } from "@/components/course-player";
 import { RichTextContent, markdownToPlainText } from "@/components/rich-text-content";
 import type { CompanionUnit } from "@/lib/minna-n5-companion";
 import { minnaN5KanjiByUnit } from "@/lib/minna-n5-unit-kanji";
+import { getMinnaN5UnitVocabulary } from "@/lib/minna-n5-vocabulary";
 
 import styles from "./project-book-reader.module.css";
 import singleStyles from "./project-book-reader-single.module.css";
@@ -21,6 +28,8 @@ const unitViews: Array<{ id: UnitView; label: string; icon: string }> = [
   { id: "kanji", label: "Kanji", icon: "漢" },
   { id: "practice", label: "Practice", icon: "練" },
 ];
+
+const vocabularyScenes = [vocabScene1, vocabScene2, vocabScene3, vocabScene4, vocabScene5];
 
 export function ProjectBookReader({ sections, units }: Props) {
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
@@ -38,6 +47,8 @@ export function ProjectBookReader({ sections, units }: Props) {
   const chapter = activeChapter === null ? null : sections[activeChapter];
   const unit = activeChapter && activeChapter > 0 ? units[activeChapter - 1] : null;
   const unitKanji = unit ? minnaN5KanjiByUnit[unit.number] ?? [] : [];
+  const unitVocabulary = unit ? getMinnaN5UnitVocabulary(unit) : [];
+  const vocabularyScene = unit ? vocabularyScenes[Math.ceil(unit.number / 5) - 1] : vocabScene1;
   const guide = chapter?.lessons[0];
   const practice = chapter?.lessons[1];
   const test = guide?.practiceTest;
@@ -99,7 +110,9 @@ export function ProjectBookReader({ sections, units }: Props) {
 
               {unit && unitView === "vocabulary" ? <section className={singleStyles.unitSection}>
                 <div className={singleStyles.unitIntro}><b>語</b><div><h2>এই Unit-এর Vocabulary</h2><p>শব্দগুলো আগে উচ্চারণ করুন, তারপর অর্থ না দেখে recall করুন।</p></div></div>
-                <div className={singleStyles.vocabGrid}>{unit.vocabulary.map((item,index) => { const [word,...meaning] = item.split("—"); return <article className={singleStyles.vocabCard} key={item}><span>{String(index + 1).padStart(2,"0")}</span><h3>{word.trim()}</h3><p>{meaning.join("—").trim()}</p></article>; })}</div>
+                <figure className={singleStyles.memoryScene}><Image src={vocabularyScene} alt={`Unit ${unit.number} vocabulary মনে রাখার watercolor illustration`} placeholder="blur" sizes="(max-width: 900px) 100vw, 780px"/><figcaption><strong>Visual memory scene</strong><span>ছবির পরিচিত মানুষ, object ও action-এর সঙ্গে নিচের শব্দগুলো মিলিয়ে মনে রাখুন।</span></figcaption></figure>
+                <div className={singleStyles.vocabCount}><strong>{unitVocabulary.length}টি শব্দ</strong><span>দেখুন → বলুন → ঢেকে recall করুন</span></div>
+                <div className={singleStyles.vocabGrid}>{unitVocabulary.map((item,index) => { const [word,...meaning] = item.split("—"); return <article className={singleStyles.vocabCard} key={item}><span>{String(index + 1).padStart(2,"0")}</span><h3>{word.trim()}</h3><p>{meaning.join("—").trim()}</p></article>; })}</div>
                 <div className={singleStyles.studyTip}><strong>মনে রাখার কৌশল</strong><p>প্রতি শব্দ দিয়ে একটি নিজের sentence বানান। শুধু বাংলা অর্থ মুখস্থ না করে situation-এর সঙ্গে শব্দটি জুড়ে দিন।</p></div>
               </section> : null}
 

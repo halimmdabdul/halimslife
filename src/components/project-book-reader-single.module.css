@@ -17,6 +17,13 @@
 .unitIntro h2{margin:0 0 5px;color:#082e50;font:800 25px Georgia,"Noto Serif Bengali",serif}
 .unitIntro p{margin:0;color:#52635e;line-height:1.65}
 .vocabGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.memoryScene{position:relative;margin:0 0 18px;overflow:hidden;border:1px solid #d4c3a5;border-radius:14px;background:#ede2cf;box-shadow:0 12px 30px #4c3b251a}
+.memoryScene img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.memoryScene figcaption{position:absolute;right:12px;bottom:12px;left:12px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 14px;border:1px solid #ffffff80;border-radius:9px;background:#fffaf0e8;color:#344b44;backdrop-filter:blur(8px)}
+.memoryScene figcaption strong{color:#087255;font:800 15px Georgia,"Noto Serif Bengali",serif;white-space:nowrap}
+.memoryScene figcaption span{font-size:12px;line-height:1.45;text-align:right}
+.vocabCount{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;padding:10px 13px;border-radius:8px;background:#e9f1e5;color:#416057;font-size:12px}
+.vocabCount strong{color:#087255;font-size:14px}
 .vocabCard{position:relative;padding:18px 18px 16px 52px;border:1px solid #ddcfb6;border-radius:10px;background:#fffdf7}
 .vocabCard>span{position:absolute;top:17px;left:16px;color:#a67832;font:700 12px Georgia,serif}
 .vocabCard h3{margin:0 0 6px;color:#07365a;font:800 21px "Noto Sans JP",sans-serif}
@@ -44,4 +51,4 @@
 .mistakeBox{margin:25px 0;padding:20px 22px;border:1px solid #dfbd83;border-radius:12px;background:#fff4df}
 .mistakeBox strong{color:#985b0d;font:800 19px Georgia,"Noto Serif Bengali",serif}
 .mistakeBox ul{margin:10px 0 0;padding-left:20px;color:#5e5140;line-height:1.75}
-@media(max-width:700px){.spread{padding:10px!important}.page{min-height:auto!important;border-radius:3px!important;box-shadow:0 8px 22px #493a2626!important}.divider{margin-top:28px;font-size:15px}.vocabGrid,.kanjiGrid{grid-template-columns:1fr}.unitIntro{align-items:flex-start;padding:15px}.unitIntro>b{flex-basis:50px;height:50px;font-size:25px}.unitIntro h2{font-size:21px}.kanjiCard>b{flex-basis:64px;height:64px;font-size:38px}}
+@media(max-width:700px){.spread{padding:10px!important}.page{min-height:auto!important;border-radius:3px!important;box-shadow:0 8px 22px #493a2626!important}.divider{margin-top:28px;font-size:15px}.vocabGrid,.kanjiGrid{grid-template-columns:1fr}.unitIntro{align-items:flex-start;padding:15px}.unitIntro>b{flex-basis:50px;height:50px;font-size:25px}.unitIntro h2{font-size:21px}.kanjiCard>b{flex-basis:64px;height:64px;font-size:38px}.memoryScene figcaption{position:static;display:block}.memoryScene figcaption span{display:block;margin-top:4px;text-align:left}.vocabCount{align-items:flex-start;flex-direction:column;gap:3px}}
