@@ -2,10 +2,10 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 
 import portrait from "@/assets/halim-portrait-v2.png";
-import journeyAspark from "@/assets/homepage/journey-aspark.png";
-import journeyBangladesh from "@/assets/homepage/journey-bangladesh.png";
-import journeyRobotics from "@/assets/homepage/journey-robotics.png";
-import journeyShizuoka from "@/assets/homepage/journey-shizuoka.png";
+import journeyAspark from "@/assets/homepage/journey-aspark-official.jpg";
+import journeyBangladesh from "@/assets/homepage/journey-bangladesh-official.jpeg";
+import journeyRobotics from "@/assets/homepage/journey-niche-official.jpg";
+import journeyShizuoka from "@/assets/homepage/journey-shizuoka-official.jpg";
 import pathCareer from "@/assets/homepage/path-career.png";
 import pathJapanese from "@/assets/homepage/path-japanese.png";
 import pathTech from "@/assets/homepage/path-tech.png";
@@ -36,11 +36,11 @@ function Icon({ name }: { name: IconName }) {
   return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
 }
 
-const journey: { step: string; title: string; subtitle: string; image: StaticImageData; position?: string }[] = [
-  { step: "1", title: "Bangladesh", subtitle: "শেখার শুরু", image: journeyBangladesh },
-  { step: "2", title: "Shizuoka University", subtitle: "MSc Computer Science", image: journeyShizuoka },
-  { step: "3", title: "Niche Creation", subtitle: "AI & Robotics Engineer", image: journeyRobotics },
-  { step: "4", title: "Aspark, Japan", subtitle: "System Engineer", image: journeyAspark },
+const journey: { step: string; title: string; subtitle: string; image: StaticImageData; source: string; alt: string; position?: string; fit?: "cover" | "contain" }[] = [
+  { step: "1", title: "Bangladesh", subtitle: "শেখার শুরু", image: journeyBangladesh, source: "https://beautifulbangladesh.gov.bd/loc/dhaka/93", alt: "National Martyrs' Memorial in Savar, Bangladesh", position: "center 68%" },
+  { step: "2", title: "Shizuoka University", subtitle: "MSc Computer Science", image: journeyShizuoka, source: "https://www.shizuoka.ac.jp/english/campuslife/photogallery/", alt: "Shizuoka University campus", position: "center 58%" },
+  { step: "3", title: "Niche Creation", subtitle: "AI & Robotics Engineer", image: journeyRobotics, source: "https://niche-create.com/company/", alt: "Niche Creation company facility", position: "center 55%" },
+  { step: "4", title: "Aspark, Japan", subtitle: "System Engineer", image: journeyAspark, source: "https://www.aspark.co.jp/", alt: "ASPARK official company logo", fit: "contain" },
 ];
 
 const dreams = [
@@ -72,7 +72,7 @@ export default function Home() {
       </section>
 
       <section className={styles.journeySection}><h2>আমার যাত্রা</h2><div className={styles.journeyLine} />
-        <div className={styles.journeyGrid}>{journey.map((item) => <article key={item.step}><span className={styles.step}>{item.step}</span><div className={styles.journeyImage}><Image src={item.image} alt="" fill sizes="(max-width:620px) 50vw, 25vw" style={{ objectPosition: item.position }} /></div><h3>{item.title}</h3><p>{item.subtitle}</p></article>)}</div>
+        <div className={styles.journeyGrid}>{journey.map((item) => <article key={item.step}><span className={styles.step}>{item.step}</span><a className={styles.journeyImage} href={item.source} target="_blank" rel="noreferrer" aria-label={`${item.title} official website`}><Image src={item.image} alt={item.alt} fill sizes="(max-width:620px) 50vw, 25vw" style={{ objectPosition: item.position, objectFit: item.fit }} /><span>Official source ↗</span></a><h3>{item.title}</h3><p>{item.subtitle}</p></article>)}</div>
       </section>
 
       <section className={styles.focusSection}><h2>আমাকে যা চালিত করে</h2><div className={styles.focusGrid}>
