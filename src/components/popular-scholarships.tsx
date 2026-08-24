@@ -16,6 +16,8 @@ type ScholarshipGroup = {
   items: Scholarship[];
 };
 
+type ScholarshipCountry = "usa" | "canada" | "korea" | "switzerland" | "italy" | "japan";
+
 const mextUrl = "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/";
 const scholarshipDatabaseUrl = "https://www.studyinjapan.go.jp/en/search-for-scholarships/tuition-reduction_search.php?lang=en";
 
@@ -110,20 +112,87 @@ const groups: ScholarshipGroup[] = [
   },
 ];
 
-export function PopularScholarships() {
-  const total = groups.reduce((count, group) => count + group.items.length, 0);
+const countryScholarshipGroups: Record<Exclude<ScholarshipCountry,"japan">,ScholarshipGroup[]> = {
+  usa: [{
+    eyebrow:"USA practical funding",
+    title:"Bangladeshi graduate applicants-এর জন্য practical USA routes",
+    description:"Broad country eligibility, Bangladesh-specific application channel অথবা admission-এর সঙ্গে assistantship consideration আছে—এমন routes। Competitive, তবে application path পরিষ্কার।",
+    items:[
+      {name:"Fulbright Foreign Student Program — Bangladesh",level:"Master’s · Doctoral study · Research",tag:"Bangladesh route",href:"https://foreign.fulbrightonline.org/about/foreign-student-program?country=bangladesh",points:["Bangladeshi applicants U.S. Embassy/Fulbright country process দিয়ে apply করেন।","Funding, J-1 sponsorship, health benefit ও placement support award অনুযায়ী থাকে।","Country deadline, eligible field এবং placement model current Bangladesh call থেকে দেখুন।"]},
+      {name:"EducationUSA Opportunity Funds",level:"Application-stage financial support",tag:"Upfront costs",href:"https://educationusa.state.gov/foreign-institutions-and-governments/special-programs",points:["Strong full-aid candidate-এর testing, application fee বা airfare-এর মতো upfront cost support করতে পারে।","এটি degree tuition scholarship নয় এবং country-centre availability আলাদা।","EducationUSA Bangladesh-এর current graduate cohort ও nomination process জিজ্ঞাসা করুন।"]},
+      {name:"University Graduate Assistantship Route",level:"RA · TA · GA · Tuition waiver",tag:"Most practical",href:"https://educationusa.state.gov/your-5-steps-us-study/finance-your-studies",points:["Research-based CS/Engineering program-এ RA/TA/GA stipend ও tuition waiver সবচেয়ে repeatable funding route।","Professor funding, department nomination ও admission offer এক জিনিস নয়।","Low-cost public universities shortlist করে written funding package compare করুন।"]},
+      {name:"Aga Khan Foundation International Scholarship",level:"Postgraduate study · Selected countries",tag:"Need + merit",href:"https://the.akdn/en/what-we-do/developing-human-capacity/education/international-scholarships",points:["Bangladesh historically eligible-country route-এর অংশ; current cycle আগে check করুন।","Strong academic record, genuine financial need এবং alternative funding effort গুরুত্বপূর্ণ।","Award structure ও eligible study destination প্রতি cycle-এ verify করুন।"]},
+      {name:"AAUW International Fellowships",level:"Women pursuing full-time graduate study",tag:"Women applicants",href:"https://www.aauw.org/resources/programs/fellowships-grants/current-opportunities/international/",points:["U.S. citizen/permanent resident নন—এমন women graduate applicants-এর জন্য।","Master’s, doctoral ও postdoctoral category current call অনুযায়ী থাকে।","Bangladesh-specific নয়; academic merit ও women/community impact strongভাবে দেখাতে হয়।"]},
+    ],
+  }],
+  canada: [{
+    eyebrow:"Canada practical funding",
+    title:"International Master’s ও PhD applicants-এর জন্য Canada funding routes",
+    description:"International eligibility, department nomination অথবা admission-linked consideration আছে—এমন university ও provincial options।",
+    items:[
+      {name:"McCall MacBain Scholarship — McGill",level:"Eligible Master’s · Professional programs",tag:"Full scholarship",href:"https://www.mcgill.ca/gradapplicants/funding/external/mccall-macbain-scholarship",points:["International applicants-এর জন্য full scholarship এবং আলাদা early deadline।","Leadership, community engagement, character ও academic strength একসঙ্গে evaluate হয়।","McGill admission এবং scholarship application—দুটির timeline আলাদা করে follow করুন।"]},
+      {name:"University of Manitoba Graduate Fellowship",level:"Research Master’s · PhD",tag:"CAD 20k–25k",href:"https://umanitoba.ca/graduate-studies/funding-awards/university-manitoba-graduate-fellowship-umgf",points:["সব citizenship-এর eligible full-time research students considered হতে পারেন।","Current value: Master’s CAD 20,000/year; PhD CAD 25,000/year।","Direct central application নয়—home department/unit recommendation প্রয়োজন।"]},
+      {name:"Waterloo International Master’s Award of Excellence",level:"Research-based Master’s",tag:"Department route",href:"https://uwaterloo.ca/graduate-studies-postdoctoral-affairs/current-students/internal-waterloo-awards/international-masters-award-excellence-imae",points:["Eligible international research Master’s entrants-এর জন্য faculty/department nomination route।","Award value ও eligible program current Waterloo listing থেকে দেখুন।","Supervisor-funded offer-এর সঙ্গে এই award combine করা যায় কি না লিখিতভাবে confirm করুন।"]},
+      {name:"Ontario Trillium Scholarship",level:"International PhD",tag:"CAD 40k/year",href:"https://www.ontario.ca/page/study-ontario-international-students",points:["Ontario-এর participating university outstanding international PhD candidates select করে।","Current provincial information-এ CAD 40,000/year, renewable up to four years।","Student সাধারণত province-এ direct apply করেন না; graduate office nomination process দেখুন।"]},
+      {name:"University Research Funding & Entrance Awards",level:"Supervisor grant · Department award",tag:"Best practical route",href:"https://www.educanada.ca/scholarships-bourses/index.aspx?lang=eng",points:["Thesis-based CS/Engineering program-এ supervisor grant + department award common funding combination।","Admission-এর আগে minimum guaranteed stipend, tuition differential ও duration লিখিতভাবে নিন।","EduCanada search-এর পাশাপাশি প্রতিটি department funding page যাচাই করুন।"]},
+    ],
+  }],
+  korea: [{
+    eyebrow:"South Korea practical funding",
+    title:"Bangladeshi students-এর জন্য Korea-এর strong graduate funding routes",
+    description:"Government scholarship এবং STEM university admission-এর সঙ্গে full tuition/stipend consideration—দুই ধরনের route।",
+    items:[
+      {name:"Global Korea Scholarship — GKS Graduate",level:"Master’s · PhD · Research",tag:"Government funded",href:"https://www.studyinkorea.go.kr/en/plan/gksNoticeRead.do?bbsId=BBSMSTR_000000000461&nttId=4420",points:["Embassy Track অথবা designated University Track দিয়ে apply করা যায়।","Current 2026 call-এ 2,000 graduate scholars নেওয়ার পরিকল্পনা ছিল।","Bangladesh quota, eligible university ও document rule current annual guide থেকে দেখুন।"]},
+      {name:"KAIST Scholarship",level:"Master’s · Integrated · PhD",tag:"Automatic consideration",href:"https://admission.kaist.ac.kr/intl-graduate/FinancialSupport/Scholarship/KAISTScholarship/",points:["International graduate application-এ KAIST scholarship funding source select করলে consideration হয়।","Full tuition, health insurance এবং research-dependent stipend route আছে।","KGPS/KPS highly competitive; department funding detail আলাদাভাবে verify করুন।"]},
+      {name:"UST Student Support",level:"Science · Engineering · Research graduate study",tag:"Research institute",href:"https://admission.ust.ac.kr/prog/entscholarship/eng/sub02_02_03/view.do",points:["Government research institute lab-এর সঙ্গে degree research যুক্ত থাকে।","Tuition support ও monthly student support current admission guide অনুযায়ী নির্ধারিত।","Professor/lab match এবং project availability admission-এর আগে confirm করুন।"]},
+      {name:"GIST International Graduate Scholarship",level:"Science · Engineering · AI",tag:"STEM funding",href:"https://www.gist.ac.kr/iadm/html/sub04/0401.html",points:["Admitted international graduate students-এর tuition/stipend support route আছে।","Lab assistantship, housing ও insurance benefit category program অনুযায়ী বদলায়।","Current admissions guide-এর financial-support table final authority।"]},
+      {name:"KDI School Scholarships",level:"Public Policy · Development · Management",tag:"Business/Policy",href:"https://www.kdischool.ac.kr/menu.es?mid=a40206010000",points:["International Master’s applicants admission application-এর সঙ্গে scholarship consideration পান।","Full/partial tuition ও monthly stipend category program/country অনুযায়ী আলাদা।","Development, public management ও policy-focused profile-এর জন্য practical alternative।"]},
+    ],
+  }],
+  switzerland: [{
+    eyebrow:"Switzerland practical funding",
+    title:"Swiss Master’s ও research applicants-এর জন্য targeted funding",
+    description:"Switzerland-এ generic easy scholarship কম; admission form-এর সঙ্গে consideration অথবা clear country/research route আছে—এমন options দেখানো হয়েছে।",
+    items:[
+      {name:"Swiss Government Excellence Scholarships",level:"Primarily research · PhD · Postdoctoral",tag:"Country route",href:"https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships-at-a-glance",points:["Taught Master’s-এর generic scholarship নয়; country অনুযায়ী available award type আলাদা।","Research route-এ Swiss academic supervisor আগে খুঁজতে হয়।","Bangladesh eligibility, deadline ও award type current A–Z country list থেকে দেখুন।"]},
+      {name:"ETH Zurich ESOP",level:"Master’s",tag:"Full study + living",href:"https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",points:["Master application-এর eApply system দিয়েই ESOP application।","Current award CHF 12,000/semester এবং tuition waiver cover করে।","Top academic profile, thesis pre-proposal ও early application window প্রয়োজন।"]},
+      {name:"EPFL Master Excellence Fellowship",level:"Master’s",tag:"CHF 10k/semester",href:"https://www.epfl.ch/education/master/master-excellence-fellowships/",points:["External Bachelor graduatesসহ EPFL Master applicants eligible হতে পারেন।","Current fellowship CHF 10,000/semester এবং external candidates-এর housing reservation।","মাত্র অল্পসংখ্যক award—admission funding backup আলাদা রাখুন।"]},
+      {name:"University of Geneva Excellence Master Fellowship",level:"Science Master’s · Includes Computer Science",tag:"CHF 10k–15k/year",href:"https://www.unige.ch/sciences/en/enseignements/formations/masters/excellencemasterfellowships",points:["Nationality নির্বিশেষে outstanding Science Master applicants-এর জন্য।","Current grant CHF 10,000–15,000/year এবং academic success-এ renewal সম্ভব।","Master admission registration শুরু করার proof scholarship application-এ লাগে।"]},
+      {name:"UNIL Master’s Grants",level:"Selected Master’s programs",tag:"International",href:"https://www.unil.ch/international/en/home/menuinst/etudiants-internationaux/bourses-master-de-lunil.html",points:["Foreign university graduates-এর selected Lausanne Master’s programs-এর জন্য।","Program exclusions, language এবং degree-equivalence rule আগে যাচাই করুন।","Admission ও grant application requirements current UNIL call অনুযায়ী প্রস্তুত করুন।"]},
+    ],
+  }],
+  italy: [{
+    eyebrow:"Italy practical funding",
+    title:"Bangladeshi Master’s applicants-এর জন্য Italy-এর practical scholarship routes",
+    description:"Bangladesh-specific government call, automatic university consideration এবং income-based regional aid—এই তিন ধরনের funding।",
+    items:[
+      {name:"MAECI Italian Government Scholarship",level:"Master’s · PhD · Research",tag:"Bangladesh call",href:"https://ambdhaka.esteri.it/it/news/dall_ambasciata/2026/03/bando-per-lassegnazione-di-borse-di-studio-offerte-dal-governo-italiano-a-studenti-stranieri-e-italiani-residenti-allestero-ire-per-lanno-accademico-2026-2027/",points:["Italian Embassy Dhaka Bangladesh applicants-এর current call প্রকাশ করে।","2026–27 call-এ €1,200/month এবং eligible Master’s/PhD/research routes উল্লেখ ছিল।","University admission ও MAECI application আলাদা process।"]},
+      {name:"Invest Your Talent in Italy — IYT",level:"Selected English-taught Master’s + internship",tag:"Bangladesh eligible",href:"https://investyourtalent.esteri.it/SitoIYT/EN/current-call",points:["Bangladesh current target-country list-এর অন্তর্ভুক্ত।","Selected Master’s/postgraduate course-এর সঙ্গে compulsory company internship থাকে।","Eligible university/course, scholarship amount ও deadline current call থেকে মিলিয়ে নিন।"]},
+      {name:"Padua International Excellence Scholarship",level:"English-taught Bachelor’s · Master’s",tag:"Automatic selection",href:"https://www.unipd.it/en/padua-international-excellence-scholarship-programme",points:["Eligible English-taught program applicants selection notice অনুযায়ী considered হন।","Current 2026–27 award €8,000 gross/year, দুই installment-এ।","Merit/credit requirement না রাখলে award revoke হতে পারে।"]},
+      {name:"University of Bologna International Talents",level:"Second-cycle Master’s",tag:"Merit award",href:"https://www.unibo.it/en/study/study-grants-and-subsidies/international-talents-scholarships-for-international-students",points:["International Master’s applicants-এর tuition waiver/grant call cycle অনুযায়ী থাকে।","Admission application করলেই সবসময় automatic নয়—separate call ও test requirement থাকতে পারে।","Current number of awards, GRE rule ও deadline official call থেকে দেখুন।"]},
+      {name:"Regional Right-to-Study Scholarships — DSU",level:"Master’s · Income + merit",tag:"High-value practical",href:"https://www.universitaly.it/borse-studio",points:["Tuscany DSU, ER.GO, EDISU Piemonte, LazioDiSCo—region অনুযায়ী আলাদা call।","Tuition waiver, meals, accommodation বা cash grant combination থাকতে পারে।","Bangladeshi family-income documents legalization/translation অনেক আগে প্রস্তুত করুন।"]},
+      {name:"Politecnico di Milano Merit Scholarships",level:"International Laurea Magistrale",tag:"Engineering target",href:"https://www.polimi.it/en/prospective-students/how-much-does-it-cost/scholarships",points:["Eligible international Master’s applicants-এর merit scholarship ও fee waiver route।","Award level intake এবং admission round অনুযায়ী বদলায়।","Early admission round, academic ranking ও English requirement গুরুত্বপূর্ণ।"]},
+    ],
+  }],
+};
+
+export function PopularScholarships({country="japan"}:{country?:ScholarshipCountry}) {
+  const activeGroups = country === "japan" ? groups : countryScholarshipGroups[country];
+  const total = activeGroups.reduce((count, group) => count + group.items.length, 0);
+  const countryName: Record<ScholarshipCountry,string> = {usa:"USA",canada:"Canada",korea:"South Korea",switzerland:"Switzerland",italy:"Italy",japan:"Japan"};
+  const directorySource = country === "japan" ? scholarshipDatabaseUrl : activeGroups[0].items[0].href;
   return (
     <section className={styles.section} id="popular-scholarships">
       <header className={styles.header}>
-        <div><span>Japan funding directory</span><h2>Scholarship-এর নাম ও apply করার route বুঝুন</h2><p>University shortlist-এর পাশাপাশি কোন scholarship কখন এবং কীভাবে pursue করবেন—এক জায়গায় organized overview।</p></div>
+        <div><span>{countryName[country]} funding directory</span><h2>Scholarship-এর নাম ও apply করার route বুঝুন</h2><p>{countryName[country]}-এর university shortlist-এর পাশাপাশি কোন funding route কখন এবং কীভাবে pursue করবেন—এক জায়গায় organized overview।</p></div>
         <strong><b>{String(total).padStart(2,"0")}</b> scholarship routes</strong>
       </header>
 
       <nav className={styles.jumpLinks} aria-label="Scholarship groups">
-        {groups.map((group,index)=><a href={`#scholarship-group-${index+1}`} key={group.title}><span>{String(index+1).padStart(2,"0")}</span>{group.eyebrow}</a>)}
+        {activeGroups.map((group,index)=><a href={`#scholarship-group-${index+1}`} key={group.title}><span>{String(index+1).padStart(2,"0")}</span>{group.eyebrow}</a>)}
       </nav>
 
-      {groups.map((group,groupIndex)=>(
+      {activeGroups.map((group,groupIndex)=>(
         <div className={styles.group} id={`scholarship-group-${groupIndex+1}`} key={group.title}>
           <div className={styles.groupHeading}><span>{String(groupIndex+1).padStart(2,"0")}</span><div><small>{group.eyebrow}</small><h3>{group.title}</h3><p>{group.description}</p></div></div>
           <div className={styles.grid}>
@@ -137,7 +206,7 @@ export function PopularScholarships() {
         </div>
       ))}
 
-      <section className={styles.profileShortlist} aria-labelledby="profile-shortlist-title">
+      {country === "japan" && <><section className={styles.profileShortlist} aria-labelledby="profile-shortlist-title">
         <div className={styles.shortlistIntro}>
           <span>Smart shortlist</span>
           <h3 id="profile-shortlist-title">আপনার profile-এর জন্য কোথা থেকে শুরু করবেন</h3>
@@ -174,8 +243,9 @@ export function PopularScholarships() {
         <div><span>Recommended funding strategy</span><h3>Scholarship-এর নাম নয়—চারটি funding advantage মিলিয়ে দেখুন</h3><p>Admission-এর সঙ্গে automatic consideration · University-recommended MEXT slot · 50%–100% tuition waiver · City/prefecture scholarship eligibility। চারটির যত বেশি একই university-তে থাকবে, backup funding তত শক্তিশালী হবে।</p></div>
         <div><a href={scholarshipDatabaseUrl} target="_blank" rel="noreferrer">Study in Japan — Official search ↗</a><a href="https://www.jpss.jp/en/scholarship/" target="_blank" rel="noreferrer">JPSS Scholarship Search ↗</a></div>
       </div>
+      </>}
 
-      <aside className={styles.notice}><b>Apply করার আগে</b><p>Scholarship availability, amount, eligibility ও deadline প্রতি cycle-এ বদলাতে পারে। Official guideline এবং written award notice-ই final authority।</p><a href="https://www.studyinjapan.go.jp/en/search-for-scholarships/tuition-reduction_search.php?lang=en" target="_blank" rel="noreferrer">Study in Japan scholarship search ↗</a></aside>
+      <aside className={styles.notice}><b>Apply করার আগে</b><p>“Practical” মানে application route তুলনামূলক পরিষ্কার—সহজে পাওয়া বা funding guarantee নয়। Amount, eligibility ও deadline প্রতি cycle-এ বদলাতে পারে; official guideline এবং written award notice-ই final authority।</p><a href={directorySource} target="_blank" rel="noreferrer">Official funding source ↗</a></aside>
     </section>
   );
 }
