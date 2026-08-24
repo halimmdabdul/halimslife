@@ -64,7 +64,7 @@ export default async function AcademyPage() {
         <section className={styles.learningTracks} aria-labelledby="course-categories-title">
           <h2 id="course-categories-title">কী শিখতে চান?</h2>
           <div>
-            <article><span>あ</span><div><h3>Japanese Language</h3><p>JLPT এবং everyday Japanese</p><b>2 courses available</b></div></article>
+            <article><span>あ</span><div><h3>Japanese Language</h3><p>JLPT এবং everyday Japanese</p><b>1 course available</b></div></article>
             <article><span>&lt;/&gt;</span><div><h3>Programming</h3><p>Code, web এবং software fundamentals</p><b>Upcoming</b></div></article>
             <article><span>AI</span><div><h3>AI &amp; Robotics</h3><p>Vision, machine learning এবং robotics</p><b>Upcoming</b></div></article>
           </div>
@@ -74,16 +74,12 @@ export default async function AcademyPage() {
           <section className={`container ${styles.availableSection}`}>
             <div className="academy-heading">
               <div><span className="kicker">Available now</span><h2>এখনই শেখা শুরু করুন।</h2></div>
-              <p>দুটি Bengali-friendly Japanese course থেকে আপনার প্রয়োজন অনুযায়ী path বেছে নিন।</p>
+              <p>Bengali-friendly Japanese course দিয়ে structured learning শুরু করুন।</p>
             </div>
             <div className={styles.featuredCourseGrid}>
               <article className={styles.featuredCourse}>
                 <span className={styles.courseVisual}>日本語 <b>N5</b></span>
                 <div><small>JLPT N5 · Beginner</small><h3>Japanese Foundations</h3><p>Kana থেকে grammar, reading, listening এবং everyday conversation—১০ module ও ৩০ lesson।</p><ul><li>Structured Bengali notes</li><li>Practice test ও saved progress</li><li>Self-paced learning</li></ul><Link href="/academy/japanese-n5">Course শুরু করুন <span>→</span></Link></div>
-              </article>
-              <article className={styles.featuredCourse}>
-                <span className={`${styles.courseVisual} ${styles.companionVisual}`}>みんなの<br />日本語 <b>25 units</b></span>
-                <div><small>N5 · Bangla Companion</small><h3>Minna no Nihongo Companion</h3><p>Lesson 1–25 অনুসরণ করে ৫২টি original guide ও practice lesson দিয়ে textbook study গুছিয়ে নিন।</p><ul><li>Bangla grammar explanation</li><li>Original examples ও exercises</li><li>Quick checks এবং progress</li></ul><Link href="/academy/minna-no-nihongo-n5-companion">Companion খুলুন <span>→</span></Link></div>
               </article>
             </div>
           </section>

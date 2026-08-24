@@ -79,10 +79,12 @@ export function CoursePlayer({
   course = { title: "Japanese Foundations", subtitle: "JLPT N5 · Beginner" },
   sections = japaneseN5Sections,
   courseKey = "japanese-foundations",
+  navigation = { label: "Academy", href: "/academy", overviewLabel: "Course overview" },
 }: {
   course?: { title: string; subtitle: string; notice?: string; locale?: "bn" | "en" };
   sections?: CourseSection[];
   courseKey?: string;
+  navigation?: { label: string; href: string; overviewLabel: string };
 }) {
   const flatLessons = useMemo(
     () => sections.flatMap((section) => section.lessons),
@@ -208,10 +210,10 @@ export function CoursePlayer({
   return (
     <div className={`course-player-page ${styles.page}`}>
       <nav className="course-player-topbar" aria-label="Course navigation">
-        <Link href="/academy" aria-label={bengaliUi ? "Academy-তে ফিরুন" : "Back to Academy"}>←</Link>
+        <Link href={navigation.href} aria-label={`${navigation.label}-এ ফিরুন`}>←</Link>
         <Link href="/" className="course-player-brand">Halim.</Link>
-        <span>Academy&nbsp;&nbsp;/&nbsp;&nbsp;{course.title}</span>
-        <Link href="/academy">Course overview</Link>
+        <span>{navigation.label}&nbsp;&nbsp;/&nbsp;&nbsp;{course.title}</span>
+        <Link href={navigation.href}>{navigation.overviewLabel}</Link>
         <span className="course-player-avatar" aria-hidden="true">H</span>
       </nav>
       <header className="course-player-header">
