@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./popular-scholarships.module.css";
 
 type Scholarship = {
@@ -17,6 +18,15 @@ type ScholarshipGroup = {
 
 const mextUrl = "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/";
 const scholarshipDatabaseUrl = "https://www.studyinjapan.go.jp/en/search-for-scholarships/tuition-reduction_search.php?lang=en";
+
+function scholarshipLogo(href: string) {
+  const officialSite = new URL(href).origin;
+  return `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(officialSite)}&sz=128`;
+}
+
+function scholarshipInitials(name: string) {
+  return name.replace(/^\d+\s*·\s*/, "").split(/[\s–—-]+/).filter(Boolean).slice(0, 2).map(word => word[0]).join("").toUpperCase();
+}
 
 const groups: ScholarshipGroup[] = [
   {
@@ -119,7 +129,7 @@ export function PopularScholarships() {
           <div className={styles.grid}>
             {group.items.map((item,itemIndex)=>(
               <details className={styles.card} open={groupIndex===0&&itemIndex===0} key={item.name}>
-                <summary><div><span>{item.tag}</span><h4>{item.name}</h4><p>{item.level}</p></div><b aria-hidden="true">+</b></summary>
+                <summary><div className={styles.cardLead}><span className={styles.logo} aria-hidden="true"><i>{scholarshipInitials(item.name)}</i><Image src={scholarshipLogo(item.href)} alt="" width={42} height={42} /></span><div><span>{item.tag}</span><h4>{item.name}</h4><p>{item.level}</p></div></div><b aria-hidden="true">+</b></summary>
                 <div className={styles.cardBody}><ul>{item.points.map(point=><li key={point}>{point}</li>)}</ul><a href={item.href} target="_blank" rel="noreferrer">Official source দেখুন <span aria-hidden="true">↗</span></a></div>
               </details>
             ))}
