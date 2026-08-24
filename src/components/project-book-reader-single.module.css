@@ -3,4 +3,12 @@
 .page{width:min(860px,100%);min-height:980px!important;margin:0 auto;border:0!important;border-radius:4px 12px 12px 4px!important;box-shadow:-9px 10px 0 #d1bea0,0 18px 42px #493a2633,inset -12px 0 22px #7e654512!important}
 .divider{display:flex;align-items:center;gap:15px;margin:38px 0 22px;color:#087255;font-family:Georgia,"Noto Serif Bengali",serif;font-size:17px;font-weight:800}
 .divider i{height:1px;flex:1;background:linear-gradient(90deg,#bba887,transparent)}
+.referenceNav{padding:8px 0 4px;border-top:1px solid #cdbd9f;border-bottom:1px solid #cdbd9f;background:#eadcc4}
+.referenceNav>span{display:block;padding:6px 14px;color:#725d40;font-size:8px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.referenceNav button{background:#fff9ed!important}
+.referenceNav button:hover{background:#fff!important}
+.referenceNav button>b{display:grid;width:28px;height:28px;place-items:center;border-radius:50%;color:#fff;background:#087255;font-family:Georgia,"Noto Serif Bengali",serif!important}
+.illustration{position:relative;height:210px;margin:18px 0 30px;overflow:hidden;border-top:1px solid #d7c7aa;border-bottom:1px solid #d7c7aa}
+.illustration img{object-fit:cover;object-position:center 58%;opacity:.82}
+.illustration:after{position:absolute;inset:0;background:linear-gradient(90deg,#fffaf0b8,transparent 35%,#fffaf02b);content:""}
 @media(max-width:700px){.spread{padding:10px!important}.page{min-height:auto!important;border-radius:3px!important;box-shadow:0 8px 22px #493a2626!important}.divider{margin-top:28px;font-size:15px}}

@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import japaneseArt from "@/assets/homepage/path-japanese.png";
 import type { CourseSection } from "@/components/course-player";
 import { RichTextContent, markdownToPlainText } from "@/components/rich-text-content";
+import { n5ReferencePages, type N5ReferencePage } from "@/lib/n5-book-reference";
 
 import styles from "./project-book-reader.module.css";
 import singleStyles from "./project-book-reader-single.module.css";
@@ -13,6 +16,7 @@ type Props = { sections: CourseSection[] };
 
 export function ProjectBookReader({ sections }: Props) {
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
+  const [referenceId, setReferenceId] = useState<N5ReferencePage["id"] | null>(null);
   const [completed, setCompleted] = useState<number[]>([]);
   const [answer, setAnswer] = useState<string | null>(null);
 
@@ -24,6 +28,7 @@ export function ProjectBookReader({ sections }: Props) {
   }, []);
 
   const chapter = activeChapter === null ? null : sections[activeChapter];
+  const referencePage = n5ReferencePages.find((item) => item.id === referenceId) ?? null;
   const guide = chapter?.lessons[0];
   const practice = chapter?.lessons[1];
   const test = guide?.practiceTest;
@@ -36,6 +41,14 @@ export function ProjectBookReader({ sections }: Props) {
 
   function openChapter(index: number | null) {
     setActiveChapter(index);
+    setReferenceId(null);
+    setAnswer(null);
+    window.requestAnimationFrame(() => document.getElementById("digital-book")?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  }
+
+  function openReference(id: N5ReferencePage["id"]) {
+    setActiveChapter(null);
+    setReferenceId(id);
     setAnswer(null);
     window.requestAnimationFrame(() => document.getElementById("digital-book")?.scrollIntoView({ behavior: "smooth", block: "start" }));
   }
@@ -63,12 +76,13 @@ export function ProjectBookReader({ sections }: Props) {
     <section className={styles.reader} id="digital-book">
       <aside className={styles.contents}>
         <div className={styles.contentsHead}><span>সূচিপত্র</span><strong>{completed.length}/{sections.length} পড়া</strong></div>
-        <button className={activeChapter === null ? styles.current : ""} onClick={() => openChapter(null)}><b>⌂</b><span><strong>বইয়ের সূচিপত্র</strong><small>সব chapter একসঙ্গে দেখুন</small></span></button>
+        <button className={activeChapter === null && referencePage === null ? styles.current : ""} onClick={() => openChapter(null)}><b>⌂</b><span><strong>বইয়ের সূচিপত্র</strong><small>সব chapter একসঙ্গে দেখুন</small></span></button>
+        <div className={singleStyles.referenceNav}><span>বিস্তারিত Reference</span>{n5ReferencePages.map((item) => <button className={referenceId === item.id ? styles.current : ""} onClick={() => openReference(item.id)} key={item.id}><b>{item.number}</b><span><strong>{item.title}</strong><small>{item.subtitle}</small></span><i>→</i></button>)}</div>
         <nav aria-label="Book chapters">{sections.map((section,index) => <button className={activeChapter === index ? styles.current : ""} onClick={() => openChapter(index)} key={section.title}><b>{index === 0 ? "শুরু" : String(index).padStart(2,"0")}</b><span><strong>{index === 0 ? "পড়ার আগে" : `Unit ${String(index).padStart(2,"0")}`}</strong><small>{section.title.replace(/^Unit\s+\d+\s*[·-]\s*/i, "")}</small></span><i>{completed.includes(index) ? "✓" : ""}</i></button>)}</nav>
       </aside>
 
       <div className={styles.bookShell}>
-        <header className={styles.bookBar}><button onClick={() => openChapter(null)}>☰ সূচিপত্র</button><span>{chapter ? chapter.title : "Minna no Nihongo N5 · বাংলা Companion"}</span><div><i style={{width:`${progress}%`}}/></div></header>
+        <header className={styles.bookBar}><button onClick={() => openChapter(null)}>☰ সূচিপত্র</button><span>{chapter ? chapter.title : referencePage ? referencePage.title : "Minna no Nihongo N5 · বাংলা Companion"}</span><div><i style={{width:`${progress}%`}}/></div></header>
         {chapter && guide ? <>
           <div className={`${styles.spread} ${singleStyles.spread}`}>
             <article className={`${styles.page} ${singleStyles.page}`}>
@@ -83,7 +97,9 @@ export function ProjectBookReader({ sections }: Props) {
             </article>
           </div>
           <nav className={styles.pageNav}><button disabled={activeChapter === 0} onClick={() => openChapter(Math.max(0,(activeChapter ?? 0)-1))}>← আগের chapter</button><button className={completed.includes(activeChapter ?? -1) ? styles.done : ""} onClick={toggleComplete}>{completed.includes(activeChapter ?? -1) ? "পড়া হয়েছে ✓" : "পড়া শেষ হিসেবে রাখুন"}</button><button disabled={activeChapter === sections.length-1} onClick={() => openChapter(Math.min(sections.length-1,(activeChapter ?? 0)+1))}>পরের chapter →</button></nav>
-        </> : <div className={`${styles.spread} ${styles.indexSpread} ${singleStyles.spread}`}>
+        </> : referencePage ? <div className={`${styles.spread} ${singleStyles.spread}`}>
+          <article className={`${styles.page} ${singleStyles.page}`}><div className={styles.runningHead}><span>N5 DETAILED REFERENCE</span><b>{referencePage.number} · {referencePage.title}</b></div><span className={styles.chapterLabel}>{referencePage.subtitle}</span><h1>{referencePage.title}</h1><div className={singleStyles.illustration}><Image src={japaneseArt} alt="Japanese watercolor landscape with torii gate and pagoda" fill placeholder="blur" sizes="800px"/></div><div className={styles.bookText}><RichTextContent content={referencePage.content}/></div><footer><span>Halim&apos;s Life · N5 Reference Book</span><b>{referencePage.number}</b></footer></article>
+        </div> : <div className={`${styles.spread} ${styles.indexSpread} ${singleStyles.spread}`}>
           <article className={`${styles.page} ${singleStyles.page}`}><div className={styles.runningHead}><span>TABLE OF CONTENTS</span><b>N5 · UNIT 01–25</b></div><span className={styles.chapterLabel}>সূচিপত্র</span><h1>আপনার N5 reading journey</h1><p className={styles.indexIntro}>প্রথমে foundation পড়ুন, তারপর Unit 01 থেকে ধারাবাহিকভাবে এগিয়ে যান। একটি chapter শেষ হলে check mark দিন—progress এই browser-এ সংরক্ষিত থাকবে।</p><div className={styles.indexStats}><span><b>25</b> grammar units</span><span><b>52</b> reading & practice lessons</span><span><b>1</b> clear learning path</span></div><blockquote>অল্প অল্প করে, কিন্তু প্রতিদিন—language learning-এর সবচেয়ে শক্তিশালী নিয়ম।</blockquote><div className={singleStyles.divider}><span>Chapter Index</span><i /></div><div className={styles.indexList}>{sections.map((section,index) => <button onClick={() => openChapter(index)} key={section.title}><b>{index === 0 ? "শুরু" : String(index).padStart(2,"0")}</b><span><strong>{index === 0 ? "Foundation" : section.title.replace(/^Unit\s+\d+\s*[·-]\s*/i, "")}</strong><small>{chapterSummary[index]}</small></span><i>{completed.includes(index) ? "✓" : "→"}</i></button>)}</div><footer><span>Halim&apos;s Life Learning Project</span><b>i</b></footer></article>
         </div>}
         <p className={styles.legal}>এটি একটি independent learning project। মূল textbook-এর copyrighted dialogue, vocabulary list বা exercise পুনর্মুদ্রণ করা হয়নি।</p>
