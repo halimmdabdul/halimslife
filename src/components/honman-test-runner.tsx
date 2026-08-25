@@ -86,6 +86,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
   const incorrectQuestions = useMemo(() => orderedQuestions.filter((item) => answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer), [answerKey, answers, orderedQuestions]);
   const visibleQuestions = reviewMode ? incorrectQuestions : orderedQuestions;
   const question = visibleQuestions[current];
+  const displayQuestionNumber = reviewMode ? orderedQuestions.indexOf(question) + 1 : current + 1;
   const correct = useMemo(() => questions.filter((item) => answers[item.id] === answerKey[item.id]?.answer).length, [answerKey, answers, questions]);
   const official = answerKey[question.id];
   const selectedAnswer = answers[question.id];
@@ -128,9 +129,9 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
   return <section className={styles.runner} id="selected-test">
     <header><div><span>HONMAN TEST 1 · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
     <div className={styles.layout}>
-      <nav aria-label={reviewMode ? "Incorrect answers to review" : "Test 1 questions"}>{visibleQuestions.map((item,index) => <button className={`${current === index ? styles.current : ""} ${answers[item.id] ? styles.answered : ""} ${answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer ? feedbackStyles.incorrectNav : ""}`} onClick={() => setCurrent(index)} key={item.id}>{String(item.id).padStart(2,"0")}</button>)}</nav>
+      <nav aria-label={reviewMode ? "Incorrect answers to review" : "Test 1 questions"}>{visibleQuestions.map((item,index) => <button className={`${current === index ? styles.current : ""} ${answers[item.id] ? styles.answered : ""} ${answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer ? feedbackStyles.incorrectNav : ""}`} onClick={() => setCurrent(index)} key={item.id}>{String(reviewMode ? orderedQuestions.indexOf(item) + 1 : index + 1).padStart(2,"0")}</button>)}</nav>
       <article className={styles.questionCard}>
-        <div className={styles.questionNumber}><span>Question</span><b>{String(question.id).padStart(2,"0")}</b></div>
+        <div className={styles.questionNumber}><span>Question</span><b>{String(displayQuestionNumber).padStart(2,"0")}</b></div>
         <h3>{question.text}</h3>
         {question.figure ? <figure><Image src={question.figure.src} alt={question.figure.alt} width={760} height={470} priority={question.id === 5}/><figcaption>{question.figure.alt}</figcaption></figure> : null}
         <div className={styles.answers}><button disabled={reviewMode} className={selectedAnswer === "true" ? `${styles.selectedAnswer} ${official?.answer === "true" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("true")}><b>○</b><span>TRUE</span><small>Statement is correct</small></button><button disabled={reviewMode} className={selectedAnswer === "false" ? `${styles.selectedAnswer} ${official?.answer === "false" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("false")}><b>×</b><span>FALSE</span><small>Statement is incorrect</small></button></div>
