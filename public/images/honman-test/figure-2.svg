@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 2 truck lane sign</title><desc id="desc">A blue traffic sign directing heavy trucks to the leftmost lane.</desc>
+  <rect width="760" height="470" fill="#f7f9fb"/><rect x="82" y="55" width="596" height="350" rx="22" fill="#0752a0" stroke="#063e7d" stroke-width="7"/><rect x="96" y="69" width="568" height="322" rx="15" fill="none" stroke="#fff" stroke-width="5"/>
+  <path d="M178 255V135h-37l61-92 61 92h-37v120z" fill="#fff" transform="translate(0 38)"/><g stroke="#fff" stroke-width="10" stroke-dasharray="28 24"><path d="M365 92v270M520 92v270"/></g>
+  <g fill="#fff"><rect x="135" y="300" width="122" height="62" rx="5"/><path d="M98 324h42v38H90v-20l18-31h30v13z"/><circle cx="119" cy="366" r="20" fill="#0752a0" stroke="#fff" stroke-width="8"/><circle cx="229" cy="366" r="20" fill="#0752a0" stroke="#fff" stroke-width="8"/></g>
+</svg>

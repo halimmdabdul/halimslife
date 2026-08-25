@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 4 height restriction sign</title><desc id="desc">A circular red-bordered traffic sign showing a 3.3 meter height restriction.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><circle cx="380" cy="235" r="185" fill="#fff" stroke="#202a32" stroke-width="4"/><circle cx="380" cy="235" r="163" fill="#fff" stroke="#df1717" stroke-width="26"/>
+  <path d="M380 75l-48 58h96zM380 395l-48-58h96z" fill="#0752a0"/><text x="380" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="112" font-weight="800" fill="#0752a0">3.3<tspan font-size="54">m</tspan></text>
+</svg>

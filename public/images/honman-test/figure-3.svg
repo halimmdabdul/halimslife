@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 3 driving around a curve</title><desc id="desc">A curve diagram showing acceleration before the curve, deceleration in the curve, and acceleration after it.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#102b3e"/></marker></defs>
+  <rect width="760" height="470" fill="#fbfcfd"/><path d="M90 145h310c145 0 220 70 220 215v50" fill="none" stroke="#92999e" stroke-width="42"/><path d="M90 145h310c145 0 220 70 220 215v50" fill="none" stroke="#fff" stroke-width="34"/>
+  <path d="M90 96h180" stroke="#102b3e" stroke-width="5" marker-end="url(#arrow)"/><text x="110" y="72" font-family="Arial,sans-serif" font-size="30" fill="#102b3e">Accelerate</text>
+  <path d="M355 80c105 5 170 55 210 130" fill="none" stroke="#102b3e" stroke-width="5" marker-end="url(#arrow)"/><text x="410" y="58" font-family="Arial,sans-serif" font-size="30" fill="#102b3e">Decelerate</text>
+  <path d="M670 300v125" stroke="#102b3e" stroke-width="5" marker-end="url(#arrow)"/><text x="500" y="385" font-family="Arial,sans-serif" font-size="30" fill="#102b3e">Accelerate</text>
+</svg>

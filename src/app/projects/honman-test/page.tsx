@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
+import { HonmanTestRunner } from "@/components/honman-test-runner";
+import { honmanTestOne } from "@/lib/honman-tests";
 
 import styles from "./honman-test.module.css";
 
@@ -31,6 +33,6 @@ export default async function HonmanTestPage({ searchParams }: Props) {
       <div className={styles.grid}>{tests.map((test) => <Link className={selected === test ? styles.active : ""} href={`/projects/honman-test?test=${test}#selected-test`} key={test}><span>{String(test).padStart(2,"0")}</span><div><small>HONMAN</small><h3>Test {test}</h3><p>Japanese practice set {String(test).padStart(2,"0")}</p></div><b>{selected === test ? "নির্বাচিত ✓" : "বেছে নিন →"}</b></Link>)}</div>
     </section>
 
-    {selected ? <section id="selected-test" className={styles.selected}><span>Selected test</span><h2>Honman Test {selected}</h2><p>আপনি Test {selected} নির্বাচন করেছেন। এখান থেকে এই test-এর question flow যোগ ও শুরু করা যাবে।</p><div><Link href="/projects/honman-test">অন্য test বেছে নিন</Link><Link href="/contact">Feedback দিন →</Link></div></section> : <section className={styles.hint}><b>四</b><p>উপরের চারটি card-এর যেকোনো একটিতে click করে test নির্বাচন করুন।</p></section>}
+    {selected === 1 ? <HonmanTestRunner questions={honmanTestOne}/> : selected ? <section id="selected-test" className={styles.selected}><span>Selected test</span><h2>Honman Test {selected}</h2><p>Test {selected} নির্বাচন করা হয়েছে। এই set-এর questions পরবর্তী ধাপে যোগ করা যাবে।</p><div><Link href="/projects/honman-test">অন্য test বেছে নিন</Link><Link href="/contact">Feedback দিন →</Link></div></section> : <section className={styles.hint}><b>四</b><p>উপরের চারটি card-এর যেকোনো একটিতে click করে test নির্বাচন করুন।</p></section>}
   </main></InnerPageShell>;
 }

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 1 pavement marking</title><desc id="desc">A rectangular road marking bordered by diagonal white stripes.</desc>
+  <rect width="760" height="470" fill="#f5f7f8"/><rect x="82" y="55" width="596" height="350" fill="#969a9d" stroke="#1a2b37" stroke-width="4"/>
+  <rect x="140" y="95" width="480" height="270" rx="4" fill="none" stroke="#fff" stroke-width="20"/>
+  <g stroke="#fff" stroke-width="20"><path d="M157 105l42 42m45-42 42 42m45-42 42 42m45-42 42 42m45-42 42 42m45-42 42 42"/><path d="M157 355l42-42m45 42 42-42m45 42 42-42m45 42 42-42m45 42 42-42m45 42 42-42"/><path d="M150 126l42 42m-42 48 42 42m-42 48 42 42M610 126l-42 42m42 48-42 42m42 48-42 42"/></g>
+</svg>
