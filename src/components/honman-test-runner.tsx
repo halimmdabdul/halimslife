@@ -28,6 +28,13 @@ function shuffleQuestions(questions: HonmanQuestion[]) {
   return shuffled;
 }
 
+function buildAttemptOrder(questions: HonmanQuestion[], priorityIds: number[]) {
+  const prioritySet = new Set(priorityIds);
+  const priorityQuestions = questions.filter((question) => prioritySet.has(question.id));
+  const remainingQuestions = questions.filter((question) => !prioritySet.has(question.id));
+  return [...shuffleQuestions(priorityQuestions), ...shuffleQuestions(remainingQuestions)];
+}
+
 function formatTime(totalSeconds: number) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
@@ -107,7 +114,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
     setFinished(false);
     setReviewMode(false);
     setStarted(true);
-    const shuffled = shuffleQuestions(questions);
+    const shuffled = buildAttemptOrder(questions, incorrectQuestions.map((question) => question.id));
     const nextDeadline = Date.now() + examDurationMs;
     setOrderedQuestions(shuffled);
     setDeadline(nextDeadline);
@@ -132,7 +139,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
 
   if (!started) return <section className={startStyles.start} id="selected-test"><span>HONMAN TEST 1 · FULL EXAM</span><h2>আপনি প্রস্তুত হলে exam শুরু করুন</h2><p>Start button চাপার পর প্রশ্নগুলো random order-এ সাজবে এবং ৫০ মিনিটের countdown শুরু হবে। Refresh করলে একই attempt resume হবে।</p><div><article><b>50</b><small>minutes</small></article><article><b>{questions.length}</b><small>questions</small></article><article><b>Random</b><small>question order</small></article></div><button onClick={startExam}>Start Full Exam →</button></section>;
 
-  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered · {incorrectQuestions.length} wrong। এই result refresh করার পরও থাকবে; নতুন attempt শুরু করলে নতুন ৫০ মিনিট ও shuffled questions পাবেন।</p>{incorrectQuestions.length ? <button onClick={reviewIncorrect}>ভুল answers review করুন ({incorrectQuestions.length})</button> : null}<button onClick={startExam}>নতুন shuffled exam শুরু করুন</button></section>;
+  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered · {incorrectQuestions.length} wrong। এই result refresh করার পরও থাকবে; নতুন attempt-এ ভুল questions আগে এবং বাকি questions shuffled order-এ আসবে।</p>{incorrectQuestions.length ? <button onClick={reviewIncorrect}>ভুল answers review করুন ({incorrectQuestions.length})</button> : null}<button onClick={startExam}>{incorrectQuestions.length ? "ভুলগুলো আগে রেখে নতুন exam শুরু করুন" : "নতুন shuffled exam শুরু করুন"}</button></section>;
 
   return <section className={styles.runner} id="selected-test">
     <header><div><span>HONMAN TEST 1 · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
