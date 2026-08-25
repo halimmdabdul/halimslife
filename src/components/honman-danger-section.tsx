@@ -16,6 +16,7 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
   const [answers, setAnswers] = useState<Record<string, Answer>>({});
   const [timeExpired, setTimeExpired] = useState(false);
   const [examStarted, setExamStarted] = useState(false);
+  const [examFinished, setExamFinished] = useState(false);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -36,9 +37,10 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
           setExamStarted(false);
           return;
         }
-        const session: { deadline: number } = JSON.parse(savedSession);
+        const session: { deadline: number; finished?: boolean } = JSON.parse(savedSession);
         setExamStarted(true);
         setTimeExpired(session.deadline <= Date.now());
+        setExamFinished(Boolean(session.finished));
       } catch { /* localStorage can be unavailable */ }
     };
     checkDeadline();
@@ -47,6 +49,7 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
       setAnswers({});
       setExamStarted(true);
       setTimeExpired(false);
+      setExamFinished(false);
     };
     window.addEventListener("honman-exam-started", handleStart);
     return () => {
@@ -58,7 +61,7 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
   const total = problems.reduce((sum, problem) => sum + problem.statements.length, 0);
   const answered = Object.keys(answers).length;
   const progress = Math.round((answered / total) * 100);
-  const answersLocked = !examStarted || timeExpired;
+  const answersLocked = !examStarted || examFinished || timeExpired;
 
   function choose(key: string, value: Answer) {
     const next = { ...answers, [key]: value };
@@ -97,6 +100,6 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
       </div>
     </article>)}</div>
 
-    <footer><p>{!examStarted ? <><b>Exam not started:</b> উপরের Start Full Exam button চাপলে এই section unlock হবে।</> : timeExpired ? <><b>Time is up:</b> নতুন ৫০ মিনিটের attempt শুরু না করা পর্যন্ত answers locked থাকবে।</> : <><b>Official answer sheet:</b> আপনার result এবং choices এই browser-এ save থাকবে।</>}</p><button className={answersLocked ? lockStyles.locked : ""} disabled={answersLocked} onClick={reset}>Scenario answers reset করুন</button></footer>
+    <footer><p>{!examStarted ? <><b>Exam not started:</b> উপরের Start Full Exam button চাপলে এই section unlock হবে।</> : examFinished ? <><b>Exam submitted:</b> নতুন attempt শুরু না করা পর্যন্ত answers locked থাকবে।</> : timeExpired ? <><b>Time is up:</b> নতুন ৫০ মিনিটের attempt শুরু না করা পর্যন্ত answers locked থাকবে।</> : <><b>Official answer sheet:</b> আপনার result এবং choices এই browser-এ save থাকবে।</>}</p><button className={answersLocked ? lockStyles.locked : ""} disabled={answersLocked} onClick={reset}>Scenario answers reset করুন</button></footer>
   </section>;
 }

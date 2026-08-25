@@ -13,7 +13,7 @@ import gridStyles from "./honman-question-grid.module.css";
 import styles from "./honman-test-runner.module.css";
 
 type Answer = "true" | "false";
-type ExamSession = { order: number[]; deadline: number };
+type ExamSession = { order: number[]; deadline: number; finished?: boolean };
 
 const answerStorageKey = "honman-test-1-answers";
 const sessionStorageKey = "honman-test-1-session-v3";
@@ -56,7 +56,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
           setDeadline(session.deadline);
           const seconds = Math.max(0, Math.ceil((session.deadline - Date.now()) / 1000));
           setRemainingSeconds(seconds);
-          if (seconds === 0) setFinished(true);
+          if (session.finished || seconds === 0) setFinished(true);
           const savedAnswers = window.localStorage.getItem(answerStorageKey);
           if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
           setStarted(true);
@@ -74,16 +74,18 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
     const updateTimer = () => {
       const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
       setRemainingSeconds(seconds);
-      if (seconds === 0) setFinished(true);
+      if (seconds === 0) {
+        setFinished(true);
+        window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: orderedQuestions.map((question) => question.id), deadline, finished: true } satisfies ExamSession));
+      }
     };
     updateTimer();
     const timer = window.setInterval(updateTimer, 1000);
     return () => window.clearInterval(timer);
-  }, [deadline, finished, reviewMode, started]);
+  }, [deadline, finished, orderedQuestions, reviewMode, started]);
 
   const answered = Object.keys(answers).length;
   const progress = Math.round((answered / questions.length) * 100);
-  const unanswered = useMemo(() => orderedQuestions.filter((item) => !answers[item.id]), [answers, orderedQuestions]);
   const incorrectQuestions = useMemo(() => orderedQuestions.filter((item) => answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer), [answerKey, answers, orderedQuestions]);
   const visibleQuestions = reviewMode ? incorrectQuestions : orderedQuestions;
   const question = visibleQuestions[current];
@@ -112,8 +114,13 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
     setRemainingSeconds(examDurationMs / 1000);
     window.localStorage.removeItem(answerStorageKey);
     window.localStorage.removeItem("honman-danger-problems-1-answers");
-    window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: shuffled.map((question) => question.id), deadline: nextDeadline } satisfies ExamSession));
+    window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: shuffled.map((question) => question.id), deadline: nextDeadline, finished: false } satisfies ExamSession));
     window.dispatchEvent(new CustomEvent("honman-exam-started"));
+  }
+
+  function finishExam() {
+    setFinished(true);
+    window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: orderedQuestions.map((question) => question.id), deadline: deadline ?? Date.now(), finished: true } satisfies ExamSession));
   }
 
   function reviewIncorrect() {
@@ -125,7 +132,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
 
   if (!started) return <section className={startStyles.start} id="selected-test"><span>HONMAN TEST 1 · FULL EXAM</span><h2>আপনি প্রস্তুত হলে exam শুরু করুন</h2><p>Start button চাপার পর প্রশ্নগুলো random order-এ সাজবে এবং ৫০ মিনিটের countdown শুরু হবে। Refresh করলে একই attempt resume হবে।</p><div><article><b>50</b><small>minutes</small></article><article><b>{questions.length}</b><small>questions</small></article><article><b>Random</b><small>question order</small></article></div><button onClick={startExam}>Start Full Exam →</button></section>;
 
-  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered · {incorrectQuestions.length} wrong। নতুন attempt-এ questions আবার shuffle হবে এবং নতুন ৫০ মিনিট শুরু হবে।</p>{remainingSeconds > 0 && unanswered.length ? <button onClick={() => { setFinished(false); setCurrent(orderedQuestions.indexOf(unanswered[0])); }}>Unanswered question দেখুন</button> : null}{incorrectQuestions.length ? <button onClick={reviewIncorrect}>ভুল answers review করুন ({incorrectQuestions.length})</button> : null}<button onClick={startExam}>নতুন shuffled exam শুরু করুন</button></section>;
+  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered · {incorrectQuestions.length} wrong। এই result refresh করার পরও থাকবে; নতুন attempt শুরু করলে নতুন ৫০ মিনিট ও shuffled questions পাবেন।</p>{incorrectQuestions.length ? <button onClick={reviewIncorrect}>ভুল answers review করুন ({incorrectQuestions.length})</button> : null}<button onClick={startExam}>নতুন shuffled exam শুরু করুন</button></section>;
 
   return <section className={styles.runner} id="selected-test">
     <header><div><span>HONMAN TEST 1 · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
@@ -136,7 +143,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
         {question.figure ? <figure><Image src={question.figure.src} alt={question.figure.alt} width={760} height={470} priority={question.id === 5}/><figcaption>{question.figure.alt}</figcaption></figure> : null}
         <div className={styles.answers}><button disabled={reviewMode} className={selectedAnswer === "true" ? `${styles.selectedAnswer} ${official?.answer === "true" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("true")}><b>○</b><span>TRUE</span><small>Statement is correct</small></button><button disabled={reviewMode} className={selectedAnswer === "false" ? `${styles.selectedAnswer} ${official?.answer === "false" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("false")}><b>×</b><span>FALSE</span><small>Statement is incorrect</small></button></div>
         {selectedAnswer && official ? <aside className={`${feedbackStyles.explanation} ${selectedAnswer === official.answer ? feedbackStyles.correct : feedbackStyles.incorrect}`} aria-live="polite"><strong>{selectedAnswer === official.answer ? "✓ Correct answer" : "× Incorrect answer"}</strong><span>Official answer: <b>{official.answer.toUpperCase()}</b></span><p>{official.explanation}</p></aside> : null}
-        <footer><button disabled={current === 0} onClick={() => setCurrent((value) => Math.max(0,value - 1))}>← Previous</button>{reviewMode ? <>{current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next wrong answer →</button> : null}<button onClick={() => { setReviewMode(false); setFinished(true); }}>← Back to result</button></> : current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next question →</button> : <button onClick={() => setFinished(true)}>Finish test →</button>}</footer>
+        <footer><button disabled={current === 0} onClick={() => setCurrent((value) => Math.max(0,value - 1))}>← Previous</button>{reviewMode ? <>{current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next wrong answer →</button> : null}<button onClick={() => { setReviewMode(false); setFinished(true); }}>← Back to result</button></> : current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next question →</button> : <button onClick={finishExam}>Finish test →</button>}</footer>
       </article>
     </div>
   </section>;
