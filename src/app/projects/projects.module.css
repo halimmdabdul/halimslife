@@ -2,3 +2,7 @@
 @media(max-width:900px){.page{width:min(100% - 36px,760px)}.hero{grid-template-columns:1fr}.heroArt{min-height:380px}.featured{grid-template-columns:1fr 1fr}.featuredImage{min-height:390px}.designed{grid-column:1/-1;min-height:190px;border-top:1px solid #dddcd5;border-left:0}.designed img{clip-path:inset(0 0 0 55%)}.openSource{grid-template-columns:1fr 1fr}.experimentList{grid-column:1/-1;grid-template-columns:repeat(3,1fr)}.philosophy{grid-template-columns:1fr}.process{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.page{width:calc(100% - 28px);padding-top:20px}.hero h1{font-size:39px}.heroActions{align-items:stretch;flex-direction:column}.heroArt{min-height:300px}.tabs{grid-template-columns:1fr 1fr}.featured,.learningGrid,.openSource{grid-template-columns:1fr}.featuredImage{min-height:300px}.featuredCopy h2{font-size:31px}.learningPath{align-items:stretch;flex-direction:column;text-align:center}.learningPath i{transform:rotate(90deg)}.experimentList{grid-column:auto;grid-template-columns:1fr}.process{grid-template-columns:1fr}.process i{right:50%;bottom:-13px;top:auto;transform:rotate(90deg)}.next{padding:24px 20px}.next:after{background:#fffaf2db}.next h2{font-size:26px}}
 .page{padding-bottom:56px}
+.learningGrid{grid-template-columns:repeat(3,1fr)}
+.honmanImage img{object-position:center 48%}.honmanImage b{background:#a85b18;font-size:18px;letter-spacing:.08em}
+@media(max-width:900px){.learningGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.learningGrid{grid-template-columns:1fr}}
