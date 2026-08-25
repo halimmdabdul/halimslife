@@ -7,6 +7,7 @@ import type { HonmanOfficialAnswer } from "@/lib/honman-official-answers";
 import type { HonmanQuestion } from "@/lib/honman-tests";
 
 import feedbackStyles from "./honman-answer-feedback.module.css";
+import startStyles from "./honman-exam-start.module.css";
 import timerStyles from "./honman-exam-timer.module.css";
 import styles from "./honman-test-runner.module.css";
 
@@ -14,7 +15,7 @@ type Answer = "true" | "false";
 type ExamSession = { order: number[]; deadline: number };
 
 const answerStorageKey = "honman-test-1-answers";
-const sessionStorageKey = "honman-test-1-session-v2";
+const sessionStorageKey = "honman-test-1-session-v3";
 const examDurationMs = 50 * 60 * 1000;
 
 function shuffleQuestions(questions: HonmanQuestion[]) {
@@ -39,6 +40,8 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
   const [deadline, setDeadline] = useState<number | null>(null);
   const [remainingSeconds, setRemainingSeconds] = useState(examDurationMs / 1000);
   const [finished, setFinished] = useState(false);
+  const [started, setStarted] = useState(false);
+  const [reviewMode, setReviewMode] = useState(false);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -55,13 +58,10 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
           if (seconds === 0) setFinished(true);
           const savedAnswers = window.localStorage.getItem(answerStorageKey);
           if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
+          setStarted(true);
         } else {
-          const shuffled = shuffleQuestions(questions);
-          const nextDeadline = Date.now() + examDurationMs;
-          setOrderedQuestions(shuffled);
-          setDeadline(nextDeadline);
           window.localStorage.removeItem(answerStorageKey);
-          window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: shuffled.map((question) => question.id), deadline: nextDeadline } satisfies ExamSession));
+          window.localStorage.removeItem("honman-danger-problems-1-answers");
         }
       } catch { /* localStorage can be unavailable */ }
     });
@@ -69,7 +69,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
   }, [questions]);
 
   useEffect(() => {
-    if (!deadline || finished) return;
+    if (!started || !deadline || finished || reviewMode) return;
     const updateTimer = () => {
       const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
       setRemainingSeconds(seconds);
@@ -78,48 +78,64 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
     updateTimer();
     const timer = window.setInterval(updateTimer, 1000);
     return () => window.clearInterval(timer);
-  }, [deadline, finished]);
+  }, [deadline, finished, reviewMode, started]);
 
   const answered = Object.keys(answers).length;
-  const question = orderedQuestions[current];
   const progress = Math.round((answered / questions.length) * 100);
   const unanswered = useMemo(() => orderedQuestions.filter((item) => !answers[item.id]), [answers, orderedQuestions]);
+  const incorrectQuestions = useMemo(() => orderedQuestions.filter((item) => answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer), [answerKey, answers, orderedQuestions]);
+  const visibleQuestions = reviewMode ? incorrectQuestions : orderedQuestions;
+  const question = visibleQuestions[current];
   const correct = useMemo(() => questions.filter((item) => answers[item.id] === answerKey[item.id]?.answer).length, [answerKey, answers, questions]);
   const official = answerKey[question.id];
   const selectedAnswer = answers[question.id];
 
   function choose(value: Answer) {
+    if (reviewMode) return;
     const next = { ...answers, [question.id]: value };
     setAnswers(next);
     window.localStorage.setItem(answerStorageKey, JSON.stringify(next));
   }
 
-  function reset() {
+  function startExam() {
     setAnswers({});
     setCurrent(0);
     setFinished(false);
+    setReviewMode(false);
+    setStarted(true);
     const shuffled = shuffleQuestions(questions);
     const nextDeadline = Date.now() + examDurationMs;
     setOrderedQuestions(shuffled);
     setDeadline(nextDeadline);
     setRemainingSeconds(examDurationMs / 1000);
     window.localStorage.removeItem(answerStorageKey);
+    window.localStorage.removeItem("honman-danger-problems-1-answers");
     window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: shuffled.map((question) => question.id), deadline: nextDeadline } satisfies ExamSession));
+    window.dispatchEvent(new CustomEvent("honman-exam-started"));
   }
 
-  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered। নতুন attempt শুরু করলে questions আবার নতুন order-এ shuffle হবে এবং ৫০ মিনিট শুরু হবে।</p>{remainingSeconds > 0 && unanswered.length ? <button onClick={() => { setFinished(false); setCurrent(orderedQuestions.indexOf(unanswered[0])); }}>Unanswered question দেখুন</button> : null}<button onClick={reset}>নতুন shuffled exam শুরু করুন</button></section>;
+  function reviewIncorrect() {
+    if (!incorrectQuestions.length) return;
+    setReviewMode(true);
+    setFinished(false);
+    setCurrent(0);
+  }
+
+  if (!started) return <section className={startStyles.start} id="selected-test"><span>HONMAN TEST 1 · FULL EXAM</span><h2>আপনি প্রস্তুত হলে exam শুরু করুন</h2><p>Start button চাপার পর প্রশ্নগুলো random order-এ সাজবে এবং ৫০ মিনিটের countdown শুরু হবে। Refresh করলে একই attempt resume হবে।</p><div><article><b>50</b><small>minutes</small></article><article><b>{questions.length}</b><small>questions</small></article><article><b>Random</b><small>question order</small></article></div><button onClick={startExam}>Start Full Exam →</button></section>;
+
+  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered · {incorrectQuestions.length} wrong। নতুন attempt-এ questions আবার shuffle হবে এবং নতুন ৫০ মিনিট শুরু হবে।</p>{remainingSeconds > 0 && unanswered.length ? <button onClick={() => { setFinished(false); setCurrent(orderedQuestions.indexOf(unanswered[0])); }}>Unanswered question দেখুন</button> : null}{incorrectQuestions.length ? <button onClick={reviewIncorrect}>ভুল answers review করুন ({incorrectQuestions.length})</button> : null}<button onClick={startExam}>নতুন shuffled exam শুরু করুন</button></section>;
 
   return <section className={styles.runner} id="selected-test">
-    <header><div><span>HONMAN TEST 1 · FULL EXAM</span><h2>True or False</h2></div><div className={timerStyles.examStatus}><div className={remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>TIME LEFT</span><strong>{formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
+    <header><div><span>HONMAN TEST 1 · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
     <div className={styles.layout}>
-      <nav aria-label="Test 1 questions">{orderedQuestions.map((item,index) => <button className={`${current === index ? styles.current : ""} ${answers[item.id] ? styles.answered : ""} ${answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer ? feedbackStyles.incorrectNav : ""}`} onClick={() => setCurrent(index)} key={item.id}>{String(item.id).padStart(2,"0")}</button>)}</nav>
+      <nav aria-label={reviewMode ? "Incorrect answers to review" : "Test 1 questions"}>{visibleQuestions.map((item,index) => <button className={`${current === index ? styles.current : ""} ${answers[item.id] ? styles.answered : ""} ${answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer ? feedbackStyles.incorrectNav : ""}`} onClick={() => setCurrent(index)} key={item.id}>{String(item.id).padStart(2,"0")}</button>)}</nav>
       <article className={styles.questionCard}>
         <div className={styles.questionNumber}><span>Question</span><b>{String(question.id).padStart(2,"0")}</b></div>
         <h3>{question.text}</h3>
         {question.figure ? <figure><Image src={question.figure.src} alt={question.figure.alt} width={760} height={470} priority={question.id === 5}/><figcaption>{question.figure.alt}</figcaption></figure> : null}
-        <div className={styles.answers}><button className={selectedAnswer === "true" ? `${styles.selectedAnswer} ${official?.answer === "true" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("true")}><b>○</b><span>TRUE</span><small>Statement is correct</small></button><button className={selectedAnswer === "false" ? `${styles.selectedAnswer} ${official?.answer === "false" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("false")}><b>×</b><span>FALSE</span><small>Statement is incorrect</small></button></div>
+        <div className={styles.answers}><button disabled={reviewMode} className={selectedAnswer === "true" ? `${styles.selectedAnswer} ${official?.answer === "true" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("true")}><b>○</b><span>TRUE</span><small>Statement is correct</small></button><button disabled={reviewMode} className={selectedAnswer === "false" ? `${styles.selectedAnswer} ${official?.answer === "false" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("false")}><b>×</b><span>FALSE</span><small>Statement is incorrect</small></button></div>
         {selectedAnswer && official ? <aside className={`${feedbackStyles.explanation} ${selectedAnswer === official.answer ? feedbackStyles.correct : feedbackStyles.incorrect}`} aria-live="polite"><strong>{selectedAnswer === official.answer ? "✓ Correct answer" : "× Incorrect answer"}</strong><span>Official answer: <b>{official.answer.toUpperCase()}</b></span><p>{official.explanation}</p></aside> : null}
-        <footer><button disabled={current === 0} onClick={() => setCurrent((value) => Math.max(0,value - 1))}>← Previous</button>{current < orderedQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(orderedQuestions.length - 1,value + 1))}>Next question →</button> : <button onClick={() => setFinished(true)}>Finish test →</button>}</footer>
+        <footer><button disabled={current === 0} onClick={() => setCurrent((value) => Math.max(0,value - 1))}>← Previous</button>{reviewMode ? <>{current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next wrong answer →</button> : null}<button onClick={() => { setReviewMode(false); setFinished(true); }}>← Back to result</button></> : current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next question →</button> : <button onClick={() => setFinished(true)}>Finish test →</button>}</footer>
       </article>
     </div>
   </section>;

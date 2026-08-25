@@ -15,12 +15,14 @@ const storageKey = "honman-danger-problems-1-answers";
 export function HonmanDangerSection({ problems }: { problems: DangerPredictionProblem[] }) {
   const [answers, setAnswers] = useState<Record<string, Answer>>({});
   const [timeExpired, setTimeExpired] = useState(false);
+  const [examStarted, setExamStarted] = useState(false);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       try {
+        const session = window.localStorage.getItem("honman-test-1-session-v3");
         const saved = window.localStorage.getItem(storageKey);
-        if (saved) setAnswers(JSON.parse(saved));
+        if (session && saved) setAnswers(JSON.parse(saved));
       } catch { /* localStorage can be unavailable */ }
     });
     return () => window.cancelAnimationFrame(frame);
@@ -29,20 +31,34 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
   useEffect(() => {
     const checkDeadline = () => {
       try {
-        const savedSession = window.localStorage.getItem("honman-test-1-session-v2");
-        if (!savedSession) return;
+        const savedSession = window.localStorage.getItem("honman-test-1-session-v3");
+        if (!savedSession) {
+          setExamStarted(false);
+          return;
+        }
         const session: { deadline: number } = JSON.parse(savedSession);
+        setExamStarted(true);
         setTimeExpired(session.deadline <= Date.now());
       } catch { /* localStorage can be unavailable */ }
     };
     checkDeadline();
     const timer = window.setInterval(checkDeadline, 1000);
-    return () => window.clearInterval(timer);
+    const handleStart = () => {
+      setAnswers({});
+      setExamStarted(true);
+      setTimeExpired(false);
+    };
+    window.addEventListener("honman-exam-started", handleStart);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("honman-exam-started", handleStart);
+    };
   }, []);
 
   const total = problems.reduce((sum, problem) => sum + problem.statements.length, 0);
   const answered = Object.keys(answers).length;
   const progress = Math.round((answered / total) * 100);
+  const answersLocked = !examStarted || timeExpired;
 
   function choose(key: string, value: Answer) {
     const next = { ...answers, [key]: value };
@@ -72,8 +88,8 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
           return <li className={answers[key] ? styles.chosen : ""} key={key}>
             <span>{index + 1}</span><p>{statement}</p>
             <div aria-label={`Answer for problem ${problem.id}, statement ${index + 1}`}>
-              <button disabled={timeExpired} aria-pressed={selected === "true"} className={`${selected === "true" ? `${styles.active} ${correctAnswer === "true" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} ${timeExpired ? lockStyles.locked : ""}`} onClick={() => choose(key,"true")}>○ True</button>
-              <button disabled={timeExpired} aria-pressed={selected === "false"} className={`${selected === "false" ? `${styles.active} ${correctAnswer === "false" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} ${timeExpired ? lockStyles.locked : ""}`} onClick={() => choose(key,"false")}>× False</button>
+              <button disabled={answersLocked} aria-pressed={selected === "true"} className={`${selected === "true" ? `${styles.active} ${correctAnswer === "true" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} ${answersLocked ? lockStyles.locked : ""}`} onClick={() => choose(key,"true")}>○ True</button>
+              <button disabled={answersLocked} aria-pressed={selected === "false"} className={`${selected === "false" ? `${styles.active} ${correctAnswer === "false" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} ${answersLocked ? lockStyles.locked : ""}`} onClick={() => choose(key,"false")}>× False</button>
             </div>
             {selected ? <em className={selected === correctAnswer ? feedbackStyles.correctLabel : feedbackStyles.wrongLabel}>{selected === correctAnswer ? "✓ Correct" : `× Incorrect · Answer: ${correctAnswer.toUpperCase()}`}</em> : null}
           </li>;
@@ -81,6 +97,6 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
       </div>
     </article>)}</div>
 
-    <footer><p>{timeExpired ? <><b>Time is up:</b> নতুন ৫০ মিনিটের attempt শুরু না করা পর্যন্ত answers locked থাকবে।</> : <><b>Official answer sheet:</b> আপনার result এবং choices এই browser-এ save থাকবে।</>}</p><button className={timeExpired ? lockStyles.locked : ""} disabled={timeExpired} onClick={reset}>Scenario answers reset করুন</button></footer>
+    <footer><p>{!examStarted ? <><b>Exam not started:</b> উপরের Start Full Exam button চাপলে এই section unlock হবে।</> : timeExpired ? <><b>Time is up:</b> নতুন ৫০ মিনিটের attempt শুরু না করা পর্যন্ত answers locked থাকবে।</> : <><b>Official answer sheet:</b> আপনার result এবং choices এই browser-এ save থাকবে।</>}</p><button className={answersLocked ? lockStyles.locked : ""} disabled={answersLocked} onClick={reset}>Scenario answers reset করুন</button></footer>
   </section>;
 }
