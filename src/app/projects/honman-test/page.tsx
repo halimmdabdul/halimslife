@@ -5,13 +5,14 @@ import { InnerPageShell } from "@/components/inner-page-shell";
 import { HonmanDangerSection } from "@/components/honman-danger-section";
 import { HonmanTestRunner } from "@/components/honman-test-runner";
 import { honmanDangerProblems } from "@/lib/honman-danger-problems";
+import { honmanTestOneOfficialAnswers } from "@/lib/honman-official-answers";
 import { honmanTestOne } from "@/lib/honman-tests";
 
 import styles from "./honman-test.module.css";
 
 export const metadata: Metadata = {
   title: "Honman Test | Japanese Practice Project",
-  description: "Honman Test 1, 2, 3 অথবা 4 বেছে নিয়ে Japanese practice শুরু করুন।",
+  description: "Honman Test 1, 2, 3 অথবা 4 বেছে নিয়ে Japanese practice শুরু করুন।",
   alternates: { canonical: "/projects/honman-test" },
 };
 
@@ -26,7 +27,7 @@ export default async function HonmanTestPage({ searchParams }: Props) {
 
   return <InnerPageShell><main className={styles.page}>
     <section className={styles.hero}>
-      <div><Link href="/projects" className={styles.back}>← সব project</Link><span>Japanese Practice Project</span><h1>Honman <em>Test</em></h1><p>আপনার পছন্দের test set নির্বাচন করুন। চারটি option পরিষ্কারভাবে সাজানো—যাতে পরবর্তী practice দ্রুত শুরু করা যায়।</p></div>
+      <div><Link href="/projects" className={styles.back}>← সব project</Link><span>Japanese Practice Project</span><h1>Honman <em>Test</em></h1><p>আপনার পছন্দের test set নির্বাচন করুন। চারটি option পরিষ্কারভাবে সাজানো—যাতে পরবর্তী practice দ্রুত শুরু করা যায়।</p></div>
       <div className={styles.testSheet} aria-hidden="true"><i>本</i><b>HONMAN</b><strong>TEST</strong><span>01 · 02 · 03 · 04</span></div>
     </section>
 
@@ -35,6 +36,6 @@ export default async function HonmanTestPage({ searchParams }: Props) {
       <div className={styles.grid}>{tests.map((test) => <Link className={selected === test ? styles.active : ""} href={`/projects/honman-test?test=${test}#selected-test`} key={test}><span>{String(test).padStart(2,"0")}</span><div><small>HONMAN</small><h3>Test {test}</h3><p>Japanese practice set {String(test).padStart(2,"0")}</p></div><b>{selected === test ? "নির্বাচিত ✓" : "বেছে নিন →"}</b></Link>)}</div>
     </section>
 
-    {selected === 1 ? <><HonmanTestRunner questions={honmanTestOne}/><HonmanDangerSection problems={honmanDangerProblems}/></> : selected ? <section id="selected-test" className={styles.selected}><span>Selected test</span><h2>Honman Test {selected}</h2><p>Test {selected} নির্বাচন করা হয়েছে। এই set-এর questions পরবর্তী ধাপে যোগ করা যাবে।</p><div><Link href="/projects/honman-test">অন্য test বেছে নিন</Link><Link href="/contact">Feedback দিন →</Link></div></section> : <section className={styles.hint}><b>四</b><p>উপরের চারটি card-এর যেকোনো একটিতে click করে test নির্বাচন করুন।</p></section>}
+    {selected === 1 ? <><HonmanTestRunner questions={honmanTestOne} answerKey={honmanTestOneOfficialAnswers}/><HonmanDangerSection problems={honmanDangerProblems}/></> : selected ? <section id="selected-test" className={styles.selected}><span>Selected test</span><h2>Honman Test {selected}</h2><p>Test {selected} নির্বাচন করা হয়েছে। এই set-এর questions পরবর্তী ধাপে যোগ করা যাবে।</p><div><Link href="/projects/honman-test">অন্য test বেছে নিন</Link><Link href="/contact">Feedback দিন →</Link></div></section> : <section className={styles.hint}><b>四</b><p>উপরের চারটি card-এর যেকোনো একটিতে click করে test নির্বাচন করুন।</p></section>}
   </main></InnerPageShell>;
 }

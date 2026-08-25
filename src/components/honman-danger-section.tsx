@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import type { DangerPredictionProblem } from "@/lib/honman-danger-problems";
 
+import feedbackStyles from "./honman-danger-feedback.module.css";
 import styles from "./honman-danger-section.module.css";
 
 type Answer = "true" | "false";
@@ -48,19 +49,22 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
       <div className={styles.problemHead}><span>Problem <b>{problem.id}</b></span><small>{problem.speed}</small><h3>{problem.prompt}</h3></div>
       <div className={styles.problemBody}>
         <figure><Image src={problem.image.src} alt={problem.image.alt} fill sizes="(max-width: 850px) 100vw, 52vw"/></figure>
-        <ol>{problem.statements.map((statement, index) => {
+        <div className={feedbackStyles.decisionPanel}><ol>{problem.statements.map((statement, index) => {
           const key = `${problem.id}-${index + 1}`;
+          const selected = answers[key];
+          const correctAnswer = problem.answers[index];
           return <li className={answers[key] ? styles.chosen : ""} key={key}>
             <span>{index + 1}</span><p>{statement}</p>
             <div aria-label={`Answer for problem ${problem.id}, statement ${index + 1}`}>
-              <button aria-pressed={answers[key] === "true"} className={answers[key] === "true" ? styles.active : ""} onClick={() => choose(key,"true")}>○ True</button>
-              <button aria-pressed={answers[key] === "false"} className={answers[key] === "false" ? styles.active : ""} onClick={() => choose(key,"false")}>× False</button>
+              <button aria-pressed={selected === "true"} className={selected === "true" ? `${styles.active} ${correctAnswer === "true" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} onClick={() => choose(key,"true")}>○ True</button>
+              <button aria-pressed={selected === "false"} className={selected === "false" ? `${styles.active} ${correctAnswer === "false" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} onClick={() => choose(key,"false")}>× False</button>
             </div>
+            {selected ? <em className={selected === correctAnswer ? feedbackStyles.correctLabel : feedbackStyles.wrongLabel}>{selected === correctAnswer ? "✓ Correct" : `× Incorrect · Answer: ${correctAnswer.toUpperCase()}`}</em> : null}
           </li>;
-        })}</ol>
+        })}</ol>{problem.statements.every((_, index) => answers[`${problem.id}-${index + 1}`]) ? <aside className={feedbackStyles.explanation}><strong>Official explanation</strong><p>{problem.explanation}</p></aside> : null}</div>
       </div>
     </article>)}</div>
 
-    <footer><p><b>Note:</b> আপনার choices এই browser-এ save থাকবে। Official answer key supplied না হওয়ায় correctness score দেখানো হচ্ছে না।</p><button onClick={reset}>Scenario answers reset করুন</button></footer>
+    <footer><p><b>Official answer sheet:</b> আপনার result এবং choices এই browser-এ save থাকবে।</p><button onClick={reset}>Scenario answers reset করুন</button></footer>
   </section>;
 }

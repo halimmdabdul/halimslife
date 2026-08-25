@@ -4,6 +4,8 @@ export type DangerPredictionProblem = {
   prompt: string;
   image: { src: string; alt: string };
   statements: string[];
+  answers: ("true" | "false")[];
+  explanation: string;
 };
 
 export const honmanDangerProblems: DangerPredictionProblem[] = [
@@ -17,6 +19,8 @@ export const honmanDangerProblems: DangerPredictionProblem[] = [
       "I don’t think any of the children will dash out into the street because there is an adult with them, so I’ll keep driving at this speed.",
       "There might be children crossing in front of the kindergarten bus, so I’ll sound my horn and keep driving.",
     ],
+    answers: ["false", "false", "false"],
+    explanation: "The driver should slow down and pass through while preparing for children who might run into the street.",
   },
   {
     id: 2,
@@ -28,6 +32,8 @@ export const honmanDangerProblems: DangerPredictionProblem[] = [
       "The moped might move in front of my vehicle, so I’ll follow it until we pass beside the parked vehicle.",
       "There don’t seem to be any oncoming vehicles, so I’ll accelerate and overtake the moped and the parked vehicle in one move.",
     ],
+    answers: ["false", "true", "false"],
+    explanation: "The driver should not overtake the moped and should anticipate that it may change lanes.",
   },
   {
     id: 3,
@@ -39,6 +45,8 @@ export const honmanDangerProblems: DangerPredictionProblem[] = [
       "I’ll reduce my speed so that I won’t splash the pedestrians with water or mud when I pass them.",
       "The children on the right are playing and might dash out in front of my vehicle, so I’ll drive at a speed at which I can stop at any time.",
     ],
+    answers: ["true", "true", "true"],
+    explanation: "The driver should reduce speed and watch carefully for the movement of pedestrians and children.",
   },
   {
     id: 4,
@@ -50,6 +58,8 @@ export const honmanDangerProblems: DangerPredictionProblem[] = [
       "The surface of the wet steel plates is extremely slippery, so I’ll reduce my speed in advance and maintain the distance between my vehicle and the vehicle ahead so that I won’t have to brake suddenly.",
       "Rain impedes visibility, making it difficult to see the conditions ahead, so I’ll drive up close to the vehicle in front of me.",
     ],
+    answers: ["true", "true", "false"],
+    explanation: "The driver should reduce speed and maintain a sufficient distance from the vehicle ahead.",
   },
   {
     id: 5,
@@ -61,5 +71,7 @@ export const honmanDangerProblems: DangerPredictionProblem[] = [
       "I think the vehicle ahead is having a malfunction and will pull over to the left to stop, so I’ll quickly change lanes into the overtaking lane.",
       "If I apply the brakes suddenly I might be hit by the vehicle behind me, so I’ll turn on my hazard lights and apply the brake with several separate presses of the brake pedal.",
     ],
+    answers: ["false", "false", "true"],
+    explanation: "The driver should not approach the vehicle ahead because it may reduce speed due to congestion.",
   },
 ];
