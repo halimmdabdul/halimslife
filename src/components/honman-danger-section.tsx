@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import type { DangerPredictionProblem } from "@/lib/honman-danger-problems";
 
 import feedbackStyles from "./honman-danger-feedback.module.css";
+import lockStyles from "./honman-exam-lock.module.css";
 import styles from "./honman-danger-section.module.css";
 
 type Answer = "true" | "false";
@@ -13,6 +14,7 @@ const storageKey = "honman-danger-problems-1-answers";
 
 export function HonmanDangerSection({ problems }: { problems: DangerPredictionProblem[] }) {
   const [answers, setAnswers] = useState<Record<string, Answer>>({});
+  const [timeExpired, setTimeExpired] = useState(false);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -22,6 +24,20 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
       } catch { /* localStorage can be unavailable */ }
     });
     return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    const checkDeadline = () => {
+      try {
+        const savedSession = window.localStorage.getItem("honman-test-1-session-v2");
+        if (!savedSession) return;
+        const session: { deadline: number } = JSON.parse(savedSession);
+        setTimeExpired(session.deadline <= Date.now());
+      } catch { /* localStorage can be unavailable */ }
+    };
+    checkDeadline();
+    const timer = window.setInterval(checkDeadline, 1000);
+    return () => window.clearInterval(timer);
   }, []);
 
   const total = problems.reduce((sum, problem) => sum + problem.statements.length, 0);
@@ -56,8 +72,8 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
           return <li className={answers[key] ? styles.chosen : ""} key={key}>
             <span>{index + 1}</span><p>{statement}</p>
             <div aria-label={`Answer for problem ${problem.id}, statement ${index + 1}`}>
-              <button aria-pressed={selected === "true"} className={selected === "true" ? `${styles.active} ${correctAnswer === "true" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} onClick={() => choose(key,"true")}>○ True</button>
-              <button aria-pressed={selected === "false"} className={selected === "false" ? `${styles.active} ${correctAnswer === "false" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} onClick={() => choose(key,"false")}>× False</button>
+              <button disabled={timeExpired} aria-pressed={selected === "true"} className={`${selected === "true" ? `${styles.active} ${correctAnswer === "true" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} ${timeExpired ? lockStyles.locked : ""}`} onClick={() => choose(key,"true")}>○ True</button>
+              <button disabled={timeExpired} aria-pressed={selected === "false"} className={`${selected === "false" ? `${styles.active} ${correctAnswer === "false" ? feedbackStyles.correctChoice : feedbackStyles.wrongChoice}` : ""} ${timeExpired ? lockStyles.locked : ""}`} onClick={() => choose(key,"false")}>× False</button>
             </div>
             {selected ? <em className={selected === correctAnswer ? feedbackStyles.correctLabel : feedbackStyles.wrongLabel}>{selected === correctAnswer ? "✓ Correct" : `× Incorrect · Answer: ${correctAnswer.toUpperCase()}`}</em> : null}
           </li>;
@@ -65,6 +81,6 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
       </div>
     </article>)}</div>
 
-    <footer><p><b>Official answer sheet:</b> আপনার result এবং choices এই browser-এ save থাকবে।</p><button onClick={reset}>Scenario answers reset করুন</button></footer>
+    <footer><p>{timeExpired ? <><b>Time is up:</b> নতুন ৫০ মিনিটের attempt শুরু না করা পর্যন্ত answers locked থাকবে।</> : <><b>Official answer sheet:</b> আপনার result এবং choices এই browser-এ save থাকবে।</>}</p><button className={timeExpired ? lockStyles.locked : ""} disabled={timeExpired} onClick={reset}>Scenario answers reset করুন</button></footer>
   </section>;
 }

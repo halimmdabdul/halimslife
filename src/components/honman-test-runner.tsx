@@ -7,29 +7,83 @@ import type { HonmanOfficialAnswer } from "@/lib/honman-official-answers";
 import type { HonmanQuestion } from "@/lib/honman-tests";
 
 import feedbackStyles from "./honman-answer-feedback.module.css";
+import timerStyles from "./honman-exam-timer.module.css";
 import styles from "./honman-test-runner.module.css";
 
 type Answer = "true" | "false";
+type ExamSession = { order: number[]; deadline: number };
+
+const answerStorageKey = "honman-test-1-answers";
+const sessionStorageKey = "honman-test-1-session-v2";
+const examDurationMs = 50 * 60 * 1000;
+
+function shuffleQuestions(questions: HonmanQuestion[]) {
+  const shuffled = [...questions];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapWith = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapWith]] = [shuffled[swapWith], shuffled[index]];
+  }
+  return shuffled;
+}
+
+function formatTime(totalSeconds: number) {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
 
 export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQuestion[]; answerKey: Record<number, HonmanOfficialAnswer> }) {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<Record<number, Answer>>({});
+  const [orderedQuestions, setOrderedQuestions] = useState(questions);
+  const [deadline, setDeadline] = useState<number | null>(null);
+  const [remainingSeconds, setRemainingSeconds] = useState(examDurationMs / 1000);
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       try {
-        const saved = window.localStorage.getItem("honman-test-1-answers");
-        if (saved) setAnswers(JSON.parse(saved));
+        const savedSession = window.localStorage.getItem(sessionStorageKey);
+        if (savedSession) {
+          const session: ExamSession = JSON.parse(savedSession);
+          const questionMap = new Map(questions.map((question) => [question.id, question]));
+          const restored = session.order.map((id) => questionMap.get(id)).filter((question): question is HonmanQuestion => Boolean(question));
+          if (restored.length === questions.length) setOrderedQuestions(restored);
+          setDeadline(session.deadline);
+          const seconds = Math.max(0, Math.ceil((session.deadline - Date.now()) / 1000));
+          setRemainingSeconds(seconds);
+          if (seconds === 0) setFinished(true);
+          const savedAnswers = window.localStorage.getItem(answerStorageKey);
+          if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
+        } else {
+          const shuffled = shuffleQuestions(questions);
+          const nextDeadline = Date.now() + examDurationMs;
+          setOrderedQuestions(shuffled);
+          setDeadline(nextDeadline);
+          window.localStorage.removeItem(answerStorageKey);
+          window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: shuffled.map((question) => question.id), deadline: nextDeadline } satisfies ExamSession));
+        }
       } catch { /* localStorage can be unavailable */ }
     });
     return () => window.cancelAnimationFrame(frame);
-  }, []);
+  }, [questions]);
+
+  useEffect(() => {
+    if (!deadline || finished) return;
+    const updateTimer = () => {
+      const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+      setRemainingSeconds(seconds);
+      if (seconds === 0) setFinished(true);
+    };
+    updateTimer();
+    const timer = window.setInterval(updateTimer, 1000);
+    return () => window.clearInterval(timer);
+  }, [deadline, finished]);
 
   const answered = Object.keys(answers).length;
-  const question = questions[current];
+  const question = orderedQuestions[current];
   const progress = Math.round((answered / questions.length) * 100);
-  const unanswered = useMemo(() => questions.filter((item) => !answers[item.id]), [answers, questions]);
+  const unanswered = useMemo(() => orderedQuestions.filter((item) => !answers[item.id]), [answers, orderedQuestions]);
   const correct = useMemo(() => questions.filter((item) => answers[item.id] === answerKey[item.id]?.answer).length, [answerKey, answers, questions]);
   const official = answerKey[question.id];
   const selectedAnswer = answers[question.id];
@@ -37,29 +91,35 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
   function choose(value: Answer) {
     const next = { ...answers, [question.id]: value };
     setAnswers(next);
-    window.localStorage.setItem("honman-test-1-answers", JSON.stringify(next));
+    window.localStorage.setItem(answerStorageKey, JSON.stringify(next));
   }
 
   function reset() {
     setAnswers({});
     setCurrent(0);
     setFinished(false);
-    window.localStorage.removeItem("honman-test-1-answers");
+    const shuffled = shuffleQuestions(questions);
+    const nextDeadline = Date.now() + examDurationMs;
+    setOrderedQuestions(shuffled);
+    setDeadline(nextDeadline);
+    setRemainingSeconds(examDurationMs / 1000);
+    window.localStorage.removeItem(answerStorageKey);
+    window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: shuffled.map((question) => question.id), deadline: nextDeadline } satisfies ExamSession));
   }
 
-  if (finished) return <section className={styles.result} id="selected-test"><span>Test 1 complete</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered। আপনার selected answers ও progress এই browser-এ সংরক্ষিত হয়েছে।</p>{unanswered.length ? <button onClick={() => { setFinished(false); setCurrent(questions.indexOf(unanswered[0])); }}>Unanswered question দেখুন</button> : null}<button onClick={reset}>আবার শুরু করুন</button></section>;
+  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered। নতুন attempt শুরু করলে questions আবার নতুন order-এ shuffle হবে এবং ৫০ মিনিট শুরু হবে।</p>{remainingSeconds > 0 && unanswered.length ? <button onClick={() => { setFinished(false); setCurrent(orderedQuestions.indexOf(unanswered[0])); }}>Unanswered question দেখুন</button> : null}<button onClick={reset}>নতুন shuffled exam শুরু করুন</button></section>;
 
   return <section className={styles.runner} id="selected-test">
-    <header><div><span>HONMAN TEST 1</span><h2>True or False</h2></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></header>
+    <header><div><span>HONMAN TEST 1 · FULL EXAM</span><h2>True or False</h2></div><div className={timerStyles.examStatus}><div className={remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>TIME LEFT</span><strong>{formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
     <div className={styles.layout}>
-      <nav aria-label="Test 1 questions">{questions.map((item,index) => <button className={`${current === index ? styles.current : ""} ${answers[item.id] ? styles.answered : ""} ${answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer ? feedbackStyles.incorrectNav : ""}`} onClick={() => setCurrent(index)} key={item.id}>{String(item.id).padStart(2,"0")}</button>)}</nav>
+      <nav aria-label="Test 1 questions">{orderedQuestions.map((item,index) => <button className={`${current === index ? styles.current : ""} ${answers[item.id] ? styles.answered : ""} ${answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer ? feedbackStyles.incorrectNav : ""}`} onClick={() => setCurrent(index)} key={item.id}>{String(item.id).padStart(2,"0")}</button>)}</nav>
       <article className={styles.questionCard}>
         <div className={styles.questionNumber}><span>Question</span><b>{String(question.id).padStart(2,"0")}</b></div>
         <h3>{question.text}</h3>
         {question.figure ? <figure><Image src={question.figure.src} alt={question.figure.alt} width={760} height={470} priority={question.id === 5}/><figcaption>{question.figure.alt}</figcaption></figure> : null}
         <div className={styles.answers}><button className={selectedAnswer === "true" ? `${styles.selectedAnswer} ${official?.answer === "true" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("true")}><b>○</b><span>TRUE</span><small>Statement is correct</small></button><button className={selectedAnswer === "false" ? `${styles.selectedAnswer} ${official?.answer === "false" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("false")}><b>×</b><span>FALSE</span><small>Statement is incorrect</small></button></div>
         {selectedAnswer && official ? <aside className={`${feedbackStyles.explanation} ${selectedAnswer === official.answer ? feedbackStyles.correct : feedbackStyles.incorrect}`} aria-live="polite"><strong>{selectedAnswer === official.answer ? "✓ Correct answer" : "× Incorrect answer"}</strong><span>Official answer: <b>{official.answer.toUpperCase()}</b></span><p>{official.explanation}</p></aside> : null}
-        <footer><button disabled={current === 0} onClick={() => setCurrent((value) => Math.max(0,value - 1))}>← Previous</button>{current < questions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(questions.length - 1,value + 1))}>Next question →</button> : <button onClick={() => setFinished(true)}>Finish test →</button>}</footer>
+        <footer><button disabled={current === 0} onClick={() => setCurrent((value) => Math.max(0,value - 1))}>← Previous</button>{current < orderedQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(orderedQuestions.length - 1,value + 1))}>Next question →</button> : <button onClick={() => setFinished(true)}>Finish test →</button>}</footer>
       </article>
     </div>
   </section>;
