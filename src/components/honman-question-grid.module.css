@@ -1,2 +1,1 @@
-.compactLayout{grid-template-columns:205px minmax(0,1fr)!important}.fiveColumnGrid{grid-template-columns:repeat(5,1fr)!important;gap:5px!important;padding:14px!important}.fiveColumnGrid button{font-size:9px!important}
-@media(max-width:760px){.compactLayout{grid-template-columns:1fr!important}.fiveColumnGrid{grid-template-columns:repeat(5,1fr)!important;padding:12px!important}.fiveColumnGrid button{aspect-ratio:auto!important;min-height:34px}}
+.singleColumn{grid-template-columns:minmax(0,1fr)!important}

@@ -129,8 +129,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
 
   return <section className={styles.runner} id="selected-test">
     <header><div><span>HONMAN TEST 1 · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
-    <div className={`${styles.layout} ${gridStyles.compactLayout}`}>
-      <nav className={gridStyles.fiveColumnGrid} aria-label={reviewMode ? "Incorrect answers to review" : "Test 1 questions"}>{visibleQuestions.map((item,index) => <button className={`${current === index ? styles.current : ""} ${answers[item.id] ? styles.answered : ""} ${answers[item.id] && answers[item.id] !== answerKey[item.id]?.answer ? feedbackStyles.incorrectNav : ""}`} onClick={() => setCurrent(index)} key={item.id}>{String(reviewMode ? orderedQuestions.indexOf(item) + 1 : index + 1).padStart(2,"0")}</button>)}</nav>
+    <div className={`${styles.layout} ${gridStyles.singleColumn}`}>
       <article className={styles.questionCard}>
         <div className={styles.questionNumber}><span>Question</span><b>{String(displayQuestionNumber).padStart(2,"0")}</b></div>
         <h3>{question.text}</h3>
