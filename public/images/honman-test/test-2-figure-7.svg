@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 7 two vehicles</title><desc id="desc">Two cars numbered one and two traveling thirty meters apart on a priority road.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><rect x="45" y="45" width="670" height="265" fill="#bdbdbd"/><path d="M45 153h670" stroke="#fff" stroke-width="10" stroke-dasharray="48 48"/>
+  <g transform="translate(175 185)"><rect x="0" y="0" width="130" height="62" rx="25" fill="#f8f8f8" stroke="#555" stroke-width="3"/><path d="M28 2h72l16 18-10 25H22L14 20z" fill="#222"/><rect x="44" y="3" width="40" height="42" fill="#fafafa"/><rect x="-5" y="13" width="10" height="17" rx="3" fill="#df3636"/><rect x="125" y="13" width="10" height="17" rx="3" fill="#df3636"/></g>
+  <g transform="translate(485 185)"><rect x="0" y="0" width="130" height="62" rx="25" fill="#f8f8f8" stroke="#555" stroke-width="3"/><path d="M28 2h72l16 18-10 25H22L14 20z" fill="#222"/><rect x="44" y="3" width="40" height="42" fill="#fafafa"/><rect x="-5" y="13" width="10" height="17" rx="3" fill="#df3636"/><rect x="125" y="13" width="10" height="17" rx="3" fill="#df3636"/></g>
+  <text x="240" y="286" text-anchor="middle" font-family="sans-serif" font-size="40">&#x2460;</text><text x="550" y="286" text-anchor="middle" font-family="sans-serif" font-size="40">&#x2461;</text>
+  <path d="M110 370h540M110 350v40M650 350v40" stroke="#111" stroke-width="4"/><path d="M110 370l18-9v18zM650 370l-18-9v18z" fill="#111"/><text x="380" y="427" text-anchor="middle" font-family="sans-serif" font-size="46">30m</text>
+</svg>

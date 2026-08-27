@@ -4,9 +4,9 @@ import Link from "next/link";
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { HonmanDangerSection } from "@/components/honman-danger-section";
 import { HonmanTestRunner } from "@/components/honman-test-runner";
-import { honmanDangerProblems } from "@/lib/honman-danger-problems";
-import { honmanTestOneOfficialAnswers } from "@/lib/honman-official-answers";
-import { honmanTestOne } from "@/lib/honman-tests";
+import { honmanDangerProblems, honmanDangerProblemsTwo } from "@/lib/honman-danger-problems";
+import { honmanTestFourOfficialAnswers, honmanTestOneOfficialAnswers, honmanTestThreeOfficialAnswers, honmanTestTwoOfficialAnswers } from "@/lib/honman-official-answers";
+import { honmanTestFour, honmanTestOne, honmanTestThree, honmanTestTwo } from "@/lib/honman-tests";
 
 import styles from "./honman-test.module.css";
 
@@ -36,6 +36,6 @@ export default async function HonmanTestPage({ searchParams }: Props) {
       <div className={styles.grid}>{tests.map((test) => <Link className={selected === test ? styles.active : ""} href={`/projects/honman-test?test=${test}#selected-test`} key={test}><span>{String(test).padStart(2,"0")}</span><div><small>HONMAN</small><h3>Test {test}</h3><p>Japanese practice set {String(test).padStart(2,"0")}</p></div><b>{selected === test ? "নির্বাচিত ✓" : "বেছে নিন →"}</b></Link>)}</div>
     </section>
 
-    {selected === 1 ? <><HonmanTestRunner questions={honmanTestOne} answerKey={honmanTestOneOfficialAnswers}/><HonmanDangerSection problems={honmanDangerProblems}/></> : selected ? <section id="selected-test" className={styles.selected}><span>Selected test</span><h2>Honman Test {selected}</h2><p>Test {selected} নির্বাচন করা হয়েছে। এই set-এর questions পরবর্তী ধাপে যোগ করা যাবে।</p><div><Link href="/projects/honman-test">অন্য test বেছে নিন</Link><Link href="/contact">Feedback দিন →</Link></div></section> : <section className={styles.hint}><b>四</b><p>উপরের চারটি card-এর যেকোনো একটিতে click করে test নির্বাচন করুন।</p></section>}
+    {selected === 1 ? <><HonmanTestRunner questions={honmanTestOne} answerKey={honmanTestOneOfficialAnswers} testNumber={1}/><HonmanDangerSection problems={honmanDangerProblems} testNumber={1}/></> : selected === 2 ? <><HonmanTestRunner questions={honmanTestTwo} answerKey={honmanTestTwoOfficialAnswers} testNumber={2}/><HonmanDangerSection problems={honmanDangerProblemsTwo} testNumber={2}/></> : selected === 3 ? <HonmanTestRunner questions={honmanTestThree} answerKey={honmanTestThreeOfficialAnswers} testNumber={3}/> : selected === 4 ? <HonmanTestRunner questions={honmanTestFour} answerKey={honmanTestFourOfficialAnswers} testNumber={4}/> : selected ? <section id="selected-test" className={styles.selected}><span>Selected test</span><h2>Honman Test {selected}</h2><p>Test {selected} নির্বাচন করা হয়েছে। এই set-এর questions পরবর্তী ধাপে যোগ করা যাবে।</p><div><Link href="/projects/honman-test">অন্য test বেছে নিন</Link><Link href="/contact">Feedback দিন →</Link></div></section> : <section className={styles.hint}><b>四</b><p>উপরের চারটি card-এর যেকোনো একটিতে click করে test নির্বাচন করুন।</p></section>}
   </main></InnerPageShell>;
 }

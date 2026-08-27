@@ -75,3 +75,71 @@ export const honmanDangerProblems: DangerPredictionProblem[] = [
     explanation: "The driver should not approach the vehicle ahead because it may reduce speed due to congestion.",
   },
 ];
+
+export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
+  {
+    id: 1,
+    speed: "15 km/h",
+    prompt: "You are driving along at 15 km/h. When you are turning left at an intersection where the light for pedestrians has begun to flash, what kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-2-1.svg", alt: "Driver turning left at an intersection as a cyclist approaches the crosswalk" },
+    statements: [
+      "The cyclist might cross recklessly, so I’ll stop before the crosswalk and see what happens.",
+      "If I stop suddenly I might be hit by the vehicle behind me, so to warn the driver I’ll apply the brake with several separate presses of the brake pedal.",
+      "The bicycle is still far away and I think I can complete the left turn before it gets near, so I’ll hurry and turn left.",
+    ],
+    answers: ["true", "true", "false"],
+    explanation: "Wait before the crosswalk for the cyclist and warn following traffic by pressing the brake pedal several times; do not rush the turn.",
+  },
+  {
+    id: 2,
+    speed: "30 km/h",
+    prompt: "You are driving along at 30 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-2-2.svg", alt: "Driver approaching an adult and child on a narrow road with an oncoming vehicle" },
+    statements: [
+      "I think if I hurry I can pass the pedestrians before the oncoming vehicle gets near, so I’ll increase my speed and keep driving.",
+      "The child might dash out in front of my vehicle, so I’ll sound my horn and keep driving.",
+      "It would be better to pass the oncoming vehicle before passing the pedestrians, so I’ll reduce my speed, move to the left, and stop.",
+    ],
+    answers: ["false", "false", "true"],
+    explanation: "Reduce speed and stop on the left so the oncoming vehicle can pass before you carefully pass the pedestrians.",
+  },
+  {
+    id: 3,
+    speed: "30 km/h",
+    prompt: "You are driving along at 30 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-2-3.svg", alt: "Driver following a cyclist while children walk beside a rural road" },
+    statements: [
+      "The cyclist and the children may not have noticed my vehicle approaching, so to be prepared for any sudden movements I’ll reduce my speed so that I can stop at any time.",
+      "It would be dangerous to pass the bicycle and the children at the same time, so while I have the chance I’ll accelerate and overtake the bicycle.",
+      "If I keep driving as I am now I won’t be able to respond to any sudden movements of the cyclist or children, so I’ll reduce my speed and maintain a distance behind the bicycle until I pass the children.",
+    ],
+    answers: ["true", "false", "true"],
+    explanation: "Slow down and remain behind the cyclist until the children have been passed safely; do not accelerate to overtake.",
+  },
+  {
+    id: 4,
+    speed: "40 km/h",
+    prompt: "You are driving along at 40 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-2-4.svg", alt: "Driver following a cargo truck that is signaling a left turn" },
+    statements: [
+      "The vehicle ahead will probably take a long time turning left, so I’ll move to the far right of my lane and partly enter the next lane by crossing the center line.",
+      "The vehicle ahead will turn left immediately, so I’ll keep driving at this speed.",
+      "Even after the vehicle ahead turns left its cargo might remain in my lane, so I’ll reduce my speed and maintain vehicle distance.",
+    ],
+    answers: ["false", "false", "true"],
+    explanation: "A long vehicle and its cargo may continue to occupy your lane during the turn, so slow down and keep a safe following distance.",
+  },
+  {
+    id: 5,
+    speed: "30 km/h",
+    prompt: "You are driving along at 30 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-2-5.svg", alt: "Driver following a red car on a narrow snow-covered road" },
+    statements: [
+      "It would be dangerous to suddenly swerve away from an oncoming vehicle, so I’ll drive as closely as possible to the left edge of the road.",
+      "Where other vehicles have passed the snow is packed and slippery, so I’ll drive where the soft snow has accumulated.",
+      "My vehicle has studless tires and tire chains, so I’ll drive just as I would in regular road conditions.",
+    ],
+    answers: ["false", "false", "false"],
+    explanation: "Keep a safe road position and drive slowly on the cleared wheel tracks; winter tires and chains do not make snow behave like a normal road.",
+  },
+];

@@ -10,9 +10,10 @@ import lockStyles from "./honman-exam-lock.module.css";
 import styles from "./honman-danger-section.module.css";
 
 type Answer = "true" | "false";
-const storageKey = "honman-danger-problems-1-answers";
 
-export function HonmanDangerSection({ problems }: { problems: DangerPredictionProblem[] }) {
+export function HonmanDangerSection({ problems, testNumber = 1 }: { problems: DangerPredictionProblem[]; testNumber?: number }) {
+  const storageKey = `honman-danger-problems-${testNumber}-answers`;
+  const sessionKey = `honman-test-${testNumber}-session-v3`;
   const [answers, setAnswers] = useState<Record<string, Answer>>({});
   const [timeExpired, setTimeExpired] = useState(false);
   const [examStarted, setExamStarted] = useState(false);
@@ -21,18 +22,18 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       try {
-        const session = window.localStorage.getItem("honman-test-1-session-v3");
+        const session = window.localStorage.getItem(sessionKey);
         const saved = window.localStorage.getItem(storageKey);
         if (session && saved) setAnswers(JSON.parse(saved));
       } catch { /* localStorage can be unavailable */ }
     });
     return () => window.cancelAnimationFrame(frame);
-  }, []);
+  }, [sessionKey, storageKey]);
 
   useEffect(() => {
     const checkDeadline = () => {
       try {
-        const savedSession = window.localStorage.getItem("honman-test-1-session-v3");
+        const savedSession = window.localStorage.getItem(sessionKey);
         if (!savedSession) {
           setExamStarted(false);
           return;
@@ -56,7 +57,7 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
       window.clearInterval(timer);
       window.removeEventListener("honman-exam-started", handleStart);
     };
-  }, []);
+  }, [sessionKey]);
 
   const total = problems.reduce((sum, problem) => sum + problem.statements.length, 0);
   const answered = Object.keys(answers).length;
@@ -76,7 +77,7 @@ export function HonmanDangerSection({ problems }: { problems: DangerPredictionPr
 
   return <section className={styles.section} aria-labelledby="danger-title">
     <header className={styles.header}>
-      <div><span>SCENARIO PRACTICE</span><h2 id="danger-title">Danger Prediction Problems <b>01</b></h2><p>Road scene দেখে প্রতিটি driving decision True অথবা False হিসেবে evaluate করুন।</p></div>
+      <div><span>SCENARIO PRACTICE</span><h2 id="danger-title">Danger Prediction Problems <b>{String(testNumber).padStart(2, "0")}</b></h2><p>Road scene দেখে প্রতিটি driving decision True অথবা False হিসেবে evaluate করুন।</p></div>
       <div className={styles.progress}><strong>{answered}/{total}</strong><span>decisions answered</span><i><b style={{ width: `${progress}%` }}/></i></div>
     </header>
 

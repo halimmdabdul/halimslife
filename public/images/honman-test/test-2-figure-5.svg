@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 5 parking clearance sign</title><desc id="desc">A no-parking sign with a supplementary plate requiring six meters of parking clearance.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><circle cx="380" cy="190" r="142" fill="#fff" stroke="#222" stroke-width="4"/><circle cx="380" cy="190" r="128" fill="#0752a0" stroke="#ee2828" stroke-width="23"/><path d="M282 92l196 196" stroke="#ee2828" stroke-width="30"/>
+  <rect x="235" y="365" width="290" height="72" rx="8" fill="#fff" stroke="#222" stroke-width="4"/><text x="380" y="413" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="700">&#x99D0;&#x8ECA;&#x4F59;&#x5730;6m</text>
+</svg>

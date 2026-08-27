@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 14 overtaking on a six-meter road</title><desc id="desc">Vehicles A and B on a six-meter-wide road divided by a white centerline.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><text x="380" y="38" text-anchor="middle" font-family="sans-serif" font-size="27">Centerline (white)</text><rect x="40" y="62" width="680" height="335" fill="#aaa"/><path d="M40 78h680M40 380h680M40 229h680" stroke="#fff" stroke-width="15"/>
+  <path d="M78 98v112M62 98h32M62 210h32" stroke="#111" stroke-width="3"/><path d="M78 98l-8 17h16zM78 210l-8-17h16z" fill="#111"/><text x="90" y="165" font-family="sans-serif" font-size="31">6m</text>
+  <g transform="translate(160 260)"><rect width="145" height="64" rx="25" fill="#fff" stroke="#333" stroke-width="3"/><path d="M30 3h82l18 18-13 29H27L15 21z" fill="#222"/><rect x="48" y="4" width="45" height="45" fill="#fff"/></g><g transform="translate(480 260)"><rect width="145" height="64" rx="25" fill="#fff" stroke="#333" stroke-width="3"/><path d="M30 3h82l18 18-13 29H27L15 21z" fill="#222"/><rect x="48" y="4" width="45" height="45" fill="#fff"/></g>
+  <path d="M315 290c85 0 90-95 190-95" fill="none" stroke="#111" stroke-width="4" stroke-dasharray="18 9"/><path d="M505 195l-21-8 6 20z" fill="#111"/><text x="232" y="360" text-anchor="middle" font-family="sans-serif" font-size="42">B</text><text x="552" y="360" text-anchor="middle" font-family="sans-serif" font-size="42">A</text>
+</svg>

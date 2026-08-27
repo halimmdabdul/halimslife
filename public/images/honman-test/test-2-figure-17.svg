@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 17 bicycle crossing sign</title><desc id="desc">A blue triangular sign showing a cyclist over white crossing stripes.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/>
+  <path d="M380 34q18 0 30 22l250 350q18 27-20 27H120q-38 0-20-27L350 56q12-22 30-22z" fill="#fff" stroke="#073b89" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M380 57l256 354H124z" fill="#073b89"/>
+  <g fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><circle cx="283" cy="300" r="49"/><circle cx="478" cy="300" r="49"/><path d="M283 300l67-89 65 89H283zm67-89h71m-37-31h55m-27 0l-62 120m65 0l-39-89"/></g>
+  <g fill="#fff"><circle cx="370" cy="127" r="17"/><path d="M348 148l44 7 37 42-16 13-35-31-30 54-23-12z"/><path d="M348 221l30 9-22 62-21-7z"/></g>
+  <g stroke="#fff" stroke-width="11"><path d="M180 376h85M290 376h85M400 376h85M510 376h70"/></g>
+</svg>

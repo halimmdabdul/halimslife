@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 16 inverted triangular sign</title><desc id="desc">The red-bordered inverted triangular shape used for slow-down and stop signs.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/>
+  <path d="M150 72q-15-28 25-28h410q40 0 25 28L405 397q-25 38-50 0z" fill="#fff" stroke="#ed1019" stroke-width="27" stroke-linejoin="round"/>
+  <path d="M171 75h418L380 392z" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 11 intersection guide markings</title><desc id="desc">White curved guide markings through a gray intersection.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><rect x="115" y="30" width="530" height="410" fill="#858585"/>
+  <g fill="none" stroke="#fff" stroke-width="15"><path d="M335 38c0 126-85 193-207 205M405 38c0 174-119 244-277 268M425 432c0-132 77-216 205-250M500 432c0-178 63-251 130-285"/><path d="M128 245c120 5 224 66 295 187M128 305c165 0 288-91 502-123"/></g>
+</svg>

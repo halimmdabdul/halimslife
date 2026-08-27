@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 13 motor vehicles-only sign</title><desc id="desc">A blue circular traffic sign displaying a white automobile.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><circle cx="380" cy="235" r="190" fill="#fff" stroke="#222" stroke-width="4"/><circle cx="380" cy="235" r="176" fill="#073b8d"/>
+  <g fill="#fff"><path d="M250 235l30-77q9-24 35-24h130q26 0 35 24l30 77 22 15v108h-39v-32H267v32h-39V250zm56-68l-25 69h198l-25-69z"/><rect x="270" y="245" width="220" height="54" rx="13" fill="#073b8d"/><circle cx="282" cy="278" r="19"/><circle cx="478" cy="278" r="19"/></g>
+</svg>

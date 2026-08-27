@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 10 speed signs</title><desc id="desc">A red-bordered 50 speed-limit sign above a 30 kilometers-per-hour supplementary sign.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><circle cx="380" cy="178" r="137" fill="#fff" stroke="#222" stroke-width="4"/><circle cx="380" cy="178" r="119" fill="#fff" stroke="#df2026" stroke-width="28"/><text x="380" y="217" text-anchor="middle" font-family="sans-serif" font-size="112" font-weight="700" fill="#073b8b">50</text>
+  <rect x="255" y="330" width="250" height="110" rx="10" fill="#fff" stroke="#222" stroke-width="4"/><text x="380" y="377" text-anchor="middle" font-family="sans-serif" font-size="48">30</text><text x="380" y="424" text-anchor="middle" font-family="sans-serif" font-size="42">km/h</text>
+</svg>

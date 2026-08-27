@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 1 pedestrian and bicycle path sign</title><desc id="desc">A blue circular sign showing an adult, child, and bicycle.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><circle cx="380" cy="235" r="194" fill="#fff" stroke="#18212b" stroke-width="4"/><circle cx="380" cy="235" r="179" fill="#064caa"/>
+  <g fill="#fff"><circle cx="318" cy="104" r="16"/><path d="M296 132q22-13 44 0l18 78-17 4-10-49-3 85h-20l-3-85-10 49-17-4z"/><path d="M309 245h17l14 92h-20zM302 245h17l-15 92h-20z"/>
+  <circle cx="389" cy="173" r="11"/><path d="M374 191q15-10 30 0l12 48-12 4-7-27-1 54h-14l-2-54-7 27-12-4zM382 266h13l10 58h-14zM378 266h13l-10 58h-14z"/></g>
+  <g fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><circle cx="289" cy="344" r="39"/><circle cx="467" cy="344" r="39"/><path d="M289 344l56-79 56 79H289zm56-79h67m-30-26h44m-25 0l-56 105m56 0l-35-79"/></g>
+</svg>

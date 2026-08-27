@@ -17,8 +17,6 @@ import styles from "./honman-test-runner.module.css";
 type Answer = "true" | "false";
 type ExamSession = { order: number[]; deadline: number; finished?: boolean };
 
-const answerStorageKey = "honman-test-1-answers";
-const sessionStorageKey = "honman-test-1-session-v3";
 const examDurationMs = 50 * 60 * 1000;
 
 function alertTheme() {
@@ -47,7 +45,9 @@ function formatTime(totalSeconds: number) {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
-export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQuestion[]; answerKey: Record<number, HonmanOfficialAnswer> }) {
+export function HonmanTestRunner({ questions, answerKey, testNumber = 1 }: { questions: HonmanQuestion[]; answerKey: Record<number, HonmanOfficialAnswer>; testNumber?: number }) {
+  const answerStorageKey = `honman-test-${testNumber}-answers`;
+  const sessionStorageKey = `honman-test-${testNumber}-session-v3`;
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<Record<number, Answer>>({});
   const [orderedQuestions, setOrderedQuestions] = useState(questions);
@@ -75,12 +75,12 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
           setStarted(true);
         } else {
           window.localStorage.removeItem(answerStorageKey);
-          window.localStorage.removeItem("honman-danger-problems-1-answers");
+          if (testNumber === 1) window.localStorage.removeItem("honman-danger-problems-1-answers");
         }
       } catch { /* localStorage can be unavailable */ }
     });
     return () => window.cancelAnimationFrame(frame);
-  }, [questions]);
+  }, [answerStorageKey, questions, sessionStorageKey, testNumber]);
 
   useEffect(() => {
     if (!started || finished) return;
@@ -102,7 +102,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
     updateTimer();
     const timer = window.setInterval(updateTimer, 1000);
     return () => window.clearInterval(timer);
-  }, [deadline, finished, orderedQuestions, reviewMode, started]);
+  }, [deadline, finished, orderedQuestions, reviewMode, sessionStorageKey, started]);
 
   const answered = Object.keys(answers).length;
   const progress = Math.round((answered / questions.length) * 100);
@@ -133,7 +133,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
     setDeadline(nextDeadline);
     setRemainingSeconds(examDurationMs / 1000);
     window.localStorage.removeItem(answerStorageKey);
-    window.localStorage.removeItem("honman-danger-problems-1-answers");
+    if (testNumber === 1) window.localStorage.removeItem("honman-danger-problems-1-answers");
     window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: shuffled.map((question) => question.id), deadline: nextDeadline, finished: false } satisfies ExamSession));
     window.dispatchEvent(new CustomEvent("honman-exam-started"));
   }
@@ -167,14 +167,14 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
     setCurrent(0);
   }
 
-  if (!started) return <section className={startStyles.start} id="selected-test"><span>HONMAN TEST 1 · FULL EXAM</span><h2>আপনি প্রস্তুত হলে exam শুরু করুন</h2><p>Start button চাপার পর প্রশ্নগুলো random order-এ সাজবে এবং ৫০ মিনিটের countdown শুরু হবে। Refresh করলে একই attempt resume হবে।</p><div><article><b>50</b><small>minutes</small></article><article><b>{questions.length}</b><small>questions</small></article><article><b>Random</b><small>question order</small></article></div><button onClick={startExam}>Start Full Exam →</button></section>;
+  if (!started) return <section className={startStyles.start} id="selected-test"><span>HONMAN TEST {testNumber} · FULL EXAM</span><h2>আপনি প্রস্তুত হলে exam শুরু করুন</h2><p>Start button চাপার পর প্রশ্নগুলো random order-এ সাজবে এবং ৫০ মিনিটের countdown শুরু হবে। Refresh করলে একই attempt resume হবে।</p><div><article><b>50</b><small>minutes</small></article><article><b>{questions.length}</b><small>questions</small></article><article><b>Random</b><small>question order</small></article></div><button onClick={startExam}>Start Full Exam →</button></section>;
 
-  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered · {incorrectQuestions.length} wrong। এই result refresh করার পরও থাকবে; নতুন attempt-এ ভুল questions আগে এবং বাকি questions shuffled order-এ আসবে।</p>{incorrectQuestions.length ? <button onClick={reviewIncorrect}>ভুল answers review করুন ({incorrectQuestions.length})</button> : null}<button onClick={startExam}>{incorrectQuestions.length ? "ভুলগুলো আগে রেখে নতুন exam শুরু করুন" : "নতুন shuffled exam শুরু করুন"}</button></section>;
+  if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : `Test ${testNumber} complete`}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered · {incorrectQuestions.length} wrong। এই result refresh করার পরও থাকবে; নতুন attempt-এ ভুল questions আগে এবং বাকি questions shuffled order-এ আসবে।</p>{incorrectQuestions.length ? <button onClick={reviewIncorrect}>ভুল answers review করুন ({incorrectQuestions.length})</button> : null}<button onClick={startExam}>{incorrectQuestions.length ? "ভুলগুলো আগে রেখে নতুন exam শুরু করুন" : "নতুন shuffled exam শুরু করুন"}</button></section>;
 
   return <div className={modalStyles.backdrop} role="presentation">
     <div className={modalStyles.modal}>
       <section className={styles.runner} id="selected-test">
-        <header><div><span>HONMAN TEST 1 · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
+        <header><div><span>HONMAN TEST {testNumber} · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
         <div className={`${styles.layout} ${gridStyles.singleColumn}`}>
           <article className={styles.questionCard}>
             <div className={styles.questionNumber}><span>Question</span><b>{String(displayQuestionNumber).padStart(2,"0")}</b></div>

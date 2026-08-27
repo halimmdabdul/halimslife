@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 8 left-turn permitted sign</title><desc id="desc">A blue left-pointing arrow on a white rectangular sign.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><rect x="135" y="105" width="490" height="260" rx="15" fill="#fff" stroke="#073f91" stroke-width="9"/>
+  <path d="M220 235l160-91-18 65h188v52H362l18 65z" fill="#063f99" stroke="#063f99" stroke-linejoin="round" stroke-width="15"/>
+</svg>

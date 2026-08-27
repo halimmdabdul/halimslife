@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="t d">
+  <title id="t">Cyclist approaching a pedestrian crossing</title><desc id="d">Driver view while turning left at an intersection with a cyclist near the crosswalk.</desc>
+  <defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#8fd4ef"/><stop offset="1" stop-color="#eaf6f6"/></linearGradient><linearGradient id="road" x2="0" y2="1"><stop stop-color="#707980"/><stop offset="1" stop-color="#3e4850"/></linearGradient></defs>
+  <rect width="900" height="600" fill="url(#sky)"/><path d="M0 290h900v310H0z" fill="url(#road)"/><path d="M0 265h320v70H0zm580 0h320v70H580z" fill="#d9d1b8"/>
+  <g fill="#fff"><path d="M0 325h335v28H0zm0 48h335v28H0z"/><path d="M565 325h335v28H565zm0 48h335v28H565z"/><path d="M410 290h18v85h-18zm70 0h18v85h-18z"/></g>
+  <g fill="#477f42"><circle cx="80" cy="225" r="70"/><circle cx="190" cy="230" r="55"/><circle cx="720" cy="220" r="72"/><circle cx="835" cy="230" r="58"/></g>
+  <g stroke="#172b39" stroke-width="8" fill="none"><circle cx="585" cy="318" r="29"/><circle cx="655" cy="318" r="29"/><path d="M585 318l35-54 35 54-48-13 35-41M620 264h30"/></g><circle cx="622" cy="237" r="13" fill="#f1c45b"/><path d="M622 251l-4 42m2-25l33 14" stroke="#e38a18" stroke-width="12" stroke-linecap="round"/>
+  <path d="M0 600l95-165h710l95 165" fill="#28465a"/><path d="M310 600q140-155 280 0" fill="#172d3c"/><circle cx="450" cy="545" r="82" fill="#263841" stroke="#111d26" stroke-width="16"/><path d="M392 545h116M450 488v114" stroke="#60717a" stroke-width="12"/>
+  <path d="M390 425q60-70 120 0" fill="none" stroke="#f6ba28" stroke-width="7" stroke-dasharray="18 12"/><text x="450" y="50" text-anchor="middle" fill="#173a58" font-family="Arial" font-size="26" font-weight="700">Flashing pedestrian signal — cyclist ahead</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+  <title id="title">Figure 12 automobiles on streetcar tracks sign</title><desc id="desc">A blue rectangular sign showing a white automobile above streetcar rails.</desc>
+  <rect width="760" height="470" fill="#fafbfc"/><rect x="210" y="30" width="340" height="410" rx="13" fill="#fff" stroke="#082d70" stroke-width="7"/><rect x="223" y="43" width="314" height="384" rx="5" fill="#063d8e"/>
+  <g fill="#fff"><path d="M285 192l28-72q8-21 30-21h74q22 0 30 21l28 72 20 13v86h-30v-25H295v25h-30v-86zm45-66l-22 62h144l-22-62z"/><rect x="290" y="198" width="180" height="45" rx="10" fill="#063d8e"/><circle cx="303" cy="224" r="13"/><circle cx="457" cy="224" r="13"/></g>
+  <g fill="none" stroke="#fff" stroke-width="11"><path d="M270 390l70-107M490 390l-70-107M300 345h160M282 374h196M320 315h120"/></g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="t d">
+  <title id="t">Pedestrians and oncoming vehicle on a narrow road</title><desc id="d">Driver view of an adult and child ahead with an oncoming van.</desc>
+  <defs><linearGradient id="s" x2="0" y2="1"><stop stop-color="#9ed8ec"/><stop offset="1" stop-color="#f5f5e5"/></linearGradient></defs><rect width="900" height="600" fill="url(#s)"/>
+  <path d="M0 255h900v345H0z" fill="#667078"/><path d="M0 250l300 0 95 350H0zm900 0H605l-95 350h390z" fill="#d5d0c0"/><path d="M0 205h280v65H0zM620 190h280v80H620z" fill="#c48955"/><path d="M15 100h230v120H15zm660 70h210v80H675z" fill="#e6e1ce" stroke="#667" stroke-width="8"/>
+  <g transform="translate(560 275)"><rect width="120" height="105" rx="12" fill="#e0921f" stroke="#303942" stroke-width="8"/><rect x="15" y="15" width="90" height="38" fill="#bfe1e8"/><circle cx="25" cy="106" r="14"/><circle cx="95" cy="106" r="14"/></g>
+  <g stroke="#25333d" stroke-width="11" stroke-linecap="round"><circle cx="292" cy="250" r="18" fill="#f1bd8d" stroke="none"/><path d="M292 274v76m0-48l-34 34m34-27l32 35M292 350l-28 55m28-55l26 55"/><circle cx="350" cy="292" r="14" fill="#f1bd8d" stroke="none"/><path d="M350 311v52m0-27l-25 21m25-19l24 20m-24 5l-20 39m20-39l18 39"/></g>
+  <path d="M0 600l100-145h700l100 145" fill="#28465a"/><path d="M320 600q130-130 260 0" fill="#162d3d"/><circle cx="450" cy="550" r="76" fill="#263841" stroke="#0e1c25" stroke-width="15"/><path d="M398 550h104M450 500v102" stroke="#667a84" stroke-width="11"/><text x="450" y="55" text-anchor="middle" fill="#173a58" font-family="Arial" font-size="27" font-weight="700">Narrow road — pedestrians and oncoming traffic</text>
+</svg>
