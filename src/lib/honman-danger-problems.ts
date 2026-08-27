@@ -211,3 +211,71 @@ export const honmanDangerProblemsThree: DangerPredictionProblem[] = [
     explanation: "Bridge surfaces freeze easily; reduce speed before the bridge and avoid sudden steering or braking inputs.",
   },
 ];
+
+export const honmanDangerProblemsFour: DangerPredictionProblem[] = [
+  {
+    id: 1,
+    speed: "40 km/h",
+    prompt: "You are driving along at 40 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-4-1.png", alt: "Motorcyclist approaching a poorly visible intersection from a narrow road at night" },
+    statements: [
+      "The vehicle approaching from the right may not yield the road to me, so before I get near I’ll reduce speed so that I can stop at any time.",
+      "If the vehicle approaching from the right comes out it could be dangerous, so I’ll switch my headlights up and down several times to warn the other driver that my vehicle is getting near and reduce speed.",
+      "The vehicle approaching from the right might come out without noticing my vehicle, so I’ll drive at a speed at which I can stop at any time.",
+    ],
+    answers: ["true", "true", "true"],
+    explanation: "At a poorly visible intersection, reduce speed enough to stop at any time and make your approach noticeable to other road users.",
+  },
+  {
+    id: 2,
+    speed: "40 km/h",
+    prompt: "You are driving along at 40 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-4-2.png", alt: "Driver approaching a parked truck that hides a pedestrian crossing" },
+    statements: [
+      "There may be pedestrians on the pedestrian crossing on the other side of the parked truck, so after I pass by its side, I’ll come to a stop before proceeding in front of it.",
+      "The door of the truck might open suddenly, so I’ll leave sufficient space to its side and proceed at a speed at which I can stop at any time, and after I pass it, I’ll come to a stop before proceeding in front of it.",
+      "I want to pass by the side of the truck while there are no oncoming vehicles, so I’ll accelerate and proceed.",
+    ],
+    answers: ["true", "true", "false"],
+    explanation: "Leave room beside the truck, slow to a speed that permits an immediate stop, and check carefully for hidden pedestrians beyond it.",
+  },
+  {
+    id: 3,
+    speed: "60 km/h",
+    prompt: "You are driving along at 60 km/h. When merging into the main through lane of an expressway, what kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-4-3.png", alt: "Driver preparing to merge onto an expressway behind another vehicle" },
+    statements: [
+      "There is an opening between vehicles in the main through lane just to the right, so I’ll merge right away so as not to miss this opportunity.",
+      "A vehicle is approaching from behind in the main through lane, so I’ll adjust my speed so that I can merge behind it.",
+      "There might be a vehicle in the blind spot of my mirror, so I’ll check for safety with my own eyes and then merge.",
+    ],
+    answers: ["false", "true", "true"],
+    explanation: "Do not rush into a gap. Adjust speed to merge safely behind approaching traffic and check the blind spot directly before moving over.",
+  },
+  {
+    id: 4,
+    speed: "40 km/h",
+    prompt: "You are driving along at 40 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-4-4.png", alt: "Driver approaching pedestrians beside and within a streetcar safety zone" },
+    statements: [
+      "The pedestrians on the left might cross in front of my vehicle to reach the safety zone, so I’ll reduce speed so that I can stop at any time and watch how they move.",
+      "There are pedestrians in the safety zone and I don’t know whether they’ll cross the road, so I’ll proceed at a speed at which I can stop at any time.",
+      "There are pedestrians in the safety zone, but it doesn’t seem that they will cross the road, so I’ll keep driving at this speed.",
+    ],
+    answers: ["true", "true", "false"],
+    explanation: "Watch pedestrians on both sides of the roadway and proceed slowly enough to stop immediately if anyone begins to cross.",
+  },
+  {
+    id: 5,
+    speed: "40 km/h",
+    prompt: "You are driving along at 40 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-4-5.png", alt: "Driver following a truck that is raising a large dust cloud on an unpaved road" },
+    statements: [
+      "I might not be able to see conditions ahead because of the dust cloud stirred up by the truck, so I’ll reduce speed.",
+      "I’ll drive as closely as possible to the left side of the road to maintain the distance between my vehicle and the truck.",
+      "The dust cloud won’t have any particular effect on my vehicle, so I’ll keep driving at this speed.",
+    ],
+    answers: ["true", "false", "false"],
+    explanation: "Dust can hide the road and other traffic. Reduce speed and maintain a safe following distance without moving dangerously toward the road edge.",
+  },
+];
