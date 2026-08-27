@@ -81,7 +81,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
     id: 1,
     speed: "15 km/h",
     prompt: "You are driving along at 15 km/h. When you are turning left at an intersection where the light for pedestrians has begun to flash, what kinds of things should you be careful of?",
-    image: { src: "/images/honman-test/danger-2-1.svg", alt: "Driver turning left at an intersection as a cyclist approaches the crosswalk" },
+    image: { src: "/images/honman-test/danger-2-1.png", alt: "Driver turning left at an intersection as a cyclist approaches the crosswalk" },
     statements: [
       "The cyclist might cross recklessly, so I’ll stop before the crosswalk and see what happens.",
       "If I stop suddenly I might be hit by the vehicle behind me, so to warn the driver I’ll apply the brake with several separate presses of the brake pedal.",
@@ -94,7 +94,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
     id: 2,
     speed: "30 km/h",
     prompt: "You are driving along at 30 km/h. What kinds of things should you be careful of?",
-    image: { src: "/images/honman-test/danger-2-2.svg", alt: "Driver approaching an adult and child on a narrow road with an oncoming vehicle" },
+    image: { src: "/images/honman-test/danger-2-2.png", alt: "Driver approaching an adult and child on a narrow road with an oncoming vehicle" },
     statements: [
       "I think if I hurry I can pass the pedestrians before the oncoming vehicle gets near, so I’ll increase my speed and keep driving.",
       "The child might dash out in front of my vehicle, so I’ll sound my horn and keep driving.",
@@ -107,7 +107,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
     id: 3,
     speed: "30 km/h",
     prompt: "You are driving along at 30 km/h. What kinds of things should you be careful of?",
-    image: { src: "/images/honman-test/danger-2-3.svg", alt: "Driver following a cyclist while children walk beside a rural road" },
+    image: { src: "/images/honman-test/danger-2-3.png", alt: "Driver following a cyclist while children walk beside a rural road" },
     statements: [
       "The cyclist and the children may not have noticed my vehicle approaching, so to be prepared for any sudden movements I’ll reduce my speed so that I can stop at any time.",
       "It would be dangerous to pass the bicycle and the children at the same time, so while I have the chance I’ll accelerate and overtake the bicycle.",
@@ -120,7 +120,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
     id: 4,
     speed: "40 km/h",
     prompt: "You are driving along at 40 km/h. What kinds of things should you be careful of?",
-    image: { src: "/images/honman-test/danger-2-4.svg", alt: "Driver following a cargo truck that is signaling a left turn" },
+    image: { src: "/images/honman-test/danger-2-4.png", alt: "Driver following a cargo truck that is signaling a left turn" },
     statements: [
       "The vehicle ahead will probably take a long time turning left, so I’ll move to the far right of my lane and partly enter the next lane by crossing the center line.",
       "The vehicle ahead will turn left immediately, so I’ll keep driving at this speed.",
@@ -133,7 +133,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
     id: 5,
     speed: "30 km/h",
     prompt: "You are driving along at 30 km/h. What kinds of things should you be careful of?",
-    image: { src: "/images/honman-test/danger-2-5.svg", alt: "Driver following a red car on a narrow snow-covered road" },
+    image: { src: "/images/honman-test/danger-2-5.png", alt: "Driver following a red car on a narrow snow-covered road" },
     statements: [
       "It would be dangerous to suddenly swerve away from an oncoming vehicle, so I’ll drive as closely as possible to the left edge of the road.",
       "Where other vehicles have passed the snow is packed and slippery, so I’ll drive where the soft snow has accumulated.",

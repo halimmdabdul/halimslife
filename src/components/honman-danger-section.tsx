@@ -84,7 +84,7 @@ export function HonmanDangerSection({ problems, testNumber = 1 }: { problems: Da
     <div className={styles.problems}>{problems.map((problem) => <article className={styles.problem} key={problem.id}>
       <div className={styles.problemHead}><span>Problem <b>{problem.id}</b></span><small>{problem.speed}</small><h3>{problem.prompt}</h3></div>
       <div className={styles.problemBody}>
-        <figure><Image src={problem.image.src} alt={problem.image.alt} fill sizes="(max-width: 850px) 100vw, 52vw"/></figure>
+        <figure className={testNumber === 2 ? styles.sourceFigure : undefined}><Image src={problem.image.src} alt={problem.image.alt} fill sizes="(max-width: 850px) 100vw, 52vw"/></figure>
         <div className={feedbackStyles.decisionPanel}><ol>{problem.statements.map((statement, index) => {
           const key = `${problem.id}-${index + 1}`;
           const selected = answers[key];

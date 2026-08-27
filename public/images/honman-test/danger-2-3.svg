@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="t d">
-  <title id="t">Cyclist and children on a rural road</title><desc id="d">Driver follows a cyclist while children walk ahead beside a rural road.</desc>
-  <rect width="900" height="600" fill="#9fd9ee"/><path d="M0 245l150-115 100 90 145-150 150 160 130-120 225 145v100H0z" fill="#4f9561"/><path d="M0 275h900v325H0z" fill="#86a44d"/><path d="M235 260h430l150 340H85z" fill="#6d7478"/><path d="M445 275l8 80m12 52l12 110" stroke="#fff" stroke-width="10" stroke-dasharray="35 28"/>
-  <path d="M665 250l235 45v305H730z" fill="#d7d8cf" stroke="#8c948d" stroke-width="7"/><g stroke="#a4aaa3" stroke-width="4"><path d="M690 275l190 38m-175 12l180 36m-160 10l165 36m-145 15l150 34"/></g>
-  <g transform="translate(315 250)" stroke="#26353d" stroke-width="8" fill="none"><circle cx="0" cy="95" r="28"/><circle cx="72" cy="95" r="28"/><path d="M0 95l36-55 36 55-50-14 35-42M36 40h28"/><circle cx="35" cy="13" r="13" fill="#efbd86" stroke="none"/><path d="M35 29l0 42" stroke="#7b5533" stroke-width="13"/></g>
-  <g stroke="#27363e" stroke-width="10" stroke-linecap="round"><circle cx="600" cy="316" r="14" fill="#efbd86" stroke="none"/><path d="M600 335v53m0-28l-22 19m22-16l24 20m-24 5l-19 39m19-39l20 39"/><circle cx="650" cy="300" r="14" fill="#efbd86" stroke="none"/><path d="M650 319v55m0-30l-22 20m22-17l23 18m-23 9l-18 37m18-37l20 37"/></g>
-  <path d="M0 600l100-140h700l100 140" fill="#29475b"/><path d="M330 600q120-120 240 0" fill="#172d3d"/><circle cx="450" cy="552" r="72" fill="#263841" stroke="#101f28" stroke-width="14"/><text x="450" y="50" text-anchor="middle" fill="#173a58" font-family="Arial" font-size="27" font-weight="700">Cyclist and children ahead</text>
-</svg>
