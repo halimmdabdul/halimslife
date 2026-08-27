@@ -88,7 +88,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
       "The bicycle is still far away and I think I can complete the left turn before it gets near, so I’ll hurry and turn left.",
     ],
     answers: ["true", "true", "false"],
-    explanation: "Wait before the crosswalk for the cyclist and warn following traffic by pressing the brake pedal several times; do not rush the turn.",
+    explanation: "The driver should apply the brakes early instead of braking suddenly.",
   },
   {
     id: 2,
@@ -101,7 +101,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
       "It would be better to pass the oncoming vehicle before passing the pedestrians, so I’ll reduce my speed, move to the left, and stop.",
     ],
     answers: ["false", "false", "true"],
-    explanation: "Reduce speed and stop on the left so the oncoming vehicle can pass before you carefully pass the pedestrians.",
+    explanation: "The driver should wait until the oncoming vehicle passes, and then pass by the side of the pedestrians.",
   },
   {
     id: 3,
@@ -113,8 +113,8 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
       "It would be dangerous to pass the bicycle and the children at the same time, so while I have the chance I’ll accelerate and overtake the bicycle.",
       "If I keep driving as I am now I won’t be able to respond to any sudden movements of the cyclist or children, so I’ll reduce my speed and maintain a distance behind the bicycle until I pass the children.",
     ],
-    answers: ["true", "false", "true"],
-    explanation: "Slow down and remain behind the cyclist until the children have been passed safely; do not accelerate to overtake.",
+    answers: ["true", "false", "false"],
+    explanation: "The driver should slow down and proceed by passing one at a time.",
   },
   {
     id: 4,
@@ -127,7 +127,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
       "Even after the vehicle ahead turns left its cargo might remain in my lane, so I’ll reduce my speed and maintain vehicle distance.",
     ],
     answers: ["false", "false", "true"],
-    explanation: "A long vehicle and its cargo may continue to occupy your lane during the turn, so slow down and keep a safe following distance.",
+    explanation: "The driver should keep enough distance from the vehicle ahead in order not to collide with the projected load.",
   },
   {
     id: 5,
@@ -140,7 +140,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
       "My vehicle has studless tires and tire chains, so I’ll drive just as I would in regular road conditions.",
     ],
     answers: ["false", "false", "false"],
-    explanation: "Keep a safe road position and drive slowly on the cleared wheel tracks; winter tires and chains do not make snow behave like a normal road.",
+    explanation: "The driver should keep enough distance from the vehicle ahead and drive in the ruts made by previous vehicles.",
   },
 ];
 
