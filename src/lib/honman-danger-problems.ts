@@ -143,3 +143,71 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
     explanation: "Keep a safe road position and drive slowly on the cleared wheel tracks; winter tires and chains do not make snow behave like a normal road.",
   },
 ];
+
+export const honmanDangerProblemsThree: DangerPredictionProblem[] = [
+  {
+    id: 1,
+    speed: "70 km/h",
+    prompt: "You are driving along at 70 km/h. When you leave the main through lane, what kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-3-1.png", alt: "Driver approaching an expressway deceleration lane at 70 kilometers per hour" },
+    statements: [
+      "Continuing at this speed would be too fast and dangerous, so I’ll reduce speed all at once before entering the deceleration lane.",
+      "If I reduce speed suddenly in the main through lane, I might be rear-ended by the vehicle following me, so I’ll enter the deceleration lane and then gradually reduce speed.",
+      "After entering the deceleration lane, I won’t rely on instinct but rather will check the speedometer as I reduce speed to ensure I am doing it correctly.",
+    ],
+    answers: ["false", "true", "true"],
+    explanation: "Enter the deceleration lane before reducing speed, slow down gradually, and confirm your speed with the speedometer.",
+  },
+  {
+    id: 2,
+    speed: "50 km/h",
+    prompt: "You are driving along at 50 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-3-2.png", alt: "Motorcyclist approaching a sharp mountain curve with limited visibility" },
+    statements: [
+      "If I fail to negotiate the curve I might hit the guardrail, so I’ll drive near the center line.",
+      "An oncoming vehicle might cross over the center line, so I’ll sound my horn to warn any approaching drivers and continue traveling at this speed.",
+      "The view is limited and I can’t see around the curve, so I’ll reduce speed and travel near the left of the road.",
+    ],
+    answers: ["false", "false", "true"],
+    explanation: "Reduce speed before the blind curve and keep toward the left rather than approaching the center line.",
+  },
+  {
+    id: 3,
+    speed: "30 km/h",
+    prompt: "You are driving along at 30 km/h. When turning right at the intersection, what kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-3-3.png", alt: "Driver approaching a right turn behind a car and a moped at a pedestrian crossing" },
+    statements: [
+      "I think the four-wheeled vehicle ahead will turn left ahead of the pedestrians on the pedestrian crossing, so I’ll keep driving just as I am now.",
+      "The moped might approach the four-wheeled vehicle turning left and move to the right of it, so I’ll reduce speed and watch how it moves.",
+      "I think if the four-wheeled vehicle stops the moped will stop behind it, so I’ll move to the right and turn right.",
+    ],
+    answers: ["false", "true", "false"],
+    explanation: "Slow down and watch both the car and moped; the moped may move right to pass the turning vehicle.",
+  },
+  {
+    id: 4,
+    speed: "40 km/h",
+    prompt: "You are driving along at 40 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-3-4.png", alt: "Driver approaching a cyclist who may move into the roadway near pedestrians" },
+    statements: [
+      "When the bicycle gets near the pedestrians it might move onto the roadway, so I’ll reduce speed and proceed with caution.",
+      "When the bicycle gets near the pedestrians it might move onto the roadway, so I’ll move into the lane of oncoming traffic and proceed.",
+      "I’ll sound my horn to warn the bicycle not to move into the roadway and keep driving just as I am now.",
+    ],
+    answers: ["true", "false", "false"],
+    explanation: "Anticipate that the bicycle may enter the roadway, reduce speed, and remain prepared to stop.",
+  },
+  {
+    id: 5,
+    speed: "40 km/h",
+    prompt: "You are driving along at 40 km/h. What kinds of things should you be careful of?",
+    image: { src: "/images/honman-test/danger-3-5.png", alt: "Driver approaching an icy bridge in a snowy mountain area" },
+    statements: [
+      "The surface of bridges freeze easily, so to avoid slipping I’ll reduce speed before reaching the bridge.",
+      "I don’t see any oncoming vehicles and there isn’t anything particularly dangerous, so I’ll keep driving at this speed.",
+      "I might slip on the bridge, so I’ll reduce speed and avoid braking or swerving suddenly.",
+    ],
+    answers: ["true", "false", "true"],
+    explanation: "Bridge surfaces freeze easily; reduce speed before the bridge and avoid sudden steering or braking inputs.",
+  },
+];
