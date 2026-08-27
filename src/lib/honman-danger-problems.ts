@@ -155,8 +155,8 @@ export const honmanDangerProblemsThree: DangerPredictionProblem[] = [
       "If I reduce speed suddenly in the main through lane, I might be rear-ended by the vehicle following me, so I’ll enter the deceleration lane and then gradually reduce speed.",
       "After entering the deceleration lane, I won’t rely on instinct but rather will check the speedometer as I reduce speed to ensure I am doing it correctly.",
     ],
-    answers: ["false", "true", "true"],
-    explanation: "Enter the deceleration lane before reducing speed, slow down gradually, and confirm your speed with the speedometer.",
+    answers: ["true", "true", "true"],
+    explanation: "It is dangerous to reduce speed suddenly in a main through lane. The driver should use the deceleration lane.",
   },
   {
     id: 2,
@@ -181,8 +181,8 @@ export const honmanDangerProblemsThree: DangerPredictionProblem[] = [
       "The moped might approach the four-wheeled vehicle turning left and move to the right of it, so I’ll reduce speed and watch how it moves.",
       "I think if the four-wheeled vehicle stops the moped will stop behind it, so I’ll move to the right and turn right.",
     ],
-    answers: ["false", "true", "false"],
-    explanation: "Slow down and watch both the car and moped; the moped may move right to pass the turning vehicle.",
+    answers: ["true", "false", "false"],
+    explanation: "The driver should predict that the moped might change lanes, and reduce speed to avoid approaching it.",
   },
   {
     id: 4,
@@ -194,8 +194,8 @@ export const honmanDangerProblemsThree: DangerPredictionProblem[] = [
       "When the bicycle gets near the pedestrians it might move onto the roadway, so I’ll move into the lane of oncoming traffic and proceed.",
       "I’ll sound my horn to warn the bicycle not to move into the roadway and keep driving just as I am now.",
     ],
-    answers: ["true", "false", "false"],
-    explanation: "Anticipate that the bicycle may enter the roadway, reduce speed, and remain prepared to stop.",
+    answers: ["true", "false", "true"],
+    explanation: "The driver should predict that the bicycle might enter the lane, and pay attention to its movement.",
   },
   {
     id: 5,
@@ -207,8 +207,8 @@ export const honmanDangerProblemsThree: DangerPredictionProblem[] = [
       "I don’t see any oncoming vehicles and there isn’t anything particularly dangerous, so I’ll keep driving at this speed.",
       "I might slip on the bridge, so I’ll reduce speed and avoid braking or swerving suddenly.",
     ],
-    answers: ["true", "false", "true"],
-    explanation: "Bridge surfaces freeze easily; reduce speed before the bridge and avoid sudden steering or braking inputs.",
+    answers: ["true", "false", "false"],
+    explanation: "The driver should reduce speed on the bridge because its surface tends to freeze.",
   },
 ];
 
