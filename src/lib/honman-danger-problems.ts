@@ -224,7 +224,7 @@ export const honmanDangerProblemsFour: DangerPredictionProblem[] = [
       "The vehicle approaching from the right might come out without noticing my vehicle, so I’ll drive at a speed at which I can stop at any time.",
     ],
     answers: ["true", "true", "true"],
-    explanation: "At a poorly visible intersection, reduce speed enough to stop at any time and make your approach noticeable to other road users.",
+    explanation: "The driver should pay attention to vehicles that might proceed without noticing the motorcycle.",
   },
   {
     id: 2,
@@ -237,7 +237,7 @@ export const honmanDangerProblemsFour: DangerPredictionProblem[] = [
       "I want to pass by the side of the truck while there are no oncoming vehicles, so I’ll accelerate and proceed.",
     ],
     answers: ["true", "true", "false"],
-    explanation: "Leave room beside the truck, slow to a speed that permits an immediate stop, and check carefully for hidden pedestrians beyond it.",
+    explanation: "The driver should stop before passing the stopped vehicle and check for safety.",
   },
   {
     id: 3,
@@ -250,7 +250,7 @@ export const honmanDangerProblemsFour: DangerPredictionProblem[] = [
       "There might be a vehicle in the blind spot of my mirror, so I’ll check for safety with my own eyes and then merge.",
     ],
     answers: ["false", "true", "true"],
-    explanation: "Do not rush into a gap. Adjust speed to merge safely behind approaching traffic and check the blind spot directly before moving over.",
+    explanation: "The driver should accelerate sufficiently in the acceleration lane and merge smoothly.",
   },
   {
     id: 4,
@@ -263,7 +263,7 @@ export const honmanDangerProblemsFour: DangerPredictionProblem[] = [
       "There are pedestrians in the safety zone, but it doesn’t seem that they will cross the road, so I’ll keep driving at this speed.",
     ],
     answers: ["true", "true", "false"],
-    explanation: "Watch pedestrians on both sides of the roadway and proceed slowly enough to stop immediately if anyone begins to cross.",
+    explanation: "The driver should slow down in preparation for pedestrians who might cross the road from or to the safety zone.",
   },
   {
     id: 5,
@@ -276,6 +276,6 @@ export const honmanDangerProblemsFour: DangerPredictionProblem[] = [
       "The dust cloud won’t have any particular effect on my vehicle, so I’ll keep driving at this speed.",
     ],
     answers: ["true", "false", "false"],
-    explanation: "Dust can hide the road and other traffic. Reduce speed and maintain a safe following distance without moving dangerously toward the road edge.",
+    explanation: "The driver should take precautions as the dust cloud may reduce visibility ahead.",
   },
 ];
