@@ -1,0 +1,5 @@
+.backdrop{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;overflow-y:auto;padding:24px;background:rgba(4,24,39,.78);backdrop-filter:blur(6px);animation:examFadeIn .2s ease-out}
+.modal{width:min(980px,100%);max-height:calc(100vh - 48px);overflow-y:auto;border-radius:16px}
+@keyframes examFadeIn{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.backdrop{animation:none}}
+@media(max-width:650px){.backdrop{padding:0;align-items:stretch}.modal{max-height:100vh;border-radius:0}}

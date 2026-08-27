@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { AdminActionForm } from "@/components/admin-action-form";
 import { requireAdmin } from "@/lib/admin-auth";
 import {
   getBingSearchPerformance,
@@ -19,6 +20,14 @@ type AnalyticsRow = {
   label: string | null;
   session_id: string;
   created_at: string;
+};
+
+type SiteSettingsRow = {
+  google_site_verification: string | null;
+  bing_site_verification: string | null;
+  facebook_pixel_id: string | null;
+  google_analytics_id: string | null;
+  google_tag_manager_id: string | null;
 };
 
 function toTopItems(values: string[], limit = 8) {
@@ -102,6 +111,83 @@ function SearchTable({
   );
 }
 
+function SeoSetupPanel({ settings }: { settings: SiteSettingsRow | null }) {
+  return (
+    <section className="analytics-panel seo-setup-panel">
+      <div className="analytics-panel-heading">
+        <div>
+          <span>SEO SETUP</span>
+          <h2>Verification &amp; tracking IDs</h2>
+        </div>
+      </div>
+      {!settings ? (
+        <section className="admin-course-setup">
+          <strong>Site settings table পাওয়া যায়নি</strong>
+          <p>Apply the latest Supabase migration, then reload this page.</p>
+          <code>supabase db push</code>
+        </section>
+      ) : (
+        <>
+          <p className="analytics-setup-message">
+            নিচের value গুলো save করলে সাথে সাথে পুরো website-এর প্রতিটি
+            page-এ apply হয়ে যাবে — আলাদা করে কোনো code deploy করার দরকার
+            নেই।
+          </p>
+          <AdminActionForm
+            actionName="updateSiteSettings"
+            className="admin-content-form"
+            successMessage="SEO ও tracking setup save হয়েছে।"
+          >
+            <label>
+              Google Search Console verification
+              <input
+                name="googleSiteVerification"
+                defaultValue={settings.google_site_verification ?? ""}
+                placeholder="google-site-verification meta tag এর content value"
+              />
+            </label>
+            <label>
+              Bing Webmaster Tools verification
+              <input
+                name="bingSiteVerification"
+                defaultValue={settings.bing_site_verification ?? ""}
+                placeholder="msvalidate.01 meta tag এর content value"
+              />
+            </label>
+            <label>
+              Facebook Pixel ID
+              <input
+                name="facebookPixelId"
+                defaultValue={settings.facebook_pixel_id ?? ""}
+                placeholder="যেমন 1234567890123456"
+              />
+            </label>
+            <label>
+              Google Analytics (GA4) Measurement ID
+              <input
+                name="googleAnalyticsId"
+                defaultValue={settings.google_analytics_id ?? ""}
+                placeholder="যেমন G-XXXXXXXXXX"
+              />
+            </label>
+            <label>
+              Google Tag Manager ID
+              <input
+                name="googleTagManagerId"
+                defaultValue={settings.google_tag_manager_id ?? ""}
+                placeholder="যেমন GTM-XXXXXXX"
+              />
+            </label>
+            <button className="admin-submit-button" type="submit">
+              Save SEO setup
+            </button>
+          </AdminActionForm>
+        </>
+      )}
+    </section>
+  );
+}
+
 export default async function AdminAnalyticsPage() {
   const { supabase } = await requireAdmin();
   const now = new Date();
@@ -109,7 +195,7 @@ export default async function AdminAnalyticsPage() {
   cutoff.setUTCDate(cutoff.getUTCDate() - 30);
   const today = now.toISOString().slice(0, 10);
 
-  const [{ data, error }, google, bing] = await Promise.all([
+  const [{ data, error }, google, bing, { data: siteSettings }] = await Promise.all([
     supabase
       .from("analytics_events")
       .select("event_type,path,target,label,session_id,created_at")
@@ -118,6 +204,13 @@ export default async function AdminAnalyticsPage() {
       .limit(10000),
     getGoogleSearchPerformance(),
     getBingSearchPerformance(),
+    supabase
+      .from("site_settings")
+      .select(
+        "google_site_verification,bing_site_verification,facebook_pixel_id,google_analytics_id,google_tag_manager_id",
+      )
+      .eq("id", true)
+      .maybeSingle<SiteSettingsRow>(),
   ]);
 
   const events = (data ?? []) as AnalyticsRow[];
@@ -157,6 +250,8 @@ export default async function AdminAnalyticsPage() {
           </p>
         </section>
       ) : null}
+
+      <SeoSetupPanel settings={siteSettings ?? null} />
 
       <section className="admin-stats analytics-stats">
         <article>

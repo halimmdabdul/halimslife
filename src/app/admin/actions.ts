@@ -499,7 +499,41 @@ export async function deleteCourseItem(formData: FormData) {
   revalidatePath("/academy");
 }
 
-export type AdminCourseActionName =
+const safeTrackingIdPattern = /^[A-Za-z0-9_.-]+$/;
+
+function optionalIdText(formData: FormData, name: string, maxLength: number) {
+  const value = String(formData.get(name) ?? "").trim();
+  if (!value) return null;
+  if (value.length > maxLength) {
+    throw new Error(`${name} is too long (max ${maxLength} characters).`);
+  }
+  if (!safeTrackingIdPattern.test(value)) {
+    throw new Error(`${name} may only contain letters, numbers, "-", "_", and ".".`);
+  }
+  return value;
+}
+
+export async function updateSiteSettings(formData: FormData) {
+  const { supabase } = await requireAdmin();
+
+  const { error } = await supabase
+    .from("site_settings")
+    .update({
+      google_site_verification: optionalIdText(formData, "googleSiteVerification", 200),
+      bing_site_verification: optionalIdText(formData, "bingSiteVerification", 200),
+      facebook_pixel_id: optionalIdText(formData, "facebookPixelId", 60),
+      google_analytics_id: optionalIdText(formData, "googleAnalyticsId", 60),
+      google_tag_manager_id: optionalIdText(formData, "googleTagManagerId", 60),
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", true);
+  if (error) throw new Error(`SEO settings update failed: ${error.message}`);
+
+  revalidatePath("/admin/analytics");
+  revalidatePath("/", "layout");
+}
+
+export type AdminActionName =
   | "createCourse"
   | "updateCourse"
   | "createCourseSection"
@@ -510,14 +544,15 @@ export type AdminCourseActionName =
   | "updateLectureMaterial"
   | "deleteLectureMaterial"
   | "toggleCoursePublished"
-  | "deleteCourseItem";
+  | "deleteCourseItem"
+  | "updateSiteSettings";
 
 export type AdminActionResult =
   | { ok: true }
   | { ok: false; message: string };
 
 export async function submitAdminCourseAction(
-  actionName: AdminCourseActionName,
+  actionName: AdminActionName,
   formData: FormData,
 ): Promise<AdminActionResult> {
   try {
@@ -554,6 +589,9 @@ export async function submitAdminCourseAction(
         break;
       case "deleteCourseItem":
         await deleteCourseItem(formData);
+        break;
+      case "updateSiteSettings":
+        await updateSiteSettings(formData);
         break;
       default:
         return { ok: false, message: "This admin action is not supported." };

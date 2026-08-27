@@ -1,0 +1,16 @@
+.vocabQuiz{margin-top:16px;padding:20px;border:1px solid #cbbd9f;background:#fff8e9;text-align:center}
+.vocabQuizScore{margin-bottom:12px;color:#61707a;font-size:10px}
+.vocabQuizScore b{color:#087255}
+.vocabQuizWord{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;color:#0a2f52;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:32px}
+.vocabQuizReplay{display:grid;width:34px;height:34px;place-items:center;border:1px solid #d1c4ad;border-radius:50%;color:#087255;background:#fffdf8;font-size:14px;cursor:pointer}
+.vocabQuizOptions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.vocabQuizOptions button{min-height:44px;padding:8px 12px;border:1px solid #d1c4ad;border-radius:6px;color:#0a2f52;background:#fffdf8;font:inherit;font-size:12px;font-weight:700;cursor:pointer;text-align:left}
+.vocabQuizOptions button:disabled{cursor:not-allowed}
+.vocabQuizOptions button:not(:disabled):hover{border-color:#087255}
+.vocabQuizCorrect{border-color:#087255!important;background:#eaf5ef!important}
+.vocabQuizWrong{border-color:#c1553f!important;background:#fdeeea!important}
+.vocabQuizFeedback{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:8px;flex-wrap:wrap}
+.vocabQuizFeedbackCorrect{color:#087255;font-size:11px;font-weight:800}
+.vocabQuizFeedbackWrong{color:#b35e17;font-size:11px;font-weight:800}
+.vocabQuizNext{min-height:34px;padding:0 14px;border:1px solid #087255;border-radius:6px;color:#fff;background:#087255;font-size:11px;font-weight:800;cursor:pointer}
+@media(max-width:560px){.vocabQuizOptions{grid-template-columns:1fr}}

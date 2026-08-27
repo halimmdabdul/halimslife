@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 import {
   submitAdminCourseAction,
-  type AdminCourseActionName,
+  type AdminActionName,
 } from "@/app/admin/actions";
 
 type Confirmation = {
@@ -16,7 +16,7 @@ type Confirmation = {
 };
 
 type AdminActionFormProps = {
-  actionName: AdminCourseActionName;
+  actionName: AdminActionName;
   children: ReactNode;
   className?: string;
   confirm?: Confirmation;

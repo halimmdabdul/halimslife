@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { AnalyticsTracker } from "@/components/analytics-tracker";
 import { SitePreferencesProvider } from "@/components/site-preferences";
+import { TrackingScripts } from "@/components/tracking-scripts";
+import { getSiteSettings } from "@/lib/site-settings";
 
 import "./globals.css";
 
@@ -16,37 +18,51 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://halimslife.com"),
-  title: {
-    default: "Halim Md Abdul | Japan-based Bangladeshi Software Engineer",
-    template: "%s | Halim Md Abdul",
-  },
-  description:
-    "Japan-based software engineer working across robotics, computer vision, research and Bengali-friendly education.",
-  openGraph: {
-    title: "Halim Md Abdul | Engineer, Researcher & Educator",
-    description:
-      "Intelligent systems, practical research and learning tools built from Japan.",
-    url: "https://halimslife.com",
-    siteName: "Halim's Life",
-    type: "website",
-    locale: "bn_BD",
-  },
-  alternates: {
-    canonical: "/",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  const verification: NonNullable<Metadata["verification"]> = {};
+  if (settings.googleSiteVerification) {
+    verification.google = settings.googleSiteVerification;
+  }
+  if (settings.bingSiteVerification) {
+    verification.other = { "msvalidate.01": settings.bingSiteVerification };
+  }
 
-export default function RootLayout({
+  return {
+    metadataBase: new URL("https://halimslife.com"),
+    title: {
+      default: "Halim Md Abdul | Japan-based Bangladeshi Software Engineer",
+      template: "%s | Halim Md Abdul",
+    },
+    description:
+      "Japan-based software engineer working across robotics, computer vision, research and Bengali-friendly education.",
+    openGraph: {
+      title: "Halim Md Abdul | Engineer, Researcher & Educator",
+      description:
+        "Intelligent systems, practical research and learning tools built from Japan.",
+      url: "https://halimslife.com",
+      siteName: "Halim's Life",
+      type: "website",
+      locale: "bn_BD",
+    },
+    alternates: {
+      canonical: "/",
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    verification: Object.keys(verification).length ? verification : undefined,
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSiteSettings();
+
   return (
     <html
       lang="bn"
@@ -60,6 +76,7 @@ export default function RootLayout({
               "try{var t=localStorage.getItem('halim-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;var l=localStorage.getItem('halim-language');if(l==='bn'||l==='en'||l==='ja'){document.documentElement.lang=l}}catch(e){}",
           }}
         />
+        <TrackingScripts settings={settings} />
       </head>
       <body>
         <SitePreferencesProvider>

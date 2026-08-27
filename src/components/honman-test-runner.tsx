@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
+import Swal from "sweetalert2";
 
 import type { HonmanOfficialAnswer } from "@/lib/honman-official-answers";
 import type { HonmanQuestion } from "@/lib/honman-tests";
 
 import feedbackStyles from "./honman-answer-feedback.module.css";
+import modalStyles from "./honman-exam-modal.module.css";
 import startStyles from "./honman-exam-start.module.css";
 import timerStyles from "./honman-exam-timer.module.css";
 import gridStyles from "./honman-question-grid.module.css";
@@ -18,6 +20,10 @@ type ExamSession = { order: number[]; deadline: number; finished?: boolean };
 const answerStorageKey = "honman-test-1-answers";
 const sessionStorageKey = "honman-test-1-session-v3";
 const examDurationMs = 50 * 60 * 1000;
+
+function alertTheme() {
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+}
 
 function shuffleQuestions(questions: HonmanQuestion[]) {
   const shuffled = [...questions];
@@ -77,6 +83,13 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
   }, [questions]);
 
   useEffect(() => {
+    if (!started || finished) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [started, finished]);
+
+  useEffect(() => {
     if (!started || !deadline || finished || reviewMode) return;
     const updateTimer = () => {
       const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
@@ -102,7 +115,7 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
   const selectedAnswer = answers[question.id];
 
   function choose(value: Answer) {
-    if (reviewMode) return;
+    if (reviewMode || selectedAnswer) return;
     const next = { ...answers, [question.id]: value };
     setAnswers(next);
     window.localStorage.setItem(answerStorageKey, JSON.stringify(next));
@@ -130,6 +143,23 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
     window.localStorage.setItem(sessionStorageKey, JSON.stringify({ order: orderedQuestions.map((question) => question.id), deadline: deadline ?? Date.now(), finished: true } satisfies ExamSession));
   }
 
+  async function confirmFinishEarly() {
+    const result = await Swal.fire({
+      theme: alertTheme(),
+      icon: "warning",
+      title: "এখনই exam শেষ করবেন?",
+      text: "বাকি প্রশ্নগুলো unanswered থেকে যাবে।",
+      showCancelButton: true,
+      reverseButtons: true,
+      focusCancel: true,
+      confirmButtonText: "হ্যাঁ, শেষ করুন",
+      cancelButtonText: "না, ফিরে যাই",
+      confirmButtonColor: "#d9485f",
+      cancelButtonColor: "#61747c",
+    });
+    if (result.isConfirmed) finishExam();
+  }
+
   function reviewIncorrect() {
     if (!incorrectQuestions.length) return;
     setReviewMode(true);
@@ -141,17 +171,21 @@ export function HonmanTestRunner({ questions, answerKey }: { questions: HonmanQu
 
   if (finished) return <section className={styles.result} id="selected-test"><span>{remainingSeconds === 0 ? "Time is up" : "Test 1 complete"}</span><h2>{correct}/{questions.length} correct</h2><p>{answered}/{questions.length} questions answered · {incorrectQuestions.length} wrong। এই result refresh করার পরও থাকবে; নতুন attempt-এ ভুল questions আগে এবং বাকি questions shuffled order-এ আসবে।</p>{incorrectQuestions.length ? <button onClick={reviewIncorrect}>ভুল answers review করুন ({incorrectQuestions.length})</button> : null}<button onClick={startExam}>{incorrectQuestions.length ? "ভুলগুলো আগে রেখে নতুন exam শুরু করুন" : "নতুন shuffled exam শুরু করুন"}</button></section>;
 
-  return <section className={styles.runner} id="selected-test">
-    <header><div><span>HONMAN TEST 1 · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
-    <div className={`${styles.layout} ${gridStyles.singleColumn}`}>
-      <article className={styles.questionCard}>
-        <div className={styles.questionNumber}><span>Question</span><b>{String(displayQuestionNumber).padStart(2,"0")}</b></div>
-        <h3>{question.text}</h3>
-        {question.figure ? <figure><Image src={question.figure.src} alt={question.figure.alt} width={760} height={470} priority={question.id === 5}/><figcaption>{question.figure.alt}</figcaption></figure> : null}
-        <div className={styles.answers}><button disabled={reviewMode} className={selectedAnswer === "true" ? `${styles.selectedAnswer} ${official?.answer === "true" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("true")}><b>○</b><span>TRUE</span><small>Statement is correct</small></button><button disabled={reviewMode} className={selectedAnswer === "false" ? `${styles.selectedAnswer} ${official?.answer === "false" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("false")}><b>×</b><span>FALSE</span><small>Statement is incorrect</small></button></div>
-        {selectedAnswer && official ? <aside className={`${feedbackStyles.explanation} ${selectedAnswer === official.answer ? feedbackStyles.correct : feedbackStyles.incorrect}`} aria-live="polite"><strong>{selectedAnswer === official.answer ? "✓ Correct answer" : "× Incorrect answer"}</strong><span>Official answer: <b>{official.answer.toUpperCase()}</b></span><p>{official.explanation}</p></aside> : null}
-        <footer><button disabled={current === 0} onClick={() => setCurrent((value) => Math.max(0,value - 1))}>← Previous</button>{reviewMode ? <>{current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next wrong answer →</button> : null}<button onClick={() => { setReviewMode(false); setFinished(true); }}>← Back to result</button></> : current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next question →</button> : <button onClick={finishExam}>Finish test →</button>}</footer>
-      </article>
+  return <div className={modalStyles.backdrop} role="presentation">
+    <div className={modalStyles.modal}>
+      <section className={styles.runner} id="selected-test">
+        <header><div><span>HONMAN TEST 1 · {reviewMode ? "WRONG ANSWER REVIEW" : "FULL EXAM"}</span><h2>{reviewMode ? `${incorrectQuestions.length} answers to review` : "True or False"}</h2></div><div className={timerStyles.examStatus}><div className={!reviewMode && remainingSeconds <= 300 ? timerStyles.urgent : ""}><span>{reviewMode ? "REVIEW MODE" : "TIME LEFT"}</span><strong>{reviewMode ? "PAUSED" : formatTime(remainingSeconds)}</strong></div><div className={styles.progress}><span>{answered}/{questions.length} answered</span><i><b style={{ width: `${progress}%` }}/></i></div></div></header>
+        <div className={`${styles.layout} ${gridStyles.singleColumn}`}>
+          <article className={styles.questionCard}>
+            <div className={styles.questionNumber}><span>Question</span><b>{String(displayQuestionNumber).padStart(2,"0")}</b></div>
+            <h3>{question.text}</h3>
+            {question.figure ? <figure><Image src={question.figure.src} alt={question.figure.alt} width={760} height={470} priority={question.id === 5}/><figcaption>{question.figure.alt}</figcaption></figure> : null}
+            <div className={styles.answers}><button disabled={reviewMode || Boolean(selectedAnswer)} className={selectedAnswer === "true" ? `${styles.selectedAnswer} ${official?.answer === "true" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("true")}><b>○</b><span>TRUE</span><small>Statement is correct</small></button><button disabled={reviewMode || Boolean(selectedAnswer)} className={selectedAnswer === "false" ? `${styles.selectedAnswer} ${official?.answer === "false" ? feedbackStyles.correctAnswer : feedbackStyles.wrongAnswer}` : ""} onClick={() => choose("false")}><b>×</b><span>FALSE</span><small>Statement is incorrect</small></button></div>
+            {selectedAnswer && official ? <aside className={`${feedbackStyles.explanation} ${selectedAnswer === official.answer ? feedbackStyles.correct : feedbackStyles.incorrect}`} aria-live="polite"><strong>{selectedAnswer === official.answer ? "✓ Correct answer" : "× Incorrect answer"}</strong><span>Official answer: <b>{official.answer.toUpperCase()}</b></span><p>{official.explanation}</p></aside> : null}
+            <footer><button disabled={current === 0} onClick={() => setCurrent((value) => Math.max(0,value - 1))}>← Previous</button>{reviewMode ? <>{current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next wrong answer →</button> : null}<button onClick={() => { setReviewMode(false); setFinished(true); }}>← Back to result</button></> : <>{current < visibleQuestions.length - 1 ? <button className={styles.finishNow} onClick={confirmFinishEarly}>Finish exam</button> : null}{current < visibleQuestions.length - 1 ? <button onClick={() => setCurrent((value) => Math.min(visibleQuestions.length - 1,value + 1))}>Next question →</button> : <button onClick={finishExam}>Finish test →</button>}</>}</footer>
+          </article>
+        </div>
+      </section>
     </div>
-  </section>;
+  </div>;
 }

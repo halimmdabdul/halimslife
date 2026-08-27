@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/academy",
     "/academy/japanese-n5",
     "/projects/minna-no-nihongo-n5",
+    "/projects/minna-no-nihongo-n4",
     "/scholarships",
     "/insights",
     "/contact",
