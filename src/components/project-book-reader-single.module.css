@@ -5,18 +5,39 @@
 .divider i{height:1px;flex:1;background:linear-gradient(90deg,#bba887,transparent)}
 .unitGroup{border-bottom:1px solid #d7c8ad}
 .unitGroup>button{border-bottom:0!important}
+.indexUnit{min-width:0;border-bottom:1px dotted #c8b999}
+.indexUnit>button{width:100%;border-bottom:0!important}
+.indexUnit .unitMenu{border-top:1px solid #dfd0b6}
 .unitMenu{display:grid;grid-template-columns:1fr 1fr;padding:8px 10px 12px;gap:5px;background:#e9ddc8}
 .unitMenu button{min-height:34px!important;padding:6px 8px!important;gap:7px!important;border:1px solid #d1c0a3!important;border-radius:7px!important;background:#fffaf0!important;color:#273b36!important}
 .unitMenu button:last-child{grid-column:1/-1}
 .unitMenu button b{display:grid;width:22px;height:22px;place-items:center;border-radius:50%;background:#e0ecdf;color:#087255;font-size:12px!important}
 .unitMenu button span{font-size:11px;font-weight:800}
+.unitMenu button:disabled{cursor:not-allowed;filter:grayscale(.7);opacity:.45}
 .unitMenu .activeUnitMenu{border-color:#087255!important;background:#edf5eb!important;box-shadow:inset 3px 0 #087255}
 .unitSection{padding-top:4px}
+.modalSteps{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:-8px 0 26px}
+.modalSteps button{display:flex;min-width:0;align-items:center;gap:7px;padding:8px;border:1px solid #d9ccb4;border-radius:8px;color:#7a776f;background:#f7f0e3;font:inherit;text-align:left;cursor:pointer}
+.modalSteps button>b{display:grid;width:24px;height:24px;flex:0 0 24px;place-items:center;border-radius:50%;background:#e5dccb;color:#675f52;font-size:12px}
+.modalSteps button:disabled{cursor:not-allowed;opacity:.45}
+.modalSteps small{overflow:hidden;font-size:9px;font-weight:800;text-overflow:ellipsis;white-space:nowrap}
+.modalSteps .currentStep{border-color:#087255;color:#087255;background:#edf5eb;box-shadow:inset 0 -3px #087255}
+.modalSteps .currentStep>b,.modalSteps .finishedStep>b{color:#fff;background:#087255}
+.modalSteps .finishedStep{color:#437063;background:#f0f5ed}
 .unitIntro{display:flex;align-items:center;gap:18px;margin:18px 0 28px;padding:18px 20px;border:1px solid #d7c7aa;border-radius:12px;background:linear-gradient(120deg,#f3f6e9,#fffaf0 68%)}
 .unitIntro>b{display:grid;flex:0 0 66px;height:66px;place-items:center;border-radius:50%;background:#087255;color:#fff;font:800 34px Georgia,serif;box-shadow:0 9px 20px #08725526}
 .unitIntro h2{margin:0 0 5px;color:#082e50;font:800 25px Georgia,"Noto Serif Bengali",serif}
 .unitIntro p{margin:0;color:#52635e;line-height:1.65}
-.vocabGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grammarIntro{margin-bottom:14px;background:linear-gradient(120deg,#e8f2e6,#fffaf0 70%)}
+.grammarIntro>div>span{display:block;margin-bottom:5px;color:#9a7139;font-size:9px;font-weight:900;letter-spacing:.12em}
+.grammarIntro p{font-size:13px}
+.grammarOverview{margin:0 0 20px;padding:20px 22px;border:1px solid #d7c8ad;border-radius:12px;background:#fffdf8;box-shadow:0 8px 22px #493a260d}
+.grammarOverview>span{display:inline-flex;align-items:center;min-height:27px;padding:0 10px;border-radius:99px;color:#fff;background:#087255;font-size:10px;font-weight:850}
+.grammarOverview>div{display:grid;gap:0;margin-top:12px}
+.grammarOverview p{position:relative;margin:0;padding:10px 0 10px 19px;border-top:1px solid #ebe0cd;color:#314d5a;font-family:Georgia,"Noto Serif Bengali",serif;font-size:14px;line-height:1.9}
+.grammarOverview p:first-child{border-top:0}
+.grammarOverview p:before{position:absolute;top:22px;left:2px;width:6px;height:6px;border-radius:50%;background:#c9923f;content:""}
+.vocabGrid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;align-items:stretch;gap:12px}
 .memoryScene{position:relative;margin:0 0 18px;overflow:hidden;border:1px solid #d4c3a5;border-radius:14px;background:#ede2cf;box-shadow:0 12px 30px #4c3b251a}
 .memoryScene img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .memoryScene figcaption{position:absolute;right:12px;bottom:12px;left:12px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 14px;border:1px solid #ffffff80;border-radius:9px;background:#fffaf0e8;color:#344b44;backdrop-filter:blur(8px)}
@@ -25,7 +46,36 @@
 .vocabCount{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;padding:10px 13px;border-radius:8px;background:#e9f1e5;color:#416057;font-size:12px}
 .vocabCount strong{color:#087255;font-size:14px}
 .vocabCard{position:relative;padding:18px 18px 16px 52px;border:1px solid #ddcfb6;border-radius:10px;background:#fffdf7}
-.vocabCard>span{position:absolute;top:17px;left:16px;color:#a67832;font:700 12px Georgia,serif}
+.vocabCardWrap{position:relative;min-width:0;height:100%;transition:opacity .2s ease,transform .2s ease}
+.vocabCardWrap>.vocabCard{height:100%}
+.rememberButton{position:absolute;z-index:5;top:8px;right:8px;display:grid;width:24px;height:24px;place-items:center;padding:0;border:1px solid #a9aea9;border-radius:50%;color:#fff;background:#a9aea9;font:inherit;font-size:13px;font-weight:900;cursor:pointer;box-shadow:0 3px 8px #263b3930}
+.rememberButton:hover,.rememberButton:focus-visible{border-color:#6b756f;background:#8b938e;outline:3px solid #d7b36d;outline-offset:2px}
+.rememberedButton{border-color:#087255;color:#fff;background:#087255;box-shadow:0 3px 9px #08725555}
+.rememberedButton:hover,.rememberedButton:focus-visible{border-color:#065a43;background:#065a43}
+.rememberedCard>.vocabCard,.rememberedCard .vocabCardFront{border-color:#78aa91;background:#f0f7ef}
+.vocabNumber{position:absolute;z-index:1;top:17px;left:16px;color:#a67832;font:700 12px Georgia,serif}
+.vocabCardWithImage{display:grid;grid-template-columns:92px minmax(0,1fr);align-items:center;gap:14px;padding:12px}
+.vocabCardWithImage .vocabNumber{top:8px;left:8px;display:grid;width:24px;height:24px;place-items:center;border-radius:50%;color:#fff;background:#087255;box-shadow:0 3px 8px #07365a33}
+.vocabImage{display:block;width:92px;aspect-ratio:1;overflow:hidden;border:1px solid #d8c6a8;border-radius:9px;background-image:url('/images/projects/n5-vocabulary/unit-01-sprites.png');background-repeat:no-repeat;background-size:800% 500%;box-shadow:0 5px 12px #493a2618}
+.vocabCopy{min-width:0}
+.vocabFlipCard{display:block;min-height:148px;padding:0;overflow:visible;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;perspective:1000px}
+.vocabFlipCard .vocabNumber{top:8px;left:8px;display:grid;width:24px;height:24px;place-items:center;border-radius:50%;color:#fff;background:#087255;box-shadow:0 3px 8px #07365a33}
+.vocabFlipInner{position:relative;display:grid;width:100%;height:100%;min-height:148px;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.75,.25,1)}
+.flippedCard .vocabFlipInner{transform:rotateY(180deg)}
+.vocabCardFront,.vocabCardBack{grid-area:1/1;min-width:0;height:100%;min-height:148px;border:1px solid #ddcfb6;border-radius:10px;background:#fffdf7;backface-visibility:hidden}
+.vocabCardFront{display:grid;grid-template-columns:92px minmax(0,1fr);align-items:center;gap:14px;padding:12px}
+.vocabCardFront .vocabCopy{display:flex;align-items:flex-start;flex-direction:column}
+.vocabCardFront .vocabCopy>strong{color:#07365a;font:800 21px "Noto Sans JP",sans-serif}
+.vocabCardFront .vocabCopy>small{margin-top:5px;color:#53635f;font-size:14px;line-height:1.55}
+.vocabCardFront .vocabCopy>i,.vocabCardBack>i{margin-top:9px;color:#087255;font-size:9px;font-style:normal;font-weight:800}
+.vocabCardBack{display:flex;justify-content:center;flex-direction:column;padding:22px 24px;color:#fff;background:linear-gradient(145deg,#07365a,#087255);transform:rotateY(180deg)}
+.focusWordBadge{align-self:flex-start;margin-bottom:8px;padding:4px 8px;border:1px solid #ffffff42;border-radius:99px;color:#d8eee7;background:#ffffff12;font-size:9px;font-weight:850}
+.vocabCardBack>strong{font:800 19px "Noto Sans JP",sans-serif;line-height:1.5}
+.focusVocabulary{display:inline-block;margin:0 2px;padding:0 5px;border-radius:5px;color:#07365a;background:#ffd978;box-shadow:0 2px 0 #e3a637;font:inherit}
+.vocabCardBack>span{margin-top:7px;color:#cce8df;font-size:12px;font-style:italic}
+.vocabCardBack>p{margin:9px 0 0;color:#fffaf0;font-size:14px;line-height:1.55}
+.vocabCardBack>i{color:#d6b46f}
+.vocabFlipCard:focus-visible{outline:3px solid #d09a43;outline-offset:3px;border-radius:10px}
 .vocabCard h3{margin:0 0 6px;color:#07365a;font:800 21px "Noto Sans JP",sans-serif}
 .vocabCard p{margin:0;color:#53635f;font-size:14px;line-height:1.55}
 .studyTip{margin:24px 0;padding:17px 20px;border-left:4px solid #087255;background:#edf4e8;color:#334d45}
@@ -35,20 +85,128 @@
 .patternList article{display:flex;align-items:center;gap:14px;padding:15px 18px;border:1px solid #d9ccb4;border-radius:10px;background:#fffdf8}
 .patternList span{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;background:#e6efe5;color:#087255;font-weight:900}
 .patternList code{color:#082e50;font:700 18px "Noto Sans JP",sans-serif;white-space:normal}
+.grammarDetailList{display:grid;gap:18px}
+.grammarDetailCard{overflow:hidden;border:1px solid #d7c8ad;border-radius:13px;background:#fffdf8;box-shadow:0 8px 20px #493a260d}
+.grammarDetailCard>header{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid #ddcfb6;background:linear-gradient(120deg,#eaf3e8,#f8f2e7)}
+.grammarDetailCard>header>span{display:grid;width:36px;height:36px;flex:0 0 36px;place-items:center;border-radius:50%;color:#fff;background:#087255;font:800 12px Georgia,serif}
+.grammarDetailCard header div{min-width:0}
+.grammarDetailCard header small{display:block;margin-bottom:3px;color:#527066;font-size:11px;font-weight:800}
+.grammarDetailCard header code{color:#082e50;font:800 18px "Noto Sans JP",sans-serif;white-space:normal}
+.grammarUsage{margin:18px 18px 4px;padding:16px;border-radius:11px;color:#fff;background:linear-gradient(135deg,#082e50,#0b4860);box-shadow:0 10px 24px #082e5026}
+.grammarUsage>span{display:block;margin-bottom:11px;color:#b9d9d0;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.grammarUsage>div{display:flex;align-items:stretch;gap:7px;overflow-x:auto;padding-bottom:4px}
+.grammarUsage>div>div{position:relative;display:flex;min-width:max-content;justify-content:center;flex:1;flex-direction:column;padding:11px 12px;border:1px solid #ffffff35;border-radius:8px;background:#ffffff10;text-align:center}
+.grammarUsage>div>div:not(:last-child):after{position:absolute;z-index:2;top:50%;right:-8px;color:#d9b15f;font-size:12px;font-weight:900;content:"›";transform:translateY(-50%)}
+.grammarUsage>div strong{color:#fff;font:800 17px "Noto Sans JP",sans-serif}
+.grammarUsage>div small{margin-top:4px;color:#bcd3d5;font-size:8px;font-weight:750}
+.grammarUsage>div .grammarTokenAccent{border-color:#e5bd67;background:#d9a84622;box-shadow:inset 0 -3px #d9a846}
+.grammarUsage>div .grammarTokenAccent strong{color:#ffdf8c}
+.grammarUsage>p{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:12px 0 0;padding-top:11px;border-top:1px solid #ffffff24}
+.grammarUsage>p i{color:#b9d9d0;font-size:10px}
+.grammarUsage>p b{color:#fff6df;font-family:"Noto Serif Bengali",serif;font-size:12px;text-align:right}
+.grammarDetailCard>p{margin:0;padding:18px 20px 10px;color:#334d55;font-size:14px;line-height:1.75}
+.grammarDetailCard>ul{margin:0;padding:4px 24px 17px 40px;color:#53635f;font-size:12px;line-height:1.7}
+.grammarDetailCard>ul li{margin:5px 0}
+.grammarExamples{display:grid;gap:1px;border-top:1px solid #ddcfb6;background:#ddcfb6}
+.grammarExamples>div{padding:15px 19px;background:#fff8eb}
+.grammarExamples strong,.grammarExamples i,.grammarExamples p{display:block}
+.grammarExamples strong{color:#07365a;font:800 17px "Noto Sans JP",sans-serif;line-height:1.5}
+.grammarExamples i{margin-top:3px;color:#8b6633;font-size:11px}
+.grammarExamples p{margin:5px 0 0;color:#4f615b;font-size:13px}
 .exampleList{display:grid;gap:12px}
 .exampleList article{padding:16px 18px;border-left:3px solid #c99a51;background:#fff9ed}
 .exampleList strong{color:#082e50;font-size:18px}
 .exampleList p{margin:5px 0 0;color:#566660}
-.kanjiGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kanjiGrid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;align-items:stretch;gap:14px}
 .kanjiCard{display:flex;align-items:center;gap:17px;padding:19px;border:1px solid #d7c8ad;border-radius:12px;background:linear-gradient(145deg,#fffdf8,#f6f0e5)}
+.kanjiCardWrap{position:relative;min-width:0;height:100%}
+.kanjiCardWrap>.kanjiCard{height:100%}
+.rememberedKanjiCard>.kanjiCard,.rememberedKanjiCard .kanjiCardFront{border-color:#78aa91;background:#f0f7ef}
 .kanjiCard>b{display:grid;flex:0 0 78px;height:78px;place-items:center;border:1px solid #ccb994;border-radius:8px;background:#fff;color:#07365a;font:500 46px "Noto Serif JP",serif;box-shadow:inset 0 0 18px #d7c6a93d}
 .kanjiCard h3{margin:0 0 3px;color:#087255;font-size:17px}
 .kanjiCard span{color:#8c6734;font-size:13px;font-weight:700}
 .kanjiCard p{margin:7px 0 0;color:#173c58;font-family:"Noto Sans JP",sans-serif}
+.kanjiFlipCard{display:block;min-height:122px;padding:0;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;perspective:1000px}
+.kanjiFlipInner{position:relative;display:grid;width:100%;height:100%;min-height:122px;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.75,.25,1)}
+.flippedKanjiCard .kanjiFlipInner{transform:rotateY(180deg)}
+.kanjiCardFront,.kanjiCardBack{grid-area:1/1;min-width:0;height:100%;min-height:122px;border:1px solid #d7c8ad;border-radius:12px;backface-visibility:hidden}
+.kanjiCardFront{display:flex;align-items:center;gap:17px;padding:19px;background:linear-gradient(145deg,#fffdf8,#f6f0e5)}
+.kanjiCardFront>b{display:grid;flex:0 0 78px;height:78px;place-items:center;border:1px solid #ccb994;border-radius:8px;background:#fff;color:#07365a;font:500 46px "Noto Serif JP",serif;box-shadow:inset 0 0 18px #d7c6a93d}
+.kanjiCardFront>span{min-width:0;color:inherit;font-size:inherit}
+.kanjiCardFront>span>strong{display:block;color:#087255;font-size:17px}
+.kanjiCardFront>span>i{display:block;margin-top:3px;color:#8c6734;font-size:13px;font-style:normal;font-weight:700}
+.kanjiCardFront>span>p{margin:7px 0 0;color:#173c58;font-family:"Noto Sans JP",sans-serif}
+.kanjiCardFront>span>small{display:block;margin-top:7px;color:#087255;font-size:8px;font-weight:800}
+.kanjiCardBack{display:flex;justify-content:center;flex-direction:column;padding:18px 21px;color:#fff;background:linear-gradient(145deg,#522c69,#087255);transform:rotateY(180deg)}
+.kanjiCardBack>small{align-self:flex-start;padding:3px 7px;border:1px solid #ffffff42;border-radius:99px;color:#d8eee7;font-size:8px;font-weight:850}
+.kanjiCardBack>strong{margin-top:8px;color:#fff;font:800 17px "Noto Sans JP",sans-serif;line-height:1.5}
+.kanjiCardBack>i{margin-top:4px;color:#cce8df;font-size:10px}
+.kanjiCardBack>p{margin:7px 0 0;color:#fff8e7;font-family:"Noto Serif Bengali",serif;font-size:12px}
+.kanjiCardBack>span{margin-top:7px;color:#f1ce7a;font-size:8px;font-weight:800}
+.kanjiFlipCard:focus-visible{outline:3px solid #d09a43;outline-offset:3px;border-radius:12px}
+.practiceGuide{display:grid;gap:22px}
+.practiceHero{position:relative;overflow:hidden;margin:0;border:1px solid #d6c29c;border-radius:15px;background:#eef5ee;box-shadow:0 12px 28px #3b2f2018}
+.practiceHero img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.practiceHero figcaption{position:absolute;right:16px;bottom:16px;left:16px;padding:15px 18px;border:1px solid #ffffff62;border-radius:11px;color:#fff;background:#082e50e8;box-shadow:0 8px 25px #001a2c42;backdrop-filter:blur(7px)}
+.practiceHero figcaption>*{display:block}
+.practiceHero figcaption small{color:#8edbc8;font-size:9px;font-weight:900;letter-spacing:.14em}
+.practiceHero figcaption strong{margin-top:4px;font:800 20px Georgia,"Noto Serif Bengali",serif}
+.practiceHero figcaption span{margin-top:4px;color:#dcebe8;font-size:12px;line-height:1.5}
+.dialogueScene{overflow:hidden;border:1px solid #c9d9d5;border-radius:14px;background:#f8fcfa}
+.dialogueScene>header{display:flex;align-items:center;gap:13px;padding:17px 19px;color:#fff;background:linear-gradient(125deg,#087255,#0c8e76)}
+.dialogueScene>header>span{display:grid;width:58px;height:44px;flex:0 0 58px;place-items:center;border-radius:99px;background:#ffffff1f;font:800 21px "Noto Serif JP",serif;line-height:1;white-space:nowrap}
+.dialogueScene header small{display:block;color:#aee4d8;font-size:8px;font-weight:900;letter-spacing:.13em}
+.dialogueScene h3{margin:2px 0 0;font:800 20px Georgia,"Noto Serif Bengali",serif}
+.dialogueIllustration{margin:0;border-bottom:1px solid #c9d9d5;background:#edf5f2}
+.dialogueIllustration img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.dialogueIllustration figcaption{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#cadbd5}
+.dialogueIllustration figcaption span{padding:9px 8px;color:#36554c;background:#f2f8f5;font-size:10px;text-align:center}
+.dialogueIllustration figcaption b{color:#087255;font-family:"Noto Sans JP",sans-serif}
+.dialogueScene>div{display:grid;gap:0}
+.dialogueLine{position:relative;display:grid;grid-template-columns:54px minmax(0,1fr);gap:14px;padding:16px 52px 16px 18px;border-top:1px solid #d7e3df}
+.dialogueLine>b{display:grid;width:48px;height:48px;place-items:center;border-radius:14px;color:#fff;background:#0b4361;font-family:"Noto Sans JP",sans-serif}
+.dialogueLine strong,.dialogueLine i,.dialogueLine p{display:block}
+.dialogueLine strong{color:#07365a;font:750 16px "Noto Sans JP",sans-serif;line-height:1.55}
+.dialogueLine i{margin-top:3px;color:#8c6635;font-size:10px}
+.dialogueLine p{margin:5px 0 0;color:#53635f;font-size:12px;line-height:1.55}
+.dialogueLine em{position:absolute;top:17px;right:17px;color:#b7c8c3;font-size:10px;font-style:normal;font-weight:900}
+.profileChallenge{padding:20px;border:1px solid #ddcba9;border-radius:14px;background:linear-gradient(135deg,#fff8e9,#f5f3e8)}
+.profileChallenge>header small{color:#a66d1e;font-size:8px;font-weight:900;letter-spacing:.14em}
+.profileChallenge h3{margin:3px 0 2px;color:#082e50;font:800 21px Georgia,"Noto Serif Bengali",serif}
+.profileChallenge header p{margin:0;color:#63706a;font-size:12px}
+.profileChallenge>div{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-top:15px}
+.profileChallenge article{display:flex;min-width:0;align-items:center;flex-direction:column;padding:13px 7px;border-radius:11px;color:#fff;text-align:center;box-shadow:0 7px 16px #283b3220}
+.profileChallenge article>span{font-size:25px}.profileChallenge article>strong{margin-top:6px;font:800 15px "Noto Sans JP",sans-serif}.profileChallenge article>small{margin-top:2px;color:#ffffffc9;font-size:9px}.profileChallenge article>b{margin-top:5px;padding:3px 7px;border-radius:99px;background:#ffffff23;font-size:10px}
+.profile_blue{background:#17618a}.profile_teal{background:#087255}.profile_gold{background:#a66d1e}.profile_coral{background:#c15846}.profile_plum{background:#70436f}
+.practiceModules{display:grid;gap:18px}
+.practiceModule{overflow:hidden;border:1px solid #d8c8aa;border-radius:14px;background:#fffdf8;box-shadow:0 8px 20px #4738270d}
+.practiceModule>header{display:flex;align-items:flex-start;gap:15px;padding:17px 19px;background:linear-gradient(125deg,#e8f2ec,#fbf2df)}
+.practiceModule>header>span{display:grid;width:40px;height:40px;flex:0 0 40px;place-items:center;border-radius:12px;color:#fff;background:#087255;font:900 12px Georgia,serif;box-shadow:0 7px 14px #08725525}
+.practiceModule header small{color:#7b8e86;font-size:8px;font-weight:900;letter-spacing:.13em}
+.practiceModule h3{margin:1px 0 3px;color:#082e50;font:800 20px Georgia,"Noto Serif Bengali",serif}
+.practiceModule header p{margin:0;color:#5e6c67;font-size:12px;line-height:1.55}
+.practiceModule>ol{display:grid;margin:0;padding:0;list-style:none}
+.practiceModule>ol>li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;padding:16px 19px;border-top:1px solid #e1d6c1}
+.practiceQuestionNumber{display:grid;width:30px;height:30px;place-items:center;border:1px solid #c8b894;border-radius:50%;color:#92703a;font-size:9px;font-weight:900}
+.practiceModule li>div>strong{display:block;color:#123a57;font:750 15px "Noto Sans JP","Noto Serif Bengali",sans-serif;line-height:1.65}
+.practiceModule li>div>small{display:block;margin-top:4px;color:#887047;font-size:10px}
+.practiceModule details{margin-top:10px}
+.practiceModule summary{width:max-content;padding:6px 10px;border:1px solid #b8cfc7;border-radius:99px;color:#087255;background:#f1f7f2;font-size:10px;font-weight:850;cursor:pointer;list-style:none}
+.practiceModule summary::-webkit-details-marker{display:none}
+.practiceModule summary:after{margin-left:6px;content:"＋"}.practiceModule details[open] summary:after{content:"−"}
+.practiceModule details>div{margin-top:9px;padding:12px 14px;border-left:3px solid #d5a84d;border-radius:0 9px 9px 0;background:#fff5df}
+.practiceModule details b,.practiceModule details i,.practiceModule details p{display:block}
+.practiceModule details b{color:#07365a;font:800 15px "Noto Sans JP",sans-serif;line-height:1.55}
+.practiceModule details i{margin-top:3px;color:#8a6330;font-size:10px}
+.practiceModule details p{margin:5px 0 0;color:#4f615b;font-size:12px}
+.practiceMethod{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:14px 16px;border-radius:12px;color:#fff;background:#082e50}
+.practiceMethod>b{margin-right:auto;color:#f0ca73;font:800 14px Georgia,"Noto Serif Bengali",serif}
+.practiceMethod>span{padding:7px 10px;border-radius:8px;background:#ffffff12;font-size:10px}.practiceMethod>span strong{color:#78d1b9}
 .practiceList{display:grid;gap:12px;counter-reset:practice;list-style:none;padding:0}
 .practiceList li{position:relative;min-height:52px;padding:15px 18px 15px 62px;border:1px solid #d8cbb3;border-radius:10px;background:#fffdf8;line-height:1.65;counter-increment:practice}
 .practiceList li:before{position:absolute;top:12px;left:14px;display:grid;width:34px;height:34px;place-items:center;border-radius:50%;background:#087255;color:#fff;font-weight:900;content:counter(practice,decimal-leading-zero)}
 .mistakeBox{margin:25px 0;padding:20px 22px;border:1px solid #dfbd83;border-radius:12px;background:#fff4df}
 .mistakeBox strong{color:#985b0d;font:800 19px Georgia,"Noto Serif Bengali",serif}
 .mistakeBox ul{margin:10px 0 0;padding-left:20px;color:#5e5140;line-height:1.75}
-@media(max-width:700px){.spread{padding:10px!important}.page{min-height:auto!important;border-radius:3px!important;box-shadow:0 8px 22px #493a2626!important}.divider{margin-top:28px;font-size:15px}.vocabGrid,.kanjiGrid{grid-template-columns:1fr}.unitIntro{align-items:flex-start;padding:15px}.unitIntro>b{flex-basis:50px;height:50px;font-size:25px}.unitIntro h2{font-size:21px}.kanjiCard>b{flex-basis:64px;height:64px;font-size:38px}.memoryScene figcaption{position:static;display:block}.memoryScene figcaption span{display:block;margin-top:4px;text-align:left}.vocabCount{align-items:flex-start;flex-direction:column;gap:3px}}
+@media(max-width:700px){.spread{padding:10px!important}.page{min-height:auto!important;border-radius:3px!important;box-shadow:0 8px 22px #493a2626!important}.divider{margin-top:28px;font-size:15px}.modalSteps{gap:4px}.modalSteps button{justify-content:center;padding:6px 3px}.modalSteps small{display:none}.vocabGrid,.kanjiGrid{grid-template-columns:1fr}.vocabCardWithImage,.vocabCardFront{grid-template-columns:78px minmax(0,1fr)}.vocabImage{width:78px}.unitIntro{align-items:flex-start;padding:15px}.unitIntro>b{flex-basis:50px;height:50px;font-size:25px}.unitIntro h2{font-size:21px}.grammarOverview{padding:16px}.grammarOverview p{padding-left:16px;font-size:13px;line-height:1.8}.grammarUsage{margin:14px 12px 2px;padding:13px}.grammarUsage>div{align-items:stretch;flex-direction:column;overflow:visible}.grammarUsage>div>div:not(:last-child):after{top:auto;right:50%;bottom:-10px;transform:translateX(50%) rotate(90deg)}.grammarUsage>p{align-items:flex-start;flex-direction:column;gap:4px}.grammarUsage>p b{text-align:left}.kanjiCard>b,.kanjiCardFront>b{flex-basis:64px;height:64px;font-size:38px}.memoryScene figcaption{position:static;display:block}.memoryScene figcaption span{display:block;margin-top:4px;text-align:left}.vocabCount{align-items:flex-start;flex-direction:column;gap:3px}.practiceHero figcaption{position:static;border:0;border-radius:0}.profileChallenge>div{grid-template-columns:repeat(2,minmax(0,1fr))}.profileChallenge article:last-child{grid-column:1/-1}.dialogueIllustration figcaption{grid-template-columns:1fr}.dialogueIllustration figcaption span{padding:7px}.dialogueLine{grid-template-columns:42px minmax(0,1fr);padding-right:38px}.dialogueLine>b{width:40px;height:40px;font-size:11px}.practiceModule>ol>li{padding:14px 13px}.practiceMethod{align-items:stretch;flex-direction:column}.practiceMethod>b{margin:0 0 3px}}
+@media(prefers-reduced-motion:reduce){.vocabFlipInner,.kanjiFlipInner{transition:none}}

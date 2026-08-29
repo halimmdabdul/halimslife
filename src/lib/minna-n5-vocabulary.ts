@@ -39,12 +39,16 @@ const vocabularyBanks: Record<number, string[]> = {
 };
 
 function wordKey(item: string) {
-  return item.split("—")[0].trim();
+  return item.split("—")[0].replace(/[（(].*?[）)]/g, "").trim();
 }
 
 export function getMinnaN5UnitVocabulary(unit: CompanionUnit) {
+  if (unit.number === 1) return unit.vocabulary;
   const bank = vocabularyBanks[Math.ceil(unit.number / 5)] ?? [];
   const unique = new Map<string, string>();
-  [...unit.vocabulary, ...bank].forEach((item) => unique.set(wordKey(item), item));
+  [...unit.vocabulary, ...bank].forEach((item) => {
+    const key = wordKey(item);
+    if (!unique.has(key)) unique.set(key, item);
+  });
   return Array.from(unique.values()).slice(0, 22);
 }

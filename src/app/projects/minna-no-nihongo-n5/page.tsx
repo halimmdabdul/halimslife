@@ -19,6 +19,7 @@ const readerConfig: BookReaderConfig = {
   storageKey: "minna-n5-book-progress",
   kanjiByUnit: minnaN5KanjiByUnit,
   vocabularyImageBase: "/images/projects/n5-vocabulary/unit-",
+  unitViewsInModal: true,
 };
 
 export default function MinnaN5ProjectPage() {

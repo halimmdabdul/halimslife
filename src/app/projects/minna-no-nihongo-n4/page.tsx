@@ -18,6 +18,7 @@ const readerConfig: BookReaderConfig = {
   unitRangeLabel: "UNIT 26–50",
   storageKey: "minna-n4-book-progress",
   kanjiByUnit: minnaN4KanjiByUnit,
+  unitViewsInModal: true,
 };
 
 export default function MinnaN4ProjectPage() {

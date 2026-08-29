@@ -139,7 +139,7 @@ export const honmanDangerProblemsTwo: DangerPredictionProblem[] = [
       "Where other vehicles have passed the snow is packed and slippery, so I’ll drive where the soft snow has accumulated.",
       "My vehicle has studless tires and tire chains, so I’ll drive just as I would in regular road conditions.",
     ],
-    answers: ["false", "false", "false"],
+    answers: ["true", "false", "false"],
     explanation: "The driver should keep enough distance from the vehicle ahead and drive in the ruts made by previous vehicles.",
   },
 ];
