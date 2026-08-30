@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { renderFuriganaText } from "@/components/furigana";
 import styles from "./vocab-quiz.module.css";
 
 type Pair = { word: string; meaning: string };
@@ -100,7 +101,7 @@ export function VocabQuiz({ words, resetKey }: { words: string[]; resetKey: numb
   return <div className={styles.vocabQuiz}>
     <div className={styles.vocabQuizProgress}><span style={{width:`${((questionIndex + 1) / round.length) * 100}%`}}/></div>
     <div className={styles.vocabQuizScore}>প্রশ্ন {questionIndex + 1}/{round.length} · Score: <b>{score.correct}</b>/{score.total}</div>
-    <div className={styles.vocabQuizWord}>{question.word}<button className={styles.vocabQuizReplay} onClick={() => speak(question.word)} aria-label="আবার শুনুন">🔊</button></div>
+    <div className={styles.vocabQuizWord}>{renderFuriganaText(question.word)}<button className={styles.vocabQuizReplay} onClick={() => speak(question.word)} aria-label="আবার শুনুন">🔊</button></div>
     <div className={styles.vocabQuizOptions}>{options.map((option) => {
       const isAnswer = option === question.meaning;
       const isPicked = option === selected;

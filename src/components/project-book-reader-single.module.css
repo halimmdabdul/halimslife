@@ -387,6 +387,12 @@ html[data-theme="dark"] .practiceModule summary{border-color:var(--line);color:v
 html[data-theme="dark"] .practiceModule details>div{border-left-color:var(--orange);background:var(--soft)}
 html[data-theme="dark"] .practiceModule details b{color:var(--navy)}
 html[data-theme="dark"] .practiceModule details i{color:var(--orange)}
+
+/* Extra headroom so furigana (ruby/rt) reading text sitting above kanji
+   isn't clipped inside these fixed-height vocabulary/kanji flip cards. */
+.vocabCard h3,.vocabCardFront .vocabCopy>strong{padding-top:4px;line-height:1.7}
+.kanjiCard p,.kanjiCardFront>span>p{padding-top:3px;line-height:1.75}
+.focusWordBadge{padding-top:6px;line-height:1.6}
 html[data-theme="dark"] .practiceModule details p{color:var(--muted)}
 html[data-theme="dark"] .practiceList li{border-color:var(--line);background:var(--paper)}
 html[data-theme="dark"] .mistakeBox{border-color:var(--orange);background:var(--soft)}
