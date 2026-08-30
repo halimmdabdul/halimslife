@@ -61,6 +61,7 @@ type JapanShortlistSeed = {
   businessPriority?: number;
   englishBusinessPrograms?: string;
   businessOfficialUrl?: string;
+  audienceOverride?: string;
 };
 
 function createJapanShortlistGuide(seed: JapanShortlistSeed): ScholarshipGuide {
@@ -73,7 +74,7 @@ function createJapanShortlistGuide(seed: JapanShortlistSeed): ScholarshipGuide {
     label: `${seed.priority} priority · Japan master's watchlist`,
     funding: seed.funding,
     duration: "Usually 2 years; official guide দিয়ে confirm করুন",
-    audience: "International master’s applicants seeking an English-accessible Japan route",
+    audience: seed.audienceOverride ?? "International master’s applicants seeking an English-accessible Japan route",
     realityCheck: seed.realityCheck,
     highlights: [
       `${seed.program} এই shortlist-এর target program।`,
@@ -174,6 +175,7 @@ const japanShortlistAdditions: ScholarshipGuide[] = [
     slug: "shizuoka-abp-informatics-masters-2027", university: "Shizuoka University", program: "Asia Bridge Program (Informatics)",
     english: "English-based master’s route; exact MOI/score document current guide দিয়ে verify করুন", intake: "October 2027 watchlist",
     funding: "ABP selection can include application, admission and first-year tuition waivers; 2027 terms must be re-confirmed", priority: "High",
+    audienceOverride: "Bangladeshi and other international master’s applicants seeking an English-accessible Japan route—Bangladesh is officially among ABP’s eligible regions",
     realityCheck: "Shizuoka officially confirms an English-based ABP master’s route and Bangladesh is among eligible regions. The currently visible cycle is 2026, so October 2027 dates and waiver terms remain a watchlist until the next guide is published.",
     officialLinks: [
       { label: "Shizuoka University admissions", href: "https://www.shizuoka.ac.jp/english/admission/", description: "Master’s ABP eligibility, English delivery ও current application guide দেখুন।" },
@@ -4206,7 +4208,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
       "Admission-linked full scholarship নেই। 2027 base tuition দুই বছরে ¥1,540,000; university-nominated aid বা JASSO আলাদা, competitive এবং guaranteed নয়।",
     duration: "2 years · April 2027 · Ariake Campus, Tokyo",
     audience:
-      "Japan-এ বসবাসকারী CS, CSE, software, AI, data বা related bachelor's graduate যিনি research-based Data Science master's চান",
+      "Japan-এ বসবাসকারী Bangladeshi-সহ CS, CSE, software, AI, data বা related bachelor's graduate যিনি research-based Data Science master's চান",
     realityCheck:
       "এটি scholarship vacancy নয়; Musashino University-এর self-funded Master of Data Science admission route। Japan-এ থাকা foreign applicant-কে nationality নয়, residence অনুযায়ী domestic/Japan-resident guide ব্যবহার করতে হবে। Published rule-এ IELTS/TOEFL/TOEIC-এর minimum score নেই এবং IELTS 5.5 formal certificate condition পূরণ করতে পারে, কিন্তু language ability selection-এ assess হয়। University Japanese ও English—দুই ভাষায় class হওয়ার কথা বললেও পুরো degree, required credits, supervision, thesis ও defence 100% English-এ শেষ করা যাবে—এমন guarantee পাওয়া যায়নি। Apply করার আগে nyushi@musashino-u.ac.jp থেকে written confirmation নেওয়া essential।",
     highlights: [

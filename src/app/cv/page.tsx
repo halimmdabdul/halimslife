@@ -159,7 +159,7 @@ export default function CvPage() {
               <span className="cv-overline">Curriculum Vitae · 2026</span>
               <h1>Halim Md Abdul</h1>
               <p className="cv-role">Software / AI Engineer <span>—</span><br />Research-minded systems builder</p>
-              <p className="cv-intro">আমি শিল্প অটোমেশন, কম্পিউটার ভিশন, healthcare IoT এবং web applications-এর জন্য production systems তৈরি করি।</p>
+              <p className="cv-intro">আমি industrial automation, computer vision, healthcare IoT এবং web applications জুড়ে production systems তৈরি করি।</p>
               <p className="cv-intro">I build production systems across industrial automation, computer vision, healthcare IoT and web applications.</p>
               <div className="cv-actions">
                 <a href="mailto:reiazbubt@gmail.com">
@@ -188,7 +188,6 @@ export default function CvPage() {
           </div>
           <div className="container cv-contact-strip" aria-label="Contact details">
             <a href="mailto:reiazbubt@gmail.com">reiazbubt@gmail.com</a>
-            <a href="tel:+817021656683">+81 70-2165-6683</a>
             <a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ" target="_blank" rel="noreferrer">Google Scholar ↗</a>
             <a href="https://github.com/halimmdabdul" target="_blank" rel="noreferrer">GitHub ↗</a>
           </div>

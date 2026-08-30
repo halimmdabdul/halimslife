@@ -65,7 +65,7 @@ export default function JourneyPage() {
           <h1>একটি বড় leap নয়—<br />ছোট ছোট <em>consistent step</em>-এর গল্প।</h1>
           <p>প্রতিটি stage আমাকে skill-এর পাশাপাশি language, culture এবং মানুষের সঙ্গে কাজ করার নতুন দৃষ্টিভঙ্গি দিয়েছে।</p>
           <div className={styles.heroTags}><span><Icon name="location" /> Bangladesh → Japan</span><span><Icon name="code" /> Engineering</span><span><Icon name="microscope" /> Research</span><span><Icon name="community" /> Community</span></div>
-          <div className={styles.heroActions}><a href="#journey-timeline">পুরো পথ দেখুন <Icon name="down" /></a><Link href="/cv"><Icon name="document" /> আমার CV</Link></div>
+          <div className={styles.heroActions}><a href="#journey-timeline">পুরো পথ দেখুন <Icon name="down" /></a><Link href="/cv"><Icon name="document" /> আমার CV</Link><Link href="/scholarships"><Icon name="graduation" /> Scholarship Guides</Link></div>
         </div>
         <div className={styles.heroVisual}><Image src={journeyHero} alt="Illustrated journey from Bangladesh to Japan" fill priority sizes="(max-width: 820px) 100vw, 58vw" /><span className={styles.countryBangladesh}><i /> Bangladesh</span><span className={styles.countryJapan}><i /> Japan · 日本</span></div>
       </section>
@@ -86,7 +86,7 @@ export default function JourneyPage() {
 
       <section className={styles.nextChapter}>
         <Image src={journeyHero} alt="Mount Fuji and Japan landscape" fill sizes="1120px" />
-        <div><h2>পরবর্তী অধ্যায় এখনও লেখা হচ্ছে।</h2><p>Engineering, research এবং Bengali-friendly learning resources—এই তিনটি পথকে আরও শক্তিশালী করতে চাই।</p><div><Link href="/projects">আমার Projects দেখুন <Icon name="arrow" /></Link><Link href="/contact"><Icon name="plane" /> যোগাযোগ করুন</Link></div></div>
+        <div><h2>পরবর্তী অধ্যায় এখনও লেখা হচ্ছে।</h2><p>Engineering, research এবং Bengali-friendly learning resources—এই তিনটি পথকে আরও শক্তিশালী করতে চাই।</p><div><Link href="/projects">আমার Projects দেখুন <Icon name="arrow" /></Link><Link href="/academy"><Icon name="book" /> Japanese Academy</Link><Link href="/contact"><Icon name="plane" /> যোগাযোগ করুন</Link></div></div>
       </section>
     </main>
 

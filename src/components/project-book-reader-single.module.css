@@ -3,18 +3,22 @@
 .page{width:min(860px,100%);min-height:980px!important;margin:0 auto;border:0!important;border-radius:4px 12px 12px 4px!important;box-shadow:-9px 10px 0 #d1bea0,0 18px 42px #493a2633,inset -12px 0 22px #7e654512!important}
 .divider{display:flex;align-items:center;gap:15px;margin:38px 0 22px;color:#087255;font-family:Georgia,"Noto Serif Bengali",serif;font-size:17px;font-weight:800}
 .divider i{height:1px;flex:1;background:linear-gradient(90deg,#bba887,transparent)}
-.unitGroup{border-bottom:1px solid #d7c8ad}
+.unitGroup{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:var(--paper);transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.unitGroup:hover{border-color:var(--green);box-shadow:0 8px 18px rgba(8,114,85,.1);transform:translateY(-1px)}
+.unitGroup:has(button.current){border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green),0 8px 18px rgba(8,114,85,.12)}
+.unitGroup:has(button.current) button>b{background:linear-gradient(140deg,#087255,#0b4661)}
 .unitGroup>button{border-bottom:0!important}
 .indexUnit{min-width:0;border-bottom:1px dotted #c8b999}
 .indexUnit>button{width:100%;border-bottom:0!important}
 .indexUnit .unitMenu{border-top:1px solid #dfd0b6}
-.unitMenu{display:grid;grid-template-columns:1fr 1fr;padding:8px 10px 12px;gap:5px;background:#e9ddc8}
-.unitMenu button{min-height:34px!important;padding:6px 8px!important;gap:7px!important;border:1px solid #d1c0a3!important;border-radius:7px!important;background:#fffaf0!important;color:#273b36!important}
+.unitMenu{display:grid;grid-template-columns:1fr 1fr;padding:10px;gap:6px;border-top:1px solid var(--line);border-radius:0 0 12px 12px;background:var(--soft)}
+.unitMenu button{min-height:36px!important;padding:6px 8px!important;gap:7px!important;border:1px solid var(--line)!important;border-radius:8px!important;background:var(--paper)!important;color:var(--text)!important}
 .unitMenu button:last-child{grid-column:1/-1}
-.unitMenu button b{display:grid;width:22px;height:22px;place-items:center;border-radius:50%;background:#e0ecdf;color:#087255;font-size:12px!important}
+.unitMenu button b{display:grid;width:22px;height:22px;place-items:center;border-radius:50%;background:var(--soft);color:var(--green);font-size:12px!important}
 .unitMenu button span{font-size:11px;font-weight:800}
 .unitMenu button:disabled{cursor:not-allowed;filter:grayscale(.7);opacity:.45}
-.unitMenu .activeUnitMenu{border-color:#087255!important;background:#edf5eb!important;box-shadow:inset 3px 0 #087255}
+.unitMenu .activeUnitMenu{border-color:var(--green)!important;background:var(--green-dark)!important;box-shadow:inset 3px 0 var(--green);color:#fff!important}
+.unitMenu .activeUnitMenu b{background:rgba(255,255,255,.2);color:#fff}
 .unitSection{padding-top:4px}
 .foundationDashboard{display:grid;gap:18px;padding-top:4px}
 .foundationHero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(220px,.75fr);overflow:hidden;border:1px solid #c8d8d1;border-radius:16px;background:linear-gradient(135deg,#edf6f0,#fff9ed 62%,#f3e0c3);box-shadow:0 12px 28px #493a2614}
@@ -294,13 +298,8 @@ html[data-theme="dark"] .foundationChecklist{border-color:var(--line);background
 html[data-theme="dark"] .page{box-shadow:-9px 10px 0 #000,0 18px 42px rgba(0,0,0,.55),inset -12px 0 22px rgba(0,0,0,.3)!important}
 html[data-theme="dark"] .divider{color:var(--green)}
 html[data-theme="dark"] .divider i{background:linear-gradient(90deg,var(--line),transparent)}
-html[data-theme="dark"] .unitGroup{border-bottom-color:var(--line)}
 html[data-theme="dark"] .indexUnit{border-bottom-color:var(--line)}
 html[data-theme="dark"] .indexUnit .unitMenu{border-top-color:var(--line)}
-html[data-theme="dark"] .unitMenu{background:var(--soft)}
-html[data-theme="dark"] .unitMenu button{border-color:var(--line)!important;background:var(--paper)!important;color:var(--text)!important}
-html[data-theme="dark"] .unitMenu button b{background:var(--green-dark);color:var(--green)}
-html[data-theme="dark"] .unitMenu .activeUnitMenu{border-color:var(--green)!important;background:var(--green-dark)!important;box-shadow:inset 3px 0 var(--green)}
 html[data-theme="dark"] .modalSteps button{border-color:var(--line);color:var(--muted);background:var(--soft)}
 html[data-theme="dark"] .modalSteps button>b{background:var(--line);color:var(--text)}
 html[data-theme="dark"] .modalSteps .currentStep{border-color:var(--green);color:var(--green);background:var(--green-dark);box-shadow:inset 0 -3px var(--green)}

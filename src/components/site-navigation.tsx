@@ -44,6 +44,9 @@ export function SiteNavigation() {
         aria-label="Main navigation"
         className={menuOpen ? "mobile-nav-open" : undefined}
       >
+        <Link href="/" aria-current={currentRoute("/")} onClick={closeMenu}>
+          <TranslatedText bn="হোম" en="Home" ja="ホーム" />
+        </Link>
         <Link href="/about" aria-current={currentRoute("/about")} onClick={closeMenu}>
           <TranslatedText bn="আমার সম্পর্কে" en="About" ja="私について" />
         </Link>
