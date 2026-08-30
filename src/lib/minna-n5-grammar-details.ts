@@ -270,9 +270,174 @@ const unit3GrammarDetails: GrammarDetail[] = [
   },
 ];
 
+const unit4GrammarDetails: GrammarDetail[] = [
+  {
+    title: "ঘড়ির সময় বলা ও জিজ্ঞেস করা",
+    structure: "今 ～時 ～分です。／何時ですか。",
+    explanation: "বর্তমান সময় বলতে 今-এর পরে hour counter 時（じ） ও minute counter 分（ふん／ぷん） বসে। সময় জানতে 今 何時ですか বলা হয়। Japanese-এ hour-এর জন্য 4時＝よじ, 7時＝しちじ এবং 9時＝くじ—এই বিশেষ readingগুলো আলাদা করে মনে রাখতে হবে।",
+    notes: ["৩০ মিনিটকে 三十分 বলার পাশাপাশি 半 ব্যবহার করা যায়: 7時半 = সাড়ে ৭টা।", "分-এর reading সংখ্যাভেদে ふん বা ぷん হয়: 5分＝ごふん, 10分＝じゅっぷん।", "午前 হলো a.m. এবং 午後 হলো p.m.; এগুলো সময়ের আগে বসে।"],
+    visual: { tokens: [{text:"今",role:"এখন"},{text:"7時",role:"ঘণ্টা",accent:true},{text:"10分",role:"মিনিট",accent:true},{text:"です",role:"Polite ending"}], romaji:"Ima shichi-ji juppun desu.", bengali:"এখন ৭টা ১০ মিনিট।" },
+    examples: [{japanese:"今 何時ですか。",romaji:"Ima nan-ji desu ka.",bengali:"এখন কয়টা?"},{japanese:"午前 6時半です。",romaji:"Gozen roku-ji han desu.",bengali:"এখন সকাল সাড়ে ৬টা।"},{japanese:"午後 9時15分です。",romaji:"Gogo ku-ji juu-go-fun desu.",bengali:"এখন রাত ৯টা ১৫ মিনিট।"}],
+  },
+  {
+    title: "Polite verb-এর non-past ও past",
+    structure: "Vます／Vません／Vました／Vませんでした",
+    explanation: "ます-form বর্তমান অভ্যাস ও ভবিষ্যৎ—দুই ক্ষেত্রেই ব্যবহৃত হয়। Negative non-past করতে ません, past affirmative করতে ました এবং past negative করতে ませんでした বসে। Verb stem অপরিবর্তিত থাকে; শুধু polite ending বদলায়।",
+    notes: ["毎日-এর মতো habit এবং 明日-এর মতো future—দুটিতেই Vます হতে পারে।", "昨日-এর মতো past time থাকলে ました／ませんでした ব্যবহার করুন।", "ませんでした-কে ましたじゃありません বানানো যাবে না।"],
+    visual: { tokens: [{text:"きのう",role:"Past time"},{text:"勉強し",role:"Verb stem"},{text:"ませんでした",role:"Past negative",accent:true}], romaji:"Kinou benkyou shimasen deshita.", bengali:"গতকাল পড়াশোনা করিনি।" },
+    examples: [{japanese:"毎日 勉強します。",romaji:"Mainichi benkyou shimasu.",bengali:"প্রতিদিন পড়াশোনা করি।"},{japanese:"あした 働きません。",romaji:"Ashita hatarakimasen.",bengali:"আগামীকাল কাজ করব না।"},{japanese:"きのう 6時に 起きました。",romaji:"Kinou roku-ji ni okimashita.",bengali:"গতকাল ৬টায় উঠেছি।"},{japanese:"おととい 勉強しませんでした。",romaji:"Ototoi benkyou shimasen deshita.",bengali:"গত পরশু পড়াশোনা করিনি।"}],
+  },
+  {
+    title: "কাজটি কখন হয়—সময় particle に",
+    structure: "N（time）に V",
+    explanation: "কোনো কাজ সংঘটিত হওয়ার নির্দিষ্ট সময়ের পরে に বসে। Hour, minute এবং নির্দিষ্ট calendar date-এর সঙ্গে に ব্যবহার হয়। কিন্তু 今, 今日, 明日, 毎日-এর মতো relative বা নিয়মিত time word-এর পরে সাধারণত に বসে না।",
+    notes: ["6時に 起きます = ৬টায় উঠি; に কাজের exact point দেখায়।", "今日に／明日に／毎日に সাধারণ beginner usage-এ ভুল; particle বাদ দিন।", "Question-এ সময়ের জায়গায় 何時に বসে: 何時に 寝ますか。"],
+    visual: { tokens: [{text:"毎朝",role:"নিয়মিত সময়"},{text:"6時",role:"Exact time"},{text:"に",role:"সময় marker",accent:true},{text:"起きます",role:"Action"}], romaji:"Maiasa roku-ji ni okimasu.", bengali:"প্রতিদিন সকাল ৬টায় উঠি।" },
+    examples: [{japanese:"毎朝 6時に 起きます。",romaji:"Maiasa roku-ji ni okimasu.",bengali:"প্রতিদিন সকাল ৬টায় উঠি।"},{japanese:"7月2日に 日本へ 来ました。",romaji:"Shichi-gatsu futsuka ni Nihon e kimashita.",bengali:"২ জুলাই জাপানে এসেছি।"},{japanese:"何時に 寝ますか。",romaji:"Nan-ji ni nemasu ka.",bengali:"কয়টায় ঘুমান?"}],
+  },
+  {
+    title: "শুরু ও শেষের সীমা",
+    structure: "N₁ から N₂ まで",
+    explanation: "から শুরু হওয়ার সময় বা জায়গা এবং まで শেষ হওয়ার সময় বা জায়গা দেখায়। দুটি একসঙ্গে বা প্রয়োজন অনুযায়ী আলাদাও ব্যবহার করা যায়। Action sentence-এর পাশাপাশি shop, bank বা office-এর schedule-এও patternটি ব্যবহৃত হয়।",
+    notes: ["から = থেকে; まで = পর্যন্ত—ক্রমটি উল্টাবেন না।", "শুধু শুরু জানা থাকলে から এবং শুধু শেষ জানা থাকলে まで একাই ব্যবহার করা যায়।", "সময় ছাড়াও 大阪から東京まで-এর মতো place range বোঝায়।"],
+    visual: { tokens: [{text:"9時",role:"শুরু"},{text:"から",role:"থেকে",accent:true},{text:"5時",role:"শেষ"},{text:"まで",role:"পর্যন্ত",accent:true},{text:"働きます",role:"Action"}], romaji:"Ku-ji kara go-ji made hatarakimasu.", bengali:"৯টা থেকে ৫টা পর্যন্ত কাজ করি।" },
+    examples: [{japanese:"銀行は 9時から 3時までです。",romaji:"Ginkou wa ku-ji kara san-ji made desu.",bengali:"ব্যাংক ৯টা থেকে ৩টা পর্যন্ত।"},{japanese:"昼休みは 12時からです。",romaji:"Hiruyasumi wa juu-ni-ji kara desu.",bengali:"দুপুরের বিরতি ১২টা থেকে।"},{japanese:"大阪から 東京まで 3時間かかります。",romaji:"Oosaka kara Toukyou made san-jikan kakarimasu.",bengali:"ওসাকা থেকে টোকিও যেতে ৩ ঘণ্টা লাগে।"}],
+  },
+  {
+    title: "দুইটি noun সমানভাবে যুক্ত করা",
+    structure: "N₁ と N₂",
+    explanation: "と দুইটি noun-কে ‘এবং’ অর্থে সম্পূর্ণ তালিকা হিসেবে যুক্ত করে। এই Unit-এ ছুটির দিন, প্রতিষ্ঠান বা schedule-এর দুইটি item একসঙ্গে বলতে এটি ব্যবহৃত হয়।",
+    notes: ["土曜日と 日曜日 = শনিবার এবং রবিবার।", "と-এর আগে ও পরে noun বসে; verb বা সম্পূর্ণ sentence সরাসরি যুক্ত করার beginner pattern এটি নয়।", "তালিকাটি অসম্পূর্ণ বোঝাতে পরে শেখা や ব্যবহৃত হয়; と সাধারণত উল্লিখিত সব item বোঝায়।"],
+    visual: { tokens: [{text:"土曜日",role:"Noun 1"},{text:"と",role:"এবং",accent:true},{text:"日曜日",role:"Noun 2"},{text:"です",role:"Ending"}], romaji:"Doyoubi to nichiyoubi desu.", bengali:"শনিবার ও রবিবার।" },
+    examples: [{japanese:"銀行の 休みは 土曜日と 日曜日です。",romaji:"Ginkou no yasumi wa doyoubi to nichiyoubi desu.",bengali:"ব্যাংকের ছুটি শনিবার ও রবিবার।"},{japanese:"休みは 月曜日と 木曜日です。",romaji:"Yasumi wa getsuyoubi to mokuyoubi desu.",bengali:"ছুটি সোমবার ও বৃহস্পতিবার।"}],
+  },
+  {
+    title: "শ্রোতার সম্মতি বা সহমর্মিতা—ね",
+    structure: "Sentence + ね。",
+    explanation: "Sentence-এর শেষে ね বসিয়ে বক্তা শ্রোতার agreement চায়, একই অনুভূতি ভাগ করে বা কোনো তথ্যের ওপর কোমল emphasis দেয়। বাংলায় context অনুযায়ী ‘তাই না’, ‘না’ বা ‘সত্যিই’ অর্থ হতে পারে।",
+    notes: ["ね নতুন তথ্যের সরাসরি question নয়; shared feeling বা confirmation তৈরি করে।", "大変ですね সহমর্মিতা দেখায়—‘কষ্টকর, তাই না!’", "Intonation নরম রাখলে expressionটি স্বাভাবিক ও friendly শোনায়।"],
+    visual: { tokens: [{text:"毎日 勉強します",role:"Situation"},{text:"大変です",role:"Evaluation"},{text:"ね",role:"সম্মতি/সহমর্মিতা",accent:true}], romaji:"Mainichi benkyou shimasu. Taihen desu ne.", bengali:"প্রতিদিন পড়েন—কষ্টকর, তাই না!" },
+    examples: [{japanese:"毎日 10時まで 働きますか。大変ですね。",romaji:"Mainichi juu-ji made hatarakimasu ka. Taihen desu ne.",bengali:"প্রতিদিন ১০টা পর্যন্ত কাজ করেন? খুব কষ্টকর, তাই না!"},{japanese:"今日は 暑いですね。",romaji:"Kyou wa atsui desu ne.",bengali:"আজ গরম, তাই না?"}],
+  },
+];
+
+const unit5GrammarDetails: GrammarDetail[] = [
+  {
+    title:"যাওয়ার destination দেখানো",structure:"N（place）へ 行きます／来ます／帰ります",
+    explanation:"Movement verb 行きます, 来ます ও 帰ります-এর destination-এর পরে へ particle বসে। Particle হিসেবে へ লেখা হলেও উচ্চারণ হয় ‘e’। 行きます বক্তার বর্তমান স্থান থেকে যাওয়া, 来ます বক্তার/কথার কেন্দ্রের দিকে আসা এবং 帰ります নিজের home বা base-এ ফেরা বোঝায়।",
+    notes:["へ movement-এর direction দেখায়; এই lesson-এ destination-এর জন্য に-ও ব্যবহার করা যায়, তবে へ-তে direction-এর অনুভূতি স্পষ্ট।","Place-এর পরে へ, vehicle-এর পরে で—দুটি particle-এর কাজ আলাদা।","Question-এ destination-এর জায়গায় どこへ বসে।"],
+    visual:{tokens:[{text:"わたしは",role:"Topic"},{text:"京都",role:"Destination"},{text:"へ",role:"দিকে",accent:true},{text:"行きます",role:"Movement"}],romaji:"Watashi wa Kyouto e ikimasu.",bengali:"আমি কিয়োটো যাই।"},
+    examples:[{japanese:"京都へ 行きます。",romaji:"Kyouto e ikimasu.",bengali:"কিয়োটো যাই।"},{japanese:"バングラデシュから 日本へ 来ました。",romaji:"Banguradeshu kara Nihon e kimashita.",bengali:"বাংলাদেশ থেকে জাপানে এসেছি।"},{japanese:"あした うちへ 帰ります。",romaji:"Ashita uchi e kaerimasu.",bengali:"আগামীকাল বাড়ি ফিরব।"}],
+  },
+  {
+    title:"কোথাও যাই না—সম্পূর্ণ negative",structure:"どこへも Vません／Vませんでした",
+    explanation:"Question word どこ-এর সঙ্গে へも বসিয়ে এবং verb negative করলে ‘কোথাও না’ বোঝায়। も সব destination-কে cover করে, তাই positive movement verb ব্যবহার করা যাবে না। Past context হলে Vませんでした বসে।",
+    notes:["どこへも 行きます ভুল; affirmative হলে নির্দিষ্ট destination বা どこかへ দরকার।","বর্তমান/future negative: 行きません; past negative: 行きませんでした।","へ ও も একসঙ্গে へも হয়; どこもへ নয়।"],
+    visual:{tokens:[{text:"きょう",role:"সময়"},{text:"どこ",role:"কোথাও"},{text:"へも",role:"একটিও destination নয়",accent:true},{text:"行きません",role:"Negative movement",accent:true}],romaji:"Kyou doko e mo ikimasen.",bengali:"আজ কোথাও যাব না।"},
+    examples:[{japanese:"日曜日は どこへも 行きません。",romaji:"Nichiyoubi wa doko e mo ikimasen.",bengali:"রবিবার কোথাও যাই না।"},{japanese:"きのう どこへも 行きませんでした。",romaji:"Kinou doko e mo ikimasen deshita.",bengali:"গতকাল কোথাও যাইনি।"}],
+  },
+  {
+    title:"কোন transport দিয়ে যাওয়া",structure:"N（vehicle）で 行きます／来ます／帰ります",
+    explanation:"যাতায়াতের মাধ্যম বা vehicle-এর পরে で বসে। 電車で মানে train-এ/দিয়ে, タクシーで মানে taxi-তে। হেঁটে যাওয়ার fixed expression 歩いて; এর পরে অতিরিক্ত で বসে না।",
+    notes:["Vehicle + で এবং destination + へ: 電車で 東京へ 行きます।","歩いてで ভুল; শুধু 歩いて 行きます বলুন।","何で দিয়ে ‘কীভাবে/কোন মাধ্যমে’ জিজ্ঞেস করা যায়; context-এ なんで উচ্চারণ হয়।"],
+    visual:{tokens:[{text:"電車",role:"Vehicle"},{text:"で",role:"মাধ্যম",accent:true},{text:"東京",role:"Destination"},{text:"へ 行きます",role:"Movement"}],romaji:"Densha de Toukyou e ikimasu.",bengali:"ট্রেনে টোকিও যাই।"},
+    examples:[{japanese:"電車で 東京へ 行きます。",romaji:"Densha de Toukyou e ikimasu.",bengali:"ট্রেনে টোকিও যাই।"},{japanese:"タクシーで 来ました。",romaji:"Takushii de kimashita.",bengali:"Taxi-তে এসেছি।"},{japanese:"駅から 歩いて 帰りました。",romaji:"Eki kara aruite kaerimashita.",bengali:"স্টেশন থেকে হেঁটে ফিরেছি।"}],
+  },
+  {
+    title:"কার সঙ্গে—companion と",structure:"N（person／animal）と V／一人で V",
+    explanation:"কারও সঙ্গে কোনো কাজ বা movement করলে person বা animal-এর পরে と বসে। একা করার ক্ষেত্রে companion নেই, তাই fixed expression 一人で ব্যবহার হয়—ひとりと নয়। কার সঙ্গে জানতে だれと বলা হয়।",
+    notes:["友達と = বন্ধুর সঙ্গে; 家族と = পরিবারের সঙ্গে।","一人で-এর で ‘নিজে/একা করে’ manner বোঝায়।","Object জোড়া লাগানোর と এবং companion と একই particle হলেও sentence-এ ভূমিকা context থেকে বোঝা যায়।"],
+    visual:{tokens:[{text:"家族",role:"Companion"},{text:"と",role:"সঙ্গে",accent:true},{text:"日本",role:"Destination"},{text:"へ 来ました",role:"Movement"}],romaji:"Kazoku to Nihon e kimashita.",bengali:"পরিবারের সঙ্গে জাপানে এসেছি।"},
+    examples:[{japanese:"友達と 大阪へ 行きます。",romaji:"Tomodachi to Oosaka e ikimasu.",bengali:"বন্ধুর সঙ্গে ওসাকা যাই।"},{japanese:"だれと 京都へ 行きましたか。",romaji:"Dare to Kyouto e ikimashita ka.",bengali:"কার সঙ্গে কিয়োটো গিয়েছিলেন?"},{japanese:"一人で 東京へ 行きます。",romaji:"Hitori de Toukyou e ikimasu.",bengali:"একা টোকিও যাই।"}],
+  },
+  {
+    title:"কখন—time question いつ",structure:"いつ Vますか。／N（date）に V",
+    explanation:"কোনো action কখন হবে বা হয়েছিল জানতে いつ ব্যবহার হয়। いつ-এর পরে に বসে না। উত্তরে নির্দিষ্ট date বা calendar point হলে に বসতে পারে—3月25日に 来ました। কিন্তু 今日, 明日, 来週, 去年-এর মতো relative time expression-এর পরে সাধারণত に লাগে না।",
+    notes:["いつに ভুল; সঠিক いつ 日本へ 来ましたか।","Exact date: 7月7日に; relative time: 来週 行きます।","何時に exact clock time জিজ্ঞেস করে, いつ broader ‘কখন’ জিজ্ঞেস করে।"],
+    visual:{tokens:[{text:"いつ",role:"কখন",accent:true},{text:"広島",role:"Destination"},{text:"へ",role:"দিকে"},{text:"行きますか",role:"Question"}],romaji:"Itsu Hiroshima e ikimasu ka.",bengali:"কখন হিরোশিমা যাবেন?"},
+    examples:[{japanese:"いつ 日本へ 来ましたか。",romaji:"Itsu Nihon e kimashita ka.",bengali:"কখন জাপানে এসেছেন?"},{japanese:"3月25日に 来ました。",romaji:"San-gatsu nijuu-go-nichi ni kimashita.",bengali:"২৫ মার্চ এসেছি।"},{japanese:"来週 広島へ 行きます。",romaji:"Raishuu Hiroshima e ikimasu.",bengali:"আগামী সপ্তাহে হিরোশিমা যাব।"}],
+  },
+  {
+    title:"নতুন তথ্য জোর দিয়ে বলা—よ",structure:"Sentence + よ。",
+    explanation:"Sentence-এর শেষে よ বসিয়ে বক্তা এমন তথ্য জোর দিয়ে জানান যা শ্রোতা হয়তো জানে না, অথবা নিজের judgement দৃঢ়ভাবে প্রকাশ করেন। বাংলায় ‘জানেন’, ‘কিন্তু’ বা emphasis-এর স্বরে প্রকাশ পেতে পারে।",
+    notes:["よ statement-কে informative/assertive করে; এটি question particle নয়।","Tone খুব শক্ত হলে commanding শোনাতে পারে, তাই beginner conversation-এ নরম intonation রাখুন।","ね shared agreement চায়; よ নতুন তথ্য শ্রোতার দিকে দেয়।"],
+    visual:{tokens:[{text:"この電車は",role:"Topic"},{text:"京都へ 行きません",role:"নতুন তথ্য"},{text:"よ",role:"জোর/সতর্কতা",accent:true}],romaji:"Kono densha wa Kyouto e ikimasen yo.",bengali:"এই train কিয়োটো যায় না, জানেন।"},
+    examples:[{japanese:"この電車は 新大阪へ 行きますよ。",romaji:"Kono densha wa Shin-Oosaka e ikimasu yo.",bengali:"এই train শিন-ওসাকা যায়, জানেন।"},{japanese:"次の 急行は 8時ですよ。",romaji:"Tsugi no kyuukou wa hachi-ji desu yo.",bengali:"পরের rapid train ৮টায় কিন্তু।"}],
+  },
+  {
+    title:"তথ্য মেনে নেওয়া—そうですね",structure:"そうですね。",
+    explanation:"そうですね দিয়ে বক্তা আগের তথ্যের সঙ্গে সম্মতি, সহানুভূতি বা acknowledgement দেখান। নতুন তথ্য শুনে ‘হ্যাঁ, তাই তো/ঠিক বলেছেন’ বলার স্বাভাবিক response এটি। そうですか শুধু ‘ও, তাই নাকি’ বলে তথ্য গ্রহণ করে; そうですね বেশি agreement প্রকাশ করে।",
+    notes:["ね শ্রোতা ও বক্তার shared understanding তৈরি করে।","Decision নেওয়ার আগে ভাবতে সময় নিতেও そうですね… বলা যায়।","そうですね এবং そうですよ-এর nuance আলাদা—প্রথমটি agree করে, দ্বিতীয়টি জোর দিয়ে জানায়।"],
+    visual:{tokens:[{text:"あしたは",role:"আগের topic"},{text:"日曜日",role:"তথ্য"},{text:"ですね",role:"সম্মতি",accent:true}],romaji:"Ashita wa nichiyoubi desu ne. — Sou desu ne.",bengali:"আগামীকাল রবিবার, তাই না? — হ্যাঁ, তাই।"},
+    examples:[{japanese:"あしたは 日曜日ですね。— そうですね。",romaji:"Ashita wa nichiyoubi desu ne. — Sou desu ne.",bengali:"আগামীকাল রবিবার, তাই না? — হ্যাঁ, তাই।"},{japanese:"来週 京都へ 行きましょう。— そうですね。",romaji:"Raishuu Kyouto e ikimashou. — Sou desu ne.",bengali:"আগামী সপ্তাহে কিয়োটো যাই। — হ্যাঁ, ভালো হবে।"}],
+  },
+];
+
+const unit6GrammarDetails: GrammarDetail[] = [
+  {
+    title:"কাজের সরাসরি object—を",structure:"N（object）を V（transitive）ます。",
+    explanation:"কোনো action সরাসরি যে জিনিসটির ওপর হচ্ছে, সেই direct object-এর পরে を বসে। Particleটি লেখা を হলেও আধুনিক Japanese-এ উচ্চারণ হয় ‘o’। 食べます, 飲みます, 見ます, 読みます, 書きます-এর মতো transitive verb-এর আগে object + を ব্যবহার করুন।",
+    notes:["を action-এর target চিহ্নিত করে; topic は বা subject が-এর কাজ করে না।","Japanese word order সাধারণত object + を + verb; verb বাক্যের শেষে থাকে।","を-কে romaji-তে সাধারণত o লেখা হয়, wo নয়।"],
+    visual:{tokens:[{text:"ジュース",role:"Direct object"},{text:"を",role:"Object marker",accent:true},{text:"飲みます",role:"Action"}],romaji:"Juusu o nomimasu.",bengali:"জুস পান করি।"},
+    examples:[{japanese:"ジュースを 飲みます。",romaji:"Juusu o nomimasu.",bengali:"জুস পান করি।"},{japanese:"新聞を 読みます。",romaji:"Shinbun o yomimasu.",bengali:"সংবাদপত্র পড়ি।"},{japanese:"写真を 撮ります。",romaji:"Shashin o torimasu.",bengali:"ছবি তুলি।"}],
+  },
+  {
+    title:"Activity noun-এর সঙ্গে します",structure:"N（activity／event）を します。",
+    explanation:"Sports, game, gathering, event, homework বা work-এর মতো activity noun-এর পরে を します বসিয়ে ‘সেই কাজটি করি’ বলা হয়। কথাবার্তায় কিছু পরিচিত activity সরাসরি noun + します-ও হতে পারে, কিন্তু এই Unit-এ object pattern পরিষ্কার করতে を সহ form শিখুন।",
+    notes:["Sports/game: サッカーを します, テニスを します।","Event: パーティーを します, 会議を します।","Task: 宿題を します, 仕事を します।"],
+    visual:{tokens:[{text:"サッカー",role:"Sport/activity"},{text:"を",role:"Object marker",accent:true},{text:"します",role:"করি",accent:true}],romaji:"Sakkaa o shimasu.",bengali:"ফুটবল খেলি।"},
+    examples:[{japanese:"日曜日に サッカーを します。",romaji:"Nichiyoubi ni sakkaa o shimasu.",bengali:"রবিবার ফুটবল খেলি।"},{japanese:"うちで パーティーを します。",romaji:"Uchi de paatii o shimasu.",bengali:"বাড়িতে পার্টি করি।"},{japanese:"毎晩 宿題を します。",romaji:"Maiban shukudai o shimasu.",bengali:"প্রতি রাতে বাড়ির কাজ করি।"}],
+  },
+  {
+    title:"কী করেন—action জানতে চাওয়া",structure:"何を しますか。",
+    explanation:"কারও action বা plan জানতে object-এর জায়গায় 何を বসিয়ে প্রশ্ন করা হয়। এখানে 何-এর reading なに: なにを しますか। উত্তরে সেই জায়গায় নির্দিষ্ট object/activity বসিয়ে একই sentence structure রাখা যায়।",
+    notes:["何を-এর উচ্চারণ なにを (nani o)।","Question-এর শেষে か এবং স্বাভাবিক rising intonation থাকে।","সময় যোগ করা যায়: きのう 何を しましたか。"],
+    visual:{tokens:[{text:"きのう",role:"সময়"},{text:"何",role:"কী",accent:true},{text:"を",role:"Object marker"},{text:"しましたか",role:"Past question",accent:true}],romaji:"Kinou nani o shimashita ka.",bengali:"গতকাল কী করেছিলেন?"},
+    examples:[{japanese:"月曜日 何を しますか。",romaji:"Getsuyoubi nani o shimasu ka.",bengali:"সোমবার কী করবেন?"},{japanese:"京都へ 行きます。",romaji:"Kyouto e ikimasu.",bengali:"কিয়োটো যাব।"},{japanese:"きのう 何を しましたか。",romaji:"Kinou nani o shimashita ka.",bengali:"গতকাল কী করেছিলেন?"}],
+  },
+  {
+    title:"何-এর দুই reading—なん ও なに",structure:"なん + です／counter　｜　なに + particle／verb",
+    explanation:"Kanji 何 context অনুযায়ী なん বা なに পড়া হয়। です-এর আগে এবং time/number counter-এর আগে সাধারণত なん: 何ですか, 何時, 何分। を-এর আগে এবং ‘কী করব/খাব/দেখব’ ধরনের action question-এ সাধারণত なに: 何を しますか।",
+    notes:["何ですか = なんですか; 何の本 = なんの ほん।","何を／何が／何か সাধারণত なにを／なにが／なにか।","何で context অনুযায়ী なんで (‘কী দিয়ে/কেন’) পড়া হয়—অর্থ context থেকে বোঝুন।"],
+    visual:{tokens:[{text:"何ですか",role:"nan desu ka",accent:true},{text:"／",role:"Reading বদল"},{text:"何を しますか",role:"nani o shimasu ka",accent:true}],romaji:"Nan desu ka? / Nani o shimasu ka?",bengali:"এটি কী? / কী করবেন?"},
+    examples:[{japanese:"それは 何ですか。",romaji:"Sore wa nan desu ka.",bengali:"সেটি কী?"},{japanese:"何の 本ですか。",romaji:"Nan no hon desu ka.",bengali:"কিসের/কোন বিষয়ের বই?"},{japanese:"何を 買いますか。",romaji:"Nani o kaimasu ka.",bengali:"কী কিনবেন?"}],
+  },
+  {
+    title:"Action কোথায় হয়—place で",structure:"N（place）で Vます。",
+    explanation:"কোনো action যে স্থানে ঘটে সেই place-এর পরে で বসে। 駅で 新聞を 買います মানে station-এ সংবাদপত্র কেনার action হচ্ছে। Unit 03-এর location です বা existence-এর に-এর সঙ্গে এটি গুলিয়ে ফেলবেন না।",
+    notes:["Action location: レストランで 食べます।","Destination: 学校へ 行きます—movement destination-এ へ; স্কুলে পড়ার action হলে 学校で 勉強します।","Sentence map: Place で + Object を + Verb।"],
+    visual:{tokens:[{text:"駅",role:"Action place"},{text:"で",role:"ঘটনার স্থান",accent:true},{text:"新聞",role:"Object"},{text:"を 買います",role:"Action"}],romaji:"Eki de shinbun o kaimasu.",bengali:"স্টেশনে সংবাদপত্র কিনি।"},
+    examples:[{japanese:"駅で 新聞を 買います。",romaji:"Eki de shinbun o kaimasu.",bengali:"স্টেশনে সংবাদপত্র কিনি।"},{japanese:"レストランで 昼ごはんを 食べます。",romaji:"Resutoran de hirugohan o tabemasu.",bengali:"রেস্তোরাঁয় দুপুরের খাবার খাই।"},{japanese:"学校で 日本語を 勉強します。",romaji:"Gakkou de Nihongo o benkyou shimasu.",bengali:"স্কুলে জাপানি পড়ি।"}],
+  },
+  {
+    title:"নরম ও ভদ্র invitation",structure:"いっしょに Vませんか。",
+    explanation:"কাউকে নিজের সঙ্গে কোনো কাজ করার আমন্ত্রণ দিতে verb-এর polite negative form Vません-এর পরে か বসে। Literal negative question মনে হলেও Japanese-এ এটি চাপ না দিয়ে ‘করবেন?’ বলার স্বাভাবিক invitation। いっしょに যোগ করলে ‘একসঙ্গে’ অর্থ স্পষ্ট হয়।",
+    notes:["飲みます → 飲みませんか; 見ます → 見ませんか।","Accept: ええ、いいですね／はい、しましょう। Soft decline: すみません、ちょっと…。","সরাসরি いいえ বলার চেয়ে ちょっと… বেশি নরম ও স্বাভাবিক।"],
+    visual:{tokens:[{text:"いっしょに",role:"একসঙ্গে"},{text:"京都へ",role:"Destination"},{text:"行きませんか",role:"Invitation",accent:true}],romaji:"Issho ni Kyouto e ikimasen ka.",bengali:"একসঙ্গে কিয়োটো যাবেন?"},
+    examples:[{japanese:"いっしょに 京都へ 行きませんか。",romaji:"Issho ni Kyouto e ikimasen ka.",bengali:"একসঙ্গে কিয়োটো যাবেন?"},{japanese:"いっしょに 映画を 見ませんか。",romaji:"Issho ni eiga o mimasen ka.",bengali:"একসঙ্গে সিনেমা দেখবেন?"},{japanese:"すみません、今日は ちょっと…。",romaji:"Sumimasen, kyou wa chotto...",bengali:"দুঃখিত, আজ একটু অসুবিধা…।"}],
+  },
+  {
+    title:"চলুন করি—positive suggestion",structure:"Vましょう。",
+    explanation:"বক্তা ও শ্রোতা মিলে কোনো কাজ করার positive proposal দিতে verb-এর ます বাদ দিয়ে ましょう বসে। Invitation গ্রহণ করেও এটি বলা যায়: ええ、食べましょう—‘হ্যাঁ, চলুন খাই।’ ませんか-এর চেয়ে ましょう একটু বেশি সরাসরি।",
+    notes:["食べます → 食べましょう; 行きます → 行きましょう।","নিজের একার future plan বলতে ましょう নয়; তখন Vます ব্যবহার করুন।","Question করলে Vましょうか সাধারণত offer/proposal হয়; সেটি পরের স্তরে বিস্তারিত আসবে।"],
+    visual:{tokens:[{text:"ちょっと",role:"অল্প বিরতি"},{text:"休み",role:"Verb stem"},{text:"ましょう",role:"চলুন",accent:true}],romaji:"Chotto yasumimashou.",bengali:"চলুন একটু বিশ্রাম নিই।"},
+    examples:[{japanese:"ちょっと 休みましょう。",romaji:"Chotto yasumimashou.",bengali:"চলুন একটু বিশ্রাম নিই।"},{japanese:"いっしょに 昼ごはんを 食べましょう。",romaji:"Issho ni hirugohan o tabemashou.",bengali:"চলুন একসঙ্গে দুপুরের খাবার খাই।"},{japanese:"京都へ 行きましょう。",romaji:"Kyouto e ikimashou.",bengali:"চলুন কিয়োটো যাই।"}],
+  },
+  {
+    title:"শোনা তথ্য echo করে নিশ্চিত হওয়া—か",structure:"Repeated information + か。",
+    explanation:"শ্রোতা নতুন বা অপ্রত্যাশিত তথ্য শুনে সেটির গুরুত্বপূর্ণ অংশ পুনরাবৃত্তি করে শেষে か বসাতে পারেন। এটি পূর্ণ information question নয়; বরং ‘ও, … নাকি?’ বলে তথ্য গ্রহণ, নিশ্চিত হওয়া বা হালকা বিস্ময় দেখায়। Intonation সাধারণ question-এর তুলনায় নরম হতে পারে।",
+    notes:["そうですか একইভাবে ‘ও, তাই নাকি’ বলে নতুন তথ্য গ্রহণ করে।","Echo করা অংশ context অনুযায়ী ছোট হতে পারে: 京都ですか。","এটি invitation-এর ませんか বা সাধারণ yes/no question-এর か থেকে function-এ আলাদা।"],
+    visual:{tokens:[{text:"日曜日 京都へ 行きました",role:"নতুন তথ্য"},{text:"京都です",role:"শ্রোতার echo"},{text:"か",role:"গ্রহণ/নিশ্চিতকরণ",accent:true}],romaji:"Nichiyoubi Kyouto e ikimashita. — Kyouto desu ka.",bengali:"রবিবার কিয়োটো গিয়েছিলাম। — ও, কিয়োটো নাকি?"},
+    examples:[{japanese:"日曜日 京都へ 行きました。— 京都ですか。いいですね。",romaji:"Nichiyoubi Kyouto e ikimashita. — Kyouto desu ka. Ii desu ne.",bengali:"রবিবার কিয়োটো গিয়েছিলাম। — ও, কিয়োটো নাকি? বেশ ভালো।"},{japanese:"駅で 田中さんに 会いました。— 田中さんですか。",romaji:"Eki de Tanaka-san ni aimashita. — Tanaka-san desu ka.",bengali:"স্টেশনে তানাকা-সানের সঙ্গে দেখা হয়েছে। — তানাকা-সান নাকি?"}],
+  },
+];
+
 export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 1) return unit1GrammarDetails;
   if (unitNumber === 2) return unit2GrammarDetails;
   if (unitNumber === 3) return unit3GrammarDetails;
+  if (unitNumber === 4) return unit4GrammarDetails;
+  if (unitNumber === 5) return unit5GrammarDetails;
+  if (unitNumber === 6) return unit6GrammarDetails;
   return [];
 }

@@ -600,9 +600,202 @@ const unitThreePractice: UnitPracticeDetails = {
   ],
 };
 
+const unitFourPractice: UnitPracticeDetails = {
+  heroImage: "/images/projects/n5-practice/unit-04-time-schedule.png",
+  heroAlt: "ঘড়ি, আন্তর্জাতিক telephone call, weekly schedule এবং সকাল থেকে রাতের routine নিয়ে রঙিন Japanese practice illustration",
+  dialogueImage: "/images/projects/n5-practice/unit-04-time-schedule.png",
+  heroEyebrow: "UNIT 04 · TIME & SCHEDULE PRACTICE",
+  heroTitle: "ঘড়ি দেখুন, সময় বলুন, schedule তৈরি করুন",
+  heroDescription: "何時・何分, verb tense, に, から／まで, と এবং ね ব্যবহার করে daily routine ও business hour বলুন।",
+  dialogueTitle: "Telephone-এ business hour জিজ্ঞেস করা",
+  dialogueAlt: "ভিন্ন time zone-এর office worker telephone-এ business hour জিজ্ঞেস করছেন",
+  dialogueCaption: [{name:"ミラー",text:"telephone number ও closing time জিজ্ঞেস করছেন"},{name:"店の人",text:"business hour জানাচ্ছেন"},{name:"時計",text:"ভিন্ন শহরের সময় দেখাচ্ছে"}],
+  modelLabel: "一日の予定",
+  modelTitle: "DAILY SCHEDULE MODEL",
+  usefulWords: [
+    {japanese:"何時／何分",romaji:"nan-ji / nan-pun",bengali:"কয়টা / কত মিনিট"},{japanese:"午前／午後",romaji:"gozen / gogo",bengali:"সকাল a.m. / দুপুরের পর p.m."},{japanese:"～から／～まで",romaji:"~ kara / ~ made",bengali:"～থেকে / ～পর্যন্ত"},{japanese:"毎朝／毎晩",romaji:"maiasa / maiban",bengali:"প্রতি সকাল / প্রতি রাত"},{japanese:"休み",romaji:"yasumi",bengali:"ছুটি / বিশ্রাম"},{japanese:"何曜日",romaji:"nan-youbi",bengali:"কী বার"},
+  ],
+  answerPatterns: [
+    {japanese:"今 7時10分です。",romaji:"Ima shichi-ji juppun desu.",bengali:"এখন ৭টা ১০ মিনিট।",positive:true},
+    {japanese:"9時から 5時までです。",romaji:"Ku-ji kara go-ji made desu.",bengali:"৯টা থেকে ৫টা পর্যন্ত।",positive:true},
+    {japanese:"いいえ、働きませんでした。",romaji:"Iie, hatarakimasen deshita.",bengali:"না, কাজ করিনি।",positive:false},
+  ],
+  memoryPoints: [
+    {symbol:"時",meaning:"ঘণ্টার counter; 4時＝よじ, 7時＝しちじ, 9時＝くじ"},{symbol:"分",meaning:"মিনিট; ふん／ぷん reading বদলায়"},{symbol:"に",meaning:"exact time-এর পরে; 今日・明日・毎日-এর পরে নয়"},{symbol:"から",meaning:"শুরুর সময় বা স্থান"},{symbol:"まで",meaning:"শেষের সময় বা স্থান"},{symbol:"ね",meaning:"সম্মতি বা সহমর্মিতা—তাই না"},
+  ],
+  selfIntroduction: {japanese:"毎朝 6時半に 起きます。9時から 5時まで 働きます。土曜日と 日曜日は 休みです。",romaji:"Maiasa roku-ji han ni okimasu. Ku-ji kara go-ji made hatarakimasu. Doyoubi to nichiyoubi wa yasumi desu.",bengali:"প্রতি সকাল সাড়ে ৬টায় উঠি। ৯টা থেকে ৫টা পর্যন্ত কাজ করি। শনিবার ও রবিবার ছুটি।"},
+  grammarQuiz: [
+    {question:"‘এখন ৪টা ৫ মিনিট’—সঠিকটি কোনটি?",options:["今 4時5分です。","今 4分5時です。","今に 4時です。","4時を 5分です。"],correctAnswer:"今 4時5分です。",explanation:"সময় বলার order হলো 今 + hour 時 + minute 分 + です।"},
+    {question:"4時-এর স্বাভাবিক reading কোনটি?",options:["よじ","よんじ","しじ","よつじ"],correctAnswer:"よじ",explanation:"৪টার special reading よじ।"},
+    {question:"‘প্রতি সকাল ৬টায় উঠি’—কোনটি ঠিক?",options:["毎朝 6時に 起きます。","毎朝に 6時を 起きます。","毎朝 6時で 起きます。","毎朝 6時 起きました。"],correctAnswer:"毎朝 6時に 起きます。",explanation:"Exact clock time 6時-এর পরে に বসে।"},
+    {question:"‘গতকাল পড়াশোনা করিনি’—সঠিক tense?",options:["昨日 勉強しませんでした。","昨日 勉強しません。","昨日 勉強します。","昨日 勉強でした。"],correctAnswer:"昨日 勉強しませんでした。",explanation:"Past negative polite ending হলো ませんでした।"},
+    {question:"‘৯টা থেকে ৫টা পর্যন্ত’—কোনটি ঠিক?",options:["9時から 5時まで","9時まで 5時から","9時と 5時に","9時に 5時を"],correctAnswer:"9時から 5時まで",explanation:"から শুরু এবং まで শেষের সীমা দেখায়।"},
+    {question:"‘ছুটি শনিবার ও রবিবার’—কোন particle?",options:["土曜日と 日曜日","土曜日に 日曜日","土曜日から 日曜日","土曜日を 日曜日"],correctAnswer:"土曜日と 日曜日",explanation:"দুইটি noun সম্পূর্ণ তালিকা হিসেবে যুক্ত করতে と।"},
+    {question:"今日-এর পরে সাধারণত কোনটি ঠিক?",options:["今日 働きます。","今日に 働きます。","今日を 働きます。","今日で 起きます。"],correctAnswer:"今日 働きます。",explanation:"今日・明日・毎日-এর মতো relative time word-এর পরে সাধারণত に লাগে না।"},
+    {question:"‘কষ্টকর, তাই না’—কোনটি ঠিক?",options:["大変ですね。","大変ですかに。","大変をね。","大変とです。"],correctAnswer:"大変ですね。",explanation:"Sentence শেষে ね shared feeling বা agreement প্রকাশ করে।"},
+  ],
+  dialogue: [
+    {speaker:"ミラー",japanese:"すみません。「あすか」の 電話番号は 何番ですか。",romaji:"Sumimasen. Asuka no denwa bangou wa nan-ban desu ka.",bengali:"মাফ করবেন, ‘আসুকা’-র telephone number কত?"},
+    {speaker:"佐藤",japanese:"5275の 2725です。",romaji:"Go-ni-nana-go no ni-nana-ni-go desu.",bengali:"৫২৭৫-২৭২৫।"},
+    {speaker:"ミラー",japanese:"どうも ありがとうございます。",romaji:"Doumo arigatou gozaimasu.",bengali:"অনেক ধন্যবাদ।"},
+    {speaker:"店の人",japanese:"はい、「あすか」です。",romaji:"Hai, Asuka desu.",bengali:"হ্যালো, ‘আসুকা’ বলছি।"},
+    {speaker:"ミラー",japanese:"すみません。そちらは 何時までですか。",romaji:"Sumimasen. Sochira wa nan-ji made desu ka.",bengali:"মাফ করবেন, আপনারা কয়টা পর্যন্ত খোলা?"},
+    {speaker:"店の人",japanese:"10時までです。休みは 日曜日です。",romaji:"Juu-ji made desu. Yasumi wa nichiyoubi desu.",bengali:"রাত ১০টা পর্যন্ত। রবিবার ছুটি।"},
+    {speaker:"ミラー",japanese:"そうですか。どうも。",romaji:"Sou desu ka. Doumo.",bengali:"ও, বুঝলাম। ধন্যবাদ।"},
+  ],
+  profiles: [],
+  modules: [
+    {step:"01",title:"Clock reading",instruction:"ঘড়ির cue অনুযায়ী hour ও minute-সহ সম্পূর্ণ সময় বলুন।",questions:[
+      {prompt:"4:05 — এখন কয়টা?",answer:"今 4時5分です。",romaji:"Ima yo-ji go-fun desu.",bengali:"এখন ৪টা ৫ মিনিট।"},{prompt:"9:30 — 半 ব্যবহার করুন।",answer:"今 9時半です。",romaji:"Ima ku-ji han desu.",bengali:"এখন সাড়ে ৯টা।"},{prompt:"2:10 — সম্পূর্ণ sentence বলুন।",answer:"今 2時10分です。",romaji:"Ima ni-ji juppun desu.",bengali:"এখন ২টা ১০ মিনিট।"},{prompt:"7:45 — 午後 যোগ করুন।",answer:"今 午後7時45分です。",romaji:"Ima gogo shichi-ji yonjuu-go-fun desu.",bengali:"এখন সন্ধ্যা ৭টা ৪৫ মিনিট।"},
+    ]},
+    {step:"02",title:"World-time challenge",instruction:"একই মুহূর্তে শহরভেদে সময় বদলায়—city cue দেখে Japanese-এ উত্তর দিন।",questions:[
+      {prompt:"東京 18:00 — 東京は 今 何時ですか。",answer:"東京は 今 午後6時です。",romaji:"Toukyou wa ima gogo roku-ji desu.",bengali:"টোকিওতে এখন সন্ধ্যা ৬টা।"},{prompt:"ロンドン 10:00 — ロンドンは 今 何時ですか。",answer:"ロンドンは 今 午前10時です。",romaji:"Rondon wa ima gozen juu-ji desu.",bengali:"লন্ডনে এখন সকাল ১০টা।"},{prompt:"ニューヨーク 05:00 — time বলুন।",answer:"ニューヨークは 今 午前5時です。",romaji:"Nyuuyooku wa ima gozen go-ji desu.",bengali:"নিউইয়র্কে এখন সকাল ৫টা।"},{prompt:"北京 17:00 — time বলুন।",answer:"北京は 今 午後5時です。",romaji:"Pekin wa ima gogo go-ji desu.",bengali:"বেইজিংয়ে এখন বিকেল ৫টা।"},
+    ]},
+    {step:"03",title:"Weekly schedule",instruction:"Weekday ও activity মিলিয়ে 何曜日 question-এর উত্তর তৈরি করুন।",questions:[
+      {prompt:"休み: 土曜日・日曜日 — 休みは 何曜日ですか。",answer:"休みは 土曜日と 日曜日です。",romaji:"Yasumi wa doyoubi to nichiyoubi desu.",bengali:"ছুটি শনিবার ও রবিবার।"},{prompt:"会議: 火曜日 — sentence বলুন।",answer:"会議は 火曜日です。",romaji:"Kaigi wa kayoubi desu.",bengali:"মিটিং মঙ্গলবার।"},{prompt:"試験: 金曜日 — sentence বলুন।",answer:"試験は 金曜日です。",romaji:"Shiken wa kinyoubi desu.",bengali:"পরীক্ষা শুক্রবার।"},{prompt:"映画: 水曜日 — question তৈরি করুন।",answer:"映画は 何曜日ですか。水曜日です。",romaji:"Eiga wa nan-youbi desu ka. Suiyoubi desu.",bengali:"সিনেমা কী বার? বুধবার।"},
+    ]},
+    {step:"04",title:"Opening hours",instruction:"Place ও সময় দেখে から／まで ব্যবহার করে business hour বলুন।",questions:[
+      {prompt:"銀行 9:00–15:00",answer:"銀行は 9時から 3時までです。",romaji:"Ginkou wa ku-ji kara san-ji made desu.",bengali:"ব্যাংক ৯টা থেকে ৩টা পর্যন্ত।"},{prompt:"郵便局 9:00–17:00",answer:"郵便局は 9時から 5時までです。",romaji:"Yuubinkyoku wa ku-ji kara go-ji made desu.",bengali:"ডাকঘর ৯টা থেকে ৫টা পর্যন্ত।"},{prompt:"図書館 9:00–18:30",answer:"図書館は 9時から 6時半までです。",romaji:"Toshokan wa ku-ji kara roku-ji han made desu.",bengali:"লাইব্রেরি ৯টা থেকে সাড়ে ৬টা পর্যন্ত।"},{prompt:"会社 9:15–17:45",answer:"会社は 9時15分から 5時45分までです。",romaji:"Kaisha wa ku-ji juu-go-fun kara go-ji yonjuu-go-fun made desu.",bengali:"কোম্পানি ৯:১৫ থেকে ৫:৪৫ পর্যন্ত।"},
+    ]},
+    {step:"05",title:"Daily routine",instruction:"Routine cue-তে exact time-এর পরে に বসিয়ে sentence তৈরি করুন।",questions:[
+      {prompt:"毎朝／起きます／6:30",answer:"毎朝 6時半に 起きます。",romaji:"Maiasa roku-ji han ni okimasu.",bengali:"প্রতি সকাল সাড়ে ৬টায় উঠি।"},{prompt:"毎晩／寝ます／11:00",answer:"毎晩 11時に 寝ます。",romaji:"Maiban juuichi-ji ni nemasu.",bengali:"প্রতি রাত ১১টায় ঘুমাই।"},{prompt:"毎日／働きます／9:00–17:00",answer:"毎日 9時から 5時まで 働きます。",romaji:"Mainichi ku-ji kara go-ji made hatarakimasu.",bengali:"প্রতিদিন ৯টা থেকে ৫টা পর্যন্ত কাজ করি।"},{prompt:"今晩／勉強します／7:00–8:30",answer:"今晩 7時から 8時半まで 勉強します。",romaji:"Konban shichi-ji kara hachi-ji han made benkyou shimasu.",bengali:"আজ রাতে ৭টা থেকে সাড়ে ৮টা পর্যন্ত পড়ব।"},
+    ]},
+    {step:"06",title:"Tense transformation",instruction:"Time cue দেখে ます ending-কে present, negative, past বা past-negative করুন।",questions:[
+      {prompt:"毎日 勉強します → きのう（affirmative）",answer:"きのう 勉強しました。",romaji:"Kinou benkyou shimashita.",bengali:"গতকাল পড়াশোনা করেছি।"},{prompt:"毎日 働きます → あした（negative）",answer:"あした 働きません。",romaji:"Ashita hatarakimasen.",bengali:"আগামীকাল কাজ করব না।"},{prompt:"毎朝 6時に 起きます → きのう（past negative）",answer:"きのう 6時に 起きませんでした。",romaji:"Kinou roku-ji ni okimasen deshita.",bengali:"গতকাল ৬টায় উঠিনি।"},{prompt:"毎晩 11時に 寝ます → おととい（past）",answer:"おととい 11時に 寝ました。",romaji:"Ototoi juuichi-ji ni nemashita.",bengali:"গত পরশু ১১টায় ঘুমিয়েছি।"},
+    ]},
+    {step:"07",title:"Telephone conversation",instruction:"Business-hour dialogue-এর missing expression সম্পূর্ণ করুন।",questions:[
+      {prompt:"「あすか」の 電話番号は ＿＿ですか。",answer:"「あすか」の 電話番号は 何番ですか。",romaji:"Asuka no denwa bangou wa nan-ban desu ka.",bengali:"আসুকা-র telephone number কত?"},{prompt:"そちらは 何時＿＿ですか。",answer:"そちらは 何時までですか。",romaji:"Sochira wa nan-ji made desu ka.",bengali:"আপনারা কয়টা পর্যন্ত খোলা?"},{prompt:"10時＿＿です。",answer:"10時までです。",romaji:"Juu-ji made desu.",bengali:"১০টা পর্যন্ত।"},{prompt:"休みは 何曜日ですか。— ＿＿。",answer:"日曜日です。",romaji:"Nichiyoubi desu.",bengali:"রবিবার।"},
+    ]},
+  ],
+};
+
+const unitFivePractice: UnitPracticeDetails = {
+  heroImage:"/images/projects/n5-practice/unit-05-travel.png",heroAlt:"Japanese station-এ ticket counter, route map, train, bus, airplane ও castle-সহ রঙিন travel practice illustration",
+  dialogueImage:"/images/projects/n5-practice/unit-05-travel.png",heroEyebrow:"UNIT 05 · TRAVEL PRACTICE",heroTitle:"কোথায়, কীভাবে, কখন ও কার সঙ্গে যাবেন?",heroDescription:"Destination へ, transport で, companion と, date に এবং movement verb ব্যবহার করে সম্পূর্ণ travel sentence তৈরি করুন।",
+  dialogueTitle:"Ticket counter-এ route ও fare জিজ্ঞেস করা",dialogueAlt:"Station ticket counter-এ traveller train destination ও fare জিজ্ঞেস করছেন",dialogueCaption:[{name:"サントス",text:"甲子園 যাওয়ার train ও fare জানতে চাইছেন"},{name:"女の人",text:"route ও ticket price জানাচ্ছেন"},{name:"切符",text:"destination ও platform-এর clue"}],
+  modelLabel:"旅行の予定",modelTitle:"TRAVEL PLAN MODEL",
+  usefulWords:[{japanese:"どこへ",romaji:"doko e",bengali:"কোথায়/কোন দিকে"},{japanese:"何で",romaji:"nan de",bengali:"কী দিয়ে/কীভাবে"},{japanese:"だれと",romaji:"dare to",bengali:"কার সঙ্গে"},{japanese:"いつ",romaji:"itsu",bengali:"কখন"},{japanese:"～番線",romaji:"~ bansen",bengali:"～নম্বর platform"},{japanese:"いくら",romaji:"ikura",bengali:"কত দাম"}],
+  answerPatterns:[{japanese:"～へ 行きます。",romaji:"~ e ikimasu.",bengali:"～এ/দিকে যাই।",positive:true},{japanese:"～で 行きました。",romaji:"~ de ikimashita.",bengali:"～দিয়ে গিয়েছিলাম।",positive:true},{japanese:"どこへも 行きませんでした。",romaji:"Doko e mo ikimasen deshita.",bengali:"কোথাও যাইনি।",positive:false}],
+  memoryPoints:[{symbol:"へ",meaning:"destination; লেখা he, উচ্চারণ e"},{symbol:"で",meaning:"vehicle বা যাতায়াতের মাধ্যম"},{symbol:"と",meaning:"person/animal companion"},{symbol:"に",meaning:"exact date; 7月25日に"},{symbol:"いつ",meaning:"কখন—এর পরে に নয়"},{symbol:"も",meaning:"どこへも + negative = কোথাও না"}],
+  selfIntroduction:{japanese:"来週 友達と 京都へ 行きます。新幹線で 行きます。7月25日に 帰ります。",romaji:"Raishuu tomodachi to Kyouto e ikimasu. Shinkansen de ikimasu. Shichi-gatsu nijuu-go-nichi ni kaerimasu.",bengali:"আগামী সপ্তাহে বন্ধুর সঙ্গে কিয়োটো যাব। শিনকানসেনে যাব। ২৫ জুলাই ফিরব।"},
+  grammarQuiz:[
+    {question:"‘কিয়োটো যাই’—destination particle কোনটি?",options:["京都へ 行きます。","京都で 行きます。","京都と 行きます。","京都を 行きます。"],correctAnswer:"京都へ 行きます。",explanation:"Movement destination-এর পরে へ বসে এবং ‘e’ উচ্চারিত হয়।"},
+    {question:"‘Train-এ Tokyo যাই’—সঠিকটি?",options:["電車で 東京へ 行きます。","電車へ 東京で 行きます。","電車と 東京を 行きます。","東京で 電車に 行きます。"],correctAnswer:"電車で 東京へ 行きます。",explanation:"Vehicle-এর পরে で এবং destination-এর পরে へ।"},
+    {question:"‘বন্ধুর সঙ্গে’—কোনটি?",options:["友達と","友達で","友達へ","友達も"],correctAnswer:"友達と",explanation:"Companion-এর পরে と বসে।"},
+    {question:"‘একা Tokyo যাই’—সঠিকটি?",options:["一人で 東京へ 行きます。","一人と 東京へ 行きます。","一人へ 東京で 行きます。","一人も 東京を 行きます。"],correctAnswer:"一人で 東京へ 行きます。",explanation:"একা বোঝাতে fixed expression 一人で।"},
+    {question:"‘গতকাল কোথাও যাইনি’—কোনটি?",options:["昨日 どこへも 行きませんでした。","昨日 どこへも 行きました。","昨日 どこで 行きません。","昨日 どこかも 行きます。"],correctAnswer:"昨日 どこへも 行きませんでした。",explanation:"どこへも-এর সঙ্গে negative past verb লাগে।"},
+    {question:"‘কখন Japan-এ এসেছেন?’—সঠিক প্রশ্ন?",options:["いつ 日本へ 来ましたか。","いつに 日本へ 来ましたか。","何時で 日本を 来ましたか。","どこ 日本へ 来ますか。"],correctAnswer:"いつ 日本へ 来ましたか。",explanation:"Broad time question いつ-এর পরে に বসে না।"},
+    {question:"Exact date-এর সঠিক pattern কোনটি?",options:["7月25日に 来ました。","7月25日へ 来ました。","7月25日で 来ました。","7月25日と 来ました。"],correctAnswer:"7月25日に 来ました。",explanation:"নির্দিষ্ট calendar date-এর পরে に বসে।"},
+    {question:"হেঁটে school যাই—কোনটি?",options:["歩いて 学校へ 行きます。","歩いてで 学校へ 行きます。","歩くと 学校で 行きます。","歩いて 学校を 行きます。"],correctAnswer:"歩いて 学校へ 行きます。",explanation:"歩いて নিজেই manner expression; অতিরিক্ত で লাগে না।"},
+  ],
+  dialogue:[
+    {speaker:"サントス",japanese:"すみません。この電車は 甲子園へ 行きますか。",romaji:"Sumimasen. Kono densha wa Koushien e ikimasu ka.",bengali:"মাফ করবেন, এই train কি কোশিয়েন যায়?"},{speaker:"女の人",japanese:"はい、行きます。",romaji:"Hai, ikimasu.",bengali:"হ্যাঁ, যায়।"},{speaker:"サントス",japanese:"甲子園まで いくらですか。",romaji:"Koushien made ikura desu ka.",bengali:"কোশিয়েন পর্যন্ত ভাড়া কত?"},{speaker:"女の人",japanese:"350円です。",romaji:"Sanbyaku gojuu-en desu.",bengali:"৩৫০ yen।"},{speaker:"サントス",japanese:"ありがとうございます。",romaji:"Arigatou gozaimasu.",bengali:"ধন্যবাদ।"},{speaker:"女の人",japanese:"どういたしまして。",romaji:"Dou itashimashite.",bengali:"স্বাগতম।"},
+  ],profiles:[],
+  modules:[
+    {step:"01",title:"Destination builder",instruction:"Time cue ও destination মিলিয়ে present/past movement sentence বলুন।",questions:[
+      {prompt:"あした／京都／行きます",answer:"あした 京都へ 行きます。",romaji:"Ashita Kyouto e ikimasu.",bengali:"আগামীকাল কিয়োটো যাব।"},{prompt:"日曜日／大阪城／行きました",answer:"日曜日に 大阪城へ 行きました。",romaji:"Nichiyoubi ni Oosakajou e ikimashita.",bengali:"রবিবার ওসাকা দুর্গে গিয়েছিলাম।"},{prompt:"来月／国／帰ります",answer:"来月 国へ 帰ります。",romaji:"Raigetsu kuni e kaerimasu.",bengali:"আগামী মাসে দেশে ফিরব।"},{prompt:"去年／日本／来ました",answer:"去年 日本へ 来ました。",romaji:"Kyonen Nihon e kimashita.",bengali:"গত বছর জাপানে এসেছি।"},
+    ]},
+    {step:"02",title:"Transport drill",instruction:"Route-এর vehicle দেখে で অথবা 歩いて ব্যবহার করুন।",questions:[
+      {prompt:"東京へ／新幹線",answer:"新幹線で 東京へ 行きます。",romaji:"Shinkansen de Toukyou e ikimasu.",bengali:"শিনকানসেনে টোকিও যাই।"},{prompt:"学校へ／バス",answer:"バスで 学校へ 行きます。",romaji:"Basu de gakkou e ikimasu.",bengali:"বাসে স্কুলে যাই।"},{prompt:"駅へ／自転車",answer:"自転車で 駅へ 行きます。",romaji:"Jitensha de eki e ikimasu.",bengali:"সাইকেলে স্টেশনে যাই।"},{prompt:"駅から うちへ／on foot",answer:"駅から うちへ 歩いて 帰ります。",romaji:"Eki kara uchi e aruite kaerimasu.",bengali:"স্টেশন থেকে বাড়ি হেঁটে ফিরি।"},
+    ]},
+    {step:"03",title:"Companion mission",instruction:"Person cue দেখে と, একা হলে 一人で ব্যবহার করুন।",questions:[
+      {prompt:"家族／日本へ 来ました",answer:"家族と 日本へ 来ました。",romaji:"Kazoku to Nihon e kimashita.",bengali:"পরিবারের সঙ্গে জাপানে এসেছি।"},{prompt:"友達／デパートへ 行きます",answer:"友達と デパートへ 行きます。",romaji:"Tomodachi to depaato e ikimasu.",bengali:"বন্ধুর সঙ্গে ডিপার্টমেন্ট স্টোরে যাই।"},{prompt:"alone／東京へ 行きます",answer:"一人で 東京へ 行きます。",romaji:"Hitori de Toukyou e ikimasu.",bengali:"একা টোকিও যাই।"},{prompt:"কার সঙ্গে Kyoto গিয়েছিলেন?",answer:"だれと 京都へ 行きましたか。",romaji:"Dare to Kyouto e ikimashita ka.",bengali:"কার সঙ্গে কিয়োটো গিয়েছিলেন?"},
+    ]},
+    {step:"04",title:"Calendar & date",instruction:"いつ, month/date reading এবং に ব্যবহার করে question-answer সম্পূর্ণ করুন।",questions:[
+      {prompt:"日本へ কখন এসেছেন? — 4月3日",answer:"いつ 日本へ 来ましたか。— 4月3日に 来ました。",romaji:"Itsu Nihon e kimashita ka. — Shi-gatsu mikka ni kimashita.",bengali:"কখন জাপানে এসেছেন? — ৩ এপ্রিল।"},{prompt:"জন্মদিন কবে? — 6月13日",answer:"誕生日は いつですか。— 6月13日です。",romaji:"Tanjoubi wa itsu desu ka. — Roku-gatsu juu-san-nichi desu.",bengali:"জন্মদিন কবে? — ১৩ জুন।"},{prompt:"Tokyo কবে যাবেন? — 来週",answer:"いつ 東京へ 行きますか。— 来週 行きます。",romaji:"Itsu Toukyou e ikimasu ka. — Raishuu ikimasu.",bengali:"কখন টোকিও যাবেন? — আগামী সপ্তাহে।"},{prompt:"কত তারিখে ফিরবেন? — 7月25日",answer:"何日に 帰りますか。— 7月25日に 帰ります。",romaji:"Nan-nichi ni kaerimasu ka. — Shichi-gatsu nijuu-go-nichi ni kaerimasu.",bengali:"কত তারিখে ফিরবেন? — ২৫ জুলাই।"},
+    ]},
+    {step:"05",title:"Travel story",instruction:"স্থান → activity → companion/transport cue এক sentence বা ছোট flow-তে বলুন।",questions:[
+      {prompt:"アメリカ → airplane → alone",answer:"一人で 飛行機で アメリカへ 行きました。",romaji:"Hitori de hikouki de Amerika e ikimashita.",bengali:"একা বিমানে আমেরিকা গিয়েছিলাম।"},{prompt:"埼玉 → train → friend",answer:"友達と 電車で 埼玉へ 行きました。",romaji:"Tomodachi to densha de Saitama e ikimashita.",bengali:"বন্ধুর সঙ্গে ট্রেনে সাইতামা গিয়েছিলাম।"},{prompt:"学校 → bicycle → today",answer:"きょう 自転車で 学校へ 行きました。",romaji:"Kyou jitensha de gakkou e ikimashita.",bengali:"আজ সাইকেলে স্কুলে গিয়েছি।"},{prompt:"東京 → bus → tomorrow",answer:"あした バスで 東京へ 行きます。",romaji:"Ashita basu de Toukyou e ikimasu.",bengali:"আগামীকাল বাসে টোকিও যাব।"},
+    ]},
+    {step:"06",title:"Ticket-counter conversation",instruction:"甲子園 যাওয়ার dialogue-এর missing অংশ পূরণ করুন।",questions:[
+      {prompt:"この電車は 甲子園へ ＿＿か。",answer:"この電車は 甲子園へ 行きますか。",romaji:"Kono densha wa Koushien e ikimasu ka.",bengali:"এই train কি কোশিয়েন যায়?"},{prompt:"甲子園＿＿ いくらですか。",answer:"甲子園まで いくらですか。",romaji:"Koushien made ikura desu ka.",bengali:"কোশিয়েন পর্যন্ত ভাড়া কত?"},{prompt:"Fare: 350 yen",answer:"350円です。",romaji:"Sanbyaku gojuu-en desu.",bengali:"৩৫০ yen।"},{prompt:"ありがとう ございました。— ＿＿。",answer:"どういたしまして。",romaji:"Dou itashimashite.",bengali:"স্বাগতম।"},
+    ]},
+    {step:"07",title:"Final mixed recall",instruction:"Bangla cue দেখে destination, vehicle, companion ও date একত্রে বলুন।",questions:[
+      {prompt:"আগামীকাল বন্ধুর সঙ্গে bus-এ Kyoto যাব।",answer:"あした 友達と バスで 京都へ 行きます。",romaji:"Ashita tomodachi to basu de Kyouto e ikimasu.",bengali:"আগামীকাল বন্ধুর সঙ্গে বাসে কিয়োটো যাব।"},{prompt:"গত রবিবার পরিবারের সঙ্গে Tokyo গিয়েছিলাম।",answer:"先週の 日曜日に 家族と 東京へ 行きました。",romaji:"Senshuu no nichiyoubi ni kazoku to Toukyou e ikimashita.",bengali:"গত রবিবার পরিবারের সঙ্গে টোকিও গিয়েছিলাম।"},{prompt:"আজ সকালে কোথাও যাইনি।",answer:"けさ どこへも 行きませんでした。",romaji:"Kesa doko e mo ikimasen deshita.",bengali:"আজ সকালে কোথাও যাইনি।"},{prompt:"২৫ জুলাই plane-এ Japan এসেছি।",answer:"7月25日に 飛行機で 日本へ 来ました。",romaji:"Shichi-gatsu nijuu-go-nichi ni hikouki de Nihon e kimashita.",bengali:"২৫ জুলাই বিমানে জাপানে এসেছি।"},
+    ]},
+  ],
+};
+
+const unitSixPractice: UnitPracticeDetails = {
+  heroImage:"/images/projects/n5-practice/unit-06-actions.png",
+  heroAlt:"Osaka Castle-এর সামনে বন্ধুকে invitation দেওয়া এবং পাশে reading, shopping, photography, lunch, tennis ও homework-এর colorful Japanese textbook illustration",
+  dialogueImage:"/images/projects/n5-practice/unit-06-actions.png",
+  heroEyebrow:"UNIT 06 · ACTION & INVITATION PRACTICE",
+  heroTitle:"কী করেন, কোথায় করেন—এবং একসঙ্গে করবেন?",
+  heroDescription:"Object を, action-place で, 何を question, ませんか invitation ও ましょう suggestion ব্যবহার করে action থেকে conversation তৈরি করুন।",
+  dialogueTitle:"いっしょに 行きませんか—Osaka Castle invitation",
+  dialogueAlt:"Osaka Castle ও cherry blossom-এর সামনে দুই বন্ধু পরের দিনের outing নিয়ে কথা বলছেন",
+  dialogueCaption:[{name:"ミラー",text:"আগামীকাল একসঙ্গে お花見 করার invitation দিচ্ছেন"},{name:"佐藤",text:"স্থান ও meeting time জেনে invitation গ্রহণ করছেন"},{name:"大阪城",text:"action-place ও outing-এর visual clue"}],
+  modelLabel:"行動と誘い方",
+  modelTitle:"ACTION → PLACE → INVITATION",
+  challengeTitle:"আজকের action map",
+  challengeDescription:"প্রথমে object ও action মিলিয়ে sentence বলুন; পরে place, time ও invitation যোগ করে mini conversation তৈরি করুন।",
+  usefulWords:[
+    {japanese:"何を",romaji:"nani o",bengali:"কী (action-এর object)"},{japanese:"どこで",romaji:"doko de",bengali:"কোথায় action হয়"},{japanese:"いっしょに",romaji:"issho ni",bengali:"একসঙ্গে"},{japanese:"ちょっと",romaji:"chotto",bengali:"একটু; নরমভাবে decline"},{japanese:"それから",romaji:"sorekara",bengali:"তারপর"},{japanese:"お花見",romaji:"ohanami",bengali:"চেরি ফুল দেখা"},
+  ],
+  answerPatterns:[
+    {japanese:"Nを Vます。",romaji:"N o V-masu.",bengali:"N নিয়ে/কে action করি।",positive:true},
+    {japanese:"Placeで Vます。",romaji:"Place de V-masu.",bengali:"কোনো স্থানে action করি।",positive:true},
+    {japanese:"いっしょに Vませんか。",romaji:"Issho ni V-masen ka.",bengali:"একসঙ্গে করবেন?",positive:true},
+    {japanese:"すみません、ちょっと…。",romaji:"Sumimasen, chotto...",bengali:"দুঃখিত, একটু অসুবিধা…।",positive:false},
+  ],
+  memoryPoints:[
+    {symbol:"を",meaning:"direct object; লেখা wo, উচ্চারণ o"},{symbol:"で",meaning:"action যে place-এ ঘটে"},{symbol:"何",meaning:"何を＝なにを, 何ですか＝なんですか"},{symbol:"ませんか",meaning:"চাপ না দিয়ে polite invitation"},{symbol:"ましょう",meaning:"চলুন—positive suggestion"},{symbol:"か",meaning:"question বা শোনা তথ্য echo করে নিশ্চিত করা"},
+  ],
+  selfIntroduction:{japanese:"毎朝 新聞を 読みます。会社で 仕事を します。時々 友達と テニスを します。",romaji:"Maiasa shinbun o yomimasu. Kaisha de shigoto o shimasu. Tokidoki tomodachi to tenisu o shimasu.",bengali:"প্রতি সকালে সংবাদপত্র পড়ি। কোম্পানিতে কাজ করি। মাঝে মাঝে বন্ধুর সঙ্গে টেনিস খেলি।"},
+  grammarQuiz:[
+    {question:"‘জুস পান করি’—object particle কোনটি?",options:["ジュースを 飲みます。","ジュースで 飲みます。","ジュースへ 飲みます。","ジュースに 飲みます。"],correctAnswer:"ジュースを 飲みます。",explanation:"পান করার direct object ジュース-এর পরে を বসে।"},
+    {question:"‘Station-এ সংবাদপত্র কিনি’—সঠিক sentence?",options:["駅で 新聞を 買います。","駅を 新聞で 買います。","駅へ 新聞に 買います。","駅に 新聞へ 買います。"],correctAnswer:"駅で 新聞を 買います。",explanation:"Action-place 駅-এর পরে で এবং object 新聞-এর পরে を।"},
+    {question:"‘কী করবেন?’—何-এর reading কোনটি?",options:["何を しますか。（なにを）","何を しますか。（なんを）","何で しますを。","何かを です。"],correctAnswer:"何を しますか。（なにを）",explanation:"を-এর আগে 何 সাধারণত なに পড়া হয়।"},
+    {question:"‘একসঙ্গে সিনেমা দেখবেন?’—নরম invitation কোনটি?",options:["いっしょに 映画を 見ませんか。","いっしょに 映画を 見ません。","映画で いっしょに ですか。","映画へ 見ましょうかを。"],correctAnswer:"いっしょに 映画を 見ませんか。",explanation:"Vませんか polite invitation তৈরি করে।"},
+    {question:"Invitation গ্রহণ করে ‘চলুন যাই’ কীভাবে বলবেন?",options:["行きましょう。","行きません。","行きましたか。","行きです。"],correctAnswer:"行きましょう。",explanation:"ます বাদ দিয়ে ましょう বসালে positive suggestion হয়।"},
+    {question:"‘বাড়িতে homework করি’—action-place particle?",options:["うちで 宿題を します。","うちへ 宿題で します。","うちを 宿題に します。","うちに 宿題へ します。"],correctAnswer:"うちで 宿題を します。",explanation:"Homework করার স্থান うち-এর পরে で।"},
+    {question:"Invitation নরমভাবে decline করার স্বাভাবিক response?",options:["すみません、今日は ちょっと…。","いいえ、絶対 行きません。","何を しますか。","はい、ちがいます。"],correctAnswer:"すみません、今日は ちょっと…。",explanation:"ちょっと… কারণ পুরো না বলেও ভদ্রভাবে অসুবিধা বোঝায়।"},
+    {question:"‘ও, Kyoto নাকি?’—শোনা তথ্য echo করে কোনটি?",options:["京都ですか。","京都を します。","京都ませんか。","京都で 何を。"],correctAnswer:"京都ですか。",explanation:"শোনা গুরুত্বপূর্ণ তথ্য পুনরাবৃত্তি করে か যোগ করলে confirmation/interest বোঝায়।"},
+  ],
+  dialogue:[
+    {speaker:"ミラー",japanese:"佐藤さん。",romaji:"Satou-san.",bengali:"সাতো-সান।"},
+    {speaker:"佐藤",japanese:"何ですか。",romaji:"Nan desu ka.",bengali:"কী ব্যাপার?"},
+    {speaker:"ミラー",japanese:"あした 友達と お花見を します。佐藤さんも いっしょに 行きませんか。",romaji:"Ashita tomodachi to ohanami o shimasu. Satou-san mo issho ni ikimasen ka.",bengali:"আগামীকাল বন্ধুদের সঙ্গে চেরি ফুল দেখতে যাব। সাতো-সানও একসঙ্গে যাবেন?"},
+    {speaker:"佐藤",japanese:"いいですね。どこへ 行きますか。",romaji:"Ii desu ne. Doko e ikimasu ka.",bengali:"বেশ ভালো। কোথায় যাবেন?"},
+    {speaker:"ミラー",japanese:"大阪城です。",romaji:"Oosakajou desu.",bengali:"ওসাকা দুর্গে।"},
+    {speaker:"佐藤",japanese:"何時に 行きますか。",romaji:"Nan-ji ni ikimasu ka.",bengali:"কয়টায় যাবেন?"},
+    {speaker:"ミラー",japanese:"10時に 大阪駅で 会いましょう。",romaji:"Juu-ji ni Oosaka-eki de aimashou.",bengali:"১০টায় ওসাকা স্টেশনে দেখা করি চলুন।"},
+    {speaker:"佐藤",japanese:"分かりました。",romaji:"Wakarimashita.",bengali:"বুঝেছি।"},
+    {speaker:"ミラー",japanese:"じゃ、また あした。",romaji:"Ja, mata ashita.",bengali:"তাহলে, কাল আবার দেখা হবে।"},
+  ],
+  profiles:[],
+  modules:[
+    {step:"01",title:"Object + action builder",instruction:"ছবির বই, খাবার, পানীয় ও camera cue দেখে を সহ sentence তৈরি করুন।",questions:[
+      {prompt:"新聞／読みます",answer:"新聞を 読みます。",romaji:"Shinbun o yomimasu.",bengali:"সংবাদপত্র পড়ি।"},{prompt:"パン／食べます",answer:"パンを 食べます。",romaji:"Pan o tabemasu.",bengali:"রুটি খাই।"},{prompt:"ジュース／飲みます",answer:"ジュースを 飲みます。",romaji:"Juusu o nomimasu.",bengali:"জুস পান করি।"},{prompt:"写真／撮ります",answer:"写真を 撮ります。",romaji:"Shashin o torimasu.",bengali:"ছবি তুলি।"},
+    ]},
+    {step:"02",title:"何を／何ですか",instruction:"何-এর reading ও action cue দেখে question-answer সম্পূর্ণ করুন।",questions:[
+      {prompt:"毎朝 ＿＿ 食べますか。— パンと 卵を 食べます。",answer:"毎朝 何を 食べますか。— パンと 卵を 食べます。",romaji:"Maiasa nani o tabemasu ka. — Pan to tamago o tabemasu.",bengali:"প্রতি সকালে কী খান? — রুটি ও ডিম খাই।"},{prompt:"きのう ＿＿ しましたか。— サッカーを しました。",answer:"きのう 何を しましたか。— サッカーを しました。",romaji:"Kinou nani o shimashita ka. — Sakkaa o shimashita.",bengali:"গতকাল কী করেছিলেন? — ফুটবল খেলেছি।"},{prompt:"これは ＿＿。— 日本語の 本です。",answer:"これは 何ですか。— 日本語の 本です。",romaji:"Kore wa nan desu ka. — Nihongo no hon desu.",bengali:"এটি কী? — জাপানি ভাষার বই।"},{prompt:"何を 買いますか。— magazine",answer:"雑誌を 買います。",romaji:"Zasshi o kaimasu.",bengali:"ম্যাগাজিন কিনি।"},
+    ]},
+    {step:"03",title:"Where the action happens",instruction:"Place cue-এর পরে で এবং object-এর পরে を বসিয়ে পূর্ণ sentence বলুন।",questions:[
+      {prompt:"駅／新聞／買います",answer:"駅で 新聞を 買います。",romaji:"Eki de shinbun o kaimasu.",bengali:"স্টেশনে সংবাদপত্র কিনি।"},{prompt:"食堂／昼ごはん／食べます",answer:"食堂で 昼ごはんを 食べます。",romaji:"Shokudou de hirugohan o tabemasu.",bengali:"ক্যান্টিনে দুপুরের খাবার খাই।"},{prompt:"大学／日本語／勉強します",answer:"大学で 日本語を 勉強します。",romaji:"Daigaku de Nihongo o benkyou shimasu.",bengali:"বিশ্ববিদ্যালয়ে জাপানি পড়ি।"},{prompt:"庭／テニス／します",answer:"庭で テニスを します。",romaji:"Niwa de tenisu o shimasu.",bengali:"বাগানে টেনিস খেলি।"},
+    ]},
+    {step:"04",title:"Picture sequence recall",instruction:"Time ও place cue মিলিয়ে ছবির action flow Japanese-এ বলুন।",questions:[
+      {prompt:"毎朝 7時／コーヒー",answer:"毎朝 7時に コーヒーを 飲みます。",romaji:"Maiasa shichi-ji ni koohii o nomimasu.",bengali:"প্রতি সকাল ৭টায় কফি পান করি।"},{prompt:"昼／会社の食堂／ごはん",answer:"昼 会社の 食堂で ごはんを 食べます。",romaji:"Hiru kaisha no shokudou de gohan o tabemasu.",bengali:"দুপুরে কোম্পানির ক্যান্টিনে খাবার খাই।"},{prompt:"土曜日／図書館／本",answer:"土曜日 図書館で 本を 読みます。",romaji:"Doyoubi toshokan de hon o yomimasu.",bengali:"শনিবার লাইব্রেরিতে বই পড়ি।"},{prompt:"日曜日／友達／映画",answer:"日曜日 友達と 映画を 見ます。",romaji:"Nichiyoubi tomodachi to eiga o mimasu.",bengali:"রবিবার বন্ধুর সঙ্গে সিনেমা দেখি।"},
+    ]},
+    {step:"05",title:"Invitation & response",instruction:"Activity cue দিয়ে ませんか invitation দিন; accept বা soft decline response বলুন।",questions:[
+      {prompt:"お花見／tomorrow／invite",answer:"あした いっしょに お花見を しませんか。",romaji:"Ashita issho ni ohanami o shimasen ka.",bengali:"আগামীকাল একসঙ্গে চেরি ফুল দেখবেন?"},{prompt:"テニス／Sunday／invite",answer:"日曜日 いっしょに テニスを しませんか。",romaji:"Nichiyoubi issho ni tenisu o shimasen ka.",bengali:"রবিবার একসঙ্গে টেনিস খেলবেন?"},{prompt:"Accept এবং lunch suggest করুন",answer:"ええ、いいですね。昼ごはんを 食べましょう。",romaji:"Ee, ii desu ne. Hirugohan o tabemashou.",bengali:"হ্যাঁ, বেশ ভালো। চলুন দুপুরের খাবার খাই।"},{prompt:"আজ সম্ভব নয়—soft decline",answer:"すみません、今日は ちょっと…。",romaji:"Sumimasen, kyou wa chotto...",bengali:"দুঃখিত, আজ একটু অসুবিধা…।"},
+    ]},
+    {step:"06",title:"Osaka Castle dialogue",instruction:"Conversation-এর missing expression বসিয়ে invitation থেকে meeting plan সম্পূর্ণ করুন।",questions:[
+      {prompt:"佐藤さんも いっしょに ＿＿。",answer:"佐藤さんも いっしょに 行きませんか。",romaji:"Satou-san mo issho ni ikimasen ka.",bengali:"সাতো-সানও একসঙ্গে যাবেন?"},{prompt:"いいですね。＿＿ 行きますか。",answer:"いいですね。どこへ 行きますか。",romaji:"Ii desu ne. Doko e ikimasu ka.",bengali:"বেশ ভালো। কোথায় যাবেন?"},{prompt:"10時に 大阪駅で ＿＿。",answer:"10時に 大阪駅で 会いましょう。",romaji:"Juu-ji ni Oosaka-eki de aimashou.",bengali:"১০টায় ওসাকা স্টেশনে দেখা করি চলুন।"},{prompt:"Plan বুঝেছেন—response",answer:"分かりました。じゃ、また あした。",romaji:"Wakarimashita. Ja, mata ashita.",bengali:"বুঝেছি। তাহলে, কাল দেখা হবে।"},
+    ]},
+    {step:"07",title:"Final mixed self-test",instruction:"বাংলা cue দেখে time, place, object ও action একসঙ্গে Japanese-এ বলুন।",questions:[
+      {prompt:"প্রতি সকালে বাড়িতে সংবাদপত্র পড়ি।",answer:"毎朝 うちで 新聞を 読みます。",romaji:"Maiasa uchi de shinbun o yomimasu.",bengali:"প্রতি সকালে বাড়িতে সংবাদপত্র পড়ি।"},{prompt:"গতকাল department store-এ camera কিনেছি।",answer:"きのう デパートで カメラを 買いました。",romaji:"Kinou depaato de kamera o kaimashita.",bengali:"গতকাল ডিপার্টমেন্ট স্টোরে ক্যামেরা কিনেছি।"},{prompt:"আগামীকাল বন্ধুর সঙ্গে কোথায় lunch খাবেন?",answer:"あした 友達と どこで 昼ごはんを 食べますか。",romaji:"Ashita tomodachi to doko de hirugohan o tabemasu ka.",bengali:"আগামীকাল বন্ধুর সঙ্গে কোথায় দুপুরের খাবার খাবেন?"},{prompt:"একসঙ্গে Osaka Castle-এ ছবি তুলবেন?",answer:"いっしょに 大阪城で 写真を 撮りませんか。",romaji:"Issho ni Oosakajou de shashin o torimasen ka.",bengali:"একসঙ্গে ওসাকা দুর্গে ছবি তুলবেন?"},
+    ]},
+  ],
+};
+
 export function getMinnaN5PracticeDetails(unitNumber: number) {
   if (unitNumber === 1) return unitOnePractice;
   if (unitNumber === 2) return unitTwoPractice;
   if (unitNumber === 3) return unitThreePractice;
+  if (unitNumber === 4) return unitFourPractice;
+  if (unitNumber === 5) return unitFivePractice;
+  if (unitNumber === 6) return unitSixPractice;
   return undefined;
 }
