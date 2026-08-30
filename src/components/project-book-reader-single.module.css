@@ -16,7 +16,29 @@
 .unitMenu button:disabled{cursor:not-allowed;filter:grayscale(.7);opacity:.45}
 .unitMenu .activeUnitMenu{border-color:#087255!important;background:#edf5eb!important;box-shadow:inset 3px 0 #087255}
 .unitSection{padding-top:4px}
-.modalSteps{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:-8px 0 26px}
+.lessonDashboard{display:grid;gap:20px;padding-top:4px}
+.lessonHero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(210px,.7fr);overflow:hidden;border:1px solid #c7d8d1;border-radius:15px;background:linear-gradient(135deg,#edf6f0 0%,#fff9ed 62%,#f7ead8 100%);box-shadow:0 12px 28px #493a2614}
+.lessonHero>div{padding:25px 26px}.lessonHero>div>small{display:block;color:#087255;font-size:8px;font-weight:900;letter-spacing:.15em}.lessonHero>div>span{display:inline-block;margin-top:10px;padding:5px 9px;border-radius:99px;color:#fff;background:#087255;font-size:9px;font-weight:900}.lessonHero h2{margin:10px 0 7px;color:#082e50;font:800 28px Georgia,"Noto Serif Bengali",serif}.lessonHero>div>p{max-width:560px;margin:0;color:#476058;font-size:13px;line-height:1.75}
+.lessonHero aside{display:flex;justify-content:center;flex-direction:column;padding:22px;border-left:1px solid #cbd8cf;color:#fff;background:linear-gradient(145deg,#082e50,#0a5b64)}.lessonHero aside b{color:#8edbc8;font:800 12px Georgia,"Noto Serif Bengali",serif}.lessonHero aside p{margin:7px 0 0;color:#edf7f3;font-size:12px;line-height:1.65}
+.lessonRoadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.lessonRoadmap article{display:flex;align-items:flex-start;gap:11px;padding:16px;border:1px solid #d8cbb3;border-radius:12px;background:#fffdf8}
+.lessonRoadmap article>span{display:grid;width:34px;height:34px;flex:0 0 34px;place-items:center;border-radius:10px;color:#fff;background:#c58a36;font:900 12px Georgia,serif;box-shadow:0 5px 12px #8c5b1925}.lessonRoadmap h3{margin:1px 0 4px;color:#07365a;font:800 15px Georgia,"Noto Serif Bengali",serif}.lessonRoadmap p{margin:0;color:#5c6964;font-size:10px;line-height:1.55}
+.lessonConcepts{overflow:hidden;border:1px solid #d7c8ad;border-radius:14px;background:#fffdf8}.lessonConcepts>header{padding:16px 19px;border-bottom:1px solid #e1d5c0;background:#f8f1e5}.lessonConcepts>header small{color:#98703a;font-size:8px;font-weight:900;letter-spacing:.14em}.lessonConcepts>header h3{margin:3px 0 0;color:#082e50;font:800 21px Georgia,"Noto Serif Bengali",serif}.lessonConcepts>div{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#dfd3bf}.lessonConcepts article{min-width:0;padding:15px;background:#fffaf1;border-top:4px solid #087255}.lessonConcepts article small,.lessonConcepts article strong,.lessonConcepts article p{display:block}.lessonConcepts article small{font-size:8px;font-weight:900;letter-spacing:.06em}.lessonConcepts article strong{margin-top:6px;color:#07365a;font:800 15px "Noto Sans JP",sans-serif;line-height:1.5}.lessonConcepts article p{margin:5px 0 0;color:#5e6b65;font-size:10px;line-height:1.45}.lessonConcepts .lesson_teal{border-top-color:#087255}.lessonConcepts .lesson_teal small{color:#087255}.lessonConcepts .lesson_blue{border-top-color:#17618a}.lessonConcepts .lesson_blue small{color:#17618a}.lessonConcepts .lesson_gold{border-top-color:#b27b26}.lessonConcepts .lesson_gold small{color:#966417}.lessonConcepts .lesson_coral{border-top-color:#c15846}.lessonConcepts .lesson_coral small{color:#b24a39}.lessonConcepts .lesson_plum{border-top-color:#70436f}.lessonConcepts .lesson_plum small{color:#70436f}
+.lessonDialogue{overflow:hidden;border:1px solid #c9d9d5;border-radius:14px;background:#f8fcfa}.lessonDialogue>header{display:flex;align-items:center;gap:12px;padding:15px 18px;color:#fff;background:linear-gradient(125deg,#087255,#0c8e76)}.lessonDialogue>header>span{display:grid;width:56px;height:38px;flex:0 0 56px;place-items:center;border-radius:99px;background:#ffffff1c;font:800 19px "Noto Serif JP",serif;white-space:nowrap}.lessonDialogue header small{display:block;color:#afe2d7;font-size:8px;font-weight:900;letter-spacing:.12em}.lessonDialogue h3{margin:2px 0 0;font:800 18px Georgia,"Noto Serif Bengali",serif}.lessonDialogue>div{display:grid;grid-template-columns:1fr 1fr}.lessonDialogue article{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;padding:14px 16px;border-top:1px solid #d9e4e0}.lessonDialogue article:nth-child(odd){border-right:1px solid #d9e4e0}.lessonDialogue article>b{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;color:#fff;background:#0b4361;font-size:11px}.lessonDialogue article strong,.lessonDialogue article i,.lessonDialogue article p{display:block}.lessonDialogue article strong{color:#07365a;font:750 14px "Noto Sans JP",sans-serif;line-height:1.5}.lessonDialogue article i{margin-top:3px;color:#8a6634;font-size:9px}.lessonDialogue article p{margin:4px 0 0;color:#586760;font-size:10px;line-height:1.45}
+.lessonChecklist{display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;padding:18px 20px;border:1px solid #dac99f;border-radius:13px;background:linear-gradient(120deg,#fff5dd,#fbf8ed)}.lessonChecklist header small{color:#aa741e;font-size:8px;font-weight:900;letter-spacing:.13em}.lessonChecklist h3{margin:3px 0 0;color:#6f4c18;font:800 17px Georgia,"Noto Serif Bengali",serif}.lessonChecklist>div{display:grid;grid-template-columns:1fr 1fr;gap:7px}.lessonChecklist>div span{padding:8px 10px;border-radius:8px;color:#416057;background:#ffffffb5;font-size:10px;line-height:1.4}.lessonChecklist>div span::first-letter{color:#087255}
+.lessonDeepRead{overflow:hidden;border:1px solid #d6c7ad;border-radius:13px;background:#fffdf8}.lessonDeepRead>summary{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:16px 18px;color:#07365a;background:#f3eadb;font-size:12px;font-weight:850;cursor:pointer;list-style:none}.lessonDeepRead>summary::-webkit-details-marker{display:none}.lessonDeepRead>summary b{color:#087255;font-size:10px}.lessonDeepRead[open]>summary b{font-size:0}.lessonDeepRead[open]>summary b:after{font-size:10px;content:"বন্ধ করুন −"}
+.lessonDeepBody{display:grid;gap:16px;padding:16px;background:#eee4d3}
+.lessonDeepContent{overflow:hidden;border:1px solid #d7c8ad;border-radius:12px;background:#fffdf8;box-shadow:0 7px 18px #493a2610}
+.lessonDeepContent>header{display:flex;align-items:center;gap:12px;padding:15px 17px;border-bottom:1px solid #dfd2bd;background:linear-gradient(120deg,#eaf3e8,#f8f0df)}
+.lessonDeepContent>header>span{display:grid;width:34px;height:34px;flex:0 0 34px;place-items:center;border-radius:10px;color:#fff;background:#087255;font:900 10px Georgia,serif}.lessonDeepContent>header small{display:block;color:#71877e;font-size:7px;font-weight:900;letter-spacing:.14em}.lessonDeepContent>header h3{margin:2px 0 0;color:#082e50;font:800 17px Georgia,"Noto Serif Bengali",serif}
+.lessonDeepRich{padding:5px 19px 20px}
+.lessonDeepRich h2{position:relative;margin:25px 0 12px;padding:11px 13px 11px 35px;border-radius:9px;color:#07365a;background:#edf4ef;font-size:18px;line-height:1.45}.lessonDeepRich h2:before{position:absolute;top:16px;left:15px;width:8px;height:8px;border-radius:50%;background:#087255;box-shadow:0 0 0 4px #0872551c;content:""}
+.lessonDeepRich h3{margin:18px 0 8px;padding-left:11px;border-left:3px solid #c78b34;color:#76501b;font-size:14px;line-height:1.5}
+.lessonDeepRich p{margin:9px 2px;color:#415750;font-size:12px;line-height:1.8}.lessonDeepRich p>strong{color:#07365a;font-family:"Noto Sans JP","Noto Serif Bengali",sans-serif}.lessonDeepRich p>em{color:#936b34;font-size:11px}
+.lessonDeepRich ul,.lessonDeepRich ol{display:grid;gap:7px;margin:11px 0;padding:0;list-style:none;counter-reset:deep-step}.lessonDeepRich li{position:relative;margin:0;padding:10px 12px 10px 36px;border:1px solid #e2d7c4;border-radius:8px;color:#4c5f58;background:#fffaf1;font-size:11px;line-height:1.65}.lessonDeepRich ul li:before{position:absolute;top:16px;left:15px;width:7px;height:7px;border-radius:50%;background:#087255;content:""}.lessonDeepRich ol li{counter-increment:deep-step}.lessonDeepRich ol li:before{position:absolute;top:9px;left:9px;display:grid;width:20px;height:20px;place-items:center;border-radius:50%;color:#fff;background:#087255;font-size:8px;font-weight:900;content:counter(deep-step)}
+.lessonDeepRich blockquote{margin:15px 0;padding:13px 15px;border:1px solid #e0bc7c;border-left:4px solid #c58a36;border-radius:0 9px 9px 0;color:#674b22;background:#fff3da;font-size:11px;line-height:1.65}
+.lessonDeepNotes>header{background:linear-gradient(120deg,#f3eaf4,#fff1df)}.lessonDeepNotes>header>span{background:#70436f}.lessonDeepNotes .lessonDeepRich h2{background:#f5edf5}.lessonDeepNotes .lessonDeepRich h2:before,.lessonDeepNotes .lessonDeepRich ul li:before,.lessonDeepNotes .lessonDeepRich ol li:before{background:#70436f}.lessonDeepNotes .lessonDeepRich h3{border-left-color:#70436f;color:#70436f}
+.modalSteps{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin:-8px 0 26px}
 .modalSteps button{display:flex;min-width:0;align-items:center;gap:7px;padding:8px;border:1px solid #d9ccb4;border-radius:8px;color:#7a776f;background:#f7f0e3;font:inherit;text-align:left;cursor:pointer}
 .modalSteps button>b{display:grid;width:24px;height:24px;flex:0 0 24px;place-items:center;border-radius:50%;background:#e5dccb;color:#675f52;font-size:12px}
 .modalSteps button:disabled{cursor:not-allowed;opacity:.45}
@@ -37,7 +59,7 @@
 .grammarOverview p{position:relative;margin:0;padding:10px 0 10px 19px;border-top:1px solid #ebe0cd;color:#314d5a;font-family:Georgia,"Noto Serif Bengali",serif;font-size:14px;line-height:1.9}
 .grammarOverview p:first-child{border-top:0}
 .grammarOverview p:before{position:absolute;top:22px;left:2px;width:6px;height:6px;border-radius:50%;background:#c9923f;content:""}
-.vocabGrid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;align-items:stretch;gap:12px}
+.vocabGrid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:184px;align-items:stretch;gap:12px}
 .memoryScene{position:relative;margin:0 0 18px;overflow:hidden;border:1px solid #d4c3a5;border-radius:14px;background:#ede2cf;box-shadow:0 12px 30px #4c3b251a}
 .memoryScene img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .memoryScene figcaption{position:absolute;right:12px;bottom:12px;left:12px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 14px;border:1px solid #ffffff80;border-radius:9px;background:#fffaf0e8;color:#344b44;backdrop-filter:blur(8px)}
@@ -45,8 +67,8 @@
 .memoryScene figcaption span{font-size:12px;line-height:1.45;text-align:right}
 .vocabCount{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;padding:10px 13px;border-radius:8px;background:#e9f1e5;color:#416057;font-size:12px}
 .vocabCount strong{color:#087255;font-size:14px}
-.vocabCard{position:relative;padding:18px 18px 16px 52px;border:1px solid #ddcfb6;border-radius:10px;background:#fffdf7}
-.vocabCardWrap{position:relative;min-width:0;height:100%;transition:opacity .2s ease,transform .2s ease}
+.vocabCard{position:relative;overflow:hidden;padding:18px 18px 16px 52px;border:1px solid #ddcfb6;border-radius:10px;background:#fffdf7}
+.vocabCardWrap{position:relative;min-width:0;height:184px;transition:opacity .2s ease,transform .2s ease}
 .vocabCardWrap>.vocabCard{height:100%}
 .rememberButton{position:absolute;z-index:5;top:8px;right:8px;display:grid;width:24px;height:24px;place-items:center;padding:0;border:1px solid #a9aea9;border-radius:50%;color:#fff;background:#a9aea9;font:inherit;font-size:13px;font-weight:900;cursor:pointer;box-shadow:0 3px 8px #263b3930}
 .rememberButton:hover,.rememberButton:focus-visible{border-color:#6b756f;background:#8b938e;outline:3px solid #d7b36d;outline-offset:2px}
@@ -56,24 +78,24 @@
 .vocabNumber{position:absolute;z-index:1;top:17px;left:16px;color:#a67832;font:700 12px Georgia,serif}
 .vocabCardWithImage{display:grid;grid-template-columns:92px minmax(0,1fr);align-items:center;gap:14px;padding:12px}
 .vocabCardWithImage .vocabNumber{top:8px;left:8px;display:grid;width:24px;height:24px;place-items:center;border-radius:50%;color:#fff;background:#087255;box-shadow:0 3px 8px #07365a33}
-.vocabImage{display:block;width:92px;aspect-ratio:1;overflow:hidden;border:1px solid #d8c6a8;border-radius:9px;background-image:url('/images/projects/n5-vocabulary/unit-01-sprites.png');background-repeat:no-repeat;background-size:800% 500%;box-shadow:0 5px 12px #493a2618}
+.vocabImage{display:block;width:92px;aspect-ratio:1;overflow:hidden;border:1px solid #d8c6a8;border-radius:9px;background-repeat:no-repeat;box-shadow:0 5px 12px #493a2618}
 .vocabCopy{min-width:0}
-.vocabFlipCard{display:block;min-height:148px;padding:0;overflow:visible;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;perspective:1000px}
+.vocabFlipCard{display:block;width:100%;height:184px;min-height:0;padding:0;overflow:visible;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;perspective:1000px}
 .vocabFlipCard .vocabNumber{top:8px;left:8px;display:grid;width:24px;height:24px;place-items:center;border-radius:50%;color:#fff;background:#087255;box-shadow:0 3px 8px #07365a33}
-.vocabFlipInner{position:relative;display:grid;width:100%;height:100%;min-height:148px;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.75,.25,1)}
+.vocabFlipInner{position:relative;display:grid;width:100%;height:184px;min-height:0;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.75,.25,1)}
 .flippedCard .vocabFlipInner{transform:rotateY(180deg)}
-.vocabCardFront,.vocabCardBack{grid-area:1/1;min-width:0;height:100%;min-height:148px;border:1px solid #ddcfb6;border-radius:10px;background:#fffdf7;backface-visibility:hidden}
+.vocabCardFront,.vocabCardBack{grid-area:1/1;min-width:0;height:184px;min-height:0;overflow:hidden;border:1px solid #ddcfb6;border-radius:10px;background:#fffdf7;backface-visibility:hidden}
 .vocabCardFront{display:grid;grid-template-columns:92px minmax(0,1fr);align-items:center;gap:14px;padding:12px}
 .vocabCardFront .vocabCopy{display:flex;align-items:flex-start;flex-direction:column}
-.vocabCardFront .vocabCopy>strong{color:#07365a;font:800 21px "Noto Sans JP",sans-serif}
-.vocabCardFront .vocabCopy>small{margin-top:5px;color:#53635f;font-size:14px;line-height:1.55}
+.vocabCardFront .vocabCopy>strong{display:-webkit-box;overflow:hidden;color:#07365a;font:800 19px "Noto Sans JP",sans-serif;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.vocabCardFront .vocabCopy>small{display:-webkit-box;overflow:hidden;margin-top:5px;color:#53635f;font-size:13px;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:3}
 .vocabCardFront .vocabCopy>i,.vocabCardBack>i{margin-top:9px;color:#087255;font-size:9px;font-style:normal;font-weight:800}
 .vocabCardBack{display:flex;justify-content:center;flex-direction:column;padding:22px 24px;color:#fff;background:linear-gradient(145deg,#07365a,#087255);transform:rotateY(180deg)}
 .focusWordBadge{align-self:flex-start;margin-bottom:8px;padding:4px 8px;border:1px solid #ffffff42;border-radius:99px;color:#d8eee7;background:#ffffff12;font-size:9px;font-weight:850}
-.vocabCardBack>strong{font:800 19px "Noto Sans JP",sans-serif;line-height:1.5}
+.vocabCardBack>strong{display:-webkit-box;overflow:hidden;font:800 17px "Noto Sans JP",sans-serif;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .focusVocabulary{display:inline-block;margin:0 2px;padding:0 5px;border-radius:5px;color:#07365a;background:#ffd978;box-shadow:0 2px 0 #e3a637;font:inherit}
 .vocabCardBack>span{margin-top:7px;color:#cce8df;font-size:12px;font-style:italic}
-.vocabCardBack>p{margin:9px 0 0;color:#fffaf0;font-size:14px;line-height:1.55}
+.vocabCardBack>p{display:-webkit-box;overflow:hidden;margin:7px 0 0;color:#fffaf0;font-size:12px;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .vocabCardBack>i{color:#d6b46f}
 .vocabFlipCard:focus-visible{outline:3px solid #d09a43;outline-offset:3px;border-radius:10px}
 .vocabCard h3{margin:0 0 6px;color:#07365a;font:800 21px "Noto Sans JP",sans-serif}
@@ -117,31 +139,31 @@
 .exampleList article{padding:16px 18px;border-left:3px solid #c99a51;background:#fff9ed}
 .exampleList strong{color:#082e50;font-size:18px}
 .exampleList p{margin:5px 0 0;color:#566660}
-.kanjiGrid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;align-items:stretch;gap:14px}
-.kanjiCard{display:flex;align-items:center;gap:17px;padding:19px;border:1px solid #d7c8ad;border-radius:12px;background:linear-gradient(145deg,#fffdf8,#f6f0e5)}
-.kanjiCardWrap{position:relative;min-width:0;height:100%}
+.kanjiGrid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:156px;align-items:stretch;gap:14px}
+.kanjiCard{display:flex;align-items:center;gap:17px;overflow:hidden;padding:19px;border:1px solid #d7c8ad;border-radius:12px;background:linear-gradient(145deg,#fffdf8,#f6f0e5)}
+.kanjiCardWrap{position:relative;min-width:0;height:156px}
 .kanjiCardWrap>.kanjiCard{height:100%}
 .rememberedKanjiCard>.kanjiCard,.rememberedKanjiCard .kanjiCardFront{border-color:#78aa91;background:#f0f7ef}
 .kanjiCard>b{display:grid;flex:0 0 78px;height:78px;place-items:center;border:1px solid #ccb994;border-radius:8px;background:#fff;color:#07365a;font:500 46px "Noto Serif JP",serif;box-shadow:inset 0 0 18px #d7c6a93d}
 .kanjiCard h3{margin:0 0 3px;color:#087255;font-size:17px}
 .kanjiCard span{color:#8c6734;font-size:13px;font-weight:700}
 .kanjiCard p{margin:7px 0 0;color:#173c58;font-family:"Noto Sans JP",sans-serif}
-.kanjiFlipCard{display:block;min-height:122px;padding:0;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;perspective:1000px}
-.kanjiFlipInner{position:relative;display:grid;width:100%;height:100%;min-height:122px;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.75,.25,1)}
+.kanjiFlipCard{display:block;width:100%;height:156px;min-height:0;padding:0;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;perspective:1000px}
+.kanjiFlipInner{position:relative;display:grid;width:100%;height:156px;min-height:0;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.75,.25,1)}
 .flippedKanjiCard .kanjiFlipInner{transform:rotateY(180deg)}
-.kanjiCardFront,.kanjiCardBack{grid-area:1/1;min-width:0;height:100%;min-height:122px;border:1px solid #d7c8ad;border-radius:12px;backface-visibility:hidden}
+.kanjiCardFront,.kanjiCardBack{grid-area:1/1;min-width:0;height:156px;min-height:0;overflow:hidden;border:1px solid #d7c8ad;border-radius:12px;backface-visibility:hidden}
 .kanjiCardFront{display:flex;align-items:center;gap:17px;padding:19px;background:linear-gradient(145deg,#fffdf8,#f6f0e5)}
 .kanjiCardFront>b{display:grid;flex:0 0 78px;height:78px;place-items:center;border:1px solid #ccb994;border-radius:8px;background:#fff;color:#07365a;font:500 46px "Noto Serif JP",serif;box-shadow:inset 0 0 18px #d7c6a93d}
 .kanjiCardFront>span{min-width:0;color:inherit;font-size:inherit}
 .kanjiCardFront>span>strong{display:block;color:#087255;font-size:17px}
 .kanjiCardFront>span>i{display:block;margin-top:3px;color:#8c6734;font-size:13px;font-style:normal;font-weight:700}
-.kanjiCardFront>span>p{margin:7px 0 0;color:#173c58;font-family:"Noto Sans JP",sans-serif}
+.kanjiCardFront>span>p{display:-webkit-box;overflow:hidden;margin:7px 0 0;color:#173c58;font-family:"Noto Sans JP",sans-serif;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .kanjiCardFront>span>small{display:block;margin-top:7px;color:#087255;font-size:8px;font-weight:800}
 .kanjiCardBack{display:flex;justify-content:center;flex-direction:column;padding:18px 21px;color:#fff;background:linear-gradient(145deg,#522c69,#087255);transform:rotateY(180deg)}
 .kanjiCardBack>small{align-self:flex-start;padding:3px 7px;border:1px solid #ffffff42;border-radius:99px;color:#d8eee7;font-size:8px;font-weight:850}
-.kanjiCardBack>strong{margin-top:8px;color:#fff;font:800 17px "Noto Sans JP",sans-serif;line-height:1.5}
+.kanjiCardBack>strong{display:-webkit-box;overflow:hidden;margin-top:8px;color:#fff;font:800 16px "Noto Sans JP",sans-serif;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .kanjiCardBack>i{margin-top:4px;color:#cce8df;font-size:10px}
-.kanjiCardBack>p{margin:7px 0 0;color:#fff8e7;font-family:"Noto Serif Bengali",serif;font-size:12px}
+.kanjiCardBack>p{display:-webkit-box;overflow:hidden;margin:7px 0 0;color:#fff8e7;font-family:"Noto Serif Bengali",serif;font-size:11px;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .kanjiCardBack>span{margin-top:7px;color:#f1ce7a;font-size:8px;font-weight:800}
 .kanjiFlipCard:focus-visible{outline:3px solid #d09a43;outline-offset:3px;border-radius:12px}
 .practiceGuide{display:grid;gap:22px}
@@ -152,6 +174,23 @@
 .practiceHero figcaption small{color:#8edbc8;font-size:9px;font-weight:900;letter-spacing:.14em}
 .practiceHero figcaption strong{margin-top:4px;font:800 20px Georgia,"Noto Serif Bengali",serif}
 .practiceHero figcaption span{margin-top:4px;color:#dcebe8;font-size:12px;line-height:1.5}
+.practiceReference{display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:11px}
+.practiceReference>article{overflow:hidden;border:1px solid #d8c8aa;border-radius:13px;background:#fffdf8}
+.practiceReference header{display:flex;align-items:center;gap:9px;padding:12px 13px;border-bottom:1px solid #e2d5bf;background:#f8f1e5}
+.practiceReference header span{display:grid;min-width:42px;height:28px;place-items:center;border-radius:99px;color:#fff;background:#087255;font:800 13px "Noto Sans JP",sans-serif;white-space:nowrap}
+.practiceReference h3{margin:0;color:#082e50;font:800 15px Georgia,"Noto Serif Bengali",serif}
+.practiceReference ul{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.practiceReference li{display:grid;grid-template-columns:auto 1fr;gap:1px 7px;padding:9px 11px;border-top:1px dashed #e2d7c4}
+.practiceReference li:first-child{border-top:0}
+.practiceReference li strong{color:#07365a;font:800 13px "Noto Sans JP",sans-serif}.practiceReference li i{align-self:center;color:#8d6b39;font-size:8px}.practiceReference li span{grid-column:1/-1;color:#5a6863;font-size:10px}
+.answerPatterns{display:grid;gap:8px;padding:12px}
+.answerPatterns>div{display:flex;align-items:flex-start;gap:9px;padding:10px;border:1px solid #cfe0d8;border-radius:10px;background:#f3f8f4}
+.answerPatterns>div>b{display:grid;width:23px;height:23px;flex:0 0 23px;place-items:center;border-radius:50%;color:#fff;font-size:13px}
+.answerPatterns .positiveAnswer>b{background:#18945e}.answerPatterns .negativeAnswer>b{background:#dd4d3d}
+.answerPatterns span>*{display:block}.answerPatterns strong{color:#173d56;font:750 12px "Noto Sans JP",sans-serif;line-height:1.4}.answerPatterns i{margin-top:3px;color:#8a6634;font-size:8px}.answerPatterns small{margin-top:3px;color:#52625d;font-size:10px}
+.practiceReference dl{display:grid;gap:7px;margin:0;padding:12px}
+.practiceReference dl>div{display:grid;grid-template-columns:28px minmax(0,1fr);align-items:center;gap:7px}
+.practiceReference dt{display:grid;width:27px;height:27px;place-items:center;border-radius:7px;color:#fff;background:#a66d1e;font:800 14px "Noto Sans JP",sans-serif}.practiceReference dd{margin:0;color:#53635e;font-size:10px;line-height:1.4}
 .dialogueScene{overflow:hidden;border:1px solid #c9d9d5;border-radius:14px;background:#f8fcfa}
 .dialogueScene>header{display:flex;align-items:center;gap:13px;padding:17px 19px;color:#fff;background:linear-gradient(125deg,#087255,#0c8e76)}
 .dialogueScene>header>span{display:grid;width:58px;height:44px;flex:0 0 58px;place-items:center;border-radius:99px;background:#ffffff1f;font:800 21px "Noto Serif JP",serif;line-height:1;white-space:nowrap}
@@ -170,14 +209,29 @@
 .dialogueLine i{margin-top:3px;color:#8c6635;font-size:10px}
 .dialogueLine p{margin:5px 0 0;color:#53635f;font-size:12px;line-height:1.55}
 .dialogueLine em{position:absolute;top:17px;right:17px;color:#b7c8c3;font-size:10px;font-style:normal;font-weight:900}
+.selfIntroduction{display:grid;grid-template-columns:74px minmax(0,1fr);gap:16px;padding:18px;border:1px solid #d4c4df;border-radius:14px;background:linear-gradient(130deg,#f7eef8,#fffaf0)}
+.selfIntroduction>span{display:grid;height:74px;place-items:center;border-radius:50%;color:#fff;background:#70436f;font:800 20px "Noto Sans JP",sans-serif;writing-mode:vertical-rl;letter-spacing:.08em}
+.selfIntroduction div>*{display:block}.selfIntroduction small{color:#8b668b;font-size:8px;font-weight:900;letter-spacing:.13em}.selfIntroduction strong{margin-top:6px;color:#432e58;font:750 15px "Noto Sans JP",sans-serif;line-height:1.65}.selfIntroduction i{margin-top:5px;color:#8a6634;font-size:10px;line-height:1.5}.selfIntroduction p{margin:6px 0 0;color:#586760;font-size:12px;line-height:1.55}
 .profileChallenge{padding:20px;border:1px solid #ddcba9;border-radius:14px;background:linear-gradient(135deg,#fff8e9,#f5f3e8)}
 .profileChallenge>header small{color:#a66d1e;font-size:8px;font-weight:900;letter-spacing:.14em}
 .profileChallenge h3{margin:3px 0 2px;color:#082e50;font:800 21px Georgia,"Noto Serif Bengali",serif}
 .profileChallenge header p{margin:0;color:#63706a;font-size:12px}
 .profileChallenge>div{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-top:15px}
-.profileChallenge article{display:flex;min-width:0;align-items:center;flex-direction:column;padding:13px 7px;border-radius:11px;color:#fff;text-align:center;box-shadow:0 7px 16px #283b3220}
-.profileChallenge article>span{font-size:25px}.profileChallenge article>strong{margin-top:6px;font:800 15px "Noto Sans JP",sans-serif}.profileChallenge article>small{margin-top:2px;color:#ffffffc9;font-size:9px}.profileChallenge article>b{margin-top:5px;padding:3px 7px;border-radius:99px;background:#ffffff23;font-size:10px}
+.profileChallenge article{display:flex;min-width:0;align-items:center;overflow:hidden;flex-direction:column;padding:0 7px 12px;border-radius:11px;color:#fff;text-align:center;box-shadow:0 7px 16px #283b3220}
+.profilePortrait{display:block;width:calc(100% + 14px);aspect-ratio:3/4;margin:0 -7px 8px;background-repeat:no-repeat;background-size:500% 200%;box-shadow:inset 0 -8px 14px #082e5040}
+.profileChallenge article>strong{font:800 14px "Noto Sans JP",sans-serif}.profileChallenge article>strong sup{margin-left:3px;color:#ffe9a8;font-size:8px}.profileChallenge article>small{margin-top:2px;color:#ffffffc9;font-size:9px}.profileChallenge article>b{margin-top:5px;padding:3px 7px;border-radius:99px;background:#ffffff23;font-size:10px}.profileChallenge article>em{margin-top:5px;color:#fff4ca;font-size:8px;font-style:normal}
 .profile_blue{background:#17618a}.profile_teal{background:#087255}.profile_gold{background:#a66d1e}.profile_coral{background:#c15846}.profile_plum{background:#70436f}
+.objectChallenge{padding:20px;border:1px solid #c8d9d3;border-radius:14px;background:linear-gradient(135deg,#f2faf7,#fff8e9)}
+.objectChallenge>header small{color:#087255;font-size:8px;font-weight:900;letter-spacing:.14em}
+.objectChallenge h3{margin:3px 0 2px;color:#082e50;font:800 21px Georgia,"Noto Serif Bengali",serif}
+.objectChallenge header p{margin:0;color:#63706a;font-size:12px;line-height:1.55}
+.objectGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:15px}
+.objectGrid article{display:flex;min-width:0;overflow:hidden;flex-direction:column;border:1px solid #d5e0dc;border-radius:12px;background:#fff;box-shadow:0 7px 16px #283b3212}
+.objectPortrait{display:block;width:100%;aspect-ratio:1;background-color:#f8f4e9;background-repeat:no-repeat;background-size:600% 500%;border-bottom:1px solid #e1e7e3}
+.objectGrid article>div{display:flex;min-height:103px;flex-direction:column;padding:10px}
+.objectGrid strong{color:#07365a;font:800 16px "Noto Sans JP",sans-serif}
+.objectGrid i{margin-top:2px;color:#8b6936;font-size:8px;font-style:normal}
+.objectGrid p{margin:auto 0 0;color:#52625d;font:700 10px "Noto Sans JP",sans-serif;line-height:1.5}
 .practiceModules{display:grid;gap:18px}
 .practiceModule{overflow:hidden;border:1px solid #d8c8aa;border-radius:14px;background:#fffdf8;box-shadow:0 8px 20px #4738270d}
 .practiceModule>header{display:flex;align-items:flex-start;gap:15px;padding:17px 19px;background:linear-gradient(125deg,#e8f2ec,#fbf2df)}
@@ -208,5 +262,114 @@
 .mistakeBox{margin:25px 0;padding:20px 22px;border:1px solid #dfbd83;border-radius:12px;background:#fff4df}
 .mistakeBox strong{color:#985b0d;font:800 19px Georgia,"Noto Serif Bengali",serif}
 .mistakeBox ul{margin:10px 0 0;padding-left:20px;color:#5e5140;line-height:1.75}
-@media(max-width:700px){.spread{padding:10px!important}.page{min-height:auto!important;border-radius:3px!important;box-shadow:0 8px 22px #493a2626!important}.divider{margin-top:28px;font-size:15px}.modalSteps{gap:4px}.modalSteps button{justify-content:center;padding:6px 3px}.modalSteps small{display:none}.vocabGrid,.kanjiGrid{grid-template-columns:1fr}.vocabCardWithImage,.vocabCardFront{grid-template-columns:78px minmax(0,1fr)}.vocabImage{width:78px}.unitIntro{align-items:flex-start;padding:15px}.unitIntro>b{flex-basis:50px;height:50px;font-size:25px}.unitIntro h2{font-size:21px}.grammarOverview{padding:16px}.grammarOverview p{padding-left:16px;font-size:13px;line-height:1.8}.grammarUsage{margin:14px 12px 2px;padding:13px}.grammarUsage>div{align-items:stretch;flex-direction:column;overflow:visible}.grammarUsage>div>div:not(:last-child):after{top:auto;right:50%;bottom:-10px;transform:translateX(50%) rotate(90deg)}.grammarUsage>p{align-items:flex-start;flex-direction:column;gap:4px}.grammarUsage>p b{text-align:left}.kanjiCard>b,.kanjiCardFront>b{flex-basis:64px;height:64px;font-size:38px}.memoryScene figcaption{position:static;display:block}.memoryScene figcaption span{display:block;margin-top:4px;text-align:left}.vocabCount{align-items:flex-start;flex-direction:column;gap:3px}.practiceHero figcaption{position:static;border:0;border-radius:0}.profileChallenge>div{grid-template-columns:repeat(2,minmax(0,1fr))}.profileChallenge article:last-child{grid-column:1/-1}.dialogueIllustration figcaption{grid-template-columns:1fr}.dialogueIllustration figcaption span{padding:7px}.dialogueLine{grid-template-columns:42px minmax(0,1fr);padding-right:38px}.dialogueLine>b{width:40px;height:40px;font-size:11px}.practiceModule>ol>li{padding:14px 13px}.practiceMethod{align-items:stretch;flex-direction:column}.practiceMethod>b{margin:0 0 3px}}
+@media(max-width:700px){.spread{padding:10px!important}.page{min-height:auto!important;border-radius:3px!important;box-shadow:0 8px 22px #493a2626!important}.divider{margin-top:28px;font-size:15px}.modalSteps{gap:4px}.modalSteps button{justify-content:center;padding:6px 3px}.modalSteps small{display:none}.lessonHero{grid-template-columns:1fr}.lessonHero>div{padding:20px}.lessonHero h2{font-size:23px}.lessonHero aside{border-top:1px solid #cbd8cf;border-left:0}.lessonRoadmap,.lessonConcepts>div{grid-template-columns:1fr}.lessonDialogue>div{grid-template-columns:1fr}.lessonDialogue article:nth-child(odd){border-right:0}.lessonChecklist{grid-template-columns:1fr}.lessonChecklist>div{grid-template-columns:1fr}.vocabGrid,.kanjiGrid{grid-template-columns:1fr}.vocabCardWithImage,.vocabCardFront{grid-template-columns:78px minmax(0,1fr)}.vocabImage{width:78px}.unitIntro{align-items:flex-start;padding:15px}.unitIntro>b{flex-basis:50px;height:50px;font-size:25px}.unitIntro h2{font-size:21px}.grammarOverview{padding:16px}.grammarOverview p{padding-left:16px;font-size:13px;line-height:1.8}.grammarUsage{margin:14px 12px 2px;padding:13px}.grammarUsage>div{align-items:stretch;flex-direction:column;overflow:visible}.grammarUsage>div>div:not(:last-child):after{top:auto;right:50%;bottom:-10px;transform:translateX(50%) rotate(90deg)}.grammarUsage>p{align-items:flex-start;flex-direction:column;gap:4px}.grammarUsage>p b{text-align:left}.kanjiCard>b,.kanjiCardFront>b{flex-basis:64px;height:64px;font-size:38px}.memoryScene figcaption{position:static;display:block}.memoryScene figcaption span{display:block;margin-top:4px;text-align:left}.vocabCount{align-items:flex-start;flex-direction:column;gap:3px}.practiceHero figcaption{position:static;border:0;border-radius:0}.practiceReference{grid-template-columns:1fr}.profileChallenge>div,.objectGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.dialogueIllustration figcaption{grid-template-columns:1fr}.dialogueIllustration figcaption span{padding:7px}.dialogueLine{grid-template-columns:42px minmax(0,1fr);padding-right:38px}.dialogueLine>b{width:40px;height:40px;font-size:11px}.selfIntroduction{grid-template-columns:52px minmax(0,1fr);gap:12px;padding:14px}.selfIntroduction>span{height:62px;font-size:15px}.practiceModule>ol>li{padding:14px 13px}.practiceMethod{align-items:stretch;flex-direction:column}.practiceMethod>b{margin:0 0 3px}}
 @media(prefers-reduced-motion:reduce){.vocabFlipInner,.kanjiFlipInner{transition:none}}
+
+/* Dark mode: this component renders a stylized "paper book" page. The base
+   rules above keep the light parchment look; these overrides swap the paper
+   backgrounds and ink colors for dark equivalents so text stays readable.
+   Panels that already show light text on a dark/colored gradient (e.g. the
+   flip-card backs, the grammar usage banner, the dialogue header, the
+   profile badges) need no change and are intentionally left alone. */
+html[data-theme="dark"] .spread{background:#1c1712!important}
+html[data-theme="dark"] .page{box-shadow:-9px 10px 0 #000,0 18px 42px rgba(0,0,0,.55),inset -12px 0 22px rgba(0,0,0,.3)!important}
+html[data-theme="dark"] .divider{color:var(--green)}
+html[data-theme="dark"] .divider i{background:linear-gradient(90deg,var(--line),transparent)}
+html[data-theme="dark"] .unitGroup{border-bottom-color:var(--line)}
+html[data-theme="dark"] .indexUnit{border-bottom-color:var(--line)}
+html[data-theme="dark"] .indexUnit .unitMenu{border-top-color:var(--line)}
+html[data-theme="dark"] .unitMenu{background:var(--soft)}
+html[data-theme="dark"] .unitMenu button{border-color:var(--line)!important;background:var(--paper)!important;color:var(--text)!important}
+html[data-theme="dark"] .unitMenu button b{background:var(--green-dark);color:var(--green)}
+html[data-theme="dark"] .unitMenu .activeUnitMenu{border-color:var(--green)!important;background:var(--green-dark)!important;box-shadow:inset 3px 0 var(--green)}
+html[data-theme="dark"] .modalSteps button{border-color:var(--line);color:var(--muted);background:var(--soft)}
+html[data-theme="dark"] .modalSteps button>b{background:var(--line);color:var(--text)}
+html[data-theme="dark"] .modalSteps .currentStep{border-color:var(--green);color:var(--green);background:var(--green-dark);box-shadow:inset 0 -3px var(--green)}
+html[data-theme="dark"] .modalSteps .finishedStep{color:var(--muted);background:var(--soft)}
+html[data-theme="dark"] .unitIntro{border-color:var(--line);background:linear-gradient(120deg,var(--soft),var(--paper) 68%)}
+html[data-theme="dark"] .unitIntro h2{color:var(--navy)}
+html[data-theme="dark"] .unitIntro p{color:var(--muted)}
+html[data-theme="dark"] .grammarIntro{background:linear-gradient(120deg,var(--soft),var(--paper) 70%)}
+html[data-theme="dark"] .grammarIntro>div>span{color:var(--orange)}
+html[data-theme="dark"] .grammarOverview{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .grammarOverview p{border-top-color:var(--line);color:var(--text)}
+html[data-theme="dark"] .grammarOverview p:before{background:var(--orange)}
+html[data-theme="dark"] .memoryScene{border-color:var(--line);background:var(--soft)}
+html[data-theme="dark"] .memoryScene figcaption{border-color:rgba(255,255,255,.12);background:rgba(11,18,21,.85);color:var(--text)}
+html[data-theme="dark"] .memoryScene figcaption strong{color:var(--green)}
+html[data-theme="dark"] .vocabCount{background:var(--soft);color:var(--muted)}
+html[data-theme="dark"] .vocabCount strong{color:var(--green)}
+html[data-theme="dark"] .vocabCard{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .rememberButton{border-color:var(--line);background:var(--muted)}
+html[data-theme="dark"] .rememberButton:hover,html[data-theme="dark"] .rememberButton:focus-visible{border-color:var(--text);background:var(--muted)}
+html[data-theme="dark"] .rememberedButton{border-color:var(--green);background:var(--green-action)}
+html[data-theme="dark"] .rememberedButton:hover,html[data-theme="dark"] .rememberedButton:focus-visible{border-color:var(--green-dark);background:var(--green-dark)}
+html[data-theme="dark"] .rememberedCard>.vocabCard,html[data-theme="dark"] .rememberedCard .vocabCardFront{border-color:var(--green);background:var(--green-dark)}
+html[data-theme="dark"] .vocabNumber{color:var(--orange)}
+html[data-theme="dark"] .vocabImage{border-color:var(--line)}
+html[data-theme="dark"] .vocabCardFront,html[data-theme="dark"] .vocabCardBack{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .vocabCardFront .vocabCopy>strong{color:var(--navy)}
+html[data-theme="dark"] .vocabCardFront .vocabCopy>small{color:var(--muted)}
+html[data-theme="dark"] .vocabCardFront .vocabCopy>i,html[data-theme="dark"] .vocabCardBack>i{color:var(--green)}
+html[data-theme="dark"] .studyTip{background:var(--soft);color:var(--text);border-left-color:var(--green)}
+html[data-theme="dark"] .studyTip strong{color:var(--green)}
+html[data-theme="dark"] .patternList article{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .patternList span{background:var(--green-dark);color:var(--green)}
+html[data-theme="dark"] .patternList code{color:var(--navy)}
+html[data-theme="dark"] .grammarDetailCard{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .grammarDetailCard>header{border-bottom-color:var(--line);background:linear-gradient(120deg,var(--soft),var(--paper))}
+html[data-theme="dark"] .grammarDetailCard header small{color:var(--muted)}
+html[data-theme="dark"] .grammarDetailCard header code{color:var(--navy)}
+html[data-theme="dark"] .grammarDetailCard>p{color:var(--text)}
+html[data-theme="dark"] .grammarDetailCard>ul{color:var(--muted)}
+html[data-theme="dark"] .grammarExamples{border-top-color:var(--line);background:var(--line)}
+html[data-theme="dark"] .grammarExamples>div{background:var(--paper)}
+html[data-theme="dark"] .grammarExamples strong{color:var(--navy)}
+html[data-theme="dark"] .grammarExamples i{color:var(--orange)}
+html[data-theme="dark"] .grammarExamples p{color:var(--muted)}
+html[data-theme="dark"] .exampleList article{border-left-color:var(--orange);background:var(--paper)}
+html[data-theme="dark"] .exampleList strong{color:var(--navy)}
+html[data-theme="dark"] .exampleList p{color:var(--muted)}
+html[data-theme="dark"] .kanjiCard{border-color:var(--line);background:linear-gradient(145deg,var(--paper),var(--soft))}
+html[data-theme="dark"] .rememberedKanjiCard>.kanjiCard,html[data-theme="dark"] .rememberedKanjiCard .kanjiCardFront{border-color:var(--green);background:var(--green-dark)}
+html[data-theme="dark"] .kanjiCard>b,html[data-theme="dark"] .kanjiCardFront>b{border-color:var(--line);background:var(--paper);color:var(--navy)}
+html[data-theme="dark"] .kanjiCard span,html[data-theme="dark"] .kanjiCardFront>span>i{color:var(--muted)}
+html[data-theme="dark"] .kanjiCard p,html[data-theme="dark"] .kanjiCardFront>span>p{color:var(--text)}
+html[data-theme="dark"] .kanjiCardFront,html[data-theme="dark"] .kanjiCardBack{border-color:var(--line)}
+html[data-theme="dark"] .kanjiCardFront{background:linear-gradient(145deg,var(--paper),var(--soft))}
+html[data-theme="dark"] .practiceHero{border-color:var(--line);background:var(--soft)}
+html[data-theme="dark"] .dialogueScene{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .dialogueIllustration{border-bottom-color:var(--line);background:var(--soft)}
+html[data-theme="dark"] .dialogueIllustration figcaption{background:var(--line)}
+html[data-theme="dark"] .dialogueIllustration figcaption span{color:var(--text);background:var(--paper)}
+html[data-theme="dark"] .dialogueLine{border-top-color:var(--line)}
+html[data-theme="dark"] .dialogueLine strong{color:var(--navy)}
+html[data-theme="dark"] .dialogueLine i{color:var(--orange)}
+html[data-theme="dark"] .dialogueLine p{color:var(--muted)}
+html[data-theme="dark"] .dialogueLine em{color:var(--muted)}
+html[data-theme="dark"] .profileChallenge{border-color:var(--line);background:linear-gradient(135deg,var(--soft),var(--paper))}
+html[data-theme="dark"] .profileChallenge header small{color:var(--orange)}
+html[data-theme="dark"] .profileChallenge h3{color:var(--navy)}
+html[data-theme="dark"] .profileChallenge header p{color:var(--muted)}
+html[data-theme="dark"] .objectChallenge{border-color:var(--line);background:linear-gradient(135deg,var(--soft),var(--paper))}
+html[data-theme="dark"] .objectChallenge h3,html[data-theme="dark"] .objectGrid strong{color:var(--navy)}
+html[data-theme="dark"] .objectChallenge header p,html[data-theme="dark"] .objectGrid p{color:var(--muted)}
+html[data-theme="dark"] .objectGrid article{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .practiceModule{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .practiceModule>header{background:linear-gradient(125deg,var(--soft),var(--paper))}
+html[data-theme="dark"] .practiceModule header small{color:var(--muted)}
+html[data-theme="dark"] .practiceModule h3{color:var(--navy)}
+html[data-theme="dark"] .practiceModule header p{color:var(--muted)}
+html[data-theme="dark"] .practiceModule>ol>li{border-top-color:var(--line)}
+html[data-theme="dark"] .practiceQuestionNumber{border-color:var(--line);color:var(--orange)}
+html[data-theme="dark"] .practiceModule li>div>strong{color:var(--navy)}
+html[data-theme="dark"] .practiceModule li>div>small{color:var(--muted)}
+html[data-theme="dark"] .practiceModule summary{border-color:var(--line);color:var(--green);background:var(--soft)}
+html[data-theme="dark"] .practiceModule details>div{border-left-color:var(--orange);background:var(--soft)}
+html[data-theme="dark"] .practiceModule details b{color:var(--navy)}
+html[data-theme="dark"] .practiceModule details i{color:var(--orange)}
+html[data-theme="dark"] .practiceModule details p{color:var(--muted)}
+html[data-theme="dark"] .practiceList li{border-color:var(--line);background:var(--paper)}
+html[data-theme="dark"] .mistakeBox{border-color:var(--orange);background:var(--soft)}
+html[data-theme="dark"] .mistakeBox strong{color:var(--orange)}
+html[data-theme="dark"] .mistakeBox ul{color:var(--muted)}

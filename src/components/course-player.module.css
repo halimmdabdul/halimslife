@@ -1,9 +1,9 @@
 .page {
-  --course-navy: #082f54;
-  --course-green: #087255;
+  
+  
   min-height: 100vh;
-  color: var(--course-navy);
-  background: radial-gradient(circle at 8% 2%, #fff0dc, transparent 30rem), #fffaf2;
+  color: var(--navy);
+  background: radial-gradient(circle at 8% 2%, var(--soft), transparent 30rem), var(--paper);
 }
 
 .page :global(.course-player-topbar) {
@@ -19,7 +19,7 @@
 .page :global(.course-player-brand) { font: 700 31px Georgia, serif; }
 .page :global(.course-player-topbar > span),
 .page :global(.course-player-topbar > a:not(:first-child):not(.course-player-brand)) { font-size: 11px; }
-.page :global(.course-player-avatar) { display: grid; width: 36px; height: 36px; border-radius: 50%; place-items: center; color: white; background: var(--course-green); font: 17px Georgia, serif; }
+.page :global(.course-player-avatar) { display: grid; width: 36px; height: 36px; border-radius: 50%; place-items: center; color: white; background: var(--green); font: 17px Georgia, serif; }
 
 .page :global(.course-player-header) {
   position: relative;
@@ -32,55 +32,55 @@
   overflow: hidden;
   margin: 0 auto 20px;
   padding: 24px 30px;
-  border: 1px solid #d8d7d0;
+  border: 1px solid var(--line);
   border-radius: 13px;
-  color: var(--course-navy);
-  background: linear-gradient(90deg, #fffaf2 0%, #fffaf2e8 43%, #fffaf229 75%), url("../assets/academy/academy-hero.jpg") right center / 66% auto no-repeat;
+  color: var(--navy);
+  background: linear-gradient(90deg, var(--paper) 0%, color-mix(in srgb, var(--paper) 91%, transparent) 43%, color-mix(in srgb, var(--paper) 16%, transparent) 75%), url("../assets/academy/academy-hero.jpg") right center / 66% auto no-repeat;
 }
 .page :global(.course-player-header > div:first-child) { position: relative; z-index: 2; }
 .page :global(.course-player-header > div:first-child strong) { display: block; margin: 4px 0 8px; font: 34px Georgia, "Noto Serif Bengali", serif; }
-.page :global(.course-player-header > div:first-child span) { display: inline-block; padding: 7px 11px; border: 1px solid #91ac9d; border-radius: 99px; color: #185c46; background: #eff5ed; font-size: 11px; }
-.page :global(.course-progress) { position: relative; z-index: 2; align-self: end; padding: 15px; border: 1px solid #d9d8d0; border-radius: 9px; background: #fffaf2e8; }
-.page :global(.course-progress > span), .page :global(.course-progress > strong) { color: var(--course-navy); font-size: 11px; }
-.page :global(.course-progress i) { height: 7px; background: #dedfd9; }
-.page :global(.course-progress i span) { background: var(--course-green); }
-.page :global(.curriculum-toggle) { position: relative; z-index: 2; display: grid; align-self: end; min-height: 45px; padding: 0 15px; border: 1px solid var(--course-green); border-radius: 7px; place-items: center; color: var(--course-green); background: #fffaf2; font-size: 11px; }
+.page :global(.course-player-header > div:first-child span) { display: inline-block; padding: 7px 11px; border: 1px solid var(--green); border-radius: 99px; color: var(--green); background: var(--soft); font-size: 11px; }
+.page :global(.course-progress) { position: relative; z-index: 2; align-self: end; padding: 15px; border: 1px solid var(--line); border-radius: 9px; background: color-mix(in srgb, var(--paper) 91%, transparent); }
+.page :global(.course-progress > span), .page :global(.course-progress > strong) { color: var(--navy); font-size: 11px; }
+.page :global(.course-progress i) { height: 7px; background: var(--line); }
+.page :global(.course-progress i span) { background: var(--green); }
+.page :global(.curriculum-toggle) { position: relative; z-index: 2; display: grid; align-self: end; min-height: 45px; padding: 0 15px; border: 1px solid var(--green); border-radius: 7px; place-items: center; color: var(--green); background: var(--paper); font-size: 11px; }
 
 .page :global(.course-workspace) { display: grid; width: min(1160px, calc(100% - 32px)); grid-template-columns: 345px minmax(0, 1fr); align-items: start; gap: 24px; margin: auto; }
-.page :global(.course-curriculum) { position: sticky; top: 18px; max-height: calc(100vh - 36px); overflow: auto; padding: 15px 10px; border: 1px solid #dbd8d1; border-radius: 12px; background: #fffdfa; }
+.page :global(.course-curriculum) { position: sticky; top: 18px; max-height: calc(100vh - 36px); overflow: auto; padding: 15px 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
 .page :global(.curriculum-heading) { padding: 5px 8px 15px; }
 .page :global(.curriculum-heading span) { font: 20px Georgia, serif; }
 .page :global(.curriculum-heading strong) { font-size: 10px; }
-.page :global(.curriculum-section) { margin-bottom: 9px; border: 1px solid #ddd9d2; border-radius: 9px; background: #fffaf5; }
+.page :global(.curriculum-section) { margin-bottom: 9px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); }
 .page :global(.curriculum-section-toggle) { min-height: 64px; padding: 12px; border: 0; background: transparent; }
 .page :global(.curriculum-section-toggle span) { font: 15px Georgia, serif; }
 .page :global(.curriculum-section-toggle strong) { font: 14px Georgia, "Noto Serif Bengali", serif; }
-.page :global(.curriculum-lesson-button) { min-height: 72px; padding: 10px 12px; border-top: 1px solid #e4dfd7; background: #fffdfa; }
-.page :global(.curriculum-lesson-button.active) { border-left: 3px solid var(--course-green); color: #0d5e47; background: #eef5ef; }
+.page :global(.curriculum-lesson-button) { min-height: 72px; padding: 10px 12px; border-top: 1px solid var(--line); background: var(--paper); }
+.page :global(.curriculum-lesson-button.active) { border-left: 3px solid var(--green); color: var(--green); background: var(--soft); }
 .page :global(.lesson-type) { width: 35px; height: 35px; }
 .page :global(.curriculum-lesson-button strong) { font-size: 12px; }
 .page :global(.curriculum-lesson-button small) { font-size: 9px; }
 
 .page :global(.course-lesson-area) { min-width: 0; }
 .page :global(.lesson-titlebar) { padding: 13px 18px 16px; }
-.page :global(.lesson-titlebar > span) { color: var(--course-green); font-size: 11px; font-weight: 750; }
+.page :global(.lesson-titlebar > span) { color: var(--green); font-size: 11px; font-weight: 750; }
 .page :global(.lesson-titlebar h1) { margin: 7px 0 4px; font: 35px/1.2 Georgia, "Noto Serif Bengali", serif; }
-.page :global(.lesson-titlebar p) { margin: 0; color: #4c6375; font-size: 11px; }
+.page :global(.lesson-titlebar p) { margin: 0; color: var(--muted); font-size: 11px; }
 .page :global(.lesson-video-stage) { position: relative; min-height: auto; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #173b55; border-radius: 13px; background: #092a48; }
 .page :global(.lesson-youtube-player) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.page :global(.lesson-content) { overflow: hidden; margin-top: 14px; border: 1px solid #d9d8d1; border-radius: 12px; background: #fffdfa; }
-.page :global(.lesson-tabs) { display: grid; grid-template-columns: repeat(3, 1fr); padding-inline: 0; border-bottom: 1px solid #ddd9d2; }
-.page :global(.lesson-tabs button) { min-height: 52px; padding: 0; border: 0; border-bottom: 3px solid transparent; background: transparent; color: #456078; font-size: 11px; }
-.page :global(.lesson-tabs button.active) { border-color: var(--course-green); color: var(--course-green); }
+.page :global(.lesson-content) { overflow: hidden; margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.page :global(.lesson-tabs) { display: grid; grid-template-columns: repeat(3, 1fr); padding-inline: 0; border-bottom: 1px solid var(--line); }
+.page :global(.lesson-tabs button) { min-height: 52px; padding: 0; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--muted); font-size: 11px; }
+.page :global(.lesson-tabs button.active) { border-color: var(--green); color: var(--green); }
 .page :global(.lesson-overview), .page :global(.lesson-notes), .page :global(.lesson-quiz) { max-width: none; padding: 25px; }
-.page :global(.lesson-kicker) { color: var(--course-green); font-size: 10px; }
+.page :global(.lesson-kicker) { color: var(--green); font-size: 10px; }
 .page :global(.lesson-overview > h1), .page :global(.lesson-notes > h1), .page :global(.lesson-quiz > h1) { font: 27px Georgia, "Noto Serif Bengali", serif; }
-.page :global(.lesson-content .rich-text-content) { color: #36546b; font-size: 14px; line-height: 1.75; }
-.page :global(.lesson-objectives) { padding: 18px; border: 1px solid #a8bcae; border-radius: 9px; background: #f3f6ed; }
+.page :global(.lesson-content .rich-text-content) { color: var(--muted); font-size: 14px; line-height: 1.75; }
+.page :global(.lesson-objectives) { padding: 18px; border: 1px solid var(--line); border-radius: 9px; background: var(--soft); }
 .page :global(.lesson-objectives h2) { font: 18px Georgia, serif; }
-.page :global(.lesson-navigation) { display: grid; max-width: none; grid-template-columns: 1fr 1.2fr 1fr; gap: 12px; margin-top: 20px; padding: 14px; border-top: 1px solid #ddd9d2; }
-.page :global(.lesson-navigation button) { min-height: 47px; justify-self: stretch; border: 1px solid #9daea9; border-radius: 7px; background: #fffaf2; color: #214d64; font-size: 11px; }
-.page :global(.lesson-navigation button:last-child) { color: #fff; background: var(--course-green); }
+.page :global(.lesson-navigation) { display: grid; max-width: none; grid-template-columns: 1fr 1.2fr 1fr; gap: 12px; margin-top: 20px; padding: 14px; border-top: 1px solid var(--line); }
+.page :global(.lesson-navigation button) { min-height: 47px; justify-self: stretch; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--muted); font-size: 11px; }
+.page :global(.lesson-navigation button:last-child) { color: #fff; background: var(--green); }
 
 .page :global(.course-common-footer) { padding-top: clamp(48px, 7vw, 88px); }
 

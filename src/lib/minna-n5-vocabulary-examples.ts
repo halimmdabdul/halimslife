@@ -47,6 +47,81 @@ const unit1Examples: VocabularyExample[] = [
   { japanese: "おくには どちらですか。", romaji: "Okuni wa dochira desu ka.", bengali: "আপনার দেশ কোনটি?" },
 ];
 
+const unit2Examples: VocabularyExample[] = [
+  { japanese: "これは 本です。", romaji: "Kore wa hon desu.", bengali: "এটি একটি বই।" },
+  { japanese: "それは 辞書です。", romaji: "Sore wa jisho desu.", bengali: "সেটি একটি অভিধান।" },
+  { japanese: "あれは テレビです。", romaji: "Are wa terebi desu.", bengali: "ওটি একটি টেলিভিশন।" },
+  { japanese: "この本は おもしろいです。", romaji: "Kono hon wa omoshiroi desu.", bengali: "এই বইটি মজার।" },
+  { japanese: "そのノートは 新しいです。", romaji: "Sono nooto wa atarashii desu.", bengali: "সেই খাতাটি নতুন।" },
+  { japanese: "あの車は ミラーさんのです。", romaji: "Ano kuruma wa Miraa-san no desu.", bengali: "ঐ গাড়িটি মিলার-সানের।" },
+  { japanese: "これは 日本語の 本です。", romaji: "Kore wa Nihongo no hon desu.", bengali: "এটি জাপানি ভাষার বই।" },
+  { japanese: "これは 英語の 辞書です。", romaji: "Kore wa Eigo no jisho desu.", bengali: "এটি ইংরেজি ভাষার অভিধান।" },
+  { japanese: "そのノートは わたしのです。", romaji: "Sono nooto wa watashi no desu.", bengali: "সেই খাতাটি আমার।" },
+  { japanese: "これは きょうの 新聞です。", romaji: "Kore wa kyou no shinbun desu.", bengali: "এটি আজকের সংবাদপত্র।" },
+  { japanese: "この雑誌は 日本のです。", romaji: "Kono zasshi wa Nihon no desu.", bengali: "এই ম্যাগাজিনটি জাপানের।" },
+  { japanese: "そのかばんは だれのですか。", romaji: "Sono kaban wa dare no desu ka.", bengali: "সেই ব্যাগটি কার?" },
+  { japanese: "これは 会社の 電話です。", romaji: "Kore wa kaisha no denwa desu.", bengali: "এটি কোম্পানির টেলিফোন।" },
+  { japanese: "あれは 新しい テレビです。", romaji: "Are wa atarashii terebi desu.", bengali: "ওটি নতুন টেলিভিশন।" },
+  { japanese: "このカメラは 日本のです。", romaji: "Kono kamera wa Nihon no desu.", bengali: "এই ক্যামেরাটি জাপানের।" },
+  { japanese: "それは IMCの コンピューターです。", romaji: "Sore wa IMC no konpyuutaa desu.", bengali: "সেটি IMC-এর কম্পিউটার।" },
+  { japanese: "あの車は だれのですか。", romaji: "Ano kuruma wa dare no desu ka.", bengali: "ঐ গাড়িটি কার?" },
+  { japanese: "これは チョコレートです。どうぞ。", romaji: "Kore wa chokoreeto desu. Douzo.", bengali: "এটি চকলেট। নিন।" },
+  { japanese: "コーヒーも どうぞ。", romaji: "Koohii mo douzo.", bengali: "কফিও নিন।" },
+  { japanese: "これは 京都の お土産です。", romaji: "Kore wa Kyouto no omiyage desu.", bengali: "এটি কিয়োটোর স্মারক উপহার।" },
+  { japanese: "これは 英語の 本です。", romaji: "Kore wa Eigo no hon desu.", bengali: "এটি ইংরেজি ভাষার বই।" },
+  { japanese: "これは 何ですか。", romaji: "Kore wa nan desu ka.", bengali: "এটি কী?" },
+  { japanese: "これは どうぞ。", romaji: "Kore wa douzo.", bengali: "এটি গ্রহণ করুন।" },
+  { japanese: "ありがとうございます。", romaji: "Arigatou gozaimasu.", bengali: "অনেক ধন্যবাদ।" },
+  { japanese: "どういたしまして。", romaji: "Dou itashimashite.", bengali: "স্বাগতম; কোনো সমস্যা নেই।" },
+  { japanese: "すみません。これは だれのですか。", romaji: "Sumimasen. Kore wa dare no desu ka.", bengali: "মাফ করবেন, এটি কার?" },
+  { japanese: "気にしないでください。", romaji: "Ki ni shinaide kudasai.", bengali: "চিন্তা করবেন না।" },
+  { japanese: "はい、そうです。", romaji: "Hai, sou desu.", bengali: "হ্যাঁ, তাই।" },
+  { japanese: "いいえ、ちがいます。", romaji: "Iie, chigaimasu.", bengali: "না, তা নয়।" },
+  { japanese: "あ、これは わたしのです。", romaji: "A, kore wa watashi no desu.", bengali: "ওহ্, এটি আমার।" },
+];
+
+const unit3Examples: VocabularyExample[] = [
+  { japanese: "ここは 受付です。", romaji: "Koko wa uketsuke desu.", bengali: "এখানে reception।" },
+  { japanese: "そこは ロビーです。", romaji: "Soko wa robii desu.", bengali: "সেখানে lobby।" },
+  { japanese: "あそこは 食堂です。", romaji: "Asoko wa shokudou desu.", bengali: "ওখানে ক্যান্টিন।" },
+  { japanese: "トイレは どこですか。", romaji: "Toire wa doko desu ka.", bengali: "টয়লেট কোথায়?" },
+  { japanese: "エレベーターは こちらです。", romaji: "Erebeetaa wa kochira desu.", bengali: "লিফট এই দিকে।" },
+  { japanese: "会議室は そちらです。", romaji: "Kaigishitsu wa sochira desu.", bengali: "সভাকক্ষ ওই দিকে।" },
+  { japanese: "お手洗いは あちらです。", romaji: "Otearai wa achira desu.", bengali: "বিশ্রামাগার ওই দিকে।" },
+  { japanese: "受付は どちらですか。", romaji: "Uketsuke wa dochira desu ka.", bengali: "Reception কোন দিকে?" },
+  { japanese: "教室は ここです。", romaji: "Kyoushitsu wa koko desu.", bengali: "শ্রেণিকক্ষ এখানে।" },
+  { japanese: "食堂に 自動販売機が あります。", romaji: "Shokudou ni jidouhanbaiki ga arimasu.", bengali: "ক্যান্টিনে vending machine আছে।" },
+  { japanese: "山田さんは 事務所に います。", romaji: "Yamada-san wa jimusho ni imasu.", bengali: "ইয়ামাদা অফিসে আছেন।" },
+  { japanese: "会議室は あそこです。", romaji: "Kaigishitsu wa asoko desu.", bengali: "সভাকক্ষ ওখানে।" },
+  { japanese: "受付に 田中さんが います。", romaji: "Uketsuke ni Tanaka-san ga imasu.", bengali: "Reception-এ তানাকা আছেন।" },
+  { japanese: "ロビーに 電話が あります。", romaji: "Robii ni denwa ga arimasu.", bengali: "Lobby-তে টেলিফোন আছে।" },
+  { japanese: "この部屋は 会議室です。", romaji: "Kono heya wa kaigishitsu desu.", bengali: "এই ঘরটি সভাকক্ষ।" },
+  { japanese: "お手洗いは どちらですか。", romaji: "Otearai wa dochira desu ka.", bengali: "বিশ্রামাগার কোন দিকে?" },
+  { japanese: "階段は エレベーターの となりです。", romaji: "Kaidan wa erebeetaa no tonari desu.", bengali: "সিঁড়ি lift-এর পাশে।" },
+  { japanese: "エレベーターは あちらです。", romaji: "Erebeetaa wa achira desu.", bengali: "Lift ওই দিকে।" },
+  { japanese: "エスカレーターは そこです。", romaji: "Esukareetaa wa soko desu.", bengali: "Escalator সেখানে।" },
+  { japanese: "自動販売機は ロビーに あります。", romaji: "Jidouhanbaiki wa robii ni arimasu.", bengali: "Vending machine lobby-তে আছে।" },
+  { japanese: "電話は 事務所に あります。", romaji: "Denwa wa jimusho ni arimasu.", bengali: "Telephone অফিসে আছে।" },
+  { japanese: "IMCは 日本の会社です。", romaji: "IMC wa Nihon no kaisha desu.", bengali: "IMC একটি জাপানি কোম্পানি।" },
+  { japanese: "お国は どちらですか。", romaji: "Okuni wa dochira desu ka.", bengali: "আপনার দেশ কোনটি?" },
+  { japanese: "うちは 東京です。", romaji: "Uchi wa Toukyou desu.", bengali: "আমার বাড়ি টোকিওতে।" },
+  { japanese: "カメラ売り場は 五階です。", romaji: "Kamera uriba wa go-kai desu.", bengali: "Camera counter পঞ্চম তলায়।" },
+  { japanese: "食堂は 地下です。", romaji: "Shokudou wa chika desu.", bengali: "Canteen basement-এ।" },
+  { japanese: "会議室は 三階です。", romaji: "Kaigishitsu wa san-gai desu.", bengali: "Meeting room তৃতীয় তলায়।" },
+  { japanese: "受付は 何階ですか。", romaji: "Uketsuke wa nan-gai desu ka.", bengali: "Reception কোন তলায়?" },
+  { japanese: "このワインは いくらですか。", romaji: "Kono wain wa ikura desu ka.", bengali: "এই wine-এর দাম কত?" },
+  { japanese: "これは 百円です。", romaji: "Kore wa hyaku-en desu.", bengali: "এটির দাম ১০০ yen।" },
+  { japanese: "そのネクタイは 千円です。", romaji: "Sono nekutai wa sen-en desu.", bengali: "সেই necktie-এর দাম ১,০০০ yen।" },
+  { japanese: "このカメラは 二万円です。", romaji: "Kono kamera wa ni-man-en desu.", bengali: "এই camera-র দাম ২০,০০০ yen।" },
+  { japanese: "このかばんは 七千三百円です。", romaji: "Kono kaban wa nana-sen san-byaku-en desu.", bengali: "এই bag-এর দাম ৭,৩০০ yen।" },
+  { japanese: "靴売り場は どちらですか。", romaji: "Kutsu uriba wa dochira desu ka.", bengali: "জুতার counter কোন দিকে?" },
+  { japanese: "このネクタイは イタリアのです。", romaji: "Kono nekutai wa Itaria no desu.", bengali: "এই necktie-টি ইতালির।" },
+  { japanese: "日本のワインは ありますか。", romaji: "Nihon no wain wa arimasu ka.", bengali: "Japanese wine আছে কি?" },
+];
+
 export function getMinnaN5VocabularyExample(unitNumber: number, index: number) {
-  return unitNumber === 1 ? unit1Examples[index] : undefined;
+  if (unitNumber === 1) return unit1Examples[index];
+  if (unitNumber === 2) return unit2Examples[index];
+  if (unitNumber === 3) return unit3Examples[index];
+  return undefined;
 }

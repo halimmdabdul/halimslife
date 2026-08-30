@@ -8,7 +8,7 @@ import stageShizuoka from "@/assets/journey/stage-02-shizuoka.png";
 import stageRobotics from "@/assets/journey/stage-03-robotics.png";
 import stageManufacturing from "@/assets/journey/stage-04-manufacturing.png";
 import stageCommunity from "@/assets/journey/stage-05-community.png";
-import { BrandLogo } from "@/components/brand-logo";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 import styles from "./journey.module.css";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/journey" },
 };
 
-type IconName = "arrow" | "book" | "briefcase" | "code" | "community" | "document" | "down" | "graduation" | "heart" | "idea" | "location" | "message" | "microscope" | "plane" | "robot" | "search" | "shield" | "target" | "trend";
+type IconName = "arrow" | "book" | "briefcase" | "code" | "community" | "document" | "down" | "graduation" | "heart" | "idea" | "location" | "microscope" | "plane" | "robot" | "search" | "shield" | "target" | "trend";
 
 function Icon({ name }: { name: IconName }) {
   const paths: Record<IconName, React.ReactNode> = {
@@ -34,7 +34,6 @@ function Icon({ name }: { name: IconName }) {
     heart: <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" />,
     idea: <><path d="M9 18h6m-5 3h4" /><path d="M8.5 15.5a6 6 0 1 1 7 0c-.8.6-1.2 1.3-1.3 2.5h-4.4c-.1-1.2-.5-1.9-1.3-2.5Z" /></>,
     location: <><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></>,
-    message: <><path d="M4 4h16v12H8l-4 4V4Z" /><path d="M8 9h8m-8 3h5" /></>,
     microscope: <><path d="m9 4 6 6-3 3-6-6 3-3Z" /><path d="m13 8 3-3m-4 9a6 6 0 0 0 6 6M5 20h14" /></>,
     plane: <path d="m3 11 18-8-7 18-3-7-8-3Zm8 3 4-4" />,
     robot: <><path d="M14 5 6 13m5-9 4 4M5 12l4 4m6-5 4 4-5 5-4-4 5-5Z" /><circle cx="5" cy="18" r="2" /></>,
@@ -54,11 +53,6 @@ const steps: Step[] = [
   { label: "Niche Creation · Japan", title: "Real-world engineering", text: "Japanese product team-এ robotics, perception, camera ও sensor systems নিয়ে practical experience—এবং paralysis patient-দের জন্য hospital IoT monitoring system।", image: stageRobotics, imageAlt: "Robotics and hospital IoT engineering", tags: [{ icon: "robot", text: "AI & Robotics" }, { icon: "heart", text: "Hospital IoT" }], lesson: "technology মানুষের কাজে লাগানো" },
   { label: "Aspark · Japan", title: "Manufacturing engineering", text: "Manufacturing software, computer vision এবং decision-support systems নিয়ে বর্তমানে কাজ করছি।", image: stageManufacturing, imageAlt: "Computer vision in modern manufacturing", tags: [{ icon: "briefcase", text: "System Engineer" }, { icon: "target", text: "Computer Vision" }], lesson: "team, quality এবং consistency" },
   { label: "Halim’s Life", title: "অভিজ্ঞতা থেকে community", text: "Bangla-friendly Japanese learning tools, programming guidance এবং Japan career insight তৈরি করছি।", image: stageCommunity, imageAlt: "Community learning Japanese programming and career skills", tags: [{ icon: "book", text: "KanaStory" }, { icon: "graduation", text: "JLPT বাংলা হাব" }], lesson: "knowledge share করলে value বাড়ে" },
-];
-
-const footerLinks = [
-  { title: "দ্রুত লিংক", links: [["হোম", "/"], ["পাথওয়ে", "/academy"], ["প্রজেক্টস", "/projects"], ["অভিজ্ঞতা", "/journey"]] },
-  { title: "রিসোর্স", links: [["টিউটোরিয়াল", "/academy"], ["স্কলারশিপ", "/scholarships"], ["প্রোগ্রামিং ব্লগ", "/blog"], ["FAQ", "/contact"]] },
 ];
 
 export default function JourneyPage() {
@@ -96,9 +90,6 @@ export default function JourneyPage() {
       </section>
     </main>
 
-    <footer className={styles.footer}>
-      <div className={styles.footerGrid}><div className={styles.footerIntro}><BrandLogo /><span>Japan · 日本</span><p>Japan-based Bangladeshi software engineer, researcher এবং lifelong learner.</p></div>{footerLinks.map((column) => <nav key={column.title}><h2>{column.title}</h2>{column.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}</nav>)}<nav><h2>যোগাযোগ</h2><Link href="/contact"><Icon name="message" /> Contact</Link><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ"><Icon name="graduation" /> Google Scholar</a><a href="https://github.com/halimmdabdul"><Icon name="code" /> GitHub</a></nav></div>
-      <p className={styles.copyright}>© {new Date().getFullYear()} Halim Md Abdul.</p>
-    </footer>
+    <SiteFooter />
   </div>;
 }
