@@ -5164,6 +5164,11 @@ html[data-theme="dark"] .course-complete-banner p { color: #9ebdb1; }
 .admin-message-list button { min-height: 34px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--text); font: inherit; font-size: 10px; }
 .admin-message-list select { padding-inline: 8px; }
 .admin-message-list button { padding-inline: 11px; color: var(--green); font-weight: 800; cursor: pointer; }
+
+.admin-reply-panel { margin-top: 14px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); }
+.admin-previous-reply { margin: 0 18px 14px; padding: 14px 16px; border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; background: var(--soft); }
+.admin-previous-reply > span { display: block; margin-bottom: 6px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; }
+.admin-previous-reply > p { margin: 0; color: var(--text); font-size: 12px; line-height: 1.65; white-space: pre-wrap; }
 .admin-empty-state { text-align: center; }
 .admin-empty-state strong { color: var(--navy); }
 .admin-empty-state p { margin: 7px 0 0; color: var(--muted); font-size: 11px; }

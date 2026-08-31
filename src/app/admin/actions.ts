@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import { requireAdmin } from "@/lib/admin-auth";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { sendContactReply } from "@/lib/contact-email";
 
 export type LoginState = {
   error?: string;
@@ -683,6 +684,49 @@ export async function deletePost(formData: FormData) {
   revalidatePath("/sitemap.xml");
 }
 
+export async function replyToContactMessage(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const messageId = Number(formData.get("messageId"));
+  const replyMessage = requiredText(formData, "replyMessage");
+  if (!Number.isInteger(messageId)) throw new Error("Invalid reply request.");
+  if (replyMessage.length < 5 || replyMessage.length > 4000) {
+    throw new Error("Reply must be between 5 and 4000 characters.");
+  }
+
+  const { data: original, error: fetchError } = await supabase
+    .from("contact_messages")
+    .select("name,email,subject,message,topic")
+    .eq("id", messageId)
+    .single();
+  if (fetchError || !original) throw new Error("Original message not found.");
+
+  const delivery = await sendContactReply({
+    toName: original.name,
+    toEmail: original.email,
+    subject: original.subject,
+    originalMessage: original.message,
+    replyMessage,
+  });
+  if (!delivery.ok) {
+    throw new Error(`Reply email could not be sent: ${delivery.reason}`);
+  }
+
+  const { error } = await supabase
+    .from("contact_messages")
+    .update({
+      admin_reply: replyMessage,
+      replied_at: new Date().toISOString(),
+      status: "replied",
+      is_read: true,
+    })
+    .eq("id", messageId);
+  if (error) throw new Error(`Reply was sent but could not be saved: ${error.message}`);
+
+  revalidatePath("/admin/messages");
+  revalidatePath("/admin/scholarship-support");
+  revalidatePath("/admin");
+}
+
 const safeTrackingIdPattern = /^[A-Za-z0-9_.-]+$/;
 
 function optionalIdText(formData: FormData, name: string, maxLength: number) {
@@ -733,6 +777,7 @@ export type AdminActionName =
   | "updatePost"
   | "togglePostPublished"
   | "deletePost"
+  | "replyToContactMessage"
   | "updateSiteSettings";
 
 export type AdminActionResult =
@@ -789,6 +834,9 @@ export async function submitAdminCourseAction(
         break;
       case "deletePost":
         await deletePost(formData);
+        break;
+      case "replyToContactMessage":
+        await replyToContactMessage(formData);
         break;
       case "updateSiteSettings":
         await updateSiteSettings(formData);

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
+import { AdminActionForm } from "@/components/admin-action-form";
 import { updateContactMessageStatus } from "@/app/admin/message-actions";
 import { requireAdmin } from "@/lib/admin-auth";
 
@@ -16,6 +17,8 @@ type SupportRequest = {
   subject: string;
   message: string;
   status: "new" | "read" | "replied";
+  admin_reply: string | null;
+  replied_at: string | null;
   created_at: string;
 };
 
@@ -31,7 +34,7 @@ export default async function AdminScholarshipSupportPage() {
   const { supabase } = await requireAdmin();
   const { data, error } = await supabase
     .from("contact_messages")
-    .select("id,name,email,subject,message,status,created_at")
+    .select("id,name,email,subject,message,status,admin_reply,replied_at,created_at")
     .eq("topic", "scholarship-support")
     .order("created_at", { ascending: false });
 
@@ -85,6 +88,21 @@ export default async function AdminScholarshipSupportPage() {
                 <button type="submit">Save</button>
               </form>
             </footer>
+
+            <details className="admin-item-editor admin-reply-panel">
+              <summary>Reply from the site {request.admin_reply ? "(already replied)" : ""}</summary>
+              {request.admin_reply ? (
+                <div className="admin-previous-reply">
+                  <span>Sent {request.replied_at ? new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(request.replied_at)) : ""}</span>
+                  <p>{request.admin_reply}</p>
+                </div>
+              ) : null}
+              <AdminActionForm actionName="replyToContactMessage" className="admin-content-form" successMessage={`Reply sent to ${request.email}.`}>
+                <input type="hidden" name="messageId" value={request.id} />
+                <label className="admin-form-wide">Reply message (emailed directly to {request.email})<textarea name="replyMessage" rows={5} required placeholder="Write your reply here..." /></label>
+                <button className="admin-submit-button" type="submit">Send reply email</button>
+              </AdminActionForm>
+            </details>
           </article>
         ))}
       </section>
