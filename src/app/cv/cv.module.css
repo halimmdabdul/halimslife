@@ -1,7 +1,7 @@
 .page{overflow:hidden;color:var(--navy);background:radial-gradient(circle at 8% 3%,var(--soft),transparent 28rem),var(--paper)}
 .page :global(.cv-hero){padding:24px 0 0;color:var(--navy);background:transparent}
 .page :global(.cv-hero-grid){position:relative;display:grid;min-height:500px;grid-template-columns:1.08fr .92fr;align-items:center;gap:30px;padding-bottom:24px}
-.page :global(.cv-identity){position:relative;z-index:3}
+.page :global(.cv-identity){position:relative;z-index:3;min-width:0}
 .page :global(.cv-overline){color:var(--green);font-size:14px;letter-spacing:0;text-transform:none}
 .page :global(.cv-overline)::before{background:var(--green)}
 .page :global(.cv-identity h1){margin:15px 0 6px;color:var(--navy);font-size:clamp(54px,6.4vw,78px);line-height:1}

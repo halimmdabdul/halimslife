@@ -100,6 +100,43 @@ const lessons: Record<number, LessonDashboard> = {
       "百・千・万・円 ব্যবহার করে basic price পড়তে পারি",
     ],
   },
+  7: {
+    label: "TOOLS · LANGUAGES · GIVING · FAMILY · HOME VISIT",
+    headline: "কী দিয়ে কাজ করেন—কাকে দেন, কার কাছ থেকে পান",
+    summary: "Tool বা language-এর মাধ্যম, দেওয়া–পাওয়ার সম্পর্ক, ধার নেওয়া–দেওয়া, শেখানো–শেখা এবং কাজ ইতোমধ্যে হয়েছে কি না—একটি connected lesson flow-তে শিখবেন। Family vocabulary ও Japanese বাড়িতে অতিথি হওয়ার ভদ্র expression-ও একই context-এ ব্যবহার করবেন।",
+    outcome: "পাঠ শেষে tool ব্যবহার করে action বলতে, giver–receiver arrow দেখে に／から বেছে নিতে, নিজের ও অন্যের family terms আলাদা করতে এবং একটি ছোট home-visit conversation চালাতে পারবেন।",
+    roadmap: [
+      { icon: "①", title: "Tool ও language বলুন", description: "箸で 食べます এবং 日本語で 書きます-এর মতো sentence-এ মাধ্যমের পরে で বসান।" },
+      { icon: "②", title: "দেওয়া–পাওয়ার arrow দেখুন", description: "あげます-এ giver → receiver; もらいます-এ source → receiver ধরে に／から বেছে নিন।" },
+      { icon: "③", title: "বাস্তব conversation করুন", description: "もう／まだ, family terms এবং home-visit etiquette দিয়ে natural dialogue সম্পূর্ণ করুন।" },
+    ],
+    conceptTitle: "Tool থেকে home visit—এক নজরে Unit 07 map",
+    concepts: [
+      { japanese: "N（tool／means）で Vます", label: "কী দিয়ে", note: "箸で食べます／パソコンで送ります", tone: "teal" },
+      { japanese: "『X』は ～語で 何ですか", label: "Language", note: "অন্য ভাষায় কী বলে?", tone: "blue" },
+      { japanese: "Aは Bに Nを あげます", label: "Give", note: "A → B; receiver-এর পরে に", tone: "coral" },
+      { japanese: "Aは Bに／から Nを もらいます", label: "Receive", note: "B → A; source হলো に／から", tone: "gold" },
+      { japanese: "もう Vましたか／まだです", label: "Completion", note: "ইতোমধ্যে হয়েছে / এখনো নয়", tone: "plum" },
+      { japanese: "父・母 ／ お父さん・お母さん", label: "Family register", note: "নিজের family / অন্যের family", tone: "teal" },
+    ],
+    dialogue: [
+      { speaker: "山田", japanese: "いらっしゃい。どうぞ お上がりください。", romaji: "Irasshai. Douzo oagari kudasai.", bengali: "স্বাগতম। অনুগ্রহ করে ভেতরে আসুন।" },
+      { speaker: "サントス", japanese: "失礼します。", romaji: "Shitsurei shimasu.", bengali: "অনুমতি নিচ্ছি।" },
+      { speaker: "山田", japanese: "コーヒーは いかがですか。", romaji: "Koohii wa ikaga desu ka.", bengali: "কফি কেমন হবে?" },
+      { speaker: "サントス", japanese: "ありがとうございます。いただきます。", romaji: "Arigatou gozaimasu. Itadakimasu.", bengali: "ধন্যবাদ। গ্রহণ করছি।" },
+      { speaker: "サントス", japanese: "この スプーン、すてきですね。", romaji: "Kono supuun, suteki desu ne.", bengali: "এই চামচটি চমৎকার, তাই না!" },
+      { speaker: "山田", japanese: "会社の 人に もらいました。メキシコの お土産です。", romaji: "Kaisha no hito ni moraimashita. Mekishiko no omiyage desu.", bengali: "কোম্পানির একজনের কাছ থেকে পেয়েছি। এটি মেক্সিকোর স্মারক।" },
+    ],
+    checklist: [
+      "Tool, means ও language-এর পরে で বসাতে পারি",
+      "『X』は ～語で 何ですか pattern দিয়ে translation জানতে পারি",
+      "あげます-এ giver → receiver এবং もらいます-এ source → receiver চিনতে পারি",
+      "Person source-এ に／から এবং organisation source-এ から ব্যবহার করতে পারি",
+      "もう Vましたか-এর affirmative ও いいえ、まだです উত্তর দিতে পারি",
+      "নিজের family term ও অন্যের respectful family term আলাদা করতে পারি",
+      "いらっしゃい・失礼します・いただきます-এর situation বুঝি",
+    ],
+  },
 };
 
 export function getMinnaN5LessonDetails(unitNumber: number) {

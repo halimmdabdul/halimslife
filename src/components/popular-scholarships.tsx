@@ -60,7 +60,7 @@ const groups: ScholarshipGroup[] = [
       { name:"MEXT Undergraduate Scholarship", level:"Bachelor’s", tag:"Undergraduate", href:mextUrl, points:["সাধারণত preparatory Japanese education-সহ দীর্ঘমেয়াদি degree route।","Tuition, monthly stipend ও নির্ধারিত travel allowance অন্তর্ভুক্ত।","Written examination-এর subject ও current age rule official guideline থেকে verify করুন।"] },
       { name:"MEXT Research Student Scholarship", level:"Research student · Master’s · PhD", tag:"Graduate", href:mextUrl, points:["Research proposal, academic fit ও provisional acceptance গুরুত্বপূর্ণ।","CSE, Engineering, Business, Economicsসহ বিস্তৃত field cover করতে পারে।","Embassy recommendation ও কিছু university recommendation route পাওয়া যায়।"] },
       { name:"MEXT Specialized Training College", level:"Diploma · Vocational", tag:"Skills route", href:mextUrl, points:["Technology, business, design, tourismসহ specialized subject।","Preparatory Japanese education, tuition, stipend ও travel support থাকে।","Current field list এবং examination subjects official notice থেকে দেখুন।"] },
-      { name:"MEXT College of Technology — KOSEN", level:"Technical education", tag:"Engineering", href:mextUrl, points:["HSC/upper-secondary level-এর পর engineering ও technical route।","Preparatory Japanese course-এর পর সাধারণত KOSEN-এর third year-এ entry।","Tuition, stipend ও নির্ধারিত airfare সরকারি অর্থায়নে থাকে।"] },
+      { name:"MEXT College of Technology — KOSEN", level:"Technical education", tag:"Engineering", href:mextUrl, points:["HSC/upper-secondary level-এর পর engineering ও technical route।","Preparatory Japanese course-এর পর সাধারণত KOSEN-এর third year-এ entry।","Tuition, stipend ও নির্ধারিত airfare government funding-এ থাকে।"] },
     ],
   },
   {

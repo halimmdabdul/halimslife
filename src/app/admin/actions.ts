@@ -499,6 +499,190 @@ export async function deleteCourseItem(formData: FormData) {
   revalidatePath("/academy");
 }
 
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function blogImageFromForm(formData: FormData) {
+  const fileValue = formData.get("coverImage");
+  const file = fileValue instanceof File && fileValue.size > 0 ? fileValue : null;
+  const urlValue = optionalText(formData, "coverImageUrl");
+  let externalUrl: string | null = null;
+
+  if (urlValue) {
+    try {
+      const url = new URL(urlValue);
+      if (url.protocol !== "https:" && url.protocol !== "http:") throw new Error();
+      externalUrl = url.toString();
+    } catch {
+      throw new Error("Cover image URL must be a valid HTTP or HTTPS address.");
+    }
+  }
+  if (file && externalUrl) throw new Error("Choose either an image upload or an external image URL.");
+  if (file && (file.size > 3 * 1024 * 1024 || !courseImageMimeTypes.has(file.type))) {
+    throw new Error("Cover images must be JPEG, PNG, WebP, or AVIF and 3 MB or smaller.");
+  }
+  return { file, externalUrl };
+}
+
+async function uploadBlogImage(supabase: AdminSupabase, postId: number, file: File) {
+  const safeName = file.name.replace(/[^A-Za-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "post-image";
+  const storagePath = `${postId}/${crypto.randomUUID()}-${safeName}`;
+  const { error } = await supabase.storage
+    .from("blog-images")
+    .upload(storagePath, new Uint8Array(await file.arrayBuffer()), {
+      contentType: file.type,
+      cacheControl: "3600",
+      upsert: false,
+    });
+  if (error) throw new Error(`Cover image upload failed: ${error.message}`);
+  const publicUrl = supabase.storage.from("blog-images").getPublicUrl(storagePath).data.publicUrl;
+  return { publicUrl, storagePath };
+}
+
+export async function createPost(formData: FormData) {
+  const { supabase, profile } = await requireAdmin();
+  const title = requiredText(formData, "title");
+  const slugInput = optionalText(formData, "slug");
+  const slug = slugify(slugInput || title);
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+    throw new Error("Slug must contain lowercase letters, numbers, and hyphens only.");
+  }
+  const image = blogImageFromForm(formData);
+
+  const { data: post, error } = await supabase
+    .from("posts")
+    .insert({
+      slug,
+      title,
+      excerpt: requiredText(formData, "excerpt"),
+      content: requiredText(formData, "content"),
+      meta_title: optionalText(formData, "metaTitle"),
+      meta_description: optionalText(formData, "metaDescription"),
+      author_id: profile.id,
+      published: formData.get("published") === "on",
+      published_at: new Date().toISOString(),
+      cover_image: image.externalUrl,
+    })
+    .select("id")
+    .single();
+  if (error?.code === "23505") {
+    throw new Error("A post with this URL slug already exists.");
+  }
+  if (error) throw new Error(`Post creation failed: ${error.message}`);
+  if (image.file && post) {
+    try {
+      const uploaded = await uploadBlogImage(supabase, post.id, image.file);
+      const { error: updateError } = await supabase
+        .from("posts")
+        .update({ cover_image: uploaded.publicUrl, cover_storage_path: uploaded.storagePath })
+        .eq("id", post.id);
+      if (updateError) {
+        await supabase.storage.from("blog-images").remove([uploaded.storagePath]);
+        throw updateError;
+      }
+    } catch (uploadError) {
+      await supabase.from("posts").delete().eq("id", post.id);
+      throw uploadError;
+    }
+  }
+  revalidatePath("/admin/blog");
+  revalidatePath("/blog");
+  revalidatePath("/sitemap.xml");
+}
+
+export async function updatePost(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const postId = Number(formData.get("postId"));
+  const title = requiredText(formData, "title");
+  const slug = slugify(requiredText(formData, "slug"));
+  if (!Number.isInteger(postId) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+    throw new Error("Invalid post update request.");
+  }
+  const image = blogImageFromForm(formData);
+  const removeImage = formData.get("removeCoverImage") === "on";
+
+  const { data: currentPost } = await supabase
+    .from("posts")
+    .select("cover_storage_path")
+    .eq("id", postId)
+    .single();
+  let uploadedImage: { publicUrl: string; storagePath: string } | null = null;
+  if (image.file) uploadedImage = await uploadBlogImage(supabase, postId, image.file);
+
+  const imageValues = uploadedImage
+    ? { cover_image: uploadedImage.publicUrl, cover_storage_path: uploadedImage.storagePath }
+    : image.externalUrl
+      ? { cover_image: image.externalUrl, cover_storage_path: null }
+      : removeImage
+        ? { cover_image: null, cover_storage_path: null }
+        : {};
+
+  const { error } = await supabase
+    .from("posts")
+    .update({
+      slug,
+      title,
+      excerpt: requiredText(formData, "excerpt"),
+      content: requiredText(formData, "content"),
+      meta_title: optionalText(formData, "metaTitle"),
+      meta_description: optionalText(formData, "metaDescription"),
+      ...imageValues,
+    })
+    .eq("id", postId);
+  if (error) {
+    if (uploadedImage) await supabase.storage.from("blog-images").remove([uploadedImage.storagePath]);
+    if (error.code === "23505") {
+      throw new Error("A post with this URL slug already exists.");
+    }
+    throw new Error(`Post update failed: ${error.message}`);
+  }
+  if ((uploadedImage || image.externalUrl || removeImage) && currentPost?.cover_storage_path) {
+    await supabase.storage.from("blog-images").remove([currentPost.cover_storage_path]);
+  }
+  revalidatePath("/admin/blog");
+  revalidatePath("/blog");
+  revalidatePath(`/blog/${slug}`);
+}
+
+export async function togglePostPublished(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const postId = Number(formData.get("postId"));
+  const published = formData.get("published") === "true";
+  if (!Number.isInteger(postId)) throw new Error("Invalid post request.");
+
+  const values: Record<string, string | boolean> = { published };
+  if (published) {
+    const { data: current } = await supabase.from("posts").select("published").eq("id", postId).single();
+    if (current && !current.published) values.published_at = new Date().toISOString();
+  }
+
+  const { error } = await supabase.from("posts").update(values).eq("id", postId);
+  if (error) throw new Error(`Post update failed: ${error.message}`);
+  revalidatePath("/admin/blog");
+  revalidatePath("/blog");
+  revalidatePath("/sitemap.xml");
+}
+
+export async function deletePost(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const postId = Number(formData.get("postId"));
+  if (!Number.isInteger(postId)) throw new Error("Invalid post delete request.");
+  const { data: post } = await supabase.from("posts").select("cover_storage_path").eq("id", postId).single();
+  const { error } = await supabase.from("posts").delete().eq("id", postId);
+  if (error) throw new Error(`Post deletion failed: ${error.message}`);
+  if (post?.cover_storage_path) {
+    await supabase.storage.from("blog-images").remove([post.cover_storage_path]);
+  }
+  revalidatePath("/admin/blog");
+  revalidatePath("/blog");
+  revalidatePath("/sitemap.xml");
+}
+
 const safeTrackingIdPattern = /^[A-Za-z0-9_.-]+$/;
 
 function optionalIdText(formData: FormData, name: string, maxLength: number) {
@@ -545,6 +729,10 @@ export type AdminActionName =
   | "deleteLectureMaterial"
   | "toggleCoursePublished"
   | "deleteCourseItem"
+  | "createPost"
+  | "updatePost"
+  | "togglePostPublished"
+  | "deletePost"
   | "updateSiteSettings";
 
 export type AdminActionResult =
@@ -589,6 +777,18 @@ export async function submitAdminCourseAction(
         break;
       case "deleteCourseItem":
         await deleteCourseItem(formData);
+        break;
+      case "createPost":
+        await createPost(formData);
+        break;
+      case "updatePost":
+        await updatePost(formData);
+        break;
+      case "togglePostPublished":
+        await togglePostPublished(formData);
+        break;
+      case "deletePost":
+        await deletePost(formData);
         break;
       case "updateSiteSettings":
         await updateSiteSettings(formData);

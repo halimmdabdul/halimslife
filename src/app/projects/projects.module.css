@@ -31,3 +31,28 @@ html[data-theme="dark"] .next:after {
 @media(max-width:600px){
   html[data-theme="dark"] .next:after { background: rgba(11, 18, 21, .86); }
 }
+
+/* Dark mode: the hero, featured-project and card thumbnail illustrations are
+   bright watercolor art painted for a light page — left undimmed they read as
+   glaring rectangles on the dark background, so tone them down and ground
+   them with a border like the rest of the dark-mode card treatments. */
+html[data-theme="dark"] .heroArt img,
+html[data-theme="dark"] .featuredImage img,
+html[data-theme="dark"] .designed img,
+html[data-theme="dark"] .cardImage img {
+  filter: brightness(.55) saturate(.6);
+}
+html[data-theme="dark"] .heroArt,
+html[data-theme="dark"] .featuredImage,
+html[data-theme="dark"] .cardImage {
+  border: 1px solid var(--line);
+}
+html[data-theme="dark"] .heroArt:after,
+html[data-theme="dark"] .featuredImage:after,
+html[data-theme="dark"] .cardImage:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 18, 21, .28);
+  pointer-events: none;
+}

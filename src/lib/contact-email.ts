@@ -13,6 +13,7 @@ const topicLabels: Record<string, string> = {
   research: "Research",
   career: "Career guidance",
   collaboration: "Collaboration",
+  "scholarship-support": "Scholarship Support",
 };
 
 function escapeHtml(value: string) {
@@ -30,7 +31,9 @@ function contactEmailHtml(input: ContactEmailInput) {
   const email = escapeHtml(input.email);
   const subject = escapeHtml(input.subject);
   const topic = escapeHtml(topicLabels[input.topic] ?? input.topic);
-  const message = escapeHtml(input.message).replace(/\r?\n/g, "<br />");
+  const message = escapeHtml(input.message)
+    .replace(/\r?\n/g, "<br />")
+    .replace(/(https?:\/\/[^\s<]+)/g, (url) => `<a href="${url}" style="color:#087255;">${url}</a>`);
 
   return `<!doctype html>
 <html lang="en">

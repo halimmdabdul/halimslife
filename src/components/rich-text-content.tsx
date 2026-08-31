@@ -1,10 +1,13 @@
 import type { ReactNode } from "react";
 
 function inlineMarkdown(text: string): ReactNode[] {
-  const pattern = /(\*\*[^*]+\*\*|_[^_]+_|`[^`]+`|\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g;
+  const pattern = /(\*\*[^*]+\*\*|~~[^~]+~~|_[^_]+_|`[^`]+`|\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g;
   return text.split(pattern).filter(Boolean).map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith("~~") && part.endsWith("~~")) {
+      return <s key={index}>{part.slice(2, -2)}</s>;
     }
     if (part.startsWith("_") && part.endsWith("_")) {
       return <em key={index}>{part.slice(1, -1)}</em>;
@@ -22,9 +25,12 @@ function inlineMarkdown(text: string): ReactNode[] {
 
 export function markdownToPlainText(value: string) {
   return value
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/!\[([^\]]*)\]\(https?:\/\/[^)\s]+\)/g, "$1")
     .replace(/\[([^\]]+)\]\(https?:\/\/[^)\s]+\)/g, "$1")
     .replace(/^(#{1,3}|>|[-*]|\d+\.)\s+/gm, "")
-    .replace(/\*\*|_|`/g, "")
+    .replace(/^-{3,}$/gm, " ")
+    .replace(/\*\*|~~|_|`/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -41,7 +47,39 @@ export function RichTextContent({ content }: { content: string }) {
     const heading = line.match(/^(#{1,3})\s+(.+)$/);
     if (heading) {
       const children = inlineMarkdown(heading[2]);
-      blocks.push(heading[1].length === 1 ? <h2 key={index}>{children}</h2> : <h3 key={index}>{children}</h3>);
+      const level = heading[1].length;
+      blocks.push(
+        level === 1
+          ? <h2 key={index}>{children}</h2>
+          : level === 2
+            ? <h3 key={index}>{children}</h3>
+            : <h4 key={index}>{children}</h4>,
+      );
+      index += 1;
+      continue;
+    }
+
+    if (/^```/.test(line)) {
+      const codeLines: string[] = [];
+      index += 1;
+      while (index < lines.length && !/^```/.test(lines[index].trim())) {
+        codeLines.push(lines[index]);
+        index += 1;
+      }
+      index += 1; // skip the closing ```
+      blocks.push(<pre key={`code-${index}`}><code>{codeLines.join("\n")}</code></pre>);
+      continue;
+    }
+
+    if (/^(-{3,}|\*{3,})$/.test(line)) {
+      blocks.push(<hr key={index} />);
+      index += 1;
+      continue;
+    }
+
+    const image = line.match(/^!\[([^\]]*)\]\((https?:\/\/[^)\s]+)\)$/);
+    if (image) {
+      blocks.push(<img key={index} src={image[2]} alt={image[1]} loading="lazy" />);
       index += 1;
       continue;
     }
@@ -74,7 +112,14 @@ export function RichTextContent({ content }: { content: string }) {
 
     const paragraph: string[] = [line];
     index += 1;
-    while (index < lines.length && lines[index].trim() && !/^(#{1,3}|>|[-*]|\d+\.)\s+/.test(lines[index].trim())) {
+    while (
+      index < lines.length &&
+      lines[index].trim() &&
+      !/^(#{1,3}|>|[-*]|\d+\.)\s+/.test(lines[index].trim()) &&
+      !/^```/.test(lines[index].trim()) &&
+      !/^(-{3,}|\*{3,})$/.test(lines[index].trim()) &&
+      !/^!\[([^\]]*)\]\((https?:\/\/[^)\s]+)\)$/.test(lines[index].trim())
+    ) {
       paragraph.push(lines[index].trim());
       index += 1;
     }

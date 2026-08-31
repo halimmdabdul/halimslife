@@ -790,6 +790,158 @@ const unitSixPractice: UnitPracticeDetails = {
   ],
 };
 
+const unitSevenPractice: UnitPracticeDetails = {
+  heroImage:"/images/projects/n5-practice/unit-07-giving.png",
+  heroAlt:"Japanese home visit-এ guest ও host greeting, gift দেওয়া, coffee নেওয়া এবং tool, email, lending ও already-not-yet practice-এর colorful illustration",
+  dialogueImage:"/images/projects/n5-practice/unit-07-giving.png",
+  heroEyebrow:"UNIT 07 · TOOLS, GIVING & HOME VISIT",
+  heroTitle:"কী দিয়ে করেন—কাকে দেন, কার কাছ থেকে পান?",
+  heroDescription:"Tool/language で, giver–receiver particle map, もう／まだ এবং Japanese home-visit etiquette মিলিয়ে sentence ও conversation practice করুন।",
+  dialogueTitle:"いらっしゃい—Japanese বাড়িতে অতিথি আপ্যায়ন",
+  dialogueAlt:"অতিথি দরজায় bow করছেন, host ভেতরে ডাকছেন, gift ও coffee দেওয়া হচ্ছে—রঙিন Japanese home-visit scene",
+  dialogueCaption:[{name:"サントス",text:"বাড়িতে ঢোকার সময় 失礼します বলেন ও coffee গ্রহণ করেন"},{name:"山田一郎",text:"いらっしゃい বলে অতিথিকে ভেতরে ডাকেন"},{name:"山田友子",text:"coffee offer করেন এবং souvenir-এর গল্প বলেন"}],
+  modelLabel:"道具・授受・訪問",
+  modelTitle:"TOOL → GIVER/RECEIVER → POLITE VISIT",
+  challengeTitle:"দেওয়া–পাওয়ার arrow map",
+  challengeDescription:"প্রথমে tool で দিয়ে কাজ বলুন, তারপর あげます/もらいます-এ arrow-এর দিক দেখে に বা から বেছে নিন।",
+  usefulWords:[
+    {japanese:"何で",romaji:"nan de",bengali:"কী দিয়ে/কোন মাধ্যমে"},{japanese:"だれに",romaji:"dare ni",bengali:"কাকে/কার কাছে"},{japanese:"だれから",romaji:"dare kara",bengali:"কার কাছ থেকে"},{japanese:"もう",romaji:"mou",bengali:"ইতোমধ্যে"},{japanese:"まだ",romaji:"mada",bengali:"এখনো/এখনো নয়"},{japanese:"いかがですか",romaji:"ikaga desu ka",bengali:"কেমন হবে?—ভদ্র offer"},
+  ],
+  answerPatterns:[
+    {japanese:"Nで Vます。",romaji:"N de V-masu.",bengali:"N দিয়ে/মাধ্যমে কাজ করি।",positive:true},
+    {japanese:"Aは Bに Nを あげます。",romaji:"A wa B ni N o agemasu.",bengali:"A, B-কে N দেয়।",positive:true},
+    {japanese:"Aは Bに／から Nを もらいます。",romaji:"A wa B ni/kara N o moraimasu.",bengali:"A, B-এর কাছ থেকে N পায়।",positive:true},
+    {japanese:"いいえ、まだです。",romaji:"Iie, mada desu.",bengali:"না, এখনো নয়।",positive:false},
+  ],
+  memoryPoints:[
+    {symbol:"で",meaning:"tool, means বা language"},{symbol:"に",meaning:"あげます-এর receiver; person source-ও হতে পারে"},{symbol:"から",meaning:"もらいます-এর source; organisation-এ বিশেষভাবে স্বাভাবিক"},{symbol:"を",meaning:"দেওয়া/পাওয়া বস্তু"},{symbol:"もう",meaning:"কাজ ইতোমধ্যে complete"},{symbol:"まだ",meaning:"কাজ এখনো complete হয়নি"},
+  ],
+  selfIntroduction:{japanese:"わたしは 母に 花を あげました。父から 時計を もらいました。もう お礼の メールを 送りました。",romaji:"Watashi wa haha ni hana o agemashita. Chichi kara tokei o moraimashita. Mou orei no meeru o okurimashita.",bengali:"আমি মাকে ফুল দিয়েছি। বাবার কাছ থেকে ঘড়ি পেয়েছি। ইতোমধ্যে ধন্যবাদ জানিয়ে ই-মেইল পাঠিয়েছি।"},
+  grammarQuiz:[
+    {question:"‘চপস্টিক দিয়ে ভাত খাই’—সঠিক sentence?",options:["箸で ごはんを 食べます。","箸に ごはんで 食べます。","箸を ごはんに 食べます。","箸から ごはんを 食べます。"],correctAnswer:"箸で ごはんを 食べます。",explanation:"কাজের tool 箸-এর পরে で বসে।"},
+    {question:"‘Japanese-এ report লিখি’—language particle কোনটি?",options:["日本語で レポートを 書きます。","日本語に レポートで 書きます。","日本語を レポートに 書きます。","日本語から レポートを 書きます。"],correctAnswer:"日本語で レポートを 書きます。",explanation:"কাজের ভাষা বা মাধ্যমের পরে で।"},
+    {question:"‘আমি Kimura-san-কে ফুল দিই’—সঠিক particle map?",options:["わたしは 木村さんに 花を あげます。","わたしに 木村さんは 花を あげます。","わたしは 木村さんから 花を あげます。","木村さんで わたしを 花に あげます。"],correctAnswer:"わたしは 木村さんに 花を あげます。",explanation:"あげます-এ receiver 木村さん-এর পরে に।"},
+    {question:"‘বন্ধুর কাছ থেকে chocolate পেয়েছি’—কোনটি?",options:["友達に チョコレートを もらいました。","友達を チョコレートに あげました。","友達で チョコレートを もらいます。","友達は チョコレートから あげました。"],correctAnswer:"友達に チョコレートを もらいました。",explanation:"もらいます-এ person source-এর পরে に বা から বসতে পারে।"},
+    {question:"Company থেকে souvenir পেয়েছি—source particle কোনটি বেশি স্বাভাবিক?",options:["会社から お土産を もらいました。","会社に お土産を あげました。","会社で お土産に もらいました。","会社を お土産から もらいました。"],correctAnswer:"会社から お土産を もらいました。",explanation:"Organisation source-এর সঙ্গে から বেশি স্বাভাবিক।"},
+    {question:"‘ইতোমধ্যে mail পাঠিয়েছেন?’—সঠিক প্রশ্ন?",options:["もう メールを 送りましたか。","まだ メールを 送りますか。","もう メールに 送りません。","メールから もうですか。"],correctAnswer:"もう メールを 送りましたか。",explanation:"Completion জানতে もう + Vましたか ব্যবহার হয়।"},
+    {question:"কাজ এখনো হয়নি—সংক্ষিপ্ত natural উত্তর?",options:["いいえ、まだです。","はい、もうです。","いいえ、あげます。","まだ でしたか。"],correctAnswer:"いいえ、まだです。",explanation:"Context পরিষ্কার থাকলে verb পুনরাবৃত্তি না করে まだです বলা যায়।"},
+    {question:"বাড়িতে অতিথিকে coffee offer করার ভদ্র expression?",options:["コーヒーは いかがですか。","コーヒーを あげません。","コーヒーから 何ですか。","コーヒーで 失礼します。"],correctAnswer:"コーヒーは いかがですか。",explanation:"～は いかがですか ভদ্র offer।"},
+  ],
+  dialogue:[
+    {speaker:"山田一郎",japanese:"はい。",romaji:"Hai.",bengali:"জি।"},
+    {speaker:"サントス",japanese:"サントスです。",romaji:"Santosu desu.",bengali:"আমি সান্তোস।"},
+    {speaker:"山田一郎",japanese:"いらっしゃい。どうぞ お上がりください。",romaji:"Irasshai. Douzo oagari kudasai.",bengali:"স্বাগতম। অনুগ্রহ করে ভেতরে আসুন।"},
+    {speaker:"サントス",japanese:"失礼します。",romaji:"Shitsurei shimasu.",bengali:"অনুমতি নিচ্ছি।"},
+    {speaker:"山田友子",japanese:"コーヒーは いかがですか。",romaji:"Koohii wa ikaga desu ka.",bengali:"কফি কেমন হবে?"},
+    {speaker:"サントス",japanese:"ありがとうございます。",romaji:"Arigatou gozaimasu.",bengali:"ধন্যবাদ।"},
+    {speaker:"山田友子",japanese:"どうぞ。",romaji:"Douzo.",bengali:"অনুগ্রহ করে নিন।"},
+    {speaker:"サントス",japanese:"いただきます。この スプーン、すてきですね。",romaji:"Itadakimasu. Kono supuun, suteki desu ne.",bengali:"গ্রহণ করছি। এই চামচটি চমৎকার, তাই না!"},
+    {speaker:"山田友子",japanese:"ええ。会社の 人に もらいました。",romaji:"Ee. Kaisha no hito ni moraimashita.",bengali:"হ্যাঁ। কোম্পানির একজনের কাছ থেকে পেয়েছি।"},
+    {speaker:"山田一郎",japanese:"メキシコの お土産です。",romaji:"Mekishiko no omiyage desu.",bengali:"এটি মেক্সিকোর স্মারক উপহার।"},
+  ],
+  profiles:[],
+  modules:[
+    {step:"01",title:"Tool দিয়ে action",instruction:"Textbook picture cue-এর tool বেছে で এবং object を দিয়ে sentence তৈরি করুন।",questions:[
+      {prompt:"はし／ごはん／食べます",answer:"箸で ごはんを 食べます。",romaji:"Hashi de gohan o tabemasu.",bengali:"চপস্টিক দিয়ে ভাত খাই।"},{prompt:"ナイフと フォーク／ごはん",answer:"ナイフと フォークで ごはんを 食べます。",romaji:"Naifu to fooku de gohan o tabemasu.",bengali:"ছুরি ও কাঁটাচামচ দিয়ে খাবার খাই।"},{prompt:"はさみ／紙／切ります",answer:"はさみで 紙を 切ります。",romaji:"Hasami de kami o kirimasu.",bengali:"কাঁচি দিয়ে কাগজ কাটি।"},{prompt:"ケータイ／写真／撮ります",answer:"ケータイで 写真を 撮ります。",romaji:"Keetai de shashin o torimasu.",bengali:"মোবাইল দিয়ে ছবি তুলি।"},
+    ]},
+    {step:"02",title:"Language conversion drill",instruction:"কোন ভাষায় লেখা/বলা হচ্ছে তা で দিয়ে বলুন এবং 何ですか question বানান।",questions:[
+      {prompt:"日本語／レポート／書きます",answer:"日本語で レポートを 書きます。",romaji:"Nihongo de repooto o kakimasu.",bengali:"জাপানিতে রিপোর্ট লিখি।"},{prompt:"『ありがとう』／英語／何ですか",answer:"『ありがとう』は 英語で 何ですか。",romaji:"Arigatou wa eigo de nan desu ka.",bengali:"‘আরিগাতো’ ইংরেজিতে কী?"},{prompt:"『Thank you』／日本語",answer:"『Thank you』は 日本語で 『ありがとう』です。",romaji:"Thank you wa nihongo de arigatou desu.",bengali:"‘Thank you’ জাপানিতে ‘আরিগাতো’।"},{prompt:"『Gracias』／スペイン語／ありがとう",answer:"『Gracias』は スペイン語で 『ありがとう』です。",romaji:"Gracias wa supeingo de arigatou desu.",bengali:"‘Gracias’ স্প্যানিশে ‘ধন্যবাদ’।"},
+    ]},
+    {step:"03",title:"あげます—giver থেকে receiver",instruction:"Arrow A → B ধরে receiver-এর পরে に এবং gift-এর পরে を বসান।",questions:[
+      {prompt:"わたし → 木村さん／花",answer:"わたしは 木村さんに 花を あげます。",romaji:"Watashi wa Kimura-san ni hana o agemasu.",bengali:"আমি কিমুরা-সানকে ফুল দিই।"},{prompt:"わたし → 友達／チョコレート",answer:"わたしは 友達に チョコレートを あげます。",romaji:"Watashi wa tomodachi ni chokoreeto o agemasu.",bengali:"আমি বন্ধুকে chocolate দিই।"},{prompt:"カリナさん → ワットさん／本",answer:"カリナさんは ワットさんに 本を あげました。",romaji:"Karina-san wa Watto-san ni hon o agemashita.",bengali:"কারিনা-সান ওয়াট-সানকে বই দিয়েছেন।"},{prompt:"サントスさん → 父／シャツ",answer:"サントスさんは 父に シャツを あげました。",romaji:"Santosu-san wa chichi ni shatsu o agemashita.",bengali:"সান্তোস-সান তার বাবাকে শার্ট দিয়েছেন।"},
+    ]},
+    {step:"04",title:"もらいます—receiver-এর viewpoint",instruction:"Arrow B → A দেখে source-এর পরে に／から এবং received item-এর পরে を বসান।",questions:[
+      {prompt:"わたし ← ワットさん／本",answer:"わたしは ワットさんに 本を もらいました。",romaji:"Watashi wa Watto-san ni hon o moraimashita.",bengali:"আমি ওয়াট-সানের কাছ থেকে বই পেয়েছি।"},{prompt:"わたし ← 会社の人／スプーン",answer:"わたしは 会社の 人に スプーンを もらいました。",romaji:"Watashi wa kaisha no hito ni supuun o moraimashita.",bengali:"আমি কোম্পানির একজনের কাছ থেকে চামচ পেয়েছি।"},{prompt:"山田さん ← 銀行／カレンダー",answer:"山田さんは 銀行から カレンダーを もらいました。",romaji:"Yamada-san wa ginkou kara karendaa o moraimashita.",bengali:"ইয়ামাদা-সান ব্যাংক থেকে calendar পেয়েছেন।"},{prompt:"母 ← わたし／花",answer:"母は わたしに 花を もらいました。",romaji:"Haha wa watashi ni hana o moraimashita.",bengali:"মা আমার কাছ থেকে ফুল পেয়েছেন।"},
+    ]},
+    {step:"05",title:"Borrow, lend, teach ও learn",instruction:"একই に/から source–receiver map দিয়ে textbook-এর action pairগুলো সম্পূর্ণ করুন।",questions:[
+      {prompt:"わたし／山田さん／手紙を 書きます → teaching",answer:"わたしは 山田さんに 手紙の 書き方を 教えます。",romaji:"Watashi wa Yamada-san ni tegami no kakikata o oshiemasu.",bengali:"আমি ইয়ামাদা-সানকে চিঠি লেখার পদ্ধতি শেখাই।"},{prompt:"わたし ← 先生／英語",answer:"わたしは 先生に 英語を 習いました。",romaji:"Watashi wa sensei ni eigo o naraimashita.",bengali:"আমি শিক্ষকের কাছে ইংরেজি শিখেছি।"},{prompt:"わたし → 友達／レポート",answer:"わたしは 友達に レポートを 貸しました。",romaji:"Watashi wa tomodachi ni repooto o kashimashita.",bengali:"আমি বন্ধুকে রিপোর্ট ধার দিয়েছি।"},{prompt:"わたし ← 友達／CD",answer:"わたしは 友達に CDを 借りました。",romaji:"Watashi wa tomodachi ni shiidii o karimashita.",bengali:"আমি বন্ধুর কাছ থেকে CD ধার নিয়েছি।"},
+    ]},
+    {step:"06",title:"もう／まだ completion check",instruction:"কাজটি হয়েছে কি না দেখে もう Vましたか এবং দুই ধরনের উত্তর practice করুন।",questions:[
+      {prompt:"昼ごはん／completed",answer:"もう 昼ごはんを 食べましたか。— はい、もう 食べました。",romaji:"Mou hirugohan o tabemashita ka. — Hai, mou tabemashita.",bengali:"দুপুরের খাবার খেয়েছেন? — হ্যাঁ, ইতোমধ্যে খেয়েছি।"},{prompt:"クリスマスカード／not yet",answer:"もう クリスマスカードを 書きましたか。— いいえ、まだです。",romaji:"Mou kurisumasu kaado o kakimashita ka. — Iie, mada desu.",bengali:"বড়দিনের card লিখেছেন? — না, এখনো নয়।"},{prompt:"荷物／sent",answer:"もう 荷物を 送りましたか。— はい、送りました。",romaji:"Mou nimotsu o okurimashita ka. — Hai, okurimashita.",bengali:"পার্সেল পাঠিয়েছেন? — হ্যাঁ, পাঠিয়েছি।"},{prompt:"宿題／not yet",answer:"もう 宿題を しましたか。— いいえ、まだです。",romaji:"Mou shukudai o shimashita ka. — Iie, mada desu.",bengali:"বাড়ির কাজ করেছেন? — না, এখনো নয়।"},
+    ]},
+    {step:"07",title:"Home-visit conversation & final review",instruction:"Dialogue etiquette ও mixed Bengali cue থেকে সম্পূর্ণ Japanese response তৈরি করুন।",questions:[
+      {prompt:"Host: どうぞ お上がりください。— Guest কী বলবেন?",answer:"失礼します。",romaji:"Shitsurei shimasu.",bengali:"অনুমতি নিচ্ছি।"},{prompt:"コーヒーは いかがですか。— গ্রহণ করুন",answer:"ありがとうございます。いただきます。",romaji:"Arigatou gozaimasu. Itadakimasu.",bengali:"ধন্যবাদ। গ্রহণ করছি।"},{prompt:"এই spoon সুন্দর—কোথা থেকে পেয়েছেন?",answer:"この スプーン、すてきですね。だれに もらいましたか。",romaji:"Kono supuun, suteki desu ne. Dare ni moraimashita ka.",bengali:"এই চামচটি চমৎকার। কার কাছ থেকে পেয়েছেন?"},{prompt:"গতকাল library গিয়ে Tarou-কে বই ধার দিয়েছি।",answer:"きのう 図書館へ 行きました。太郎ちゃんに 本を 貸しました。",romaji:"Kinou toshokan e ikimashita. Tarou-chan ni hon o kashimashita.",bengali:"গতকাল লাইব্রেরিতে গিয়েছি। তারোকে বই ধার দিয়েছি।"},
+    ]},
+  ],
+};
+
+const unitEightPractice: UnitPracticeDetails = {
+  heroImage:"/images/projects/n5-practice/unit-08-adjectives.png",
+  heroAlt:"Japanese বাড়িতে অতিথি, coffee offer, ফুল, বড় ঘর, পুরোনো cabinet ও Fuji view দিয়ে adjective বোঝানোর রঙিন illustration",
+  dialogueImage:"/images/projects/n5-practice/unit-08-adjectives.png",
+  heroEyebrow:"UNIT 08 · ADJECTIVE PRACTICE",
+  heroTitle:"কেমন মানুষ, জায়গা ও জিনিস—সহজে বর্ণনা করুন",
+  heroDescription:"い-adjective ও な-adjective-এর positive/negative form, noun modification, が, とても／あまり, どう／どんな—ছবি ও dialogue দিয়ে practice করুন।",
+  dialogueTitle:"そろそろ 失礼します—অতিথি বিদায়ের polite flow",
+  dialogueAlt:"Japanese couple অতিথিদের coffee দিচ্ছেন; অতিথিরা বিদায় নেওয়ার আগে ঘর, কাজ ও জীবন নিয়ে কথা বলছেন",
+  dialogueCaption:[{name:"山田",text:"Japan-এর জীবন ও কাজ কেমন জিজ্ঞেস করছেন"},{name:"マリア",text:"毎日とても楽しいです বলে অনুভূতি জানাচ্ছেন"},{name:"サントス",text:"忙しいですが、おもしろいです বলে contrast করছেন"}],
+  modelLabel:"形容詞・会話・読解",
+  modelTitle:"DESCRIPTION → CONTRAST → CONVERSATION",
+  challengeTitle:"Adjective form map",
+  challengeDescription:"শব্দটি い-adjective না な-adjective চিহ্নিত করুন; তারপর affirmative, negative ও noun-এর আগের সঠিক form বেছে নিন।",
+  usefulWords:[
+    {japanese:"どう",romaji:"dou",bengali:"কেমন"},{japanese:"どんな N",romaji:"donna N",bengali:"কেমন ধরনের N"},{japanese:"とても",romaji:"totemo",bengali:"খুব"},{japanese:"あまり",romaji:"amari",bengali:"খুব একটা—negative-এর সঙ্গে"},{japanese:"そして",romaji:"soshite",bengali:"এবং/তারপর"},{japanese:"～が、～",romaji:"~ ga, ~",bengali:"～, কিন্তু ～"},
+  ],
+  answerPatterns:[
+    {japanese:"Nは い-adjです。",romaji:"N wa i-adj desu.",bengali:"N ～/গুণটি আছে।",positive:true},
+    {japanese:"Nは な-adjです。",romaji:"N wa na-adj desu.",bengali:"N ～/গুণটি আছে।",positive:true},
+    {japanese:"い-adjくないです。",romaji:"i-adj-ku nai desu.",bengali:"～ নয়।",positive:false},
+    {japanese:"な-adjじゃありません。",romaji:"na-adj ja arimasen.",bengali:"～ নয়।",positive:false},
+  ],
+  memoryPoints:[
+    {symbol:"い",meaning:"noun-এর আগে সরাসরি: 高い 山"},{symbol:"な",meaning:"な-adjective + noun: きれいな 町"},{symbol:"くない",meaning:"い-adjective negative ending"},{symbol:"じゃありません",meaning:"な-adjective polite negative"},{symbol:"が",meaning:"দুই বিপরীত তথ্য—কিন্তু"},{symbol:"あまり",meaning:"সবসময় negative predicate-এর সঙ্গে"},
+  ],
+  selfIntroduction:{japanese:"わたしの 町は 大きくないですが、きれいです。古い お寺と 有名な 公園が あります。",romaji:"Watashi no machi wa ookiku nai desu ga, kirei desu. Furui otera to yuumei na kouen ga arimasu.",bengali:"আমার শহর বড় নয়, কিন্তু সুন্দর। এখানে পুরোনো মন্দির ও বিখ্যাত পার্ক আছে।"},
+  grammarQuiz:[
+    {question:"‘Nara সুন্দর’—সঠিক sentence কোনটি?",options:["奈良は きれいです。","奈良は きれいなです。","奈良は きれくです。","奈良は きれいくないです。"],correctAnswer:"奈良は きれいです。",explanation:"きれい একটি な-adjective; sentence শেষে な লাগে না।"},
+    {question:"‘সুন্দর শহর’—কোনটি ঠিক?",options:["きれいな 町","きれい 町","きれいの 町","きれいく 町"],correctAnswer:"きれいな 町",explanation:"な-adjective noun-এর আগে এলে な যোগ হয়।"},
+    {question:"高い-এর polite negative কোনটি?",options:["高くないです。","高いじゃありません。","高くありませんです。","高いないです。"],correctAnswer:"高くないです。",explanation:"い বাদ দিয়ে くないです হয়।"},
+    {question:"にぎやか-এর polite negative কোনটি?",options:["にぎやかじゃありません。","にぎやかくないです。","にぎやかなありません。","にぎやかないです。"],correctAnswer:"にぎやかじゃありません。",explanation:"な-adjective negative: じゃありません।"},
+    {question:"‘খুব ঠান্ডা’—সঠিকটি?",options:["とても 寒いです。","あまり 寒いです。","とても 寒くないですか。","寒い とてもです。"],correctAnswer:"とても 寒いです。",explanation:"とても positive adjective-কে জোরালো করে।"},
+    {question:"‘খুব একটা ঠান্ডা নয়’—সঠিকটি?",options:["あまり 寒くないです。","あまり 寒いです。","とても 寒くです。","寒いじゃありません。"],correctAnswer:"あまり 寒くないです。",explanation:"あまり-এর পরে negative predicate লাগে।"},
+    {question:"‘পুরোনো কিন্তু সুবিধাজনক’—কোনটি?",options:["古いですが、便利です。","古いそして 便利です。","古いな 便利です。","古くないが 便利なです。"],correctAnswer:"古いですが、便利です。",explanation:"Contrast করতে প্রথম clause-এর শেষে が বসে।"},
+    {question:"‘কেমন শহর?’—সঠিক question?",options:["どんな 町ですか。","町は どうなですか。","何の 町がですか。","どこな 町ですか。"],correctAnswer:"どんな 町ですか。",explanation:"Noun-এর ধরন জানতে どんな + noun ব্যবহার হয়।"},
+  ],
+  dialogue:[
+    {speaker:"山田",japanese:"マリアさん、日本の 生活は どうですか。",romaji:"Maria-san, Nihon no seikatsu wa dou desu ka.",bengali:"মারিয়া-সান, জাপানের জীবন কেমন?"},
+    {speaker:"マリア",japanese:"毎日 とても 楽しいです。",romaji:"Mainichi totemo tanoshii desu.",bengali:"প্রতিদিন খুব আনন্দের।"},
+    {speaker:"山田",japanese:"サントスさん、お仕事は どうですか。",romaji:"Santosu-san, oshigoto wa dou desu ka.",bengali:"সান্তোস-সান, কাজ কেমন?"},
+    {speaker:"サントス",japanese:"忙しいですが、おもしろいです。",romaji:"Isogashii desu ga, omoshiroi desu.",bengali:"ব্যস্ত, কিন্তু মজার।"},
+    {speaker:"山田友子",japanese:"コーヒー、もう 一杯 いかがですか。",romaji:"Koohii, mou ippai ikaga desu ka.",bengali:"আর এক কাপ coffee কেমন হবে?"},
+    {speaker:"マリア",japanese:"いいえ、けっこうです。",romaji:"Iie, kekkou desu.",bengali:"না, ধন্যবাদ—যথেষ্ট হয়েছে।"},
+    {speaker:"マリア",japanese:"あ、もう 6時ですね。そろそろ 失礼します。",romaji:"A, mou roku-ji desu ne. Sorosoro shitsurei shimasu.",bengali:"ওহ, ইতোমধ্যে ৬টা। এবার উঠি।"},
+    {speaker:"サントス",japanese:"きょうは どうも ありがとうございました。",romaji:"Kyou wa doumo arigatou gozaimashita.",bengali:"আজকের জন্য অনেক ধন্যবাদ।"},
+    {speaker:"山田友子",japanese:"いいえ。また いらっしゃって ください。",romaji:"Iie. Mata irasshatte kudasai.",bengali:"কিছু নয়। আবার আসবেন।"},
+  ],
+  profiles:[],
+  modules:[
+    {step:"01",title:"文型 warm-up",instruction:"Textbook-এর চারটি model pattern দেখে adjective predicate ও noun modifier তৈরি করুন।",questions:[
+      {prompt:"奈良／きれい",answer:"奈良は きれいです。",romaji:"Nara wa kirei desu.",bengali:"নারা সুন্দর।"},{prompt:"富士山／高い",answer:"富士山は 高いです。",romaji:"Fujisan wa takai desu.",bengali:"ফুজি পর্বত উঁচু।"},{prompt:"桜／きれい／花",answer:"桜は きれいな 花です。",romaji:"Sakura wa kirei na hana desu.",bengali:"সাকুরা সুন্দর ফুল।"},{prompt:"富士山／高い／山",answer:"富士山は 高い 山です。",romaji:"Fujisan wa takai yama desu.",bengali:"ফুজি একটি উঁচু পাহাড়।"},
+    ]},
+    {step:"02",title:"練習A · Form laboratory",instruction:"な-adjective ও い-adjective-এর affirmative, negative এবং noun-এর আগের form বদলান।",questions:[
+      {prompt:"きれい → negative",answer:"きれいじゃありません。",romaji:"Kirei ja arimasen.",bengali:"সুন্দর নয়।"},{prompt:"高い → negative",answer:"高くないです。",romaji:"Takaku nai desu.",bengali:"উঁচু/দামি নয়।"},{prompt:"いい → negative",answer:"よくないです。",romaji:"Yoku nai desu.",bengali:"ভালো নয়।"},{prompt:"奈良／静か／町",answer:"奈良は 静かな 町です。",romaji:"Nara wa shizuka na machi desu.",bengali:"নারা একটি শান্ত শহর।"},
+    ]},
+    {step:"03",title:"練習B · Picture descriptions",instruction:"ছবি-কল্পনার cue দেখে adjective sentence বলুন; দরকার হলে じゃありません বা くないです ব্যবহার করুন।",questions:[
+      {prompt:"イーさん／元気",answer:"イーさんは 元気です。",romaji:"Ii-san wa genki desu.",bengali:"ই-সান প্রাণবন্ত/সুস্থ।"},{prompt:"ワットさん／ハンサム",answer:"ワットさんは ハンサムです。",romaji:"Watto-san wa hansamu desu.",bengali:"ওয়াট-সান সুদর্শন।"},{prompt:"山田さん／元気／negative",answer:"山田さんは 元気じゃありません。",romaji:"Yamada-san wa genki ja arimasen.",bengali:"ইয়ামাদা-সান সুস্থ/প্রাণবন্ত নন।"},{prompt:"この 自転車／新しい",answer:"この 自転車は 新しいです。",romaji:"Kono jitensha wa atarashii desu.",bengali:"এই সাইকেলটি নতুন।"},
+    ]},
+    {step:"04",title:"とても・あまり・が",instruction:"Degree ও contrast cue বসিয়ে natural দুই-clause answer তৈরি করুন।",questions:[
+      {prompt:"北京／今／寒い／very",answer:"北京は 今 とても 寒いです。",romaji:"Pekin wa ima totemo samui desu.",bengali:"বেইজিং এখন খুব ঠান্ডা।"},{prompt:"上海／寒い／not very",answer:"上海は あまり 寒くないです。",romaji:"Shanhai wa amari samuku nai desu.",bengali:"সাংহাই খুব একটা ঠান্ডা নয়।"},{prompt:"大学の 寮／古い + 便利",answer:"大学の 寮は 古いですが、便利です。",romaji:"Daigaku no ryou wa furui desu ga, benri desu.",bengali:"বিশ্ববিদ্যালয়ের dorm পুরোনো, কিন্তু সুবিধাজনক।"},{prompt:"日本の 食べ物／おいしい + 高い",answer:"日本の 食べ物は おいしいですが、高いです。",romaji:"Nihon no tabemono wa oishii desu ga, takai desu.",bengali:"জাপানি খাবার সুস্বাদু, কিন্তু দামি।"},
+    ]},
+    {step:"05",title:"どう・どんな question drill",instruction:"সামগ্রিক অবস্থা জানতে どう, noun-এর ধরন জানতে どんな ব্যবহার করুন।",questions:[
+      {prompt:"日本の 生活／কেমন?",answer:"日本の 生活は どうですか。",romaji:"Nihon no seikatsu wa dou desu ka.",bengali:"জাপানের জীবন কেমন?"},{prompt:"松本さんの うち／কেমন ধরনের বাড়ি?",answer:"松本さんの うちは どんな うちですか。",romaji:"Matsumoto-san no uchi wa donna uchi desu ka.",bengali:"মাতসুমোতো-সানের বাড়ি কেমন ধরনের?"},{prompt:"Answer: সুন্দর এবং বড় বাড়ি",answer:"きれいな うちです。そして、大きい うちです。",romaji:"Kirei na uchi desu. Soshite, ookii uchi desu.",bengali:"সুন্দর বাড়ি। আর বড়ও।"},{prompt:"奈良／শান্ত শহর",answer:"奈良は どんな 町ですか。— 静かな 町です。",romaji:"Nara wa donna machi desu ka. — Shizuka na machi desu.",bengali:"নারা কেমন শহর? — শান্ত শহর।"},
+    ]},
+    {step:"06",title:"練習C · Conversation completion",instruction:"Situation cue থেকে short dialogue-এর missing reply বলুন।",questions:[
+      {prompt:"A: お元気ですか。 B: ＿＿。",answer:"はい、元気です。",romaji:"Hai, genki desu.",bengali:"হ্যাঁ, ভালো আছি।"},{prompt:"A: お仕事は どうですか。 B: busy but interesting",answer:"忙しいですが、おもしろいです。",romaji:"Isogashii desu ga, omoshiroi desu.",bengali:"ব্যস্ত, কিন্তু মজার।"},{prompt:"A: その かばんを 見せて ください。 B: これですか。 A: not this, red one",answer:"いいえ、その 赤い かばんです。",romaji:"Iie, sono akai kaban desu.",bengali:"না, ওই লাল ব্যাগটি।"},{prompt:"A: 金閣寺は どんな 所ですか。 B: beautiful place",answer:"きれいな 所ですよ。写真を 見ますか。",romaji:"Kirei na tokoro desu yo. Shashin o mimasu ka.",bengali:"সুন্দর জায়গা। ছবি দেখবেন?"},
+    ]},
+    {step:"07",title:"会話 · そろそろ失礼します",instruction:"Home-visit conversation-এর polite order ও adjective reply সম্পূর্ণ করুন।",questions:[
+      {prompt:"日本の 生活は どうですか。",answer:"毎日 とても 楽しいです。",romaji:"Mainichi totemo tanoshii desu.",bengali:"প্রতিদিন খুব আনন্দের।"},{prompt:"コーヒー、もう 一杯 いかがですか。— decline politely",answer:"いいえ、けっこうです。",romaji:"Iie, kekkou desu.",bengali:"না, ধন্যবাদ—যথেষ্ট।"},{prompt:"সময় 6টা; বিদায় শুরু করুন",answer:"もう 6時ですね。そろそろ 失礼します。",romaji:"Mou roku-ji desu ne. Sorosoro shitsurei shimasu.",bengali:"ইতোমধ্যে ৬টা। এবার উঠি।"},{prompt:"Host: また ＿＿ ください。",answer:"また いらっしゃって ください。",romaji:"Mata irasshatte kudasai.",bengali:"আবার আসবেন।"},
+    ]},
+    {step:"08",title:"問題 · Reading & self-test",instruction:"Watto先生-এর paragraph পড়ে adjective ও factual answer দিন।",questions:[
+      {prompt:"ワットさんは どんな 先生ですか。",hint:"さくら大学・英語",answer:"さくら大学の 英語の 先生です。",romaji:"Sakura Daigaku no eigo no sensei desu.",bengali:"তিনি সাকুরা বিশ্ববিদ্যালয়ের ইংরেজির শিক্ষক।"},{prompt:"さくら大学は どんな 大学ですか。",answer:"大きい 大学です。",romaji:"Ookii daigaku desu.",bengali:"এটি বড় বিশ্ববিদ্যালয়।"},{prompt:"食堂は 12時から 1時まで どうですか。",answer:"とても にぎやかです。",romaji:"Totemo nigiyaka desu.",bengali:"খুব জমজমাট।"},{prompt:"大学の 仕事は どうですか。",answer:"忙しいですが、楽しいです。",romaji:"Isogashii desu ga, tanoshii desu.",bengali:"ব্যস্ত, কিন্তু আনন্দের।"},
+    ]},
+  ],
+};
+
 export function getMinnaN5PracticeDetails(unitNumber: number) {
   if (unitNumber === 1) return unitOnePractice;
   if (unitNumber === 2) return unitTwoPractice;
@@ -797,5 +949,7 @@ export function getMinnaN5PracticeDetails(unitNumber: number) {
   if (unitNumber === 4) return unitFourPractice;
   if (unitNumber === 5) return unitFivePractice;
   if (unitNumber === 6) return unitSixPractice;
+  if (unitNumber === 7) return unitSevenPractice;
+  if (unitNumber === 8) return unitEightPractice;
   return undefined;
 }

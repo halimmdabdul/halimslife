@@ -3464,7 +3464,7 @@ export const scholarshipGuides: ScholarshipGuide[] = [
     duration: "2 years · April 2027–March 2029",
     audience: "International CS graduates pursuing AI, optimization, simulation or social implementation",
     realityCheck:
-      "AISIP admission এবং MEXT nomination একই selection path-এ যুক্ত, কিন্তু scholarship guaranteed নয়। Limited applicants-কে MEXT candidate হিসেবে nominate করা হবে; অন্য successful applicants privately financed student হিসেবে ভর্তি হতে পারবেন। বর্তমানে Japan-এ বসবাস করলে ‘newly coming to Japan’ ও নতুন Student visa নিয়ে re-entry requirement আপনার ক্ষেত্রে প্রযোজ্য কি না, আবেদন করার আগেই admissions office থেকে লিখিতভাবে নিশ্চিত করা জরুরি।",
+      "AISIP admission এবং MEXT nomination একই selection path-এ যুক্ত, কিন্তু scholarship guaranteed নয়। Limited applicants-কে MEXT candidate হিসেবে nominate করা হবে; অন্য successful applicants privately financed student হিসেবে admission পেতে পারবেন। বর্তমানে Japan-এ বসবাস করলে ‘newly coming to Japan’ ও নতুন Student visa নিয়ে re-entry requirement আপনার ক্ষেত্রে প্রযোজ্য কি না, আবেদন করার আগেই admissions office থেকে লিখিতভাবে নিশ্চিত করা জরুরি।",
     highlights: [
       "Eligibility screening কেবল standard academic qualification না মিললে; deadline 21 August 2026, 3:00 PM JST।",
       "সব applicant-এর prescreening বাধ্যতামূলক; deadline 28 August 2026, 3:00 PM JST।",

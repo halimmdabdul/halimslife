@@ -11,6 +11,8 @@ export type BlogPost = {
   excerpt: string;
   content: string;
   cover_image: string | null;
+  meta_title: string | null;
+  meta_description: string | null;
   published_at: string;
   created_at: string;
 };
@@ -25,7 +27,7 @@ export const getPublishedPosts = cache(async (): Promise<BlogPost[]> => {
   const { data, error } = await supabase
     .from("posts")
     .select(
-      "id,slug,title,excerpt,content,cover_image,published_at,created_at",
+      "id,slug,title,excerpt,content,cover_image,meta_title,meta_description,published_at,created_at",
     )
     .eq("published", true)
     .order("published_at", { ascending: false });
@@ -48,7 +50,7 @@ export const getPublishedPost = cache(
     const { data, error } = await supabase
       .from("posts")
       .select(
-        "id,slug,title,excerpt,content,cover_image,published_at,created_at",
+        "id,slug,title,excerpt,content,cover_image,meta_title,meta_description,published_at,created_at",
       )
       .eq("slug", slug)
       .eq("published", true)

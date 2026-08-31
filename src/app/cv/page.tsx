@@ -184,7 +184,6 @@ export default function CvPage() {
                 <span>Focus</span><strong>Software · AI · Research</strong>
               </div>
             </aside>
-            <Image className="cv-hero-art" src={journeyArt} alt="Mount Fuji and Japanese pagoda watercolor" fill priority sizes="52vw" />
           </div>
           <div className="container cv-contact-strip" aria-label="Contact details">
             <a href="mailto:reiazbubt@gmail.com">reiazbubt@gmail.com</a>

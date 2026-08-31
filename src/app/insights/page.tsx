@@ -4,7 +4,7 @@ import { connection } from "next/server";
 import { InnerPageShell } from "@/components/inner-page-shell";
 
 export const metadata: Metadata = {
-  title: "লেখালেখি ও ইনসাইট",
+  title: "লেখালেখি ও Insights",
   description:
     "Japan career, Japanese language এবং programming fundamentals নিয়ে Halim-এর practical Bengali insights।",
   alternates: { canonical: "/insights" },
@@ -34,7 +34,7 @@ export default async function InsightsPage() {
   return (
     <InnerPageShell>
       <section className="page-title container">
-        <span className="kicker">লেখালেখি ও ইনসাইট</span>
+        <span className="kicker">লেখালেখি ও Insights</span>
         <h1>Experience থেকে শেখা practical কথা—সহজ বাংলায়।</h1>
         <p>
           Japan, engineering এবং learning journey-তে যে lessons সত্যিই কাজে

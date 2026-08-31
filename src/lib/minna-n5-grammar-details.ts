@@ -432,6 +432,110 @@ const unit6GrammarDetails: GrammarDetail[] = [
   },
 ];
 
+const unit7GrammarDetails: GrammarDetail[] = [
+  {
+    title:"কোন উপায় বা যন্ত্রে কাজ হচ্ছে—で",structure:"N（tool／means）で Vます。",
+    explanation:"কোনো কাজ করতে যে যন্ত্র, উপকরণ বা মাধ্যম ব্যবহার করা হয়, তার পরে で বসে। 箸で 食べます-এ chopsticks হলো খাওয়ার tool; 日本語で レポートを 書きます-এ Japanese হলো কাজের ভাষা বা মাধ্যম। Place で-ও একই particle, কিন্তু সেখানে অর্থ ‘কোথায় action হচ্ছে’।",
+    notes:["Tool/means + で, direct object + を, তারপর verb।","交通手段-ও means: バスで 行きます।","হাত দিয়ে করলে 手で; language ব্যবহার করলে 日本語で／英語で।"],
+    visual:{tokens:[{text:"はさみ",role:"Tool"},{text:"で",role:"কী দিয়ে",accent:true},{text:"紙",role:"Object"},{text:"を 切ります",role:"Action"}],romaji:"Hasami de kami o kirimasu.",bengali:"কাঁচি দিয়ে কাগজ কাটি।"},
+    examples:[{japanese:"箸で ごはんを 食べます。",romaji:"Hashi de gohan o tabemasu.",bengali:"চপস্টিক দিয়ে ভাত খাই।"},{japanese:"パソコンで メールを 送ります。",romaji:"Pasokon de meeru o okurimasu.",bengali:"কম্পিউটার দিয়ে ই-মেইল পাঠাই।"},{japanese:"英語で レポートを 書きます。",romaji:"Eigo de repooto o kakimasu.",bengali:"ইংরেজিতে রিপোর্ট লিখি।"}],
+  },
+  {
+    title:"অন্য ভাষায় কী বলে—～語で 何ですか",structure:"「Word／sentence」は ～語で 何ですか。",
+    explanation:"একটি শব্দ বা বাক্য অন্য ভাষায় কী বলা হয় জানতে উদ্ধৃত অংশকে は দিয়ে topic করুন, target language-এর পরে で বসান, শেষে 何ですか বলুন। এখানে で ভাষাকে expression-এর মাধ্যম হিসেবে দেখায়। উত্তরে ～です বা target word সরাসরি বলা যায়।",
+    notes:["何ですか-এর 何 এখানে なん পড়া হয়।","Language: 日本語, 英語, 中国語 ইত্যাদি।","Question pattern: X は + language で + 何ですか。"],
+    visual:{tokens:[{text:"『ありがとう』",role:"জানা expression"},{text:"は",role:"Topic"},{text:"英語で",role:"Target language",accent:true},{text:"何ですか",role:"কী বলে?",accent:true}],romaji:"Arigatou wa eigo de nan desu ka.",bengali:"‘আরিগাতো’ ইংরেজিতে কী?"},
+    examples:[{japanese:"『ありがとう』は 英語で 何ですか。",romaji:"Arigatou wa eigo de nan desu ka.",bengali:"‘আরিগাতো’ ইংরেজিতে কী?"},{japanese:"『Thank you』は 日本語で 何ですか。",romaji:"Thank you wa nihongo de nan desu ka.",bengali:"‘Thank you’ জাপানিতে কী?"},{japanese:"『はさみ』は 英語で scissors です。",romaji:"Hasami wa eigo de scissors desu.",bengali:"‘হাসামি’ ইংরেজিতে scissors।"}],
+  },
+  {
+    title:"কাউকে কিছু দেওয়া—あげます",structure:"A（giver）は B（receiver）に Nを あげます。",
+    explanation:"বক্তা বা অন্য কেউ কাউকে কোনো বস্তু দিলে giver-কে は, receiver-কে に এবং দেওয়া জিনিসকে を দিয়ে চিহ্নিত করা হয়। বাক্যের viewpoint giver-এর দিকে: কে দিল → কাকে দিল → কী দিল। নিজের কাজের জন্য わたしは context পরিষ্কার হলে বাদ দেওয়া যায়।",
+    notes:["Recipient সাধারণত person + に।","あげます দিয়ে সাধারণত নিজের থেকে উচ্চ মর্যাদার ব্যক্তিকে উপহার দেওয়ার কথা খুব সরাসরি বলা এড়ানো হয়; context ও politeness খেয়াল করুন।","Subject বদলালে giver-ও বদলে যায়—arrow সবসময় A → B।"],
+    visual:{tokens:[{text:"わたし",role:"Giver A"},{text:"は",role:"Topic"},{text:"妹",role:"Receiver B"},{text:"に",role:"প্রাপক",accent:true},{text:"花を あげます",role:"Gift + give",accent:true}],romaji:"Watashi wa imouto ni hana o agemasu.",bengali:"আমি ছোট বোনকে ফুল দিই।"},
+    examples:[{japanese:"わたしは 妹に 花を あげます。",romaji:"Watashi wa imouto ni hana o agemasu.",bengali:"আমি ছোট বোনকে ফুল দিই।"},{japanese:"木村さんは リーさんに プレゼントを あげました。",romaji:"Kimura-san wa Rii-san ni purezento o agemashita.",bengali:"কিমুরা-সান লি-সানকে উপহার দিয়েছেন।"},{japanese:"子どもに お菓子を あげます。",romaji:"Kodomo ni okashi o agemasu.",bengali:"শিশুকে মিষ্টি দিই।"}],
+  },
+  {
+    title:"কারও কাছ থেকে কিছু পাওয়া—もらいます",structure:"A（receiver）は B（source）に／から Nを もらいます。",
+    explanation:"কেউ কারও কাছ থেকে কিছু পেলে receiver-কে は, source person-কে に বা から এবং পাওয়া জিনিসকে を দিয়ে চিহ্নিত করা হয়। Viewpoint এবার receiver-এর দিকে: কে পেল ← কার কাছ থেকে ← কী পেল। ব্যক্তি হলে に/から দুটোই চলে; company, school বা organisation-এর মতো উৎসে から বেশি স্বাভাবিক।",
+    notes:["あげます-এর arrow A → B; もらいます-এর arrow B → A।","Person source: 友達に／から; organisation source: 会社から।","নিজের teacher বা ঊর্ধ্বতন ব্যক্তির কাছ থেকে পাওয়া বোঝাতে に／から ব্যবহার করা যায়।"],
+    visual:{tokens:[{text:"わたし",role:"Receiver A"},{text:"は",role:"Topic"},{text:"友達",role:"Source B"},{text:"に／から",role:"কার কাছ থেকে",accent:true},{text:"花を もらいました",role:"Received item",accent:true}],romaji:"Watashi wa tomodachi ni hana o moraimashita.",bengali:"আমি বন্ধুর কাছ থেকে ফুল পেয়েছি।"},
+    examples:[{japanese:"わたしは 友達に 花を もらいました。",romaji:"Watashi wa tomodachi ni hana o moraimashita.",bengali:"আমি বন্ধুর কাছ থেকে ফুল পেয়েছি।"},{japanese:"カリナさんから CDを 借りました。",romaji:"Karina-san kara shiidii o karimashita.",bengali:"কারিনা-সানের কাছ থেকে CD ধার নিয়েছি।"},{japanese:"銀行から お金を 借りました。",romaji:"Ginkou kara okane o karimashita.",bengali:"ব্যাংক থেকে টাকা ধার নিয়েছি।"}],
+  },
+  {
+    title:"ইতোমধ্যে হয়েছে কি—もう／まだ",structure:"もう Vましたか。— はい、Vました。／いいえ、まだです。",
+    explanation:"もう + past verb দিয়ে কোনো কাজ ইতোমধ্যে সম্পন্ন হয়েছে বোঝায়। もう Vましたか প্রশ্নে কাজ শেষ হয়েছে কি না জানতে চাওয়া হয়। না হলে সংক্ষিপ্ত ও স্বাভাবিক উত্তর いいえ、まだです—‘না, এখনো নয়’; affirmative present いいえ、まだ Vません-ও context অনুযায়ী বলা যায়।",
+    notes:["もう সাধারণত completed past Vました-এর সঙ্গে আসে।","Positive: はい、もう Vました বা শুধু はい、Vました।","まだです-এর পরে একই verb পুনরাবৃত্তি না করলেও context থেকে বোঝা যায়।"],
+    visual:{tokens:[{text:"もう",role:"ইতোমধ্যে",accent:true},{text:"宿題を しましたか",role:"Completed question"},{text:"いいえ",role:"না"},{text:"まだです",role:"এখনো নয়",accent:true}],romaji:"Mou shukudai o shimashita ka. — Iie, mada desu.",bengali:"বাড়ির কাজ ইতোমধ্যে করেছেন? — না, এখনো নয়।"},
+    examples:[{japanese:"もう 荷物を 送りましたか。— はい、送りました。",romaji:"Mou nimotsu o okurimashita ka. — Hai, okurimashita.",bengali:"পার্সেল পাঠিয়েছেন? — হ্যাঁ, পাঠিয়েছি।"},{japanese:"もう 昼ごはんを 食べましたか。— いいえ、まだです。",romaji:"Mou hirugohan o tabemashita ka. — Iie, mada desu.",bengali:"দুপুরের খাবার খেয়েছেন? — না, এখনো নয়।"},{japanese:"もう 年賀状を 書きました。",romaji:"Mou nengajou o kakimashita.",bengali:"নববর্ষের কার্ড ইতোমধ্যে লিখেছি।"}],
+  },
+  {
+    title:"কথ্য ভাষায় particle বাদ দেওয়া",structure:"[Topic／object]（は／を／に）…？",
+    explanation:"সম্পর্ক ও context একেবারে পরিষ্কার হলে informal conversation-এ は, を, に-এর মতো particle অনেক সময় বাদ যায়। その スプーンは すてきですね → その スプーン、すてきですね। কিন্তু beginner writing, formal speech বা অর্থ অস্পষ্ট হওয়ার আশঙ্কায় particle রেখে বলাই নিরাপদ।",
+    notes:["বাদ পড়লেও মনে মনে sentence map ঠিক রাখতে হবে।","です／ます বজায় থাকলে sentence polite হতে পারে, যদিও particle omitted।","で, から বা contrast-এর は বাদ দিলে অর্থ বদলে যেতে পারে—অযথা বাদ দেবেন না।"],
+    visual:{tokens:[{text:"その スプーン",role:"Clear topic"},{text:"（は）",role:"কথায় বাদ",accent:true},{text:"すてきですね",role:"Comment"}],romaji:"Sono supuun, suteki desu ne.",bengali:"ওই চামচটি চমৎকার, তাই না!"},
+    examples:[{japanese:"その スプーン、すてきですね。",romaji:"Sono supuun, suteki desu ne.",bengali:"ওই চামচটি চমৎকার, তাই না!"},{japanese:"もう 荷物、送りましたか。",romaji:"Mou nimotsu, okurimashita ka.",bengali:"পার্সেল ইতোমধ্যে পাঠিয়েছেন?"},{japanese:"コーヒー、いかがですか。",romaji:"Koohii, ikaga desu ka.",bengali:"কফি কেমন হবে?"}],
+  },
+];
+
+const unit8GrammarDetails: GrammarDetail[] = [
+  {
+    title:"Adjective-এর দুই family",structure:"い-adjective ／ な-adjective",
+    explanation:"Japanese adjective দুই family: い-adjective সাধারণত い-তে শেষ হয়; な-adjective noun-এর আগে な নেয়। きれい ও ゆうめい দেখতে い-তে শেষ হলেও な-adjective। Vocabulary শেখার সময় প্রতিটি শব্দের family-ও একসঙ্গে মনে রাখুন।",
+    notes:["い-family: 大きい・新しい・高い।","な-family: 静か［な］・便利［な］・有名［な］।","きれい［な］ ব্যতিক্রম—きれいい নয়。"],
+    visual:{tokens:[{text:"大きい",role:"い-adjective",accent:true},{text:"山",role:"Noun"},{text:"静かな",role:"な-adjective + な",accent:true},{text:"町",role:"Noun"}],romaji:"Ookii yama / shizuka na machi",bengali:"বড় পাহাড় / শান্ত শহর"},
+    examples:[{japanese:"富士山は 大きい 山です。",romaji:"Fujisan wa ookii yama desu.",bengali:"ফুজি একটি বড় পাহাড়।"},{japanese:"奈良は 静かな 町です。",romaji:"Nara wa shizuka na machi desu.",bengali:"নারা একটি শান্ত শহর।"},{japanese:"これは きれいな 花です。",romaji:"Kore wa kirei na hana desu.",bengali:"এটি সুন্দর ফুল।"}],
+  },
+  {
+    title:"Adjective দিয়ে পরিচয়/বর্ণনা",structure:"N は な-adj です。／ N は い-adj です。",
+    explanation:"Adjective predicate হিসেবে বাক্যের শেষে বসে noun-এর অবস্থা বা গুণ বলে। な-adjective predicate হলে な থাকে না: 町は 静かです। い-adjective নিজের い রেখেই です নেয়: 山は 高いです。",
+    notes:["Predicate な-adjective-এর পরে な নয়।","です tense/politeness দেখায়; adjective-এর অর্থ বদলায় না।","Topic は-এর পরে description বসে।"],
+    visual:{tokens:[{text:"奈良",role:"Topic"},{text:"は",role:"Topic marker"},{text:"静か",role:"Description",accent:true},{text:"です",role:"Polite ending"}],romaji:"Nara wa shizuka desu.",bengali:"নারা শান্ত।"},
+    examples:[{japanese:"ワット先生は 親切です。",romaji:"Watto-sensei wa shinsetsu desu.",bengali:"ওয়াত্তো-সেনসেই সদয়।"},{japanese:"富士山は 高いです。",romaji:"Fujisan wa takai desu.",bengali:"ফুজি পর্বত উঁচু।"},{japanese:"日本の 食べ物は おいしいです。",romaji:"Nihon no tabemono wa oishii desu.",bengali:"জাপানি খাবার সুস্বাদু।"}],
+  },
+  {
+    title:"Adjective negative",structure:"な-adj じゃありません ／ い-adj くないです",
+    explanation:"な-adjective negative করতে じゃありません／ではありません যোগ হয়। い-adjective-এর শেষ い বাদ দিয়ে くないです বসে। いい-এর negative অনিয়মিত: よくないです।",
+    notes:["静か → 静かじゃありません。","高い → 高くないです。","いい → よくないです; いくないです ভুল।"],
+    visual:{tokens:[{text:"この 町は",role:"Topic"},{text:"静か",role:"な-adj"},{text:"じゃありません",role:"Negative",accent:true}],romaji:"Kono machi wa shizuka ja arimasen.",bengali:"এই শহরটি শান্ত নয়।"},
+    examples:[{japanese:"桜大学は 有名じゃありません。",romaji:"Sakura daigaku wa yuumei ja arimasen.",bengali:"সাকুরা বিশ্ববিদ্যালয় বিখ্যাত নয়।"},{japanese:"この 本は おもしろくないです。",romaji:"Kono hon wa omoshirokunai desu.",bengali:"এই বইটি আকর্ষণীয় নয়।"},{japanese:"この レストランは よくないです。",romaji:"Kono resutoran wa yokunai desu.",bengali:"এই রেস্তোরাঁটি ভালো নয়।"}],
+  },
+  {
+    title:"Contrast—কিন্তু",structure:"Sentence A が、Sentence B。",
+    explanation:"একই subject সম্পর্কে বিপরীত বা contrast তথ্য জোড়া দিতে প্রথম clause-এর শেষে が বসে। বাংলায় ‘কিন্তু’। が-এর পরে নতুন sentence শুরু হলেও topic একই হলে পুনরাবৃত্তি না করাই স্বাভাবিক।",
+    notes:["が এখানে subject marker নয়; conjunction।","Positive + が + negative/contrast খুব সাধারণ।","Comma pause দিয়ে বলুন।"],
+    visual:{tokens:[{text:"日本の 食べ物は おいしいです",role:"Positive"},{text:"が",role:"কিন্তু",accent:true},{text:"高いです",role:"Contrast"}],romaji:"Nihon no tabemono wa oishii desu ga, takai desu.",bengali:"জাপানি খাবার সুস্বাদু, কিন্তু দামি।"},
+    examples:[{japanese:"日本の 生活は 忙しいですが、楽しいです。",romaji:"Nihon no seikatsu wa isogashii desu ga, tanoshii desu.",bengali:"জাপানের জীবন ব্যস্ত, কিন্তু আনন্দদায়ক।"},{japanese:"この 寮は 古いですが、きれいです。",romaji:"Kono ryou wa furui desu ga, kirei desu.",bengali:"এই dormitory পুরোনো, কিন্তু পরিষ্কার।"},{japanese:"富士山は 高いですが、すてきです。",romaji:"Fujisan wa takai desu ga, suteki desu.",bengali:"ফুজি উঁচু, কিন্তু দারুণ।"}],
+  },
+  {
+    title:"Degree—খুব / খুব একটা নয়",structure:"とても + adjective ／ あまり + negative",
+    explanation:"とても adjective-এর মাত্রা বাড়ায়—‘খুব’। あまり ‘খুব একটা’ অর্থে সবসময় negative predicate-এর সঙ্গে আসে। Positive adjective-এর আগে あまり বসাবেন না।",
+    notes:["とても 高いです = খুব উঁচু/দামি।","あまり 高くないです = খুব একটা দামি নয়।","あまり 静かじゃありません = খুব একটা শান্ত নয়।"],
+    visual:{tokens:[{text:"富士山は",role:"Topic"},{text:"とても",role:"Degree",accent:true},{text:"高いです",role:"Adjective"}],romaji:"Fujisan wa totemo takai desu.",bengali:"ফুজি পর্বত খুব উঁচু।"},
+    examples:[{japanese:"上海は とても にぎやかです。",romaji:"Shanhai wa totemo nigiyaka desu.",bengali:"সাংহাই খুব প্রাণবন্ত।"},{japanese:"ここは あまり 静かじゃありません。",romaji:"Koko wa amari shizuka ja arimasen.",bengali:"এখানে খুব একটা শান্ত নয়।"},{japanese:"この 本は あまり 難しくないです。",romaji:"Kono hon wa amari muzukashikunai desu.",bengali:"এই বইটি খুব একটা কঠিন নয়।"}],
+  },
+  {
+    title:"Impression জানতে—どう",structure:"N は どうですか。",
+    explanation:"কোনো জায়গা, বস্তু, কাজ, জীবন বা অভিজ্ঞতা কেমন—সামগ্রিক impression জানতে どうですか ব্যবহার হয়। উত্তরে adjective predicate বা একটি ছোট description দিন।",
+    notes:["どう = কেমন/কীভাবে।","Question-এর noun-ই উত্তরেও topic থাকে; পুনরাবৃত্তি না করলেও চলে।","Opinion-এর উত্তর একাধিক adjective দিয়ে হতে পারে।"],
+    visual:{tokens:[{text:"日本の 生活",role:"যে বিষয়ে মত"},{text:"は",role:"Topic"},{text:"どうですか",role:"কেমন?",accent:true}],romaji:"Nihon no seikatsu wa dou desu ka.",bengali:"জাপানের জীবন কেমন?"},
+    examples:[{japanese:"お仕事は どうですか。— 忙しいですが、楽しいです。",romaji:"Oshigoto wa dou desu ka. — Isogashii desu ga, tanoshii desu.",bengali:"কাজ কেমন? — ব্যস্ত, তবে আনন্দদায়ক।"},{japanese:"京都は どうですか。— とても きれいです。",romaji:"Kyouto wa dou desu ka. — Totemo kirei desu.",bengali:"কিয়োটো কেমন? — খুব সুন্দর।"},{japanese:"日本の 食べ物は どうですか。",romaji:"Nihon no tabemono wa dou desu ka.",bengali:"জাপানি খাবার কেমন?"}],
+  },
+  {
+    title:"কেমন ধরনের noun—どんな",structure:"N₁ は どんな N₂ ですか。",
+    explanation:"একটি ব্যক্তি, জায়গা বা বস্তু কেমন ধরনের category/গুণের—তা জানতে どんな সরাসরি noun-এর আগে বসে। どう আলাদা predicate question; どんな-এর পরে অবশ্যই noun প্রয়োজন।",
+    notes:["どんな + noun; শুধু どんなですか নয়।","উত্তর: adjective + noun です।","どれ = কয়েকটির মধ্যে কোনটি; どんな = কেমন ধরনের।"],
+    visual:{tokens:[{text:"奈良",role:"Topic"},{text:"は",role:"Topic marker"},{text:"どんな",role:"কেমন ধরনের",accent:true},{text:"町ですか",role:"Noun + question"}],romaji:"Nara wa donna machi desu ka.",bengali:"নারা কেমন শহর?"},
+    examples:[{japanese:"奈良は どんな 町ですか。— 古い 町です。",romaji:"Nara wa donna machi desu ka. — Furui machi desu.",bengali:"নারা কেমন শহর? — পুরোনো শহর।"},{japanese:"富士山は どんな 山ですか。— 高い 山です。",romaji:"Fujisan wa donna yama desu ka. — Takai yama desu.",bengali:"ফুজি কেমন পাহাড়? — উঁচু পাহাড়।"},{japanese:"ワット先生は どんな 先生ですか。— 親切な 先生です。",romaji:"Watto-sensei wa donna sensei desu ka. — Shinsetsu na sensei desu.",bengali:"ওয়াত্তো কেমন শিক্ষক? — সদয় শিক্ষক।"}],
+  },
+  {
+    title:"ভাবার সময়—そうですね",structure:"Question。— そうですね…。",
+    explanation:"উত্তর দেওয়ার আগে একটু ভাবার সময়, নরম agreement বা conversational pause হিসেবে そうですね বলা হয়। এখানে এটি সবসময় সরাসরি ‘ঠিক তাই’ নয়; tone ও pause অনুযায়ী ‘হুম, দেখি…’ অর্থও দেয়।",
+    notes:["そうですね… বলার পরে মূল উত্তর দিন।","Long vowel: そう; ছোট そ নয়।","শুধু agreement নয়, thinking signal হিসেবেও শিখুন।"],
+    visual:{tokens:[{text:"日本の 生活は どうですか",role:"Question"},{text:"そうですね…",role:"Thinking pause",accent:true},{text:"楽しいです",role:"Answer"}],romaji:"Sou desu ne... Tanoshii desu.",bengali:"হুম… আনন্দদায়ক।"},
+    examples:[{japanese:"奈良は どうですか。— そうですね。静かです。",romaji:"Nara wa dou desu ka. — Sou desu ne. Shizuka desu.",bengali:"নারা কেমন? — হুম, শান্ত।"},{japanese:"お仕事は どうですか。— そうですね。忙しいです。",romaji:"Oshigoto wa dou desu ka. — Sou desu ne. Isogashii desu.",bengali:"কাজ কেমন? — হুম, ব্যস্ত।"},{japanese:"どれが いいですか。— そうですね。これが いいです。",romaji:"Dore ga ii desu ka. — Sou desu ne. Kore ga ii desu.",bengali:"কোনটি ভালো? — হুম, এটি ভালো।"}],
+  },
+];
+
 export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 1) return unit1GrammarDetails;
   if (unitNumber === 2) return unit2GrammarDetails;
@@ -439,5 +543,7 @@ export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 4) return unit4GrammarDetails;
   if (unitNumber === 5) return unit5GrammarDetails;
   if (unitNumber === 6) return unit6GrammarDetails;
+  if (unitNumber === 7) return unit7GrammarDetails;
+  if (unitNumber === 8) return unit8GrammarDetails;
   return [];
 }
