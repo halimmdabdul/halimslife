@@ -15,6 +15,7 @@ export default async function AdminOverviewPage() {
     { count: postCount },
     { count: adminCount },
     { count: messageCount },
+    { count: scholarshipRequestCount },
   ] =
     await Promise.all([
       supabase.from("profiles").select("*", { count: "exact", head: true }),
@@ -26,7 +27,13 @@ export default async function AdminOverviewPage() {
       supabase
         .from("contact_messages")
         .select("*", { count: "exact", head: true })
-        .eq("status", "new"),
+        .eq("status", "new")
+        .neq("topic", "scholarship-support"),
+      supabase
+        .from("contact_messages")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "new")
+        .eq("topic", "scholarship-support"),
     ]);
 
   return (
@@ -58,6 +65,11 @@ export default async function AdminOverviewPage() {
           <span>New messages</span>
           <strong>{messageCount ?? 0}</strong>
           <p>Contact requests awaiting review</p>
+        </article>
+        <article>
+          <span>Scholarship requests</span>
+          <strong>{scholarshipRequestCount ?? 0}</strong>
+          <p>Support requests awaiting review</p>
         </article>
       </section>
       <section className="admin-panel">

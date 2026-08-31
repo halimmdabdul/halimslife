@@ -24,6 +24,7 @@ export default async function AdminMessagesPage() {
   const { data, error } = await supabase
     .from("contact_messages")
     .select("id,name,email,topic,subject,message,status,created_at")
+    .neq("topic", "scholarship-support")
     .order("created_at", { ascending: false });
 
   if (error) throw new Error("Unable to load contact messages.");

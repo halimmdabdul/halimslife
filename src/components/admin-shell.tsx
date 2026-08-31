@@ -22,6 +22,7 @@ export function AdminShell({
           <Link href="/admin">Overview</Link>
           <Link href="/admin/analytics">Analytics & SEO</Link>
           <Link href="/admin/messages">Contact messages</Link>
+          <Link href="/admin/scholarship-support">Scholarship Support</Link>
           <Link href="/admin/courses">Courses & lectures</Link>
           <Link href="/admin/blog">Blog posts</Link>
           <Link href="/admin/users">Users & roles</Link>

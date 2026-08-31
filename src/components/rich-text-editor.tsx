@@ -46,24 +46,54 @@ export function RichTextEditor({
     requestAnimationFrame(() => textarea.focus());
   }
 
+  function insertBlock(text: string) {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const before = value.slice(0, start);
+    const after = value.slice(end);
+    const leadingBreak = before.length === 0 || before.endsWith("\n\n") ? "" : before.endsWith("\n") ? "\n" : "\n\n";
+    const trailingBreak = after.length === 0 || after.startsWith("\n\n") ? "" : after.startsWith("\n") ? "\n" : "\n\n";
+    const block = `${leadingBreak}${text}${trailingBreak}`;
+    setValue(`${before}${block}${after}`);
+    requestAnimationFrame(() => {
+      textarea.focus();
+      const cursorPosition = start + leadingBreak.length + text.length;
+      textarea.setSelectionRange(cursorPosition, cursorPosition);
+    });
+  }
+
   const toolbar = [
-    { label: "H2", title: "Heading", action: "heading" },
+    { label: "Heading", title: "Heading", action: "heading" },
+    { label: "Subheading", title: "Subheading", action: "subheading" },
     { label: "B", title: "Bold", action: "bold" },
     { label: "I", title: "Italic", action: "italic" },
+    { label: "S", title: "Strikethrough", action: "strikethrough" },
+    { label: "Code", title: "Inline code", action: "code" },
+    { label: "{ }", title: "Code block", action: "codeblock" },
     { label: "• List", title: "Bullet list", action: "bullets" },
     { label: "1. List", title: "Numbered list", action: "numbers" },
     { label: "❝", title: "Quote", action: "quote" },
     { label: "Link", title: "Link", action: "link" },
+    { label: "Image", title: "Image", action: "image" },
+    { label: "―", title: "Horizontal rule", action: "hr" },
   ] as const;
 
   function applyTool(action: (typeof toolbar)[number]["action"]) {
-    if (action === "heading") prefixSelection("## ");
+    if (action === "heading") prefixSelection("# ");
+    if (action === "subheading") prefixSelection("## ");
     if (action === "bold") replaceSelection("**", "**");
     if (action === "italic") replaceSelection("_", "_");
+    if (action === "strikethrough") replaceSelection("~~", "~~");
+    if (action === "code") replaceSelection("`", "`");
+    if (action === "codeblock") insertBlock("```\ncode here\n```");
     if (action === "bullets") prefixSelection("- ");
     if (action === "numbers") prefixSelection("1. ");
     if (action === "quote") prefixSelection("> ");
     if (action === "link") replaceSelection("[", "](https://example.com)", "link text");
+    if (action === "image") insertBlock("![alt text](https://example.com/image.jpg)");
+    if (action === "hr") insertBlock("---");
   }
 
   return (

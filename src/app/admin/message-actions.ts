@@ -20,5 +20,6 @@ export async function updateContactMessageStatus(formData: FormData) {
 
   if (error) throw new Error("Unable to update the message status.");
   revalidatePath("/admin/messages");
+  revalidatePath("/admin/scholarship-support");
   revalidatePath("/admin");
 }
