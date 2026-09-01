@@ -77,6 +77,23 @@ const vocabularyBanks: Record<number, string[]> = {
     "おげんきですか（お元気ですか） — কেমন আছেন? · ogenki desu ka", "日本の生活に 慣れましたか — জাপানের জীবনে অভ্যস্ত হয়েছেন? · nihon no seikatsu ni naremashita ka", "もう 一杯 いかがですか — আরেক কাপ নেবেন? · mou ippai ikaga desu ka", "いいえ、けっこうです — না, যথেষ্ট/ধন্যবাদ · iie, kekkou desu", "もう ですか — এত তাড়াতাড়ি? · mou desu ka", "そろそろ 失礼します — এবার উঠি/বিদায় নিই · sorosoro shitsurei shimasu", "また いらっしゃってください — আবার আসবেন · mata irasshatte kudasai", "みどり（緑） — সবুজ · midori",
     "むらさき（紫） — বেগুনি · murasaki", "きいろ（黄色） — হলুদ · kiiro", "ちゃいろ（茶色） — বাদামি · chairo", "ピンク — গোলাপি · pinku", "オレンジ — কমলা রং · orenji", "グレー — ধূসর · guree", "ベージュ — বেইজ · beeju", "あまい（甘い） — মিষ্টি · amai",
   ],
+  9: [
+    "わかります（分かります） — বুঝি · wakarimasu", "あります — আছে/আমার আছে · arimasu", "すき［な］（好き） — পছন্দ · suki", "きらい［な］（嫌い） — অপছন্দ · kirai", "じょうず［な］（上手） — দক্ষ/ভালো · jouzu", "へた［な］（下手） — অদক্ষ/কাঁচা · heta", "のみもの（飲み物） — পানীয় · nomimono", "りょうり（料理） — রান্না/খাবারের পদ · ryouri",
+    "スポーツ — খেলাধুলা · supootsu", "やきゅう（野球） — baseball · yakyuu", "ダンス — নাচ · dansu", "りょこう（旅行） — ভ্রমণ · ryokou", "おんがく（音楽） — সঙ্গীত · ongaku", "うた（歌） — গান · uta", "クラシック — classical music · kurashikku", "ジャズ — jazz music · jazu",
+    "コンサート — concert · konsaato", "カラオケ — karaoke · karaoke", "かぶき（歌舞伎） — kabuki theatre · kabuki", "え（絵） — ছবি/আঁকা · e", "じ（字） — অক্ষর · ji", "かんじ（漢字） — kanji · kanji", "ひらがな — hiragana · hiragana", "かたかな — katakana · katakana",
+    "ローマじ（ローマ字） — Roman alphabet · roomaji", "こまかい おかね（細かい お金） — খুচরা টাকা · komakai okane", "チケット — ticket · chiketto", "じかん（時間） — সময় · jikan", "ようじ（用事） — কাজ/জরুরি বিষয় · youji", "やくそく（約束） — appointment/প্রতিশ্রুতি · yakusoku", "アルバイト — part-time job · arubaito", "ごしゅじん（ご主人） — অন্যের স্বামী · goshujin",
+    "おっと（夫） — নিজের স্বামী · otto", "おくさん（奥さん） — অন্যের স্ত্রী · okusan", "つま（妻） — নিজের স্ত্রী · tsuma", "こども（子ども） — শিশু/সন্তান · kodomo", "よく — ভালোভাবে/অনেক · yoku", "だいたい — মোটামুটি/প্রায় সব · daitai", "たくさん — অনেক · takusan", "すこし（少し） — অল্প/একটু · sukoshi",
+    "ぜんぜん（全然）～ません — একদমই নয় · zenzen", "はやく（早く／速く） — তাড়াতাড়ি/দ্রুত · hayaku", "～から — কারণ/যেহেতু · kara", "どうして — কেন · doushite", "ざんねんですね（残念ですね） — দুঃখজনক, তাই না · zannen desu ne", "すみません — দুঃখিত/মাফ করবেন · sumimasen", "もしもし — হ্যালো; ফোনে · moshi moshi", "いっしょに いかがですか — একসঙ্গে কেমন হবে? · issho ni ikaga desu ka",
+    "～は ちょっと… — ～টা একটু…; নম্রভাবে না · wa chotto", "だめですか — হবে না? · dame desu ka", "また 今度 お願いします — অন্য কোনো সময়, অনুগ্রহ করে · mata kondo onegaishimasu", "どんな～ — কেমন ধরনের～ · donna",
+  ],
+  10: [
+    "あります — আছে; জড় বস্তু · arimasu", "います — আছে; মানুষ/প্রাণী · imasu", "いろいろ［な］ — নানা রকম · iroiro", "おとこのひと（男の人） — পুরুষ/ভদ্রলোক · otoko no hito", "おんなのひと（女の人） — নারী/ভদ্রমহিলা · onna no hito", "おとこのこ（男の子） — ছেলে শিশু · otoko no ko", "おんなのこ（女の子） — মেয়ে শিশু · onna no ko", "いぬ（犬） — কুকুর · inu", "ねこ（猫） — বিড়াল · neko", "パンダ — panda · panda",
+    "ぞう（象） — হাতি · zou", "き（木） — গাছ/কাঠ · ki", "もの（物） — জিনিস · mono", "でんち（電池） — battery · denchi", "はこ（箱） — বাক্স · hako", "スイッチ — switch · suicchi", "れいぞうこ（冷蔵庫） — refrigerator · reizouko", "テーブル — টেবিল · teeburu", "ベッド — বিছানা · beddo", "たな（棚） — তাক/shelf · tana",
+    "ドア — দরজা · doa", "まど（窓） — জানালা · mado", "ポスト — mailbox/postbox · posuto", "ビル — ভবন · biru", "ATM — ATM/cash machine · eeteiiemu", "コンビニ — convenience store · konbini", "こうえん（公園） — পার্ক · kouen", "きっさてん（喫茶店） — coffee shop · kissaten", "～や（～屋） — ～এর দোকান · ya", "のりば（乗り場） — ওঠার স্থান/platform · noriba",
+    "けん（県） — prefecture · ken", "うえ（上） — ওপরে · ue", "した（下） — নিচে · shita", "まえ（前） — সামনে · mae", "うしろ（後ろ） — পেছনে · ushiro", "みぎ（右） — ডানে · migi", "ひだり（左） — বামে · hidari", "なか（中） — ভিতরে · naka", "そと（外） — বাইরে · soto", "となり（隣） — ঠিক পাশে · tonari",
+    "ちかく（近く） — কাছাকাছি · chikaku", "あいだ（間） — মাঝখানে · aida", "～や～［など］ — ～, ～ ইত্যাদি · ya nado", "どうも すみません — অনেক দুঃখিত/মাফ করবেন · doumo sumimasen", "コーナー — section/corner · koonaa", "いちばん した（一番下） — একেবারে নিচে · ichiban shita", "とうきょうディズニーランド（東京ディズニーランド） — Tokyo Disneyland · Toukyou Dizuniirando", "アジアストア — Asia Store · Ajia Sutoa", "げんかん（玄関） — entrance hall · genkan", "トイレ — toilet · toire",
+    "ふろ（風呂） — bath/bathroom · furo", "せんめんじょ（洗面所） — washroom · senmenjo", "だいどころ（台所） — kitchen · daidokoro", "しょくどう（食堂） — dining room · shokudou", "いま（居間） — living room · ima", "しんしつ（寝室） — bedroom · shinshitsu", "ろうか（廊下） — hallway · rouka", "ベランダ — balcony · beranda",
+  ],
 };
 
 function wordKey(item: string) {
@@ -92,6 +109,8 @@ export function getMinnaN5UnitVocabulary(unit: CompanionUnit) {
   if (unit.number === 6) return vocabularyBanks[6];
   if (unit.number === 7) return vocabularyBanks[7];
   if (unit.number === 8) return vocabularyBanks[8];
+  if (unit.number === 9) return vocabularyBanks[9];
+  if (unit.number === 10) return vocabularyBanks[10];
   const bank = vocabularyBanks[Math.ceil(unit.number / 5)] ?? [];
   const unique = new Map<string, string>();
   [...unit.vocabulary, ...bank].forEach((item) => {

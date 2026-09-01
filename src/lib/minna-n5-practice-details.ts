@@ -942,6 +942,245 @@ const unitEightPractice: UnitPracticeDetails = {
   ],
 };
 
+const unitNinePractice: UnitPracticeDetails = {
+  heroImage: "/images/projects/n5-practice/unit-09-likes-invitation.png",
+  heroAlt: "ক্লাসিক্যাল কনসার্টে আমন্ত্রণ, ফোনে কথা এবং ক্যালেন্ডার দেখে ভদ্রভাবে উত্তর দেওয়ার রঙিন illustration",
+  dialogueImage: "/images/projects/n5-practice/unit-09-likes-invitation.png",
+  heroEyebrow: "UNIT 09 · 好き・上手・分かります・から",
+  heroTitle: "পছন্দ, দক্ষতা, বোঝাপড়া ও কারণ বলা",
+  heroDescription: "「が」দিয়ে পছন্দ ও দক্ষতা বলুন, degree adverb দিয়ে পরিমাণ বোঝান, তারপর 「から」দিয়ে নিজের উত্তরের কারণ দিন।",
+  dialogueTitle: "残念ですが · কনসার্টের আমন্ত্রণ",
+  dialogueAlt: "মিলার কিমুরাকে কনসার্টে আমন্ত্রণ করছেন এবং কিমুরা ক্যালেন্ডার দেখে উত্তর দিচ্ছেন",
+  dialogueCaption: [
+    { name: "ミラー", text: "クラシックの コンサート、いっしょに いかがですか。" },
+    { name: "木村", text: "残念ですが、友達と 約束が ありますから…。" },
+  ],
+  modelLabel: "文型モデル",
+  modelTitle: "N が 好きです／上手です／分かります + reason から result",
+  challengeTitle: "নিজের পছন্দ ও ব্যস্ততার কারণ বলুন",
+  challengeDescription: "好きなもの, 分かる言語 এবং একটি invitation-এ যেতে পারা বা না-পারার কারণ মিলিয়ে তিনটি sentence বলুন।",
+  usefulWords: [
+    { japanese: "どんな", romaji: "donna", bengali: "কেমন ধরনের" },
+    { japanese: "よく", romaji: "yoku", bengali: "ভালোভাবে / প্রায়ই" },
+    { japanese: "少し", romaji: "sukoshi", bengali: "অল্প" },
+    { japanese: "あまり", romaji: "amari", bengali: "খুব একটা—negative-এর সঙ্গে" },
+    { japanese: "全然", romaji: "zenzen", bengali: "একদমই—negative-এর সঙ্গে" },
+    { japanese: "どうして", romaji: "doushite", bengali: "কেন" },
+  ],
+  answerPatterns: [
+    { japanese: "はい、好きです。", romaji: "Hai, suki desu.", bengali: "হ্যাঁ, পছন্দ করি।", positive: true },
+    { japanese: "いいえ、好きじゃありません。", romaji: "Iie, suki ja arimasen.", bengali: "না, পছন্দ করি না।", positive: false },
+    { japanese: "はい、よく 分かります。", romaji: "Hai, yoku wakarimasu.", bengali: "হ্যাঁ, ভালোভাবে বুঝি।", positive: true },
+    { japanese: "いいえ、全然 分かりません。", romaji: "Iie, zenzen wakarimasen.", bengali: "না, একদমই বুঝি না।", positive: false },
+  ],
+  memoryPoints: [
+    { symbol: "が", meaning: "好き・上手・分かります・あります-এর target চিহ্নিত করে" },
+    { symbol: "どんな", meaning: "কেমন ধরনের—এর পরে noun বসে" },
+    { symbol: "よく／少し", meaning: "positive predicate-এর degree দেখায়" },
+    { symbol: "あまり／全然", meaning: "সাধারণত negative predicate-এর সঙ্গে ব্যবহৃত হয়" },
+    { symbol: "から", meaning: "আগের clause-টিকে কারণ বানায়" },
+    { symbol: "どうして", meaning: "কারণ জানতে ‘কেন?’ প্রশ্ন করে" },
+  ],
+  selfIntroduction: {
+    japanese: "わたしは 音楽が 好きです。日本語が 少し 分かります。毎日 練習しますから、勉強が 楽しいです。",
+    romaji: "Watashi wa ongaku ga suki desu. Nihongo ga sukoshi wakarimasu. Mainichi renshuu shimasu kara, benkyou ga tanoshii desu.",
+    bengali: "আমি সংগীত পছন্দ করি। জাপানি অল্প বুঝি। প্রতিদিন অনুশীলন করি বলে পড়াশোনা আনন্দের।",
+  },
+  grammarQuiz: [
+    { question: "‘আমি ইতালিয়ান খাবার পছন্দ করি’—সঠিক particle কোনটি?", options: ["イタリア料理が 好きです。", "イタリア料理を 好きです。", "イタリア料理に 好きです。", "イタリア料理で 好きです。"], correctAnswer: "イタリア料理が 好きです。", explanation: "好きです-এর পছন্দের বস্তু が দিয়ে চিহ্নিত হয়।" },
+    { question: "‘পছন্দ করি না’—সঠিক polite form কোনটি?", options: ["好きじゃありません。", "好きくないです。", "好きをありません。", "好きません。"], correctAnswer: "好きじゃありません。", explanation: "好き একটি な-adjective; এর negative হলো 好きじゃありません।" },
+    { question: "‘জাপানি অল্প বুঝি’—সঠিক sentence?", options: ["日本語が 少し 分かります。", "日本語を 少し 分かります。", "日本語が 全然 分かります。", "日本語は 少し 好きます。"], correctAnswer: "日本語が 少し 分かります。", explanation: "分かります-এর target が এবং positive অল্প পরিমাণে 少し ব্যবহৃত হয়।" },
+    { question: "‘একদম বুঝি না’—কোন adverb সবচেয়ে natural?", options: ["全然", "とても", "たくさん", "上手"], correctAnswer: "全然", explanation: "全然 সাধারণত negative form-এর সঙ্গে: 全然 分かりません।" },
+    { question: "‘কেমন ধরনের sport পছন্দ?’—সঠিক question?", options: ["どんな スポーツが 好きですか。", "どう スポーツが 好きですか。", "何を スポーツが 好きですか。", "どこの スポーツを 好きですか。"], correctAnswer: "どんな スポーツが 好きですか。", explanation: "কোনো category-এর ধরন জানতে どんな + noun ব্যবহৃত হয়।" },
+    { question: "‘আমার টাকা আছে’—সঠিক pattern?", options: ["お金が あります。", "お金を あります。", "お金が います。", "お金に 好きです。"], correctAnswer: "お金が あります。", explanation: "জড় বস্তু থাকা বোঝাতে N が あります।" },
+    { question: "‘সময় নেই বলে পড়ি না’—সঠিক order কোনটি?", options: ["時間が ありませんから、読みません。", "読みませんから、時間が ありません。", "時間を ありませんが、読みません。", "時間が ありませんまで、読みません。"], correctAnswer: "時間が ありませんから、読みません。", explanation: "কারণ + から, তারপর ফলাফল বলা হয়।" },
+    { question: "どうして-এর উত্তরে কোনটি সবচেয়ে সম্পূর্ণ?", options: ["用事が ありましたから。", "用事を ありました。", "はい、どうしてです。", "何も あります。"], correctAnswer: "用事が ありましたから。", explanation: "どうして-এর উত্তরে কারণের শেষে から রাখা যায়।" },
+  ],
+  dialogue: [
+    { speaker: "ミラー", japanese: "はい、木村さんですか。ミラーです。", romaji: "Hai, Kimura-san desu ka. Miraa desu.", bengali: "হ্যালো, কিমুরা-সান? আমি মিলার।" },
+    { speaker: "木村", japanese: "ああ、ミラーさん、こんばんは。お元気ですか。", romaji: "Aa, Miraa-san, konbanwa. Ogenki desu ka.", bengali: "আহ, মিলার-সান। শুভ সন্ধ্যা। ভালো আছেন?" },
+    { speaker: "ミラー", japanese: "ええ、元気です。クラシックの コンサート、いっしょに いかがですか。", romaji: "Ee, genki desu. Kurashikku no konsaato, issho ni ikaga desu ka.", bengali: "হ্যাঁ, ভালো আছি। একসঙ্গে classical concert-এ কেমন হয়?" },
+    { speaker: "木村", japanese: "いいですね。いつですか。", romaji: "Ii desu ne. Itsu desu ka.", bengali: "ভালো তো। কবে?" },
+    { speaker: "ミラー", japanese: "来週の 金曜日の 晩です。", romaji: "Raishuu no kinyoubi no ban desu.", bengali: "আগামী শুক্রবার সন্ধ্যায়।" },
+    { speaker: "木村", japanese: "金曜日ですか。金曜日の 晩は ちょっと…。", romaji: "Kinyoubi desu ka. Kinyoubi no ban wa chotto...", bengali: "শুক্রবার? শুক্রবার সন্ধ্যাটা একটু…।" },
+    { speaker: "ミラー", japanese: "だめですか。", romaji: "Dame desu ka.", bengali: "সম্ভব হবে না?" },
+    { speaker: "木村", japanese: "ええ、残念ですが、友達と 約束が ありますから…。", romaji: "Ee, zannen desu ga, tomodachi to yakusoku ga arimasu kara...", bengali: "হ্যাঁ, দুঃখিত; বন্ধুর সঙ্গে কথা দেওয়া আছে বলে…।" },
+    { speaker: "ミラー", japanese: "そうですか。残念ですね。", romaji: "Sou desu ka. Zannen desu ne.", bengali: "তাই নাকি। দুঃখের ব্যাপার।" },
+    { speaker: "木村", japanese: "ええ。また 今度 お願いします。", romaji: "Ee. Mata kondo onegaishimasu.", bengali: "হ্যাঁ। পরেরবার অবশ্যই বলবেন।" },
+  ],
+  profiles: [],
+  modules: [
+    { step: "01", title: "文型 · Core pattern warm-up", instruction: "Textbook-এর তিনটি model থেকে পছন্দ, বোঝা এবং কারণসহ ফলাফল তৈরি করুন।", questions: [
+      { prompt: "わたし／イタリア料理／好き", answer: "わたしは イタリア料理が 好きです。", romaji: "Watashi wa Itaria ryouri ga suki desu.", bengali: "আমি ইতালিয়ান খাবার পছন্দ করি।" },
+      { prompt: "わたし／日本語／少し／分かります", answer: "わたしは 日本語が 少し 分かります。", romaji: "Watashi wa Nihongo ga sukoshi wakarimasu.", bengali: "আমি জাপানি অল্প বুঝি।" },
+      { prompt: "きょう／子どもの 誕生日／早く 帰ります", answer: "きょうは 子どもの 誕生日ですから、早く 帰ります。", romaji: "Kyou wa kodomo no tanjoubi desu kara, hayaku kaerimasu.", bengali: "আজ সন্তানের জন্মদিন বলে তাড়াতাড়ি ফিরব।" },
+      { prompt: "カリナさん／絵／とても／上手", answer: "カリナさんは 絵が とても 上手です。", romaji: "Karina-san wa e ga totemo jouzu desu.", bengali: "কারিনা ছবি আঁকায় খুব দক্ষ।" },
+    ] },
+    { step: "02", title: "練習A · が target builder", instruction: "好き・上手・分かります・あります-এর আগে が রেখে sentence সম্পূর্ণ করুন।", questions: [
+      { prompt: "あなた／どんな スポーツ／好き", answer: "どんな スポーツが 好きですか。— サッカーが 好きです。", romaji: "Donna supootsu ga suki desu ka. — Sakkaa ga suki desu.", bengali: "কেমন sport পছন্দ? — Football পছন্দ।" },
+      { prompt: "サントスさん／料理／上手", answer: "サントスさんは 料理が 上手です。", romaji: "Santosu-san wa ryouri ga jouzu desu.", bengali: "সান্তোস রান্নায় দক্ষ।" },
+      { prompt: "わたし／ひらがな／分かります", answer: "わたしは ひらがなが 分かります。", romaji: "Watashi wa hiragana ga wakarimasu.", bengali: "আমি hiragana বুঝি।" },
+      { prompt: "わたし／約束／あります", answer: "わたしは 約束が あります。", romaji: "Watashi wa yakusoku ga arimasu.", bengali: "আমার একটি appointment/কথা দেওয়া আছে।" },
+    ] },
+    { step: "03", title: "程度副詞 · Degree ladder", instruction: "よく・少し positive-এর সঙ্গে এবং あまり・全然 negative-এর সঙ্গে বসান।", questions: [
+      { prompt: "英語／well understand", answer: "英語が よく 分かります。", romaji: "Eigo ga yoku wakarimasu.", bengali: "ইংরেজি ভালোভাবে বুঝি।" },
+      { prompt: "日本語／a little understand", answer: "日本語が 少し 分かります。", romaji: "Nihongo ga sukoshi wakarimasu.", bengali: "জাপানি অল্প বুঝি।" },
+      { prompt: "ドイツ語／not very understand", answer: "ドイツ語が あまり 分かりません。", romaji: "Doitsugo ga amari wakarimasen.", bengali: "জার্মান খুব একটা বুঝি না।" },
+      { prompt: "インドネシア語／not at all understand", answer: "インドネシア語が 全然 分かりません。", romaji: "Indoneshiago ga zenzen wakarimasen.", bengali: "ইন্দোনেশীয় একদম বুঝি না।" },
+    ] },
+    { step: "04", title: "練習B · どんな & skill interview", instruction: "Category ও person cue দেখে natural question-answer বলুন।", questions: [
+      { prompt: "スポーツ／テニス", answer: "どんな スポーツが 好きですか。— テニスが 好きです。", romaji: "Donna supootsu ga suki desu ka. — Tenisu ga suki desu.", bengali: "কেমন sport পছন্দ? — Tennis পছন্দ।" },
+      { prompt: "音楽／クラシック", answer: "どんな 音楽が 好きですか。— クラシックが 好きです。", romaji: "Donna ongaku ga suki desu ka. — Kurashikku ga suki desu.", bengali: "কেমন সংগীত পছন্দ? — Classical music।" },
+      { prompt: "佐藤さん／歌／上手", answer: "佐藤さんは 歌が 上手ですか。— はい、とても 上手です。", romaji: "Satou-san wa uta ga jouzu desu ka. — Hai, totemo jouzu desu.", bengali: "সাতো গান গাওয়ায় দক্ষ? — হ্যাঁ, খুব দক্ষ।" },
+      { prompt: "松本さん／テニス／not skilled", answer: "松本さんは テニスが 上手ですか。— いいえ、あまり 上手じゃありません。", romaji: "Matsumoto-san wa tenisu ga jouzu desu ka. — Iie, amari jouzu ja arimasen.", bengali: "মাতসুমোতো tennis-এ দক্ষ? — না, খুব একটা নন।" },
+    ] },
+    { step: "05", title: "どうして・から · Reason chain", instruction: "প্রথমে どうして দিয়ে কারণ জিজ্ঞেস করুন, তারপর reason + から দিয়ে উত্তর দিন।", questions: [
+      { prompt: "毎朝 新聞を 読みません／時間が ありません", answer: "どうして 毎朝 新聞を 読みませんか。— 時間が ありませんから。", romaji: "Doushite maiasa shinbun o yomimasen ka. — Jikan ga arimasen kara.", bengali: "প্রতি সকালে সংবাদপত্র পড়েন না কেন? — সময় নেই বলে।" },
+      { prompt: "きのう 早く 帰りました／用事が ありました", answer: "どうして きのう 早く 帰りましたか。— 用事が ありましたから。", romaji: "Doushite kinou hayaku kaerimashita ka. — Youji ga arimashita kara.", bengali: "কাল তাড়াতাড়ি ফিরেছিলেন কেন? — কাজ ছিল বলে।" },
+      { prompt: "タクシーで 行きます／時間が ありません", answer: "時間が ありませんから、タクシーで 行きます。", romaji: "Jikan ga arimasen kara, takushii de ikimasu.", bengali: "সময় নেই বলে taxi-তে যাব।" },
+      { prompt: "テレビを 見ません／テレビが 壊れました", answer: "テレビが 壊れましたから、見ません。", romaji: "Terebi ga kowaremashita kara, mimasen.", bengali: "TV নষ্ট হয়েছে বলে দেখি না।" },
+    ] },
+    { step: "06", title: "練習C · Possession & invitation", instruction: "কিছু থাকা জিজ্ঞেস করা, ধার চাওয়া ও একসঙ্গে যাওয়ার dialogue সম্পূর্ণ করুন।", questions: [
+      { prompt: "消しゴム／ありますか／borrow", answer: "消しゴムが ありますか。— ええ、あります。— ちょっと 貸して ください。", romaji: "Keshigomu ga arimasu ka. — Ee, arimasu. — Chotto kashite kudasai.", bengali: "Eraser আছে? — হ্যাঁ। — একটু ধার দিন।" },
+      { prompt: "コンサートの チケット／いっしょに", answer: "コンサートの チケットを もらいました。いっしょに 行きませんか。", romaji: "Konsaato no chiketto o moraimashita. Issho ni ikimasen ka.", bengali: "Concert-এর ticket পেয়েছি। একসঙ্গে যাবেন?" },
+      { prompt: "A: いつですか。／来週の 土曜日", answer: "来週の 土曜日です。", romaji: "Raishuu no doyoubi desu.", bengali: "আগামী শনিবার।" },
+      { prompt: "decline／仕事が あります", answer: "土曜日ですか。残念ですが、仕事が ありますから。", romaji: "Doyoubi desu ka. Zannen desu ga, shigoto ga arimasu kara.", bengali: "শনিবার? দুঃখিত, কাজ আছে বলে।" },
+    ] },
+    { step: "07", title: "会話 · 残念ですが", instruction: "Phone invitation-টি cue অনুযায়ী ভদ্র ও natural Japanese-এ সম্পূর্ণ করুন।", questions: [
+      { prompt: "Invite: classical concert together", answer: "クラシックの コンサート、いっしょに いかがですか。", romaji: "Kurashikku no konsaato, issho ni ikaga desu ka.", bengali: "একসঙ্গে classical concert-এ কেমন হয়?" },
+      { prompt: "Ask the date", answer: "いいですね。いつですか。", romaji: "Ii desu ne. Itsu desu ka.", bengali: "ভালো তো। কবে?" },
+      { prompt: "Friday evening is inconvenient—soft reply", answer: "金曜日の 晩は ちょっと…。", romaji: "Kinyoubi no ban wa chotto...", bengali: "শুক্রবার সন্ধ্যাটা একটু…।" },
+      { prompt: "Reason: promise with a friend", answer: "残念ですが、友達と 約束が ありますから…。", romaji: "Zannen desu ga, tomodachi to yakusoku ga arimasu kara...", bengali: "দুঃখিত, বন্ধুর সঙ্গে কথা দেওয়া আছে বলে…।" },
+    ] },
+    { step: "08", title: "問題 · Reading & self-test", instruction: "Yamada-san-এর passage-এর তথ্য পড়ে সত্যতা যাচাই ও প্রশ্নের উত্তর দিন।", questions: [
+      { prompt: "山田さんは 何が 好きですか。", answer: "ダンスが 好きです。", romaji: "Dansu ga suki desu.", bengali: "তিনি dance পছন্দ করেন।" },
+      { prompt: "どうして 毎日 楽しいですか。", answer: "きれいな 先生に ダンスを 習いますから。", romaji: "Kirei na sensei ni dansu o naraimasu kara.", bengali: "সুন্দর শিক্ষকের কাছে dance শেখেন বলে।" },
+      { prompt: "先生は 山田さんに 何を あげましたか。", answer: "コンサートの チケットを あげました。", romaji: "Konsaato no chiketto o agemashita.", bengali: "Concert-এর ticket দিয়েছিলেন।" },
+      { prompt: "山田さんは 先生と コンサートへ 行きましたか。", answer: "いいえ、行きませんでした。先生は 友達と 行きました。", romaji: "Iie, ikimasen deshita. Sensei wa tomodachi to ikimashita.", bengali: "না। শিক্ষক বন্ধুর সঙ্গে গিয়েছিলেন।" },
+    ] },
+  ],
+};
+
+const unitTenPractice: UnitPracticeDetails = {
+  heroImage: "/images/projects/n5-practice/unit-10-location.png",
+  heroAlt: "জাপানি supermarket-এর ভিতর ও বাইরে মানুষ, প্রাণী এবং বিভিন্ন বস্তু দিয়ে অবস্থান বোঝানোর রঙিন illustration",
+  dialogueImage: "/images/projects/n5-practice/unit-10-location.png",
+  heroEyebrow: "UNIT 10 · あります／います · LOCATION PRACTICE",
+  heroTitle: "কোথায় কী আছে এবং কে আছে?",
+  heroDescription: "あります・います, place に N が, N は place に এবং 上・下・前・後ろ・隣・間 ব্যবহার করে ছবির মানুষ, প্রাণী ও বস্তুর অবস্থান বলুন।",
+  dialogueTitle: "ナンプラー、ありますか · Supermarket conversation",
+  dialogueAlt: "একজন শিক্ষার্থী supermarket-এর কর্মীর কাছে Asia Store এবং fish sauce-এর অবস্থান জিজ্ঞেস করছেন",
+  dialogueCaption: [
+    { name: "ミラー", text: "すみません。アジアストアは どこですか。" },
+    { name: "店員", text: "あちらに タイ料理の コーナーが あります。ナンプラーは いちばん 下です。" },
+  ],
+  modelLabel: "文型モデル",
+  modelTitle: "Place に N が あります／います · N は Place に あります／います",
+  challengeTitle: "একটি room map বর্ণনা করুন",
+  challengeDescription: "আপনার ঘরের পাঁচটি বস্তু ও দুইজন মানুষ/প্রাণীর অবস্থান বলুন। অন্তত তিনটি position word এবং একবার や～など ব্যবহার করুন।",
+  usefulWords: [
+    { japanese: "上", romaji: "ue", bengali: "উপরে" },
+    { japanese: "下", romaji: "shita", bengali: "নিচে" },
+    { japanese: "前", romaji: "mae", bengali: "সামনে" },
+    { japanese: "後ろ", romaji: "ushiro", bengali: "পেছনে" },
+    { japanese: "隣", romaji: "tonari", bengali: "পাশে" },
+    { japanese: "近く", romaji: "chikaku", bengali: "কাছে" },
+    { japanese: "間", romaji: "aida", bengali: "মাঝে" },
+    { japanese: "いちばん下", romaji: "ichiban shita", bengali: "একদম নিচে" },
+  ],
+  answerPatterns: [
+    { japanese: "はい、あります。", romaji: "Hai, arimasu.", bengali: "হ্যাঁ, আছে—জড় বস্তু।", positive: true },
+    { japanese: "いいえ、ありません。", romaji: "Iie, arimasen.", bengali: "না, নেই—জড় বস্তু।", positive: false },
+    { japanese: "はい、います。", romaji: "Hai, imasu.", bengali: "হ্যাঁ, আছে—মানুষ বা প্রাণী।", positive: true },
+    { japanese: "いいえ、いません。", romaji: "Iie, imasen.", bengali: "না, নেই—মানুষ বা প্রাণী।", positive: false },
+  ],
+  memoryPoints: [
+    { symbol: "あります", meaning: "জড় বস্তু, গাছপালা বা কোনো event-এর অস্তিত্ব" },
+    { symbol: "います", meaning: "মানুষ ও প্রাণীর অস্তিত্ব" },
+    { symbol: "に", meaning: "যে স্থানে ব্যক্তি বা বস্তু আছে" },
+    { symbol: "が", meaning: "নতুন করে বলা ব্যক্তি বা বস্তু" },
+    { symbol: "は", meaning: "পরিচিত ব্যক্তি/বস্তুকে topic করে তার location বলা" },
+    { symbol: "の", meaning: "N の 上／下／前-এর মতো relative position যুক্ত করে" },
+    { symbol: "や～など", meaning: "অসম্পূর্ণ উদাহরণ-list: A, B ইত্যাদি" },
+  ],
+  selfIntroduction: {
+    japanese: "わたしの うちは 静かな 所に あります。うちの 近くに 公園や スーパーなどが あります。部屋に 猫が います。",
+    romaji: "Watashi no uchi wa shizuka na tokoro ni arimasu. Uchi no chikaku ni kouen ya suupaa nado ga arimasu. Heya ni neko ga imasu.",
+    bengali: "আমার বাড়ি শান্ত জায়গায়। বাড়ির কাছে পার্ক, supermarket ইত্যাদি আছে। ঘরে একটি বিড়াল আছে।",
+  },
+  grammarQuiz: [
+    { question: "‘সেখানে একটি convenience store আছে’—সঠিক sentence?", options: ["あそこに コンビニが あります。", "あそこに コンビニが います。", "あそこを コンビニが あります。", "コンビニに あそこが います。"], correctAnswer: "あそこに コンビニが あります。", explanation: "জড় বস্তু বা স্থান বলায় あります এবং location-এর পরে に বসে।" },
+    { question: "‘Lobby-তে Satou-san আছেন’—কোনটি ঠিক?", options: ["ロビーに 佐藤さんが います。", "ロビーに 佐藤さんが あります。", "佐藤さんを ロビーに います。", "ロビーが 佐藤さんに います。"], correctAnswer: "ロビーに 佐藤さんが います。", explanation: "মানুষের অস্তিত্বে います ব্যবহার হয়।" },
+    { question: "Tokyo Disneyland কোথায়—location answer কোন pattern?", options: ["東京ディズニーランドは 千葉県に あります。", "東京ディズニーランドに 千葉県が います。", "千葉県を 東京ディズニーランドがあります。", "東京ディズニーランドは 千葉県で います。"], correctAnswer: "東京ディズニーランドは 千葉県に あります。", explanation: "পরিচিত বস্তু topic হলে N は Place に あります।" },
+    { question: "‘Desk-এর উপরে বই’—সঠিক phrase?", options: ["机の 上に 本が あります。", "机が 上の 本に あります。", "本の 机に 上が います。", "机を 上で 本が あります。"], correctAnswer: "机の 上に 本が あります。", explanation: "Relative position হলো reference noun + の + position।" },
+    { question: "‘Box-এর মধ্যে পুরোনো চিঠি, ছবি ইত্যাদি আছে’—সঠিক list marker?", options: ["古い 手紙や 写真などが あります。", "古い 手紙と 写真だけが います。", "古い 手紙を 写真に あります。", "古い 手紙も 写真で います。"], correctAnswer: "古い 手紙や 写真などが あります。", explanation: "や এবং など দিয়ে অসম্পূর্ণ উদাহরণ-list তৈরি হয়।" },
+    { question: "庭ে কে আছে?—সঠিক question word কোনটি?", options: ["庭に だれが いますか。", "庭に 何が いますか。", "庭を どこが ありますか。", "庭は いつに いますか。"], correctAnswer: "庭に だれが いますか。", explanation: "মানুষ জানতে だれが; বস্তু জানতে 何が ব্যবহার করুন।" },
+    { question: "A ও B-এর মাঝে—সঠিক position phrase?", options: ["Aと Bの 間", "Aの Bと 間", "Aが Bに 間", "Aや Bを 間"], correctAnswer: "Aと Bの 間", explanation: "দুই reference-এর মাঝখান বোঝাতে A と B の 間।" },
+    { question: "‘কেউ নেই’—natural answer কোনটি?", options: ["だれも いません。", "だれも あります。", "何も います。", "だれが いませんか。"], correctAnswer: "だれも いません。", explanation: "だれも + negative দিয়ে ‘কেউ নেই’ বলা হয়।" },
+  ],
+  dialogue: [
+    { speaker: "ミラー", japanese: "すみません。アジアストアは どこですか。", romaji: "Sumimasen. Ajia Sutoa wa doko desu ka.", bengali: "মাফ করবেন। Asia Store কোথায়?" },
+    { speaker: "女の人", japanese: "あそこに 白い ビルが ありますね。あの ビルの 中です。", romaji: "Asoko ni shiroi biru ga arimasu ne. Ano biru no naka desu.", bengali: "ওখানে সাদা ভবনটি দেখছেন? ওই ভবনের ভিতরে।" },
+    { speaker: "ミラー", japanese: "そうですか。どうも すみません。", romaji: "Sou desu ka. Doumo sumimasen.", bengali: "বুঝলাম। অনেক ধন্যবাদ।" },
+    { speaker: "女の人", japanese: "いいえ。", romaji: "Iie.", bengali: "কোনো সমস্যা নেই।" },
+    { speaker: "ミラー", japanese: "あのう、ナンプラー、ありますか。", romaji: "Anou, nanpuraa, arimasu ka.", bengali: "আচ্ছা, fish sauce আছে?" },
+    { speaker: "店員", japanese: "はい。あちらに タイ料理の コーナーが あります。ナンプラーは いちばん 下です。", romaji: "Hai. Achira ni Tai ryouri no koonaa ga arimasu. Nanpuraa wa ichiban shita desu.", bengali: "হ্যাঁ। ওদিকে Thai food corner আছে। Fish sauce একদম নিচে।" },
+    { speaker: "ミラー", japanese: "わかりました。どうも。", romaji: "Wakarimashita. Doumo.", bengali: "বুঝেছি। ধন্যবাদ।" },
+  ],
+  profiles: [],
+  modules: [
+    { step: "01", title: "文型 · Core existence patterns", instruction: "ছবির place, person ও object cue দেখে あります／います-এর সঠিক form বেছে sentence বলুন।", questions: [
+      { prompt: "あそこ／コンビニ", answer: "あそこに コンビニが あります。", romaji: "Asoko ni konbini ga arimasu.", bengali: "ওখানে একটি convenience store আছে।" },
+      { prompt: "ロビー／佐藤さん", answer: "ロビーに 佐藤さんが います。", romaji: "Robii ni Satou-san ga imasu.", bengali: "Lobby-তে Satou-san আছেন।" },
+      { prompt: "東京ディズニーランド／千葉県", answer: "東京ディズニーランドは 千葉県に あります。", romaji: "Toukyou Dizuniirando wa Chiba-ken ni arimasu.", bengali: "Tokyo Disneyland Chiba prefecture-এ।" },
+      { prompt: "家族／ニューヨーク", answer: "家族は ニューヨークに います。", romaji: "Kazoku wa Nyuuyooku ni imasu.", bengali: "আমার পরিবার New York-এ আছে।" },
+    ] },
+    { step: "02", title: "あります／います · Selection drill", instruction: "Person/animal হলে います, অন্য object/place হলে あります ব্যবহার করুন।", questions: [
+      { prompt: "この ビル／ATM／2階", answer: "この ビルに ATMが あります。2階に あります。", romaji: "Kono biru ni ATM ga arimasu. Ni-kai ni arimasu.", bengali: "এই ভবনে ATM আছে। দ্বিতীয় তলায়।" },
+      { prompt: "あそこ／男の人／IMCの 松本さん", answer: "あそこに 男の 人が います。あの 人は IMCの 松本さんです。", romaji: "Asoko ni otoko no hito ga imasu. Ano hito wa IMC no Matsumoto-san desu.", bengali: "ওখানে একজন পুরুষ আছেন। তিনি IMC-এর Matsumoto-san।" },
+      { prompt: "庭／だれ／猫", answer: "庭に だれが いますか。— だれも いません。猫が います。", romaji: "Niwa ni dare ga imasu ka. — Daremo imasen. Neko ga imasu.", bengali: "বাগানে কে আছে?—কেউ নেই; একটি বিড়াল আছে।" },
+      { prompt: "箱の 中／古い 手紙・写真", answer: "箱の 中に 古い 手紙や 写真などが あります。", romaji: "Hako no naka ni furui tegami ya shashin nado ga arimasu.", bengali: "বাক্সের মধ্যে পুরোনো চিঠি, ছবি ইত্যাদি আছে।" },
+    ] },
+    { step: "03", title: "練習A · Place に N が", instruction: "Location প্রথমে রেখে নতুন ব্যক্তি বা বস্তুর অস্তিত্ব বর্ণনা করুন।", questions: [
+      { prompt: "あそこ／ビル・公園", answer: "あそこに ビルや 公園などが あります。", romaji: "Asoko ni biru ya kouen nado ga arimasu.", bengali: "ওখানে ভবন, পার্ক ইত্যাদি আছে।" },
+      { prompt: "駅の 前／男の人", answer: "駅の 前に 男の 人が います。", romaji: "Eki no mae ni otoko no hito ga imasu.", bengali: "Station-এর সামনে একজন পুরুষ আছেন।" },
+      { prompt: "スーパーの 隣／郵便局", answer: "スーパーの 隣に 郵便局が あります。", romaji: "Suupaa no tonari ni yuubinkyoku ga arimasu.", bengali: "Supermarket-এর পাশে post office আছে।" },
+      { prompt: "冷蔵庫の 中／いろいろな 物", answer: "冷蔵庫の 中に いろいろな 物が あります。", romaji: "Reizouko no naka ni iroiro na mono ga arimasu.", bengali: "Fridge-এর মধ্যে বিভিন্ন জিনিস আছে।" },
+    ] },
+    { step: "04", title: "練習B · Position map", instruction: "Reference noun + の + position ব্যবহার করে object/person-এর exact location বলুন।", questions: [
+      { prompt: "ドア／右／スイッチ", answer: "ドアの 右に スイッチが あります。", romaji: "Doa no migi ni suicchi ga arimasu.", bengali: "দরজার ডানে switch আছে।" },
+      { prompt: "木／後ろ／女の子", answer: "木の 後ろに 女の 子が います。", romaji: "Ki no ushiro ni onna no ko ga imasu.", bengali: "গাছের পেছনে একটি মেয়ে আছে।" },
+      { prompt: "テーブル／上／何", answer: "テーブルの 上に 何が ありますか。— 本や コーヒーなどが あります。", romaji: "Teeburu no ue ni nani ga arimasu ka. — Hon ya koohii nado ga arimasu.", bengali: "Table-এর ওপর কী আছে?—বই, coffee ইত্যাদি।" },
+      { prompt: "駅／近く／喫茶店・銀行", answer: "駅の 近くに 喫茶店と 銀行が あります。", romaji: "Eki no chikaku ni kissaten to ginkou ga arimasu.", bengali: "Station-এর কাছে coffee shop ও bank আছে।" },
+    ] },
+    { step: "05", title: "N は Place に · Location answer", instruction: "প্রথমে পরিচিত object/person-কে は দিয়ে topic করুন, তারপর তার location বলুন।", questions: [
+      { prompt: "郵便局／駅の 近く", answer: "郵便局は 駅の 近くに あります。", romaji: "Yuubinkyoku wa eki no chikaku ni arimasu.", bengali: "Post office station-এর কাছে।" },
+      { prompt: "ポスト／郵便局と 銀行の 間", answer: "ポストは 郵便局と 銀行の 間に あります。", romaji: "Posuto wa yuubinkyoku to ginkou no aida ni arimasu.", bengali: "Mailbox post office ও bank-এর মাঝে।" },
+      { prompt: "ミラーさん／会議室", answer: "ミラーさんは どこに いますか。— 会議室に います。", romaji: "Miraa-san wa doko ni imasu ka. — Kaigishitsu ni imasu.", bengali: "Miller কোথায়?—Meeting room-এ।" },
+      { prompt: "お土産売り場／一階", answer: "お土産売り場は どこですか。— 一階に あります。", romaji: "Omiyage uriba wa doko desu ka. — Ikkai ni arimasu.", bengali: "Souvenir counter কোথায়?—প্রথম তলায়।" },
+    ] },
+    { step: "06", title: "会話 · ナンプラー、ありますか", instruction: "দিক জিজ্ঞেস করা থেকে shelf-এর exact position পর্যন্ত supermarket dialogue-টি সম্পূর্ণ করুন।", questions: [
+      { prompt: "Asia Store-এর location জিজ্ঞেস করুন", answer: "すみません。アジアストアは どこですか。", romaji: "Sumimasen. Ajia Sutoa wa doko desu ka.", bengali: "মাফ করবেন, Asia Store কোথায়?" },
+      { prompt: "সাদা ভবনটির ভিতরে—direction দিন", answer: "あそこに 白い ビルが ありますね。あの ビルの 中です。", romaji: "Asoko ni shiroi biru ga arimasu ne. Ano biru no naka desu.", bengali: "ওই সাদা ভবনটি দেখছেন? তার ভিতরে।" },
+      { prompt: "Fish sauce আছে কি না জিজ্ঞেস করুন", answer: "あのう、ナンプラー、ありますか。", romaji: "Anou, nanpuraa, arimasu ka.", bengali: "আচ্ছা, fish sauce আছে?" },
+      { prompt: "Thai corner এবং bottom shelf দেখান", answer: "あちらに タイ料理の コーナーが あります。ナンプラーは いちばん 下です。", romaji: "Achira ni Tai ryouri no koonaa ga arimasu. Nanpuraa wa ichiban shita desu.", bengali: "ওদিকে Thai food corner আছে। Fish sauce একদম নিচে।" },
+    ] },
+    { step: "07", title: "練習C · Information-gap dialogue", instruction: "Map বা shelf cue দেখে どこですか／何が ありますか／だれが いますか দিয়ে short dialogue করুন।", questions: [
+      { prompt: "A: あのう、近くに 銀行が ありますか。 B: building-এর ভিতরে", answer: "ええ、あそこに 高い ビルが ありますね。あの ビルの 中です。", romaji: "Ee, asoko ni takai biru ga arimasu ne. Ano biru no naka desu.", bengali: "হ্যাঁ। ওই উঁচু ভবনটি দেখছেন? তার ভিতরে।" },
+      { prompt: "A: 郵便局は どこですか。 B: station-এর সামনে", answer: "駅の 前に あります。", romaji: "Eki no mae ni arimasu.", bengali: "Station-এর সামনে।" },
+      { prompt: "A: すみません。ミラーさんは いますか。 B: door-এর কাছে", answer: "ええ、あそこに います。ドアの 近くです。", romaji: "Ee, asoko ni imasu. Doa no chikaku desu.", bengali: "হ্যাঁ, ওখানে আছেন। দরজার কাছে।" },
+      { prompt: "A: これは 何の コーナーですか。 B: supermarket-এর food corner", answer: "食べ物の コーナーです。パンや 飲み物などが あります。", romaji: "Tabemono no koonaa desu. Pan ya nomimono nado ga arimasu.", bengali: "খাবারের section। Bread, drinks ইত্যাদি আছে।" },
+    ] },
+    { step: "08", title: "問題 · Reading & location self-test", instruction: "নতুন বাড়ি সম্পর্কে passage-এর তথ্য পড়ে map নির্বাচন ও প্রশ্নের উত্তর দিন।", questions: [
+      { prompt: "新しい うちは どんな 所に ありますか。", answer: "静かな 所に あります。", romaji: "Shizuka na tokoro ni arimasu.", bengali: "শান্ত জায়গায়।" },
+      { prompt: "うちの 隣に 何が ありますか。", answer: "きれいな 公園が あります。", romaji: "Kirei na kouen ga arimasu.", bengali: "একটি সুন্দর park আছে।" },
+      { prompt: "公園の 前に 何が ありますか。", answer: "図書館と 喫茶店が あります。", romaji: "Toshokan to kissaten ga arimasu.", bengali: "Library ও coffee shop আছে।" },
+      { prompt: "うちの 近くに 何が ありますか。", answer: "郵便局と 銀行が あります。", romaji: "Yuubinkyoku to ginkou ga arimasu.", bengali: "Post office ও bank আছে।" },
+      { prompt: "スーパーの 中に どんな 店が ありますか。", answer: "花屋や おいしい パン屋などが あります。", romaji: "Hanaya ya oishii pan-ya nado ga arimasu.", bengali: "ফুলের দোকান, সুস্বাদু bread shop ইত্যাদি আছে।" },
+    ] },
+  ],
+};
+
 export function getMinnaN5PracticeDetails(unitNumber: number) {
   if (unitNumber === 1) return unitOnePractice;
   if (unitNumber === 2) return unitTwoPractice;
@@ -951,5 +1190,7 @@ export function getMinnaN5PracticeDetails(unitNumber: number) {
   if (unitNumber === 6) return unitSixPractice;
   if (unitNumber === 7) return unitSevenPractice;
   if (unitNumber === 8) return unitEightPractice;
+  if (unitNumber === 9) return unitNinePractice;
+  if (unitNumber === 10) return unitTenPractice;
   return undefined;
 }

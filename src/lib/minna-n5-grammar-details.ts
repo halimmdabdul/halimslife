@@ -536,6 +536,96 @@ const unit8GrammarDetails: GrammarDetail[] = [
   },
 ];
 
+const unit9GrammarDetails: GrammarDetail[] = [
+  {
+    title:"পছন্দ, দক্ষতা ও অনুভূতির target",structure:"N が 好き／嫌い／上手／下手です。",
+    explanation:"好き, 嫌い, 上手 ও 下手 দেখতে action-এর অর্থ দিলেও Japanese-এ な-adjective-এর মতো কাজ করে। যে জিনিস, বিষয় বা activity পছন্দ/অপছন্দ বা যাতে দক্ষ/অদক্ষ—সেটিকে が দিয়ে চিহ্নিত করা হয়; を নয়। Person/topic আগে は নিতে পারে।",
+    notes:["好き・嫌い = অনুভূতি; 上手・下手 = skill assessment।","Noun-এর আগে: 好きな 音楽, 上手な 人।","নিজের দক্ষতা বলতে 上手です কখনও self-praise শোনাতে পারে; 得意です বেশি নরম, তবে N5 pattern হিসেবে 上手 শিখুন।"],
+    visual:{tokens:[{text:"わたし",role:"Person/topic"},{text:"は",role:"Topic"},{text:"音楽",role:"Liked target"},{text:"が",role:"Target marker",accent:true},{text:"好きです",role:"Feeling",accent:true}],romaji:"Watashi wa ongaku ga suki desu.",bengali:"আমি সঙ্গীত পছন্দ করি।"},
+    examples:[{japanese:"ミラーさんは イタリア料理が 好きです。",romaji:"Miraa-san wa Itaria ryouri ga suki desu.",bengali:"মিলার-সান ইতালীয় খাবার পছন্দ করেন।"},{japanese:"妻は 野球が 嫌いです。",romaji:"Tsuma wa yakyuu ga kirai desu.",bengali:"আমার স্ত্রী baseball অপছন্দ করেন।"},{japanese:"マリアさんは ダンスが 上手です。",romaji:"Maria-san wa dansu ga jouzu desu.",bengali:"মারিয়া-সান নাচে দক্ষ।"},{japanese:"わたしは 歌が 下手です。",romaji:"Watashi wa uta ga heta desu.",bengali:"আমি গানে অদক্ষ।"}],
+  },
+  {
+    title:"বোঝা ও possession",structure:"N が 分かります。／ N が あります。",
+    explanation:"分かります দিয়ে কোনো ভাষা, বিষয় বা তথ্য বোঝা এবং あります দিয়ে জড় জিনিস, সময়, টাকা, appointment ইত্যাদি থাকা বোঝানো হয়। এই দুই verb-এর target/object সাধারণত が নেয়। বাংলায় ‘আমার আছে’ বললেও Japanese sentence-এ ব্যক্তি は এবং যা আছে তা が হয়।",
+    notes:["日本語を 分かります নয়; 日本語が 分かります। ব্যবহার করুন।","あります এখানে possession; location-এর あります-এর সঙ্গেও মূল ধারণা ‘অস্তিত্ব আছে’।","Negative: 分かりません／ありません।"],
+    visual:{tokens:[{text:"わたし",role:"Possessor/topic"},{text:"は",role:"Topic"},{text:"時間",role:"যা আছে"},{text:"が",role:"Target marker",accent:true},{text:"あります",role:"আছে",accent:true}],romaji:"Watashi wa jikan ga arimasu.",bengali:"আমার সময় আছে।"},
+    examples:[{japanese:"わたしは 日本語が 分かります。",romaji:"Watashi wa Nihongo ga wakarimasu.",bengali:"আমি জাপানি বুঝি।"},{japanese:"細かい お金が ありますか。",romaji:"Komakai okane ga arimasu ka.",bengali:"খুচরা টাকা আছে?"},{japanese:"きょうは 用事が ありません。",romaji:"Kyou wa youji ga arimasen.",bengali:"আজ কোনো জরুরি কাজ নেই।"}],
+  },
+  {
+    title:"কেমন ধরনের—どんな N",structure:"どんな N が 好きですか。",
+    explanation:"Category বা ধরন জানতে どんな সরাসরি noun-এর আগে বসে। Unit 8-এর description question এখন 好きですか, 上手ですか বা 分かりますか-এর target-এর সঙ্গে ব্যবহার করুন। উত্তরে নির্দিষ্ট category + が + predicate দিন।",
+    notes:["どんな-এর পরে অবশ্যই noun থাকে।","何の N ‘কিসের/কোন বিষয়ের N’; どんな N ‘কেমন ধরনের N’।","Question-এ N が থাকলেও উত্তর context পরিষ্কার হলে topic বাদ দেওয়া যায়।"],
+    visual:{tokens:[{text:"どんな",role:"কেমন ধরনের",accent:true},{text:"音楽",role:"Category noun"},{text:"が",role:"Target"},{text:"好きですか",role:"Question"}],romaji:"Donna ongaku ga suki desu ka.",bengali:"কেমন ধরনের সঙ্গীত পছন্দ করেন?"},
+    examples:[{japanese:"どんな スポーツが 好きですか。— 野球が 好きです。",romaji:"Donna supootsu ga suki desu ka. — Yakyuu ga suki desu.",bengali:"কেমন খেলা পছন্দ করেন? — baseball পছন্দ করি।"},{japanese:"どんな 料理が 上手ですか。— 日本料理です。",romaji:"Donna ryouri ga jouzu desu ka. — Nihon ryouri desu.",bengali:"কোন ধরনের রান্নায় দক্ষ? — জাপানি রান্নায়।"},{japanese:"どんな 音楽が 分かりますか。",romaji:"Donna ongaku ga wakarimasu ka.",bengali:"কেমন ধরনের সঙ্গীত বোঝেন?"}],
+  },
+  {
+    title:"Degree adverb-এর positive/negative pair",structure:"よく／だいたい／たくさん／少し + affirmative · あまり／全然 + negative",
+    explanation:"কতটা বোঝেন, কতটা আছে বা কতটা পছন্দ—তা degree adverb দিয়ে সূক্ষ্মভাবে বলা যায়। よく, だいたい, たくさん ও 少し affirmative predicate-এর সঙ্গে চলে। あまり ও 全然-এর পরে অবশ্যই negative form লাগে।",
+    notes:["よく 分かります = ভালোভাবে বুঝি; たくさん あります = অনেক আছে।","少し 分かります = একটু বুঝি।","あまり 分かりません = খুব একটা বুঝি না; 全然 分かりません = একদম বুঝি না।"],
+    visual:{tokens:[{text:"日本語",role:"Target"},{text:"が",role:"Marker"},{text:"少し",role:"Degree",accent:true},{text:"分かります",role:"Affirmative"}],romaji:"Nihongo ga sukoshi wakarimasu.",bengali:"জাপানি একটু বুঝি।"},
+    examples:[{japanese:"英語が よく 分かります。",romaji:"Eigo ga yoku wakarimasu.",bengali:"ইংরেজি ভালো বুঝি।"},{japanese:"お金が たくさん あります。",romaji:"Okane ga takusan arimasu.",bengali:"অনেক টাকা আছে।"},{japanese:"漢字は あまり 分かりません。",romaji:"Kanji wa amari wakarimasen.",bengali:"kanji খুব একটা বুঝি না।"},{japanese:"フランス語は 全然 分かりません。",romaji:"Furansugo wa zenzen wakarimasen.",bengali:"ফরাসি একদম বুঝি না।"}],
+  },
+  {
+    title:"কারণ বলা—から",structure:"Reason から、Result。／ Result。Reason から。",
+    explanation:"কোনো সিদ্ধান্ত বা ঘটনার কারণ বলতে কারণ-clause-এর শেষে から বসে। সাধারণ order হলো ‘কারণ + から, ফলাফল’। কথোপকথনে আগে result বলে পরে আলাদা sentence-এ reason + から বলাও স্বাভাবিক। から-এর আগে polite です／ます form রাখা যায়।",
+    notes:["時間が ありませんから = সময় নেই বলে।","だから হলো ‘তাই/সুতরাং’; এই lesson-এ reason-ending から শিখুন।","কারণ ও ফলাফলের logical direction যেন উল্টো না হয়।"],
+    visual:{tokens:[{text:"時間が ありません",role:"Reason"},{text:"から",role:"কারণ বলে",accent:true},{text:"新聞を 読みません",role:"Result"}],romaji:"Jikan ga arimasen kara, shinbun o yomimasen.",bengali:"সময় নেই বলে সংবাদপত্র পড়ি না।"},
+    examples:[{japanese:"野球が 好きですから、毎日 テレビで 見ます。",romaji:"Yakyuu ga suki desu kara, mainichi terebi de mimasu.",bengali:"baseball পছন্দ করি বলে প্রতিদিন TV-তে দেখি।"},{japanese:"きょうは 早く 帰ります。子どもの 誕生日ですから。",romaji:"Kyou wa hayaku kaerimasu. Kodomo no tanjoubi desu kara.",bengali:"আজ তাড়াতাড়ি ফিরব। কারণ সন্তানের জন্মদিন।"},{japanese:"約束が ありますから、行きません。",romaji:"Yakusoku ga arimasu kara, ikimasen.",bengali:"appointment আছে বলে যাব না।"}],
+  },
+  {
+    title:"কারণ জিজ্ঞেস করা ও invitation নরমভাবে না বলা",structure:"どうして ～か。— ～から。／ ～は ちょっと…。",
+    explanation:"どうして দিয়ে ‘কেন’ জিজ্ঞেস করা হয়। উত্তরে কারণের শেষে から বসে। Invitation সরাসরি いいえ বলে প্রত্যাখ্যান না করে ～は ちょっと… বললে বাকিটা না বলেও অসুবিধা বোঝা যায়। এরপর また 今度 お願いします বললে সম্পর্কটি উষ্ণ থাকে।",
+    notes:["どうして-এর answer সাধারণত ～からです বা ～から।","ちょっと এখানে ‘অল্প’ নয়; hesitation/refusal signal।","だめですか = হবে না?—invite করার ব্যক্তি আরও একবার নিশ্চিত হচ্ছে।"],
+    visual:{tokens:[{text:"どうして",role:"কেন",accent:true},{text:"行きませんか",role:"Question"},{text:"用事が あります",role:"Reason"},{text:"から",role:"কারণ",accent:true}],romaji:"Doushite ikimasen ka. — Youji ga arimasu kara.",bengali:"কেন যাবেন না? — কাজ আছে বলে।"},
+    examples:[{japanese:"どうして 早く 帰りますか。— 約束が ありますから。",romaji:"Doushite hayaku kaerimasu ka. — Yakusoku ga arimasu kara.",bengali:"কেন তাড়াতাড়ি ফিরবেন? — appointment আছে বলে।"},{japanese:"土曜日、コンサートは いかがですか。— 土曜日は ちょっと…。",romaji:"Doyoubi, konsaato wa ikaga desu ka. — Doyoubi wa chotto...",bengali:"শনিবার concert কেমন হবে? — শনিবারটা একটু…"},{japanese:"だめですか。— すみません。また 今度 お願いします。",romaji:"Dame desu ka. — Sumimasen. Mata kondo onegaishimasu.",bengali:"হবে না? — দুঃখিত। অন্য কোনো সময় অনুগ্রহ করে।"}],
+  },
+];
+
+const unit10GrammarDetails: GrammarDetail[] = [
+  {
+    title:"অস্তিত্ব—あります বনাম います",structure:"N が あります。／ N が います。",
+    explanation:"কোনো জড় বস্তু, উদ্ভিদ, স্থান বা event-এর অস্তিত্ব বোঝাতে あります এবং মানুষ ও প্রাণীর অস্তিত্ব বোঝাতে います ব্যবহার হয়। নতুন করে যে বস্তু বা ব্যক্তিকে পরিচয় করানো হচ্ছে তার পরে が বসে। বাংলায় দুই ক্ষেত্রেই ‘আছে’ হলেও Japanese verb আলাদা।",
+    notes:["জড় বস্তু: 本・机・木 → あります।","জীবিত ও চলমান সত্তা: 人・犬・猫 → います।","Negative: ありません／いません; question: ありますか／いますか।"],
+    visual:{tokens:[{text:"箱",role:"জড় বস্তু"},{text:"が",role:"Existence subject",accent:true},{text:"あります",role:"আছে",accent:true},{text:"猫",role:"প্রাণী"},{text:"が います",role:"আছে",accent:true}],romaji:"Hako ga arimasu. Neko ga imasu.",bengali:"বাক্স আছে। বিড়াল আছে।"},
+    examples:[{japanese:"コンピューターが あります。",romaji:"Konpyuutaa ga arimasu.",bengali:"কম্পিউটার আছে।"},{japanese:"男の人が います。",romaji:"Otoko no hito ga imasu.",bengali:"একজন পুরুষ আছেন।"},{japanese:"犬が いません。",romaji:"Inu ga imasen.",bengali:"কুকুর নেই।"}],
+  },
+  {
+    title:"কোন জায়গায় কী বা কে আছে",structure:"Place に N が あります／います。",
+    explanation:"কোনো নির্দিষ্ট জায়গায় নতুন কোনো বস্তু বা ব্যক্তির অস্তিত্ব জানাতে প্রথমে Place + に বসে। に হলো অস্তিত্বের location marker; নতুন তথ্য N が নেয়। এই pattern-এ で ব্যবহার করা যাবে না, কারণ এখানে কোনো action ঘটছে না।",
+    notes:["Place に = যেখানে অস্তিত্ব আছে।","N が = যে বস্তু/ব্যক্তিকে প্রথমবার জানাচ্ছেন।","Action হলে で: 公園で 遊びます; existence হলে に: 公園に 子どもが います। "],
+    visual:{tokens:[{text:"机の 上",role:"Place"},{text:"に",role:"Location",accent:true},{text:"本",role:"New item"},{text:"が",role:"Subject"},{text:"あります",role:"Existence",accent:true}],romaji:"Tsukue no ue ni hon ga arimasu.",bengali:"ডেস্কের ওপর বই আছে।"},
+    examples:[{japanese:"部屋に 机が あります。",romaji:"Heya ni tsukue ga arimasu.",bengali:"ঘরে ডেস্ক আছে।"},{japanese:"事務所に ミラーさんが います。",romaji:"Jimusho ni Miraa-san ga imasu.",bengali:"অফিসে মিলার-সান আছেন।"},{japanese:"地下に 何が ありますか。",romaji:"Chika ni nani ga arimasu ka.",bengali:"Basement-এ কী আছে?"}],
+  },
+  {
+    title:"পরিচিত বস্তু বা ব্যক্তি কোথায়",structure:"N は Place に あります／います。",
+    explanation:"শ্রোতা যে বস্তু বা ব্যক্তির কথা ইতোমধ্যে জানে, সেটিকে topic করে তার অবস্থান বলতে N は দিয়ে শুরু করুন। এরপর Place に এবং বস্তু হলে あります, ব্যক্তি/প্রাণী হলে います। একই অর্থে অনেক facility-এর location N1 は N2 です দিয়েও বলা যায়।",
+    notes:["Question: N は どこに ありますか／いますか。","Facility location-এ に あります বা です—দুটিই শোনা যায়।","Negative topic-এ は: ミラーさんは 事務所に いません。"],
+    visual:{tokens:[{text:"冷蔵庫",role:"Known topic"},{text:"は",role:"Topic",accent:true},{text:"台所",role:"Location"},{text:"に",role:"Location marker"},{text:"あります",role:"আছে",accent:true}],romaji:"Reizouko wa daidokoro ni arimasu.",bengali:"Refrigerator রান্নাঘরে আছে।"},
+    examples:[{japanese:"ミラーさんは 事務所に います。",romaji:"Miraa-san wa jimusho ni imasu.",bengali:"মিলার-সান অফিসে আছেন।"},{japanese:"東京ディズニーランドは 千葉県に あります。",romaji:"Toukyou Dizuniirando wa Chiba-ken ni arimasu.",bengali:"Tokyo Disneyland Chiba prefecture-এ।"},{japanese:"アジアストアは どこに ありますか。",romaji:"Ajia Sutoa wa doko ni arimasu ka.",bengali:"Asia Store কোথায়?"}],
+  },
+  {
+    title:"Position phrase—N1 の Position",structure:"N1 の 上／下／前／後ろ／右／左／中／外／隣／近く",
+    explanation:"位置 বা position word একটি noun-এর সঙ্গে যুক্ত হলে reference noun-এর পরে の বসে: 机の上। পুরো phrase-টি জায়গা হলে শেষে に যোগ হয়। দুইটি reference point-এর মাঝখানে বলতে N1 と N2 の 間 ব্যবহার করুন। 隣 হলো একেবারে পাশের, 近く শুধু কাছাকাছি।",
+    notes:["উপর/ভেতর ইত্যাদির আগে の বাদ দেবেন না।","A と B の 間 = A ও B-এর মাঝখানে।","隣 ও 近く এক নয়: 隣 সরাসরি adjacent।"],
+    visual:{tokens:[{text:"銀行",role:"Reference A"},{text:"と" ,role:"এবং"},{text:"郵便局",role:"Reference B"},{text:"の 間",role:"মাঝখানে",accent:true},{text:"に 喫茶店が あります",role:"Location statement"}],romaji:"Ginkou to yuubinkyoku no aida ni kissaten ga arimasu.",bengali:"ব্যাংক ও ডাকঘরের মাঝে coffee shop আছে।"},
+    examples:[{japanese:"猫は テーブルの 下に います。",romaji:"Neko wa teeburu no shita ni imasu.",bengali:"বিড়াল টেবিলের নিচে।"},{japanese:"公園は 学校の 後ろに あります。",romaji:"Kouen wa gakkou no ushiro ni arimasu.",bengali:"পার্ক স্কুলের পেছনে।"},{japanese:"コンビニは 駅の 近くに あります。",romaji:"Konbini wa eki no chikaku ni arimasu.",bengali:"Convenience store স্টেশনের কাছে।"}],
+  },
+  {
+    title:"অসম্পূর্ণ তালিকা—や／など",structure:"N1 や N2［など］が あります。",
+    explanation:"সব item না বলে কয়েকটি representative example দিতে nouns-এর মাঝে や বসে। শেষে など যোগ করলে ‘ইত্যাদি’ অর্থটি আরও স্পষ্ট হয়। と ব্যবহার করলে তালিকাটি সম্পূর্ণ—কিন্তু や জানায় আরও item থাকতে পারে।",
+    notes:["A と B = A এবং B—সম্পূর্ণ তালিকা।","A や B = A, B ইত্যাদি—অসম্পূর্ণ তালিকা।","など optional; や একাই incomplete-list nuance দেয়।"],
+    visual:{tokens:[{text:"箱の 中に",role:"Place"},{text:"手紙",role:"Example 1"},{text:"や",role:"ইত্যাদির যোগ",accent:true},{text:"写真",role:"Example 2"},{text:"などが あります",role:"আরও আছে",accent:true}],romaji:"Hako no naka ni tegami ya shashin nado ga arimasu.",bengali:"বাক্সে চিঠি, ছবি ইত্যাদি আছে।"},
+    examples:[{japanese:"棚に 本や 雑誌が あります。",romaji:"Tana ni hon ya zasshi ga arimasu.",bengali:"তাকে বই, magazine ইত্যাদি আছে।"},{japanese:"公園に 木や 花などが あります。",romaji:"Kouen ni ki ya hana nado ga arimasu.",bengali:"পার্কে গাছ, ফুল ইত্যাদি আছে।"},{japanese:"部屋に ベッドや テーブルが あります。",romaji:"Heya ni beddo ya teeburu ga arimasu.",bengali:"ঘরে bed, table ইত্যাদি আছে।"}],
+  },
+  {
+    title:"কী/কে আছে—何 ও だれ",structure:"Place に 何が ありますか。／ Place に だれが いますか。",
+    explanation:"অজানা জড় বস্তু জানতে 何が ありますか এবং অজানা ব্যক্তি জানতে だれが いますか ব্যবহার করুন। প্রাণী নির্দিষ্ট করে জানতে 何が いますか বলা সম্ভব, কিন্তু মানুষের জন্য だれ স্বাভাবিক। উত্তরে পাওয়া noun-টি が নিয়ে あります／います-এর সঠিক pair নেয়।",
+    notes:["জড় জিনিস: 何 + ありますか। ","মানুষ: だれ + いますか. ","Location নিজেই অজানা হলে: N は どこに ありますか／いますか। "],
+    visual:{tokens:[{text:"地下",role:"Place"},{text:"に",role:"Location"},{text:"何",role:"কী",accent:true},{text:"が ありますか",role:"Question"},{text:"レストランが あります",role:"Answer",accent:true}],romaji:"Chika ni nani ga arimasu ka. Resutoran ga arimasu.",bengali:"Basement-এ কী আছে? Restaurant আছে।"},
+    examples:[{japanese:"教室に だれが いますか。— 先生が います。",romaji:"Kyoushitsu ni dare ga imasu ka. — Sensei ga imasu.",bengali:"শ্রেণিকক্ষে কে আছেন? — শিক্ষক।"},{japanese:"箱の 中に 何が ありますか。— 電池が あります。",romaji:"Hako no naka ni nani ga arimasu ka. — Denchi ga arimasu.",bengali:"বাক্সে কী আছে? — Battery।"},{japanese:"トイレは どこに ありますか。— 玄関の 近くです。",romaji:"Toire wa doko ni arimasu ka. — Genkan no chikaku desu.",bengali:"Toilet কোথায়? — Entrance-এর কাছে।"}],
+  },
+];
+
 export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 1) return unit1GrammarDetails;
   if (unitNumber === 2) return unit2GrammarDetails;
@@ -545,5 +635,7 @@ export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 6) return unit6GrammarDetails;
   if (unitNumber === 7) return unit7GrammarDetails;
   if (unitNumber === 8) return unit8GrammarDetails;
+  if (unitNumber === 9) return unit9GrammarDetails;
+  if (unitNumber === 10) return unit10GrammarDetails;
   return [];
 }

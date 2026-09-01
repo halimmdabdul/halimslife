@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 
 import { logoutAdmin } from "@/app/admin/actions";
+import { AdminSidebarNav } from "@/components/admin-sidebar-nav";
 import type { AdminProfile } from "@/lib/admin-auth";
 
 export function AdminShell({
@@ -18,17 +19,7 @@ export function AdminShell({
           Halim<span>.</span>
           <small>ADMIN</small>
         </Link>
-        <nav>
-          <Link href="/admin">Overview</Link>
-          <Link href="/admin/analytics">Analytics & SEO</Link>
-          <Link href="/admin/messages">Contact messages</Link>
-          <Link href="/admin/scholarship-support">Scholarship Support</Link>
-          <Link href="/admin/courses">Courses & lectures</Link>
-          <Link href="/admin/blog">Blog posts</Link>
-          <Link href="/admin/users">Users & roles</Link>
-          <Link href="/projects">View projects</Link>
-          <Link href="/">View website ↗</Link>
-        </nav>
+        <AdminSidebarNav />
         <div className="admin-account">
           <span>{profile.full_name?.charAt(0) || "H"}</span>
           <div>

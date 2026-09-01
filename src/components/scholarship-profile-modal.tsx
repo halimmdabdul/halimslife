@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { submitScholarshipNavigatorProfile } from "@/app/scholarships/navigator-actions";
 import styles from "./scholarship-profile-modal.module.css";
 
 const storageKey = "halim-scholarship-profile";
@@ -132,6 +133,12 @@ export function ScholarshipProfileModal() {
     setHasProfile(true);
     setIsOpen(false);
     router.push(recommendationUrl(profile));
+
+    // Best-effort: save the profile server-side and invite the visitor to
+    // finish creating an account if this email doesn't have one yet. Never
+    // blocks the on-page personalization above, which already works from
+    // localStorage alone.
+    void submitScholarshipNavigatorProfile(profile).catch(() => {});
   }
 
   return (
@@ -206,7 +213,7 @@ export function ScholarshipProfileModal() {
                 <textarea value={profile.otherInformation} onChange={(event) => updateField("otherInformation", event.target.value)} placeholder="CGPA, work experience, budget, scholarship need বা অন্য প্রয়োজন লিখুন…" rows={3} />
               </label>
               <footer>
-                <small>🔒 এই তথ্য server-এ পাঠানো হয় না; আপনার browser-এই থাকে।</small>
+                <small>🔒 আপনার তথ্য সংরক্ষণ করা হবে যাতে personalized guidance পেতে সাহায্য করা যায়। নতুন email হলে একটি account তৈরির link পাঠানো হবে।</small>
                 <button type="submit">আমার university list দেখুন →</button>
               </footer>
             </form>

@@ -2704,6 +2704,12 @@ html[data-theme="dark"] .tech-course-icon {
   color: white;
 }
 
+.admin-sidebar nav a[aria-current="page"] {
+  background: var(--green);
+  color: white;
+  font-weight: 800;
+}
+
 .admin-account {
   display: grid;
   grid-template-columns: 36px 1fr;
@@ -3669,6 +3675,124 @@ html[data-theme="dark"] .connection-status {
   max-width: 640px;
   margin-top: 28px;
   box-shadow: none;
+}
+
+.account-support-toggle {
+  max-width: 640px;
+  margin-top: 22px;
+}
+
+.account-support-toggle > summary {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 50px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--soft);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.account-support-toggle > summary::-webkit-details-marker {
+  display: none;
+}
+
+.account-support-toggle > summary::before {
+  content: "+";
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.account-support-toggle[open] > summary {
+  border-radius: 12px 12px 0 0;
+  border-bottom: 0;
+}
+
+.account-support-toggle[open] > summary::before {
+  content: "−";
+}
+
+.account-support-toggle .account-support-form {
+  margin-top: 0;
+  border-radius: 0 0 12px 12px;
+}
+
+.account-support-history {
+  max-width: 640px;
+  margin-top: 44px;
+}
+
+.account-support-history h2 {
+  margin: 0 0 16px;
+  color: var(--navy);
+  font-size: 18px;
+}
+
+.account-support-list {
+  display: grid;
+  gap: 14px;
+}
+
+.account-support-list > article {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.account-support-list header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.account-support-list header strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--navy);
+  font-size: 14px;
+}
+
+.account-support-list header time {
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.account-support-pending {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.account-support-reply {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  background: var(--soft);
+}
+
+.account-support-reply > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.account-support-reply .rich-text-content {
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.7;
 }
 
 .account-card {
@@ -5168,10 +5292,55 @@ html[data-theme="dark"] .course-complete-banner p { color: #9ebdb1; }
 .admin-reply-panel { margin-top: 14px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); }
 .admin-previous-reply { margin: 0 18px 14px; padding: 14px 16px; border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; background: var(--soft); }
 .admin-previous-reply > span { display: block; margin-bottom: 6px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; }
-.admin-previous-reply > p { margin: 0; color: var(--text); font-size: 12px; line-height: 1.65; white-space: pre-wrap; }
+.admin-previous-reply .rich-text-content { color: var(--text); font-size: 12px; line-height: 1.65; }
 .admin-empty-state { text-align: center; }
 .admin-empty-state strong { color: var(--navy); }
 .admin-empty-state p { margin: 7px 0 0; color: var(--muted); font-size: 11px; }
+
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.admin-pagination a,
+.admin-pagination span.disabled {
+  min-height: 36px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.admin-pagination a {
+  color: var(--green);
+  background: var(--paper);
+}
+
+.admin-pagination a:hover {
+  border-color: var(--green);
+}
+
+.admin-pagination span.disabled {
+  color: var(--muted);
+  background: var(--soft);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-pagination-status {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
 
 @media (max-width: 620px) {
   .lesson-navigation {
