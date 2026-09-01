@@ -1,20 +1,15 @@
-.page{width:min(1120px,calc(100% - 42px));margin:auto;padding-block:40px 80px;color:var(--text)}
-
-.hero{display:flex;align-items:center;justify-content:space-between;gap:40px;padding:36px 0;border-bottom:1px solid var(--line)}
-.hero>div{max-width:640px}
-.back{display:inline-block;margin-bottom:14px;color:var(--muted);font-size:12px;font-weight:750}
-.hero>div>span{color:var(--green);font-size:11px;font-weight:850;letter-spacing:.06em;text-transform:uppercase}
-.hero h1{margin:8px 0 12px;font-family:Georgia,"Noto Serif Bengali",serif;font-size:clamp(30px,4vw,44px)}
-.hero h1 em{color:var(--green);font-style:normal}
-.hero p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
-
-.sheet{display:flex;flex:0 0 auto;flex-direction:column;align-items:center;gap:6px;width:150px;padding:24px 14px;border:1px solid var(--line);border-radius:16px;text-align:center;background:linear-gradient(160deg,var(--soft),var(--paper))}
-.sheet i{font-family:"Noto Serif JP",Georgia,serif;font-style:normal;font-size:40px;color:var(--navy)}
-.sheet b{font-size:11px;font-weight:850;letter-spacing:.1em;color:var(--green)}
-.sheet strong{font-size:10px;color:var(--muted)}
-
-.body{padding-top:8px}
-
-.legal{margin-top:40px;color:var(--muted);font-size:10px;text-align:center}
-
-@media(max-width:760px){.hero{flex-direction:column;align-items:flex-start}.sheet{width:100%;flex-direction:row;justify-content:center}}
+.page{width:min(1180px,calc(100% - 42px));margin:auto;padding-block:34px 80px;color:var(--text)}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:64px;align-items:center;min-height:510px;overflow:hidden;padding:50px 52px;border:1px solid color-mix(in srgb,#176b55 18%,var(--line));border-radius:32px;background:radial-gradient(circle at 78% 25%,rgba(235,210,122,.26),transparent 28%),linear-gradient(135deg,color-mix(in srgb,#ecf8f0 72%,var(--paper)),var(--paper));box-shadow:0 30px 90px rgba(20,76,62,.1)}
+.hero:before{content:"物語";position:absolute;right:-15px;bottom:-70px;font-family:"Noto Serif JP",serif;font-size:220px;color:rgba(23,107,85,.045)}
+.heroCopy{position:relative;z-index:1}.back{display:inline-block;margin-bottom:32px;color:var(--muted);font-size:11px;font-weight:750}.kicker{display:block;color:#176b55;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.hero h1{max-width:670px;margin:10px 0 18px;font-family:Georgia,"Noto Serif Bengali",serif;font-size:clamp(38px,5.7vw,67px);line-height:1.08;letter-spacing:-.035em;color:#143d36}.hero h1 em{display:inline;color:#c06e42;font-style:normal}.hero p{max-width:650px;margin:0;color:var(--muted);font-size:13px;line-height:1.85}
+.heroActions{display:flex;align-items:center;gap:18px;margin-top:28px}.heroActions>a{display:inline-flex;align-items:center;gap:18px;padding:13px 17px;border-radius:12px;background:#143d36;color:#fff;font-size:11px;font-weight:800}.heroActions>a b{font-size:16px}.heroActions>span{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:9px}.heroActions>span i{width:7px;height:7px;border-radius:50%;background:#65ab78;box-shadow:0 0 0 4px rgba(101,171,120,.16)}
+.heroVisual{position:relative;display:grid;min-height:345px;place-items:center}.orbit{position:relative;width:300px;height:300px;border:1px dashed rgba(23,107,85,.35);border-radius:50%;background:radial-gradient(circle,var(--paper) 0 33%,transparent 34%)}.orbit:before,.orbit:after{content:"";position:absolute;inset:44px;border:1px solid rgba(23,107,85,.15);border-radius:50%}.orbit:after{inset:91px;background:#143d36;box-shadow:0 15px 45px rgba(20,61,54,.22)}
+.orbit>span{position:absolute;z-index:2;display:flex;width:82px;height:82px;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:22px;background:var(--paper);box-shadow:0 14px 35px rgba(20,76,62,.1);font-family:"Noto Serif JP",serif;font-size:36px;color:#143d36}.orbit>span small{font-family:"Noto Serif Bengali",sans-serif;font-size:8px;color:var(--muted)}.seed{top:108px;left:109px}.branch:nth-of-type(2){top:7px;left:19px}.branch:nth-of-type(3){right:8px;bottom:20px}.orbit>i{position:absolute;right:-14px;top:44px;padding:6px 10px;border-radius:999px;background:#f1b947;color:#4b3505;font-size:9px;font-style:normal;font-weight:850}
+.pathBadge{position:absolute;left:0;bottom:16px;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid var(--line);border-radius:14px;background:var(--paper);box-shadow:0 12px 30px rgba(20,76,62,.1)}.pathBadge b{font-family:Georgia,serif;font-size:29px;color:#c06e42}.pathBadge span{color:var(--muted);font-size:8px;font-weight:800;text-transform:uppercase}
+.method{display:grid;grid-template-columns:repeat(4,1fr);margin:20px 0 0;border:1px solid var(--line);border-radius:20px;background:var(--paper)}.method article{display:grid;grid-template-columns:auto 1fr;gap:2px 11px;padding:18px;border-right:1px solid var(--line)}.method article:last-child{border-right:0}.method i{grid-row:1/3;color:#c06e42;font-family:Georgia,serif;font-size:20px;font-style:normal}.method b{font-size:11px;color:#143d36}.method p{margin:0;color:var(--muted);font-size:9px;line-height:1.55}
+.body{scroll-margin-top:30px}.legal{margin-top:40px;color:var(--muted);font-size:9px;text-align:center}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:38px}.heroVisual{display:none}.method{grid-template-columns:repeat(2,1fr)}.method article:nth-child(2){border-right:0}.method article:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media(max-width:560px){.page{width:min(100% - 24px,1180px);padding-top:18px}.hero{min-height:0;padding:28px 22px;border-radius:24px}.back{margin-bottom:24px}.hero h1{font-size:39px}.heroActions{align-items:flex-start;flex-direction:column}.method{grid-template-columns:1fr}.method article{border-right:0;border-bottom:1px solid var(--line)}.method article:last-child{border-bottom:0}}
+:global(html[data-theme="dark"]) .hero{background:radial-gradient(circle at 78% 25%,rgba(235,210,122,.08),transparent 28%),linear-gradient(135deg,#12221e,#12191a)}
+:global(html[data-theme="dark"]) .hero h1,:global(html[data-theme="dark"]) .method b{color:#d9f5e9}

@@ -17,6 +17,20 @@ function safeRedirectPath(value: FormDataEntryValue | null): string | null {
   return path;
 }
 
+// supabase-js falls back to JSON.stringify(body) for an auth error message
+// when the API response has none of msg/message/error_description/error —
+// which renders as the literal text "{}" for some malformed error bodies
+// (e.g. certain rate-limit responses). Never show that raw text to users.
+function friendlyAuthErrorMessage(message: string): string {
+  if (!message || message.trim().startsWith("{")) {
+    return "কিছু একটা সমস্যা হয়েছে, আবার চেষ্টা করুন।";
+  }
+  if (message.toLowerCase().includes("rate limit")) {
+    return "অনেকবার চেষ্টা হয়েছে—কিছুক্ষণ পর আবার চেষ্টা করুন।";
+  }
+  return message;
+}
+
 export async function loginUser(
   _previousState: PublicAuthState,
   formData: FormData,
@@ -81,7 +95,7 @@ export async function signupUser(
   });
 
   if (error) {
-    return { error: error.message };
+    return { error: friendlyAuthErrorMessage(error.message) };
   }
 
   if (!data.session) {
