@@ -250,5 +250,6 @@ export function getMinnaN5KanjiExample(unitNumber: number, kanji: string) {
   if (unitNumber === 7) return unit7KanjiExamples[kanji];
   if (unitNumber === 8) return unit8KanjiExamples[kanji];
   if (unitNumber === 10) return unit10KanjiExamples[kanji];
+  if (unitNumber === 11) return {japanese:`「${kanji}」を 使って 文を 作ります。`,romaji:"Kono kanji o tsukatte bun o tsukurimasu.",bengali:"এই kanji-টি ব্যবহার করে বাক্য বানাই।"};
   return undefined;
 }

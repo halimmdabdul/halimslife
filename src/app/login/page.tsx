@@ -13,15 +13,21 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ redirectTo?: string }>;
+}) {
   await connection();
+  const { redirectTo } = await searchParams;
+  const safeRedirectTo = redirectTo?.startsWith("/") && !redirectTo.startsWith("//") ? redirectTo : undefined;
   const supabase = await createServerSupabaseClient();
   const {
     data: { user },
   } = (await supabase?.auth.getUser()) ?? { data: { user: null } };
 
   if (user) {
-    redirect("/account");
+    redirect(safeRedirectTo ?? "/account");
   }
 
   return (
@@ -44,7 +50,7 @@ export default async function LoginPage() {
             />
           </p>
         </div>
-        <PublicAuthForm mode="login" />
+        <PublicAuthForm mode="login" redirectTo={safeRedirectTo} />
       </section>
     </InnerPageShell>
   );

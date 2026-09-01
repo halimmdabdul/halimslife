@@ -9,6 +9,14 @@ export type PublicAuthState = {
   success?: string;
 };
 
+// Only allow same-origin relative paths (e.g. "/projects/minna-no-nihongo-n5")
+// so this can't be turned into an open redirect via a crafted form value.
+function safeRedirectPath(value: FormDataEntryValue | null): string | null {
+  const path = String(value ?? "");
+  if (!path.startsWith("/") || path.startsWith("//")) return null;
+  return path;
+}
+
 export async function loginUser(
   _previousState: PublicAuthState,
   formData: FormData,
@@ -34,7 +42,7 @@ export async function loginUser(
     return { error: "Email অথবা password সঠিক নয়।" };
   }
 
-  redirect("/account");
+  redirect(safeRedirectPath(formData.get("redirectTo")) ?? "/account");
 }
 
 export async function signupUser(
@@ -83,7 +91,7 @@ export async function signupUser(
     };
   }
 
-  redirect("/account");
+  redirect(safeRedirectPath(formData.get("redirectTo")) ?? "/account");
 }
 
 export async function logoutUser() {

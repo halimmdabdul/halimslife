@@ -1,0 +1,36 @@
+.wrap{margin-top:24px}
+
+.dayGrid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:8px;margin-bottom:28px}
+.dayButton{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--navy)}
+.dayButton b{font-size:14px;font-weight:800}
+.dayButton small{color:var(--muted);font-size:9px}
+.dayActive{border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.dayComplete{background:var(--soft)}
+.dayComplete b{color:var(--green)}
+.dayComplete small{color:var(--green)}
+
+.dayPanel{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.dayPanelHead{margin-bottom:16px}
+.dayPanelHead span{color:var(--green);font-size:10px;font-weight:850;letter-spacing:.06em;text-transform:uppercase}
+.dayPanelHead h3{margin:4px 0 0;font-family:Georgia,"Noto Serif Bengali",serif;font-size:19px;color:var(--navy)}
+
+.dayNav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.dayNav button{padding:10px 16px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--navy);font-size:12px;font-weight:750}
+.dayNav button:disabled{opacity:.4}
+
+.illustration{font-size:38px;line-height:1}
+
+.mnemonicBox{margin-top:-1px;border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px;background:var(--paper)}
+.mnemonicBox summary{padding:11px 14px;cursor:pointer;color:var(--green);font-size:13px;font-weight:750;list-style:none}
+.mnemonicBox summary::-webkit-details-marker{display:none}
+.mnemonicBox[open] summary{border-bottom:1px solid var(--line)}
+.mnemonicBox p{margin:0;padding:12px 14px;color:var(--muted);font-size:13px;line-height:1.7}
+.mnemonicBox p+p{border-top:1px dashed var(--line)}
+.mnemonicBox b{color:var(--navy)}
+
+@media(max-width:860px){.dayGrid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:560px){.dayGrid{grid-template-columns:repeat(5,minmax(0,1fr))}.dayPanel{padding:16px}}
+
+html[data-theme="dark"] .dayButton,
+html[data-theme="dark"] .dayNav button,
+html[data-theme="dark"] .mnemonicBox{background:#121d21}

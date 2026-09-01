@@ -46,7 +46,7 @@ const journey: { step: string; title: string; subtitle: string; image: StaticIma
 const dreams = [
   { title: "Japanese Learning", text: "জাপানি ভাষা শেখার সহজ এবং বাস্তব পথ।", image: pathJapanese },
   { title: "Programming Fundamentals", text: "প্রোগ্রামিংয়ের শক্ত foundation তৈরি করা।", image: pathTech },
-  { title: "Japan Career Guidance", text: "জাপানে পড়াশোনা ও ক্যারিয়ারের দিকনির্দেশনা।", image: pathCareer },
+  { title: "Japan Scholarship & Career Guidance", text: "Japan ও অন্যান্য দেশের scholarship, admission এবং ক্যারিয়ারের দিকনির্দেশনা।", image: pathCareer },
 ];
 
 export const metadata = { alternates: { canonical: "/" } };
@@ -61,7 +61,7 @@ export default function Home() {
           <h1>আমি হালিম—<br />Engineer, Researcher<br /><em>ও Lifelong Learner।</em></h1>
           <p>বাংলাদেশে থেকে জাপানে এসে পড়াশোনা ও engineering career গড়ার পথটা সহজ ছিল না, সেটিই এখন অন্যদের জন্য সহজ করে share করছি।</p>
           <dl className={styles.heroFacts}><div><Icon name="location" /><span><dt>Japan</dt></span></div><div><Icon name="graduation" /><span><dt>MSc</dt><dd>Computer Science</dd></span></div><div><Icon name="document" /><span><dt>2+</dt><dd>Publications</dd></span></div></dl>
-          <div className={styles.heroActions}><Link href="/cv"><Icon name="document" /> আমার CV দেখুন</Link><Link href="/contact"><Icon name="plane" /> যোগাযোগ করুন</Link></div>
+          <div className={styles.heroActions}><Link href="/cv"><Icon name="document" /> আমার CV দেখুন</Link><Link href="/scholarships"><Icon name="graduation" /> Scholarship guide দেখুন</Link><Link href="/contact"><Icon name="plane" /> যোগাযোগ করুন</Link></div>
         </div>
         <div className={styles.portrait}><Image src={portrait} alt="Halim Md Abdul" fill priority placeholder="blur" sizes="(max-width:760px) 94vw, 45vw" /><span><i /> Japan · 日本</span></div>
       </section>
@@ -92,6 +92,6 @@ export default function Home() {
       <section className={styles.cta}><div><Icon name="message" /><h2>একসঙ্গে শেখা, তৈরি করা এবং<br />সামনে এগিয়ে যাওয়া যাক।</h2></div><div><Link href="/contact"><Icon name="message" /> Start a conversation</Link><Link href="/academy"><Icon name="book" /> Explore Academy</Link></div></section>
     </main>
 
-    <footer className={styles.footer}><div className={styles.footerGrid}><div><BrandLogo /><span>Japan · 日本</span><p>Japan-based Bangladeshi software engineer, researcher এবং lifelong learner.</p></div><div><h3>Quick Links</h3><Link href="/about">Home</Link><Link href="/journey">আমার যাত্রা</Link><Link href="/projects">Projects</Link></div><div><h3>Resources</h3><Link href="/academy">Academy</Link><Link href="/scholarships">Scholarships</Link><Link href="/blog">Blog</Link></div><div><h3>Contact</h3><Link href="/contact">Contact</Link><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">Google Scholar</a><a href="https://github.com/halimmdabdul">GitHub</a></div></div><p className={styles.copyright}>© {new Date().getFullYear()} Halim Md Abdul. All rights reserved.</p></footer>
+    <footer className={styles.footer}><div className={styles.footerGrid}><div><BrandLogo /><span>Japan · 日本</span><p>Japan-based Bangladeshi software engineer, researcher এবং lifelong learner.</p></div><div><h3>Quick Links</h3><Link href="/about">About</Link><Link href="/journey">আমার যাত্রা</Link><Link href="/projects">Projects</Link></div><div><h3>Resources</h3><Link href="/academy">Academy</Link><Link href="/scholarships">Scholarships</Link><Link href="/blog">Blog</Link></div><div><h3>Contact</h3><Link href="/contact">Contact</Link><a href="https://scholar.google.com/citations?hl=en&user=KtZ4jcMAAAAJ">Google Scholar</a><a href="https://github.com/halimmdabdul">GitHub</a></div></div><p className={styles.copyright}>© {new Date().getFullYear()} Halim Md Abdul. All rights reserved.</p></footer>
   </div>;
 }

@@ -1181,6 +1181,127 @@ const unitTenPractice: UnitPracticeDetails = {
   ],
 };
 
+const unitElevenPractice: UnitPracticeDetails = {
+  heroImage: "/images/projects/n5-practice/unit-11-quantity.png",
+  heroAlt: "Airport post-office counter-এ parcel পাঠানো, family members এবং গোনা যায় এমন apple, stamp ও postcard-এর colourful illustration",
+  dialogueImage: "/images/projects/n5-practice/unit-11-quantity.png",
+  heroEyebrow: "UNIT 11 · COUNTERS · QUANTITY · DURATION",
+  heroTitle: "কতটি, কতজন, কয়বার এবং কতক্ষণ?",
+  heroDescription: "ひとつ～とお, 人・台・枚・回 counter, duration, frequency ও どのくらい ব্যবহার করে shopping, family এবং travel-এর তথ্য বলুন।",
+  dialogueTitle: "これ、お願いします · Airport post-office conversation",
+  dialogueAlt: "Airport post-office counter-এ একজন যাত্রী Australia-তে দুইটি parcel পাঠানোর ওজন, খরচ ও সময় জিজ্ঞেস করছেন",
+  dialogueCaption: [
+    { name: "ワン", text: "これ、オーストラリアまで お願いします。" },
+    { name: "郵便局員", text: "船便ですか、航空便ですか。どのくらい かかりますか。" },
+  ],
+  modelLabel: "文型モデル",
+  modelTitle: "N を Quantity Vます · Period に Frequency Vます · どのくらい",
+  challengeTitle: "নিজের quantity profile বলুন",
+  challengeDescription: "আপনার family size, সপ্তাহে পড়ার frequency, দৈনিক study duration এবং গত shopping-এর তিনটি quantity নিয়ে অন্তত পাঁচটি Japanese sentence বলুন।",
+  usefulWords: [
+    { japanese: "いくつ", romaji: "ikutsu", bengali: "কতটি" },
+    { japanese: "何人", romaji: "nannin", bengali: "কতজন" },
+    { japanese: "何枚", romaji: "nanmai", bengali: "কতটি—পাতলা বস্তু" },
+    { japanese: "何回", romaji: "nankai", bengali: "কয়বার" },
+    { japanese: "どのくらい", romaji: "dono kurai", bengali: "কতক্ষণ/কতটা" },
+    { japanese: "全部で", romaji: "zenbu de", bengali: "সব মিলিয়ে/মোট" },
+    { japanese: "航空便", romaji: "koukuubin", bengali: "airmail" },
+    { japanese: "船便", romaji: "funabin", bengali: "surface mail" },
+  ],
+  answerPatterns: [
+    { japanese: "～つ あります。", romaji: "~tsu arimasu.", bengali: "～টি আছে।", positive: true },
+    { japanese: "～人 います。", romaji: "~nin imasu.", bengali: "～জন আছেন।", positive: true },
+    { japanese: "～時間 かかります。", romaji: "~jikan kakarimasu.", bengali: "～ঘণ্টা লাগে।", positive: true },
+    { japanese: "～だけです。", romaji: "~dake desu.", bengali: "শুধু ～।", positive: false },
+  ],
+  memoryPoints: [
+    { symbol: "つ", meaning: "সাধারণ জিনিস ১–১০ পর্যন্ত গোনার counter" },
+    { symbol: "人", meaning: "মানুষ; ひとり ও ふたり irregular" },
+    { symbol: "台／枚", meaning: "যন্ত্র-যান / পাতলা সমতল জিনিস" },
+    { symbol: "回", meaning: "কোনো কাজ কয়বার হয়" },
+    { symbol: "に", meaning: "Period に Frequency—এক সময়ে কয়বার" },
+    { symbol: "ぐらい", meaning: "প্রায়/আনুমানিক পরিমাণ" },
+    { symbol: "だけ", meaning: "শুধু ওই noun বা quantity" },
+  ],
+  selfIntroduction: {
+    japanese: "家族は 四人です。兄弟が 二人 います。毎日 二時間 日本語を 勉強します。一週間に 三回 練習します。",
+    romaji: "Kazoku wa yonin desu. Kyoudai ga futari imasu. Mainichi nijikan Nihongo o benkyou shimasu. Isshuukan ni sankai renshuu shimasu.",
+    bengali: "আমাদের পরিবারে চারজন। দুইজন ভাইবোন আছে। প্রতিদিন দুই ঘণ্টা জাপানি পড়ি এবং সপ্তাহে তিনবার অনুশীলন করি।",
+  },
+  grammarQuiz: [
+    { question: "‘তিনটি apple কিনেছি’—সঠিক word order?", options: ["りんごを 三つ 買いました。", "三つを りんご 買いました。", "りんごに 三人 買いました。", "りんごを 三枚 います。"], correctAnswer: "りんごを 三つ 買いました。", explanation: "Quantity object-এর を-এর পরে এবং verb-এর আগে বসে।" },
+    { question: "মানুষ গোনার সঠিক counter কোনটি?", options: ["人", "台", "枚", "回"], correctAnswer: "人", explanation: "মানুষে 人; একজন ひとり এবং দুজন ふたり।" },
+    { question: "Stamp পাঁচটি—কোনটি ঠিক?", options: ["切手を 五枚", "切手を 五台", "切手を 五人", "切手を 五回"], correctAnswer: "切手を 五枚", explanation: "Stamp-এর মতো পাতলা জিনিসে 枚 ব্যবহার হয়।" },
+    { question: "‘সপ্তাহে দুইবার tennis খেলি’—কোনটি ঠিক?", options: ["一週間に 二回 テニスを します。", "一週間を 二時間 テニスに します。", "二回に 一週間が します。", "一週間だけ 二人 テニスです。"], correctAnswer: "一週間に 二回 テニスを します。", explanation: "Period に Frequency 回 pattern ব্যবহার হয়।" },
+    { question: "কতক্ষণ লাগে—সঠিক question?", options: ["どのくらい かかりますか。", "いくつ いますか。", "何人 かかりますか。", "どこだけ ありますか。"], correctAnswer: "どのくらい かかりますか。", explanation: "Duration জানতে どのくらい ব্যবহার করুন।" },
+    { question: "‘শুধু একজন’—কোনটি ঠিক?", options: ["一人だけ", "一台ぐらい人", "一枚に", "一回人"], correctAnswer: "一人だけ", explanation: "সীমা প্রকাশে quantifier-এর পরে だけ বসে।" },
+  ],
+  dialogue: [
+    { speaker: "管理人", japanese: "いい 天気ですね。お出かけですか。", romaji: "Ii tenki desu ne. Odekake desu ka.", bengali: "আবহাওয়া সুন্দর, তাই না? বাইরে যাচ্ছেন?" },
+    { speaker: "ワン", japanese: "ええ、ちょっと 郵便局まで。行ってきます。", romaji: "Ee, chotto yuubinkyoku made. Ittekimasu.", bengali: "হ্যাঁ, একটু post office পর্যন্ত। যাচ্ছি, ফিরে আসব।" },
+    { speaker: "管理人", japanese: "そうですか。行ってらっしゃい。", romaji: "Sou desu ka. Itterasshai.", bengali: "আচ্ছা। গিয়ে আসুন।" },
+    { speaker: "ワン", japanese: "これ、オーストラリアまで お願いします。", romaji: "Kore, Oosutoraria made onegaishimasu.", bengali: "এটি Australia পর্যন্ত পাঠাব, অনুগ্রহ করে।" },
+    { speaker: "郵便局員", japanese: "はい。船便ですか、航空便ですか。", romaji: "Hai. Funabin desu ka, koukuubin desu ka.", bengali: "জাহাজে, নাকি airmail-এ?" },
+    { speaker: "ワン", japanese: "航空便は いくらですか。", romaji: "Koukuubin wa ikura desu ka.", bengali: "Airmail কত?" },
+    { speaker: "郵便局員", japanese: "7,600円です。こちらは 3,450円です。", romaji: "Nanasen roppyaku-en desu. Kochira wa sanzen yonhyaku gojuu-en desu.", bengali: "৭,৬০০ yen। আর এটি ৩,৪৫০ yen।" },
+    { speaker: "ワン", japanese: "船便で どのくらい かかりますか。", romaji: "Funabin de dono kurai kakarimasu ka.", bengali: "জাহাজে কতদিন লাগে?" },
+    { speaker: "郵便局員", japanese: "二か月ぐらいです。", romaji: "Nikagetsu gurai desu.", bengali: "প্রায় দুই মাস।" },
+    { speaker: "ワン", japanese: "じゃ、航空便で お願いします。", romaji: "Ja, koukuubin de onegaishimasu.", bengali: "তাহলে airmail-এ দিন।" },
+  ],
+  profiles: [],
+  modules: [
+    { step: "01", title: "文型 · Quantity & duration", instruction: "ছবির object, person এবং time cue দেখে counter-সহ সম্পূর্ণ sentence বলুন।", questions: [
+      { prompt: "りんご／8", answer: "りんごを 八つ 買いました。", romaji: "Ringo o yattsu kaimashita.", bengali: "আটটি apple কিনেছি।" },
+      { prompt: "留学生／オーストラリア／2年", answer: "留学生が 二人 います。二人は オーストラリアに 二年 います。", romaji: "Ryuugakusei ga futari imasu. Futari wa Oosutoraria ni ninen imasu.", bengali: "দুজন foreign student আছেন; তারা Australia-তে দুই বছর আছেন।" },
+      { prompt: "外国人の先生／3／all America", answer: "外国人の 先生が 三人 います。みんな アメリカ人です。", romaji: "Gaikokujin no sensei ga sannin imasu. Minna Amerikajin desu.", bengali: "তিনজন বিদেশি শিক্ষক আছেন; সবাই American।" },
+      { prompt: "大阪から オーストラリア／飛行機／10時間", answer: "大阪から オーストラリアまで 飛行機で 十時間ぐらい かかります。", romaji: "Oosaka kara Oosutoraria made hikouki de juu-jikan gurai kakarimasu.", bengali: "Osaka থেকে Australia বিমানে প্রায় ১০ ঘণ্টা লাগে।" },
+    ] },
+    { step: "02", title: "練習A · Counter selection", instruction: "Noun অনুযায়ী つ・人・台・枚・回 থেকে সঠিক counter নির্বাচন করুন।", questions: [
+      { prompt: "いす／4", answer: "いすが 四つ あります。", romaji: "Isu ga yottsu arimasu.", bengali: "চারটি chair আছে।" },
+      { prompt: "卵／6", answer: "卵を 六つ 買いました。", romaji: "Tamago o muttsu kaimashita.", bengali: "ছয়টি egg কিনেছি।" },
+      { prompt: "かばん／3", answer: "かばんが 三つ あります。", romaji: "Kaban ga mittsu arimasu.", bengali: "তিনটি bag আছে।" },
+      { prompt: "テレビ／2", answer: "テレビが 二台 あります。", romaji: "Terebi ga nidai arimasu.", bengali: "দুটি television আছে।" },
+      { prompt: "CD／1", answer: "CDが 一枚 あります。", romaji: "CD ga ichimai arimasu.", bengali: "একটি CD আছে।" },
+    ] },
+    { step: "03", title: "練習B · Picture quantity", instruction: "Picture cue দেখে いくつ／何台／何枚 question এবং পূর্ণ answer তৈরি করুন।", questions: [
+      { prompt: "りんご／3", answer: "りんごが いくつ ありますか。— 三つ あります。", romaji: "Ringo ga ikutsu arimasu ka. — Mittsu arimasu.", bengali: "কতটি apple?—তিনটি।" },
+      { prompt: "テレビ／2", answer: "テレビが 何台 ありますか。— 二台 あります。", romaji: "Terebi ga nandai arimasu ka. — Nidai arimasu.", bengali: "কতটি TV?—দুটি।" },
+      { prompt: "コンピューター／4", answer: "コンピューターが 何台 ありますか。— 四台 あります。", romaji: "Konpyuutaa ga nandai arimasu ka. — Yondai arimasu.", bengali: "কতটি computer?—চারটি।" },
+      { prompt: "封筒／3", answer: "封筒が 何枚 ありますか。— 三枚 あります。", romaji: "Fuutou ga nanmai arimasu ka. — Sanmai arimasu.", bengali: "কতটি envelope?—তিনটি।" },
+    ] },
+    { step: "04", title: "Shopping · Total price", instruction: "Quantity ও unit price cue ব্যবহার করে দোকানের প্রশ্ন-উত্তর সম্পূর্ণ করুন।", questions: [
+      { prompt: "80円の切手 5枚 + はがき 2枚", answer: "80円の 切手を 五枚と はがきを 二枚 ください。— 全部で 500円です。", romaji: "Hachijuu-en no kitte o gomai to hagaki o nimai kudasai. — Zenbu de gohyaku-en desu.", bengali: "৮০ yen-এর পাঁচটি stamp ও দুটি postcard দিন—মোট ৫০০ yen।" },
+      { prompt: "りんご／10", answer: "りんごを 十 買いました。", romaji: "Ringo o too kaimashita.", bengali: "দশটি apple কিনেছি।" },
+      { prompt: "自転車／2／send", answer: "自転車を 二台 送ります。", romaji: "Jitensha o nidai okurimasu.", bengali: "দুটি bicycle পাঠাই।" },
+      { prompt: "切手／5枚／50円／total", answer: "50円の 切手を 五枚 買います。全部で 250円です。", romaji: "Gojuu-en no kitte o gomai kaimasu. Zenbu de nihyaku gojuu-en desu.", bengali: "৫০ yen-এর পাঁচটি stamp; মোট ২৫০ yen।" },
+    ] },
+    { step: "05", title: "Family · 何人", instruction: "Family picture cue দেখে মোট সদস্য ও sibling সংখ্যা বলুন।", questions: [
+      { prompt: "家族／4", answer: "家族は 何人ですか。— 四人です。", romaji: "Kazoku wa nannin desu ka. — Yonnin desu.", bengali: "পরিবারে কতজন?—চারজন।" },
+      { prompt: "兄弟／2", answer: "兄弟が 二人 います。", romaji: "Kyoudai ga futari imasu.", bengali: "দুইজন ভাইবোন আছে।" },
+      { prompt: "田中さん／ご主人と子ども2人", answer: "田中さんの 家族は 全部で 四人です。", romaji: "Tanaka-san no kazoku wa zenbu de yonin desu.", bengali: "Tanaka-san-এর পরিবারে মোট চারজন।" },
+      { prompt: "外国人／1だけ", answer: "外国人は 一人だけ います。", romaji: "Gaikokujin wa hitori dake imasu.", bengali: "শুধু একজন বিদেশি আছেন।" },
+    ] },
+    { step: "06", title: "Frequency & duration", instruction: "Period に Frequency এবং duration without particle—দুই pattern আলাদা করে ব্যবহার করুন।", questions: [
+      { prompt: "一週間／tennis／2回", answer: "一週間に 二回 テニスを します。", romaji: "Isshuukan ni nikai tenisu o shimasu.", bengali: "সপ্তাহে দুইবার tennis খেলি।" },
+      { prompt: "毎日／日本語／2時間", answer: "毎日 二時間 日本語を 勉強します。", romaji: "Mainichi nijikan Nihongo o benkyou shimasu.", bengali: "প্রতিদিন দুই ঘণ্টা Japanese পড়ি।" },
+      { prompt: "スペイン語／3か月／studied 1か月", answer: "三か月 スペイン語を 勉強しました。実際は 一か月だけです。", romaji: "Sankagetsu Supeingo o benkyou shimashita. Jissai wa ikkagetsu dake desu.", bengali: "তিন মাস Spanish পড়েছি; আসলে শুধু এক মাস।" },
+      { prompt: "映画／1か月／1回", answer: "一か月に 一回 映画を 見ます。", romaji: "Ikkagetsu ni ikkai eiga o mimasu.", bengali: "মাসে একবার সিনেমা দেখি।" },
+    ] },
+    { step: "07", title: "会話 · Parcel at the airport", instruction: "Destination, shipping method, price ও duration cue দিয়ে airport post-office dialogue সম্পূর্ণ করুন।", questions: [
+      { prompt: "Australia-তে parcel পাঠাতে বলুন", answer: "これ、オーストラリアまで お願いします。", romaji: "Kore, Oosutoraria made onegaishimasu.", bengali: "এটি Australia পর্যন্ত পাঠান।" },
+      { prompt: "Ship না air—choice জিজ্ঞেস করুন", answer: "船便ですか、航空便ですか。", romaji: "Funabin desu ka, koukuubin desu ka.", bengali: "জাহাজে, নাকি airmail-এ?" },
+      { prompt: "Surface mail-এ কতক্ষণ লাগে", answer: "船便で どのくらい かかりますか。— 二か月ぐらいです。", romaji: "Funabin de dono kurai kakarimasu ka. — Nikagetsu gurai desu.", bengali: "জাহাজে কতদিন লাগে?—প্রায় দুই মাস।" },
+      { prompt: "Final choice: airmail", answer: "じゃ、航空便で お願いします。", romaji: "Ja, koukuubin de onegaishimasu.", bengali: "তাহলে airmail-এ দিন।" },
+    ] },
+    { step: "08", title: "問題 · Unit 11 self-test", instruction: "বইয়ের review style-এ counter, total, frequency এবং duration-এর পূর্ণ উত্তর দিন।", questions: [
+      { prompt: "子どもが 何人 いますか。— 3", answer: "子どもが 三人 います。", romaji: "Kodomo ga sannin imasu.", bengali: "তিনজন শিশু আছে।" },
+      { prompt: "毎日 何時間 働きますか。— 8", answer: "毎日 八時間 働きます。", romaji: "Mainichi hachijikan hatarakimasu.", bengali: "প্রতিদিন আট ঘণ্টা কাজ করি।" },
+      { prompt: "切手 5枚 + はがき 2枚／全部で", answer: "切手が 五枚と はがきが 二枚あります。全部で 七枚です。", romaji: "Kitte ga gomai to hagaki ga nimai arimasu. Zenbu de nanamai desu.", bengali: "পাঁচটি stamp ও দুটি postcard; মোট সাতটি।" },
+      { prompt: "日本語／3か月／1か月に8回／1回2時間", answer: "日本語を 三か月 習いました。一か月に 八回、 一回 二時間 習いました。", romaji: "Nihongo o sankagetsu naraimashita. Ikkagetsu ni hakkai, ikkai nijikan naraimashita.", bengali: "তিন মাস Japanese শিখেছি; মাসে আটবার, প্রতিবার দুই ঘণ্টা।" },
+    ] },
+  ],
+};
+
 export function getMinnaN5PracticeDetails(unitNumber: number) {
   if (unitNumber === 1) return unitOnePractice;
   if (unitNumber === 2) return unitTwoPractice;
@@ -1192,5 +1313,6 @@ export function getMinnaN5PracticeDetails(unitNumber: number) {
   if (unitNumber === 8) return unitEightPractice;
   if (unitNumber === 9) return unitNinePractice;
   if (unitNumber === 10) return unitTenPractice;
+  if (unitNumber === 11) return unitElevenPractice;
   return undefined;
 }

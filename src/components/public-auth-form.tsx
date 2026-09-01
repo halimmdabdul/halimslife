@@ -15,13 +15,21 @@ import {
 
 const initialState: PublicAuthState = {};
 
-export function PublicAuthForm({ mode }: { mode: "login" | "signup" }) {
+export function PublicAuthForm({
+  mode,
+  redirectTo,
+}: {
+  mode: "login" | "signup";
+  redirectTo?: string;
+}) {
   const { language } = useSitePreferences();
   const action = mode === "login" ? loginUser : signupUser;
   const [state, formAction, pending] = useActionState(action, initialState);
+  const switchHref = `${mode === "login" ? "/signup" : "/login"}${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ""}`;
 
   return (
     <form action={formAction} className="public-auth-form">
+      {redirectTo ? <input type="hidden" name="redirectTo" value={redirectTo} /> : null}
       {mode === "signup" ? (
         <div>
           <label htmlFor="fullName">
@@ -102,7 +110,7 @@ export function PublicAuthForm({ mode }: { mode: "login" | "signup" }) {
             ja="すでにアカウントをお持ちですか？"
           />
         )}{" "}
-        <Link href={mode === "login" ? "/signup" : "/login"}>
+        <Link href={switchHref}>
           {mode === "login" ? "Sign up" : "Login"}
         </Link>
       </p>

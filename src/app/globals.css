@@ -19,6 +19,38 @@
   color-scheme: light;
 }
 
+.deadline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.deadline-badge--unknown {
+  background: var(--soft);
+  color: var(--muted);
+}
+.deadline-badge--normal {
+  background: rgba(8, 127, 91, 0.12);
+  color: var(--green-dark);
+}
+.deadline-badge--soon {
+  background: rgba(242, 140, 40, 0.15);
+  color: #b3630f;
+}
+.deadline-badge--urgent {
+  background: rgba(217, 72, 95, 0.14);
+  color: var(--red);
+}
+.deadline-badge--passed {
+  background: var(--soft);
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
 html[data-theme="dark"] {
   --navy: #eef6f8;
   --navy-surface: #10272f;
@@ -560,6 +592,7 @@ html[data-theme="dark"] .project-box,
 html[data-theme="dark"] .blog-card,
 html[data-theme="dark"] .public-auth-form,
 html[data-theme="dark"] .account-card,
+html[data-theme="dark"] .profile-card,
 html[data-theme="dark"] .admin-login-card,
 html[data-theme="dark"] .admin-stats article,
 html[data-theme="dark"] .admin-panel,
@@ -2075,6 +2108,14 @@ html[data-theme="dark"] .footer-bottom {
   margin: 10px 0 0;
   font-size: clamp(26px, 3vw, 40px);
   letter-spacing: -0.035em;
+}
+
+.academy-cta p {
+  max-width: 620px;
+  margin: 10px 0 0;
+  color: #cfdee2;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .academy-cta > a {
@@ -3826,6 +3867,289 @@ html[data-theme="dark"] .connection-status {
 .account-card strong {
   color: var(--navy);
   font-size: 14px;
+  text-align: right;
+}
+
+.analytics-section {
+  margin-top: 44px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.analytics-section > h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 20px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.analytics-section > h2::before {
+  content: "";
+  width: 6px;
+  height: 20px;
+  border-radius: 3px;
+  background: var(--green);
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.analytics-card {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.analytics-card--wide {
+  grid-column: 1 / -1;
+}
+
+.analytics-card h3 {
+  margin: 0 0 14px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.analytics-card .account-card {
+  margin-top: 0;
+  max-width: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.analytics-card .account-card > div {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+
+.analytics-card .account-card > div:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.analytics-card .account-card > div:first-child {
+  padding-top: 0;
+}
+
+.analytics-card > a {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.analytics-empty {
+  padding: 14px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.analytics-empty p {
+  margin: 0 0 8px;
+}
+
+.analytics-empty a {
+  color: var(--green);
+  font-weight: 750;
+}
+
+.analytics-note {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.progress-list {
+  display: grid;
+  gap: 14px;
+}
+
+.progress-item {
+  display: block;
+  color: inherit;
+}
+
+.progress-item > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.progress-item b {
+  color: var(--green);
+}
+
+.progress-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--soft);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+.progress-item small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 720px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-card {
+  display: grid;
+  max-width: 560px;
+  margin-top: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.profile-field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-card > *:last-child {
+  border-bottom: 0;
+}
+
+.profile-field-row > span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.profile-field-value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-field-value strong {
+  color: var(--navy);
+  font-size: 14px;
+  text-align: right;
+}
+
+.profile-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green-dark) !important;
+}
+
+.profile-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.profile-edit-trigger {
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--green);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.profile-edit-trigger:hover {
+  border-color: var(--green);
+  background: var(--soft);
+}
+
+.profile-field-row--editing {
+  align-items: flex-start;
+  padding-block: 12px;
+}
+
+.profile-edit-form {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.profile-edit-form input {
+  min-width: 0;
+  flex: 1 1 180px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13px;
+}
+
+.profile-edit-form input:focus {
+  border-color: var(--green);
+  outline: none;
+}
+
+.profile-edit-form > div {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.profile-edit-form button {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.profile-edit-form button[type="submit"] {
+  border-color: var(--green);
+  color: #fff;
+  background: var(--green);
+}
+
+.profile-edit-error {
+  flex-basis: 100%;
+  margin: 6px 0 0;
+  color: var(--red);
+  font-size: 11px;
   text-align: right;
 }
 

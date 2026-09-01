@@ -12,8 +12,26 @@ type NavigatorProfileRow = {
   name: string;
   email: string;
   target_country: string;
+  degree: string | null;
   created_at: string;
 };
+
+function searchableText(guide: ScholarshipGuide) {
+  return [guide.university, guide.title, guide.summary, guide.audience, ...guide.highlights, ...guide.fit]
+    .join(" ")
+    .toLocaleLowerCase();
+}
+
+// Mirrors the "PhD"/"Master's" quick filters on /scholarships — reuses the
+// same text signal rather than a dedicated (and currently absent) degree
+// field on ScholarshipGuide, so behaviour stays consistent across the site.
+function matchesDegree(guide: ScholarshipGuide, degree: string | null) {
+  if (!degree) return true;
+  const text = searchableText(guide);
+  if (degree === "phd") return /phd|doctoral|doctorate/.test(text);
+  if (degree === "masters") return /master|m\.sc|msc|graduate/.test(text);
+  return true;
+}
 
 function priorityFor(guide: ScholarshipGuide, country: string) {
   switch (country) {
@@ -43,7 +61,7 @@ export async function GET(request: Request) {
 
   const { data: profileRows, error: profilesError } = await supabase
     .from("scholarship_navigator_profiles")
-    .select("user_id,name,email,target_country,created_at")
+    .select("user_id,name,email,target_country,degree,created_at")
     .not("user_id", "is", null)
     .order("created_at", { ascending: false });
 
@@ -84,9 +102,14 @@ export async function GET(request: Request) {
     if (account?.weekly_digest_opt_out) { skipped += 1; continue; }
 
     const alreadySent = sentSlugsByUser.get(userId) ?? new Set<string>();
-    const candidates = scholarshipGuides
+    const countryCandidates = scholarshipGuides
       .filter((guide) => guide.country === navigatorProfile.target_country && !alreadySent.has(guide.slug))
       .sort((a, b) => priorityFor(a, navigatorProfile.target_country) - priorityFor(b, navigatorProfile.target_country));
+
+    // Prefer a guide that also matches the requested degree level; fall
+    // back to the best country match if nothing fits that narrower filter.
+    const degreeMatched = countryCandidates.filter((guide) => matchesDegree(guide, navigatorProfile.degree));
+    const candidates = degreeMatched.length > 0 ? degreeMatched : countryCandidates;
 
     const pick = candidates[0];
     if (!pick) { skipped += 1; continue; }

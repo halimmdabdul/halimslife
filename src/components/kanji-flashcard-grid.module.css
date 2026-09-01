@@ -1,0 +1,40 @@
+.wrap{margin-top:24px}
+.progressBar{margin-bottom:18px}
+.progressBar>div{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:13px;font-weight:700;color:var(--navy)}
+.progressBar b{color:var(--green)}
+.track{height:8px;border-radius:999px;background:var(--soft);overflow:hidden}
+.track i{display:block;height:100%;border-radius:999px;background:var(--green)}
+
+.filters{display:flex;gap:8px;margin-bottom:20px}
+.filters button{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted);font-size:12px;font-weight:750}
+.filters button.active{border-color:var(--green);color:#fff;background:var(--green)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+
+.card{position:relative;padding-top:0}
+.cardRemembered{opacity:.7}
+
+.rememberButton{position:absolute;top:8px;right:8px;z-index:2;display:grid;width:26px;height:26px;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--muted);font-size:13px}
+.cardRemembered .rememberButton,
+.rememberButton[aria-pressed="true"]{border-color:var(--green);color:#fff;background:var(--green)}
+
+.flip{display:block;width:100%;height:230px;padding:0;border:0;background:transparent;perspective:1000px}
+.flipInner{position:relative;display:block;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flipped .flipInner{transform:rotateY(180deg)}
+
+.front,.back{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:14px 10px;border:1px solid var(--line);border-radius:12px 12px 0 0;background:var(--paper);backface-visibility:hidden;box-shadow:0 8px 20px rgba(8,47,84,.05)}
+.front b{font-family:"Noto Serif JP","Noto Serif Bengali",Georgia,serif;font-size:76px;color:var(--navy)}
+.front small{color:var(--muted);font-size:12px}
+
+.back{transform:rotateY(180deg);text-align:center}
+.back strong{color:var(--navy);font-size:16px}
+.back em{color:var(--green);font-style:normal;font-size:13px}
+.back p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+
+@media(max-width:960px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{flex-wrap:wrap}}
+
+html[data-theme="dark"] .front,
+html[data-theme="dark"] .back,
+html[data-theme="dark"] .filters button,
+html[data-theme="dark"] .rememberButton{background:#121d21}

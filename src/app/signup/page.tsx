@@ -11,8 +11,14 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function SignupPage() {
+export default async function SignupPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ redirectTo?: string }>;
+}) {
   await connection();
+  const { redirectTo } = await searchParams;
+  const safeRedirectTo = redirectTo?.startsWith("/") && !redirectTo.startsWith("//") ? redirectTo : undefined;
 
   return (
     <InnerPageShell>
@@ -31,7 +37,7 @@ export default async function SignupPage() {
             access করুন।
           </p>
         </div>
-        <PublicAuthForm mode="signup" />
+        <PublicAuthForm mode="signup" redirectTo={safeRedirectTo} />
       </section>
     </InnerPageShell>
   );

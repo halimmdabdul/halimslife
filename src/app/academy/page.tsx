@@ -84,6 +84,11 @@ export default async function AcademyPage() {
             </div>
           </section>
 
+          <section className="academy-cta container">
+            <div><span>Japanese শিখছেন?</span><h2>Japan-এ scholarship ও admission guide-ও দেখে নিন।</h2><p>MEXT, university recommendation এবং 13+ Japan university program-এর practical guide।</p></div>
+            <Link href="/scholarships?country=japan">Japan scholarships দেখুন <span aria-hidden="true">↗</span></Link>
+          </section>
+
           {additionalCourses.length > 0 ? (
             <section className={`container ${styles.catalogSection}`}>
               <div className="academy-heading"><div><span className="kicker">More courses</span><h2>নতুন প্রকাশিত course.</h2></div></div>

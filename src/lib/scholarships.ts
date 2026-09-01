@@ -27,6 +27,10 @@ export type ScholarshipGuide = {
   officialLinks: { label: string; href: string; description: string }[];
   reviewedAt?: string;
   reviewedOn?: string;
+  /** ISO date (YYYY-MM-DD) for the next known application deadline. Leave
+   * unset until a specific intake's deadline is confirmed from an official
+   * source — the UI falls back to "check the official page" when absent. */
+  applicationDeadline?: string;
   bestFitPriority?: number;
   businessPriority?: number;
   englishBusinessPrograms?: string;

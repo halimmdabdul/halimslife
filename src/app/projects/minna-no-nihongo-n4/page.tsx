@@ -4,6 +4,7 @@ import { InnerPageShell } from "@/components/inner-page-shell";
 import { ProjectBookReader, type BookReaderConfig } from "@/components/project-book-reader";
 import { minnaN4CompanionSections, minnaN4Units } from "@/lib/minna-n4-companion";
 import { minnaN4KanjiByUnit } from "@/lib/minna-n4-unit-kanji";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Minna no Nihongo N4 বাংলা Digital Book Project | Unit 26–50",
@@ -21,6 +22,11 @@ const readerConfig: BookReaderConfig = {
   unitViewsInModal: true,
 };
 
-export default function MinnaN4ProjectPage() {
-  return <InnerPageShell><ProjectBookReader sections={minnaN4CompanionSections} units={minnaN4Units} config={readerConfig}/></InnerPageShell>;
+export default async function MinnaN4ProjectPage() {
+  const supabase = await createServerSupabaseClient();
+  const {
+    data: { user },
+  } = (await supabase?.auth.getUser()) ?? { data: { user: null } };
+
+  return <InnerPageShell><ProjectBookReader sections={minnaN4CompanionSections} units={minnaN4Units} config={readerConfig} isAuthenticated={Boolean(user)}/></InnerPageShell>;
 }

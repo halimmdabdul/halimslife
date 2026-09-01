@@ -520,6 +520,24 @@ const unit10Examples: VocabularyExample[] = [
   {japanese:"ベランダに 木が あります。",romaji:"Beranda ni ki ga arimasu.",bengali:"Balcony-তে গাছ আছে।"},
 ];
 
+const unit11Words = [
+  ["います", "imasu", "আছে"], ["います", "imasu", "থাকি"], ["かかります", "kakarimasu", "লাগে"], ["休みます", "yasumimasu", "ছুটি নিই"],
+  ["一つ", "hitotsu", "একটি"], ["二つ", "futatsu", "দুটি"], ["三つ", "mittsu", "তিনটি"], ["四つ", "yottsu", "চারটি"], ["五つ", "itsutsu", "পাঁচটি"], ["六つ", "muttsu", "ছয়টি"], ["七つ", "nanatsu", "সাতটি"], ["八つ", "yattsu", "আটটি"], ["九つ", "kokonotsu", "নয়টি"], ["十", "too", "দশটি"],
+  ["一人", "hitori", "একজন"], ["二人", "futari", "দুজন"], ["～人", "nin", "জন"], ["～台", "dai", "যন্ত্রের counter"], ["～枚", "mai", "সমতল জিনিসের counter"], ["～回", "kai", "বার"],
+  ["りんご", "ringo", "আপেল"], ["みかん", "mikan", "mandarin"], ["サンドイッチ", "sandoicchi", "sandwich"], ["カレーライス", "karee raisu", "curry rice"], ["アイスクリーム", "aisukuriimu", "ice cream"], ["切手", "kitte", "ডাকটিকিট"], ["はがき", "hagaki", "postcard"], ["封筒", "fuutou", "খাম"], ["両親", "ryoushin", "বাবা-মা"], ["兄弟", "kyoudai", "ভাইবোন"],
+  ["兄", "ani", "নিজের বড় ভাই"], ["お兄さん", "oniisan", "বড় ভাই"], ["姉", "ane", "নিজের বড় বোন"], ["お姉さん", "oneesan", "বড় বোন"], ["弟", "otouto", "ছোট ভাই"], ["弟さん", "otoutosan", "অন্যের ছোট ভাই"], ["妹", "imouto", "ছোট বোন"], ["妹さん", "imoutosan", "অন্যের ছোট বোন"], ["外国", "gaikoku", "বিদেশ"], ["留学生", "ryuugakusei", "বিদেশি শিক্ষার্থী"],
+  ["クラス", "kurasu", "class"], ["～時間", "jikan", "ঘণ্টা"], ["～週間", "shuukan", "সপ্তাহ"], ["～か月", "kagetsu", "মাস"], ["～年", "nen", "বছর"], ["～ぐらい", "gurai", "প্রায়"], ["どのくらい", "dono kurai", "কতক্ষণ"], ["全部で", "zenbu de", "মোট"], ["みんな", "minna", "সবাই"], ["～だけ", "dake", "শুধু"],
+  ["いい天気ですね", "ii tenki desu ne", "সুন্দর আবহাওয়া"], ["お出かけですか", "odekake desu ka", "বাইরে যাচ্ছেন?"], ["ちょっと～まで", "chotto made", "একটু পর্যন্ত"], ["行ってらっしゃい", "itterasshai", "গিয়ে আসুন"], ["行ってきます", "ittekimasu", "যাচ্ছি, ফিরে আসব"], ["定食", "teishoku", "set meal"], ["ランチ", "ranchi", "lunch"], ["天丼", "tendon", "tempura rice bowl"], ["親子丼", "oyakodon", "chicken-and-egg bowl"], ["牛丼", "gyuudon", "beef bowl"],
+  ["焼き肉", "yakiniku", "grilled meat"], ["漬物", "tsukemono", "আচার"], ["みそ汁", "misoshiru", "miso soup"], ["おにぎり", "onigiri", "rice ball"], ["ハンバーグ", "hanbaagu", "hamburger steak"], ["コロッケ", "korokke", "croquette"], ["えびフライ", "ebi furai", "fried shrimp"], ["フライドチキン", "furaido chikin", "fried chicken"], ["サラダ", "sarada", "salad"], ["スープ", "suupu", "soup"],
+  ["スパゲッティ", "supagetti", "spaghetti"], ["ピザ", "piza", "pizza"], ["ハンバーガー", "hanbaagaa", "hamburger"], ["トースト", "toosuto", "toast"], ["コーヒー", "koohii", "coffee"], ["紅茶", "koucha", "black tea"], ["ココア", "kokoa", "cocoa"], ["ジュース", "juusu", "juice"], ["コーラ", "koora", "cola"], ["オーストラリア", "Oosutoraria", "Australia"],
+] as const;
+
+const unit11Examples: VocabularyExample[] = unit11Words.map(([word, romaji, bengali]) => ({
+  japanese: `「${word}」を 使って 文を 作ります。`,
+  romaji: `“${romaji}” o tsukatte bun o tsukurimasu.`,
+  bengali: `“${bengali}” শব্দটি দিয়ে বাক্য বানাই।`,
+}));
+
 export function getMinnaN5VocabularyExample(unitNumber: number, index: number) {
   if (unitNumber === 1) return unit1Examples[index];
   if (unitNumber === 2) return unit2Examples[index];
@@ -531,5 +549,6 @@ export function getMinnaN5VocabularyExample(unitNumber: number, index: number) {
   if (unitNumber === 8) return unit8Examples[index];
   if (unitNumber === 9) return unit9Examples[index];
   if (unitNumber === 10) return unit10Examples[index];
+  if (unitNumber === 11) return unit11Examples[index];
   return undefined;
 }

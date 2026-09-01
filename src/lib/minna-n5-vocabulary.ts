@@ -94,6 +94,17 @@ const vocabularyBanks: Record<number, string[]> = {
     "ちかく（近く） — কাছাকাছি · chikaku", "あいだ（間） — মাঝখানে · aida", "～や～［など］ — ～, ～ ইত্যাদি · ya nado", "どうも すみません — অনেক দুঃখিত/মাফ করবেন · doumo sumimasen", "コーナー — section/corner · koonaa", "いちばん した（一番下） — একেবারে নিচে · ichiban shita", "とうきょうディズニーランド（東京ディズニーランド） — Tokyo Disneyland · Toukyou Dizuniirando", "アジアストア — Asia Store · Ajia Sutoa", "げんかん（玄関） — entrance hall · genkan", "トイレ — toilet · toire",
     "ふろ（風呂） — bath/bathroom · furo", "せんめんじょ（洗面所） — washroom · senmenjo", "だいどころ（台所） — kitchen · daidokoro", "しょくどう（食堂） — dining room · shokudou", "いま（居間） — living room · ima", "しんしつ（寝室） — bedroom · shinshitsu", "ろうか（廊下） — hallway · rouka", "ベランダ — balcony · beranda",
   ],
+  11: [
+    "います［子どもが～］ — সন্তান আছে · imasu", "います［日本に～］ — জাপানে থাকি · imasu", "かかります — সময়/খরচ লাগে · kakarimasu", "休みます［会社を～］ — কাজ থেকে ছুটি নিই · yasumimasu",
+    "一つ — একটি · hitotsu", "二つ — দুটি · futatsu", "三つ — তিনটি · mittsu", "四つ — চারটি · yottsu", "五つ — পাঁচটি · itsutsu", "六つ — ছয়টি · muttsu", "七つ — সাতটি · nanatsu", "八つ — আটটি · yattsu", "九つ — নয়টি · kokonotsu", "十 — দশটি · too",
+    "一人 — একজন · hitori", "二人 — দুজন · futari", "～人 — ～জন · nin", "～台 — যন্ত্র/যানবাহনের counter · dai", "～枚 — সমতল জিনিসের counter · mai", "～回 — বার · kai",
+    "りんご（林檎） — আপেল · ringo", "みかん — mandarin orange · mikan", "サンドイッチ — sandwich · sandoicchi", "カレー［ライス］ — curry rice · karee raisu", "アイスクリーム — ice cream · aisukuriimu",
+    "切手 — ডাকটিকিট · kitte", "はがき — postcard · hagaki", "封筒 — খাম · fuutou", "両親 — বাবা-মা · ryoushin", "兄弟 — ভাইবোন · kyoudai", "兄 — নিজের বড় ভাই · ani", "お兄さん — বড় ভাই/অন্যের বড় ভাই · oniisan", "姉 — নিজের বড় বোন · ane", "お姉さん — বড় বোন/অন্যের বড় বোন · oneesan", "弟 — ছোট ভাই · otouto", "弟さん — অন্যের ছোট ভাই · otoutosan", "妹 — ছোট বোন · imouto", "妹さん — অন্যের ছোট বোন · imoutosan",
+    "外国 — বিদেশ · gaikoku", "留学生 — বিদেশি শিক্ষার্থী · ryuugakusei", "クラス — class · kurasu", "～時間 — ～ঘণ্টা · jikan", "～週間 — ～সপ্তাহ · shuukan", "～か月 — ～মাস · kagetsu", "～年 — ～বছর · nen", "～ぐらい — প্রায়～ · gurai", "どのくらい — কতক্ষণ/কতটা · dono kurai", "全部で — মোট · zenbu de", "みんな — সবাই · minna", "～だけ — শুধু～ · dake",
+    "いい天気ですね — সুন্দর আবহাওয়া, তাই না · ii tenki desu ne", "お出かけですか — বাইরে যাচ্ছেন? · odekake desu ka", "ちょっと～まで — একটু ～ পর্যন্ত · chotto made", "行ってらっしゃい — গিয়ে আসুন · itterasshai", "行ってきます — যাচ্ছি, ফিরে আসব · ittekimasu",
+    "定食 — set meal · teishoku", "ランチ — lunch set · ranchi", "天丼 — tempura rice bowl · tendon", "親子丼 — chicken-and-egg rice bowl · oyakodon", "牛丼 — beef bowl · gyuudon", "焼き肉 — grilled meat · yakiniku", "漬物 — আচার · tsukemono", "みそ汁 — miso soup · misoshiru", "おにぎり — rice ball · onigiri",
+    "ハンバーグ — hamburger steak · hanbaagu", "コロッケ — croquette · korokke", "えびフライ — fried shrimp · ebi furai", "フライドチキン — fried chicken · furaido chikin", "サラダ — salad · sarada", "スープ — soup · suupu", "スパゲッティ — spaghetti · supagetti", "ピザ — pizza · piza", "ハンバーガー — hamburger · hanbaagaa", "トースト — toast · toosuto", "コーヒー — coffee · koohii", "紅茶 — black tea · koucha", "ココア — cocoa · kokoa", "ジュース — juice · juusu", "コーラ — cola · koora", "オーストラリア — Australia · Oosutoraria",
+  ],
 };
 
 function wordKey(item: string) {
@@ -111,6 +122,7 @@ export function getMinnaN5UnitVocabulary(unit: CompanionUnit) {
   if (unit.number === 8) return vocabularyBanks[8];
   if (unit.number === 9) return vocabularyBanks[9];
   if (unit.number === 10) return vocabularyBanks[10];
+  if (unit.number === 11) return vocabularyBanks[11];
   const bank = vocabularyBanks[Math.ceil(unit.number / 5)] ?? [];
   const unique = new Map<string, string>();
   [...unit.vocabulary, ...bank].forEach((item) => {
