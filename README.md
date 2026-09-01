@@ -181,6 +181,20 @@ set role = 'admin'
 where lower(email) = lower('your-email@example.com');
 ```
 
+### Branded signup confirmation email
+
+The signup confirmation subject and HTML are configured in
+`supabase/config.toml` and `supabase/templates/confirmation.html`. After editing
+the template, publish it to the linked hosted project with:
+
+```powershell
+npx.cmd supabase config push
+```
+
+The template must keep `{{ .ConfirmationURL }}` on the confirmation button and
+fallback link. A branded From name/address additionally requires a verified
+custom SMTP sender in Supabase Auth settings.
+
 ## Authentication configuration
 
 In **Supabase Dashboard → Authentication → URL Configuration**, use:

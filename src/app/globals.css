@@ -555,6 +555,10 @@ html[data-theme="dark"] .brand-mark {
   color: var(--green);
 }
 
+.nav-mobile-auth {
+  display: none;
+}
+
 .nav-contact {
   justify-self: end;
   padding: 10px 20px;
@@ -2921,7 +2925,7 @@ html[data-theme="dark"] .tech-course-icon {
 .admin-table-head,
 .admin-user-row {
   display: grid;
-  grid-template-columns: 1.25fr 0.65fr 0.45fr 1fr;
+  grid-template-columns: 1.15fr 0.6fr 0.4fr 0.95fr 0.45fr;
   align-items: center;
   gap: 20px;
   padding: 17px 22px;
@@ -3038,6 +3042,23 @@ html[data-theme="dark"] .tech-course-icon {
 .admin-user-row select:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.admin-user-row button.admin-delete-user {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid #f0c6cc;
+  border-radius: 6px;
+  background: #fff0f2;
+  color: #a5293e;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admin-user-row button.admin-delete-user:hover {
+  border-color: #a5293e;
 }
 
 .analytics-stats {
@@ -6091,6 +6112,47 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
     height: 2px;
     border-radius: 2px;
     background: var(--navy);
+  }
+
+  /* Shrink the language/dark-mode controls next to the hamburger, and move
+     Login/My Account into the mobile menu instead of sitting beside it. */
+  .site-controls {
+    gap: 4px;
+  }
+
+  .language-control select,
+  .theme-toggle {
+    min-height: 32px;
+    font-size: 10px;
+  }
+
+  .language-control select {
+    min-width: 56px;
+    padding: 0 20px 0 7px;
+  }
+
+  .theme-toggle {
+    width: 32px;
+    font-size: 16px;
+  }
+
+  .header-actions .nav-contact {
+    display: none;
+  }
+
+  .topbar nav.mobile-nav-open .nav-mobile-auth {
+    display: block;
+  }
+
+  .topbar nav.mobile-nav-open .nav-mobile-auth .nav-contact {
+    display: block;
+    justify-self: stretch;
+    padding: 15px 18px;
+    border: 0;
+    border-radius: 0;
+    color: var(--green);
+    font-weight: 700;
+    text-align: left;
   }
 
   .academy-heading {

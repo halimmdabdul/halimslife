@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { updateUserRole } from "@/app/admin/actions";
+import { DeleteUserForm } from "@/components/delete-user-button";
 import { requireAdmin } from "@/lib/admin-auth";
 
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ export default async function AdminUsersPage() {
           <span>Joined</span>
           <span>Role</span>
           <span>Action</span>
+          <span>Delete</span>
         </div>
         {profiles.map((profile) => {
           const isCurrentAdmin = profile.id === currentAdmin.id;
@@ -81,6 +83,7 @@ export default async function AdminUsersPage() {
                   {isCurrentAdmin ? "Current account" : "Update"}
                 </button>
               </form>
+              {isCurrentAdmin ? null : <DeleteUserForm userId={profile.id} email={profile.email} />}
             </div>
           );
         })}

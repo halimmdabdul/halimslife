@@ -7,7 +7,7 @@ export function SiteHeader() {
   return (
     <header className="topbar" id="top">
       <BrandLogo />
-      <SiteNavigation />
+      <SiteNavigation authLink={<PublicAuthLink />} />
       <div className="header-actions">
         <SiteControls />
         <PublicAuthLink />

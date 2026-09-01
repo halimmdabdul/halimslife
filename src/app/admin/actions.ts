@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import { requireAdmin } from "@/lib/admin-auth";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { sendContactReply } from "@/lib/contact-email";
 
 export type LoginState = {
@@ -83,6 +84,32 @@ export async function updateUserRole(formData: FormData) {
 
   if (error) {
     throw new Error("Role update failed.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/users");
+}
+
+export async function deleteUser(formData: FormData) {
+  const { profile } = await requireAdmin();
+  const userId = String(formData.get("userId") ?? "");
+
+  if (!userId) {
+    throw new Error("Invalid delete request.");
+  }
+
+  if (userId === profile.id) {
+    throw new Error("You cannot delete your own account.");
+  }
+
+  const adminClient = createSupabaseAdminClient();
+  if (!adminClient) {
+    throw new Error("SUPABASE_SERVICE_ROLE_KEY is not configured.");
+  }
+
+  const { error } = await adminClient.auth.admin.deleteUser(userId);
+  if (error) {
+    throw new Error("User delete failed.");
   }
 
   revalidatePath("/admin");

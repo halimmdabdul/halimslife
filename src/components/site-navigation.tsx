@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { TranslatedText } from "@/components/site-preferences";
 
-export function SiteNavigation() {
+export function SiteNavigation({ authLink }: { authLink: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const navigationRef = useRef<HTMLDivElement>(null);
@@ -71,6 +71,7 @@ export function SiteNavigation() {
         <Link href="/contact" aria-current={currentRoute("/contact")} onClick={closeMenu}>
           <TranslatedText bn="যোগাযোগ" en="Contact" ja="お問い合わせ" />
         </Link>
+        <span className="nav-mobile-auth" onClick={closeMenu}>{authLink}</span>
       </nav>
       <button
         className="mobile-menu-toggle"
