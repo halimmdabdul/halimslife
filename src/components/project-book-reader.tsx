@@ -1185,7 +1185,15 @@ export function ProjectBookReader({ sections, units, config, isAuthenticated }: 
                                                       image:
                                                         "/images/projects/n5-vocabulary/unit-11-sprites.png",
                                                     }
-                                                  : null;
+                                                  : config.bookId === "n5" &&
+                                                      unit.number === 14
+                                                    ? {
+                                                        columns: 10,
+                                                        rows: 8,
+                                                        image:
+                                                          "/images/projects/n5-vocabulary/unit-14-sprites.png",
+                                                      }
+                                                    : null;
                           const example =
                             config.bookId === "n5"
                               ? getMinnaN5VocabularyExample(unit.number, index)

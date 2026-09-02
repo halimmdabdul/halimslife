@@ -635,6 +635,116 @@ const unit11GrammarDetails: GrammarDetail[] = [
   {title:"শুধু একটি সীমা—だけ",structure:"N／Quantifier + だけ",explanation:"কেবল ওই noun বা ওই পরিমাণ—এর বেশি নয়—বোঝাতে তার পরে だけ বসে। だけ নিজেই সীমা প্রকাশ করে, তাই আলাদা negative দরকার নেই।",notes:["休みは 日曜日だけです = ছুটি শুধু রবিবার।","一人だけ = শুধু একজন।","だけ-এর আগে particle নয়; প্রয়োজন হলে বাক্যের অন্য particle পরে আসতে পারে।"],visual:{tokens:[{text:"外国人の 社員が",role:"যাদের কথা"},{text:"一人だけ",role:"শুধু একজন",accent:true},{text:"います",role:"আছেন"}],romaji:"Gaikokujin no shain ga hitori dake imasu.",bengali:"শুধু একজন বিদেশি কর্মী আছেন।"},examples:[{japanese:"休みは 日曜日だけです。",romaji:"Yasumi wa nichiyoubi dake desu.",bengali:"ছুটি শুধু রবিবার।"},{japanese:"りんごを 一つだけ 買いました。",romaji:"Ringo o hitotsu dake kaimashita.",bengali:"শুধু একটি আপেল কিনেছি।"}]},
 ];
 
+const unit13GrammarDetails: GrammarDetail[] = [
+  {
+    title: "কোনো জিনিস চাই—N が ほしいです",
+    structure: "N が ほしいです。",
+    explanation: "নিজের কোনো জিনিস পাওয়ার ইচ্ছা প্রকাশ করতে চাওয়া বস্তুটির পরে が এবং ほしいです ব্যবহার হয়। প্রশ্নে 何が ほしいですか বলা যায়। ほしい একটি い-adjective, তাই negative হবে ほしくないです／ほしくありません এবং past হবে ほしかったです। সাধারণত অন্য ব্যক্তির ইচ্ছা সরাসরি বলার বদলে প্রশ্ন করা বা ～と言っています-এর মতো রূপ ব্যবহার করা হয়।",
+    notes: ["চাওয়া জিনিসটি を নয়, が দিয়ে চিহ্নিত হয়।", "Negative: ほしくないです／ほしくありません।", "নিজের ইচ্ছা: わたしは～が ほしいです; প্রশ্ন: 何が ほしいですか。"],
+    visual: { tokens: [{ text: "わたしは", role: "যিনি চান" }, { text: "車", role: "চাওয়া বস্তু" }, { text: "が", role: "Object marker", accent: true }, { text: "ほしいです", role: "চাই", accent: true }], romaji: "Watashi wa kuruma ga hoshii desu.", bengali: "আমি একটি গাড়ি চাই।" },
+    examples: [{ japanese: "今、何が ほしいですか。", romaji: "Ima, nani ga hoshii desu ka.", bengali: "এখন আপনি কী চান?" }, { japanese: "新しい パソコンが ほしくないです。", romaji: "Atarashii pasokon ga hoshikunai desu.", bengali: "আমি নতুন কম্পিউটার চাই না।" }],
+  },
+  {
+    title: "কোনো কাজ করতে চাই—Vます-stem たいです",
+    structure: "Vます → Vます-stem + たいです。",
+    explanation: "কোনো কাজ করার ব্যক্তিগত ইচ্ছা জানাতে ます বাদ দিয়ে verb stem-এর পরে たいです বসে। যেমন 行きます→行きたいです, 食べます→食べたいです। たい-রূপ い-adjective-এর মতো বদলায়: たくないです, たかったです, たくなかったです। Object-এর পরে を এবং কথ্য ব্যবহারে が—দুটিই দেখা যায়।",
+    notes: ["行きます → 行きたいです; 飲みます → 飲みたいです।", "Negative: Vたい → Vたくないです।", "অন্যের ইচ্ছা নিশ্চিতভাবে বলার জন্য এই রূপ সরাসরি ব্যবহার না করাই স্বাভাবিক।"],
+    visual: { tokens: [{ text: "沖縄へ", role: "গন্তব্য" }, { text: "行き", role: "ます-stem" }, { text: "たいです", role: "করতে চাই", accent: true }], romaji: "Okinawa e ikitai desu.", bengali: "আমি ওকিনাওয়া যেতে চাই।" },
+    examples: [{ japanese: "てんぷらを 食べたいです。", romaji: "Tenpura o tabetai desu.", bengali: "আমি টেম্পুরা খেতে চাই।" }, { japanese: "神戸で 何を 買いたいですか。", romaji: "Koube de nani o kaitai desu ka.", bengali: "কোবেতে আপনি কী কিনতে চান?" }],
+  },
+  {
+    title: "কাজের উদ্দেশ্যে যাওয়া/আসা/ফেরা",
+    structure: "Place へ Vます-stem に 行きます／来ます／帰ります。",
+    explanation: "কোথাও যাওয়ার উদ্দেশ্য বলতে গন্তব্যের পরে へ, উদ্দেশ্যের verb-এর ます-stem-এর পরে に, তারপর 行きます／来ます／帰ります বসে। এখানে に গন্তব্য নয়—উদ্দেশ্য চিহ্নিত করে।",
+    notes: ["食べます → 食べに 行きます।", "見ます → 見に 来ます; 買います → 買いに 行きます।", "গন্তব্য へ/に হতে পারে, কিন্তু উদ্দেশ্যের আগে に অপরিহার্য।"],
+    visual: { tokens: [{ text: "神戸へ", role: "গন্তব্য" }, { text: "インド料理を 食べ", role: "উদ্দেশ্যের কাজ" }, { text: "に", role: "Purpose", accent: true }, { text: "行きます", role: "যাই" }], romaji: "Koube e Indo ryouri o tabe ni ikimasu.", bengali: "ভারতীয় খাবার খেতে কোবে যাই।" },
+    examples: [{ japanese: "デパートへ 靴を 買いに 行きます。", romaji: "Depaato e kutsu o kai ni ikimasu.", bengali: "জুতা কিনতে ডিপার্টমেন্ট স্টোরে যাই।" }, { japanese: "友達は わたしに 会いに 来ました。", romaji: "Tomodachi wa watashi ni ai ni kimashita.", bengali: "বন্ধু আমার সঙ্গে দেখা করতে এসেছিল।" }],
+  },
+  {
+    title: "Noun দিয়ে উদ্দেশ্য বলা",
+    structure: "Place へ N（action/event）に 行きます。",
+    explanation: "買い物, 食事, 散歩, 勉強, お祭り-এর মতো কাজ বা event বোঝানো noun-ও に নিয়ে movement verb-এর উদ্দেশ্য হতে পারে। Verb stem বানানোর দরকার নেই।",
+    notes: ["買い物に 行きます = কেনাকাটা করতে যাই।", "日本へ 美術の 勉強に 来ました = চারুকলা পড়তে জাপানে এসেছি।", "お祭りに 行きます-এ event-এ অংশ নিতে/দেখতে যাওয়ার অর্থ হয়।"],
+    visual: { tokens: [{ text: "京都の お祭り", role: "Event" }, { text: "に", role: "উদ্দেশ্য", accent: true }, { text: "行きます", role: "যাই" }], romaji: "Kyouto no omatsuri ni ikimasu.", bengali: "কিয়োটোর উৎসবে যাই।" },
+    examples: [{ japanese: "デパートへ 買い物に 行きます。", romaji: "Depaato e kaimono ni ikimasu.", bengali: "ডিপার্টমেন্ট স্টোরে কেনাকাটা করতে যাই।" }, { japanese: "日本へ 美術の 勉強に 来ました。", romaji: "Nihon e bijutsu no benkyou ni kimashita.", bengali: "চারুকলা পড়তে জাপানে এসেছি।" }],
+  },
+  {
+    title: "অনির্দিষ্ট কিছু/কোথাও—何か・どこか",
+    structure: "何か（を）V／どこか（へ）V",
+    explanation: "Question word-এর পরে か বসলে নির্দিষ্ট নয় এমন কিছু বা কোনো জায়গা বোঝায়: 何か = কিছু, どこか = কোথাও। か-এর পরে を বা へ অনেক সময় বাদ যায়। Negative-এর সঙ্গে 何も／どこも ব্যবহার করলে ‘কিছুই না/কোথাও না’ বোঝায়।",
+    notes: ["何か 飲みたいです = কিছু পান করতে চাই।", "どこかへ 行きましたか = কোথাও গিয়েছিলেন?", "何も 食べません／どこも 行きません = কিছুই খাই না/কোথাও যাই না।"],
+    visual: { tokens: [{ text: "冬休みは", role: "সময়" }, { text: "どこか", role: "কোথাও", accent: true }, { text: "へ 行きましたか", role: "গিয়েছিলেন?" }], romaji: "Fuyuyasumi wa dokoka e ikimashita ka.", bengali: "শীতের ছুটিতে কোথাও গিয়েছিলেন?" },
+    examples: [{ japanese: "のどが かわきましたから、何か 飲みたいです。", romaji: "Nodo ga kawakimashita kara, nanika nomitai desu.", bengali: "তৃষ্ণা পেয়েছে, তাই কিছু পান করতে চাই।" }, { japanese: "きのうは どこも 行きませんでした。", romaji: "Kinou wa dokomo ikimasen deshita.", bengali: "গতকাল কোথাও যাইনি।" }],
+  },
+  {
+    title: "ভদ্র সম্মানসূচক ご～",
+    structure: "ご + 漢語 noun",
+    explanation: "কিছু Sino-Japanese noun-এর আগে ご বসিয়ে ভদ্রতা বা সম্মান প্রকাশ করা হয়। Lesson 13-এর restaurant কথোপকথনে ご注文は？ মানে ‘আপনার অর্ডার কী?’। সব noun-এর আগে ইচ্ছামতো ご বসানো যায় না—শব্দটি প্রচলিতভাবে কীভাবে ব্যবহৃত হয় তা শিখতে হয়।",
+    notes: ["ご注文, ご家族, ご住所 প্রচলিত রূপ।", "Japanese-origin বহু শব্দে お ব্যবহৃত হয়: お名前, お金।", "নিজের কাজ/বস্তুতে সম্মানসূচক prefix সাধারণত ব্যবহার করা হয় না।"],
+    visual: { tokens: [{ text: "ご", role: "সম্মানসূচক", accent: true }, { text: "注文", role: "অর্ডার" }, { text: "は？", role: "কী নেবেন?" }], romaji: "Gochuumon wa?", bengali: "আপনি কী অর্ডার করবেন?" },
+    examples: [{ japanese: "ご注文は お決まりですか。", romaji: "Gochuumon wa okimari desu ka.", bengali: "আপনার অর্ডার ঠিক হয়েছে কি?" }, { japanese: "少々 お待ちください。", romaji: "Shoushou omachi kudasai.", bengali: "অনুগ্রহ করে একটু অপেক্ষা করুন।" }],
+  },
+];
+
+const unit14GrammarDetails: GrammarDetail[] = [
+  {
+    title: "Verb group চিনে て-form বানানোর ভিত্তি",
+    structure: "Group I／Group II／Group III → Vて-form",
+    explanation: "Japanese verb-এর て-form request, চলমান কাজ এবং একাধিক grammar pattern-এর ভিত্তি। Group I-এ ます-এর আগের i-sound অনুযায়ী ending বদলায়। Group II-তে সাধারণত ます বাদ দিয়ে て বসে। Group III-এর します→して এবং 来ます→来て আলাদাভাবে মনে রাখতে হয়।",
+    notes: ["Group I: 書きます, 急ぎます, 飲みます, 待ちます, 話します।", "Group II: 食べます→食べて, 見ます→見て।", "Exception: 行きます-এর て-form 行って—行いて নয়।"],
+    visual: { tokens: [{ text: "待ちます", role: "ます-form" }, { text: "→", role: "Change" }, { text: "待って", role: "て-form", accent: true }], romaji: "Machimasu → matte", bengali: "অপেক্ষা করি → অপেক্ষা করে/অপেক্ষা করুন।" },
+    examples: [{ japanese: "食べます → 食べて", romaji: "Tabemasu → tabete", bengali: "খাই → খেয়ে/খান।" }, { japanese: "します → して／来ます → 来て", romaji: "Shimasu → shite / kimasu → kite", bengali: "করি → করে; আসি → এসে।" }],
+  },
+  {
+    title: "Group I て-form sound map",
+    structure: "き→いて・ぎ→いで・み/び/に→んで・ち/り/い→って・し→して",
+    explanation: "Group I verb-এর শেষ kana দেখে নির্দিষ্ট sound change করতে হয়। এই map-টি আলাদা নিয়ম হিসেবে না পড়ে কয়েকটি representative verb-এর সঙ্গে জোড়া করে active recall করলে দ্রুত মনে থাকে।",
+    notes: ["書きます→書いて; 急ぎます→急いで।", "飲みます→飲んで; 呼びます→呼んで; 死にます→死んで।", "待ちます→待って; 取ります→取って; 買います→買って; 話します→話して。"],
+    visual: { tokens: [{ text: "き・ぎ", role: "Ending" }, { text: "いて・いで", role: "Change", accent: true }, { text: "み・び・に", role: "Ending" }, { text: "んで", role: "Change", accent: true }], romaji: "ki→ite, gi→ide, mi/bi/ni→nde", bengali: "শেষ ধ্বনি দেখে て-form বদলায়।" },
+    examples: [{ japanese: "電気を 消して、窓を 開けてください。", romaji: "Denki o keshite, mado o akete kudasai.", bengali: "বাতি নিভিয়ে জানালা খুলুন।" }, { japanese: "ちょっと 待ってください。", romaji: "Chotto matte kudasai.", bengali: "একটু অপেক্ষা করুন।" }],
+  },
+  {
+    title: "ভদ্র request বা instruction—Vてください",
+    structure: "Vて-form + ください。",
+    explanation: "কাউকে ভদ্রভাবে কোনো কাজ করতে অনুরোধ বা নির্দেশ দিতে て-form-এর পরে ください বসে। Request আরও নরম করতে আগে すみませんが বলা যায়। Formal hierarchy-তে ঊর্ধ্বতন ব্যক্তির কাছে সরাসরি command-এর মতো না শোনাতে tone ও context খেয়াল রাখা জরুরি।",
+    notes: ["ください-এর আগে dictionary form নয়, অবশ্যই て-form।", "すみませんが、～てください = মাফ করবেন, অনুগ্রহ করে～।", "দিকনির্দেশ, classroom instruction ও service situation-এ খুব সাধারণ।"],
+    visual: { tokens: [{ text: "この 漢字の 読み方を", role: "যে তথ্য" }, { text: "教えて", role: "て-form", accent: true }, { text: "ください", role: "অনুরোধ", accent: true }], romaji: "Kono kanji no yomikata o oshiete kudasai.", bengali: "এই kanji-টির পড়া বলুন।" },
+    examples: [{ japanese: "ボールペンで 名前を 書いてください。", romaji: "Boorupen de namae o kaite kudasai.", bengali: "বলপেন দিয়ে নাম লিখুন।" }, { japanese: "信号を 右へ 曲がってください。", romaji: "Shingou o migi e magatte kudasai.", bengali: "সিগন্যালে ডানে ঘুরুন।" }],
+  },
+  {
+    title: "এখন কাজ চলছে—Vています",
+    structure: "Vて-form + います。",
+    explanation: "কথার মুহূর্তে কোনো action চলমান থাকলে て-form-এর পরে います বসে। প্রশ্নে ～ていますか, affirmative-এ ～ています এবং negative-এ ～ていません ব্যবহার করুন।",
+    notes: ["今 যোগ করলে ‘এখন’ অর্থটি স্পষ্ট হয়।", "雨が 降っています = বৃষ্টি হচ্ছে।", "Negative ongoing: 電話を かけていません = ফোন করছি না।"],
+    visual: { tokens: [{ text: "ミラーさんは 今", role: "Topic/সময়" }, { text: "電話を かけて", role: "চলমান কাজ", accent: true }, { text: "います", role: "চলছে", accent: true }], romaji: "Miraa-san wa ima denwa o kakete imasu.", bengali: "মিলার এখন ফোন করছেন।" },
+    examples: [{ japanese: "今 雨が 降っていますか。", romaji: "Ima ame ga futte imasu ka.", bengali: "এখন কি বৃষ্টি হচ্ছে?" }, { japanese: "はい、降っています。／いいえ、降っていません。", romaji: "Hai, futte imasu. / Iie, futte imasen.", bengali: "হ্যাঁ, হচ্ছে। / না, হচ্ছে না।" }],
+  },
+  {
+    title: "সাহায্য করার প্রস্তাব—Vましょうか",
+    structure: "Vます-stem + ましょうか。",
+    explanation: "শ্রোতার জন্য কোনো কাজ করে দেওয়ার প্রস্তাব দিতে verb-এর ます-form থেকে ます বাদ দিয়ে ましょうか বসে। এটি ‘আমি কি করে দেব?’ অর্থ দেয়। গ্রহণে はい、お願いします এবং না চাইলে いいえ、けっこうです বলা যায়।",
+    notes: ["持ちます→持ちましょうか। 貸します→貸しましょうか।।", "নিজেরা একসঙ্গে কিছু করার suggestion-ও context অনুযায়ী ～ましょうか হতে পারে।", "Offer প্রত্যাখ্যান: いいえ、けっこうです／だいじょうぶです。"],
+    visual: { tokens: [{ text: "荷物を", role: "Object" }, { text: "持ち", role: "ます-stem" }, { text: "ましょうか", role: "প্রস্তাব", accent: true }], romaji: "Nimotsu o mochimashou ka.", bengali: "ব্যাগটি কি আমি বহন করব?" },
+    examples: [{ japanese: "傘を 貸しましょうか。— ええ、お願いします。", romaji: "Kasa o kashimashou ka. — Ee, onegaishimasu.", bengali: "ছাতা ধার দেব? — হ্যাঁ, অনুগ্রহ করে।" }, { japanese: "あしたも 来ましょうか。— いいえ、けっこうです。", romaji: "Ashita mo kimashou ka. — Iie, kekkou desu.", bengali: "কালও আসব? — না, দরকার নেই।" }],
+  },
+  {
+    title: "দৃশ্যমান ঘটনা বা ব্যক্তি—N が V",
+    structure: "N が 降ります／います／あります。",
+    explanation: "নিজে থেকে ঘটছে এমন ঘটনা, নতুনভাবে নজরে আসা বস্তু বা উপস্থিত ব্যক্তিকে が দিয়ে চিহ্নিত করা হয়। Unit 14-তে 雨が 降ります/降っています এবং ミラーさんが います-এর মতো বাক্যে এই pattern দেখা যায়।",
+    notes: ["が নতুন বা focal information দেখায়।", "প্রাকৃতিক ঘটনা: 雨が 降ります, 雪が 降ります।", "মানুষ/প্রাণী います; জড় বস্তু あります।"],
+    visual: { tokens: [{ text: "雨", role: "ঘটনা" }, { text: "が", role: "Subject marker", accent: true }, { text: "降っています", role: "চলছে" }], romaji: "Ame ga futte imasu.", bengali: "বৃষ্টি হচ্ছে।" },
+    examples: [{ japanese: "あそこに ミラーさんが います。", romaji: "Asoko ni Miraa-san ga imasu.", bengali: "ওখানে মিলার আছেন।" }, { japanese: "駅の 前に タクシー乗り場が あります。", romaji: "Eki no mae ni takushii noriba ga arimasu.", bengali: "স্টেশনের সামনে taxi stand আছে।" }],
+  },
+  {
+    title: "Request নরম করার preface—すみませんが",
+    structure: "すみませんが、Request／Question。",
+    explanation: "কথোপকথন শুরু করে কারও মনোযোগ নেওয়া এবং পরের request-টি নরম করতে すみませんが ব্যবহার হয়। এখানে が contrast না করে ‘মাফ করবেন, কিন্তু…’ ধরনের polite bridge হিসেবে কাজ করে।",
+    notes: ["すみませんが、塩を 取ってください = মাফ করবেন, লবণটি দিন।", "রাস্তা জিজ্ঞেস করা, সাহায্য চাওয়া বা service request-এ স্বাভাবিক।", "শুধু すみません বললে apology/attention; が যোগ হলে পরের request-এর ইঙ্গিত দেয়।"],
+    visual: { tokens: [{ text: "すみませんが", role: "ভদ্র preface", accent: true }, { text: "塩を 取ってください", role: "Request" }], romaji: "Sumimasen ga, shio o totte kudasai.", bengali: "মাফ করবেন, লবণটি এগিয়ে দিন।" },
+    examples: [{ japanese: "すみませんが、この 電車は 甲子園へ 行きますか。", romaji: "Sumimasen ga, kono densha wa Koushien e ikimasu ka.", bengali: "মাফ করবেন, এই ট্রেন কি কোশিয়েন যায়?" }, { japanese: "すみませんが、もう 少し ゆっくり 話してください。", romaji: "Sumimasen ga, mou sukoshi yukkuri hanashite kudasai.", bengali: "মাফ করবেন, আরেকটু ধীরে কথা বলুন।" }],
+  },
+];
+
 export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 1) return unit1GrammarDetails;
   if (unitNumber === 2) return unit2GrammarDetails;
@@ -647,5 +757,7 @@ export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 9) return unit9GrammarDetails;
   if (unitNumber === 10) return unit10GrammarDetails;
   if (unitNumber === 11) return unit11GrammarDetails;
+  if (unitNumber === 13) return unit13GrammarDetails;
+  if (unitNumber === 14) return unit14GrammarDetails;
   return [];
 }

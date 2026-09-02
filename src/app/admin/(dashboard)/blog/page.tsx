@@ -21,6 +21,7 @@ type PostRow = {
   meta_description: string | null;
   published: boolean;
   published_at: string;
+  is_featured: boolean;
 };
 
 function DeleteButton({ postId }: { postId: number }) {
@@ -44,7 +45,8 @@ export default async function AdminBlogPage() {
   const { supabase } = await requireAdmin();
   const { data, error } = await supabase
     .from("posts")
-    .select("id,slug,title,excerpt,content,cover_image,meta_title,meta_description,published,published_at")
+    .select("id,slug,title,excerpt,content,cover_image,meta_title,meta_description,published,published_at,is_featured")
+    .order("is_featured", { ascending: false })
     .order("published_at", { ascending: false });
 
   const posts = (data ?? []) as PostRow[];
@@ -88,6 +90,7 @@ export default async function AdminBlogPage() {
             <label>Meta description (~155 characters, blank uses the excerpt above)<textarea name="metaDescription" rows={2} maxLength={200} placeholder="Search-engine snippet text..." /></label>
           </fieldset>
           <label className="admin-checkbox"><input type="checkbox" name="published" /> Publish immediately</label>
+          <label className="admin-checkbox"><input type="checkbox" name="isFeatured" /> Featured post (always shown first on /blog)</label>
           <button className="admin-submit-button" type="submit">Create post</button>
         </AdminActionForm>
       </details>
@@ -98,6 +101,7 @@ export default async function AdminBlogPage() {
             <header>
               <div>
                 <span className={`admin-course-state ${post.published ? "published" : "draft"}`}>{post.published ? "Published" : "Draft"}</span>
+                {post.is_featured ? <span className="admin-course-state featured">Featured</span> : null}
                 <h2>{post.title}</h2>
                 <p>/blog/{post.slug}</p>
               </div>
@@ -144,6 +148,7 @@ export default async function AdminBlogPage() {
                   <label>SEO title (~60 characters, blank uses the title above)<input name="metaTitle" maxLength={70} defaultValue={post.meta_title ?? ""} placeholder={post.title} /></label>
                   <label>Meta description (~155 characters, blank uses the excerpt above)<textarea name="metaDescription" rows={2} maxLength={200} defaultValue={post.meta_description ?? ""} placeholder={post.excerpt} /></label>
                 </fieldset>
+                <label className="admin-checkbox"><input type="checkbox" name="isFeatured" defaultChecked={post.is_featured} /> Featured post (always shown first on /blog)</label>
                 <button className="admin-submit-button" type="submit">Save post changes</button>
               </AdminActionForm>
             </details>

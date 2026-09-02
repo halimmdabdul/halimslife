@@ -105,6 +105,34 @@ const vocabularyBanks: Record<number, string[]> = {
     "定食 — set meal · teishoku", "ランチ — lunch set · ranchi", "天丼 — tempura rice bowl · tendon", "親子丼 — chicken-and-egg rice bowl · oyakodon", "牛丼 — beef bowl · gyuudon", "焼き肉 — grilled meat · yakiniku", "漬物 — আচার · tsukemono", "みそ汁 — miso soup · misoshiru", "おにぎり — rice ball · onigiri",
     "ハンバーグ — hamburger steak · hanbaagu", "コロッケ — croquette · korokke", "えびフライ — fried shrimp · ebi furai", "フライドチキン — fried chicken · furaido chikin", "サラダ — salad · sarada", "スープ — soup · suupu", "スパゲッティ — spaghetti · supagetti", "ピザ — pizza · piza", "ハンバーガー — hamburger · hanbaagaa", "トースト — toast · toosuto", "コーヒー — coffee · koohii", "紅茶 — black tea · koucha", "ココア — cocoa · kokoa", "ジュース — juice · juusu", "コーラ — cola · koora", "オーストラリア — Australia · Oosutoraria",
   ],
+  13: [
+    "あそびます（遊びます） — আনন্দ করি/খেলি · asobimasu", "およぎます（泳ぎます） — সাঁতার কাটি · oyogimasu", "むかえます（迎えます） — কাউকে নিতে/স্বাগত জানাতে যাই · mukaemasu", "つかれます（疲れます） — ক্লান্ত হই · tsukaremasu",
+    "けっこんします（結婚します） — বিয়ে করি · kekkon shimasu", "かいものします（買い物します） — কেনাকাটা করি · kaimono shimasu", "しょくじします（食事します） — খাবার খাই/ভোজন করি · shokuji shimasu", "さんぽします［公園を～］（散歩します） — হাঁটি [পার্কে] · sanpo shimasu",
+    "たいへん［な］（大変［な］） — কঠিন/কষ্টকর/ভয়াবহ · taihen", "ほしい（欲しい） — চাই/প্রয়োজন · hoshii", "さびしい（寂しい） — একাকী/নিঃসঙ্গ · sabishii", "ひろい（広い） — প্রশস্ত · hiroi", "せまい（狭い） — সংকীর্ণ/ছোট · semai",
+    "しやくしょ（市役所） — সিটি হল/পৌরসভা · shiyakusho", "プール — সুইমিং পুল · puuru", "かわ（川） — নদী · kawa", "けいざい（経済） — অর্থনীতি · keizai", "びじゅつ（美術） — চারুকলা · bijutsu", "つり（釣り） — মাছ ধরা · tsuri", "スキー — স্কিইং · sukii",
+    "しゅうまつ（週末） — সপ্তাহান্ত · shuumatsu", "［お］しょうがつ（［お］正月） — নববর্ষ · oshougatsu", "～ごろ — প্রায় ～টার দিকে/সময় · goro", "なにか（何か） — কিছু/কোনো কিছু · nanika", "どこか — কোথাও/কোনো জায়গা · dokoka",
+    "のどが かわきます — তৃষ্ণা লাগে · nodo ga kawakimasu", "おなかが すきます — ক্ষুধা লাগে · onaka ga sukimasu", "そうしましょう — তাই করি/চলুন সেটাই করি · sou shimashou", "ごちゅうもんは？（ご注文は？） — কী অর্ডার করবেন? · gochuumon wa",
+    "ていしょく（定食） — সেট মিল · teishoku", "ぎゅうどん（牛丼） — গরুর মাংসের রাইস বোল · gyuudon", "しょうしょう おまちください（少々お待ちください） — একটু অপেক্ষা করুন · shoushou omachi kudasai", "べつべつに（別々に） — আলাদা আলাদাভাবে · betsubetsu ni",
+    "はくぶつかん（博物館） — জাদুঘর · hakubutsukan", "びじゅつかん（美術館） — শিল্প জাদুঘর/গ্যালারি · bijutsukan", "としょかん（図書館） — গ্রন্থাগার · toshokan", "えいがかん（映画館） — সিনেমা হল · eigakan", "どうぶつえん（動物園） — চিড়িয়াখানা · doubutsuen", "しょくぶつえん（植物園） — উদ্ভিদ উদ্যান · shokubutsuen", "ゆうえんち（遊園地） — বিনোদন পার্ক · yuuenchi",
+    "おてら（お寺） — বৌদ্ধ মন্দির · otera", "じんじゃ（神社） — শিন্তো মন্দির · jinja", "きょうかい（教会） — গির্জা · kyoukai", "モスク — মসজিদ · mosuku", "たいいくかん（体育館） — জিমনেসিয়াম · taiikukan", "こうえん（公園） — পার্ক · kouen", "たいしかん（大使館） — দূতাবাস · taishikan", "にゅうこくかんりきょく（入国管理局） — ইমিগ্রেশন ব্যুরো · nyuukoku kanrikyoku",
+    "けいさつしょ（警察署） — পুলিশ স্টেশন · keisatsusho", "こうばん（交番） — পুলিশ বক্স · kouban", "しょうぼうしょ（消防署） — ফায়ার স্টেশন · shoubousho", "ちゅうしゃじょう（駐車場） — পার্কিং লট · chuushajou", "だいがく（大学） — বিশ্ববিদ্যালয় · daigaku", "こうこう（高校） — উচ্চ বিদ্যালয় · koukou", "ちゅうがっこう（中学校） — জুনিয়র হাই স্কুল · chuugakkou", "しょうがっこう（小学校） — প্রাথমিক বিদ্যালয় · shougakkou", "ようちえん（幼稚園） — কিন্ডারগার্টেন · youchien",
+    "にくや（肉屋） — মাংসের দোকান · nikuya", "パンや（パン屋） — বেকারি · pan'ya", "さかなや（魚屋） — মাছের দোকান · sakanaya", "さかや（酒屋） — মদের দোকান · sakaya", "やおや（八百屋） — ফল-সবজির দোকান · yaoya", "きっさてん（喫茶店） — ক্যাফে · kissaten", "コンビニ — কনভেনিয়েন্স স্টোর · konbini", "スーパー — সুপারমার্কেট · suupaa", "デパート — ডিপার্টমেন্ট স্টোর · depaato",
+  ],
+  14: [
+    "つけます［電気を～］ — জ্বালাই/চালু করি · tsukemasu", "けします（消します）［電気を～］ — নিভাই/বন্ধ করি · keshimasu", "あけます（開けます） — খুলি · akemasu", "しめます（閉めます） — বন্ধ করি · shimemasu",
+    "いそぎます（急ぎます） — তাড়াহুড়া করি · isogimasu", "まちます（待ちます） — অপেক্ষা করি · machimasu", "もちます（持ちます） — ধরি/বহন করি · mochimasu", "とります（取ります） — নিই/এগিয়ে দিই · torimasu",
+    "てつだいます（手伝います） — সাহায্য করি · tetsudaimasu", "よびます（呼びます） — ডাকি · yobimasu", "はなします（話します） — কথা বলি · hanashimasu", "つかいます（使います） — ব্যবহার করি · tsukaimasu",
+    "とめます（止めます） — থামাই/পার্ক করি · tomemasu", "みせます（見せます） — দেখাই · misemasu", "おしえます（教えます）［住所を～］ — জানাই/শেখাই · oshiemasu", "すわります（座ります） — বসি · suwarimasu",
+    "たちます（立ちます） — দাঁড়াই · tachimasu", "はいります（入ります）［喫茶店に～］ — প্রবেশ করি · hairimasu", "でます（出ます）［喫茶店を～］ — বের হই · demasu", "ふります（降ります）［雨が～］ — বৃষ্টি পড়ে · furimasu", "コピーします — কপি করি · kopii shimasu",
+    "でんき（電気） — বিদ্যুৎ/বাতি · denki", "エアコン — এয়ার কন্ডিশনার · eakon", "パスポート — পাসপোর্ট · pasupooto", "なまえ（名前） — নাম · namae", "じゅうしょ（住所） — ঠিকানা · juusho", "ちず（地図） — মানচিত্র · chizu", "しお（塩） — লবণ · shio", "さとう（砂糖） — চিনি · satou",
+    "もんだい（問題） — প্রশ্ন/সমস্যা · mondai", "こたえ（答え） — উত্তর · kotae", "よみかた（読み方） — পড়ার পদ্ধতি/উচ্চারণ · yomikata", "～かた（～方） — ～ করার পদ্ধতি · kata", "まっすぐ — সোজা · massugu", "ゆっくり — ধীরে/আরামে · yukkuri", "すぐ — সঙ্গে সঙ্গে · sugu", "また — আবার · mata", "あとで — পরে · ato de", "もうすこし（もう少し） — আরেকটু · mou sukoshi",
+    "いいですよ — নিশ্চয়ই/ঠিক আছে · ii desu yo", "さあ — এই যে/চলুন · saa", "あれ？ — আরে?/ওহ? · are", "信号を右へ曲がってください — সিগন্যালে ডানে ঘুরুন · shingou o migi e magatte kudasai", "これでお願いします — এটি দিয়ে মূল্য পরিশোধ করতে চাই · kore de onegaishimasu", "おつり（お釣り） — ফেরত টাকা · otsuri", "みどり町 — মিদোরি শহর · Midori-chou",
+    "きっぷうりば（切符売り場） — টিকিট কাউন্টার · kippu uriba", "じどうけんばいき（自動券売機） — স্বয়ংক্রিয় টিকিট মেশিন · jidou kenbaiki", "せいさんき（精算機） — ভাড়া সমন্বয় মেশিন · seisanki", "かいさつぐち（改札口） — টিকিট গেট · kaisatsuguchi",
+    "でぐち（出口） — বের হওয়ার পথ · deguchi", "いりぐち（入口） — প্রবেশপথ · iriguchi", "ひがしぐち（東口） — পূর্ব গেট · higashiguchi", "にしぐち（西口） — পশ্চিম গেট · nishiguchi", "みなみぐち（南口） — দক্ষিণ গেট · minamiguchi", "きたぐち（北口） — উত্তর গেট · kitaguchi", "ちゅうおうぐち（中央口） — কেন্দ্রীয় গেট · chuuouguchi",
+    "ホーム／プラットホーム — প্ল্যাটফর্ম · hoomu/purattohoomu", "ばいてん（売店） — স্টেশনের ছোট দোকান · baiten", "コインロッカー — কয়েন লকার · koin rokkaa", "タクシーのりば（タクシー乗り場） — ট্যাক্সি স্ট্যান্ড · takushii noriba", "バスターミナル — বাস টার্মিনাল · basu taaminaru", "バスてい（バス停） — বাস স্টপ · basutei",
+    "とっきゅう（特急） — সুপার এক্সপ্রেস ট্রেন · tokkyuu", "きゅうこう（急行） — এক্সপ্রেস ট্রেন · kyuukou", "かいそく（快速） — দ্রুতগামী ট্রেন · kaisoku", "じゅんきゅう（準急） — সেমি-এক্সপ্রেস ট্রেন · junkyuu", "ふつう（普通） — লোকাল ট্রেন · futsuu",
+    "じこくひょう（時刻表） — সময়সূচি · jikokuhyou", "～はつ（～発） — ～ থেকে ছাড়ে · hatsu", "～ちゃく（～着） — ～তে পৌঁছায় · chaku", "～ゆき（～行き） — ～গামী · yuki", "ていきけん（定期券） — কমিউটার পাস · teikiken", "かいすうけん（回数券） — কুপন টিকিট · kaisuuken", "かたみち（片道） — একমুখী · katamichi", "おうふく（往復） — যাওয়া-আসা/রাউন্ড ট্রিপ · oufuku",
+  ],
 };
 
 function wordKey(item: string) {
@@ -123,6 +151,8 @@ export function getMinnaN5UnitVocabulary(unit: CompanionUnit) {
   if (unit.number === 9) return vocabularyBanks[9];
   if (unit.number === 10) return vocabularyBanks[10];
   if (unit.number === 11) return vocabularyBanks[11];
+  if (unit.number === 13) return vocabularyBanks[13];
+  if (unit.number === 14) return vocabularyBanks[14];
   const bank = vocabularyBanks[Math.ceil(unit.number / 5)] ?? [];
   const unique = new Map<string, string>();
   [...unit.vocabulary, ...bank].forEach((item) => {

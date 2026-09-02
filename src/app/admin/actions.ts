@@ -572,6 +572,16 @@ async function uploadBlogImage(supabase: AdminSupabase, postId: number, file: Fi
   return { publicUrl, storagePath };
 }
 
+// Only one post can be featured at a time — marking one featured clears the
+// flag from every other post so admins don't end up with several posts all
+// claiming the single featured slot on /blog.
+async function unfeatureOtherPosts(
+  supabase: Awaited<ReturnType<typeof requireAdmin>>["supabase"],
+  exceptPostId: number,
+) {
+  await supabase.from("posts").update({ is_featured: false }).eq("is_featured", true).neq("id", exceptPostId);
+}
+
 export async function createPost(formData: FormData) {
   const { supabase, profile } = await requireAdmin();
   const title = requiredText(formData, "title");
@@ -581,6 +591,7 @@ export async function createPost(formData: FormData) {
     throw new Error("Slug must contain lowercase letters, numbers, and hyphens only.");
   }
   const image = blogImageFromForm(formData);
+  const isFeatured = formData.get("isFeatured") === "on";
 
   const { data: post, error } = await supabase
     .from("posts")
@@ -593,6 +604,7 @@ export async function createPost(formData: FormData) {
       meta_description: optionalText(formData, "metaDescription"),
       author_id: profile.id,
       published: formData.get("published") === "on",
+      is_featured: isFeatured,
       published_at: new Date().toISOString(),
       cover_image: image.externalUrl,
     })
@@ -602,6 +614,9 @@ export async function createPost(formData: FormData) {
     throw new Error("A post with this URL slug already exists.");
   }
   if (error) throw new Error(`Post creation failed: ${error.message}`);
+  if (isFeatured && post) {
+    await unfeatureOtherPosts(supabase, post.id);
+  }
   if (image.file && post) {
     try {
       const uploaded = await uploadBlogImage(supabase, post.id, image.file);
@@ -633,6 +648,7 @@ export async function updatePost(formData: FormData) {
   }
   const image = blogImageFromForm(formData);
   const removeImage = formData.get("removeCoverImage") === "on";
+  const isFeatured = formData.get("isFeatured") === "on";
 
   const { data: currentPost } = await supabase
     .from("posts")
@@ -659,6 +675,7 @@ export async function updatePost(formData: FormData) {
       content: requiredText(formData, "content"),
       meta_title: optionalText(formData, "metaTitle"),
       meta_description: optionalText(formData, "metaDescription"),
+      is_featured: isFeatured,
       ...imageValues,
     })
     .eq("id", postId);
@@ -668,6 +685,9 @@ export async function updatePost(formData: FormData) {
       throw new Error("A post with this URL slug already exists.");
     }
     throw new Error(`Post update failed: ${error.message}`);
+  }
+  if (isFeatured) {
+    await unfeatureOtherPosts(supabase, postId);
   }
   if ((uploadedImage || image.externalUrl || removeImage) && currentPost?.cover_storage_path) {
     await supabase.storage.from("blog-images").remove([currentPost.cover_storage_path]);

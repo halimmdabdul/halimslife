@@ -4462,6 +4462,7 @@ html[data-theme="dark"] .connection-status {
 .admin-course-state { display: inline-flex; padding: 5px 8px; border-radius: 99px; font-size: 8px; font-weight: 900; text-transform: uppercase; }
 .admin-course-state.published { background: #e4f5ee; color: var(--green); }
 .admin-course-state.draft { background: #fff1dc; color: #9c5b12; }
+.admin-course-state.featured { background: #fde8d6; color: #b3630f; margin-left: 6px; }
 .admin-course-actions { display: flex; align-items: center; gap: 8px; }
 .admin-course-actions a,
 .admin-course-actions button,
@@ -4738,6 +4739,7 @@ html[data-theme="dark"] .role-pill.admin {
 }
 
 html[data-theme="dark"] .admin-course-state.draft,
+html[data-theme="dark"] .admin-course-state.featured,
 html[data-theme="dark"] .connection-status {
   background: #3a2c18;
   color: #ffc376 !important;
