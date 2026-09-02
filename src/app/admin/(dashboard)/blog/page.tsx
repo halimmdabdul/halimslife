@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+const PAGE_SIZE = 10;
+
 type PostRow = {
   id: number;
   slug: string;
@@ -41,13 +43,30 @@ function DeleteButton({ postId }: { postId: number }) {
   );
 }
 
-export default async function AdminBlogPage() {
+export default async function AdminBlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
   const { supabase } = await requireAdmin();
+  const params = await searchParams;
+
+  const { count: totalCount } = await supabase
+    .from("posts")
+    .select("*", { count: "exact", head: true });
+
+  const totalPages = Math.max(1, Math.ceil((totalCount ?? 0) / PAGE_SIZE));
+  const requestedPage = Math.max(1, Number.parseInt(params.page ?? "1", 10) || 1);
+  const currentPage = Math.min(requestedPage, totalPages);
+  const from = (currentPage - 1) * PAGE_SIZE;
+  const to = from + PAGE_SIZE - 1;
+
   const { data, error } = await supabase
     .from("posts")
     .select("id,slug,title,excerpt,content,cover_image,meta_title,meta_description,published,published_at,is_featured")
     .order("is_featured", { ascending: false })
-    .order("published_at", { ascending: false });
+    .order("published_at", { ascending: false })
+    .range(from, to);
 
   const posts = (data ?? []) as PostRow[];
 
@@ -59,7 +78,7 @@ export default async function AdminBlogPage() {
           <h1>Blog posts</h1>
           <p>Write, edit, and publish articles that appear on /blog.</p>
         </div>
-        <span className="admin-user-total">{posts.length} posts</span>
+        <span className="admin-user-total">{totalCount ?? 0} posts</span>
       </header>
 
       {error ? (
@@ -70,7 +89,7 @@ export default async function AdminBlogPage() {
         </section>
       ) : null}
 
-      <details className="admin-create-panel" open={posts.length === 0}>
+      <details className="admin-create-panel" open={(totalCount ?? 0) === 0}>
         <summary><span>＋</span> Write a new post</summary>
         <AdminActionForm actionName="createPost" className="admin-content-form" successMessage="Post added successfully." resetOnSuccess>
           <label className="admin-form-wide">Title<input name="title" required placeholder="জাপানের Engineering Team-এ কাজ করে যা শিখেছি" /></label>
@@ -155,6 +174,22 @@ export default async function AdminBlogPage() {
           </article>
         ))}
       </section>
+
+      {totalPages > 1 ? (
+        <nav className="admin-pagination" aria-label="Blog post pages">
+          {currentPage > 1 ? (
+            <Link href={`/admin/blog?page=${currentPage - 1}`}>← Previous</Link>
+          ) : (
+            <span className="disabled">← Previous</span>
+          )}
+          <span className="admin-pagination-status">Page {currentPage} of {totalPages}</span>
+          {currentPage < totalPages ? (
+            <Link href={`/admin/blog?page=${currentPage + 1}`}>Next →</Link>
+          ) : (
+            <span className="disabled">Next →</span>
+          )}
+        </nav>
+      ) : null}
     </>
   );
 }
