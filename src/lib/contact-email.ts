@@ -16,6 +16,15 @@ const topicLabels: Record<string, string> = {
   "scholarship-support": "Scholarship Support",
 };
 
+function emailHeaderHtml() {
+  return `<tr><td style="padding:26px 36px;border-bottom:1px solid #111111;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr>
+              <td width="34" valign="middle"><svg width="34" height="34" viewBox="0 0 48 48" role="img" aria-hidden="true"><rect x="1" y="1" width="46" height="46" rx="12" fill="#102a43" stroke="#2d4c57" stroke-width="1.5" /><path d="M15 13v22M33 13v22" fill="none" stroke="#f4f8f9" stroke-width="3.6" stroke-linecap="round" /><path d="M15 24h18" fill="none" stroke="#52d3a4" stroke-width="3.6" stroke-linecap="round" /><circle cx="38" cy="10" r="4.5" fill="#f28c28" stroke="#102a43" stroke-width="1.5" /></svg></td>
+              <td style="padding-left:11px;"><strong style="display:block;font:700 19px -apple-system,'Segoe UI',Arial,sans-serif;letter-spacing:-.2px;color:#111111;">Halim<span style="color:#f28c28;">.</span></strong></td>
+            </tr></table>
+          </td></tr>`;
+}
+
 function escapeHtml(value: string) {
   return value.replace(/[&<>'"]/g, (character) => ({
     "&": "&amp;",
@@ -35,9 +44,9 @@ function inlineMarkdownHtml(text: string) {
     if (part.startsWith("**") && part.endsWith("**")) return `<strong>${escapeHtml(part.slice(2, -2))}</strong>`;
     if (part.startsWith("~~") && part.endsWith("~~")) return `<s>${escapeHtml(part.slice(2, -2))}</s>`;
     if (part.startsWith("_") && part.endsWith("_")) return `<em>${escapeHtml(part.slice(1, -1))}</em>`;
-    if (part.startsWith("`") && part.endsWith("`")) return `<code style="padding:2px 5px;border-radius:4px;background:#eef1ef;color:#c8611f;">${escapeHtml(part.slice(1, -1))}</code>`;
+    if (part.startsWith("`") && part.endsWith("`")) return `<code style="padding:2px 5px;border-radius:4px;background:#f0f0f0;color:#111111;">${escapeHtml(part.slice(1, -1))}</code>`;
     const link = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
-    if (link) return `<a href="${link[2]}" style="color:#087255;">${escapeHtml(link[1])}</a>`;
+    if (link) return `<a href="${link[2]}" style="color:#111111;text-decoration:underline;">${escapeHtml(link[1])}</a>`;
     return escapeHtml(part);
   }).join("");
 }
@@ -54,7 +63,7 @@ function markdownToEmailHtml(content: string) {
     const heading = line.match(/^(#{1,3})\s+(.+)$/);
     if (heading) {
       const size = heading[1].length === 1 ? "21px" : heading[1].length === 2 ? "17px" : "15px";
-      blocks.push(`<p style="margin:16px 0 8px;color:#082f54;font-weight:800;font-size:${size};">${inlineMarkdownHtml(heading[2])}</p>`);
+      blocks.push(`<p style="margin:20px 0 8px;color:#111111;font-weight:700;font-size:${size};">${inlineMarkdownHtml(heading[2])}</p>`);
       index += 1;
       continue;
     }
@@ -67,12 +76,12 @@ function markdownToEmailHtml(content: string) {
         index += 1;
       }
       index += 1;
-      blocks.push(`<pre style="margin:14px 0;padding:14px 16px;overflow-x:auto;border-radius:8px;background:#0b1e2c;color:#eef6f8;font-size:12px;line-height:1.6;"><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+      blocks.push(`<pre style="margin:14px 0;padding:14px 16px;overflow-x:auto;border-radius:6px;background:#111111;color:#f5f5f5;font-size:12px;line-height:1.6;"><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
       continue;
     }
 
     if (/^(-{3,}|\*{3,})$/.test(line)) {
-      blocks.push(`<hr style="margin:20px 0;border:0;border-top:1px solid #dce7e2;" />`);
+      blocks.push(`<hr style="margin:22px 0;border:0;border-top:1px solid #e5e5e5;" />`);
       index += 1;
       continue;
     }
@@ -105,7 +114,7 @@ function markdownToEmailHtml(content: string) {
     }
 
     if (line.startsWith("> ")) {
-      blocks.push(`<div style="margin:14px 0;padding:10px 14px;border-left:3px solid #087255;background:#f4f8f5;">${inlineMarkdownHtml(line.slice(2))}</div>`);
+      blocks.push(`<div style="margin:16px 0;padding:10px 16px;border-left:3px solid #111111;background:#fafafa;color:#111111;">${inlineMarkdownHtml(line.slice(2))}</div>`);
       index += 1;
       continue;
     }
@@ -136,34 +145,28 @@ function contactEmailHtml(input: ContactEmailInput) {
   const topic = escapeHtml(topicLabels[input.topic] ?? input.topic);
   const message = escapeHtml(input.message)
     .replace(/\r?\n/g, "<br />")
-    .replace(/(https?:\/\/[^\s<]+)/g, (url) => `<a href="${url}" style="color:#087255;">${url}</a>`);
+    .replace(/(https?:\/\/[^\s<]+)/g, (url) => `<a href="${url}" style="color:#111111;text-decoration:underline;">${url}</a>`);
 
   return `<!doctype html>
 <html lang="en">
   <head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head>
-  <body style="margin:0;background:#f5f1e8;color:#102a43;font-family:Arial,'Noto Sans Bengali',sans-serif;">
+  <body style="margin:0;background:#f2f2f2;color:#111111;font-family:-apple-system,'Segoe UI',Arial,'Noto Sans Bengali',sans-serif;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;">New ${topic} message from ${name}</div>
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f5f1e8;padding:32px 14px;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f2f2;padding:40px 14px;">
       <tr><td align="center">
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;overflow:hidden;border:1px solid #d9e1dc;border-radius:18px;background:#fffdf8;box-shadow:0 18px 45px rgba(16,42,67,.08);">
-          <tr><td style="padding:28px 32px;background:#082f54;color:#fff;">
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr>
-              <td><span style="display:inline-block;width:42px;height:42px;border:1px solid #4d718b;border-radius:10px;color:#fff;font:700 28px/42px Georgia,serif;text-align:center;">H</span></td>
-              <td style="padding-left:12px;"><strong style="display:block;font:700 27px Georgia,serif;">Halim<span style="color:#f28c28;">.</span></strong><span style="color:#a9c1cf;font-size:12px;">Engineer · Researcher · Lifelong learner</span></td>
-              <td align="right"><span style="display:inline-block;padding:7px 11px;border:1px solid #39705e;border-radius:999px;color:#8fe4c5;font-size:11px;">New message</span></td>
-            </tr></table>
-          </td></tr>
-          <tr><td style="padding:32px;">
-            <span style="color:#087255;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;">${topic}</span>
-            <h1 style="margin:10px 0 22px;color:#082f54;font:700 30px/1.25 Georgia,'Noto Serif Bengali',serif;">${subject}</h1>
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom:24px;border:1px solid #dce7e2;border-radius:10px;background:#f4f8f5;">
-              <tr><td style="padding:16px 18px;border-bottom:1px solid #dce7e2;"><span style="display:block;color:#637785;font-size:10px;text-transform:uppercase;letter-spacing:.08em;">From</span><strong style="display:block;margin-top:5px;color:#102a43;font-size:15px;">${name}</strong></td></tr>
-              <tr><td style="padding:16px 18px;"><span style="display:block;color:#637785;font-size:10px;text-transform:uppercase;letter-spacing:.08em;">Email</span><a href="mailto:${email}" style="display:block;margin-top:5px;color:#087255;font-size:14px;text-decoration:none;">${email}</a></td></tr>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border:2px solid #111111;">
+          ${emailHeaderHtml()}
+          <tr><td style="padding:40px 36px 8px;">
+            <span style="display:block;color:#111111;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;">${topic}</span>
+            <h1 style="margin:12px 0 28px;color:#111111;font:700 26px/1.3 -apple-system,'Segoe UI',Arial,'Noto Serif Bengali',sans-serif;letter-spacing:-.3px;">${subject}</h1>
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom:24px;border:1px solid #e5e5e5;">
+              <tr><td style="padding:14px 18px;border-bottom:1px solid #e5e5e5;"><span style="display:block;color:#111111;font-size:10px;text-transform:uppercase;letter-spacing:.08em;">From</span><strong style="display:block;margin-top:4px;color:#111111;font-size:14px;">${name}</strong></td></tr>
+              <tr><td style="padding:14px 18px;"><span style="display:block;color:#111111;font-size:10px;text-transform:uppercase;letter-spacing:.08em;">Email</span><a href="mailto:${email}" style="display:block;margin-top:4px;color:#111111;font-size:14px;text-decoration:underline;">${email}</a></td></tr>
             </table>
-            <div style="padding:22px;border-left:4px solid #087255;border-radius:8px;background:#fffaf1;color:#294353;font-size:15px;line-height:1.75;">${message}</div>
-            <p style="margin:26px 0 0;"><a href="mailto:${email}?subject=${encodeURIComponent(`Re: ${input.subject}`)}" style="display:inline-block;padding:13px 20px;border-radius:8px;background:#087255;color:#fff;font-size:14px;font-weight:700;text-decoration:none;">Reply to ${name} →</a></p>
+            <div style="padding:20px;border-left:2px solid #111111;background:#fafafa;color:#111111;font-size:15px;line-height:1.75;">${message}</div>
+            <p style="margin:28px 0 0;"><a href="mailto:${email}?subject=${encodeURIComponent(`Re: ${input.subject}`)}" style="display:inline-block;padding:13px 22px;background:#111111;color:#ffffff;font-size:13px;font-weight:700;letter-spacing:.02em;text-decoration:none;">Reply to ${name} →</a></p>
           </td></tr>
-          <tr><td style="padding:18px 32px;border-top:1px solid #e1e7e3;color:#738590;font-size:11px;line-height:1.6;">Sent from the contact form at <a href="https://halimslife.com/contact" style="color:#087255;">halimslife.com</a>. The original message is also saved in your admin dashboard.</td></tr>
+          <tr><td style="padding:20px 36px 32px;color:#111111;font-size:11px;line-height:1.6;">Sent from the contact form at <a href="https://halimslife.com/contact" style="color:#111111;">halimslife.com</a>. The original message is also saved in your admin dashboard.</td></tr>
         </table>
       </td></tr>
     </table>
@@ -188,28 +191,21 @@ function contactReplyHtml(input: ContactReplyInput) {
   return `<!doctype html>
 <html lang="en">
   <head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head>
-  <body style="margin:0;background:#f5f1e8;color:#102a43;font-family:Arial,'Noto Sans Bengali',sans-serif;">
+  <body style="margin:0;background:#f2f2f2;color:#111111;font-family:-apple-system,'Segoe UI',Arial,'Noto Sans Bengali',sans-serif;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;">Reply to your message: ${subject}</div>
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f5f1e8;padding:32px 14px;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f2f2;padding:40px 14px;">
       <tr><td align="center">
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;overflow:hidden;border:1px solid #d9e1dc;border-radius:18px;background:#fffdf8;box-shadow:0 18px 45px rgba(16,42,67,.08);">
-          <tr><td style="padding:28px 32px;background:#082f54;color:#fff;">
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr>
-              <td><span style="display:inline-block;width:42px;height:42px;border:1px solid #4d718b;border-radius:10px;color:#fff;font:700 28px/42px Georgia,serif;text-align:center;">H</span></td>
-              <td style="padding-left:12px;"><strong style="display:block;font:700 27px Georgia,serif;">Halim<span style="color:#f28c28;">.</span></strong><span style="color:#a9c1cf;font-size:12px;">Engineer · Researcher · Lifelong learner</span></td>
-              <td align="right"><span style="display:inline-block;padding:7px 11px;border:1px solid #39705e;border-radius:999px;color:#8fe4c5;font-size:11px;">Reply</span></td>
-            </tr></table>
-          </td></tr>
-          <tr><td style="padding:32px;">
-            <span style="color:#087255;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;">Re: ${subject}</span>
-            <p style="margin:16px 0 0;color:#294353;font-size:15px;">Hi ${name},</p>
-            <div style="margin:14px 0 24px;padding:22px;border-left:4px solid #087255;border-radius:8px;background:#fffaf1;color:#294353;font-size:15px;line-height:1.75;">${reply}</div>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border:2px solid #111111;">
+          ${emailHeaderHtml()}
+          <tr><td style="padding:40px 36px;">
+            <span style="display:block;color:#111111;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;">Re: ${subject}</span>
+            <p style="margin:16px 0 0;color:#111111;font-size:15px;">Hi ${name},</p>
+            <div style="margin:16px 0 24px;padding:20px;border-left:2px solid #111111;background:#fafafa;color:#111111;font-size:15px;line-height:1.75;">${reply}</div>
             <details style="margin-top:8px;">
-              <summary style="cursor:pointer;color:#637785;font-size:11px;text-transform:uppercase;letter-spacing:.08em;">Your original message</summary>
-              <div style="margin-top:10px;padding:16px 18px;border:1px solid #dce7e2;border-radius:8px;background:#f4f8f5;color:#4a5c66;font-size:13px;line-height:1.65;">${original}</div>
+              <summary style="cursor:pointer;color:#111111;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;">Your original message</summary>
+              <div style="margin-top:10px;padding:16px 18px;border:1px solid #e5e5e5;color:#111111;font-size:13px;line-height:1.65;">${original}</div>
             </details>
           </td></tr>
-          <tr><td style="padding:18px 32px;border-top:1px solid #e1e7e3;color:#738590;font-size:11px;line-height:1.6;">Sent in reply to a message submitted at <a href="https://halimslife.com/contact" style="color:#087255;">halimslife.com</a>. Just hit reply to continue the conversation.</td></tr>
         </table>
       </td></tr>
     </table>
@@ -271,6 +267,74 @@ export async function sendContactNotification(input: ContactEmailInput) {
       html: contactEmailHtml(input),
       text: `New ${topic} message\n\nFrom: ${input.name} <${input.email}>\nSubject: ${input.subject}\n\n${input.message}`,
       tags: [{ name: "source", value: "contact-form" }],
+    }),
+  });
+
+  if (!response.ok) {
+    const details = await response.text();
+    return { ok: false, reason: `Resend ${response.status}: ${details.slice(0, 300)}` };
+  }
+
+  return { ok: true };
+}
+
+type ScholarshipRecommendationInput = {
+  toName: string;
+  toEmail: string;
+  scholarshipName: string;
+  university: string;
+};
+
+function scholarshipRecommendationHtml(input: ScholarshipRecommendationInput) {
+  const name = escapeHtml(input.toName);
+  const scholarshipName = escapeHtml(input.scholarshipName);
+  const university = escapeHtml(input.university);
+
+  return `<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head>
+  <body style="margin:0;background:#f2f2f2;color:#111111;font-family:-apple-system,'Segoe UI',Arial,'Noto Sans Bengali',sans-serif;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">New scholarship recommendation: ${scholarshipName}</div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f2f2;padding:40px 14px;">
+      <tr><td align="center">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff;border:2px solid #111111;">
+          ${emailHeaderHtml()}
+          <tr><td style="padding:40px 36px;">
+            <span style="display:block;color:#111111;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;">Scholarship recommendation</span>
+            <p style="margin:16px 0 0;color:#111111;font-size:15px;">Hi ${name},</p>
+            <p style="margin:14px 0 0;color:#111111;font-size:15px;line-height:1.75;">আপনার Scholarship Support request-এর জন্য একটি নতুন recommendation যোগ করা হয়েছে:</p>
+            <div style="margin:18px 0 8px;padding:20px;border-left:2px solid #111111;background:#fafafa;">
+              <strong style="display:block;color:#111111;font-size:17px;">${scholarshipName}</strong>
+              <span style="display:block;margin-top:4px;color:#111111;font-size:14px;">${university}</span>
+            </div>
+            <p style="margin:20px 0 0;color:#111111;font-size:13px;line-height:1.7;">বিস্তারিত (degree level, deadline, link, notes) দেখতে <a href="https://halimslife.com/account/scholarship-support" style="color:#111111;text-decoration:underline;">আপনার account-এ</a> গিয়ে দেখুন।</p>
+          </td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </body>
+</html>`;
+}
+
+export async function sendScholarshipRecommendationEmail(input: ScholarshipRecommendationInput) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return { ok: false, reason: "RESEND_API_KEY is not configured" };
+
+  const from = process.env.CONTACT_EMAIL_FROM || "Halim. <onboarding@resend.dev>";
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+      "User-Agent": "halimslife-contact/1.0",
+    },
+    body: JSON.stringify({
+      from,
+      to: [input.toEmail],
+      subject: `New scholarship recommendation: ${input.scholarshipName}`,
+      html: scholarshipRecommendationHtml(input),
+      text: `Hi ${input.toName},\n\nA new scholarship recommendation was added to your Scholarship Support request:\n\n${input.scholarshipName}\n${input.university}\n\nSee full details at https://halimslife.com/account/scholarship-support`,
+      tags: [{ name: "source", value: "scholarship-recommendation" }],
     }),
   });
 

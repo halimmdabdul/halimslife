@@ -3857,6 +3857,17 @@ html[data-theme="dark"] .connection-status {
   line-height: 1.7;
 }
 
+.account-support-recommendations { margin-top: 16px; }
+.account-support-recommendations h3 { margin: 0 0 10px; color: var(--navy); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.account-recommendation-card { padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); }
+.account-recommendation-card + .account-recommendation-card { margin-top: 10px; }
+.account-recommendation-card > strong { display: block; color: var(--navy); font-size: 14px; }
+.account-recommendation-card > span { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; }
+.account-recommendation-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.account-recommendation-tags span { display: inline-flex; padding: 3px 8px; border-radius: 99px; background: var(--paper); color: var(--text); font-size: 10px; font-weight: 700; }
+.account-recommendation-card > p { margin: 10px 0 0; color: var(--text); font-size: 13px; line-height: 1.65; white-space: pre-wrap; }
+.account-recommendation-card > a { display: inline-block; margin-top: 10px; color: var(--green); font-size: 11px; font-weight: 800; }
+
 .account-card {
   display: grid;
   max-width: 560px;
@@ -5585,6 +5596,37 @@ html[data-theme="dark"] .course-complete-banner p { color: #9ebdb1; }
   from { background-position: 200% 0; }
   to { background-position: -200% 0; }
 }
+
+.admin-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--paper);
+}
+.admin-filter-bar label { display: flex; flex-direction: column; gap: 5px; }
+.admin-filter-bar label > span { color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.admin-filter-bar select { min-height: 34px; padding-inline: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--soft); color: var(--text); font: inherit; font-size: 11px; }
+.admin-filter-clear { align-self: center; margin-left: auto; color: var(--orange); font-size: 10px; font-weight: 800; }
+
+.admin-scholarship-summary { margin: 18px 0; }
+.admin-scholarship-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.admin-scholarship-tag { display: inline-flex; padding: 4px 9px; border-radius: 99px; background: var(--soft); color: var(--navy); font-size: 10px; font-weight: 800; }
+.admin-scholarship-drive-link { display: inline-flex; padding: 4px 9px; border-radius: 99px; border: 1px solid var(--green); color: var(--green); font-size: 10px; font-weight: 800; }
+.admin-scholarship-field { margin: 12px 0 0; color: var(--text); font-size: 13px; line-height: 1.75; white-space: pre-wrap; }
+.admin-scholarship-field > span { display: block; margin-bottom: 3px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+
+.admin-recommendation-list { display: grid; gap: 10px; margin: 0 18px 16px; }
+.admin-recommendation-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 9px; background: var(--soft); }
+.admin-recommendation-item strong { display: block; color: var(--navy); font-size: 14px; }
+.admin-recommendation-item > div > span { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; }
+.admin-recommendation-item .admin-scholarship-tags { margin-top: 8px; }
+.admin-recommendation-remove { min-height: 30px; padding-inline: 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: #d9485f; font: inherit; font-size: 10px; font-weight: 800; cursor: pointer; white-space: nowrap; }
+.admin-recommendation-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 
 .admin-message-list {
   display: grid;

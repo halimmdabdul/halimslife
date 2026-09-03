@@ -6,6 +6,10 @@ import {
   submitScholarshipSupportRequest,
   type ScholarshipSupportState,
 } from "@/app/account/scholarship-support/actions";
+import {
+  SCHOLARSHIP_COUNTRIES,
+  SCHOLARSHIP_DEGREES,
+} from "@/lib/scholarship-support-options";
 
 const initialState: ScholarshipSupportState = {};
 
@@ -43,22 +47,17 @@ export function ScholarshipSupportForm({
         <label>
           <span>Target country</span>
           <select name="country" defaultValue="undecided">
-            <option value="usa">USA</option>
-            <option value="canada">Canada</option>
-            <option value="korea">South Korea</option>
-            <option value="switzerland">Switzerland</option>
-            <option value="italy">Italy</option>
-            <option value="japan">Japan</option>
-            <option value="undecided">এখনও ঠিক করিনি</option>
+            {SCHOLARSHIP_COUNTRIES.map((option) => (
+              <option value={option.value} key={option.value}>{option.label}</option>
+            ))}
           </select>
         </label>
         <label>
           <span>Target degree</span>
           <select name="degree" defaultValue="undecided">
-            <option value="bachelors">Bachelor&apos;s</option>
-            <option value="masters">Master&apos;s</option>
-            <option value="phd">PhD</option>
-            <option value="undecided">এখনও ঠিক করিনি</option>
+            {SCHOLARSHIP_DEGREES.map((option) => (
+              <option value={option.value} key={option.value}>{option.label}</option>
+            ))}
           </select>
         </label>
       </div>

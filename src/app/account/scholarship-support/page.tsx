@@ -22,6 +22,21 @@ type SupportRequest = {
   created_at: string;
 };
 
+type ScholarshipRecommendation = {
+  id: number;
+  request_id: number;
+  scholarship_name: string;
+  university: string;
+  degree_level: string | null;
+  country: string | null;
+  deadline: string | null;
+  link: string | null;
+  notes: string | null;
+  created_at: string;
+};
+
+const recommendationDateFormatter = new Intl.DateTimeFormat("bn-BD", { year: "numeric", month: "long", day: "numeric" });
+
 export default async function ScholarshipSupportPage() {
   await connection();
   const supabase = await createServerSupabaseClient();
@@ -54,6 +69,21 @@ export default async function ScholarshipSupportPage() {
   const displayName = profile?.full_name || "Learner";
   const email = profile?.email || user.email || "";
   const requests = (previousRequests ?? []) as SupportRequest[];
+
+  const requestIds = requests.map((request) => request.id);
+  const recommendationsByRequest = new Map<number, ScholarshipRecommendation[]>();
+  if (requestIds.length > 0) {
+    const { data: recommendationRows } = await supabase
+      .from("scholarship_recommendations")
+      .select("id,request_id,scholarship_name,university,degree_level,country,deadline,link,notes,created_at")
+      .in("request_id", requestIds)
+      .order("created_at", { ascending: false });
+    for (const recommendation of (recommendationRows ?? []) as ScholarshipRecommendation[]) {
+      const existing = recommendationsByRequest.get(recommendation.request_id) ?? [];
+      existing.push(recommendation);
+      recommendationsByRequest.set(recommendation.request_id, existing);
+    }
+  }
 
   return (
     <InnerPageShell>
@@ -95,6 +125,27 @@ export default async function ScholarshipSupportPage() {
                       ) : (
                         <p className="account-support-pending">এখনো reply দেওয়া হয়নি—সাধারণত ১–২ working day-এর মধ্যে reply পাবেন।</p>
                       )}
+
+                      {(recommendationsByRequest.get(request.id) ?? []).length > 0 ? (
+                        <div className="account-support-recommendations">
+                          <h3>Scholarship recommendations</h3>
+                          {(recommendationsByRequest.get(request.id) ?? []).map((recommendation) => (
+                            <article className="account-recommendation-card" key={recommendation.id}>
+                              <strong>{recommendation.scholarship_name}</strong>
+                              <span>{recommendation.university}</span>
+                              <div className="account-recommendation-tags">
+                                {recommendation.degree_level ? <span>{recommendation.degree_level}</span> : null}
+                                {recommendation.country ? <span>{recommendation.country}</span> : null}
+                                {recommendation.deadline ? <span>Deadline: {recommendationDateFormatter.format(new Date(recommendation.deadline))}</span> : null}
+                              </div>
+                              {recommendation.notes ? <p>{recommendation.notes}</p> : null}
+                              {recommendation.link ? (
+                                <a href={recommendation.link} target="_blank" rel="noreferrer">বিস্তারিত দেখুন ↗</a>
+                              ) : null}
+                            </article>
+                          ))}
+                        </div>
+                      ) : null}
                     </article>
                   ))}
                 </div>

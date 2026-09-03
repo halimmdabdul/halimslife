@@ -2,27 +2,14 @@
 
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { sendContactNotification } from "@/lib/contact-email";
+import {
+  scholarshipCountryLabels,
+  scholarshipDegreeLabels,
+} from "@/lib/scholarship-support-options";
 
 export type ScholarshipSupportState = {
   error?: string;
   success?: string;
-};
-
-const countryLabels: Record<string, string> = {
-  usa: "USA",
-  canada: "Canada",
-  korea: "South Korea",
-  switzerland: "Switzerland",
-  italy: "Italy",
-  japan: "Japan",
-  undecided: "এখনও ঠিক করিনি",
-};
-
-const degreeLabels: Record<string, string> = {
-  bachelors: "Bachelor's",
-  masters: "Master's",
-  phd: "PhD",
-  undecided: "এখনও ঠিক করিনি",
 };
 
 export async function submitScholarshipSupportRequest(
@@ -62,10 +49,10 @@ export async function submitScholarshipSupportRequest(
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
     return { error: "একটি সঠিক email address দিন।" };
   }
-  if (!countryLabels[country]) {
+  if (!scholarshipCountryLabels[country]) {
     return { error: "একটি সঠিক target country বেছে নিন।" };
   }
-  if (!degreeLabels[degree]) {
+  if (!scholarshipDegreeLabels[degree]) {
     return { error: "একটি সঠিক degree level বেছে নিন।" };
   }
   if (background.length < 5 || background.length > 300) {
@@ -78,10 +65,10 @@ export async function submitScholarshipSupportRequest(
     return { error: "একটি সঠিক drive.google.com বা docs.google.com link দিন, অথবা field-টি খালি রাখুন।" };
   }
 
-  const subject = `Scholarship support request — ${countryLabels[country]}`;
+  const subject = `Scholarship support request — ${scholarshipCountryLabels[country]}`;
   const message = [
-    `Target country: ${countryLabels[country]}`,
-    `Target degree: ${degreeLabels[degree]}`,
+    `Target country: ${scholarshipCountryLabels[country]}`,
+    `Target degree: ${scholarshipDegreeLabels[degree]}`,
     `Current education / background: ${background}`,
     ...(driveLink ? [`CV/Transcript link: ${driveLink}`] : []),
     "",
@@ -96,6 +83,11 @@ export async function submitScholarshipSupportRequest(
     topic: "scholarship-support",
     subject,
     message,
+    target_country: country,
+    target_degree: degree,
+    background,
+    goals,
+    drive_link: driveLink || null,
   });
 
   if (error) {

@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/admin-auth";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { sendContactReply } from "@/lib/contact-email";
+import { sendContactReply, sendScholarshipRecommendationEmail } from "@/lib/contact-email";
 
 export type LoginState = {
   error?: string;
@@ -774,6 +774,93 @@ export async function replyToContactMessage(formData: FormData) {
   revalidatePath("/admin");
 }
 
+function boundedText(formData: FormData, name: string, min: number, max: number) {
+  const value = requiredText(formData, name);
+  if (value.length < min || value.length > max) {
+    throw new Error(`${name} must be between ${min} and ${max} characters.`);
+  }
+  return value;
+}
+
+function optionalBoundedText(formData: FormData, name: string, max: number) {
+  const value = optionalText(formData, name);
+  if (value && value.length > max) {
+    throw new Error(`${name} is too long (max ${max} characters).`);
+  }
+  return value;
+}
+
+export async function addScholarshipRecommendation(formData: FormData) {
+  const { supabase, profile } = await requireAdmin();
+  const requestId = Number(formData.get("requestId"));
+  if (!Number.isInteger(requestId)) throw new Error("Invalid recommendation request.");
+
+  const scholarshipName = boundedText(formData, "scholarshipName", 2, 200);
+  const university = boundedText(formData, "university", 2, 200);
+  const degreeLevel = optionalBoundedText(formData, "degreeLevel", 60);
+  const country = optionalBoundedText(formData, "country", 100);
+  const deadline = optionalText(formData, "deadline");
+  const link = optionalBoundedText(formData, "link", 500);
+  const notes = optionalBoundedText(formData, "notes", 2000);
+
+  if (link && !/^https?:\/\//.test(link)) {
+    throw new Error("Link must start with http:// or https://.");
+  }
+  if (deadline && !/^\d{4}-\d{2}-\d{2}$/.test(deadline)) {
+    throw new Error("Deadline must be a valid date.");
+  }
+
+  const { data: request, error: fetchError } = await supabase
+    .from("contact_messages")
+    .select("name,email")
+    .eq("id", requestId)
+    .single();
+  if (fetchError || !request) throw new Error("Original request not found.");
+
+  const { error } = await supabase.from("scholarship_recommendations").insert({
+    request_id: requestId,
+    scholarship_name: scholarshipName,
+    university,
+    degree_level: degreeLevel,
+    country,
+    deadline: deadline || null,
+    link,
+    notes,
+    created_by: profile.id,
+  });
+  if (error) throw new Error(`Recommendation could not be saved: ${error.message}`);
+
+  try {
+    const delivery = await sendScholarshipRecommendationEmail({
+      toName: request.name,
+      toEmail: request.email,
+      scholarshipName,
+      university,
+    });
+    if (!delivery.ok) console.error("Recommendation email delivery skipped or failed:", delivery.reason);
+  } catch (deliveryError) {
+    console.error("Recommendation email delivery failed:", deliveryError);
+  }
+
+  revalidatePath("/admin/scholarship-support");
+  revalidatePath("/account/scholarship-support");
+}
+
+export async function deleteScholarshipRecommendation(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  const recommendationId = Number(formData.get("recommendationId"));
+  if (!Number.isInteger(recommendationId)) throw new Error("Invalid delete request.");
+
+  const { error } = await supabase
+    .from("scholarship_recommendations")
+    .delete()
+    .eq("id", recommendationId);
+  if (error) throw new Error(`Recommendation could not be deleted: ${error.message}`);
+
+  revalidatePath("/admin/scholarship-support");
+  revalidatePath("/account/scholarship-support");
+}
+
 const safeTrackingIdPattern = /^[A-Za-z0-9_.-]+$/;
 
 function optionalIdText(formData: FormData, name: string, maxLength: number) {
@@ -825,6 +912,8 @@ export type AdminActionName =
   | "togglePostPublished"
   | "deletePost"
   | "replyToContactMessage"
+  | "addScholarshipRecommendation"
+  | "deleteScholarshipRecommendation"
   | "updateSiteSettings";
 
 export type AdminActionResult =
@@ -884,6 +973,12 @@ export async function submitAdminCourseAction(
         break;
       case "replyToContactMessage":
         await replyToContactMessage(formData);
+        break;
+      case "addScholarshipRecommendation":
+        await addScholarshipRecommendation(formData);
+        break;
+      case "deleteScholarshipRecommendation":
+        await deleteScholarshipRecommendation(formData);
         break;
       case "updateSiteSettings":
         await updateSiteSettings(formData);
