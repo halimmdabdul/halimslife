@@ -105,6 +105,16 @@ const vocabularyBanks: Record<number, string[]> = {
     "定食 — set meal · teishoku", "ランチ — lunch set · ranchi", "天丼 — tempura rice bowl · tendon", "親子丼 — chicken-and-egg rice bowl · oyakodon", "牛丼 — beef bowl · gyuudon", "焼き肉 — grilled meat · yakiniku", "漬物 — আচার · tsukemono", "みそ汁 — miso soup · misoshiru", "おにぎり — rice ball · onigiri",
     "ハンバーグ — hamburger steak · hanbaagu", "コロッケ — croquette · korokke", "えびフライ — fried shrimp · ebi furai", "フライドチキン — fried chicken · furaido chikin", "サラダ — salad · sarada", "スープ — soup · suupu", "スパゲッティ — spaghetti · supagetti", "ピザ — pizza · piza", "ハンバーガー — hamburger · hanbaagaa", "トースト — toast · toosuto", "コーヒー — coffee · koohii", "紅茶 — black tea · koucha", "ココア — cocoa · kokoa", "ジュース — juice · juusu", "コーラ — cola · koora", "オーストラリア — Australia · Oosutoraria",
   ],
+  12: [
+    "かんたん［な］（簡単［な］） — সহজ · kantan", "ちかい（近い） — কাছে · chikai", "とおい（遠い） — দূরে · tooi", "はやい（速い／早い） — দ্রুত/তাড়াতাড়ি · hayai", "おそい（遅い） — ধীর/দেরি · osoi", "おおい（多い）［人が～］ — বেশি/অনেক · ooi", "すくない（少ない）［人が～］ — কম/অল্প · sukunai", "あたたかい（暖かい／温かい） — উষ্ণ · atatakai",
+    "すずしい（涼しい） — শীতল/ঠান্ডা আরামদায়ক · suzushii", "あまい（甘い） — মিষ্টি · amai", "からい（辛い） — ঝাল · karai", "おもい（重い） — ভারী · omoi", "かるい（軽い） — হালকা · karui", "いい［コーヒーが～］ — ভালো/পছন্দনীয় · ii", "きせつ（季節） — ঋতু · kisetsu", "はる（春） — বসন্ত · haru",
+    "なつ（夏） — গ্রীষ্ম · natsu", "あき（秋） — শরৎ · aki", "ふゆ（冬） — শীতকাল · fuyu", "てんき（天気） — আবহাওয়া · tenki", "あめ（雨） — বৃষ্টি · ame", "ゆき（雪） — তুষার · yuki", "くもり（曇り） — মেঘলা আবহাওয়া · kumori", "ホテル — hotel · hoteru",
+    "くうこう（空港） — বিমানবন্দর · kuukou", "うみ（海） — সমুদ্র · umi", "せかい（世界） — বিশ্ব · sekai", "パーティー — party · paatii", "［お］まつり（［お］祭り） — উৎসব · omatsuri", "しけん（試験） — পরীক্ষা · shiken", "すきやき（すき焼き） — sukiyaki · sukiyaki", "さしみ（刺身） — sashimi · sashimi",
+    "［お］すし（［お］寿司） — sushi · osushi", "てんぷら（天ぷら） — tempura · tenpura", "いけばな（生け花） — ফুল সাজানোর জাপানি শিল্প · ikebana", "もみじ（紅葉） — লাল maple পাতা · momiji", "どちら — কোনটি; দুটির মধ্যে · dochira", "どちらも — দুটিই · dochira mo", "いちばん（一番） — সবচেয়ে · ichiban", "ずっと — অনেক বেশি/একটানা · zutto",
+    "はじめて（初めて） — প্রথমবার · hajimete", "ただいま — ফিরে এলাম · tadaima", "おかえりなさい（お帰りなさい） — স্বাগতম/ফিরে আসায় স্বাগত · okaerinasai", "すごいですね — দারুণ, তাই না · sugoi desu ne", "つかれました（疲れました） — ক্লান্ত হয়ে গেছি · tsukaremashita", "ぎおんまつり（祇園祭） — Gion Festival · Gion-matsuri", "ホンコン（香港） — Hong Kong · Honkon", "シンガポール — Singapore · Shingapooru",
+    "ほっかいどう（北海道） — Hokkaido · Hokkaidou", "ほんしゅう（本州） — Honshu · Honshuu", "しこく（四国） — Shikoku · Shikoku", "きゅうしゅう（九州） — Kyushu · Kyuushuu", "おきなわ（沖縄） — Okinawa · Okinawa", "とうきょう（東京） — Tokyo · Toukyou", "おおさか（大阪） — Osaka · Oosaka", "きょうと（京都） — Kyoto · Kyouto",
+    "なら（奈良） — Nara · Nara", "ふじさん（富士山） — Mount Fuji · Fujisan", "びわこ（琵琶湖） — Lake Biwa · Biwako", "しなのがわ（信濃川） — Shinano River · Shinanogawa", "エベレスト — Mount Everest · Eberesuto", "ナイルがわ（ナイル川） — Nile River · Nairugawa", "カスピかい（カスピ海） — Caspian Sea · Kasupikai", "にほん（日本） — Japan · Nihon",
+  ],
   13: [
     "あそびます（遊びます） — আনন্দ করি/খেলি · asobimasu", "およぎます（泳ぎます） — সাঁতার কাটি · oyogimasu", "むかえます（迎えます） — কাউকে নিতে/স্বাগত জানাতে যাই · mukaemasu", "つかれます（疲れます） — ক্লান্ত হই · tsukaremasu",
     "けっこんします（結婚します） — বিয়ে করি · kekkon shimasu", "かいものします（買い物します） — কেনাকাটা করি · kaimono shimasu", "しょくじします（食事します） — খাবার খাই/ভোজন করি · shokuji shimasu", "さんぽします［公園を～］（散歩します） — হাঁটি [পার্কে] · sanpo shimasu",
@@ -133,6 +143,56 @@ const vocabularyBanks: Record<number, string[]> = {
     "とっきゅう（特急） — সুপার এক্সপ্রেস ট্রেন · tokkyuu", "きゅうこう（急行） — এক্সপ্রেস ট্রেন · kyuukou", "かいそく（快速） — দ্রুতগামী ট্রেন · kaisoku", "じゅんきゅう（準急） — সেমি-এক্সপ্রেস ট্রেন · junkyuu", "ふつう（普通） — লোকাল ট্রেন · futsuu",
     "じこくひょう（時刻表） — সময়সূচি · jikokuhyou", "～はつ（～発） — ～ থেকে ছাড়ে · hatsu", "～ちゃく（～着） — ～তে পৌঁছায় · chaku", "～ゆき（～行き） — ～গামী · yuki", "ていきけん（定期券） — কমিউটার পাস · teikiken", "かいすうけん（回数券） — কুপন টিকিট · kaisuuken", "かたみち（片道） — একমুখী · katamichi", "おうふく（往復） — যাওয়া-আসা/রাউন্ড ট্রিপ · oufuku",
   ],
+  15: [
+    "おきます（置きます） — রাখি/স্থাপন করি · okimasu", "つくります（作ります／造ります） — বানাই/উৎপাদন করি · tsukurimasu", "うります（売ります） — বিক্রি করি · urimasu", "しります（知ります） — জানতে পারি · shirimasu", "すみます（住みます） — বসবাস করি · sumimasu", "けんきゅうします（研究します） — গবেষণা করি · kenkyuu shimasu",
+    "しりょう（資料） — উপকরণ/তথ্য · shiryou", "カタログ — catalogue · katarogu", "じこくひょう（時刻表） — সময়সূচি · jikokuhyou", "ふく（服） — পোশাক · fuku", "せいひん（製品） — পণ্য/উৎপাদিত সামগ্রী · seihin", "ソフト — software · sofuto", "でんしじしょ（電子辞書） — electronic dictionary · denshi jisho",
+    "けいざい（経済） — অর্থনীতি · keizai", "しやくしょ（市役所） — পৌরসভা/city hall · shiyakusho", "こうこう（高校） — উচ্চ বিদ্যালয় · koukou", "はいしゃ（歯医者） — দাঁতের ডাক্তার · haisha", "どくしん（独身） — অবিবাহিত · dokushin", "すみません — দুঃখিত/মাফ করবেন · sumimasen",
+    "みなさん（皆さん） — সবাই/আপনারা সবাই · minasan", "おもいだします（思い出します） — মনে করি/স্মরণ করি · omoidashimasu", "いらっしゃいます — আছেন/আসেন/যান; সম্মানসূচক · irasshaimasu", "にっぽんばし（日本橋） — নিপ্পনবাশি · Nipponbashi", "みんなのインタビュー — সবার সাক্ষাৎকার · Minna no Intabyuu",
+    "かいしゃいん（会社員） — কোম্পানির কর্মচারী · kaishain", "こうむいん（公務員） — সরকারি কর্মচারী · koumuin", "えきいん（駅員） — স্টেশন কর্মচারী · ekiin", "ぎんこういん（銀行員） — ব্যাংক কর্মচারী · ginkouin", "ゆうびんきょくいん（郵便局員） — ডাকঘরের কর্মচারী · yuubinkyokuin",
+    "てんいん（店員） — দোকানের কর্মচারী · ten'in", "ちょうりし（調理師） — রাঁধুনি/পেশাদার cook · chourishi", "りようし／びようし（理容師／美容師） — নাপিত/beautician · riyoushi/biyoushi", "きょうし（教師） — শিক্ষক · kyoushi", "べんごし（弁護士） — আইনজীবী · bengoshi",
+    "けんきゅうしゃ（研究者） — গবেষক · kenkyuusha", "いしゃ／かんごし（医者／看護師） — ডাক্তার/নার্স · isha/kangoshi", "うんてんしゅ（運転手） — চালক · untenshu", "けいさつかん（警察官） — পুলিশ কর্মকর্তা · keisatsukan", "がいこうかん（外交官） — কূটনীতিক · gaikoukan",
+    "せいじか（政治家） — রাজনীতিবিদ · seijika", "がか（画家） — চিত্রশিল্পী · gaka", "さっか（作家） — লেখক · sakka", "おんがくか（音楽家） — সংগীতশিল্পী · ongakuka", "けんちくか（建築家） — স্থপতি · kenchikuka",
+    "エンジニア — engineer · enjinia", "デザイナー — designer · dezainaa", "ジャーナリスト — journalist · jaanarisuto", "かしゅ／はいゆう（歌手／俳優） — গায়ক/অভিনেতা · kashu/haiyuu", "スポーツせんしゅ（スポーツ選手） — ক্রীড়াবিদ · supootsu senshu",
+  ],
+  16: [
+    "のります（乗ります）［電車に～］ — উঠি/চড়ি · norimasu", "おります（降ります）［電車を～］ — নামি · orimasu", "のりかえます（乗り換えます） — যানবাহন বদলাই · norikaemasu", "あびます（浴びます）［シャワーを～］ — shower নিই · abimasu", "いれます（入れます） — ঢোকাই/প্রবেশ করাই · iremasu", "だします（出します） — বের করি/জমা দিই/পাঠাই · dashimasu", "おろします（下ろします）［お金を～］ — টাকা তুলি · oroshimasu", "はいります（入ります）［大学に～］ — প্রবেশ করি/ভর্তি হই · hairimasu",
+    "でます（出ます）［大学を～］ — বের হই/graduate করি · demasu", "おします（押します） — চাপি · oshimasu", "のみます（飲みます）［お酒を～］ — পান করি · nomimasu", "はじめます（始めます） — শুরু করি · hajimemasu", "けんがくします（見学します） — পরিদর্শন করে শিখি · kengaku shimasu", "でんわします（電話します） — ফোন করি · denwa shimasu", "わかい（若い） — তরুণ · wakai", "ながい（長い） — লম্বা/দীর্ঘ · nagai",
+    "みじかい（短い） — ছোট/সংক্ষিপ্ত · mijikai", "あかるい（明るい） — উজ্জ্বল/আলোকিত · akarui", "くらい（暗い） — অন্ধকার · kurai", "からだ（体） — শরীর/স্বাস্থ্য · karada", "あたま（頭） — মাথা/মস্তিষ্ক · atama", "かみ（髪） — চুল · kami", "かお（顔） — মুখ · kao", "め（目） — চোখ · me",
+    "みみ（耳） — কান · mimi", "は（歯） — দাঁত · ha", "おなか — পেট · onaka", "あし（足） — পা · ashi", "せ（背） — উচ্চতা · se", "サービス — service · saabisu", "ジョギング — jogging · jogingu", "シャワー — shower · shawaa",
+    "みどり（緑） — সবুজ/সবুজ গাছপালা · midori", "［お］てら（［お］寺） — বৌদ্ধ মন্দির · otera", "じんじゃ（神社） — Shinto shrine · jinja", "～ばん（～番） — ～নম্বর · ban", "どうやって — কীভাবে/কোন উপায়ে · douyatte", "どの～ — কোন～; noun-এর আগে · dono", "どれ — কোনটি; তিন বা বেশি থেকে · dore", "すごいですね — দারুণ, তাই না · sugoi desu ne",
+    "いいえ、まだまだです — না, এখনও অনেক বাকি · iie, mada mada desu", "おひきだしですか（お引き出しですか） — টাকা তুলবেন? · ohikidashi desu ka", "まず — প্রথমে · mazu", "キャッシュカード — cash card · kyasshu kaado", "あんしょうばんごう（暗証番号） — PIN/গোপন নম্বর · anshou bangou", "つぎに（次に） — এরপর · tsugi ni", "きんがく（金額） — টাকার পরিমাণ · kingaku", "かくにん（確認） — নিশ্চিতকরণ · kakunin",
+    "ボタン — button · botan", "ジェイアール（JR） — Japan Railways · Jei Aaru", "ゆきまつり（雪祭り） — Snow Festival · yuki matsuri", "バンドン — Bandung · Bandon", "フランケン — Franken · Furanken", "ベラクルス — Veracruz · Berakurusu", "うめだ（梅田） — Umeda · Umeda", "だいがくまえ（大学前） — বিশ্ববিদ্যালয়ের সামনে · daigaku mae",
+    "おあずけいれ（お預け入れ） — টাকা জমা · oazukeire", "おふりこみ（お振り込み） — payment/remittance · ofurikomi", "おふりかえ（お振り替え） — account transfer · ofurikae", "つうちょうきにゅう（通帳記入） — passbook update · tsuuchou kinyuu", "ざんだかしょうかい（残高照会） — balance inquiry · zandaka shoukai", "おかね（お金） — টাকা · okane", "しへい（紙幣） — banknote · shihei", "エーティーエム（ATM） — cash machine · eeteiiemu",
+  ],
+  17: [
+    "おぼえます（覚えます） — মুখস্থ করি/মনে রাখি · oboemasu", "わすれます（忘れます） — ভুলে যাই · wasuremasu", "なくします — হারাই · nakushimasu", "はらいます（払います） — পরিশোধ করি · haraimasu", "かえします（返します） — ফেরত দিই · kaeshimasu", "でかけます（出かけます） — বাইরে যাই · dekakemasu", "ぬぎます（脱ぎます） — খুলে ফেলি; পোশাক · nugimasu", "もっていきます（持って行きます） — সঙ্গে নিয়ে যাই · motte ikimasu",
+    "もってきます（持って来ます） — সঙ্গে নিয়ে আসি · motte kimasu", "しんぱいします（心配します） — চিন্তা করি · shinpai shimasu", "ざんぎょうします（残業します） — overtime করি · zangyou shimasu", "しゅっちょうします（出張します） — business trip-এ যাই · shucchou shimasu", "のみます（飲みます）［薬を～］ — ওষুধ খাই · nomimasu", "はいります（入ります）［お風呂に～］ — গোসল করি · hairimasu", "たいせつ［な］（大切［な］） — গুরুত্বপূর্ণ/মূল্যবান · taisetsu", "だいじょうぶ［な］（大丈夫［な］） — ঠিক আছে/সমস্যা নেই · daijoubu",
+    "あぶない（危ない） — বিপজ্জনক · abunai", "きんえん（禁煙） — ধূমপান নিষেধ · kin'en", "けんこうほけんしょう（健康保険証） — স্বাস্থ্যবিমা কার্ড · kenkou hokenshou", "ねつ（熱） — জ্বর/তাপমাত্রা · netsu", "びょうき（病気） — অসুস্থতা/রোগ · byouki", "くすり（薬） — ওষুধ · kusuri", "［お］ふろ（［お］風呂） — গোসল/bath · ofuro", "うわぎ（上着） — jacket/বাইরের পোশাক · uwagi",
+    "したぎ（下着） — অন্তর্বাস · shitagi", "2、3にち（2、3日） — দুই-তিন দিন · ni-san nichi", "2、3～ — দুই-তিন～ · ni-san", "～までに — ～এর মধ্যে/deadline-এর আগে · made ni", "ですから — তাই/সেজন্য · desu kara", "どうしましたか — কী হয়েছে? · dou shimashita ka", "［～が］いたいです（痛いです） — ～ব্যথা করছে · ga itai desu", "のど（喉） — গলা · nodo",
+    "おだいじに（お大事に） — নিজের যত্ন নিন/শীঘ্র সুস্থ হোন · odaiji ni", "ずつうが します（頭痛がします） — মাথাব্যথা হয় · zutsuu ga shimasu", "おなかが いたい（おなかが痛い） — পেটব্যথা · onaka ga itai", "はが いたい（歯が痛い） — দাঁতব্যথা · ha ga itai", "ねつが あります（熱があります） — জ্বর আছে · netsu ga arimasu", "せきが でます（せきが出ます） — কাশি হয় · seki ga demasu", "はなみずが でます（鼻水が出ます） — নাক দিয়ে পানি পড়ে · hanamizu ga demasu", "ちが でます（血が出ます） — রক্তপাত হয় · chi ga demasu",
+    "はきけが します（吐き気がします） — বমি বমি লাগে · hakike ga shimasu", "さむけが します（寒気がします） — ঠান্ডা/কাঁপুনি লাগে · samuke ga shimasu", "めまいが します — মাথা ঘোরে · memai ga shimasu", "げりを します（下痢をします） — ডায়রিয়া হয় · geri o shimasu", "べんぴを します（便秘をします） — কোষ্ঠকাঠিন্য হয় · benpi o shimasu", "けがを します — আঘাত পাই · kega o shimasu", "やけどを します（火傷をします） — পুড়ে যাই · yakedo o shimasu", "しょくよくが ありません（食欲がありません） — ক্ষুধা/রুচি নেই · shokuyoku ga arimasen",
+    "かたが こります（肩がこります） — কাঁধ শক্ত/ব্যথা হয় · kata ga korimasu", "からだが だるい（体がだるい） — শরীর অবসন্ন লাগে · karada ga darui", "かゆい — চুলকায় · kayui", "かぜ（風邪） — সর্দি/ঠান্ডা · kaze", "インフルエンザ — flu/influenza · infuruenza", "もうちょう（盲腸） — appendicitis · mouchou", "ぎっくりごし（ぎっくり腰） — কোমরে হঠাৎ টান/slipped disc · gikkurigoshi", "ねんざ（捻挫） — মচকানো · nenza",
+    "こっせつ（骨折） — হাড় ভাঙা · kossetsu", "ふつかよい（二日酔い） — hangover · futsukayoi", "かお（顔） — মুখ · kao", "あたま（頭） — মাথা · atama", "みみ（耳） — কান · mimi", "め（目） — চোখ · me", "はな（鼻） — নাক · hana", "くち（口） — মুখগহ্বর · kuchi",
+    "は（歯） — দাঁত · ha", "あご（顎） — চোয়াল · ago", "くび（首） — ঘাড় · kubi", "むね（胸） — বুক · mune", "せなか（背中） — পিঠ · senaka", "かた（肩） — কাঁধ · kata", "うで（腕） — বাহু · ude", "ひじ（肘） — কনুই · hiji",
+    "て／ゆび（手／指） — হাত/আঙুল · te/yubi", "つめ（爪） — নখ · tsume", "おなか — পেট · onaka", "こし（腰） — কোমর · koshi", "しり（尻） — নিতম্ব · shiri", "ひざ（膝） — হাঁটু · hiza", "あし（脚／足） — পা/পায়ের পাতা · ashi", "ほね（骨） — হাড় · hone",
+  ],
+  18: [
+    "できます — পারি/সক্ষম হই · dekimasu", "あらいます（洗います） — ধুই · araimasu", "ひきます（弾きます） — বাদ্যযন্ত্র বাজাই · hikimasu", "うたいます（歌います） — গান গাই · utaimasu", "あつめます（集めます） — সংগ্রহ করি · atsumemasu", "すてます（捨てます） — ফেলে দিই · sutemasu", "かえます（換えます） — বদলাই/বিনিময় করি · kaemasu", "うんてんします（運転します） — গাড়ি চালাই · unten shimasu",
+    "よやくします（予約します） — reservation করি · yoyaku shimasu", "ピアノ — piano · piano", "～メートル — ～মিটার · meetoru", "げんきん（現金） — নগদ টাকা · genkin", "しゅみ（趣味） — শখ · shumi", "にっき（日記） — diary/দিনলিপি · nikki", "［お］いのり（［お］祈り） — প্রার্থনা · oinori", "かちょう（課長） — section manager · kachou",
+    "ぶちょう（部長） — department manager · buchou", "しゃちょう（社長） — company president · shachou", "どうぶつ（動物） — প্রাণী · doubutsu", "うま（馬） — ঘোড়া · uma", "インターネット — internet · intaanetto", "とくに（特に） — বিশেষ করে · toku ni", "へえ — বাহ!/সত্যি! · hee", "それは おもしろいですね — সেটি মজার, তাই না · sore wa omoshiroi desu ne",
+    "なかなか — সহজে/প্রত্যাশামতো; negative-এর সঙ্গে · nakanaka", "ほんとうですか（本当ですか） — সত্যি? · hontou desu ka", "ぜひ — অবশ্যই/খুবই চাই · zehi", "ふるさと — জন্মস্থান/নিজ শহর · furusato", "ビートルズ — The Beatles · Biitoruzu", "あきはばら（秋葉原） — Tokyo-র Akihabara এলাকা · Akihabara", "とびます（飛びます） — উড়ি · tobimasu", "とびます（跳びます） — লাফাই · tobimasu",
+    "のぼります（登ります） — উঠি/আরোহণ করি · noborimasu", "はしります（走ります） — দৌড়াই · hashirimasu", "およぎます（泳ぎます） — সাঁতার কাটি · oyogimasu", "もぐります — পানির নিচে ডুব দিই · mogurimasu", "とびこみます（飛び込みます） — ঝাঁপ দিয়ে ঢুকি · tobikomimasu", "さかだちします（逆立ちします） — handstand করি · sakadachi shimasu", "はいます — হামাগুড়ি দিই · haimasu", "けります — লাথি মারি · kerimasu",
+    "ふります（振ります） — নাড়ি/হাত নাড়ি · furimasu", "もちあげます（持ち上げます） — তুলে ধরি · mochiagemasu", "なげます（投げます） — ছুড়ে দিই · nagemasu", "たたきます — চাপড়াই/টোকা দিই · tatakimasu", "ひきます（引きます） — টানি · hikimasu", "おします（押します） — ঠেলি · oshimasu", "まげます（曲げます） — বাঁকাই · magemasu", "のばします（伸ばします） — প্রসারিত/সোজা করি · nobashimasu",
+    "ころびます（転びます） — পড়ে যাই · korobimasu", "ふりむきます（振り向きます） — পেছনে ফিরে তাকাই · furimukimasu",
+  ],
+  19: [
+    "のぼります（登ります）［山に～］ — পাহাড়ে উঠি · noborimasu", "とまります（泊まります）［ホテルに～］ — hotel-এ থাকি · tomarimasu", "そうじします（掃除します） — পরিষ্কার করি · souji shimasu", "せんたくします（洗濯します） — কাপড় ধুই · sentaku shimasu", "なります — হয়ে যাই/পরিবর্তিত হই · narimasu", "ねむい（眠い） — ঘুম পাচ্ছে · nemui", "つよい（強い） — শক্তিশালী · tsuyoi", "よわい（弱い） — দুর্বল · yowai",
+    "れんしゅう（練習） — অনুশীলন · renshuu", "ゴルフ — golf · gorufu", "すもうを します（相撲をします） — sumo করি · sumou o shimasu", "［お］ちゃ（［お］茶） — Japanese tea · ocha", "ひ（日） — দিন/তারিখ · hi", "ちょうし（調子） — শারীরিক অবস্থা/condition · choushi", "いちど（一度） — একবার · ichido", "いちども（一度も） — একবারও; negative-এর সঙ্গে · ichido mo",
+    "だんだん — ধীরে ধীরে · dandan", "もうすぐ — শিগগিরই · mou sugu", "おかげさまで — আপনাদের দোয়ায়/সহায়তায় · okagesama de", "でも — কিন্তু · demo", "ダイエット — diet · daietto", "むり［な］（無理［な］） — অসম্ভব/অতিরিক্ত কষ্টকর · muri", "からだに いい（体に いい） — স্বাস্থ্যের জন্য ভালো · karada ni ii", "とうきょうスカイツリー（東京スカイツリー） — Tokyo Skytree · Toukyou Sukai Tsurii",
+    "えどとうきょうはくぶつかん（江戸東京博物館） — Edo-Tokyo Museum · Edo Toukyou Hakubutsukan", "かつしかほくさい（葛飾北斎） — বিখ্যাত ukiyo-e চিত্রশিল্পী · Katsushika Hokusai", "さどう（茶道） — tea ceremony · sadou", "かどう（華道）／いけばな（生け花） — flower arranging · kadou/ikebana", "しょどう（書道） — Japanese calligraphy · shodou", "かぶき（歌舞伎） — Kabuki theatre · kabuki", "のう（能） — Noh theatre · nou", "ぶんらく（文楽） — Bunraku puppet theatre · bunraku",
+    "すもう（相撲） — sumo · sumou", "じゅうどう（柔道） — judo · juudou", "けんどう（剣道） — kendo · kendou", "からて（空手） — karate · karate", "まんざい（漫才） — Japanese comic dialogue · manzai", "らくご（落語） — comic storytelling · rakugo", "いご（囲碁） — Go board game · igo", "しょうぎ（将棋） — Japanese chess · shougi",
+    "パチンコ — pachinko · pachinko", "カラオケ — karaoke · karaoke", "ぼんおどり（盆踊り） — Bon festival dance · bon odori", "きがえ（着替え） — পোশাক বদলানো · kigae",
+  ],
 };
 
 function wordKey(item: string) {
@@ -151,8 +211,14 @@ export function getMinnaN5UnitVocabulary(unit: CompanionUnit) {
   if (unit.number === 9) return vocabularyBanks[9];
   if (unit.number === 10) return vocabularyBanks[10];
   if (unit.number === 11) return vocabularyBanks[11];
+  if (unit.number === 12) return vocabularyBanks[12];
   if (unit.number === 13) return vocabularyBanks[13];
   if (unit.number === 14) return vocabularyBanks[14];
+  if (unit.number === 15) return vocabularyBanks[15];
+  if (unit.number === 16) return vocabularyBanks[16];
+  if (unit.number === 17) return vocabularyBanks[17];
+  if (unit.number === 18) return vocabularyBanks[18];
+  if (unit.number === 19) return vocabularyBanks[19];
   const bank = vocabularyBanks[Math.ceil(unit.number / 5)] ?? [];
   const unique = new Map<string, string>();
   [...unit.vocabulary, ...bank].forEach((item) => {

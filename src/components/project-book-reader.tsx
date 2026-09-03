@@ -38,6 +38,8 @@ import { getMinnaN5KanjiExample } from "@/lib/minna-n5-kanji-examples";
 import { getMinnaN5PracticeDetails } from "@/lib/minna-n5-practice-details";
 import { getMinnaN5LessonDetails } from "@/lib/minna-n5-lesson-details";
 import { minnaN5FoundationDashboard } from "@/lib/minna-n5-foundation-dashboard";
+import { minnaDeepDives1 } from "@/lib/minna-n5-deep-dives-1";
+import { minnaDeepDives2 } from "@/lib/minna-n5-deep-dives-2";
 import { getMinnaN4UnitVocabulary } from "@/lib/minna-n4-vocabulary";
 
 import styles from "./project-book-reader.module.css";
@@ -221,6 +223,10 @@ export function ProjectBookReader({ sections, units, config, isAuthenticated }: 
   const unitLessonDetails =
     unit && config.bookId === "n5"
       ? getMinnaN5LessonDetails(unit.number)
+      : undefined;
+  const unitDeepDive =
+    unit && config.bookId === "n5"
+      ? (minnaDeepDives1[unit.number] ?? minnaDeepDives2[unit.number])
       : undefined;
   const vocabularyScene =
     unit && config.vocabularyImageBase
@@ -733,6 +739,56 @@ export function ProjectBookReader({ sections, units, config, isAuthenticated }: 
                             <p>{unitLessonDetails.outcome}</p>
                           </aside>
                         </header>
+                        <section
+                          className={singleStyles.lessonResources}
+                          aria-label={`Unit ${unit.number}-এ যা যা আছে`}
+                        >
+                          <header>
+                            <small>AT A GLANCE</small>
+                            <h3>এই Unit-এ আর কী আছে</h3>
+                          </header>
+                          <div>
+                            {unitViews
+                              .filter((view) => view.id !== "lesson")
+                              .map((view) => {
+                                const viewIndex = unitViews.findIndex(
+                                  (item) => item.id === view.id,
+                                );
+                                const count =
+                                  view.id === "vocabulary"
+                                    ? `${unitVocabulary.length}টি শব্দ`
+                                    : view.id === "grammar"
+                                      ? `${unit.patterns.length}টি pattern`
+                                      : view.id === "kanji"
+                                        ? `${unitKanji.length}টি kanji`
+                                        : view.id === "listening"
+                                          ? `${listeningClips.length}টি clip`
+                                          : `${grammarQuizQuestions.length}টি question`;
+                                return (
+                                  <button
+                                    type="button"
+                                    key={view.id}
+                                    onClick={() => showUnitView(view.id)}
+                                    disabled={Boolean(
+                                      config.unitViewsInModal &&
+                                        viewIndex > unlockedViewIndex,
+                                    )}
+                                  >
+                                    <b>{view.icon}</b>
+                                    <span>
+                                      <strong>{count}</strong>
+                                      <small>{view.label}</small>
+                                    </span>
+                                  </button>
+                                );
+                              })}
+                          </div>
+                          {unitDeepDive ? (
+                            <p className={singleStyles.lessonResourcesDeepDive}>
+                              <b>Deep dive ·</b> {unitDeepDive.coreIdea}
+                            </p>
+                          ) : null}
+                        </section>
                         <div className={singleStyles.lessonRoadmap}>
                           {unitLessonDetails.roadmap.map((step) => (
                             <article key={step.title}>
@@ -843,7 +899,7 @@ export function ProjectBookReader({ sections, units, config, isAuthenticated }: 
                           </div>
                         </details>
                       </section>
-                    ) : config.bookId === "n5" ? (
+                    ) : !unit && config.bookId === "n5" ? (
                       <section className={singleStyles.foundationDashboard}>
                         <header className={singleStyles.foundationHero}>
                           <div>
@@ -1186,6 +1242,22 @@ export function ProjectBookReader({ sections, units, config, isAuthenticated }: 
                                                         "/images/projects/n5-vocabulary/unit-11-sprites.png",
                                                     }
                                                   : config.bookId === "n5" &&
+                                                      unit.number === 12
+                                                    ? {
+                                                        columns: 8,
+                                                        rows: 8,
+                                                        image:
+                                                          "/images/projects/n5-vocabulary/unit-12-sprites.png",
+                                                      }
+                                                    : config.bookId === "n5" &&
+                                                        unit.number === 13
+                                                      ? {
+                                                          columns: 11,
+                                                          rows: 6,
+                                                          image:
+                                                            "/images/projects/n5-vocabulary/unit-13-sprites.png",
+                                                        }
+                                                  : config.bookId === "n5" &&
                                                       unit.number === 14
                                                     ? {
                                                         columns: 10,
@@ -1193,10 +1265,54 @@ export function ProjectBookReader({ sections, units, config, isAuthenticated }: 
                                                         image:
                                                           "/images/projects/n5-vocabulary/unit-14-sprites.png",
                                                       }
+                                                    : config.bookId === "n5" &&
+                                                        unit.number === 15
+                                                      ? {
+                                                          columns: 7,
+                                                          rows: 7,
+                                                          image:
+                                                            "/images/projects/n5-vocabulary/unit-15-sprites.png",
+                                                        }
+                                                      : config.bookId === "n5" &&
+                                                          unit.number === 16
+                                                        ? {
+                                                            columns: 8,
+                                                            rows: 8,
+                                                            image:
+                                                              "/images/projects/n5-vocabulary/unit-16-sprites.png",
+                                                          }
+                                                        : config.bookId === "n5" &&
+                                                            unit.number === 17
+                                                          ? {
+                                                              columns: 10,
+                                                              rows: 8,
+                                                              image:
+                                                                "/images/projects/n5-vocabulary/unit-17-sprites.png",
+                                                            }
+                                                          : config.bookId === "n5" &&
+                                                              unit.number === 18
+                                                            ? {
+                                                                columns: 8,
+                                                                rows: 7,
+                                                                image:
+                                                                  "/images/projects/n5-vocabulary/unit-18-sprites.png",
+                                                              }
+                                                            : config.bookId === "n5" &&
+                                                                unit.number === 19
+                                                              ? {
+                                                                  columns: 8,
+                                                                  rows: 6,
+                                                                  image:
+                                                                    "/images/projects/n5-vocabulary/unit-19-sprites.png",
+                                                                }
                                                     : null;
                           const example =
                             config.bookId === "n5"
-                              ? getMinnaN5VocabularyExample(unit.number, index)
+                              ? getMinnaN5VocabularyExample(
+                                  unit.number,
+                                  index,
+                                  item,
+                                )
                               : undefined;
                           const spritePosition = mnemonic
                             ? `${(index % mnemonic.columns) * (100 / (mnemonic.columns - 1))}% ${Math.floor(index / mnemonic.columns) * (100 / (mnemonic.rows - 1))}%`
@@ -1297,10 +1413,24 @@ export function ProjectBookReader({ sections, units, config, isAuthenticated }: 
                               key={item}
                             >
                               {memoryButton}
-                              <div className={singleStyles.vocabCard}>
+                              <div
+                                className={`${singleStyles.vocabCard} ${mnemonic ? singleStyles.vocabCardWithImage : ""}`}
+                              >
                                 <span className={singleStyles.vocabNumber}>
                                   {String(index + 1).padStart(2, "0")}
                                 </span>
+                                {mnemonic ? (
+                                  <span
+                                    className={singleStyles.vocabImage}
+                                    style={{
+                                      backgroundImage: `url(${mnemonic.image})`,
+                                      backgroundSize: `${mnemonic.columns * 100}% ${mnemonic.rows * 100}%`,
+                                      backgroundPosition: spritePosition,
+                                    }}
+                                    role="img"
+                                    aria-label={`${cleanWord} মনে রাখার ছবি`}
+                                  />
+                                ) : null}
                                 <div className={singleStyles.vocabCopy}>
                                   <h3>{renderFuriganaText(cleanWord)}</h3>
                                   <p>{meaning.join("—").trim()}</p>

@@ -635,6 +635,49 @@ const unit11GrammarDetails: GrammarDetail[] = [
   {title:"শুধু একটি সীমা—だけ",structure:"N／Quantifier + だけ",explanation:"কেবল ওই noun বা ওই পরিমাণ—এর বেশি নয়—বোঝাতে তার পরে だけ বসে। だけ নিজেই সীমা প্রকাশ করে, তাই আলাদা negative দরকার নেই।",notes:["休みは 日曜日だけです = ছুটি শুধু রবিবার।","一人だけ = শুধু একজন।","だけ-এর আগে particle নয়; প্রয়োজন হলে বাক্যের অন্য particle পরে আসতে পারে।"],visual:{tokens:[{text:"外国人の 社員が",role:"যাদের কথা"},{text:"一人だけ",role:"শুধু একজন",accent:true},{text:"います",role:"আছেন"}],romaji:"Gaikokujin no shain ga hitori dake imasu.",bengali:"শুধু একজন বিদেশি কর্মী আছেন।"},examples:[{japanese:"休みは 日曜日だけです。",romaji:"Yasumi wa nichiyoubi dake desu.",bengali:"ছুটি শুধু রবিবার।"},{japanese:"りんごを 一つだけ 買いました。",romaji:"Ringo o hitotsu dake kaimashita.",bengali:"শুধু একটি আপেল কিনেছি।"}]},
 ];
 
+const unit12GrammarDetails: GrammarDetail[] = [
+  {
+    title: "Noun ও な-adjective-এর past form",
+    structure: "N／な-adj + でした。／じゃありませんでした。",
+    explanation: "Noun sentence এবং な-adjective sentence-এর polite past affirmative করতে です-এর জায়গায় でした বসে। Past negative করতে じゃありませんでした বা formal ではありませんでした ব্যবহার হয়। な-adjective noun-কে সরাসরি modify করলে な থাকে, কিন্তু sentence predicate হলে な বসে না।",
+    notes: ["きのうは 雨でした = গতকাল বৃষ্টি ছিল।", "京都は 静かでした = Kyoto শান্ত ছিল।", "試験は 簡単じゃありませんでした = পরীক্ষা সহজ ছিল না।"],
+    visual: { tokens: [{ text: "きのうは", role: "Past time" }, { text: "雨", role: "Noun" }, { text: "でした", role: "Past", accent: true }], romaji: "Kinou wa ame deshita.", bengali: "গতকাল বৃষ্টি ছিল।" },
+    examples: [{ japanese: "きのうの パーティーは にぎやかでした。", romaji: "Kinou no paatii wa nigiyaka deshita.", bengali: "গতকালের party জমজমাট ছিল।" }, { japanese: "ホテルは 静かじゃありませんでした。", romaji: "Hoteru wa shizuka ja arimasen deshita.", bengali: "Hotelটি শান্ত ছিল না।" }],
+  },
+  {
+    title: "い-adjective-এর past form",
+    structure: "～い → ～かったです。／～くなかったです。",
+    explanation: "い-adjective-এর polite past affirmative করতে শেষ い বদলে かったです এবং past negative করতে い বদলে くなかったです বসে। いい irregular: よかったです／よくなかったです।",
+    notes: ["暑い→暑かったです।", "おいしい→おいしくなかったです。", "いい→よかったです; いかったです নয়।"],
+    visual: { tokens: [{ text: "きのうは", role: "Past time" }, { text: "暑", role: "Adjective stem" }, { text: "かったです", role: "Past", accent: true }], romaji: "Kinou wa atsukatta desu.", bengali: "গতকাল গরম ছিল।" },
+    examples: [{ japanese: "北海道は 寒かったです。", romaji: "Hokkaidou wa samukatta desu.", bengali: "Hokkaido ঠান্ডা ছিল।" }, { japanese: "旅行は あまり 楽しくなかったです。", romaji: "Ryokou wa amari tanoshikunakatta desu.", bengali: "ভ্রমণটি খুব একটা আনন্দদায়ক ছিল না।" }],
+  },
+  {
+    title: "দুইটির তুলনা—N₁は N₂より adjective",
+    structure: "N₁ は N₂ より adjective です。",
+    explanation: "N₁-কে topic রেখে N₂-এর তুলনায় তার কোনো গুণ বেশি বোঝাতে N₂-এর পরে より বসে। Japanese-এ adjective-এর comparative form আলাদা করে বদলায় না; より-ই তুলনার সম্পর্ক প্রকাশ করে।",
+    notes: ["東京は 大阪より 大きいです = Tokyo Osaka-এর চেয়ে বড়।", "飛行機は 電車より 速いです।", "より-এর আগের nounটি comparison standard।"],
+    visual: { tokens: [{ text: "北海道は", role: "Topic" }, { text: "九州より", role: "Comparison", accent: true }, { text: "大きいです", role: "Description" }], romaji: "Hokkaidou wa Kyuushuu yori ookii desu.", bengali: "Hokkaido Kyushu-এর চেয়ে বড়।" },
+    examples: [{ japanese: "この ホテルは あの ホテルより 安いです。", romaji: "Kono hoteru wa ano hoteru yori yasui desu.", bengali: "এই hotelটি ওই hotel-এর চেয়ে সস্তা।" }, { japanese: "電車は バスより 速いです。", romaji: "Densha wa basu yori hayai desu.", bengali: "Train bus-এর চেয়ে দ্রুত।" }],
+  },
+  {
+    title: "দুইটির মধ্যে কোনটি—N₁と N₂と どちらが adjective",
+    structure: "N₁ と N₂ と どちらが adjective ですか。— N の ほうが adjective です。",
+    explanation: "দুইটি জিনিসের মধ্যে কোনটির কোনো গুণ বেশি জানতে どちらが ব্যবহার হয়। উত্তরে নির্বাচিত noun-এর পরে のほうが বসে। দুইটি সমান হলে どちらも adjective です বলা যায়।",
+    notes: ["サッカーと 野球と どちらが おもしろいですか。", "サッカーの ほうが おもしろいです。", "どちらも おもしろいです = দুটিই মজার।"],
+    visual: { tokens: [{ text: "春と 秋と", role: "দুই option" }, { text: "どちらが", role: "কোনটি", accent: true }, { text: "好きですか", role: "Question" }], romaji: "Haru to aki to dochira ga suki desu ka.", bengali: "বসন্ত ও শরতের মধ্যে কোনটি পছন্দ?" },
+    examples: [{ japanese: "海と 山と どちらが 好きですか。— 山の ほうが 好きです。", romaji: "Umi to yama to dochira ga suki desu ka. — Yama no hou ga suki desu.", bengali: "সমুদ্র ও পাহাড়ের মধ্যে কোনটি পছন্দ?—পাহাড় বেশি পছন্দ।" }, { japanese: "コーヒーと 紅茶と どちらが いいですか。— どちらも いいです。", romaji: "Koohii to koucha to dochira ga ii desu ka. — Dochira mo ii desu.", bengali: "Coffee ও tea-এর মধ্যে কোনটি ভালো?—দুটিই ভালো।" }],
+  },
+  {
+    title: "Group-এর মধ্যে সবচেয়ে—Nのなかで～が いちばん adjective",
+    structure: "N-group の なかで、question word が いちばん adjective ですか。",
+    explanation: "তিন বা তার বেশি সদস্যের group-এর মধ্যে সবচেয়ে বেশি কোনো গুণ কার/কোনটির আছে জানতে のなかで এবং いちばん ব্যবহার হয়। জিনিসে 何, স্থানে どこ, ব্যক্তিতে だれ এবং সময়ে いつ-এর মতো উপযুক্ত question word বেছে নিন।",
+    notes: ["日本料理の なかで 何が いちばん おいしいですか。", "世界で どこが いちばん 寒いですか。", "家族の なかで だれが いちばん 背が 高いですか。"],
+    visual: { tokens: [{ text: "日本料理の なかで", role: "Group" }, { text: "何が", role: "Selection" }, { text: "いちばん", role: "সবচেয়ে", accent: true }, { text: "好きですか", role: "Question" }], romaji: "Nihon ryouri no naka de nani ga ichiban suki desu ka.", bengali: "Japanese খাবারের মধ্যে কোনটি সবচেয়ে পছন্দ?" },
+    examples: [{ japanese: "季節の なかで いつが いちばん 好きですか。— 秋が いちばん 好きです。", romaji: "Kisetsu no naka de itsu ga ichiban suki desu ka. — Aki ga ichiban suki desu.", bengali: "ঋতুর মধ্যে কোন সময় সবচেয়ে পছন্দ?—শরৎ সবচেয়ে পছন্দ।" }, { japanese: "日本で どこが いちばん にぎやかですか。", romaji: "Nihon de doko ga ichiban nigiyaka desu ka.", bengali: "Japan-এর কোথা সবচেয়ে জমজমাট?" }],
+  },
+];
+
 const unit13GrammarDetails: GrammarDetail[] = [
   {
     title: "কোনো জিনিস চাই—N が ほしいです",
@@ -745,6 +788,253 @@ const unit14GrammarDetails: GrammarDetail[] = [
   },
 ];
 
+const unit15GrammarDetails: GrammarDetail[] = [
+  {
+    title: "কোনো কাজের অনুমতি চাওয়া—Vてもいいですか",
+    structure: "Vて-form + も いいですか。",
+    explanation: "কোনো কাজ করার অনুমতি চাইতে verb-এর て-form-এর পরে もいいですか বসে। আক্ষরিক অর্থ ‘করলেও কি ঠিক আছে?’—স্বাভাবিক বাংলায় ‘আমি কি করতে পারি?’। নিজের সুবিধার জন্য অনুমতি চাইলে এই pattern ব্যবহার করুন; অন্যকে কিছু করতে অনুরোধ করার Vてください-এর সঙ্গে এটি গুলিয়ে ফেলবেন না।",
+    notes: ["写真を 撮ります → 写真を 撮っても いいですか。", "Positive permission: ええ、いいですよ。どうぞ。", "আরও ভদ্রভাবে শুরু করতে すみませんが যোগ করা যায়।"],
+    visual: { tokens: [{ text: "写真を 撮って", role: "て-form action" }, { text: "も いいですか", role: "অনুমতি?", accent: true }], romaji: "Shashin o totte mo ii desu ka.", bengali: "আমি কি ছবি তুলতে পারি?" },
+    examples: [{ japanese: "ここで 写真を 撮っても いいですか。", romaji: "Koko de shashin o totte mo ii desu ka.", bengali: "এখানে ছবি তুলতে পারি?" }, { japanese: "この カタログを 見ても いいですか。", romaji: "Kono katarogu o mite mo ii desu ka.", bengali: "এই catalogue-টি দেখতে পারি?" }],
+  },
+  {
+    title: "অনুমতি দেওয়া বা নম্রভাবে না বলা",
+    structure: "ええ、いいですよ。どうぞ。／すみません、ちょっと…。",
+    explanation: "Permission question-এর উত্তরে অনুমতি দিলে ええ、いいですよ বা どうぞ বলা হয়। অনুমতি দেওয়া সম্ভব না হলে সরাসরি কঠোর いいえ বলার বদলে すみません、ちょっと… বলে কারণ জানানো বেশি স্বাভাবিক। স্পষ্ট নিয়মভঙ্গ হলে いいえ、いけません ব্যবহার করা যায়।",
+    notes: ["どうぞ = করুন/নিন; permission-কে উষ্ণ ও স্বাভাবিক করে।", "ちょっと… বাক্য অসম্পূর্ণ রেখেও নম্র refusal বোঝায়।", "Rule-based refusal-এ কারণের পরে からです ব্যবহার করা যায়।"],
+    visual: { tokens: [{ text: "ええ、いいですよ", role: "অনুমতি", accent: true }, { text: "どうぞ", role: "করুন" }], romaji: "Ee, ii desu yo. Douzo.", bengali: "হ্যাঁ, করতে পারেন। করুন।" },
+    examples: [{ japanese: "たばこを 吸っても いいですか。— すみません、ちょっと…。", romaji: "Tabako o sutte mo ii desu ka. — Sumimasen, chotto...", bengali: "ধূমপান করতে পারি? — দুঃখিত, একটু অসুবিধা…।" }, { japanese: "ここに 座っても いいですか。— ええ、どうぞ。", romaji: "Koko ni suwatte mo ii desu ka. — Ee, douzo.", bengali: "এখানে বসতে পারি? — হ্যাঁ, বসুন।" }],
+  },
+  {
+    title: "কঠোর নিষেধ—Vてはいけません",
+    structure: "Vて-form + は いけません。",
+    explanation: "কোনো কাজ নিয়মত নিষিদ্ধ বা করা একেবারেই উচিত নয় বোঝাতে Vてはいけません ব্যবহার হয়। Public rule, school, office বা safety instruction-এ এটি সাধারণ। ব্যক্তিগত অনুরোধে এটি কঠোর শোনাতে পারে; সেখানে context অনুযায়ী Vないでください বেশি উপযুক্ত হতে পারে।",
+    notes: ["ここで たばこを 吸ってはいけません = এখানে ধূমপান নিষেধ।", "ては কথায় কখনও ちゃ হয়, তবে এই Unit-এ polite পূর্ণ form ব্যবহার করুন।", "Permission Vてもいいです-এর ঠিক বিপরীত অর্থ বহন করে।"],
+    visual: { tokens: [{ text: "ここで たばこを 吸って", role: "কাজ" }, { text: "は いけません", role: "নিষেধ", accent: true }], romaji: "Koko de tabako o sutte wa ikemasen.", bengali: "এখানে ধূমপান করা যাবে না।" },
+    examples: [{ japanese: "ここに 車を 止めてはいけません。", romaji: "Koko ni kuruma o tomete wa ikemasen.", bengali: "এখানে গাড়ি রাখা নিষেধ।" }, { japanese: "美術館で 写真を 撮ってはいけません。", romaji: "Bijutsukan de shashin o totte wa ikemasen.", bengali: "শিল্প জাদুঘরে ছবি তোলা যাবে না।" }],
+  },
+  {
+    title: "চলমান অবস্থা, অভ্যাস ও পেশা—Vています",
+    structure: "Vて-form + います。",
+    explanation: "Unit 14-তে Vています চলমান action বোঝায়; Unit 15-তে একই form দীর্ঘস্থায়ী state, অভ্যাস, পেশা বা repeated activity-ও বোঝায়। 結婚しています মানে বিবাহিত, 知っています মানে জানি, 住んでいます মানে বসবাস করি এবং 作っています মানে নিয়মিত তৈরি/উৎপাদন করি।",
+    notes: ["結婚します → 結婚しています = বিবাহিত।", "知っています-এর negative সাধারণত 知りません; 知っていません নয়।", "Occupation/habit-এর সঙ্গে よく, 毎日 ইত্যাদি frequency word ব্যবহার করা যায়।"],
+    visual: { tokens: [{ text: "大阪に", role: "স্থান" }, { text: "住んで", role: "resulting state", accent: true }, { text: "います", role: "চলমান" }], romaji: "Oosaka ni sunde imasu.", bengali: "Osaka-তে বসবাস করি।" },
+    examples: [{ japanese: "わたしは 結婚しています。", romaji: "Watashi wa kekkon shite imasu.", bengali: "আমি বিবাহিত।" }, { japanese: "スーパーで パンを 売っています。", romaji: "Suupaa de pan o utte imasu.", bengali: "Supermarket-এ রুটি বিক্রি করা হয়/বিক্রি করে।" }, { japanese: "木村さんを 知っていますか。— いいえ、知りません。", romaji: "Kimura-san o shitte imasu ka. — Iie, shirimasen.", bengali: "কিমুরা-সানকে চেনেন? — না, চিনি না।" }],
+  },
+  {
+    title: "Action-এর গন্তব্য বা resulting location—Nに V",
+    structure: "Place／destination N + に + V。",
+    explanation: "はいります, すわります, のります ও つきます-এর মতো verb-এ action শেষে subject যে জায়গায় পৌঁছায় বা অবস্থান নেয়, সেই জায়গার পরে に বসে। এখানে に শুধু সাধারণ action location নয়; movement বা পরিবর্তনের destination দেখায়।",
+    notes: ["部屋に 入ります = ঘরে প্রবেশ করি।", "いすに 座ります = চেয়ারে বসি।", "バスに 乗ります = বাসে উঠি; transport method-এর で নয়।"],
+    visual: { tokens: [{ text: "この 部屋", role: "গন্তব্য" }, { text: "に", role: "Destination", accent: true }, { text: "入っては いけません", role: "প্রবেশ নিষেধ" }], romaji: "Kono heya ni haitte wa ikemasen.", bengali: "এই ঘরে প্রবেশ করা যাবে না।" },
+    examples: [{ japanese: "ここに 座っても いいですか。", romaji: "Koko ni suwatte mo ii desu ka.", bengali: "এখানে বসতে পারি?" }, { japanese: "京都駅から 16番の バスに 乗ってください。", romaji: "Kyouto-eki kara juurokuban no basu ni notte kudasai.", bengali: "Kyoto Station থেকে ১৬ নম্বর বাসে উঠুন।" }],
+  },
+  {
+    title: "কোথায় কী রাখা/তৈরি করা—N₁に N₂を V",
+    structure: "Place N₁ に + Object N₂ を + transitive verb।",
+    explanation: "কোনো action-এর ফলে একটি বস্তু কোথায় থাকবে তা に দিয়ে চিহ্নিত করা হয়; যে বস্তুর ওপর কাজ হচ্ছে সেটি を নেয়। তাই ここに 車を 止めます মানে ‘গাড়িটি এখানে রাখি/পার্ক করি’। Action যেখানে ঘটে সেই সাধারণ স্থান で নেয়, কিন্তু resulting destination বা অবস্থান に নেয়।",
+    notes: ["机の 上に 資料を 置きます = desk-এর ওপর materials রাখি।", "ここで 車を 洗います (এখানে ধুই) বনাম ここに 車を 止めます (এখানে রাখি)।", "置きます, 止めます, 書きます-এর মতো verb-এর সঙ্গে এই placement pattern দেখা যায়।"],
+    visual: { tokens: [{ text: "ここ", role: "ফলাফলের স্থান" }, { text: "に", role: "Location", accent: true }, { text: "車を", role: "Object" }, { text: "止めます", role: "Action" }], romaji: "Koko ni kuruma o tomemasu.", bengali: "গাড়িটি এখানে পার্ক করি।" },
+    examples: [{ japanese: "ここに 車を 止めてください。", romaji: "Koko ni kuruma o tomete kudasai.", bengali: "গাড়িটি এখানে থামান।" }, { japanese: "紙に 住所を 書いてください。", romaji: "Kami ni juusho o kaite kudasai.", bengali: "কাগজে ঠিকানা লিখুন।" }, { japanese: "棚に 電子辞書を 置きます。", romaji: "Tana ni denshi jisho o okimasu.", bengali: "তাকে electronic dictionary রাখি।" }],
+  },
+];
+
+const unit16GrammarDetails: GrammarDetail[] = [
+  {
+    title: "একাধিক action ক্রমানুসারে বলা—Vて、Vて、Vます",
+    structure: "V₁て、V₂て、V₃ます。",
+    explanation: "দুই বা তার বেশি কাজ যে ক্রমে ঘটে, সেই ক্রমে আগের verb-গুলো て-form-এ জুড়ে শেষে মূল verb বসে। পুরো sequence-এর tense শুধু শেষ verb নির্ধারণ করে। তাই শেষ verb past হলে আগের action-গুলোকেও past sequence হিসেবে বোঝা হয়।",
+    notes: ["朝 ジョギングをして、シャワーを浴びて、会社へ行きます。", "মাঝের verb-এ ます বা ました রাখা হয় না।", "কাজের প্রকৃত chronological order বজায় রাখুন।"],
+    visual: { tokens: [{ text: "ジョギングを して", role: "Action 1" }, { text: "シャワーを 浴びて", role: "Action 2", accent: true }, { text: "会社へ 行きます", role: "শেষ action/tense" }], romaji: "Jogingu o shite, shawaa o abite, kaisha e ikimasu.", bengali: "Jogging করে, shower নিয়ে, অফিসে যাই।" },
+    examples: [{ japanese: "神戸へ 行って、映画を 見て、お茶を 飲みました。", romaji: "Koube e itte, eiga o mite, ocha o nomimashita.", bengali: "Kobe গিয়ে সিনেমা দেখে চা পান করেছি।" }, { japanese: "カードを 入れて、暗証番号を 押します。", romaji: "Kaado o irete, anshou bangou o oshimasu.", bengali: "Card ঢুকিয়ে PIN চাপি।" }],
+  },
+  {
+    title: "Description জোড়া—い-adjくて／な-adjで／Nで",
+    structure: "い-adj（～い→～くて）／な-adj + で／N + で、～。",
+    explanation: "একই subject-এর দুইটি সামঞ্জস্যপূর্ণ বৈশিষ্ট্য বা পরিচয় জুড়তে い-adjective-এর শেষ い বদলে くて, আর な-adjective ও noun-এর পরে で বসে। いい-এর connector irregular: よくて। দুইটি বৈশিষ্ট্য contrast করলে এই connector নয়, が ব্যবহার করুন।",
+    notes: ["若い → 若くて; 長い → 長くて; いい → よくて।", "静か［な］ → 静かで; 学生 → 学生で।", "狭いですが、きれいです = ছোট, কিন্তু পরিষ্কার।"],
+    visual: { tokens: [{ text: "ミラーさんは", role: "Topic" }, { text: "若くて", role: "い-adj connector", accent: true }, { text: "元気です", role: "দ্বিতীয় গুণ" }], romaji: "Miraa-san wa wakakute genki desu.", bengali: "মিলার তরুণ এবং প্রাণবন্ত।" },
+    examples: [{ japanese: "奈良は 静かで、きれいな 町です。", romaji: "Nara wa shizuka de, kirei na machi desu.", bengali: "Nara শান্ত ও সুন্দর শহর।" }, { japanese: "カリナさんは インドネシア人で、富士大学の 留学生です。", romaji: "Karina-san wa Indoneshia-jin de, Fuji Daigaku no ryuugakusei desu.", bengali: "কারিনা Indonesian এবং Fuji University-এর বিদেশি শিক্ষার্থী।" }],
+  },
+  {
+    title: "একটি কাজ শেষ হওয়ার পরে—Vてから、V",
+    structure: "V₁て-form + から、V₂。",
+    explanation: "প্রথম কাজটি শেষ হওয়ার পর দ্বিতীয় কাজটি হবে—এই নির্দিষ্ট আগে-পরে সম্পর্ক জোর দিতে Vてから ব্যবহার হয়। সাধারণ て-form sequence-এর তুলনায় এটি V₁ সম্পন্ন হওয়াকে V₂-এর prerequisite হিসেবে স্পষ্ট করে। এখানেও sentence-এর tense শেষ verb বহন করে।",
+    notes: ["お金を 入れてから、ボタンを 押してください。", "Subject আলাদা করে বলতে হলে Vてから clause-এর subject が নিতে পারে।", "昼ごはんを 食べてから、勉強します = lunch শেষ করে তারপর পড়ি।"],
+    visual: { tokens: [{ text: "お金を 入れて", role: "আগের কাজ" }, { text: "から", role: "শেষ হওয়ার পরে", accent: true }, { text: "ボタンを 押します", role: "পরের কাজ" }], romaji: "Okane o irete kara, botan o oshimasu.", bengali: "টাকা ঢোকানোর পরে button চাপি।" },
+    examples: [{ japanese: "この 仕事が 終わってから、昼ごはんを 食べます。", romaji: "Kono shigoto ga owatte kara, hirugohan o tabemasu.", bengali: "এই কাজ শেষ হওয়ার পরে দুপুরের খাবার খাব।" }, { japanese: "大学を 出てから、銀行で 働きました。", romaji: "Daigaku o dete kara, ginkou de hatarakimashita.", bengali: "বিশ্ববিদ্যালয় থেকে graduate করার পরে ব্যাংকে কাজ করেছি।" }],
+  },
+  {
+    title: "একটি topic-এর বিশেষ বৈশিষ্ট্য—N₁は N₂が adjective",
+    structure: "N₁ は N₂ が adjective です。",
+    explanation: "Topic N₁-এর কোনো অংশ, বিষয় বা characteristic N₂ সম্পর্কে adjective দিয়ে মন্তব্য করতে N₁は N₂が adjective pattern ব্যবহার হয়। বাংলা অনুবাদে সাধারণত ‘N₁-এর N₂ adjective’ হয়। শরীরের অংশ, খাবার, স্থান বা বিখ্যাত বৈশিষ্ট্য বর্ণনায় এটি খুব সাধারণ।",
+    notes: ["大阪は 食べ物が おいしいです = Osaka-র খাবার সুস্বাদু।", "マリアさんは 髪が 長いです = Maria-র চুল লম্বা।", "N₁ topic; N₂ adjective-এর grammatical subject।"],
+    visual: { tokens: [{ text: "マリアさん", role: "Topic" }, { text: "は", role: "Topic marker" }, { text: "髪が", role: "বৈশিষ্ট্য", accent: true }, { text: "長いです", role: "Description" }], romaji: "Maria-san wa kami ga nagai desu.", bengali: "মারিয়ার চুল লম্বা।" },
+    examples: [{ japanese: "ドイツの フランケンは ワインが 有名です。", romaji: "Doitsu no Furanken wa wain ga yuumei desu.", bengali: "Germany-র Franken wine-এর জন্য বিখ্যাত।" }, { japanese: "象は 鼻が 長いです。", romaji: "Zou wa hana ga nagai desu.", bengali: "হাতির শুঁড় লম্বা।" }],
+  },
+  {
+    title: "কোনো স্থান বা যান থেকে বের হওয়া—Nを 出ます／降ります",
+    structure: "Starting point N + を + 出ます／降ります。",
+    explanation: "を শুধু direct object নয়; 出ます ও 降ります-এর সঙ্গে যে জায়গা বা যান ছেড়ে বের হওয়া হচ্ছে সেটিকেও চিহ্নিত করে। তাই 家を出ます মানে বাড়ি থেকে বের হই এবং 電車を降ります মানে ট্রেন থেকে নামি। গন্তব্যের に-এর সঙ্গে পার্থক্যটি খেয়াল করুন।",
+    notes: ["7時に うちを 出ます。", "梅田で 電車を 降りました। এখানে で নামার location, を যে train ছেড়েছি।", "電車に 乗ります ↔ 電車を 降ります।"],
+    visual: { tokens: [{ text: "梅田で", role: "নামার স্থান" }, { text: "電車", role: "যান" }, { text: "を", role: "যা ছাড়ছি", accent: true }, { text: "降ります", role: "নামি" }], romaji: "Umeda de densha o orimasu.", bengali: "Umeda-তে ট্রেন থেকে নামি।" },
+    examples: [{ japanese: "毎朝 7時に うちを 出ます。", romaji: "Maiasa shichiji ni uchi o demasu.", bengali: "প্রতিদিন সকাল সাতটায় বাড়ি থেকে বের হই।" }, { japanese: "大学前で バスを 降ります。", romaji: "Daigaku-mae de basu o orimasu.", bengali: "বিশ্ববিদ্যালয়ের সামনে bus থেকে নামি।" }],
+  },
+  {
+    title: "উপায় বা route জানতে—どうやって",
+    structure: "Place まで どうやって 行きますか。",
+    explanation: "কোনো কাজ কী উপায়ে করা হয় বা কোনো জায়গায় কীভাবে যাওয়া যায় জানতে どうやって ব্যবহার হয়। উত্তরে transport ও route-এর ধাপগুলো て-form দিয়ে sequence হিসেবে বলা স্বাভাবিক।",
+    notes: ["どうやって = কীভাবে/কোন উপায়ে।", "Route: Aから Bに乗って、Cで降ります।", "শুধু transport জানতে 何で行きますか-ও বলা যায়; どうやって পুরো route চাইতে পারে।"],
+    visual: { tokens: [{ text: "大学まで", role: "গন্তব্য" }, { text: "どうやって", role: "কীভাবে", accent: true }, { text: "行きますか", role: "Question" }], romaji: "Daigaku made douyatte ikimasu ka.", bengali: "বিশ্ববিদ্যালয়ে কীভাবে যান?" },
+    examples: [{ japanese: "京都駅から 16番の バスに 乗って、大学前で 降ります。", romaji: "Kyouto-eki kara juurokuban no basu ni notte, daigaku-mae de orimasu.", bengali: "Kyoto Station থেকে ১৬ নম্বর bus-এ উঠে University stop-এ নামি।" }, { japanese: "ATMで どうやって お金を 下ろしますか。", romaji: "ATM de douyatte okane o oroshimasu ka.", bengali: "ATM থেকে কীভাবে টাকা তুলবেন?" }],
+  },
+  {
+    title: "তিন বা বেশি থেকে কোনটি—どれ／どのN",
+    structure: "N は どれですか。／どの + N ですか。",
+    explanation: "তিন বা তার বেশি option থেকে একটি নির্দিষ্ট item জানতে noun ছাড়া どれ এবং noun-এর ঠিক আগে どの ব্যবহার হয়। দুইটির মধ্যে হলে どちら ব্যবহার করা হয়। どれ-এর পরে noun সরাসরি বসে না—どれ傘 নয়, どの傘।",
+    notes: ["ミラーさんの 傘は どれですか = কোনটি মিলারের ছাতা?", "サントスさんは どの 人ですか = কোন ব্যক্তি Santos?", "Answer-এ あの青い傘／背が高くて髪が黒い人-এর মতো description দিন।"],
+    visual: { tokens: [{ text: "ミラーさんの 傘は", role: "তিনটির group" }, { text: "どれ", role: "কোনটি", accent: true }, { text: "ですか", role: "Question" }], romaji: "Miraa-san no kasa wa dore desu ka.", bengali: "কোনটি মিলার-সানের ছাতা?" },
+    examples: [{ japanese: "ミラーさんの 傘は どれですか。— あの 青い 傘です。", romaji: "Miraa-san no kasa wa dore desu ka. — Ano aoi kasa desu.", bengali: "কোনটি মিলারের ছাতা?—ওই নীল ছাতাটি।" }, { japanese: "サントスさんは どの 人ですか。— あの 背が 高くて、髪が 黒い 人です。", romaji: "Santosu-san wa dono hito desu ka. — Ano se ga takakute, kami ga kuroi hito desu.", bengali: "কোন ব্যক্তি Santos?—ওই লম্বা, কালো চুলের ব্যক্তি।" }],
+  },
+];
+
+const unit17GrammarDetails: GrammarDetail[] = [
+  {
+    title: "Verb-এর plain negative—ない-form",
+    structure: "Vます → Vない。",
+    explanation: "ない-form হলো verb-এর plain negative form। Group I-তে ます-এর আগের i-row sound-কে a-row-তে বদলে ない বসে; তবে い sound-এর います verb-এ わない হয়। Group II-তে ます বাদ দিয়ে ない, আর Group III irregular: します→しない, 来ます→来ない।",
+    notes: ["書きます→書かない; 飲みます→飲まない; 待ちます→待たない।", "買います→買わない; い→わ ব্যতিক্রমটি মনে রাখুন।", "食べます→食べない; します→しない; 来ます→来ない。"],
+    visual: { tokens: [{ text: "飲みます", role: "ます-form" }, { text: "飲ま", role: "a-row stem", accent: true }, { text: "ない", role: "plain negative", accent: true }], romaji: "nomimasu → nomanai", bengali: "খাই/পান করি → খাই না/পান করি না।" },
+    examples: [{ japanese: "薬を 飲まない。", romaji: "Kusuri o nomanai.", bengali: "ওষুধ খাই না।" }, { japanese: "あした 会社へ 来ない。", romaji: "Ashita kaisha e konai.", bengali: "কাল অফিসে আসবে না।" }],
+  },
+  {
+    title: "কাজটি করবেন না—Vないでください",
+    structure: "Vない-form + で ください。",
+    explanation: "কাউকে ভদ্রভাবে কোনো কাজ না করতে অনুরোধ বা নির্দেশ দিতে ない-form-এর পরে でください বসে। এটি Unit 15-এর rule-oriented Vてはいけません-এর চেয়ে ব্যক্তিগত অনুরোধে নরম শোনায় এবং consideration প্রকাশ করতেও ব্যবহৃত হয়।",
+    notes: ["ここで 写真を 撮らないでください = এখানে ছবি তুলবেন না।", "わたしは 元気ですから、心配しないでください = আমি ভালো আছি, চিন্তা করবেন না।", "ない বাদ দেবেন না: 撮ってください বললে বিপরীত অর্থ হয়।"],
+    visual: { tokens: [{ text: "ここで 写真を", role: "কাজ" }, { text: "撮らないで", role: "না করতে", accent: true }, { text: "ください", role: "অনুরোধ" }], romaji: "Koko de shashin o toranaide kudasai.", bengali: "এখানে ছবি তুলবেন না।" },
+    examples: [{ japanese: "大切な 書類を なくさないでください。", romaji: "Taisetsu na shorui o nakusanaide kudasai.", bengali: "গুরুত্বপূর্ণ কাগজ হারাবেন না।" }, { japanese: "危ないですから、ここに 入らないでください。", romaji: "Abunai desu kara, koko ni hairanaide kudasai.", bengali: "বিপজ্জনক, তাই এখানে ঢুকবেন না।" }],
+  },
+  {
+    title: "কাজটি করতেই হবে—Vなければなりません",
+    structure: "Vない（ない→なければ）+ なりません。",
+    explanation: "কোনো কাজ বাধ্যতামূলক বোঝাতে ない-form-এর শেষ ない বদলে なければなりません বসে। আক্ষরিকভাবে ‘না করলে চলবে না’, কিন্তু স্বাভাবিক অর্থ ‘করতেই হবে’। নিয়ম, দায়িত্ব, deadline বা চিকিৎসকের নির্দেশে এই pattern ব্যবহৃত হয়।",
+    notes: ["薬を 飲まなければなりません = ওষুধ খেতেই হবে।", "行かない→行かなければなりません।", "Sentenceটি negative-looking হলেও অর্থ positive obligation।"],
+    visual: { tokens: [{ text: "薬を 飲ま", role: "ない-stem" }, { text: "なければ", role: "না করলে", accent: true }, { text: "なりません", role: "চলবে না", accent: true }], romaji: "Kusuri o nomanakereba narimasen.", bengali: "ওষুধ খেতেই হবে।" },
+    examples: [{ japanese: "毎日 5時までに 仕事を 終わらなければなりません。", romaji: "Mainichi goji made ni shigoto o owaranakereba narimasen.", bengali: "প্রতিদিন পাঁচটার মধ্যে কাজ শেষ করতেই হবে।" }, { japanese: "土曜日までに 本を 返さなければなりません。", romaji: "Doyoubi made ni hon o kaesanakereba narimasen.", bengali: "শনিবারের মধ্যে বই ফেরত দিতেই হবে।" }],
+  },
+  {
+    title: "কাজটি না করলেও চলে—Vなくてもいいです",
+    structure: "Vない（ない→なくて）+ も いいです。",
+    explanation: "কোনো কাজ প্রয়োজনীয় নয় বা না করলেও সমস্যা নেই বোঝাতে ない-form-এর শেষ ない বদলে なくてもいいです বসে। এটি permission-এর negative counterpart: ‘না করলেও ঠিক আছে’। Prohibition-এর সঙ্গে গুলিয়ে ফেলবেন না।",
+    notes: ["あした 来なくてもいいです = কাল না এলেও চলবে।", "食べない→食べなくてもいいです।", "Vてはいけません = করা নিষেধ; Vなくてもいいです = না করলেও চলে।"],
+    visual: { tokens: [{ text: "あした", role: "সময়" }, { text: "来なくても", role: "না এলেও", accent: true }, { text: "いいです", role: "চলবে" }], romaji: "Ashita konakute mo ii desu.", bengali: "কাল না এলেও চলবে।" },
+    examples: [{ japanese: "熱が ありませんから、薬を 飲まなくてもいいです。", romaji: "Netsu ga arimasen kara, kusuri o nomanakute mo ii desu.", bengali: "জ্বর নেই, তাই ওষুধ না খেলেও চলবে।" }, { japanese: "保険証を 持って来なくてもいいです。", romaji: "Hokenshou o motte konakute mo ii desu.", bengali: "স্বাস্থ্যবিমা card না আনলেও চলবে।" }],
+  },
+  {
+    title: "Object-কে topic করা—Nは",
+    structure: "N を V → N は V。",
+    explanation: "যে object নিয়ে কথা হচ্ছে সেটিকে sentence-এর topic করতে を-এর জায়গায় は বসানো যায়। Context-এ objectটি পরিচিত বা contrast করা হলে এই topicalization স্বাভাবিক। একই noun-এর পরে をは বসে না।",
+    notes: ["荷物を ここに 置かないでください → 荷物は ここに 置かないでください。", "薬は 会社の 食堂で 飲みます = ওষুধের কথা বললে topic は।", "は contrast-ও দেখাতে পারে: 朝ごはんは 食べます。"],
+    visual: { tokens: [{ text: "荷物", role: "Object topic" }, { text: "は", role: "Topic marker", accent: true }, { text: "ここに 置かないでください", role: "Comment" }], romaji: "Nimotsu wa koko ni okanaide kudasai.", bengali: "ব্যাগটি এখানে রাখবেন না।" },
+    examples: [{ japanese: "荷物は ここに 置かないでください。", romaji: "Nimotsu wa koko ni okanaide kudasai.", bengali: "ব্যাগটি এখানে রাখবেন না।" }, { japanese: "昼ごはんは 会社の 食堂で 食べます。", romaji: "Hirugohan wa kaisha no shokudou de tabemasu.", bengali: "দুপুরের খাবার কোম্পানির cafeteria-তে খাই।" }],
+  },
+  {
+    title: "Deadline-এর মধ্যে—Timeまでに V",
+    structure: "Time／date + までに + V。",
+    explanation: "কোনো event বা action সর্বোচ্চ কোন সময়ের আগে সম্পন্ন করতে হবে তা までに দিয়ে বলা হয়। まで শুধু ‘পর্যন্ত’ সময়জুড়ে চলা বোঝায়; までに হলো নির্দিষ্ট deadline-এর আগে একবার কাজ শেষ করা।",
+    notes: ["会議は 5時までに 終わります = meeting পাঁচটার মধ্যে শেষ হবে।", "土曜日までに 本を 返します = শনিবারের মধ্যে বই ফেরত দেব।", "5時まで 働きます (পাঁচটা পর্যন্ত কাজ করি) বনাম 5時までに 終わります (পাঁচটার মধ্যে শেষ করি)।"],
+    visual: { tokens: [{ text: "土曜日", role: "Deadline" }, { text: "までに", role: "এর মধ্যে", accent: true }, { text: "本を 返します", role: "সম্পন্ন কাজ" }], romaji: "Doyoubi made ni hon o kaeshimasu.", bengali: "শনিবারের মধ্যে বই ফেরত দেব।" },
+    examples: [{ japanese: "レポートを 金曜日までに 出してください。", romaji: "Repooto o kinyoubi made ni dashite kudasai.", bengali: "শুক্রবারের মধ্যে report জমা দিন।" }, { japanese: "9時までに 会社へ 行かなければなりません。", romaji: "Kuji made ni kaisha e ikanakereba narimasen.", bengali: "নয়টার মধ্যে অফিসে যেতেই হবে।" }],
+  },
+];
+
+const unit18GrammarDetails: GrammarDetail[] = [
+  {
+    title: "Verb-এর dictionary form",
+    structure: "Vます → V-dictionary form।",
+    explanation: "Dictionary form হলো verb-এর মৌলিক plain affirmative form। Group I-তে ます-এর আগের i-row sound-কে একই লাইনের u-row sound-এ বদলাতে হয়; Group II-তে ます বাদ দিয়ে る বসে। Group III irregular: します→する এবং 来ます→来る।",
+    notes: ["書きます→書く; 読みます→読む; 遊びます→遊ぶ।", "食べます→食べる; 見ます→見る।", "します→する; 来ます（きます）→来る（くる）。"],
+    visual: { tokens: [{ text: "読みます", role: "ます-form" }, { text: "読", role: "stem" }, { text: "む", role: "dictionary ending", accent: true }], romaji: "yomimasu → yomu", bengali: "পড়ি → পড়া/পড়ি (dictionary form)।" },
+    examples: [{ japanese: "毎晩 本を 読む。", romaji: "Maiban hon o yomu.", bengali: "প্রতি রাতে বই পড়ি।" }, { japanese: "日曜日に テニスを する。", romaji: "Nichiyoubi ni tenisu o suru.", bengali: "রবিবার tennis খেলি।" }],
+  },
+  {
+    title: "সামর্থ্য বা সম্ভাবনা—N／Vることができます",
+    structure: "N が できます。／V-dictionary form + ことが できます。",
+    explanation: "কেউ কোনো ভাষা, খেলা বা কাজ করতে পারে কিংবা পরিস্থিতিগতভাবে কাজটি করা সম্ভব—এটি できます দিয়ে বলা হয়। Noun হলে সরাসরি ができます; verb হলে dictionary form-এর পরে こと বসিয়ে পুরো action-কে noun phrase বানানো হয়।",
+    notes: ["日本語が できます = Japanese বলতে/ব্যবহার করতে পারি।", "漢字を 読むことが できます = kanji পড়তে পারি।", "できません ব্যবহার করলে ‘পারি না/সম্ভব নয়’।"],
+    visual: { tokens: [{ text: "漢字を 読む", role: "Action" }, { text: "ことが", role: "noun phrase", accent: true }, { text: "できます", role: "পারি" }], romaji: "Kanji o yomu koto ga dekimasu.", bengali: "Kanji পড়তে পারি।" },
+    examples: [{ japanese: "ミラーさんは 日本語が できます。", romaji: "Miraa-san wa Nihongo ga dekimasu.", bengali: "মিলার Japanese পারেন।" }, { japanese: "カードで 払うことが できます。", romaji: "Kaado de harau koto ga dekimasu.", bengali: "Card দিয়ে পরিশোধ করা যায়।" }],
+  },
+  {
+    title: "নিজের শখ বলা—趣味は N／Vることです",
+    structure: "わたしの 趣味は N です。／V-dictionary form + こと です。",
+    explanation: "শখকে শুধু noun দিয়ে বা নির্দিষ্ট কোনো কাজ দিয়ে প্রকাশ করা যায়। Verb ব্যবহার করলে dictionary form-এর পরে こと বসিয়ে action-টিকে noun phrase বানাতে হয়। এতে সাধারণ noun-এর চেয়ে শখটি আরও নির্দিষ্টভাবে বলা যায়।",
+    notes: ["趣味は 音楽です = শখ music।", "趣味は 音楽を 聞くことです = শখ music শোনা।", "এখানে verb dictionary form হবে, ます-form নয়।"],
+    visual: { tokens: [{ text: "わたしの 趣味は", role: "Topic" }, { text: "音楽を 聞くこと", role: "শখের action", accent: true }, { text: "です", role: "Conclusion" }], romaji: "Watashi no shumi wa ongaku o kiku koto desu.", bengali: "আমার শখ গান শোনা।" },
+    examples: [{ japanese: "わたしの 趣味は 写真を 撮ることです。", romaji: "Watashi no shumi wa shashin o toru koto desu.", bengali: "আমার শখ ছবি তোলা।" }, { japanese: "父の 趣味は 馬です。", romaji: "Chichi no shumi wa uma desu.", bengali: "আমার বাবার শখ ঘোড়া।" }],
+  },
+  {
+    title: "কোনো কাজ বা সময়ের আগে—まえに",
+    structure: "V-dictionary form／N の／Time period + まえに、V。",
+    explanation: "একটি কাজ আরেকটির আগে ঘটলে আগের reference action-এর verb সবসময় dictionary form নিয়ে まえに-এর আগে বসে। Noun-এর পরে の লাগে, কিন্তু ‘এক ঘণ্টা আগে’র মতো time-period expression-এর পরে の লাগে না। বাক্যের tense শেষ verb নির্ধারণ করে।",
+    notes: ["寝るまえに 本を 読みます = ঘুমানোর আগে বই পড়ি।", "食事のまえに 手を 洗います = খাবারের আগে হাত ধুই।", "1時間まえに 出かけました = এক ঘণ্টা আগে বের হয়েছিলাম।"],
+    visual: { tokens: [{ text: "日本へ 来る", role: "Reference action" }, { text: "まえに", role: "আগে", accent: true }, { text: "日本語を 勉強しました", role: "আগের কাজ" }], romaji: "Nihon e kuru mae ni Nihongo o benkyou shimashita.", bengali: "Japan আসার আগে Japanese পড়েছিলাম।" },
+    examples: [{ japanese: "日本へ 来るまえに、日本語を 勉強しました。", romaji: "Nihon e kuru mae ni, Nihongo o benkyou shimashita.", bengali: "Japan আসার আগে Japanese পড়েছিলাম।" }, { japanese: "食事の まえに、手を 洗います。", romaji: "Shokuji no mae ni, te o araimasu.", bengali: "খাবারের আগে হাত ধুই।" }],
+  },
+  {
+    title: "সহজে নয়/প্রত্যাশামতো নয়—なかなか～ません",
+    structure: "なかなか + negative expression।",
+    explanation: "কোনো কাজ সহজে হয় না, প্রত্যাশামতো এগোয় না বা খুব কম দেখা যায়—এমন অর্থে なかなか সাধারণত negative predicate-এর সঙ্গে ব্যবহৃত হয়। এটি শুধু ‘কঠিন’ নয়; চেষ্টা বা প্রত্যাশার বিপরীতে ফল না হওয়ার অনুভূতিও দেয়।",
+    notes: ["なかなか 覚えることが できません = সহজে মুখস্থ করতে পারি না।", "日本では なかなか 馬を 見ることが できません।", "Beginner pattern-এ なかなか-এর পরে affirmative ব্যবহার করবেন না।"],
+    visual: { tokens: [{ text: "なかなか", role: "সহজে নয়", accent: true }, { text: "馬を 見ることが", role: "Action" }, { text: "できません", role: "Negative" }], romaji: "Nakanaka uma o miru koto ga dekimasen.", bengali: "সহজে/প্রায় ঘোড়া দেখা যায় না।" },
+    examples: [{ japanese: "忙しくて、なかなか 旅行することが できません。", romaji: "Isogashikute, nakanaka ryokou suru koto ga dekimasen.", bengali: "ব্যস্ত বলে সহজে ভ্রমণ করতে পারি না।" }, { japanese: "この 漢字は なかなか 覚えられません。", romaji: "Kono kanji wa nakanaka oboeraremasen.", bengali: "এই kanji সহজে মনে থাকে না।" }],
+  },
+  {
+    title: "জোরালো আশা বা আমন্ত্রণ—ぜひ",
+    structure: "ぜひ + Vたいです／Vてください。",
+    explanation: "নিজের প্রবল ইচ্ছা, আশা বা কাউকে আন্তরিক আমন্ত্রণ জানাতে ぜひ ব্যবহার হয়। বাংলায় ‘অবশ্যই’, ‘খুবই চাই’ বা ‘নিশ্চয়ই’ অর্থ দেয়। তাই এটি প্রায়ই ～たいです এবং ～てください-এর সঙ্গে আসে।",
+    notes: ["ぜひ 北海道へ 行きたいです = অবশ্যই Hokkaido যেতে চাই।", "ぜひ 遊びに 来てください = অবশ্যই বেড়াতে আসুন।", "শুধু factual statement-এর চেয়ে আশা/অনুরোধে বেশি স্বাভাবিক।"],
+    visual: { tokens: [{ text: "ぜひ", role: "জোরালো আশা", accent: true }, { text: "遊びに 来て", role: "আমন্ত্রণ" }, { text: "ください", role: "অনুরোধ" }], romaji: "Zehi asobi ni kite kudasai.", bengali: "অবশ্যই বেড়াতে আসবেন।" },
+    examples: [{ japanese: "ぜひ ふるさとの 写真を 見せてください。", romaji: "Zehi furusato no shashin o misete kudasai.", bengali: "অবশ্যই আপনার জন্মস্থানের ছবি দেখাবেন।" }, { japanese: "秋葉原へ ぜひ 行きたいです。", romaji: "Akihabara e zehi ikitai desu.", bengali: "Akihabara-তে অবশ্যই যেতে চাই।" }],
+  },
+];
+
+const unit19GrammarDetails: GrammarDetail[] = [
+  {
+    title: "Verb-এর plain past—た-form",
+    structure: "Vて-form → Vた-form（て→た／で→だ）。",
+    explanation: "た-form হলো verb-এর plain affirmative past form। て-form জানা থাকলে conversion সহজ: শেষের て-কে た এবং で-কে だ করুন। ফলে 書いて→書いた, 飲んで→飲んだ, 食べて→食べた, 来て→来た এবং して→した হয়।",
+    notes: ["書いて→書いた; 泳いで→泳いだ।", "飲んで→飲んだ; 遊んで→遊んだ।", "食べて→食べた; 来て→来た; して→した。"],
+    visual: { tokens: [{ text: "飲ん", role: "verb base" }, { text: "で", role: "て-form ending" }, { text: "→ だ", role: "た-form ending", accent: true }], romaji: "nonde → nonda", bengali: "পান করে → পান করেছিল/করেছে।" },
+    examples: [{ japanese: "きのう 京都へ 行った。", romaji: "Kinou Kyouto e itta.", bengali: "গতকাল Kyoto গিয়েছিলাম।" }, { japanese: "朝ごはんを 食べた。", romaji: "Asagohan o tabeta.", bengali: "সকালের খাবার খেয়েছি।" }],
+  },
+  {
+    title: "অতীত অভিজ্ঞতা—Vたことがあります",
+    structure: "Vた-form + ことが あります。",
+    explanation: "জীবনে কোনো কাজ করার অভিজ্ঞতা আছে বোঝাতে た-form + ことがあります ব্যবহার হয়। এটি নির্দিষ্ট সময়ের একটি ঘটনা বলার pattern নয়; অভিজ্ঞতার অস্তিত্ব জানায়। প্রশ্নের negative answer হলো いいえ、一度もありません।",
+    notes: ["馬に 乗ったことが あります = কখনো ঘোড়ায় চড়েছি।", "去年 馬に 乗りました = গত বছর চড়েছিলাম—নির্দিষ্ট ঘটনা।", "一度も + negative = একবারও নয়।"],
+    visual: { tokens: [{ text: "馬に 乗った", role: "Past action" }, { text: "ことが", role: "অভিজ্ঞতা", accent: true }, { text: "あります", role: "আছে" }], romaji: "Uma ni notta koto ga arimasu.", bengali: "ঘোড়ায় চড়ার অভিজ্ঞতা আছে।" },
+    examples: [{ japanese: "富士山に 登ったことが ありますか。", romaji: "Fujisan ni nobotta koto ga arimasu ka.", bengali: "কখনো Fuji পাহাড়ে উঠেছেন?" }, { japanese: "いいえ、一度も ありません。", romaji: "Iie, ichido mo arimasen.", bengali: "না, একবারও নয়।" }],
+  },
+  {
+    title: "কয়েকটি representative action—Vたり、Vたりします",
+    structure: "V₁た-form + り、V₂た-form + り します。",
+    explanation: "অনেক কাজের মধ্যে কয়েকটি উদাহরণ হিসেবে উল্লেখ করতে প্রতিটি verb-এর た-form-এর পরে り বসিয়ে শেষে します ব্যবহার হয়। Actionগুলো chronological order বোঝায় না এবং list-টি সম্পূর্ণও নয়। Sentence-এর tense শেষের します／しました নির্ধারণ করে।",
+    notes: ["日曜日は テニスを したり、映画を 見たりします。", "して、見て = কাজের ধারাবাহিক order; したり、見たり = কয়েকটি উদাহরণ।", "Past: ～たり、～たりしました。"],
+    visual: { tokens: [{ text: "テニスを したり", role: "উদাহরণ 1", accent: true }, { text: "映画を 見たり", role: "উদাহরণ 2", accent: true }, { text: "します", role: "Tense" }], romaji: "Tenisu o shitari, eiga o mitari shimasu.", bengali: "Tennis খেলি, cinema দেখি ইত্যাদি।" },
+    examples: [{ japanese: "休みの 日は 掃除したり、洗濯したりします。", romaji: "Yasumi no hi wa souji shitari, sentaku shitari shimasu.", bengali: "ছুটির দিনে পরিষ্কার করি, কাপড় ধুই ইত্যাদি।" }, { japanese: "きのう 本を 読んだり、音楽を 聞いたりしました。", romaji: "Kinou hon o yondari, ongaku o kiitari shimashita.", bengali: "গতকাল বই পড়েছি, music শুনেছি ইত্যাদি।" }],
+  },
+  {
+    title: "অবস্থার পরিবর্তন—～く／～に なります",
+    structure: "い-adj（～い→～く）／な-adj + に／N + に + なります。",
+    explanation: "কেউ বা কিছু এক অবস্থা থেকে অন্য অবস্থায় পরিবর্তিত হলে なります ব্যবহার হয়। い-adjective-এর শেষ い বদলে く, আর な-adjective ও noun-এর পরে に বসে। পরিবর্তনটি স্বাভাবিক, সময়গত বা পরিস্থিতিগত—সবক্ষেত্রে patternটি ব্যবহার করা যায়।",
+    notes: ["寒い→寒く なります = ঠান্ডা হয়ে যায়।", "元気［な］→元気に なります = সুস্থ হয়ে যায়।", "25歳→25歳に なります = ২৫ বছর বয়স হয়।"],
+    visual: { tokens: [{ text: "だんだん", role: "ক্রমশ" }, { text: "寒く", role: "নতুন অবস্থা", accent: true }, { text: "なります", role: "হয়ে যায়" }], romaji: "Dandan samuku narimasu.", bengali: "ধীরে ধীরে ঠান্ডা হয়ে যায়।" },
+    examples: [{ japanese: "もうすぐ 春ですから、暖かく なります。", romaji: "Mou sugu haru desu kara, atatakaku narimasu.", bengali: "শিগগির বসন্ত, তাই উষ্ণ হয়ে যাবে।" }, { japanese: "毎日 練習して、ゴルフが 上手に なりました。", romaji: "Mainichi renshuu shite, gorufu ga jouzu ni narimashita.", bengali: "প্রতিদিন অনুশীলন করে golf-এ দক্ষ হয়েছি।" }, { japanese: "来月 20歳に なります。", romaji: "Raigetsu hatachi ni narimasu.", bengali: "আগামী মাসে ২০ বছর বয়স হবে।" }],
+  },
+];
+
 export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 1) return unit1GrammarDetails;
   if (unitNumber === 2) return unit2GrammarDetails;
@@ -757,7 +1047,13 @@ export function getMinnaN5GrammarDetails(unitNumber: number) {
   if (unitNumber === 9) return unit9GrammarDetails;
   if (unitNumber === 10) return unit10GrammarDetails;
   if (unitNumber === 11) return unit11GrammarDetails;
+  if (unitNumber === 12) return unit12GrammarDetails;
   if (unitNumber === 13) return unit13GrammarDetails;
   if (unitNumber === 14) return unit14GrammarDetails;
+  if (unitNumber === 15) return unit15GrammarDetails;
+  if (unitNumber === 16) return unit16GrammarDetails;
+  if (unitNumber === 17) return unit17GrammarDetails;
+  if (unitNumber === 18) return unit18GrammarDetails;
+  if (unitNumber === 19) return unit19GrammarDetails;
   return [];
 }

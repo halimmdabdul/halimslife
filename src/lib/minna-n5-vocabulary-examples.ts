@@ -538,7 +538,42 @@ const unit11Examples: VocabularyExample[] = unit11Words.map(([word, romaji, beng
   bengali: `“${bengali}” শব্দটি দিয়ে বাক্য বানাই।`,
 }));
 
-export function getMinnaN5VocabularyExample(unitNumber: number, index: number) {
+const unit12Words = [
+  ["簡単", "kantan", "সহজ"], ["近い", "chikai", "কাছে"], ["遠い", "tooi", "দূরে"], ["速い", "hayai", "দ্রুত"], ["遅い", "osoi", "ধীর"], ["多い", "ooi", "অনেক"], ["少ない", "sukunai", "অল্প"], ["暖かい", "atatakai", "উষ্ণ"],
+  ["涼しい", "suzushii", "শীতল"], ["甘い", "amai", "মিষ্টি"], ["辛い", "karai", "ঝাল"], ["重い", "omoi", "ভারী"], ["軽い", "karui", "হালকা"], ["いい", "ii", "ভালো"], ["季節", "kisetsu", "ঋতু"], ["春", "haru", "বসন্ত"],
+  ["夏", "natsu", "গ্রীষ্ম"], ["秋", "aki", "শরৎ"], ["冬", "fuyu", "শীতকাল"], ["天気", "tenki", "আবহাওয়া"], ["雨", "ame", "বৃষ্টি"], ["雪", "yuki", "তুষার"], ["曇り", "kumori", "মেঘলা"], ["ホテル", "hoteru", "hotel"],
+  ["空港", "kuukou", "বিমানবন্দর"], ["海", "umi", "সমুদ্র"], ["世界", "sekai", "বিশ্ব"], ["パーティー", "paatii", "party"], ["お祭り", "omatsuri", "উৎসব"], ["試験", "shiken", "পরীক্ষা"], ["すき焼き", "sukiyaki", "sukiyaki"], ["刺身", "sashimi", "sashimi"],
+  ["お寿司", "osushi", "sushi"], ["天ぷら", "tenpura", "tempura"], ["生け花", "ikebana", "ফুল সাজানোর শিল্প"], ["紅葉", "momiji", "লাল maple পাতা"], ["どちら", "dochira", "কোনটি"], ["どちらも", "dochira mo", "দুটিই"], ["一番", "ichiban", "সবচেয়ে"], ["ずっと", "zutto", "অনেক বেশি"],
+  ["初めて", "hajimete", "প্রথমবার"], ["ただいま", "tadaima", "ফিরে এলাম"], ["お帰りなさい", "okaerinasai", "স্বাগতম"], ["すごいですね", "sugoi desu ne", "দারুণ, তাই না"], ["疲れました", "tsukaremashita", "ক্লান্ত হয়ে গেছি"], ["祇園祭", "Gion-matsuri", "Gion Festival"], ["香港", "Honkon", "Hong Kong"], ["シンガポール", "Shingapooru", "Singapore"],
+  ["北海道", "Hokkaidou", "Hokkaido"], ["本州", "Honshuu", "Honshu"], ["四国", "Shikoku", "Shikoku"], ["九州", "Kyuushuu", "Kyushu"], ["沖縄", "Okinawa", "Okinawa"], ["東京", "Toukyou", "Tokyo"], ["大阪", "Oosaka", "Osaka"], ["京都", "Kyouto", "Kyoto"],
+  ["奈良", "Nara", "Nara"], ["富士山", "Fujisan", "Mount Fuji"], ["琵琶湖", "Biwako", "Lake Biwa"], ["信濃川", "Shinanogawa", "Shinano River"], ["エベレスト", "Eberesuto", "Mount Everest"], ["ナイル川", "Nairugawa", "Nile River"], ["カスピ海", "Kasupikai", "Caspian Sea"], ["日本", "Nihon", "Japan"],
+] as const;
+
+const unit12Examples: VocabularyExample[] = unit12Words.map(([word, romaji, bengali]) => ({
+  japanese: `「${word}」を 使って 文を 作ります。`,
+  romaji: `“${romaji}” o tsukatte bun o tsukurimasu.`,
+  bengali: `“${bengali}” শব্দটি দিয়ে বাক্য বানাই।`,
+}));
+
+function fallbackVocabularyExample(item: string): VocabularyExample {
+  const [rawWord, rawMeaning = ""] = item.split("—");
+  const word = rawWord.trim();
+  const [bengaliMeaning = "", rawRomaji = ""] = rawMeaning.split("·");
+  const romaji = rawRomaji.trim() || word;
+  const bengali = bengaliMeaning.trim() || "এই শব্দ";
+
+  return {
+    japanese: `「${word}」を 使って 文を 作ります。`,
+    romaji: `“${romaji}” o tsukatte bun o tsukurimasu.`,
+    bengali: `“${bengali}” শব্দটি দিয়ে একটি বাক্য তৈরি করুন।`,
+  };
+}
+
+export function getMinnaN5VocabularyExample(
+  unitNumber: number,
+  index: number,
+  item?: string,
+) {
   if (unitNumber === 1) return unit1Examples[index];
   if (unitNumber === 2) return unit2Examples[index];
   if (unitNumber === 3) return unit3Examples[index];
@@ -550,5 +585,9 @@ export function getMinnaN5VocabularyExample(unitNumber: number, index: number) {
   if (unitNumber === 9) return unit9Examples[index];
   if (unitNumber === 10) return unit10Examples[index];
   if (unitNumber === 11) return unit11Examples[index];
+  if (unitNumber === 12) return unit12Examples[index];
+  if (unitNumber >= 13 && unitNumber <= 19 && item) {
+    return fallbackVocabularyExample(item);
+  }
   return undefined;
 }
