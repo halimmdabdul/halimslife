@@ -10,7 +10,7 @@ import styles from "./n5-kanji.module.css";
 
 export const metadata: Metadata = {
   title: "N5 Kanji Reference Path | Radical ও Active Recall",
-  description: "Reference list-এর exact ক্রমে Kanji meaning, reading, category এবং spaced active recall অনুশীলন করুন।",
+  description: "Reference list-এর exact ক্রমে Kanji meaning, reading, shape-story এবং spaced active recall অনুশীলন করুন।",
   alternates: { canonical: "/projects/n5-kanji" },
 };
 
@@ -25,7 +25,7 @@ export default function N5KanjiPage() {
             <h1>ছবির তালিকার <em>সঠিক ক্রমে</em> Kanji শিখুন</h1>
             <p>
               {basicN5Kanji.length}টি printed Kanji ছবিতে যে serial-এ আছে, এখানেও ঠিক সেই serial-এ রাখা হয়েছে।
-              Meaning, reading, category এবং active recall—সবকিছু একই reference order অনুসরণ করে।
+              Meaning, reading ও “কেন এমন?” shape-story—সবকিছু একই reference order অনুসরণ করে।
             </p>
             <div className={styles.heroActions}>
               <a href="#learning-lab">Story শুরু করুন <b>→</b></a>
@@ -46,7 +46,7 @@ export default function N5KanjiPage() {
 
         <section className={styles.method} aria-label="শেখার পদ্ধতি">
           <article><i>01</i><b>Shape first</b><p>একটি kanji-কে আগে ছবি ও radical হিসেবে চিনুন।</p></article>
-          <article><i>02</i><b>Story link</b><p>পরিচিত অংশ দিয়ে ছোট, vivid একটি দৃশ্য বানান।</p></article>
+          <article><i>02</i><b>কেন এমন?</b><p>Shape-এর অংশ দিয়ে ছোট বাংলা গল্প বানিয়ে অর্থটি মনে রাখুন।</p></article>
           <article><i>03</i><b>Recall, not reread</b><p>উত্তর লুকিয়ে meaning, reading ও shape মনে করুন।</p></article>
           <article><i>04</i><b>Spaced return</b><p>যেটা কঠিন, সেটাই দ্রুত ফিরে আসবে; জানা card পরে।</p></article>
         </section>

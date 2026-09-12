@@ -126,7 +126,8 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
 
   const filteredItems = items.filter((item) => {
     const needle = search.trim().toLocaleLowerCase();
-    const matchesSearch = !needle || `${item.kanji} ${item.meaning} ${item.readings} ${item.example}`.toLocaleLowerCase().includes(needle);
+    const memory = kanjiMnemonics[item.kanji];
+    const matchesSearch = !needle || `${item.kanji} ${item.meaning} ${item.readings} ${item.example} ${memory?.origin ?? ""} ${memory?.mnemonic ?? ""}`.toLocaleLowerCase().includes(needle);
     return matchesSearch
       && (difficulty === "সব" || item.difficulty === difficulty)
       && (category === "সব" || item.category === category);
@@ -225,14 +226,18 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
                           <b>{item.kanji}</b>
                           <strong>{item.meaning}</strong>
                           <small><i>{item.radical.symbol}</i> {item.radical.name} radical</small>
-                          <em>উল্টে গল্প দেখুন ↻</em>
+                          <em>উল্টে “কেন এমন?” দেখুন ↻</em>
                         </span>
                       ) : (
                         <span className={styles.cardBack}>
                           <strong>{item.readings}</strong>
                           <span>{item.example}</span>
                           <small><b>Shape clue</b>{item.radical.clue}</small>
-                          <p>{mnemonic?.mnemonic ?? "অংশগুলো দেখুন এবং নিজের একটি ছোট দৃশ্য বানান।"}</p>
+                          <span className={styles.whyStory}>
+                            <i aria-hidden="true">{mnemonic?.emoji ?? "💭"}</i>
+                            <span><b>কেন এমন?</b>{mnemonic?.origin ?? "Shape-টির অংশগুলো মিলিয়ে অর্থের একটি সহজ দৃশ্য কল্পনা করুন।"}</span>
+                          </span>
+                          <p><b>মনে রাখার গল্প</b>{mnemonic?.mnemonic ?? "অংশগুলো দেখুন এবং নিজের একটি ছোট দৃশ্য বানান।"}</p>
                         </span>
                       )}
                     </button>
@@ -264,7 +269,13 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
                 <small>{recallIndex % 2 === 0 ? "এই kanji-র অর্থ ও reading কী?" : "এই অর্থের kanji কী?"}</small>
                 <b>{recallIndex % 2 === 0 ? recallItem.kanji : recallItem.meaning}</b>
                 {answerVisible ? (
-                  <div><strong>{recallItem.kanji} · {recallItem.meaning}</strong><em>{recallItem.readings}</em><p>{recallItem.example}</p><span>{kanjiMnemonics[recallItem.kanji]?.mnemonic}</span></div>
+                  <div>
+                    <strong>{recallItem.kanji} · {recallItem.meaning}</strong>
+                    <em>{recallItem.readings}</em>
+                    <p>{recallItem.example}</p>
+                    <span><b>কেন এমন?</b> {kanjiMnemonics[recallItem.kanji]?.origin}</span>
+                    <span><b>মনে রাখুন:</b> {kanjiMnemonics[recallItem.kanji]?.mnemonic}</span>
+                  </div>
                 ) : <button onClick={() => setAnswerVisible(true)}>উত্তর দেখুন</button>}
               </div>
               {answerVisible ? (
