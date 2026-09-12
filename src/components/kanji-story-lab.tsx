@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import { KanjiStrokeViewer } from "@/components/kanji-stroke-viewer";
 import {
   kanjiCategories,
   type KanjiLearningItem,
@@ -60,6 +61,7 @@ export function KanjiStoryLab({
   const [activeStage, setActiveStage] = useState(stages[0]?.id ?? "");
   const [reviews, setReviews] = useState<ReviewState>({});
   const [flipped, setFlipped] = useState<string | null>(null);
+  const [strokeKanji, setStrokeKanji] = useState<string | null>(null);
   const [recallIndex, setRecallIndex] = useState(0);
   const [answerVisible, setAnswerVisible] = useState(false);
   const [search, setSearch] = useState("");
@@ -135,6 +137,7 @@ export function KanjiStoryLab({
   function chooseStage(id: string) {
     setActiveStage(id);
     setFlipped(null);
+    setStrokeKanji(null);
     window.localStorage.setItem(stageKey, id);
   }
 
@@ -244,7 +247,7 @@ export function KanjiStoryLab({
                             <b>{item.readings}</b>
                           </span>
                           <small><i>{item.radical.symbol}</i> {item.radical.name} radical</small>
-                          <em>উল্টে “কেন এমন?” দেখুন ↻</em>
+                          <em>উল্টে story দেখুন ↻ · নিচে ✍ stroke order</em>
                         </span>
                       ) : (
                         <span className={styles.cardBack}>
@@ -260,10 +263,20 @@ export function KanjiStoryLab({
                       )}
                     </button>
                     <div className={styles.cardActions}>
+                      <button
+                        className={strokeKanji === item.kanji ? styles.strokeActive : ""}
+                        onClick={() => setStrokeKanji(strokeKanji === item.kanji ? null : item.kanji)}
+                        title="লেখার stroke order দেখুন"
+                        aria-label={`${item.kanji}-এর লেখার stroke order দেখুন`}
+                        aria-expanded={strokeKanji === item.kanji}
+                      >
+                        ✍
+                      </button>
                       <button onClick={() => remember(item, "again")} title="শিগগির আবার দেখাবে">↺</button>
                       <button onClick={() => remember(item, "hard")} title="কঠিন হিসেবে রাখুন">◐</button>
                       <button className={(review?.level ?? 0) >= 3 ? styles.known : ""} onClick={() => remember(item, "know")} title="মনে আছে">✓</button>
                     </div>
+                    {strokeKanji === item.kanji ? <KanjiStrokeViewer character={item.kanji} /> : null}
                     {review ? <span className={styles.nextDue}>{dueLabel(review.dueAt, clock)}</span> : null}
                   </article>
                 );

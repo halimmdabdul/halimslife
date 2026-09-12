@@ -1,0 +1,8 @@
+Kanji stroke data in this directory comes from KanjiVG:
+https://kanjivg.tagaini.net/
+
+KanjiVG is copyright Ulrich Apel and contributors and is distributed under
+the Creative Commons Attribution-ShareAlike 3.0 license:
+https://creativecommons.org/licenses/by-sa/3.0/
+
+The SVG source files are included without modification.
