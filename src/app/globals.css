@@ -3636,7 +3636,7 @@ html[data-theme="dark"] .connection-status {
   display: grid;
   grid-template-columns: 250px 1fr;
   align-items: start;
-  gap: 40px;
+  gap: 32px;
 }
 
 .account-sidebar {
@@ -3644,8 +3644,9 @@ html[data-theme="dark"] .connection-status {
   top: 95px;
   padding: 20px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--soft);
+  box-shadow: 0 1px 2px rgba(16, 42, 67, 0.04);
 }
 
 .account-avatar {
@@ -3658,13 +3659,13 @@ html[data-theme="dark"] .connection-status {
 
 .account-avatar > span {
   display: grid;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   flex: 0 0 auto;
   place-items: center;
   border-radius: 50%;
   color: #fff;
-  background: var(--green);
+  background: linear-gradient(135deg, var(--green), var(--blue));
   font-family: Georgia, serif;
   font-size: 18px;
   font-weight: 700;
@@ -3708,6 +3709,11 @@ html[data-theme="dark"] .connection-status {
   color: var(--navy);
   font-size: 13px;
   font-weight: 700;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.account-sidebar nav a:hover {
+  background: var(--paper);
 }
 
 .account-sidebar nav a[aria-current="page"] {
@@ -3811,6 +3817,32 @@ html[data-theme="dark"] .connection-status {
 .account-support-toggle .account-support-form {
   margin-top: 0;
   border-radius: 0 0 12px 12px;
+}
+
+.account-profile-toggle {
+  margin-top: 20px;
+}
+
+.account-profile-toggle > summary {
+  justify-content: space-between;
+}
+
+.account-profile-toggle > summary::after {
+  content: "▾";
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 13px;
+  transition: transform 0.2s ease;
+}
+
+.account-profile-toggle[open] > summary::after {
+  transform: rotate(180deg);
+}
+
+.account-profile-toggle .profile-card {
+  max-width: none;
+  margin-top: 0;
+  border-radius: 0 0 14px 14px;
 }
 
 .account-support-history {
@@ -3968,15 +4000,18 @@ html[data-theme="dark"] .connection-status {
 }
 
 .account-card span {
+  flex: 0 0 auto;
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
 }
 
 .account-card strong {
+  min-width: 0;
   color: var(--navy);
   font-size: 14px;
   text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .analytics-section {
@@ -4010,10 +4045,32 @@ html[data-theme="dark"] .connection-status {
 }
 
 .analytics-card {
-  padding: 20px;
+  position: relative;
+  padding: 20px 20px 20px 22px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--soft);
+  box-shadow: 0 1px 2px rgba(16, 42, 67, 0.04);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.analytics-card::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--green);
+}
+
+.analytics-card:nth-of-type(2)::before { background: var(--blue); }
+.analytics-card:nth-of-type(3)::before { background: var(--orange); }
+
+.analytics-card:hover {
+  box-shadow: 0 8px 24px rgba(16, 42, 67, 0.08);
+  transform: translateY(-1px);
 }
 
 .analytics-card--wide {
@@ -4097,13 +4154,19 @@ html[data-theme="dark"] .connection-status {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   margin-bottom: 6px;
   font-size: 13px;
   font-weight: 700;
   color: var(--navy);
 }
 
+.progress-item > div:first-child > span {
+  min-width: 0;
+}
+
 .progress-item b {
+  flex: 0 0 auto;
   color: var(--green);
 }
 
@@ -4139,8 +4202,9 @@ html[data-theme="dark"] .connection-status {
   margin-top: 28px;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--paper);
+  box-shadow: 0 1px 2px rgba(16, 42, 67, 0.04);
 }
 
 .profile-field-row {
@@ -4157,6 +4221,7 @@ html[data-theme="dark"] .connection-status {
 }
 
 .profile-field-row > span {
+  flex: 0 0 auto;
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
@@ -4164,14 +4229,17 @@ html[data-theme="dark"] .connection-status {
 
 .profile-field-value {
   display: flex;
+  min-width: 0;
   align-items: center;
   gap: 12px;
 }
 
 .profile-field-value strong {
+  min-width: 0;
   color: var(--navy);
   font-size: 14px;
   text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .profile-status {
@@ -6912,6 +6980,10 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
     padding: 25px 20px;
   }
 
+  .account-page {
+    padding-block: 60px;
+  }
+
   .account-layout {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -6919,6 +6991,30 @@ html[data-theme="dark"] .cv-profile-section blockquote { background: #102f36; }
 
   .account-sidebar {
     position: static;
+    padding: 16px;
+  }
+
+  .account-avatar {
+    padding-bottom: 12px;
+  }
+
+  .account-sidebar nav {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-top: 12px;
+    padding-bottom: 2px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .account-sidebar nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .account-sidebar nav a[aria-current="page"] {
+    box-shadow: none;
   }
 }
 

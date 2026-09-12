@@ -110,25 +110,28 @@ export default async function AccountPage() {
           <div className="account-main">
             <span className="kicker">আমার Account</span>
             <h1>আসসালামু আলাইকুম, {displayName}</h1>
-            <div className="profile-card">
-              <EditNameForm currentName={displayName} />
-              <div className="profile-field-row">
-                <span>Email</span>
-                <div className="profile-field-value"><strong>{profile?.email || user.email}</strong></div>
+            <details className="account-support-toggle account-profile-toggle">
+              <summary>প্রোফাইল তথ্য</summary>
+              <div className="profile-card">
+                <EditNameForm currentName={displayName} />
+                <div className="profile-field-row">
+                  <span>Email</span>
+                  <div className="profile-field-value"><strong>{profile?.email || user.email}</strong></div>
+                </div>
+                <div className="profile-field-row">
+                  <span>Role</span>
+                  <div className="profile-field-value"><strong>{profile?.role || "user"}</strong></div>
+                </div>
+                <div className="profile-field-row">
+                  <span>যোগদানের তারিখ</span>
+                  <div className="profile-field-value"><strong>{joinedOn}</strong></div>
+                </div>
+                <div className="profile-field-row">
+                  <span>Status</span>
+                  <div className="profile-field-value"><strong className="profile-status">Active</strong></div>
+                </div>
               </div>
-              <div className="profile-field-row">
-                <span>Role</span>
-                <div className="profile-field-value"><strong>{profile?.role || "user"}</strong></div>
-              </div>
-              <div className="profile-field-row">
-                <span>যোগদানের তারিখ</span>
-                <div className="profile-field-value"><strong>{joinedOn}</strong></div>
-              </div>
-              <div className="profile-field-row">
-                <span>Status</span>
-                <div className="profile-field-value"><strong className="profile-status">Active</strong></div>
-              </div>
-            </div>
+            </details>
 
             <section className="analytics-section">
               <h2>আপনার Study &amp; Scholarship Overview</h2>
