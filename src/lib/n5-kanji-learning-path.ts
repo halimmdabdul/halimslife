@@ -9,9 +9,24 @@ export type RadicalProfile = {
 
 export type KanjiLearningItem = UnitKanji & {
   order: number;
-  strokes: "সহজ" | "মাঝারি" | "চ্যালেঞ্জ";
+  strokeCount: number;
+  difficulty: "সহজ" | "মাঝারি" | "চ্যালেঞ্জ";
+  category: KanjiCategory;
   radical: RadicalProfile;
 };
+
+export const kanjiCategories = [
+  "ভিত্তি, সংখ্যা ও পরিমাণ",
+  "সময় ও দিন",
+  "মানুষ ও পরিচয়",
+  "শিক্ষা ও ভাষা",
+  "কাজ ও প্রতিষ্ঠান",
+  "স্থান ও ভবন",
+  "চলাচল ও দৈনন্দিন কাজ",
+  "কেনাকাটা, প্রযুক্তি ও সংস্কৃতি",
+] as const;
+
+export type KanjiCategory = (typeof kanjiCategories)[number];
 
 export type KanjiLearningStage = {
   id: string;
@@ -67,131 +82,91 @@ export function radicalFor(kanji: string): RadicalProfile {
   };
 }
 
+// Accepted stroke counts from KANJIDIC2. Characters in the same stroke group
+// retain their Minna no Nihongo introduction order as a pedagogical tie-break.
+const strokeGroups: Record<number, string> = {
+  1: "一",
+  2: "人",
+  3: "万下千土士大",
+  4: "中今円分午戸方日",
+  5: "付半本生",
+  6: "休会先名地気百自行",
+  7: "何医図売局社私究車",
+  8: "事受国夜学所明者英",
+  9: "便前室屋後昨昼段研神美食",
+  10: "勉員師時書病起院",
+  11: "動務堂強教産終術販部郵",
+  12: "場富晩朝階",
+  13: "働寝新歳話辞電靴",
+  14: "聞誌語銀雑",
+  16: "機館",
+  18: "韓",
+  20: "議",
+};
+
+const categoryGroups: Array<{ category: KanjiCategory; members: string }> = [
+  { category: "ভিত্তি, সংখ্যা ও পরিমাণ", members: "一大中本土百千万円分半" },
+  { category: "সময় ও দিন", members: "日今時午前後朝昼晩夜昨明" },
+  { category: "মানুষ ও পরিচয়", members: "人私方先生名何者韓国英歳" },
+  { category: "শিক্ষা ও ভাষা", members: "学教師研究辞書新聞雑誌話語勉強" },
+  { category: "কাজ ও প্রতিষ্ঠান", members: "会社員銀行医病院事務議働休" },
+  { category: "স্থান ও ভবন", members: "場所室堂部屋階段地下戸郵便局図館" },
+  { category: "চলাচল ও দৈনন্দিন কাজ", members: "車電気自動機起寝終受付" },
+  { category: "কেনাকাটা, প্রযুক্তি ও সংস্কৃতি", members: "神富士産食販売靴美術" },
+];
+
 const stageBlueprints = [
-  {
-    id: "picture-seeds",
-    title: "ছবি থেকে Kanji",
-    subtitle: "এক stroke, এক ছবি",
-    story: "ভোরে একজন মানুষ পাহাড়ের পাশে দাঁড়িয়ে সূর্য, চাঁদ, গাছ, নদী ও ক্ষেত দেখল। Kanji-র শুরু প্রকৃতির এই ছবিগুলো থেকেই।",
-    mission: "অক্ষর না ভেবে silhouette চিনুন",
-    order: "一人大中日本土上下方",
-  },
-  {
-    id: "number-ladder",
-    title: "পরিচয়ের দরজা",
-    subtitle: "আমি, নাম, দেশ ও পরিচয়",
-    story: "একজন নতুন বন্ধুর সঙ্গে দেখা: আমি কে, নাম কী, কোন দেশের মানুষ—সহজ shape দিয়ে পুরো পরিচয় বলা যায়।",
-    mission: "নিজের পরিচয় kanji ধরে বলুন",
-    order: "私先姓名何国韓英歳",
-  },
-  {
-    id: "space-map",
-    title: "শেখার Workshop",
-    subtitle: "শিক্ষা থেকে গবেষণা",
-    story: "ছাদের নিচে ছাত্র শেখে, শিক্ষক বোঝান, তারপর পাথর ঘষে উত্তর খোঁজার মতো গবেষণা চলে।",
-    mission: "প্রতিটি complex kanji-তে ছোট অংশ খুঁজুন",
-    order: "学教師研究勉強新",
-  },
-  {
-    id: "clock-river",
-    title: "কাজের শহর",
-    subtitle: "মানুষ থেকে প্রতিষ্ঠান",
-    story: "মানুষ একা নয়—company, bank, hospital ও office-এ ভিন্ন ভিন্ন ভূমিকায় কাজ করে। পরিচিত radical নতুন পেশা বানায়।",
-    mission: "亻, 金 ও 疒 radical আগে ধরুন",
-    order: "会社員銀行医者病院働休",
-  },
-  {
-    id: "people-village",
-    title: "শব্দের Newsroom",
-    subtitle: "বই, খবর ও ভাষা",
-    story: "একটি newsroom-এ dictionary, book, newspaper ও magazine; কেউ পড়ে, কেউ শোনে, কেউ কথা বলে।",
-    mission: "言 ও 門 family আলাদা করে চিনুন",
-    order: "辞書聞雑誌話語図館",
-  },
-  {
-    id: "school-voices",
-    title: "Building Explorer",
-    subtitle: "ঘর থেকে meeting room",
-    story: "একটি building-এ reception, room, dining hall, office ও meeting room—প্রতিটি জায়গায় আলাদা কাজ।",
-    mission: "স্থান বোঝানো radical আগে বলুন",
-    order: "場所室食堂事務議受付部屋",
-  },
-  {
-    id: "moving-city",
-    title: "দিনের Route",
-    subtitle: "তলা, সিঁড়ি ও চলাচল",
-    story: "ঘুম থেকে উঠে stairs দিয়ে নিচে, car-এ post office ও library—একটি route-এ place এবং action একসঙ্গে মনে থাকে।",
-    mission: "ছবির route ধরে kanji বলুন",
-    order: "階段地起寝終郵便局車",
-  },
-  {
-    id: "compound-mountain",
-    title: "Machine Market",
-    subtitle: "বিদ্যুৎ, মেশিন ও টাকা",
-    story: "বিদ্যুৎ চালু হলে vending machine নিজে বিক্রি করে; পাশে ১০০, ১,০০০ ও ১০,০০০ yen-এর হিসাব।",
-    mission: "compound ভেঙে অর্থ অনুমান করুন",
-    order: "電気自動販売機百千万円産",
-  },
-  {
-    id: "symbol-summit",
-    title: "Symbol Summit",
-    subtitle: "নাম ও সংস্কৃতির complex shape",
-    story: "শেষ চূড়ায় Kobe, Fuji, shrine, shoes ও beauty—কম ব্যবহৃত কিন্তু distinctive shape-গুলো নিজস্ব দৃশ্য পায়।",
-    mission: "প্রতিটি shape দিয়ে নিজের গল্প বানান",
-    order: "神戸富士靴美",
-  },
+  { id: "first-marks", title: "প্রথম রেখা", story: "এক থেকে চার stroke-এর স্পষ্ট shape দিয়ে Kanji পড়া শুরু করুন।", mission: "shape দেখে অর্থ বলুন" },
+  { id: "picture-blocks", title: "ছবির Building Blocks", story: "সহজ রেখাগুলো জুড়ে familiar picture ও direction তৈরি হচ্ছে।", mission: "আগের shape নতুন অক্ষরে খুঁজুন" },
+  { id: "familiar-forms", title: "পরিচিত Form", story: "পাঁচ ও ছয় stroke-এর Kanji দৈনন্দিন শব্দের ভিত্তি তৈরি করে।", mission: "দেখে reading মনে করুন" },
+  { id: "first-compounds", title: "প্রথম Compound", story: "সহজ অংশ মিলিয়ে একটু বড় Kanji কীভাবে তৈরি হয় তা দেখুন।", mission: "অক্ষরটি ছোট অংশে ভাঙুন" },
+  { id: "meaning-links", title: "Meaning Link", story: "একই shape ও radical বিভিন্ন meaning-এর সঙ্গে যুক্ত করুন।", mission: "radical থেকে category অনুমান করুন" },
+  { id: "daily-patterns", title: "দৈনন্দিন Pattern", story: "সময়, স্থান, মানুষ ও কাজের পরিচিত Kanji এখন আরও detail পাচ্ছে।", mission: "example শব্দটি না দেখে বলুন" },
+  { id: "multi-part-kanji", title: "Multi-part Kanji", story: "দশ ও এগারো stroke-এর Kanji-তে একাধিক পরিচিত অংশ একসঙ্গে পড়ুন।", mission: "প্রতিটি অংশের visual clue ধরুন" },
+  { id: "complex-patterns", title: "Complex Pattern", story: "আরও dense shape-এ stroke order ও component balance লক্ষ্য করুন।", mission: "না দেখে একবার লিখুন" },
+  { id: "dense-everyday", title: "Dense Everyday Kanji", story: "দৈনন্দিন ব্যবহারের জটিল Kanji-গুলোকে radical ও mnemonic দিয়ে সহজ করুন।", mission: "reading, meaning ও shape recall করুন" },
+  { id: "final-summit", title: "Final Challenge", story: "সবচেয়ে বেশি stroke-এর Kanji দিয়ে 100টির easy-to-complex পথ শেষ করুন।", mission: "নিজের mnemonic বানিয়ে লিখুন" },
 ] as const;
 
-function difficulty(index: number): KanjiLearningItem["strokes"] {
-  if (index < 32) return "সহজ";
-  if (index < 72) return "মাঝারি";
+function strokeCountFor(kanji: string) {
+  const match = Object.entries(strokeGroups).find(([, members]) => members.includes(kanji));
+  return match ? Number(match[0]) : 99;
+}
+
+function categoryFor(kanji: string): KanjiCategory {
+  return categoryGroups.find((group) => group.members.includes(kanji))?.category ?? kanjiCategories[0];
+}
+
+function difficulty(strokeCount: number): KanjiLearningItem["difficulty"] {
+  if (strokeCount <= 6) return "সহজ";
+  if (strokeCount <= 11) return "মাঝারি";
   return "চ্যালেঞ্জ";
 }
 
 export function buildKanjiLearningPath(items = basicN5Kanji): KanjiLearningStage[] {
-  const source = new Map(items.map((item) => [item.kanji, item]));
-  const used = new Set<string>();
-  let runningOrder = 0;
-
-  const stages: KanjiLearningStage[] = stageBlueprints.map((stage, index) => {
-    const kanji = Array.from(stage.order)
-      .filter((character) => source.has(character) && !used.has(character))
-      .map((character) => {
-        used.add(character);
-        const item = source.get(character)!;
-        return {
-          ...item,
-          order: ++runningOrder,
-          strokes: difficulty(runningOrder - 1),
-          radical: radicalFor(character),
-        };
-      });
-
-    return { ...stage, level: index + 1, kanji };
-  });
-
-  const remaining = items
-    .filter((item) => !used.has(item.kanji))
-    .map((item) => ({
+  const sorted = items
+    .map((item, originalIndex) => ({ item, originalIndex, strokeCount: strokeCountFor(item.kanji) }))
+    .sort((a, b) => a.strokeCount - b.strokeCount || a.originalIndex - b.originalIndex)
+    .map(({ item, strokeCount }, index): KanjiLearningItem => ({
       ...item,
-      order: ++runningOrder,
-      strokes: difficulty(runningOrder - 1),
+      order: index + 1,
+      strokeCount,
+      difficulty: difficulty(strokeCount),
+      category: categoryFor(item.kanji),
       radical: radicalFor(item.kanji),
     }));
 
-  if (remaining.length) {
-    stages.push({
-      id: "final-expedition",
-      level: stages.length + 1,
-      title: "Final Expedition",
-      subtitle: "বাকি shape-গুলোর অভিযান",
-      story: "সব foundational skill ব্যবহার করে নতুন kanji ভাঙুন: radical খুঁজুন, পরিচিত অংশ ধরুন, তারপর নিজস্ব গল্প বানান।",
-      mission: "নিজের mnemonic মুখে বলুন",
-      kanji: remaining,
-    });
-  }
-
-  return stages.filter((stage) => stage.kanji.length > 0);
+  return stageBlueprints.map((stage, index) => {
+    const kanji = sorted.slice(index * 10, index * 10 + 10);
+    const firstStroke = kanji[0]?.strokeCount ?? 0;
+    const lastStroke = kanji.at(-1)?.strokeCount ?? firstStroke;
+    return {
+      ...stage,
+      level: index + 1,
+      subtitle: `${firstStroke}–${lastStroke} stroke · easy → complex`,
+      kanji,
+    };
+  }).filter((stage) => stage.kanji.length > 0);
 }
 
 export const n5KanjiLearningPath = buildKanjiLearningPath();

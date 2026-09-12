@@ -2,7 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import type { KanjiLearningItem, KanjiLearningStage } from "@/lib/n5-kanji-learning-path";
+import {
+  kanjiCategories,
+  type KanjiCategory,
+  type KanjiLearningItem,
+  type KanjiLearningStage,
+} from "@/lib/n5-kanji-learning-path";
 import { kanjiMnemonics } from "@/lib/n5-kanji-mnemonics";
 
 import styles from "./kanji-story-lab.module.css";
@@ -44,7 +49,8 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
   const [recallIndex, setRecallIndex] = useState(0);
   const [answerVisible, setAnswerVisible] = useState(false);
   const [search, setSearch] = useState("");
-  const [difficulty, setDifficulty] = useState<"সব" | KanjiLearningItem["strokes"]>("সব");
+  const [difficulty, setDifficulty] = useState<"সব" | KanjiLearningItem["difficulty"]>("সব");
+  const [category, setCategory] = useState<"সব" | KanjiCategory>("সব");
   const [ready, setReady] = useState(false);
   const [clock, setClock] = useState(0);
 
@@ -121,7 +127,9 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
   const filteredItems = items.filter((item) => {
     const needle = search.trim().toLocaleLowerCase();
     const matchesSearch = !needle || `${item.kanji} ${item.meaning} ${item.readings} ${item.example}`.toLocaleLowerCase().includes(needle);
-    return matchesSearch && (difficulty === "সব" || item.strokes === difficulty);
+    return matchesSearch
+      && (difficulty === "সব" || item.difficulty === difficulty)
+      && (category === "সব" || item.category === category);
   });
 
   const radicalGroups = Array.from(
@@ -211,7 +219,7 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
                 return (
                   <article key={item.kanji} className={`${styles.kanjiCard} ${(review?.level ?? 0) >= 3 ? styles.cardMastered : ""}`}>
                     <button className={styles.flipButton} onClick={() => setFlipped(isFlipped ? null : item.kanji)} aria-expanded={isFlipped}>
-                      <span className={styles.cardTop}><i>#{String(item.order).padStart(2, "0")}</i><em>{item.strokes}</em></span>
+                      <span className={styles.cardTop}><i>#{String(item.order).padStart(2, "0")}</i><em>{item.strokeCount} stroke · {item.difficulty}</em></span>
                       {!isFlipped ? (
                         <span className={styles.cardFront}>
                           <b>{item.kanji}</b>
@@ -295,11 +303,15 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
             <div className={styles.searchTools}>
               <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Kanji, বাংলা অর্থ বা reading…" aria-label="Kanji খুঁজুন" />
               <select value={difficulty} onChange={(event) => setDifficulty(event.target.value as typeof difficulty)} aria-label="কঠিনতার স্তর"><option>সব</option><option>সহজ</option><option>মাঝারি</option><option>চ্যালেঞ্জ</option></select>
+              <select value={category} onChange={(event) => setCategory(event.target.value as typeof category)} aria-label="Kanji category">
+                <option>সব</option>
+                {kanjiCategories.map((item) => <option key={item}>{item}</option>)}
+              </select>
             </div>
           </div>
           <div className={styles.libraryGrid}>
             {filteredItems.map((item) => (
-              <article key={item.kanji}><b>{item.kanji}</b><span><strong>{item.meaning}</strong><em>{item.readings}</em><small>{item.radical.symbol} · {item.radical.name}</small></span><i>Lv {reviews[item.kanji]?.level ?? 0}</i></article>
+              <article key={item.kanji}><b>{item.kanji}</b><span><strong>{item.meaning}</strong><em>{item.readings}</em><small>{item.strokeCount} stroke · {item.category}</small></span><i>Lv {reviews[item.kanji]?.level ?? 0}</i></article>
             ))}
           </div>
           {!filteredItems.length ? <p className={styles.empty}>এই filter-এ কোনো kanji পাওয়া যায়নি।</p> : null}
