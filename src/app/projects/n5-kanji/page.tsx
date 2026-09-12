@@ -9,8 +9,8 @@ import { n5KanjiLearningPath } from "@/lib/n5-kanji-learning-path";
 import styles from "./n5-kanji.module.css";
 
 export const metadata: Metadata = {
-  title: "N5 Kanji Story Path | Radical ও Active Recall",
-  description: "Radical family, visual story, easy-to-complex learning order এবং spaced active recall দিয়ে JLPT N5 kanji শিখুন।",
+  title: "N5 Kanji Reference Path | Radical ও Active Recall",
+  description: "Reference list-এর exact ক্রমে Kanji meaning, reading, category এবং spaced active recall অনুশীলন করুন।",
   alternates: { canonical: "/projects/n5-kanji" },
 };
 
@@ -21,12 +21,11 @@ export default function N5KanjiPage() {
         <section className={styles.hero}>
           <div className={styles.heroCopy}>
             <Link href="/projects" className={styles.back}>← সব project</Link>
-            <span className={styles.kicker}>N5 · Kanji learning system</span>
-            <h1>Kanji মুখস্থ নয়—<em>গল্পের ভেতর</em> দিয়ে শিখুন</h1>
+            <span className={styles.kicker}>N5 · Exact reference sequence</span>
+            <h1>ছবির তালিকার <em>সঠিক ক্রমে</em> Kanji শিখুন</h1>
             <p>
-              {basicN5Kanji.length}টি kanji এখন textbook order-এ নয়। প্রথমে সহজ ছবি ও radical,
-              তারপর related shape, compound এবং active recall—যাতে চোখ শুধু চিনে না, মস্তিষ্ক
-              নিজে থেকে উত্তর বের করতে শেখে।
+              {basicN5Kanji.length}টি printed Kanji ছবিতে যে serial-এ আছে, এখানেও ঠিক সেই serial-এ রাখা হয়েছে।
+              Meaning, reading, category এবং active recall—সবকিছু একই reference order অনুসরণ করে।
             </p>
             <div className={styles.heroActions}>
               <a href="#learning-lab">Story শুরু করুন <b>→</b></a>

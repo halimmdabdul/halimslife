@@ -16,14 +16,14 @@ export type KanjiLearningItem = UnitKanji & {
 };
 
 export const kanjiCategories = [
-  "ভিত্তি, সংখ্যা ও পরিমাণ",
-  "সময় ও দিন",
-  "মানুষ ও পরিচয়",
+  "সংখ্যা ও পরিমাণ",
+  "সময় ও ক্যালেন্ডার",
+  "মানুষ ও শরীর",
+  "দিক, স্থান ও প্রকৃতি",
   "শিক্ষা ও ভাষা",
-  "কাজ ও প্রতিষ্ঠান",
-  "স্থান ও ভবন",
-  "চলাচল ও দৈনন্দিন কাজ",
-  "কেনাকাটা, প্রযুক্তি ও সংস্কৃতি",
+  "চলাচল ও সমাজ",
+  "বর্ণনা ও অবস্থা",
+  "খাবার, কেনাকাটা ও প্রযুক্তি",
 ] as const;
 
 export type KanjiCategory = (typeof kanjiCategories)[number];
@@ -82,50 +82,49 @@ export function radicalFor(kanji: string): RadicalProfile {
   };
 }
 
-// Accepted stroke counts from KANJIDIC2. Characters in the same stroke group
-// retain their Minna no Nihongo introduction order as a pedagogical tie-break.
+// Accepted stroke counts from KANJIDIC2. These label card complexity while
+// display order remains identical to the owner's printed reference sequence.
 const strokeGroups: Record<number, string> = {
   1: "一",
-  2: "人",
-  3: "万下千土士大",
-  4: "中今円分午戸方日",
-  5: "付半本生",
-  6: "休会先名地気百自行",
-  7: "何医図売局社私究車",
-  8: "事受国夜学所明者英",
-  9: "便前室屋後昨昼段研神美食",
-  10: "勉員師時書病起院",
-  11: "動務堂強教産終術販部郵",
-  12: "場富晩朝階",
-  13: "働寝新歳話辞電靴",
-  14: "聞誌語銀雑",
-  16: "機館",
-  18: "韓",
-  20: "議",
+  2: "二七八九十人入",
+  3: "三千万土女子口上下川山小大",
+  4: "五六円日月火水木午今分父友手中天少",
+  5: "四半母目右左外北白生本出古立",
+  6: "百年毎耳西気先会行安多名",
+  7: "何男足花体見言車社来",
+  8: "金東空雨学国長",
+  9: "計前後南食",
+  10: "時校書高",
+  11: "週魚",
+  12: "間道飲買",
+  13: "新電",
+  14: "読聞語駅",
+  18: "曜",
 };
 
 const categoryGroups: Array<{ category: KanjiCategory; members: string }> = [
-  { category: "ভিত্তি, সংখ্যা ও পরিমাণ", members: "一大中本土百千万円分半" },
-  { category: "সময় ও দিন", members: "日今時午前後朝昼晩夜昨明" },
-  { category: "মানুষ ও পরিচয়", members: "人私方先生名何者韓国英歳" },
-  { category: "শিক্ষা ও ভাষা", members: "学教師研究辞書新聞雑誌話語勉強" },
-  { category: "কাজ ও প্রতিষ্ঠান", members: "会社員銀行医病院事務議働休" },
-  { category: "স্থান ও ভবন", members: "場所室堂部屋階段地下戸郵便局図館" },
-  { category: "চলাচল ও দৈনন্দিন কাজ", members: "車電気自動機起寝終受付" },
-  { category: "কেনাকাটা, প্রযুক্তি ও সংস্কৃতি", members: "神富士産食販売靴美術" },
+  { category: "সংখ্যা ও পরিমাণ", members: "一二三四五六七八九十百千万円" },
+  { category: "সময় ও ক্যালেন্ডার", members: "曜週年日月火水木金土午今分半毎何時計間" },
+  { category: "মানুষ ও শরীর", members: "男女父母子友人手目足耳口体" },
+  { category: "দিক, স্থান ও প্রকৃতি", members: "右左前後上下中外北南西東白花川山空天気雨" },
+  { category: "শিক্ষা ও ভাষা", members: "学校生先本書読見聞言語" },
+  { category: "চলাচল ও সমাজ", members: "車駅会社行来出入国道" },
+  { category: "বর্ণনা ও অবস্থা", members: "安高長古新小大少多名立" },
+  { category: "খাবার, কেনাকাটা ও প্রযুক্তি", members: "飲食魚買電" },
 ];
 
 const stageBlueprints = [
-  { id: "first-marks", title: "প্রথম রেখা", story: "এক থেকে চার stroke-এর স্পষ্ট shape দিয়ে Kanji পড়া শুরু করুন।", mission: "shape দেখে অর্থ বলুন" },
-  { id: "picture-blocks", title: "ছবির Building Blocks", story: "সহজ রেখাগুলো জুড়ে familiar picture ও direction তৈরি হচ্ছে।", mission: "আগের shape নতুন অক্ষরে খুঁজুন" },
-  { id: "familiar-forms", title: "পরিচিত Form", story: "পাঁচ ও ছয় stroke-এর Kanji দৈনন্দিন শব্দের ভিত্তি তৈরি করে।", mission: "দেখে reading মনে করুন" },
-  { id: "first-compounds", title: "প্রথম Compound", story: "সহজ অংশ মিলিয়ে একটু বড় Kanji কীভাবে তৈরি হয় তা দেখুন।", mission: "অক্ষরটি ছোট অংশে ভাঙুন" },
-  { id: "meaning-links", title: "Meaning Link", story: "একই shape ও radical বিভিন্ন meaning-এর সঙ্গে যুক্ত করুন।", mission: "radical থেকে category অনুমান করুন" },
-  { id: "daily-patterns", title: "দৈনন্দিন Pattern", story: "সময়, স্থান, মানুষ ও কাজের পরিচিত Kanji এখন আরও detail পাচ্ছে।", mission: "example শব্দটি না দেখে বলুন" },
-  { id: "multi-part-kanji", title: "Multi-part Kanji", story: "দশ ও এগারো stroke-এর Kanji-তে একাধিক পরিচিত অংশ একসঙ্গে পড়ুন।", mission: "প্রতিটি অংশের visual clue ধরুন" },
-  { id: "complex-patterns", title: "Complex Pattern", story: "আরও dense shape-এ stroke order ও component balance লক্ষ্য করুন।", mission: "না দেখে একবার লিখুন" },
-  { id: "dense-everyday", title: "Dense Everyday Kanji", story: "দৈনন্দিন ব্যবহারের জটিল Kanji-গুলোকে radical ও mnemonic দিয়ে সহজ করুন।", mission: "reading, meaning ও shape recall করুন" },
-  { id: "final-summit", title: "Final Challenge", story: "সবচেয়ে বেশি stroke-এর Kanji দিয়ে 100টির easy-to-complex পথ শেষ করুন।", mission: "নিজের mnemonic বানিয়ে লিখুন" },
+  { id: "reference-01", title: "সংখ্যার শুরু" },
+  { id: "reference-02", title: "সংখ্যা ও Calendar" },
+  { id: "reference-03", title: "দিন ও সময়" },
+  { id: "reference-04", title: "সময় ও পরিবার" },
+  { id: "reference-05", title: "শরীর ও দিক" },
+  { id: "reference-06", title: "দিক ও প্রকৃতি" },
+  { id: "reference-07", title: "প্রকৃতি ও শিক্ষা" },
+  { id: "reference-08", title: "পড়া ও ভাষা" },
+  { id: "reference-09", title: "যাত্রা ও সমাজ" },
+  { id: "reference-10", title: "খাবার ও বর্ণনা" },
+  { id: "reference-11", title: "শেষ ধাপ" },
 ] as const;
 
 function strokeCountFor(kanji: string) {
@@ -144,26 +143,27 @@ function difficulty(strokeCount: number): KanjiLearningItem["difficulty"] {
 }
 
 export function buildKanjiLearningPath(items = basicN5Kanji): KanjiLearningStage[] {
-  const sorted = items
-    .map((item, originalIndex) => ({ item, originalIndex, strokeCount: strokeCountFor(item.kanji) }))
-    .sort((a, b) => a.strokeCount - b.strokeCount || a.originalIndex - b.originalIndex)
-    .map(({ item, strokeCount }, index): KanjiLearningItem => ({
+  const ordered = items.map((item, index): KanjiLearningItem => {
+    const strokeCount = strokeCountFor(item.kanji);
+    return {
       ...item,
       order: index + 1,
       strokeCount,
       difficulty: difficulty(strokeCount),
       category: categoryFor(item.kanji),
       radical: radicalFor(item.kanji),
-    }));
+    };
+  });
 
   return stageBlueprints.map((stage, index) => {
-    const kanji = sorted.slice(index * 10, index * 10 + 10);
-    const firstStroke = kanji[0]?.strokeCount ?? 0;
-    const lastStroke = kanji.at(-1)?.strokeCount ?? firstStroke;
+    const start = index * 10;
+    const kanji = ordered.slice(start, start + 10);
     return {
       ...stage,
       level: index + 1,
-      subtitle: `${firstStroke}–${lastStroke} stroke · easy → complex`,
+      subtitle: `ক্রম ${start + 1}–${start + kanji.length} · reference order`,
+      story: "ছবির printed তালিকায় যে ক্রম আছে, সেই ক্রমেই meaning, reading ও example অনুশীলন করুন।",
+      mission: "serial না বদলে cardগুলো recall করুন",
       kanji,
     };
   }).filter((stage) => stage.kanji.length > 0);
