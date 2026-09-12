@@ -225,6 +225,10 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
                         <span className={styles.cardFront}>
                           <b>{item.kanji}</b>
                           <strong>{item.meaning}</strong>
+                          <span className={styles.frontReading}>
+                            <small>読み方 · reading</small>
+                            <b>{item.readings}</b>
+                          </span>
                           <small><i>{item.radical.symbol}</i> {item.radical.name} radical</small>
                           <em>উল্টে “কেন এমন?” দেখুন ↻</em>
                         </span>
