@@ -119,6 +119,28 @@ export default async function ScholarshipSupportPage() {
             <p className="account-support-intro">
               আপনার target country, degree এবং বর্তমান পটভূমি জানান—personalized guidance দেওয়ার চেষ্টা করব।
             </p>
+
+            <div className="account-support-howto">
+              <h2>কীভাবে কাজ করে</h2>
+              <ol>
+                <li>
+                  <strong>ফর্ম পূরণ করুন।</strong> Target country, degree level, বর্তমান শিক্ষাগত পটভূমি এবং ঠিক কী ধরনের সাহায্য দরকার (যেমনঃ কোন scholarship-এর জন্য apply করা উচিত, SOP review, professor email) লিখুন। যত স্পষ্ট করে লিখবেন, guidance তত সঠিক ও personalized হবে।
+                </li>
+                <li>
+                  <strong>CV/Transcript link দিন (থাকলে ভালো)।</strong> Google Drive link শেয়ার করলে আপনার প্রোফাইল দেখে আরও নির্দিষ্টভাবে scholarship সাজেস্ট করা সহজ হয়—optional, কিন্তু recommend করা হয়।
+                </li>
+                <li>
+                  <strong>Request পাঠান।</strong> Submit করার সাথে সাথে request save হয়ে যাবে, এবং সাধারণত ১–২ working day-এর মধ্যে reply পাবেন—নিচের &quot;আপনার আগের requests&quot; অংশে reply দেখতে পাবেন এবং email-এও notification যাবে।
+                </li>
+                <li>
+                  <strong>প্রয়োজনে reply দিন।</strong> Reply পড়ার পর নতুন প্রশ্ন থাকলে বা আরও তথ্য দিতে চাইলে reply বক্সে লিখে পাঠাতে পারবেন—এটা একটা চলমান কথোপকথনের মতো, শুধু একবার reply দিয়ে শেষ না।
+                </li>
+                <li>
+                  <strong>Recommendations দেখুন।</strong> নির্দিষ্ট কোনো scholarship সাজেস্ট করা হলে সেটা আলাদা card আকারে link ও deadline সহ দেখতে পাবেন।
+                </li>
+              </ol>
+            </div>
+
             <details className="account-support-toggle" open={requests.length === 0}>
               <summary>নতুন Scholarship Support request পাঠান</summary>
               <ScholarshipSupportForm defaultName={displayName} defaultEmail={email} />

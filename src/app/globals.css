@@ -3732,6 +3732,35 @@ html[data-theme="dark"] .connection-status {
   line-height: 1.7;
 }
 
+.account-support-howto {
+  max-width: 640px;
+  margin-top: 22px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+.account-support-howto h2 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.account-support-howto ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
+}
+.account-support-howto li {
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.account-support-howto li > strong { color: var(--navy); }
+
 .account-support-form {
   position: static;
   max-width: 640px;
