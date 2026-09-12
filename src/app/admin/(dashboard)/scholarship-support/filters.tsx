@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 import {
@@ -11,23 +12,64 @@ export type ScholarshipFilterValues = {
   status: string;
   country: string;
   degree: string;
+  q: string;
 };
 
-export function ScholarshipFilters({ status, country, degree }: ScholarshipFilterValues) {
+export function ScholarshipFilters({ status, country, degree, q }: ScholarshipFilterValues) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [searchValue, setSearchValue] = useState(q);
+  const [syncedQ, setSyncedQ] = useState(q);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  function updateFilter(key: keyof ScholarshipFilterValues, value: string) {
-    const current = { status, country, degree, [key]: value };
-    const query = new URLSearchParams();
-    if (current.status !== "all") query.set("status", current.status);
-    if (current.country !== "all") query.set("country", current.country);
-    if (current.degree !== "all") query.set("degree", current.degree);
-    // Any filter change moves the list back to page 1.
-    router.push(`/admin/scholarship-support${query.toString() ? `?${query}` : ""}`);
+  if (q !== syncedQ) {
+    setSyncedQ(q);
+    setSearchValue(q);
   }
 
+  function navigate(next: ScholarshipFilterValues) {
+    const query = new URLSearchParams();
+    if (next.status !== "all") query.set("status", next.status);
+    if (next.country !== "all") query.set("country", next.country);
+    if (next.degree !== "all") query.set("degree", next.degree);
+    if (next.q.trim()) query.set("q", next.q.trim());
+    startTransition(() => {
+      router.push(`/admin/scholarship-support${query.toString() ? `?${query}` : ""}`);
+    });
+  }
+
+  function updateFilter(key: keyof ScholarshipFilterValues, value: string) {
+    navigate({ status, country, degree, q, [key]: value });
+  }
+
+  function handleSearchChange(value: string) {
+    setSearchValue(value);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      navigate({ status, country, degree, q: value });
+    }, 400);
+  }
+
+  const hasActiveFilters = status !== "all" || country !== "all" || degree !== "all" || q.trim() !== "";
+
   return (
-    <div className="admin-filter-bar" aria-label="Filter scholarship support requests">
+    <div className={`admin-filter-bar${isPending ? " is-pending" : ""}`} aria-label="Filter scholarship support requests" aria-busy={isPending}>
+      <label className="admin-filter-search">
+        <span>Search</span>
+        <input
+          type="search"
+          value={searchValue}
+          placeholder="Name, email, or subject…"
+          onChange={(event) => handleSearchChange(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              if (debounceRef.current) clearTimeout(debounceRef.current);
+              navigate({ status, country, degree, q: searchValue });
+            }
+          }}
+        />
+      </label>
       <label>
         <span>Status</span>
         <select value={status} onChange={(event) => updateFilter("status", event.target.value)}>
@@ -55,7 +97,8 @@ export function ScholarshipFilters({ status, country, degree }: ScholarshipFilte
           ))}
         </select>
       </label>
-      {status !== "all" || country !== "all" || degree !== "all" ? (
+      {isPending ? <span className="admin-filter-pending">Loading…</span> : null}
+      {hasActiveFilters ? (
         <a href="/admin/scholarship-support" className="admin-filter-clear">Clear filters</a>
       ) : null}
     </div>

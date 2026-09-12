@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { sendContactNotification } from "@/lib/contact-email";
 import {
@@ -11,6 +13,75 @@ export type ScholarshipSupportState = {
   error?: string;
   success?: string;
 };
+
+export type ScholarshipFollowUpState = {
+  error?: string;
+  success?: string;
+};
+
+export async function submitScholarshipFollowUpReply(
+  _previousState: ScholarshipFollowUpState,
+  formData: FormData,
+): Promise<ScholarshipFollowUpState> {
+  const supabase = await createServerSupabaseClient();
+  if (!supabase) {
+    return { error: "Service এখন configure করা নেই। সরাসরি reiazbubt@gmail.com-এ email করুন।" };
+  }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    return { error: "Reply পাঠাতে হলে আগে login করুন।" };
+  }
+
+  const requestId = Number(formData.get("requestId"));
+  const message = String(formData.get("message") ?? "").trim();
+
+  if (!Number.isInteger(requestId)) {
+    return { error: "Invalid request." };
+  }
+  if (message.length < 2 || message.length > 4000) {
+    return { error: "Reply ২ থেকে ৪০০০ অক্ষরের মধ্যে লিখুন।" };
+  }
+
+  const { data: original, error: fetchError } = await supabase
+    .from("contact_messages")
+    .select("id,name,email,subject")
+    .eq("id", requestId)
+    .eq("user_id", user.id)
+    .single();
+  if (fetchError || !original) {
+    return { error: "Request খুঁজে পাওয়া যায়নি।" };
+  }
+
+  const { error } = await supabase.from("contact_message_replies").insert({
+    request_id: requestId,
+    sender: "user",
+    message,
+  });
+  if (error) {
+    return { error: "Reply পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন।" };
+  }
+
+  try {
+    const delivery = await sendContactNotification({
+      name: original.name,
+      email: original.email,
+      topic: "scholarship-support",
+      subject: `Re: ${original.subject}`,
+      message,
+    });
+    if (!delivery.ok) console.error("Follow-up notification email skipped or failed:", delivery.reason);
+  } catch (deliveryError) {
+    console.error("Follow-up notification email failed:", deliveryError);
+  }
+
+  revalidatePath("/account/scholarship-support");
+  revalidatePath("/admin/scholarship-support");
+
+  return { success: "আপনার reply পাঠানো হয়েছে।" };
+}
 
 export async function submitScholarshipSupportRequest(
   _previousState: ScholarshipSupportState,

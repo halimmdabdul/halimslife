@@ -7,6 +7,10 @@ import { requireAdmin } from "@/lib/admin-auth";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { sendContactReply, sendScholarshipRecommendationEmail } from "@/lib/contact-email";
+import {
+  scholarshipCountryLabels,
+  scholarshipDegreeLabels,
+} from "@/lib/scholarship-support-options";
 
 export type LoginState = {
   error?: string;
@@ -769,8 +773,18 @@ export async function replyToContactMessage(formData: FormData) {
     .eq("id", messageId);
   if (error) throw new Error(`Reply was sent but could not be saved: ${error.message}`);
 
+  if (original.topic === "scholarship-support") {
+    const { error: threadError } = await supabase.from("contact_message_replies").insert({
+      request_id: messageId,
+      sender: "admin",
+      message: replyMessage,
+    });
+    if (threadError) console.error("Reply was sent but could not be added to the thread:", threadError.message);
+  }
+
   revalidatePath("/admin/messages");
   revalidatePath("/admin/scholarship-support");
+  revalidatePath("/account/scholarship-support");
   revalidatePath("/admin");
 }
 
@@ -861,6 +875,55 @@ export async function deleteScholarshipRecommendation(formData: FormData) {
   revalidatePath("/account/scholarship-support");
 }
 
+export async function createManualScholarshipRequest(formData: FormData) {
+  const { supabase } = await requireAdmin();
+
+  const name = boundedText(formData, "name", 2, 80);
+  const email = boundedText(formData, "email", 5, 254).toLowerCase();
+  const country = requiredText(formData, "country");
+  const degree = requiredText(formData, "degree");
+  const background = boundedText(formData, "background", 5, 300);
+  const goals = boundedText(formData, "goals", 10, 2000);
+  const driveLink = optionalText(formData, "driveLink");
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    throw new Error("A valid email address is required.");
+  }
+  if (!scholarshipCountryLabels[country]) throw new Error("Invalid target country.");
+  if (!scholarshipDegreeLabels[degree]) throw new Error("Invalid target degree.");
+  if (driveLink && (driveLink.length > 500 || !/^https:\/\/(drive|docs)\.google\.com\//.test(driveLink))) {
+    throw new Error("Drive link must be a drive.google.com or docs.google.com URL.");
+  }
+
+  const subject = `Scholarship support request — ${scholarshipCountryLabels[country]}`;
+  const message = [
+    `Target country: ${scholarshipCountryLabels[country]}`,
+    `Target degree: ${scholarshipDegreeLabels[degree]}`,
+    `Current education / background: ${background}`,
+    ...(driveLink ? [`CV/Transcript link: ${driveLink}`] : []),
+    "",
+    "কী সাহায্য দরকার:",
+    goals,
+  ].join("\n");
+
+  const { error } = await supabase.from("contact_messages").insert({
+    user_id: null,
+    name,
+    email,
+    topic: "scholarship-support",
+    subject,
+    message,
+    target_country: country,
+    target_degree: degree,
+    background,
+    goals,
+    drive_link: driveLink,
+  });
+  if (error) throw new Error(`Request could not be created: ${error.message}`);
+
+  revalidatePath("/admin/scholarship-support");
+}
+
 const safeTrackingIdPattern = /^[A-Za-z0-9_.-]+$/;
 
 function optionalIdText(formData: FormData, name: string, maxLength: number) {
@@ -914,6 +977,7 @@ export type AdminActionName =
   | "replyToContactMessage"
   | "addScholarshipRecommendation"
   | "deleteScholarshipRecommendation"
+  | "createManualScholarshipRequest"
   | "updateSiteSettings";
 
 export type AdminActionResult =
@@ -979,6 +1043,9 @@ export async function submitAdminCourseAction(
         break;
       case "deleteScholarshipRecommendation":
         await deleteScholarshipRecommendation(formData);
+        break;
+      case "createManualScholarshipRequest":
+        await createManualScholarshipRequest(formData);
         break;
       case "updateSiteSettings":
         await updateSiteSettings(formData);

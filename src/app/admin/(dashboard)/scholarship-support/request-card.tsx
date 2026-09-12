@@ -3,12 +3,20 @@ import type { ReactNode } from "react";
 import { AdminActionForm } from "@/components/admin-action-form";
 import { RichTextContent } from "@/components/rich-text-content";
 import { RichTextEditor } from "@/components/rich-text-editor";
-import { updateContactMessageStatus } from "@/app/admin/message-actions";
 import {
   scholarshipCountryLabels,
   scholarshipDegreeLabels,
 } from "@/lib/scholarship-support-options";
 import { ScholarshipRecommendations, type ScholarshipRecommendation } from "./recommendations";
+import { StatusUpdateForm } from "./status-form";
+
+export type ThreadReply = {
+  id: number;
+  request_id: number;
+  sender: "admin" | "user";
+  message: string;
+  created_at: string;
+};
 
 export type SupportRequest = {
   id: number;
@@ -40,13 +48,16 @@ function linkify(text: string): ReactNode[] {
 export function ScholarshipRequestCard({
   request,
   recommendations,
+  replies,
 }: {
   request: SupportRequest;
   recommendations: ScholarshipRecommendation[];
+  replies: ThreadReply[];
 }) {
   // Requests submitted before the structured columns existed only have the
   // flattened `message` text — fall back to showing that as-is for them.
   const hasStructuredFields = Boolean(request.target_country && request.target_degree);
+  const hasThread = replies.length > 0;
 
   return (
     <article className={request.status === "new" ? "is-new" : ""}>
@@ -94,26 +105,36 @@ export function ScholarshipRequestCard({
       <footer>
         <span>Scholarship Support</span>
         <a href={`mailto:${request.email}?subject=${encodeURIComponent(`Re: ${request.subject}`)}`}>Reply by email ↗</a>
-        <form action={updateContactMessageStatus}>
-          <input type="hidden" name="messageId" value={request.id} />
-          <select name="status" defaultValue={request.status} aria-label={`Status for ${request.subject}`}>
-            <option value="new">New</option>
-            <option value="read">Read</option>
-            <option value="replied">Replied</option>
-          </select>
-          <button type="submit">Save</button>
-        </form>
+        <StatusUpdateForm requestId={request.id} status={request.status} subject={request.subject} />
       </footer>
 
-      <details className="admin-item-editor admin-reply-panel">
-        <summary>Reply from the site {request.admin_reply ? "(already replied)" : ""}</summary>
-        {request.admin_reply ? (
+      <details className="admin-item-editor admin-reply-panel" open={hasThread}>
+        <summary>Reply from the site {hasThread || request.admin_reply ? "(already replied)" : ""}</summary>
+        {hasThread ? (
+          <div className="admin-message-thread">
+            {replies.map((reply) => (
+              <div className={`admin-thread-message ${reply.sender}`} key={reply.id}>
+                <span>{reply.sender === "admin" ? "You" : request.name} · {dateFormatter.format(new Date(reply.created_at))}</span>
+                <p>{reply.message}</p>
+              </div>
+            ))}
+          </div>
+        ) : request.admin_reply ? (
           <div className="admin-previous-reply">
             <span>Sent {request.replied_at ? dateFormatter.format(new Date(request.replied_at)) : ""}</span>
             <RichTextContent content={request.admin_reply} />
           </div>
         ) : null}
-        <AdminActionForm actionName="replyToContactMessage" className="admin-content-form" successMessage={`Reply sent to ${request.email}.`}>
+        <AdminActionForm
+          actionName="replyToContactMessage"
+          className="admin-content-form"
+          successMessage={`Reply sent to ${request.email}.`}
+          confirm={{
+            title: "Send reply email?",
+            text: `This will immediately email ${request.email}. This cannot be undone.`,
+            confirmButtonText: "Send email",
+          }}
+        >
           <input type="hidden" name="messageId" value={request.id} />
           <RichTextEditor name="replyMessage" label={`Reply message (emailed directly to ${request.email})`} rows={7} placeholder="Write your reply here... Markdown formatting is supported." />
           <button className="admin-submit-button" type="submit">Send reply email</button>

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { requireAdmin } from "@/lib/admin-auth";
-import { ScholarshipRequestCard, type SupportRequest } from "./request-card";
+import { ScholarshipRequestCard, type SupportRequest, type ThreadReply } from "./request-card";
 import { ScholarshipFilters } from "./filters";
+import { NewScholarshipRequestForm } from "./new-request-form";
 import type { ScholarshipRecommendation } from "./recommendations";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ const STATUSES = ["new", "read", "replied"] as const;
 export default async function AdminScholarshipSupportPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; status?: string; country?: string; degree?: string }>;
+  searchParams: Promise<{ page?: string; status?: string; country?: string; degree?: string; q?: string }>;
 }) {
   const { supabase } = await requireAdmin();
   const params = await searchParams;
@@ -25,11 +26,21 @@ export default async function AdminScholarshipSupportPage({
   const status = STATUSES.includes(params.status as (typeof STATUSES)[number]) ? params.status! : "all";
   const country = params.country ?? "all";
   const degree = params.degree ?? "all";
+  const search = (params.q ?? "").trim().slice(0, 200).replace(/,/g, " ");
+  const searchOr = search
+    ? `name.ilike.%${search.replace(/%/g, "")}%,email.ilike.%${search.replace(/%/g, "")}%,subject.ilike.%${search.replace(/%/g, "")}%`
+    : null;
 
   const activeFilters: Record<string, string> = { topic: "scholarship-support" };
   if (status !== "all") activeFilters.status = status;
   if (country !== "all") activeFilters.target_country = country;
   if (degree !== "all") activeFilters.target_degree = degree;
+
+  const filteredCountQuery = supabase
+    .from("contact_messages")
+    .select("*", { count: "exact", head: true })
+    .match(activeFilters);
+  if (searchOr) filteredCountQuery.or(searchOr);
 
   const [{ count: totalCount }, { count: newCount }, { count: filteredCount }] = await Promise.all([
     supabase
@@ -41,10 +52,7 @@ export default async function AdminScholarshipSupportPage({
       .select("*", { count: "exact", head: true })
       .eq("topic", "scholarship-support")
       .eq("status", "new"),
-    supabase
-      .from("contact_messages")
-      .select("*", { count: "exact", head: true })
-      .match(activeFilters),
+    filteredCountQuery,
   ]);
 
   const totalPages = Math.max(1, Math.ceil((filteredCount ?? 0) / PAGE_SIZE));
@@ -53,10 +61,12 @@ export default async function AdminScholarshipSupportPage({
   const from = (currentPage - 1) * PAGE_SIZE;
   const to = from + PAGE_SIZE - 1;
 
-  const { data, error } = await supabase
+  const dataQuery = supabase
     .from("contact_messages")
     .select("id,name,email,subject,message,status,admin_reply,replied_at,created_at,target_country,target_degree,background,goals,drive_link")
-    .match(activeFilters)
+    .match(activeFilters);
+  if (searchOr) dataQuery.or(searchOr);
+  const { data, error } = await dataQuery
     .order("created_at", { ascending: false })
     .range(from, to);
 
@@ -65,26 +75,41 @@ export default async function AdminScholarshipSupportPage({
 
   const requestIds = requests.map((request) => request.id);
   const recommendationsByRequest = new Map<number, ScholarshipRecommendation[]>();
+  const repliesByRequest = new Map<number, ThreadReply[]>();
   if (requestIds.length > 0) {
-    const { data: recommendationRows, error: recommendationsError } = await supabase
-      .from("scholarship_recommendations")
-      .select("id,request_id,scholarship_name,university,degree_level,country,deadline,link,notes,created_at")
-      .in("request_id", requestIds)
-      .order("created_at", { ascending: false });
+    const [{ data: recommendationRows, error: recommendationsError }, { data: replyRows, error: repliesError }] = await Promise.all([
+      supabase
+        .from("scholarship_recommendations")
+        .select("id,request_id,scholarship_name,university,degree_level,country,deadline,link,notes,created_at")
+        .in("request_id", requestIds)
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("contact_message_replies")
+        .select("id,request_id,sender,message,created_at")
+        .in("request_id", requestIds)
+        .order("created_at", { ascending: true }),
+    ]);
     if (recommendationsError) throw new Error("Unable to load scholarship recommendations.");
+    if (repliesError) throw new Error("Unable to load reply thread.");
     for (const recommendation of (recommendationRows ?? []) as ScholarshipRecommendation[]) {
       const existing = recommendationsByRequest.get(recommendation.request_id) ?? [];
       existing.push(recommendation);
       recommendationsByRequest.set(recommendation.request_id, existing);
     }
+    for (const reply of (replyRows ?? []) as ThreadReply[]) {
+      const existing = repliesByRequest.get(reply.request_id) ?? [];
+      existing.push(reply);
+      repliesByRequest.set(reply.request_id, existing);
+    }
   }
 
-  const isFiltered = status !== "all" || country !== "all" || degree !== "all";
+  const isFiltered = status !== "all" || country !== "all" || degree !== "all" || search !== "";
   const pageQuery = (page: number) => {
     const query = new URLSearchParams();
     if (status !== "all") query.set("status", status);
     if (country !== "all") query.set("country", country);
     if (degree !== "all") query.set("degree", degree);
+    if (search !== "") query.set("q", search);
     query.set("page", String(page));
     return `/admin/scholarship-support?${query}`;
   };
@@ -100,7 +125,9 @@ export default async function AdminScholarshipSupportPage({
         <span className="admin-user-total">{newCount ?? 0} new · {totalCount ?? 0} total</span>
       </header>
 
-      <ScholarshipFilters status={status} country={country} degree={degree} />
+      <NewScholarshipRequestForm />
+
+      <ScholarshipFilters status={status} country={country} degree={degree} q={search} />
 
       <section className="admin-message-list">
         {requests.length === 0 ? (
@@ -116,6 +143,7 @@ export default async function AdminScholarshipSupportPage({
           <ScholarshipRequestCard
             request={request}
             recommendations={recommendationsByRequest.get(request.id) ?? []}
+            replies={repliesByRequest.get(request.id) ?? []}
             key={request.id}
           />
         ))}

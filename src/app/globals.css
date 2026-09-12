@@ -3857,6 +3857,56 @@ html[data-theme="dark"] .connection-status {
   line-height: 1.7;
 }
 
+.account-support-thread { display: grid; gap: 10px; margin-top: 14px; }
+.account-thread-message {
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  border-left: 3px solid var(--line);
+  background: var(--soft);
+}
+.account-thread-message.admin { border-left-color: var(--green); }
+.account-thread-message.user { border-left-color: var(--orange); }
+.account-thread-message > span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.account-thread-message > p {
+  margin: 0;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.account-followup-form { margin-top: 14px; }
+.account-followup-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+.account-followup-submit { display: flex; justify-content: flex-end; margin-top: 8px; }
+.account-followup-submit button {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.account-followup-submit button:disabled { opacity: 0.6; cursor: wait; }
+
 .account-support-recommendations { margin-top: 16px; }
 .account-support-recommendations h3 { margin: 0 0 10px; color: var(--navy); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 .account-recommendation-card { padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); }
@@ -5597,6 +5647,13 @@ html[data-theme="dark"] .course-complete-banner p { color: #9ebdb1; }
   to { background-position: -200% 0; }
 }
 
+.admin-new-request {
+  margin-bottom: 16px;
+  border-radius: 11px;
+}
+.admin-new-request > summary::before { content: "+"; }
+.admin-new-request-hint { margin: 0 18px 14px; color: var(--muted); font-size: 12px; }
+
 .admin-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -5610,7 +5667,10 @@ html[data-theme="dark"] .course-complete-banner p { color: #9ebdb1; }
 }
 .admin-filter-bar label { display: flex; flex-direction: column; gap: 5px; }
 .admin-filter-bar label > span { color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
-.admin-filter-bar select { min-height: 34px; padding-inline: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--soft); color: var(--text); font: inherit; font-size: 11px; }
+.admin-filter-bar select, .admin-filter-bar input[type="search"] { min-height: 34px; padding-inline: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--soft); color: var(--text); font: inherit; font-size: 11px; }
+.admin-filter-search input[type="search"] { min-width: 200px; }
+.admin-filter-bar.is-pending select, .admin-filter-bar.is-pending input[type="search"] { opacity: 0.72; }
+.admin-filter-pending { align-self: center; color: var(--muted); font-size: 10px; font-weight: 700; }
 .admin-filter-clear { align-self: center; margin-left: auto; color: var(--orange); font-size: 10px; font-weight: 800; }
 
 .admin-scholarship-summary { margin: 18px 0; }
@@ -5682,6 +5742,13 @@ html[data-theme="dark"] .course-complete-banner p { color: #9ebdb1; }
 .admin-previous-reply { margin: 0 18px 14px; padding: 14px 16px; border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; background: var(--soft); }
 .admin-previous-reply > span { display: block; margin-bottom: 6px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; }
 .admin-previous-reply .rich-text-content { color: var(--text); font-size: 12px; line-height: 1.65; }
+
+.admin-message-thread { display: grid; gap: 10px; margin: 0 18px 14px; }
+.admin-thread-message { padding: 12px 14px; border-left: 3px solid var(--line); border-radius: 0 8px 8px 0; background: var(--soft); }
+.admin-thread-message.admin { border-left-color: var(--green); }
+.admin-thread-message.user { border-left-color: var(--orange); }
+.admin-thread-message > span { display: block; margin-bottom: 4px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; }
+.admin-thread-message > p { margin: 0; color: var(--text); font-size: 12px; line-height: 1.65; white-space: pre-wrap; }
 .admin-empty-state { text-align: center; }
 .admin-empty-state strong { color: var(--navy); }
 .admin-empty-state p { margin: 7px 0 0; color: var(--muted); font-size: 11px; }

@@ -6,6 +6,7 @@ import { AccountSidebar } from "@/components/account-sidebar";
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { RichTextContent } from "@/components/rich-text-content";
 import { ScholarshipSupportForm } from "@/components/scholarship-support-form";
+import { ScholarshipFollowUpForm } from "@/components/scholarship-followup-form";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -19,6 +20,14 @@ type SupportRequest = {
   status: "new" | "read" | "replied";
   admin_reply: string | null;
   replied_at: string | null;
+  created_at: string;
+};
+
+type ThreadReply = {
+  id: number;
+  request_id: number;
+  sender: "admin" | "user";
+  message: string;
   created_at: string;
 };
 
@@ -72,16 +81,29 @@ export default async function ScholarshipSupportPage() {
 
   const requestIds = requests.map((request) => request.id);
   const recommendationsByRequest = new Map<number, ScholarshipRecommendation[]>();
+  const repliesByRequest = new Map<number, ThreadReply[]>();
   if (requestIds.length > 0) {
-    const { data: recommendationRows } = await supabase
-      .from("scholarship_recommendations")
-      .select("id,request_id,scholarship_name,university,degree_level,country,deadline,link,notes,created_at")
-      .in("request_id", requestIds)
-      .order("created_at", { ascending: false });
+    const [{ data: recommendationRows }, { data: replyRows }] = await Promise.all([
+      supabase
+        .from("scholarship_recommendations")
+        .select("id,request_id,scholarship_name,university,degree_level,country,deadline,link,notes,created_at")
+        .in("request_id", requestIds)
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("contact_message_replies")
+        .select("id,request_id,sender,message,created_at")
+        .in("request_id", requestIds)
+        .order("created_at", { ascending: true }),
+    ]);
     for (const recommendation of (recommendationRows ?? []) as ScholarshipRecommendation[]) {
       const existing = recommendationsByRequest.get(recommendation.request_id) ?? [];
       existing.push(recommendation);
       recommendationsByRequest.set(recommendation.request_id, existing);
+    }
+    for (const reply of (replyRows ?? []) as ThreadReply[]) {
+      const existing = repliesByRequest.get(reply.request_id) ?? [];
+      existing.push(reply);
+      repliesByRequest.set(reply.request_id, existing);
     }
   }
 
@@ -125,6 +147,22 @@ export default async function ScholarshipSupportPage() {
                       ) : (
                         <p className="account-support-pending">এখনো reply দেওয়া হয়নি—সাধারণত ১–২ working day-এর মধ্যে reply পাবেন।</p>
                       )}
+
+                      {(repliesByRequest.get(request.id) ?? []).length > 0 ? (
+                        <div className="account-support-thread">
+                          {(repliesByRequest.get(request.id) ?? []).map((reply) => (
+                            <div className={`account-thread-message ${reply.sender}`} key={reply.id}>
+                              <span>
+                                {reply.sender === "admin" ? "Halim." : "আপনি"} ·{" "}
+                                {new Intl.DateTimeFormat("bn-BD", { year: "numeric", month: "long", day: "numeric" }).format(new Date(reply.created_at))}
+                              </span>
+                              <p>{reply.message}</p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+
+                      <ScholarshipFollowUpForm requestId={request.id} />
 
                       {(recommendationsByRequest.get(request.id) ?? []).length > 0 ? (
                         <div className="account-support-recommendations">
