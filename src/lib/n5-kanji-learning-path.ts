@@ -11,7 +11,7 @@ export type KanjiLearningItem = UnitKanji & {
   order: number;
   strokeCount: number;
   difficulty: "সহজ" | "মাঝারি" | "চ্যালেঞ্জ";
-  category: KanjiCategory;
+  category: string;
   radical: RadicalProfile;
 };
 

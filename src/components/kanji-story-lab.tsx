@@ -4,11 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 
 import {
   kanjiCategories,
-  type KanjiCategory,
   type KanjiLearningItem,
   type KanjiLearningStage,
 } from "@/lib/n5-kanji-learning-path";
-import { kanjiMnemonics } from "@/lib/n5-kanji-mnemonics";
+import { kanjiMnemonics as defaultMnemonics, type KanjiMnemonic } from "@/lib/n5-kanji-mnemonics";
 
 import styles from "./kanji-story-lab.module.css";
 
@@ -16,9 +15,6 @@ type Mode = "story" | "recall" | "radicals" | "library";
 type ReviewRecord = { level: number; dueAt: number; lastReviewed: number };
 type ReviewState = Record<string, ReviewRecord>;
 
-const reviewKey = "n5-kanji-story-review-v1";
-const oldRememberedKey = "n5-kanji-100-remembered";
-const stageKey = "n5-kanji-story-stage-v1";
 const intervals = [0, 10 * 60_000, 24 * 60 * 60_000, 3 * 24 * 60 * 60_000, 7 * 24 * 60 * 60_000, 21 * 24 * 60 * 60_000];
 
 function allItems(stages: KanjiLearningStage[]) {
@@ -40,7 +36,25 @@ function dueLabel(dueAt: number, now: number) {
   return `${Math.ceil(hours / 24)} দিন পরে`;
 }
 
-export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
+type KanjiStoryLabProps = {
+  stages: KanjiLearningStage[];
+  categories?: readonly string[];
+  mnemonics?: Record<string, KanjiMnemonic>;
+  storageNamespace?: string;
+  legacyRememberedKey?: string;
+  trailLabel?: string;
+};
+
+export function KanjiStoryLab({
+  stages,
+  categories = kanjiCategories,
+  mnemonics = defaultMnemonics,
+  storageNamespace = "n5-kanji",
+  legacyRememberedKey = "n5-kanji-100-remembered",
+  trailLabel = "N5 reference order",
+}: KanjiStoryLabProps) {
+  const reviewKey = `${storageNamespace}-story-review-v1`;
+  const stageKey = `${storageNamespace}-story-stage-v1`;
   const items = useMemo(() => allItems(stages), [stages]);
   const [mode, setMode] = useState<Mode>("story");
   const [activeStage, setActiveStage] = useState(stages[0]?.id ?? "");
@@ -50,7 +64,7 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
   const [answerVisible, setAnswerVisible] = useState(false);
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState<"সব" | KanjiLearningItem["difficulty"]>("সব");
-  const [category, setCategory] = useState<"সব" | KanjiCategory>("সব");
+  const [category, setCategory] = useState("সব");
   const [ready, setReady] = useState(false);
   const [clock, setClock] = useState(0);
 
@@ -65,7 +79,7 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
       }
 
       try {
-        const oldRemembered = JSON.parse(window.localStorage.getItem(oldRememberedKey) ?? "[]");
+        const oldRemembered = JSON.parse(legacyRememberedKey ? window.localStorage.getItem(legacyRememberedKey) ?? "[]" : "[]");
         if (Array.isArray(oldRemembered)) {
           const now = Date.now();
           for (const kanji of oldRemembered) {
@@ -85,7 +99,7 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
       setReady(true);
     });
     return () => window.cancelAnimationFrame(frame);
-  }, [stages]);
+  }, [legacyRememberedKey, reviewKey, stageKey, stages]);
 
   const currentStage = stages.find((stage) => stage.id === activeStage) ?? stages[0];
   const mastered = items.filter((item) => (reviews[item.kanji]?.level ?? 0) >= 3).length;
@@ -126,7 +140,7 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
 
   const filteredItems = items.filter((item) => {
     const needle = search.trim().toLocaleLowerCase();
-    const memory = kanjiMnemonics[item.kanji];
+    const memory = mnemonics[item.kanji];
     const matchesSearch = !needle || `${item.kanji} ${item.meaning} ${item.readings} ${item.example} ${memory?.origin ?? ""} ${memory?.mnemonic ?? ""}`.toLocaleLowerCase().includes(needle);
     return matchesSearch
       && (difficulty === "সব" || item.difficulty === difficulty)
@@ -181,7 +195,7 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
         <section className={styles.storyLayout}>
           <aside className={styles.trail}>
             <div className={styles.sectionIntro}>
-              <span>সহজ → complex</span>
+              <span>{trailLabel}</span>
               <h2>Learning trail</h2>
               <p>প্রতিটি stage আগের shape ব্যবহার করে।</p>
             </div>
@@ -216,7 +230,7 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
               {currentStage.kanji.map((item) => {
                 const isFlipped = flipped === item.kanji;
                 const review = reviews[item.kanji];
-                const mnemonic = kanjiMnemonics[item.kanji];
+                const mnemonic = mnemonics[item.kanji];
                 return (
                   <article key={item.kanji} className={`${styles.kanjiCard} ${(review?.level ?? 0) >= 3 ? styles.cardMastered : ""}`}>
                     <button className={styles.flipButton} onClick={() => setFlipped(isFlipped ? null : item.kanji)} aria-expanded={isFlipped}>
@@ -277,8 +291,8 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
                     <strong>{recallItem.kanji} · {recallItem.meaning}</strong>
                     <em>{recallItem.readings}</em>
                     <p>{recallItem.example}</p>
-                    <span><b>কেন এমন?</b> {kanjiMnemonics[recallItem.kanji]?.origin}</span>
-                    <span><b>মনে রাখুন:</b> {kanjiMnemonics[recallItem.kanji]?.mnemonic}</span>
+                    <span><b>কেন এমন?</b> {mnemonics[recallItem.kanji]?.origin}</span>
+                    <span><b>মনে রাখুন:</b> {mnemonics[recallItem.kanji]?.mnemonic}</span>
                   </div>
                 ) : <button onClick={() => setAnswerVisible(true)}>উত্তর দেখুন</button>}
               </div>
@@ -320,7 +334,7 @@ export function KanjiStoryLab({ stages }: { stages: KanjiLearningStage[] }) {
               <select value={difficulty} onChange={(event) => setDifficulty(event.target.value as typeof difficulty)} aria-label="কঠিনতার স্তর"><option>সব</option><option>সহজ</option><option>মাঝারি</option><option>চ্যালেঞ্জ</option></select>
               <select value={category} onChange={(event) => setCategory(event.target.value as typeof category)} aria-label="Kanji category">
                 <option>সব</option>
-                {kanjiCategories.map((item) => <option key={item}>{item}</option>)}
+                {categories.map((item) => <option key={item}>{item}</option>)}
               </select>
             </div>
           </div>
