@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 
 import { requireAdmin } from "@/lib/admin-auth";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { sendContactReply, sendScholarshipRecommendationEmail } from "@/lib/contact-email";
 import {
   scholarshipCountryLabels,
@@ -94,30 +93,40 @@ export async function updateUserRole(formData: FormData) {
   revalidatePath("/admin/users");
 }
 
-export async function deleteUser(formData: FormData) {
-  const { profile } = await requireAdmin();
+export type DeleteUserState = {
+  error?: string;
+  success?: string;
+};
+
+export async function deleteUser(
+  _previousState: DeleteUserState,
+  formData: FormData,
+): Promise<DeleteUserState> {
+  const { profile, supabase } = await requireAdmin();
   const userId = String(formData.get("userId") ?? "");
 
   if (!userId) {
-    throw new Error("Invalid delete request.");
+    return { error: "Invalid delete request." };
   }
 
   if (userId === profile.id) {
-    throw new Error("You cannot delete your own account.");
+    return { error: "You cannot delete your own account." };
   }
 
-  const adminClient = createSupabaseAdminClient();
-  if (!adminClient) {
-    throw new Error("SUPABASE_SERVICE_ROLE_KEY is not configured.");
-  }
-
-  const { error } = await adminClient.auth.admin.deleteUser(userId);
+  const { error } = await supabase.rpc("admin_delete_user_account", {
+    target_user_id: userId,
+  });
   if (error) {
-    throw new Error("User delete failed.");
+    console.error("Admin user deletion failed", {
+      code: error.code,
+      message: error.message,
+    });
+    return { error: "ব্যবহারকারীকে মুছে ফেলা যায়নি। আবার চেষ্টা করুন।" };
   }
 
   revalidatePath("/admin");
   revalidatePath("/admin/users");
+  return { success: "ব্যবহারকারী মুছে ফেলা হয়েছে।" };
 }
 
 function requiredText(formData: FormData, name: string) {
