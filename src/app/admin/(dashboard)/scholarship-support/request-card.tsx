@@ -58,12 +58,14 @@ export function ScholarshipRequestCard({
   // flattened `message` text — fall back to showing that as-is for them.
   const hasStructuredFields = Boolean(request.target_country && request.target_degree);
   const hasThread = replies.length > 0;
+  const awaitingAdminReply = hasThread && replies[replies.length - 1].sender === "user";
 
   return (
     <article className={request.status === "new" ? "is-new" : ""}>
       <header>
         <div>
           <span className={`message-status ${request.status}`}>{request.status}</span>
+          {awaitingAdminReply ? <span className="admin-awaiting-badge">Reply চাই</span> : null}
           <strong>{request.subject}</strong>
           <small>{request.name} · {request.email}</small>
         </div>
@@ -108,21 +110,16 @@ export function ScholarshipRequestCard({
         <StatusUpdateForm requestId={request.id} status={request.status} subject={request.subject} />
       </footer>
 
-      <details className="admin-item-editor admin-reply-panel" open={hasThread}>
+      <details className="admin-item-editor admin-reply-panel" open={awaitingAdminReply}>
         <summary>Reply from the site {hasThread || request.admin_reply ? "(already replied)" : ""}</summary>
         {hasThread ? (
           <div className="admin-message-thread">
             {replies.map((reply) => (
               <div className={`admin-thread-message ${reply.sender}`} key={reply.id}>
                 <span>{reply.sender === "admin" ? "You" : request.name} · {dateFormatter.format(new Date(reply.created_at))}</span>
-                <p>{reply.message}</p>
+                <RichTextContent content={reply.message} />
               </div>
             ))}
-          </div>
-        ) : request.admin_reply ? (
-          <div className="admin-previous-reply">
-            <span>Sent {request.replied_at ? dateFormatter.format(new Date(request.replied_at)) : ""}</span>
-            <RichTextContent content={request.admin_reply} />
           </div>
         ) : null}
         <AdminActionForm

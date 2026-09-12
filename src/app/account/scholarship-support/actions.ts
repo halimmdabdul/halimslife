@@ -64,6 +64,13 @@ export async function submitScholarshipFollowUpReply(
     return { error: "Reply পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন।" };
   }
 
+  // Surface the request as "new" again so it doesn't stay hidden under a
+  // stale "replied" status now that the applicant has followed up.
+  const { error: reopenError } = await supabase.rpc("reopen_scholarship_request", {
+    p_request_id: requestId,
+  });
+  if (reopenError) console.error("Could not reopen request status after follow-up:", reopenError.message);
+
   try {
     const delivery = await sendContactNotification({
       name: original.name,

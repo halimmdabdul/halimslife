@@ -3874,12 +3874,10 @@ html[data-theme="dark"] .connection-status {
   font-weight: 800;
   text-transform: uppercase;
 }
-.account-thread-message > p {
-  margin: 0;
+.account-thread-message .rich-text-content {
   color: var(--text);
   font-size: 13px;
   line-height: 1.65;
-  white-space: pre-wrap;
 }
 
 .account-followup-form { margin-top: 14px; }
@@ -5721,6 +5719,7 @@ html[data-theme="dark"] .course-complete-banner p { color: #9ebdb1; }
 .message-status { display: inline-flex; padding: 4px 7px; border-radius: 99px; background: var(--soft); color: var(--muted); font-size: 8px; font-weight: 850; text-transform: uppercase; }
 .message-status.new { background: #e9f8f2; color: #087f5b; }
 .message-status.replied { background: #eaf2fb; color: #1f5f99; }
+.admin-awaiting-badge { display: inline-flex; margin-left: 6px; padding: 4px 7px; border-radius: 99px; background: #fdeee0; color: #b5560e; font-size: 8px; font-weight: 850; text-transform: uppercase; }
 
 .admin-message-list article > footer {
   display: flex;
@@ -5748,7 +5747,7 @@ html[data-theme="dark"] .course-complete-banner p { color: #9ebdb1; }
 .admin-thread-message.admin { border-left-color: var(--green); }
 .admin-thread-message.user { border-left-color: var(--orange); }
 .admin-thread-message > span { display: block; margin-bottom: 4px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; }
-.admin-thread-message > p { margin: 0; color: var(--text); font-size: 12px; line-height: 1.65; white-space: pre-wrap; }
+.admin-thread-message .rich-text-content { color: var(--text); font-size: 12px; line-height: 1.65; }
 .admin-empty-state { text-align: center; }
 .admin-empty-state strong { color: var(--navy); }
 .admin-empty-state p { margin: 7px 0 0; color: var(--muted); font-size: 11px; }

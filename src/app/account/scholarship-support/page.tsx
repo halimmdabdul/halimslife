@@ -139,15 +139,6 @@ export default async function ScholarshipSupportPage() {
                           {new Intl.DateTimeFormat("bn-BD", { year: "numeric", month: "long", day: "numeric" }).format(new Date(request.created_at))}
                         </time>
                       </header>
-                      {request.admin_reply ? (
-                        <div className="account-support-reply">
-                          <span>আমার reply {request.replied_at ? `· ${new Intl.DateTimeFormat("bn-BD", { year: "numeric", month: "long", day: "numeric" }).format(new Date(request.replied_at))}` : ""}</span>
-                          <RichTextContent content={request.admin_reply} />
-                        </div>
-                      ) : (
-                        <p className="account-support-pending">এখনো reply দেওয়া হয়নি—সাধারণত ১–২ working day-এর মধ্যে reply পাবেন।</p>
-                      )}
-
                       {(repliesByRequest.get(request.id) ?? []).length > 0 ? (
                         <div className="account-support-thread">
                           {(repliesByRequest.get(request.id) ?? []).map((reply) => (
@@ -156,11 +147,13 @@ export default async function ScholarshipSupportPage() {
                                 {reply.sender === "admin" ? "Halim." : "আপনি"} ·{" "}
                                 {new Intl.DateTimeFormat("bn-BD", { year: "numeric", month: "long", day: "numeric" }).format(new Date(reply.created_at))}
                               </span>
-                              <p>{reply.message}</p>
+                              <RichTextContent content={reply.message} />
                             </div>
                           ))}
                         </div>
-                      ) : null}
+                      ) : (
+                        <p className="account-support-pending">এখনো reply দেওয়া হয়নি—সাধারণত ১–২ working day-এর মধ্যে reply পাবেন।</p>
+                      )}
 
                       <ScholarshipFollowUpForm requestId={request.id} />
 

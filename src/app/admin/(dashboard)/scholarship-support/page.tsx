@@ -67,7 +67,7 @@ export default async function AdminScholarshipSupportPage({
     .match(activeFilters);
   if (searchOr) dataQuery.or(searchOr);
   const { data, error } = await dataQuery
-    .order("created_at", { ascending: false })
+    .order("last_activity_at", { ascending: false })
     .range(from, to);
 
   if (error) throw new Error("Unable to load scholarship support requests.");
