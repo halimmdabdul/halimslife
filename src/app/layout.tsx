@@ -78,7 +78,7 @@ export default async function RootLayout({
         />
         <TrackingScripts settings={settings} />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <SitePreferencesProvider>
           <AnalyticsTracker />
           {children}

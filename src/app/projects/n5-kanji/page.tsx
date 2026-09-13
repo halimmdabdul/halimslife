@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { KanjiStoryLab } from "@/components/kanji-story-lab";
+import { n5KanjiReadingPassages } from "@/lib/kanji-reading-passages";
 import { basicN5Kanji } from "@/lib/n5-kanji-100";
 import { n5KanjiLearningPath } from "@/lib/n5-kanji-learning-path";
 
@@ -52,7 +53,7 @@ export default function N5KanjiPage() {
         </section>
 
         <section id="learning-lab" className={styles.body}>
-          <KanjiStoryLab stages={n5KanjiLearningPath} />
+          <KanjiStoryLab stages={n5KanjiLearningPath} readingPassages={n5KanjiReadingPassages} />
         </section>
 
         <p className={styles.legal}>

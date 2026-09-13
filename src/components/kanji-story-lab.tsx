@@ -9,10 +9,11 @@ import {
   type KanjiLearningStage,
 } from "@/lib/n5-kanji-learning-path";
 import { kanjiMnemonics as defaultMnemonics, type KanjiMnemonic } from "@/lib/n5-kanji-mnemonics";
+import type { KanjiReadingPassage } from "@/lib/kanji-reading-passages";
 
 import styles from "./kanji-story-lab.module.css";
 
-type Mode = "story" | "recall" | "radicals" | "library";
+type Mode = "story" | "recall" | "radicals" | "library" | "reading";
 type ReviewRecord = { level: number; dueAt: number; lastReviewed: number };
 type ReviewState = Record<string, ReviewRecord>;
 
@@ -20,6 +21,20 @@ const intervals = [0, 10 * 60_000, 24 * 60 * 60_000, 3 * 24 * 60 * 60_000, 7 * 2
 
 function allItems(stages: KanjiLearningStage[]) {
   return stages.flatMap((stage) => stage.kanji);
+}
+
+const hanCharacterPattern = /^\p{Script=Han}$/u;
+
+function passageKanji(text: string) {
+  return Array.from(new Set(Array.from(text).filter((character) => hanCharacterPattern.test(character))));
+}
+
+function renderPassage(text: string) {
+  return Array.from(text).map((character, index) => (
+    hanCharacterPattern.test(character)
+      ? <mark key={`${character}-${index}`}>{character}</mark>
+      : character
+  ));
 }
 
 function nextReview(record: ReviewRecord | undefined, confidence: "again" | "hard" | "know") {
@@ -44,6 +59,7 @@ type KanjiStoryLabProps = {
   storageNamespace?: string;
   legacyRememberedKey?: string;
   trailLabel?: string;
+  readingPassages?: KanjiReadingPassage[];
 };
 
 export function KanjiStoryLab({
@@ -53,6 +69,7 @@ export function KanjiStoryLab({
   storageNamespace = "n5-kanji",
   legacyRememberedKey = "n5-kanji-100-remembered",
   trailLabel = "N5 reference order",
+  readingPassages = [],
 }: KanjiStoryLabProps) {
   const reviewKey = `${storageNamespace}-story-review-v1`;
   const stageKey = `${storageNamespace}-story-stage-v1`;
@@ -187,6 +204,7 @@ export function KanjiStoryLab({
           ["recall", "思", "Active recall"],
           ["radicals", "部", "Radical map"],
           ["library", "百", "সব Kanji"],
+          ["reading", "文章", "Reading"],
         ] as const).map(([value, icon, label]) => (
           <button key={value} className={mode === value ? styles.modeActive : ""} onClick={() => setMode(value)}>
             <b>{icon}</b><span>{label}</span>
@@ -357,6 +375,39 @@ export function KanjiStoryLab({
             ))}
           </div>
           {!filteredItems.length ? <p className={styles.empty}>এই filter-এ কোনো kanji পাওয়া যায়নি।</p> : null}
+        </section>
+      ) : null}
+
+      {mode === "reading" ? (
+        <section className={styles.readingMode}>
+          <div className={styles.sectionIntro}>
+            <span>文章 · Kanji in context</span>
+            <h2>ছোট paragraph পড়ে Kanji চিনুন</h2>
+            <p>আগে Japanese paragraph নিজে পড়ুন। তারপর reading ও বাংলা অর্থ খুলে মিলিয়ে নিন।</p>
+          </div>
+          <div className={styles.passageGrid}>
+            {readingPassages.map((passage, index) => (
+              <article key={passage.id}>
+                <header>
+                  <span>文章 {String(index + 1).padStart(2, "0")}</span>
+                  <small>{passage.level}</small>
+                </header>
+                <h3>{passage.title}</h3>
+                <p className={styles.japanesePassage}>{renderPassage(passage.text)}</p>
+                <div className={styles.passageKanji}>
+                  <span>ব্যবহৃত Kanji</span>
+                  <div>{passageKanji(passage.text).map((kanji) => <b key={kanji}>{kanji}</b>)}</div>
+                </div>
+                <details>
+                  <summary>読み方 ও বাংলা অর্থ দেখুন</summary>
+                  <div>
+                    <p><b>よみかた</b>{passage.kana}</p>
+                    <p><b>বাংলা অর্থ</b>{passage.translation}</p>
+                  </div>
+                </details>
+              </article>
+            ))}
+          </div>
         </section>
       ) : null}
     </div>

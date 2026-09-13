@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { InnerPageShell } from "@/components/inner-page-shell";
 import { KanjiStoryLab } from "@/components/kanji-story-lab";
+import { n4KanjiReadingPassages } from "@/lib/kanji-reading-passages";
 import { basicN4Kanji } from "@/lib/n4-kanji-104";
 import { n4KanjiCategories, n4KanjiLearningPath } from "@/lib/n4-kanji-learning-path";
 import { n4KanjiMnemonics } from "@/lib/n4-kanji-mnemonics";
@@ -60,6 +61,7 @@ export default function N4KanjiPage() {
             storageNamespace="n4-kanji-104"
             legacyRememberedKey=""
             trailLabel="N4 · exact row order"
+            readingPassages={n4KanjiReadingPassages}
           />
         </section>
 
