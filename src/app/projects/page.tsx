@@ -244,8 +244,8 @@ export default function ProjectsPage() {
                 />
                 <b>N5</b>
               </div>
-              <small>Roadmap · Vocabulary · Grammar</small>
-              <h3>JLPT N5 Hub</h3>
+              <small>বাংলা Digital Book · Units 1–25</small>
+              <h3>Minna no Nihongo N5</h3>
               <p>
                 বাংলাভাষী learners-এর জন্য Minna no Nihongo chapter 1–25-এর
                 structured study path, explanation এবং practical resources।
@@ -260,7 +260,7 @@ export default function ProjectsPage() {
                 className={styles.greenLink}
                 href="/projects/minna-no-nihongo-n5"
               >
-                N5 Hub দেখুন →
+                N5 Digital Book দেখুন →
               </Link>
             </article>
             <article>
@@ -274,8 +274,8 @@ export default function ProjectsPage() {
                 />
                 <b>N4</b>
               </div>
-              <small>Roadmap · Vocabulary · Grammar</small>
-              <h3>JLPT N4 Hub</h3>
+              <small>বাংলা Digital Book · Units 26–50</small>
+              <h3>Minna no Nihongo N4</h3>
               <p>
                 N5-এর ধারাবাহিকতায় Minna no Nihongo chapter 26–50-এর structured
                 study path—causative, passive, keigo এবং আরও জটিল grammar এখন
@@ -291,7 +291,7 @@ export default function ProjectsPage() {
                 className={styles.greenLink}
                 href="/projects/minna-no-nihongo-n4"
               >
-                N4 Hub দেখুন →
+                N4 Digital Book দেখুন →
               </Link>
             </article>
             <article>
