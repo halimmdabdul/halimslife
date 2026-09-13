@@ -32,15 +32,14 @@ html[data-theme="dark"] .next:after {
   html[data-theme="dark"] .next:after { background: rgba(11, 18, 21, .86); }
 }
 
-/* Dark mode: the hero, featured-project and card thumbnail illustrations are
-   bright watercolor art painted for a light page — left undimmed they read as
-   glaring rectangles on the dark background, so tone them down and ground
-   them with a border like the rest of the dark-mode card treatments. */
+/* Keep the project artwork vivid in dark mode while softening its light canvas. */
 html[data-theme="dark"] .heroArt img,
 html[data-theme="dark"] .featuredImage img,
-html[data-theme="dark"] .designed img,
 html[data-theme="dark"] .cardImage img {
-  filter: brightness(.55) saturate(.6);
+  filter: brightness(.78) saturate(.84) contrast(1.03);
+}
+html[data-theme="dark"] .designed img {
+  filter: brightness(.62) saturate(.68);
 }
 html[data-theme="dark"] .heroArt,
 html[data-theme="dark"] .featuredImage,
@@ -53,6 +52,88 @@ html[data-theme="dark"] .cardImage:after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(11, 18, 21, .28);
+  background: linear-gradient(135deg, rgba(6, 22, 18, .12), transparent 58%);
   pointer-events: none;
+}
+
+/* Project-specific thumbnail system. */
+.learningGrid article {
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+
+.cardImage {
+  border-radius: 11px;
+  background: var(--soft);
+  box-shadow: inset 0 0 0 1px rgba(16, 42, 67, .06);
+}
+
+.cardImage img {
+  transition: transform .55s cubic-bezier(.2, .7, .2, 1), filter .25s ease;
+}
+
+.cardImage:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(8, 35, 30, .12), transparent 48%, rgba(255, 255, 255, .05));
+  pointer-events: none;
+}
+
+.cardImage b {
+  z-index: 2;
+  top: 16px;
+  left: 16px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 8px;
+  background: rgba(8, 127, 91, .92);
+  font-size: 28px;
+  line-height: 1;
+  box-shadow: 0 8px 24px rgba(8, 32, 27, .2);
+  backdrop-filter: blur(8px);
+}
+
+.n4HubImage b,
+.n4KanjiImage b {
+  background: rgba(31, 95, 153, .94);
+}
+
+.n5KanjiImage b {
+  background: rgba(23, 107, 85, .94);
+}
+
+.honmanImage b {
+  background: rgba(220, 112, 25, .94);
+}
+
+@media (hover: hover) {
+  .learningGrid article:hover {
+    border-color: color-mix(in srgb, var(--green) 42%, var(--line));
+    transform: translateY(-3px);
+    box-shadow: 0 16px 38px rgba(16, 42, 67, .1);
+  }
+
+  .learningGrid article:hover .cardImage img {
+    transform: scale(1.035);
+  }
+}
+
+html[data-theme="dark"] .cardImage img {
+  filter: brightness(.8) saturate(.82) contrast(1.04);
+}
+
+html[data-theme="dark"] .cardImage:after {
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(5, 18, 15, .2), transparent 52%, rgba(8, 18, 16, .08));
+}
+
+html[data-theme="dark"] .learningGrid article:hover {
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .3);
+}
+
+@media(max-width:600px) {
+  .cardImage {
+    height: clamp(205px, 64vw, 285px);
+  }
 }

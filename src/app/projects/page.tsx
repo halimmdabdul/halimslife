@@ -3,11 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import journeyArt from "@/assets/journey/hero-bangladesh-japan.png";
-import jlptArt from "@/assets/homepage/project-jlpt.png";
 import codeArt from "@/assets/homepage/research-laptop-v2.png";
-import testArt from "@/assets/homepage/project-notes.png";
-import kanaArt from "@/assets/learn-kana-hero-watercolor-v2.png";
-import heroArt from "@/assets/projects/projects-hero.jpg";
+import honmanTestArt from "@/assets/projects/honman-test-thumbnail.png";
+import jlptN4Art from "@/assets/projects/jlpt-n4-hub-thumbnail.png";
+import jlptN5Art from "@/assets/projects/jlpt-n5-hub-thumbnail.png";
+import kanaStoryArt from "@/assets/projects/kanastory-featured-v2.png";
+import n4KanjiArt from "@/assets/projects/n4-kanji-thumbnail.png";
+import n5KanjiArt from "@/assets/projects/n5-kanji-thumbnail.png";
+import heroArt from "@/assets/projects/projects-hero-v2.png";
 import { InnerPageShell } from "@/components/inner-page-shell";
 import styles from "./projects.module.css";
 
@@ -137,7 +140,8 @@ export default function ProjectsPage() {
               alt="Japanese learning and programming tools illustration"
               fill
               priority
-              sizes="58vw"
+              placeholder="blur"
+              sizes="(max-width: 800px) 100vw, 58vw"
             />
           </div>
         </section>
@@ -164,12 +168,12 @@ export default function ProjectsPage() {
           <article className={styles.featured}>
             <div className={styles.featuredImage}>
               <Image
-                src={kanaArt}
-                alt="KanaStory watercolor Japanese landscape and Hiragana learning cards"
+                src={kanaStoryArt}
+                alt="KanaStory open storybook with Hiragana cards and a Japanese learning path"
                 fill
                 placeholder="blur"
-                sizes="48vw"
-                style={{ objectPosition: "64% center" }}
+                sizes="(max-width: 800px) 100vw, 48vw"
+                style={{ objectPosition: "center" }}
               />
             </div>
             <div className={styles.featuredCopy}>
@@ -232,9 +236,10 @@ export default function ProjectsPage() {
             <article>
               <div className={styles.cardImage}>
                 <Image
-                  src={jlptArt}
-                  alt="JLPT N5 learning hub"
+                  src={jlptN5Art}
+                  alt="JLPT N5 structured learning path with study cards and progress milestones"
                   fill
+                  placeholder="blur"
                   sizes="38vw"
                 />
                 <b>N5</b>
@@ -259,11 +264,12 @@ export default function ProjectsPage() {
               </Link>
             </article>
             <article>
-              <div className={`${styles.cardImage} ${styles.cardImageN4}`}>
+              <div className={`${styles.cardImage} ${styles.n4HubImage}`}>
                 <Image
-                  src={jlptArt}
-                  alt="JLPT N4 learning hub"
+                  src={jlptN4Art}
+                  alt="JLPT N4 advanced grammar and conversation learning map"
                   fill
+                  placeholder="blur"
                   sizes="38vw"
                 />
                 <b>N4</b>
@@ -291,8 +297,8 @@ export default function ProjectsPage() {
             <article>
               <div className={`${styles.cardImage} ${styles.honmanImage}`}>
                 <Image
-                  src={testArt}
-                  alt="Honman Japanese practice test project"
+                  src={honmanTestArt}
+                  alt="Honman Japanese timed practice tests and progress dashboard"
                   fill
                   placeholder="blur"
                   sizes="38vw"
@@ -316,11 +322,12 @@ export default function ProjectsPage() {
               </Link>
             </article>
             <article>
-              <div className={`${styles.cardImage} ${styles.cardImageN4}`}>
+              <div className={`${styles.cardImage} ${styles.n5KanjiImage}`}>
                 <Image
-                  src={jlptArt}
-                  alt="N5 Kanji 100 flashcards"
+                  src={n5KanjiArt}
+                  alt="N5 Kanji flashcards with shape stories and active recall progress"
                   fill
+                  placeholder="blur"
                   sizes="38vw"
                 />
                 <b>漢</b>
@@ -341,11 +348,12 @@ export default function ProjectsPage() {
               </Link>
             </article>
             <article>
-              <div className={`${styles.cardImage} ${styles.cardImageN4}`}>
+              <div className={`${styles.cardImage} ${styles.n4KanjiImage}`}>
                 <Image
-                  src={jlptArt}
-                  alt="N4 Kanji 104 story cards"
+                  src={n4KanjiArt}
+                  alt="N4 Kanji shape-story cards connected in an advanced learning trail"
                   fill
+                  placeholder="blur"
                   sizes="38vw"
                 />
                 <b>N4</b>
