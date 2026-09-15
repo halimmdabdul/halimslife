@@ -379,16 +379,16 @@ export default function ProjectsPage() {
                 <strong>101</strong>
                 <i>A new beginning</i>
               </div>
-              <small>New Project · Coming soon</small>
+              <small>Beginner Japanese · Topic Practice</small>
               <h3>Japanes 101</h3>
               <p>
-                Japanese শেখার নতুন project। এই dedicated space-এ পরবর্তী
-                lessons ও learning content যোগ করা হবে।
+                Topic ধরে Japanese practice—Self-introduction-এর বাক্য শিখুন,
+                নিজের পরিচয় তৈরি করুন এবং ছোট self-check দিয়ে যাচাই করুন।
               </p>
               <div className={styles.chips}>
                 <span>Japanese</span>
                 <span>Beginner</span>
-                <span>Coming soon</span>
+                <span>Self-introduction</span>
               </div>
               <Link className={styles.greenLink} href="/projects/japanes-101">
                 Project দেখুন →
