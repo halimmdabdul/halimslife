@@ -120,7 +120,56 @@
 .primaryButton, .secondaryButton { min-height: 44px; padding: 10px 16px; border: 1px solid var(--green); border-radius: 9px; font-size: 13px; font-weight: 700; }
 .primaryButton { background: var(--green); color: var(--paper); }
 .secondaryButton { color: var(--green); background: transparent; }
-.primaryButton:disabled { opacity: .5; cursor: not-allowed; }
+.primaryButton:disabled, .secondaryButton:disabled { opacity: .5; cursor: not-allowed; }
+.proFields select:disabled { opacity: .55; cursor: not-allowed; }
+.routineNav { margin-top: 18px; }
+.routinePatterns { margin-top: 16px; }
+.routinePatterns h4 { margin: 0 0 12px; color: var(--green); font-size: 13px; line-height: 1.8; }
+.introduction .routineEmpty { color: var(--muted); font-size: 14px; line-height: 1.9; }
+.practicePanel section[id] { scroll-margin-top: 100px; }
+.shopGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.shopProduct { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--soft); color: var(--navy); text-align: left; cursor: pointer; overflow-wrap: anywhere; }
+.shopProduct > b, .shopProduct > span[lang="ja"] { line-height: 2.4; }
+.shopProduct > small { color: var(--muted); font-size: 11px; line-height: 1.7; }
+.shopProductActive { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+.productIcon { font-size: 32px; }
+.shopFields { margin-top: 20px; }
+.menuCategory { margin: 24px 0 14px; color: var(--green); font-size: 13px; line-height: 1.8; }
+.mapFigure { width: min(100%, 420px); margin: 20px auto; }
+.mapNorth { margin-bottom: 12px; color: var(--green); font-size: 12px; font-weight: 800; line-height: 2.4; text-align: center; }
+.practiceMap { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.mapCell { position: relative; display: flex; min-width: 0; aspect-ratio: 1; flex-direction: column; align-items: center; justify-content: center; padding: 4px; border: 1px solid var(--line); text-align: center; }
+.mapRoad { background: var(--soft); color: var(--navy); }
+.mapBlock { background: color-mix(in srgb, var(--green) 18%, var(--paper)); }
+.mapCell > small { max-width: 100%; font-size: clamp(8px, 2vw, 11px); line-height: 2.4; overflow-wrap: anywhere; }
+.mapTarget { box-shadow: inset 0 0 0 2px var(--green); }
+.mapCurrent { background: color-mix(in srgb, var(--green) 20%, var(--paper)); }
+.mapIcon { font-size: clamp(17px, 5vw, 27px); line-height: 1.3; }
+.mapPlayer { position: absolute; top: 3px; right: 4px; z-index: 1; color: var(--green); font-size: 17px; line-height: 1; }
+.mapFigure figcaption { margin-top: 12px; color: var(--muted); font-size: 11px; line-height: 1.9; }
+.mapControls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.mapControls button { flex: 1 1 90px; line-height: 2.4; }
+.mapControls small { display: block; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.practiceBlock .mapMessage { color: var(--green); font-size: 13px; line-height: 1.9; }
+.routeSteps { display: grid; gap: 14px; margin: 16px 0 0; padding-left: 24px; }
+.routeSteps > li { padding-left: 4px; color: var(--green); font-size: 13px; }
+.routeSteps small { color: var(--muted); font-size: 11px; line-height: 1.8; }
+.counterList { display: grid; gap: 12px; margin-top: 14px; }
+.counterList > div { padding-top: 12px; border-top: 1px solid var(--line); }
+.counterList > div > span { display: block; line-height: 2.4; }
+.counterList > div > small { display: block; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.shopReceipt { display: grid; gap: 8px; margin-top: 20px; padding: 18px; border: 1px dashed var(--green); border-radius: 12px; background: var(--soft); }
+.shopReceipt > span, .shopReceipt > small { color: var(--muted); font-size: 11px; line-height: 1.8; }
+.shopReceipt strong { color: var(--green); font-size: 24px; line-height: 2.4; }
+.shopReceipt p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.shopDialogue { display: grid; gap: 12px; margin-top: 20px; }
+.speakerLabel { display: block; color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: .06em; }
+.customerLine { border-left: 3px solid var(--green); }
+.clerkLine { border-left: 3px solid var(--muted); }
+.dialogueJapanese { margin: 12px 0 0; color: var(--navy); font-size: 18px; line-height: 2.4; }
+.listeningCard { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--soft); }
+.listeningCard > span { color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: .06em; }
+.listeningFeedback p { color: var(--muted); font-size: 13px; line-height: 2.4; }
 
 .nextLevelLink { display: inline-block; margin-top: 18px; color: var(--green); font-size: 13px; font-weight: 700; }
 .proSection { margin-top: 32px; scroll-margin-top: 100px; }
@@ -170,6 +219,7 @@
   .workspace { grid-template-columns: minmax(0, 1fr); }
   .sidebar { position: static; }
   .phraseGrid { grid-template-columns: minmax(0, 1fr); }
+  .shopGrid { grid-template-columns: minmax(0, 1fr); }
   .fields { grid-template-columns: minmax(0, 1fr); }
   .practiceBlock { padding: 16px; }
   .topicHeader { padding: 22px 18px; }

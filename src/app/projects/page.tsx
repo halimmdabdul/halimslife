@@ -382,13 +382,18 @@ export default function ProjectsPage() {
               <small>Beginner Japanese · Topic Practice</small>
               <h3>Japanes 101</h3>
               <p>
-                Topic ধরে Japanese practice—Self-introduction-এর বাক্য শিখুন,
-                নিজের পরিচয় তৈরি করুন এবং ছোট self-check দিয়ে যাচাই করুন।
+                নিজের পরিচয়, daily routine, shopping, food ordering, যাতায়াত ও invitations—
+                hiragana, audio, interactive map ও conversation দিয়ে practice করুন।
               </p>
               <div className={styles.chips}>
                 <span>Japanese</span>
                 <span>Beginner</span>
                 <span>Self-introduction</span>
+                <span>Daily Routine</span>
+                <span>Shopping</span>
+                <span>Food Ordering</span>
+                <span>Directions</span>
+                <span>Making Plans</span>
               </div>
               <Link className={styles.greenLink} href="/projects/japanes-101">
                 Project দেখুন →

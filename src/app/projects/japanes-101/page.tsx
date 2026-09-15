@@ -7,7 +7,7 @@ import styles from "./japanes-101.module.css";
 
 export const metadata: Metadata = {
   title: "Japanes 101",
-  description: "Japanes 101 — বাংলা explanation সহ basic থেকে polished self-introduction। Class, workplace ও interview scripts, follow-up practice এবং speaking rehearsal।",
+  description: "Japanes 101 — বাংলা, hiragana ও audio সহ Self-introduction, Daily Routine, Shopping, Food Ordering, Directions এবং Making Plans & Invitations। Interactive practice ও conversation।",
   alternates: { canonical: "/projects/japanes-101" },
 };
 

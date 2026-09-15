@@ -2,6 +2,16 @@
 
 import { useRef, useState } from "react";
 import { ProfessionalIntroduction } from "./professional-introduction";
+import { DailyRoutine } from "./daily-routine";
+import { ShoppingPractice } from "./shopping-practice";
+import { emptyShopping } from "./shopping-content";
+import { FoodOrderingPractice } from "./food-ordering-practice";
+import { emptyFoodOrder } from "./food-ordering-content";
+import { DirectionsPractice } from "./directions-practice";
+import { emptyTravel } from "./directions-content";
+import { PlansPractice } from "./plans-practice";
+import { emptyPlan } from "./plans-content";
+import { emptyRoutine, type RoutineDay, type RoutineProfile } from "./daily-routine-content";
 import { JapaneseText } from "./japanese-text";
 import { JapaneseAudioGuide, JapaneseAudioPlayer } from "./japanese-audio-player";
 import styles from "./japanes-101.module.css";
@@ -18,8 +28,15 @@ const questions = [
   { prompt: "নিজের নাম বলুন: わたし［　］ハリムです。", options: ["を", "は", "に"], answer: 1, explanation: "এখানে topic particle は বসে; উচ্চারণ হবে ‘wa’।" },
 ];
 
+type TopicId = "introduction" | "routine" | "shopping" | "food" | "directions" | "plans";
+
 export function TopicPractice() {
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState<TopicId | null>(null);
+  const [planProfile, setPlanProfile] = useState({ ...emptyPlan });
+  const [travelProfile, setTravelProfile] = useState({ ...emptyTravel });
+  const [foodOrderProfile, setFoodOrderProfile] = useState({ ...emptyFoodOrder });
+  const [shoppingProfile, setShoppingProfile] = useState({ ...emptyShopping });
+  const [routineProfiles, setRoutineProfiles] = useState<Record<RoutineDay, RoutineProfile>>({ weekday: { ...emptyRoutine }, weekend: { ...emptyRoutine } });
   const [name, setName] = useState("");
   const [country, setCountry] = useState("バングラデシュ");
   const [role, setRole] = useState("学生");
@@ -30,8 +47,8 @@ export function TopicPractice() {
   const allAnswered = questions.every((_, index) => answers[index] !== undefined);
   const basicScript = ["はじめまして。", `わたしは${name.trim() || "［名前］"}です。`, `${country}から来ました。`, `${role}です。`, "よろしくお願いします。"].join("\n");
 
-  function chooseTopic() {
-    setSelected(true);
+  function chooseTopic(topic: TopicId) {
+    setSelected(topic);
     panelRef.current?.focus({ preventScroll: true });
     if (window.matchMedia("(max-width: 750px)").matches) {
       panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -44,9 +61,29 @@ export function TopicPractice() {
         <span className={styles.eyebrow}>LEARNING TOPICS</span>
         <h2>একটি topic বেছে নিন</h2>
         <nav aria-label="Japanese 101 topics">
-          <button type="button" className={`${styles.topicButton} ${selected ? styles.topicActive : ""}`} onClick={chooseTopic} aria-controls="topic-practice" aria-current={selected ? "true" : undefined}>
+          <button type="button" className={`${styles.topicButton} ${selected === "introduction" ? styles.topicActive : ""}`} onClick={() => chooseTopic("introduction")} aria-controls="topic-practice" aria-current={selected === "introduction" ? "true" : undefined}>
             <i>01</i>
             <span><b>Self-introduction</b><small lang="ja"><JapaneseText text="自己紹介" /></small><small>jiko-shoukai</small></span>
+          </button>
+          <button type="button" className={`${styles.topicButton} ${selected === "routine" ? styles.topicActive : ""}`} onClick={() => chooseTopic("routine")} aria-controls="topic-practice" aria-current={selected === "routine" ? "true" : undefined}>
+            <i>02</i>
+            <span><b>Daily Routine</b><small lang="ja"><JapaneseText text="毎日の生活" /></small><small>mainichi no seikatsu</small></span>
+          </button>
+          <button type="button" className={`${styles.topicButton} ${selected === "shopping" ? styles.topicActive : ""}`} onClick={() => chooseTopic("shopping")} aria-controls="topic-practice" aria-current={selected === "shopping" ? "true" : undefined}>
+            <i>03</i>
+            <span><b>Shopping & Prices</b><small lang="ja"><JapaneseText text="買い物" /></small><small>kaimono</small></span>
+          </button>
+          <button type="button" className={`${styles.topicButton} ${selected === "food" ? styles.topicActive : ""}`} onClick={() => chooseTopic("food")} aria-controls="topic-practice" aria-current={selected === "food" ? "true" : undefined}>
+            <i>04</i>
+            <span><b>Food & Ordering</b><small lang="ja"><JapaneseText text="食べ物と注文" /></small><small>tabemono to chuumon</small></span>
+          </button>
+          <button type="button" className={`${styles.topicButton} ${selected === "directions" ? styles.topicActive : ""}`} onClick={() => chooseTopic("directions")} aria-controls="topic-practice" aria-current={selected === "directions" ? "true" : undefined}>
+            <i>05</i>
+            <span><b>Directions & Transportation</b><small lang="ja"><JapaneseText text="道案内と交通" /></small><small>michi-annai to koutsuu</small></span>
+          </button>
+          <button type="button" className={`${styles.topicButton} ${selected === "plans" ? styles.topicActive : ""}`} onClick={() => chooseTopic("plans")} aria-controls="topic-practice" aria-current={selected === "plans" ? "true" : undefined}>
+            <i>06</i>
+            <span><b>Making Plans & Invitations</b><small lang="ja"><JapaneseText text="予定と誘い" /></small><small>yotei to sasoi</small></span>
           </button>
         </nav>
         <p>Topic খুলুন → বাক্য শিখুন → নিজে practice করুন।</p>
@@ -57,9 +94,19 @@ export function TopicPractice() {
           <div className={styles.emptyState}>
             <span lang="ja"><JapaneseText text="自己紹介" /></span>
             <h2>আপনার প্রথম Japanese introduction</h2>
-            <p>বাম পাশের Self-introduction-এ click করে practice শুরু করুন।</p>
-            <button type="button" className={styles.primaryButton} onClick={chooseTopic}>Practice শুরু করুন →</button>
+            <p>বাম পাশ থেকে যেকোনো topic বেছে practice শুরু করুন—নিজের পরিচয়, যাতায়াত থেকে বন্ধুদের আমন্ত্রণ ও পরিকল্পনা পর্যন্ত।</p>
+            <button type="button" className={styles.primaryButton} onClick={() => chooseTopic("introduction")}>Practice শুরু করুন →</button>
           </div>
+        ) : selected === "routine" ? (
+          <DailyRoutine profiles={routineProfiles} onProfileChange={(day, profile) => setRoutineProfiles((previous) => ({ ...previous, [day]: profile }))} />
+        ) : selected === "shopping" ? (
+          <ShoppingPractice profile={shoppingProfile} onProfileChange={setShoppingProfile} />
+        ) : selected === "food" ? (
+          <FoodOrderingPractice profile={foodOrderProfile} onProfileChange={setFoodOrderProfile} />
+        ) : selected === "directions" ? (
+          <DirectionsPractice profile={travelProfile} onProfileChange={setTravelProfile} />
+        ) : selected === "plans" ? (
+          <PlansPractice profile={planProfile} onProfileChange={setPlanProfile} />
         ) : (
           <>
             <header className={styles.topicHeader}>
