@@ -373,6 +373,27 @@ export default function ProjectsPage() {
                 N4 Kanji শিখুন →
               </Link>
             </article>
+            <article>
+              <div className={`${styles.cardImage} ${styles.japanese101Visual}`} aria-hidden="true">
+                <span>日本語</span>
+                <strong>101</strong>
+                <i>A new beginning</i>
+              </div>
+              <small>New Project · Coming soon</small>
+              <h3>Japanes 101</h3>
+              <p>
+                Japanese শেখার নতুন project। এই dedicated space-এ পরবর্তী
+                lessons ও learning content যোগ করা হবে।
+              </p>
+              <div className={styles.chips}>
+                <span>Japanese</span>
+                <span>Beginner</span>
+                <span>Coming soon</span>
+              </div>
+              <Link className={styles.greenLink} href="/projects/japanes-101">
+                Project দেখুন →
+              </Link>
+            </article>
           </div>
           <div className={styles.learningPath}>
             <span>🌱 Start</span>

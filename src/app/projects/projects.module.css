@@ -56,6 +56,34 @@ html[data-theme="dark"] .cardImage:after {
   pointer-events: none;
 }
 
+.cardImage.japanese101Visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #e1f7ed;
+  background: radial-gradient(circle at 80% 15%, #428c74, transparent 50%), linear-gradient(135deg, #10382f, #0b201e);
+}
+
+.japanese101Visual span {
+  font-size: 22px;
+  letter-spacing: .2em;
+}
+
+.japanese101Visual strong {
+  font-family: Georgia, serif;
+  font-size: 90px;
+  line-height: 1;
+  color: #f5d698;
+}
+
+.japanese101Visual i {
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: .12em;
+}
+
 /* Project-specific thumbnail system. */
 .learningGrid article {
   transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
